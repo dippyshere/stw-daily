@@ -1,2 +1,3 @@
-# stw-daily
-Discord bot that collects Fortnite: Save the World daily rewards using an auth token.
+# Fortnite: Save the World Daily Rewards Discord
+
+Hi!
