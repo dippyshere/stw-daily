@@ -53,7 +53,8 @@ async def on_ready():
 @client.command()
 async def help(message):
     embed = discord.Embed(title='Help', description='Commands:', colour=discord.Colour.red())
-    embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/448073494660644884/757803329027047444/Asset_2.24x.1.png')
+    embed.set_thumbnail(
+        url='https://cdn.discordapp.com/attachments/448073494660644884/757803329027047444/Asset_2.24x.1.png')
     embed.set_author(name=message.author.name, icon_url=message.author.avatar_url)
     embed.add_field(name='stw daily [AUTH TOKEN]',
                     value="Collect your daily reward without even opening the game\nDefeats the whole point of the "
@@ -61,9 +62,32 @@ async def help(message):
                           "link](https://tinyurl.com/epicauthcode)\nThen just simply copy your code from the response"
                           "and append to your command.\n'https://accounts.epicgames.com/fnauth?code=CODE'",
                     inline=False)
+    embed.add_field(name='stw instruction', value='More detailed instructios for using the bot')
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                      , icon_url=message.author.avatar_url)
+    await message.channel.send(embed=embed)
+
+
+@client.command()
+async def instruction(message):
+    embed = discord.Embed(title='How to use "STW Daily"', color=discord.Color.blurple())
+    embed.set_footer(text='This bot was made by Dippy is not here', icon_url=message.author.avatar_url)
+    embed.add_field(name='Welcome',
+                    value='I will collect your daily rewards for you, without the need to launch the game.\n\n'
+                          'To get started, [Visit this link](https://tinyurl.com/epicauthcode), and copy **only** the '
+                          'authorisation code that it gives you.\n\nFor example,\n```js'
+                          '\n{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b14'
+                          '57c8e34a1f6026faa35","sid":null}\n```\nwill become\n```\n'
+                          'a51c1f4d35b1457c8e34a1f6026faa35\n```\n\nThen, just simply copy paste that into '
+                          'your command, like so:\n``stw daily a51c1f4d35b1457c8e34a1f6026faa35``\n:bulb: '
+                          'Pro tip: In most browsers, double click on or below the code and it should '
+                          'highlight just the code\n\nIf there is any error, please do not hesitate to ask '
+                          '<@!349076896266452994> and I will try to resolve the issue.\n\n```cs\n# WARNING\n'
+                          'Your Authorisation code can potentially be used malliciously. '
+                          'It is only temprary and will expire after use, however that does not mean you '
+                          'shouldn\'t be carefull who you give it to.\n```\n```css\n# NOT AFFILIATED'
+                          ' WITH EPIC GAMES\n```')
     await message.channel.send(embed=embed)
 
 
@@ -168,4 +192,4 @@ async def daily(message):
         await msg.edit(embed=embed)
 
 
-client.run('NzU3Nzc2OTk2NDE4NzE1NjUx.X2lU0g.QmLf_ATPRcRLT4gYXeP_TaRQBvA')
+client.run('token')
