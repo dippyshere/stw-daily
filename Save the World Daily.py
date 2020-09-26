@@ -49,7 +49,7 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=discord.Game('your dailies'))
 
 
-# noinspection PyShadowingBuiltins,SpellCheckingInspection
+# noinspection PyShadowingBuiltins
 @client.command()
 async def help(message):
     embed = discord.Embed(title='Help', description='Commands:', colour=discord.Colour.red())
@@ -59,10 +59,10 @@ async def help(message):
     embed.add_field(name='stw daily [AUTH TOKEN]',
                     value="Collect your daily reward without even opening the game\nDefeats the whole point of the "
                           "system but who cares?\n**Requires: Auth Token**\n[You can get an auth token by following this "
-                          "link](https://tinyurl.com/epicauthcode)\nThen just simply copy your code from the response"
+                          "link](https://tinyurl.com/epicauthcode)\nThen just simply copy your code from the response "
                           "and append to your command.\n'https://accounts.epicgames.com/fnauth?code=CODE'",
                     inline=False)
-    embed.add_field(name='stw instruction', value='More detailed instructios for using the bot')
+    embed.add_field(name='stw instruction', value='More detailed instructions for using the bot')
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                      , icon_url=message.author.avatar_url)
@@ -84,9 +84,9 @@ async def instruction(message):
                           'Pro tip: In most browsers, double click on or below the code and it should '
                           'highlight just the code\n\nIf there is any error, please do not hesitate to ask '
                           '<@!349076896266452994> and I will try to resolve the issue.\n\n```cs\n# WARNING\n'
-                          'Your Authorisation code can potentially be used malliciously. '
-                          'It is only temprary and will expire after use, however that does not mean you '
-                          'shouldn\'t be carefull who you give it to.\n```\n```css\n# NOT AFFILIATED'
+                          '"Your Authorisation code can potentially be used maliciously. '
+                          'It is only temporary and will expire after use, however that does not mean you '
+                          'shouldn\'t be carefull who you give it to."\n```\n```css\n# NOT AFFILIATED'
                           ' WITH EPIC GAMES\n```')
     await message.channel.send(embed=embed)
 
@@ -192,4 +192,4 @@ async def daily(message):
         await msg.edit(embed=embed)
 
 
-client.run('token')
+client.run('Token')
