@@ -1,12 +1,20 @@
+import asyncio
 import datetime
 import json
+# noinspection PyUnresolvedReferences
+import os
 import time
+import psutil
+
 import discord
 import requests
 from discord.ext import commands
 
 client = commands.AutoShardedBot(command_prefix='stw ', shard_count=1, case_insensetive=True)
 client.remove_command('help')
+uptime_start = datetime.datetime.utcnow()
+daily_feedback = ""
+r = ''
 
 
 class endpoints:
@@ -15,6 +23,7 @@ class endpoints:
     reward = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{0}/client/ClaimLoginReward?profileId=campaign"
 
 
+# noinspection PyUnboundLocalVariable,PyShadowingNames
 def getToken(authCode: str):
     h = {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -43,10 +52,77 @@ def getToken(authCode: str):
         return False, err, reason
 
 
+def get_bot_uptime():
+    now = datetime.datetime.utcnow()
+    delta = now - uptime_start
+    hours, remainder = divmod(int(delta.total_seconds()), 3600)
+    minutes, seconds = divmod(remainder, 60)
+    days, hours = divmod(hours, 24)
+    fmt = ''
+    if days == 1:
+        fmt += '{d} day, '
+    else:
+        if days:
+            fmt += '{d} days, '
+    if hours == 1:
+        fmt += '{h} hour, '
+    else:
+        if hours:
+            fmt += '{h} hours, '
+    if minutes == 1:
+        fmt += '{m} minute, '
+    else:
+        if minutes:
+            fmt += '{m} minutes, '
+    if seconds == 1:
+        fmt += '{s} second'
+    else:
+        fmt += '{s} seconds'
+    # if days:
+    #    fmt = '{d} days, {h} hours, {m} minutes, and {s} seconds'
+    # else:
+    #    fmt = '{h} hours, {m} minutes, and {s} seconds'
+    return fmt.format(d=days, h=hours, m=minutes, s=seconds)
+
+
 @client.event
 async def on_ready():
     print('Client open')
-    await client.change_presence(status=discord.Status.online, activity=discord.Game('your dailies'))
+    await client.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.listening, name=f"stw help in {len(client.guilds)} severs"))
+
+
+# noinspection PyBroadException
+@client.command()
+async def info(message):
+    try:
+        osgetlogin = os.getlogin()
+    except:
+        osgetlogin = 'Not Available'
+    embed = discord.Embed(title='Information', description='Statistics:', colour=discord.Colour.red())
+    embed.set_thumbnail(
+        url='https://cdn.discordapp.com/attachments/695117839383920641/759372935676559400/Asset_4.14x.png')
+    embed.set_author(name=message.author.name, icon_url=message.author.avatar_url)
+    embed.add_field(name='Host statistics:', value=f'os.name: {os.name}\nos.cpu_count: {os.cpu_count()}\n'
+                                                   f'os.getcwd: {os.getcwd()}\nos.getlogin: {osgetlogin}\n'
+                                                   f'CPU usage: {psutil.cpu_percent()}%\nCPU Freq: {int(psutil.cpu_freq().current)}mhz\nRAM Usage:\nTotal: '
+                                                   f'{psutil.virtual_memory().total // 1000000}mb\nUsed: '
+                                                   f'{psutil.virtual_memory().used // 1000000}mb\nFree: '
+                                                   f'{psutil.virtual_memory().free // 1000000}mb\nUtilisation: '
+                                                   f'{psutil.virtual_memory().percent}%')
+    embed.set_footer(text=f"\nRequested by: {message.author.name} • "
+                          f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
+                     , icon_url=message.author.avatar_url)
+    await message.channel.send(embed=embed)
+
+
+@client.command()
+async def temp(message):
+    try:
+        psutilsensors_temperatures = psutil.sensors_temperatures()
+    except:
+        psutilsensors_temperatures = 'Not available'
+    await message.channel.send(psutilsensors_temperatures)
 
 
 # noinspection PyShadowingBuiltins
@@ -62,11 +138,22 @@ async def help(message):
                           "link](https://tinyurl.com/epicauthcode)\nThen just simply copy your code from the response "
                           "and append to your command.\n'https://accounts.epicgames.com/fnauth?code=CODE'",
                     inline=False)
-    embed.add_field(name='stw instruction', value='More detailed instructions for using the bot')
+    embed.add_field(name='stw instruction', value='More detailed instructions for using the bot', inline=False)
+    embed.add_field(name='stw uptime', value='**[DEVELOPER]**\nSends how long the bot has been running for.')
+    embed.add_field(name='stw emoji', value='**[DEVELOPER]**\nSends the loading emoji')
+    embed.add_field(name='stw ping',
+                    value='**[DEVELOPER]**\nSends the websocket latency and actual latency, as well as uptime.')
+    embed.add_field(name='stw info', value='**[DEVELOPER]**\nReturns information about the bot')
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                      , icon_url=message.author.avatar_url)
     await message.channel.send(embed=embed)
+
+
+@client.command()
+async def uptime(message):
+    """Tells you how long the bot has been up for."""
+    await message.send('Uptime: **{}**'.format(get_bot_uptime()))
 
 
 @client.command()
@@ -86,22 +173,57 @@ async def instruction(message):
                           '<@!349076896266452994> and I will try to resolve the issue.\n\n```cs\n# WARNING\n'
                           '"Your Authorisation code can potentially be used maliciously. '
                           'It is only temporary and will expire after use, however that does not mean you '
-                          'shouldn\'t be carefull who you give it to."\n```\n```css\n# NOT AFFILIATED'
+                          'shouldn\'t be careful who you give it to."\n```\n```css\n# NOT AFFILIATED'
                           ' WITH EPIC GAMES\n```')
     await message.channel.send(embed=embed)
 
 
-# noinspection PyUnboundLocalVariable
+# noinspection SpellCheckingInspection,PyShadowingNames
+@client.command(pass_context=True)
+async def ping(message):
+    websocket_ping = '{0}'.format(int(client.latency * 100)) + ' ms'
+    before = time.monotonic()
+    # msg = await message.send("Pong!")
+    # await msg.edit(content=f"Pong!  `{int(ping)}ms`")
+    # await message.channel.send(f'websocket latency: {client.latency*100}ms')
+    # await message.send('websocket: {0}'.format(int(client.latency * 100)) + ' ms')
+    embed = discord.Embed(title='Latency', color=discord.Color.blurple())
+    embed.set_footer(text=f"\nRequested by: {message.author.name} • "
+                          f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
+                     , icon_url=message.author.avatar_url)
+    embed.add_field(name='Websocket :electric_plug:', value=websocket_ping, inline=True)
+    embed.add_field(name='Actual :microphone:',
+                    value='<a:loadin:759293511475527760>', inline=True)
+    embed.add_field(name='Uptime :alarm_clock:', value=f'{get_bot_uptime()}', inline=True)
+    embed2 = discord.Embed(title='Latency', color=discord.Color.blurple())
+    embed2.set_footer(text=f"\nRequested by: {message.author.name} • "
+                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
+                      , icon_url=message.author.avatar_url)
+    embed2.add_field(name='Websocket :electric_plug:', value=websocket_ping, inline=True)
+    msg = await message.channel.send(embed=embed)
+    ping = (time.monotonic() - before) * 1000
+    embed2.add_field(name='Actual :microphone:',
+                     value=f'{int(ping)}ms', inline=True)
+    await asyncio.sleep(4)
+    embed2.add_field(name='Uptime :alarm_clock:', value=f'{get_bot_uptime()}', inline=True)
+    await msg.edit(embed=embed2)
+
+
 @client.command()
-async def daily(message):
+async def emoji(message):
+    # await message.channel.send('<a:loading:759292972784418800>')
+    # await message.channel.send(f'<a:god:424520269315440650>')
+    await message.channel.send('<a:loadin:759293511475527760>')
+
+
+# noinspection PyUnboundLocalVariable,PyUnusedLocal,PyBroadException
+@client.command()
+async def daily(message, token=''):
     msg = await message.channel.send(embed=discord.Embed(title='Processing', colour=discord.Color.blurple()))
     global daily_feedback, r
-    amount = "Unknown"
-    item = ""
-    day = "Unknown"
     daily_feedback = ""
     r = ''
-    token = str(message.message.content)[10:]
+    # token = str(message.message.content)[10:]
     if str(message.message.content)[9:] == "":
         await msg.edit(
             embed=discord.Embed(title="Specify Auth Token. [You can get yours here](https://tinyurl.com/epicauthcode)"))
@@ -150,11 +272,12 @@ async def daily(message):
             else:
                 try:
                     # print(str(str(r.text).split("notifications", 1)[1][2:].split('],"profile', 1)[0]))
-                    daily_feedback = str(r.text).split("notifications", 1)[1][4:].split("], 'profile", 1)[0]
+                    daily_feedback = str(r.text).split("notifications", 1)[1][4:].split('],"profile', 1)[0]
                     day = str(daily_feedback).split('"daysLoggedIn":', 1)[1].split(',"items":[', 1)[0]
                     try:
+                        await message.channel.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
                         item = str(daily_feedback).split('[{"itemType":"', 1)[1].split('","itemGuid"', 1)[0]
-                        amount = str(daily_feedback).split('","quantity":', 1)[1].split("}]}", 1)[0]
+                        amount = str(daily_feedback).split('"quantity":', 1)[1].split("}]}", 1)[0]
                         embed = discord.Embed(title='Success',
                                               colour=0x00c113)
                         embed.set_thumbnail(
@@ -163,7 +286,8 @@ async def daily(message):
                                         inline=False)
                         # print(item)
                         # print(amount)
-                    except:
+                    except Exception as e:
+                        await message.channel.send(f'Debugging info because sometimes it breaks:\n{e}')
                         embed = discord.Embed(title='Hmm',
                                               colour=0xeeaf00)
                         embed.set_thumbnail(
@@ -192,4 +316,5 @@ async def daily(message):
         await msg.edit(embed=embed)
 
 
-client.run('Token')
+# noinspection SpellCheckingInspection
+client.run('token')
