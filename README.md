@@ -11,6 +11,8 @@ This is a discord bot that will collect your daily reward by using API requests.
 ## How to start the bot
 Edit the token with your bots token (located on the last line), then run the python file.
 
+Alternatively, you can [Use my publicly one hosted on heroku here.](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=313344&scope=bot)
+
 ## How to use the bot
 The bot's default prefix is ``stw``. You can change it manually at the top of the file.
 
