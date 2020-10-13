@@ -9,8 +9,24 @@ import psutil
 import discord
 import requests
 from discord.ext import commands
+import discord.member
+from discord.utils import get
 
-client = commands.AutoShardedBot(command_prefix='stw ', shard_count=1, case_insensetive=True)
+
+def mixedCase(*args):
+    """
+    Generates a completely random number
+    Guaranteed to be random 100% **WORKING 2020** FREE HD 4k
+    """
+    total = []
+    import itertools
+    for string in args:
+        a = map(''.join, itertools.product(*((c.upper(), c.lower()) for c in string)))
+        for x in list(a): total.append(x)
+    return list(total)
+
+
+client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '), shard_count=1)
 client.remove_command('help')
 uptime_start = datetime.datetime.utcnow()
 daily_feedback = ""
@@ -39,11 +55,11 @@ def getToken(authCode: str):
     if "access_token" in r:
         access_token = r["access_token"]
         account_id = r["account_id"]
-        print(f"access_token: {access_token}\naccount_id: {account_id}\nexpires_at: {r['expires_at']}")
+        # print(f"access_token: {access_token}\naccount_id: {account_id}\nexpires_at: {r['expires_at']}")
         return access_token, account_id
     else:
         if "errorCode" in r:
-            print(r)
+            # print(r)
             print(f"[ERROR] {r['errorCode']}")
             err = r['errorCode']
             reason = r['errorMessage']
@@ -59,30 +75,31 @@ def get_bot_uptime():
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
     fmt = ''
-    if days == 1:
-        fmt += '{d} day, '
-    else:
-        if days:
-            fmt += '{d} days, '
-    if hours == 1:
-        fmt += '{h} hour, '
-    else:
-        if hours:
-            fmt += '{h} hours, '
-    if minutes == 1:
-        fmt += '{m} minute, '
-    else:
-        if minutes:
-            fmt += '{m} minutes, '
-    if seconds == 1:
-        fmt += '{s} second'
-    else:
-        fmt += '{s} seconds'
+    # if days == 1:
+    #     fmt += '{d} day, '
+    # else:
+    #     if days:
+    #         fmt += '{d} days, '
+    # if hours == 1:
+    #     fmt += '{h} hour, '
+    # else:
+    #     if hours:
+    #         fmt += '{h} hours, '
+    # if minutes == 1:
+    #     fmt += '{m} minute, '
+    # else:
+    #     if minutes:
+    #         fmt += '{m} minutes, '
+    # if seconds == 1:
+    #     fmt += '{s} second'
+    # else:
+    #     fmt += '{s} seconds'
     # if days:
     #    fmt = '{d} days, {h} hours, {m} minutes, and {s} seconds'
     # else:
     #    fmt = '{h} hours, {m} minutes, and {s} seconds'
-    return fmt.format(d=days, h=hours, m=minutes, s=seconds)
+    # return fmt.format(d=days, h=hours, m=minutes, s=seconds)
+    return f'Bot started on: {uptime_start}'
 
 
 @client.event
@@ -90,6 +107,13 @@ async def on_ready():
     print('Client open')
     await client.change_presence(
         activity=discord.Activity(type=discord.ActivityType.listening, name=f"stw help in {len(client.guilds)} severs"))
+
+
+async def update_status():
+    await client.wait_until_ready()
+    await client.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.listening, name=f"stw help in {len(client.guilds)} severs"))
+    await asyncio.sleep(1800)
 
 
 # noinspection PyBroadException
@@ -275,7 +299,7 @@ async def daily(message, token=''):
                     daily_feedback = str(r.text).split("notifications", 1)[1][4:].split('],"profile', 1)[0]
                     day = str(daily_feedback).split('"daysLoggedIn":', 1)[1].split(',"items":[', 1)[0]
                     try:
-                        await message.channel.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
+                        # await message.channel.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
                         item = str(daily_feedback).split('[{"itemType":"', 1)[1].split('","itemGuid"', 1)[0]
                         amount = str(daily_feedback).split('"quantity":', 1)[1].split("}]}", 1)[0]
                         embed = discord.Embed(title='Success',
@@ -287,7 +311,7 @@ async def daily(message, token=''):
                         # print(item)
                         # print(amount)
                     except Exception as e:
-                        await message.channel.send(f'Debugging info because sometimes it breaks:\n{e}')
+                        # await message.channel.send(f'Debugging info because sometimes it breaks:\n{e}')
                         embed = discord.Embed(title='Hmm',
                                               colour=0xeeaf00)
                         embed.set_thumbnail(
@@ -317,4 +341,5 @@ async def daily(message, token=''):
 
 
 # noinspection SpellCheckingInspection
+client.loop.create_task(update_status())
 client.run('token')
