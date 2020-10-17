@@ -74,32 +74,8 @@ def get_bot_uptime():
     hours, remainder = divmod(int(delta.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
-    fmt = ''
-    # if days == 1:
-    #     fmt += '{d} day, '
-    # else:
-    #     if days:
-    #         fmt += '{d} days, '
-    # if hours == 1:
-    #     fmt += '{h} hour, '
-    # else:
-    #     if hours:
-    #         fmt += '{h} hours, '
-    # if minutes == 1:
-    #     fmt += '{m} minute, '
-    # else:
-    #     if minutes:
-    #         fmt += '{m} minutes, '
-    # if seconds == 1:
-    #     fmt += '{s} second'
-    # else:
-    #     fmt += '{s} seconds'
-    # if days:
-    #    fmt = '{d} days, {h} hours, {m} minutes, and {s} seconds'
-    # else:
-    #    fmt = '{h} hours, {m} minutes, and {s} seconds'
-    # return fmt.format(d=days, h=hours, m=minutes, s=seconds)
-    return f'Bot started on: {uptime_start}'
+    fmt = '{d} days, {h} hours, {m} minutes, and {s} seconds'
+    return fmt.format(d=days, h=hours, m=minutes, s=seconds)
 
 
 @client.event
@@ -111,9 +87,10 @@ async def on_ready():
 
 async def update_status():
     await client.wait_until_ready()
-    await client.change_presence(
-        activity=discord.Activity(type=discord.ActivityType.listening, name=f"stw help in {len(client.guilds)} severs"))
-    await asyncio.sleep(1800)
+    while True:
+        await client.change_presence(
+            activity=discord.Activity(type=discord.ActivityType.listening, name=f"stw help in {len(client.guilds)} severs"))
+        await asyncio.sleep(1800)
 
 
 # noinspection PyBroadException
