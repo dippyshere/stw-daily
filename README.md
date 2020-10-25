@@ -12,7 +12,9 @@ This is a discord bot that will collect your daily reward by using API requests.
 Edit the token with your bots token (located on the last line), then run the python file.
 
 Alternatively, you can [Use my publicly one hosted on heroku here.](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=313344&scope=bot)
+
 You can also join my server if you would prefer to use the bot that way.
+
 ![Discord Banner 2](https://discordapp.com/api/guilds/757765475823517851/widget.png?style=banner2)
 
 ## How to use the bot
