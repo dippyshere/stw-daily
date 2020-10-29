@@ -160,7 +160,7 @@ async def on_ready():
         sum += len(s.members)
     await client.change_presence(
         activity=discord.Activity(type=discord.ActivityType.listening,
-                                  name=f"stw help  |  Reset in: \n{time_until_end_of_day()}\n  |  In {len(client.guilds)} guilds with {sum} members |  Last update at: {lastmfunction()} (UTC +0)"))
+                                  name=f"stw help  |  Reset in: \n{time_until_end_of_day()}\n  |  In {len(client.guilds)} guilds  |  Last update at: {lastmfunction()} (UTC +0)"))
 
 
 async def update_status():
@@ -456,8 +456,17 @@ async def daily(message, token=''):
                                               colour=0x00c113)
                         embed.set_thumbnail(
                             url='https://cdn.discordapp.com/attachments/448073494660644884/757803334198624336/Asset_2.1.14x2.png')
-                        embed.add_field(name=f'On day **{day}**, you received:', value=f"**{amount}** **{item}**",
-                                        inline=False)
+                        if "}" in amount:
+                            amount2 = str(amount).split("},", 1)[0]
+                            fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
+                            fndr_amount = str(amount).split('quantity":', 1)[1]
+                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{amount2}** **{item}**",
+                                            inline=False)
+                            embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item}**",
+                                            inline=False)
+                        else:
+                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{amount}** **{item}**",
+                                            inline=False)
                         print('success')
                         print(item)
                         print(amount)
