@@ -6,6 +6,7 @@ This is a discord bot that will collect your daily reward by using API requests.
 * Python (Tested with 3.8.5)
 * Discord.py
 * Requests
+* psutil (only used for some statistics. It is not essential to the functionality of the bot and can/should be removed
 * An account with campaign access (Save the world)
 
 ## How to start the bot
