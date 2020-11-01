@@ -4,13 +4,13 @@ import json
 # noinspection PyUnresolvedReferences
 import os
 import time
-import psutil
 
 import discord
+import discord.member
+import psutil
 import requests
 from discord.ext import commands
-import discord.member
-from discord.utils import get
+import items
 
 
 def mixedCase(*args):
@@ -26,7 +26,7 @@ def mixedCase(*args):
     return list(total)
 
 
-client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '), shard_count=1)
+client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw2 '), shard_count=1)
 client.remove_command('help')
 uptime_start = datetime.datetime.utcnow()
 daily_feedback = ""
@@ -67,7 +67,7 @@ emoji_aliases = mixedCase('emoji')
 emoji_aliases.extend(['animate'])
 if 'Emoji' in emoji_aliases: emoji_aliases.remove('Emoji')
 daily_aliases = mixedCase('daily')
-daily_aliases.extend(['collect', 'dailt', 'daliy', 'dail', 'd', 'daiyl', 'day', 'reward', 'dialy'])
+daily_aliases.extend(['collect', 'dailt', 'daliy', 'dail', 'd', 'daiyl', 'day', 'dialy'])
 if 'Daily' in daily_aliases: daily_aliases.remove('Daily')
 
 
@@ -276,6 +276,27 @@ async def membercount(message):
     await message.channel.send(embed=embed)
 
 
+@client.command(name='Reward Info', aliases=["rwrd"], description='Sends info based on a dictionary of items')
+async def reward(message, day='Uhoh-stinky'):
+    print(f'reward info requested by: {message.author.name}')
+    if day == 'Uhoh-stinky':
+        await message.channel.send('specify the day (number) of which you would like to see.')
+    else:
+        embed = discord.Embed(title=f"Reward info", description=f'For day **{day}**', color=discord.Color(0xff00ff))
+        embed.add_field(name=f'**Item: **', value=f'{getReward(day)}')
+        embed.set_footer(text=f"\nRequested by: {message.author.name} • "
+                              f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
+                         , icon_url=message.author.avatar_url)
+        await message.channel.send(embed=embed)
+
+
+def getReward(day):
+    day_mod = int(day) % 336
+    if day_mod == 0:
+        day_mod = 336
+    return items.ItemDictonary[str(day_mod)]
+
+
 @client.command(name='getmtime', aliases=getmtime_aliases,
                 description='Used to get the last modified date of the python file')
 async def getmtime(message):
@@ -298,6 +319,8 @@ async def help(message):
                           "and append to your command.\n'https://accounts.epicgames.com/fnauth?code=CODE'",
                     inline=False)
     embed.add_field(name='**stw instruction**', value='More detailed instructions for using the bot', inline=False)
+    embed.add_field(name='**stw rwrd [day]**',
+                    value='Sends the friendly name of a reward for the given day.')
     embed.add_field(name='**stw ping**',
                     value='Sends the WebSocket latency and actual latency.')
     embed.add_field(name='**stw info**', value='Returns information about the bots host')
@@ -456,17 +479,50 @@ async def daily(message, token=''):
                                               colour=0x00c113)
                         embed.set_thumbnail(
                             url='https://cdn.discordapp.com/attachments/448073494660644884/757803334198624336/Asset_2.1.14x2.png')
-                        if "}" in amount:
-                            amount2 = str(amount).split("},", 1)[0]
-                            fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
-                            fndr_amount = str(amount).split('quantity":', 1)[1]
-                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{amount2}** **{item}**",
-                                            inline=False)
-                            embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item}**",
-                                            inline=False)
-                        else:
-                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{amount}** **{item}**",
-                                            inline=False)
+                        try:
+                            if "}" in amount:
+                                amount2 = str(amount).split("},", 1)[0]
+                                fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
+                                fndr_amount = str(amount).split('quantity":', 1)[1]
+                                if fndr_item == 'CardPack:cardpack_event_founders':
+                                    fndr_item_f = "Founder's Llama"
+                                elif fndr_item == 'CardPack:cardpack_bronze':
+                                    fndr_item_f = "Upgrade Llama (bronze)"
+                                else:
+                                    fndr_item_f = fndr_item
+                                embed.add_field(name=f'On day **{day}**, you received:', value=f"{getReward(day)}",
+                                                inline=False)
+                                embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item_f}**",
+                                                inline=False)
+                                embed.add_field(name=f'Internal names:', value=f"**{amount2}** **{item}**",
+                                                inline=False)
+                                embed.add_field(name=f'Founders:', value=f"**{fndr_amount}** **{fndr_item}**",
+                                                inline=False)
+                            else:
+                                embed.add_field(name=f'On day **{day}**, you received:', value=f"{getReward(day)}",
+                                                inline=False)
+                                embed.add_field(name=f'Internal name:', value=f"**{amount2}** **{item}**",
+                                                inline=False)
+                        except:
+                            if "}" in amount:
+                                amount2 = str(amount).split("},", 1)[0]
+                                fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
+                                fndr_amount = str(amount).split('quantity":', 1)[1]
+                                embed.add_field(name=f'On day **{day}**, you received:', value=f"**{amount2}** **{item}**",
+                                                inline=False)
+                                embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item}**",
+                                                inline=False)
+                                embed.add_field(name=f'Using backup code',
+                                                value=f"An error occured in trying to display the friendly name of items. Please report this issue via ``stw report [content]``",
+                                                inline=False)
+                                print('using backup')
+                            else:
+                                embed.add_field(name=f'On day **{day}**, you received:', value=f"**{amount2}** **{item}**",
+                                                inline=False)
+                                embed.add_field(name=f'Using backup code',
+                                                value=f"An error occured in trying to display the friendly name of items. Please report this issue via ``stw report [content]``",
+                                                inline=False)
+                                print('using backup')
                         print('success')
                         print(item)
                         print(amount)
@@ -476,8 +532,10 @@ async def daily(message, token=''):
                                               colour=0xeeaf00)
                         embed.set_thumbnail(
                             url='https://cdn.discordapp.com/attachments/448073494660644884/757803329299415163/Asset_1.14x2.png')
-                        embed.add_field(name='It appears that you have **already claimed** todays reward.',
-                                        value=f"You are on day **{day}**", inline=False)
+                        embed.add_field(name='It appears that you have **already claimed** today\'s reward.',
+                                        value=f"You are on day **{day}**\nIf you have already claimed today's reward; Don't worry! Today's reward will be claimed if you see this.", inline=False)
+                        embed.add_field(name='Today\'s reward would have been:',
+                                        value=f"{getReward(day)}", inline=False)
                         print('Daily was already claimed or i screwed up')
                         print(f'Error info: {e}')
                         last_error_py = str(e)
