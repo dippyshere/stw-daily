@@ -14,7 +14,7 @@ Edit the token with your bots token (located on the last line), then run the pyt
 
 Alternatively, you can [Use my publicly one hosted on heroku here.](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=313344&scope=bot)
 
-You can also join my server if you would prefer to use the bot that way.
+You can also [join my server](https://discord.gg/Mt7SgUu) if you would prefer to use the bot that way.
 
 ![Discord Banner 2](https://discordapp.com/api/guilds/757765475823517851/widget.png?style=banner2)
 
