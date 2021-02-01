@@ -4,7 +4,7 @@ This is a discord bot that will collect your daily reward by using API requests.
 
 # Important Information:
 ## Using Public Hosted one:
-Currently the public bot is at its cap of 100 servers. Since the bot cannot be verified until late Q4 2021 (at the earliest), if you want to use the bot, you need to [join the server](https://discord.gg/Mt7SgUu).
+Currently the public bot is at its cap of 100 servers. Since the bot cannot be verified until late Q4 2021 (at the earliest), if you want to use the bot, you need to [join the server](https://discord.gg/Mt7SgUu). You can use the bot through DMs exclusively.
 ## Self Hosting:
 You are unaffected by this cap, so you can make your own application on discord and run/modify yourself.
 
