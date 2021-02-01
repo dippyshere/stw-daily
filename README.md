@@ -2,6 +2,12 @@
 
 This is a discord bot that will collect your daily reward by using API requests. It is an adaptation of [this repository](https://github.com/Londiuh/fstwrc)
 
+# Important Information:
+## Using Public Hosted one:
+Currently the public bot is at its cap of 100 servers. Since the bot cannot be verified until late Q4 2021 (at the earliest), if you want to use the bot, you need to [join the server](https://discord.gg/Mt7SgUu).
+## Self Hosting:
+You are unaffected by this cap, so you can make your own application on discord and run/modify yourself.
+
 ## Requirements and dependencies
 * Python (Tested with 3.8.5)
 * Discord.py
@@ -11,6 +17,8 @@ This is a discord bot that will collect your daily reward by using API requests.
 
 ## How to start the bot
 Edit the token with your bots token (located on the last line), then run the python file.
+
+If you dont know what a bot token is or need one, you can [create an application on discord](https://discord.com/developers/applications), then create a bot and copy it's token.
 
 Alternatively, you can [Use my publicly one hosted on heroku here.](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=313344&scope=bot)
 
@@ -45,4 +53,4 @@ If you require assistance, just want to chat, or would prefer to use the bot in 
 
 ## Credits
 Thanks to [Londiuh](https://github.com/Londiuh) for their [code to collect daily rewards](https://github.com/Londiuh/fstwrc)
-Icons are created by [me](https://github.com/dippyshere)
+Icons are created by [dippyshere ;)](https://github.com/dippyshere)
