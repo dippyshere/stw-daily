@@ -30,10 +30,6 @@ You can also [join my server](https://discord.gg/Mt7SgUu) if you would prefer to
 ## How to use the bot
 The bot's default prefix is ``stw``. You can change it manually at the top of the file.
 
-## Info
-An auth token can be used to do (i believe) anything to your account that is possible with an API. If you dont trust this bot, read the code, and if you still dont trust it, dont use it.
-No affiliation with Epic Games.
-
 ---
 The built in help commands are: ``stw help`` and ``stw instruction``; the latter of which will provide more detailed instructions.
 
@@ -59,3 +55,7 @@ If you require assistance, just want to chat, or would prefer to use the bot in 
 ## Credits
 Thanks to [Londiuh](https://github.com/Londiuh) for their [code to collect daily rewards](https://github.com/Londiuh/fstwrc)
 Icons are created by [dippyshere ;)](https://github.com/dippyshere)
+
+## Info
+An auth token can be used to do (i believe) anything to your account that is possible with an API. If you dont trust this bot, read the code, and if you still dont trust it, dont use it.
+No affiliation with Epic Games.
