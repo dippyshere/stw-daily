@@ -15,6 +15,7 @@ Clone the repo, install the dependencies below (manually for now), add token for
 * Requests
 * psutil (only used for some statistics. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself)
 * An account with campaign access (Fortnite: Save the world)
+* discord-py-slash-command (for slash-commands version)
 
 ## How to start the bot
 Edit the token with your bots token (located on the last line), then run the python file.
@@ -42,11 +43,16 @@ You will then be redirected to a website that will look something like this:
 {"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35","sid":null}
 ```
 
-Copy the code (you can double click it in most browsers), and then append that to your command.
+Copy the code (you can double click it in most browsers), and then utilise that as the token argument in your command.
 
 For example:
 
+With slash commands
+``/daily a51c1f4d35b1457c8e34a1f6026faa35``
+
+Without
 ``stw daily a51c1f4d35b1457c8e34a1f6026faa35``
+
 This code will expire shortly after it is issued. If you require a new code, you can simply refresh the page and it should generate a new one.
 
 ## Support
