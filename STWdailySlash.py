@@ -203,7 +203,7 @@ async def info_command(message):
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                      , icon_url=message.author.avatar_url)
-    await message.channel.send(embed=embed)
+    await message.send(embed=embed)
 
 @client.command(name='Info',
                 aliases=info_aliases,
@@ -232,9 +232,9 @@ async def reward_command(message, day, limit):
     global rewards
     print(f'reward info requested by: {message.author.name}')
     if day == 'Uhoh-stinky':
-        await message.channel.send('specify the day (number) of which you would like to see.')
+        await message.send('specify the day (number) of which you would like to see.')
     elif not day.isnumeric():
-        await message.channel.send('specify a number only please. your argument is what day you want to know about.')
+        await message.send('specify a number only please. your argument is what day you want to know about.')
     else:
         embed = discord.Embed(title=f"Reward info", description=f'For day **{day}**', color=discord.Color(0xff00ff))
         embed.add_field(name=f'**Item: **', value=f'{getReward(day)}')
@@ -264,7 +264,7 @@ async def reward_command(message, day, limit):
         embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        await message.channel.send(embed=embed)
+        await message.send(embed=embed)
 
 @client.command(name='reward',
                 aliases=["rwrd"],
@@ -322,7 +322,7 @@ async def help(message):
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                      , icon_url=message.author.avatar_url)
-    await message.channel.send(embed=embed)
+    await message.send(embed=embed)
 
 
     
@@ -357,7 +357,7 @@ async def instruction_command(message, arg):
                           ' [read the source code](https://github.com/dippyshere/stw-daily), or check out '
                           '<#771902446737162240> over in [STW Dailies](https://discord.gg/MtSgUu)',
                     inline=False)
-    await message.channel.send(embed=embed)
+    await message.send(embed=embed)
 
 @client.command(name='Instruction', aliases=instruction_aliases,
                 description='Detailed instructions to get auth token and claim daily')
@@ -381,7 +381,7 @@ async def ping_command(message):
     before = time.monotonic()
     # msg = await message.send("Pong!")
     # await msg.edit(content=f"Pong!  `{int(ping)}ms`")
-    # await message.channel.send(f'websocket latency: {client.latency*100}ms')
+    # await message.send(f'websocket latency: {client.latency*100}ms')
     # await message.send('websocket: {0}'.format(int(client.latency * 100)) + ' ms')
     embed = discord.Embed(title='Latency', color=discord.Color.blurple())
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
@@ -396,7 +396,7 @@ async def ping_command(message):
                            f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                       , icon_url=message.author.avatar_url)
     embed2.add_field(name='Websocket :electric_plug:', value=websocket_ping, inline=True)
-    msg = await message.channel.send(embed=embed)
+    msg = await message.send(embed=embed)
     ping = (time.monotonic() - before) * 1000
     embed2.add_field(name='Actual :microphone:',
                      value=f'{int(ping)}ms', inline=True)
@@ -414,7 +414,9 @@ async def ping(ctx):
                 description='Send websocket ping and embed edit latency',
              guild_ids = guild_ids)
 async def slashping(ctx):
+    await ctx.defer()
     await ping_command(ctx)
+    
 
 
 async def report_command(ctx):
@@ -451,7 +453,7 @@ async def daily_command(message, token=''):
         embed.set_footer(text=f"Requested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}",
                          icon_url=message.author.avatar_url)
-        await message.channel.send(embed=embed)
+        await message.send(embed=embed)
     elif len(token) != 32:
         embed = discord.Embed(title="Incorrect formatting", description='', colour=discord.Color.red())
         embed.add_field(name='It should be 32 characters long, and only contain numbers and letters',
@@ -461,14 +463,14 @@ async def daily_command(message, token=''):
         embed.set_footer(text=f"Requested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        await message.channel.send(embed=embed)
+        await message.send(embed=embed)
     else:
         embed = discord.Embed(title="Logging in and processing <a:loadin:759293511475527760>",
                               description='This shouldn\'t take long...', colour=discord.Color.green())
         embed.set_footer(text=f"Requested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        msg = await message.channel.send(embed=embed)
+        msg = await message.send(embed=embed)
         gtResult = getToken(token)
         if not gtResult[0]:
             # print(str(gtResult))
@@ -599,7 +601,7 @@ async def daily_command(message, token=''):
                     daily_feedback = str(r.text).split("notifications", 1)[1][4:].split('],"profile', 1)[0]
                     day = str(daily_feedback).split('"daysLoggedIn":', 1)[1].split(',"items":[', 1)[0]
                     try:
-                        # await message.channel.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
+                        # await message.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
                         item = str(daily_feedback).split('[{"itemType":"', 1)[1].split('","itemGuid"', 1)[0]
                         amount = str(daily_feedback).split('"quantity":', 1)[1].split("}]}", 1)[0]
                         embed = discord.Embed(title='Success',
@@ -668,7 +670,7 @@ async def daily_command(message, token=''):
                             print(e)
                             print('error when trying to display future rewards.')
                     except Exception as e:
-                        # await message.channel.send(f'Debugging info because sometimes it breaks:\n{e}')
+                        # await message.send(f'Debugging info because sometimes it breaks:\n{e}')
                         embed = discord.Embed(title=errorList[random.randint(0, 4)],
                                               colour=0xeeaf00)
                         embed.set_thumbnail(
@@ -746,7 +748,7 @@ async def daily_command(message, token=''):
         embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        # await message.channel.send(embed=embed)
+        # await message.send(embed=embed)
         await asyncio.sleep(0.5)
         await msg.edit(embed=embed)
 
@@ -773,4 +775,4 @@ async def slashdaily(ctx, token=''):
     
 # noinspection SpellCheckingInspection
 client.loop.create_task(update_status())
-client.run('NDI1ODkwMpY3NjURxzM0MT20.WrHvOA.fKdf9NI4m-vL1Gm4Cmn_x4WDOdU')
+client.run('NDI1ODkwMjY3NjY5NzI1MTg0.WrHvOA.fKdf9NIGm-v1w3RWCmn_x4WDOdU')
