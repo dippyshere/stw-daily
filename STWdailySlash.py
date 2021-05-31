@@ -14,6 +14,8 @@ import items
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option, create_choice
 
+
+# ur function is broken its only guarenteed for 2020
 def mixedCase(*args):
     """
     Generates a completely random number
@@ -27,14 +29,14 @@ def mixedCase(*args):
     return list(total)
 
 
-client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '), shard_count=1)
+client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '))
 client.remove_command('help')
 slash = SlashCommand(client, sync_commands=True)
 
-guild_ids = [390680124418162689]
 uptime_start = datetime.datetime.utcnow()
 daily_feedback = ""
 r = ''
+guild_ids = None
 amount2 = ''
 rewards = ''
 last_error_py = 'Nothing'
@@ -46,43 +48,6 @@ tipsList = [
     "Follow [@STW_Daily](https://twitter.com/STW_Daily) on Twitter for the latest updates in your timeline",
     "Found a problem? Report it by using stw report!",
     "Found problems with the translation feature? Let me know with stw report!", "You are epic! Keep doing you! ❤"]
-
-"""
-im really sorry that this is
-so scuffed but whatever ~~report
-"""
-report_aliases = mixedCase('report')
-report_aliases.extend(['debug'])
-if 'Report' in report_aliases: report_aliases.remove('Report')
-reply_aliases = mixedCase('reply')
-if 'Reply' in reply_aliases: reply_aliases.remove('Reply')
-info_aliases = mixedCase('info')
-info_aliases.extend(['infomation'])
-if 'Info' in info_aliases: info_aliases.remove('Info')
-temp_aliases = mixedCase('temp')
-if 'Temp' in temp_aliases: temp_aliases.remove('Temp')
-getmtime_aliases = mixedCase('getmtime')
-getmtime_aliases.extend(['update'])
-if 'Getmtime' in getmtime_aliases: getmtime_aliases.remove('getmtime')
-help_aliases = mixedCase('help')
-help_aliases.extend(['halp', 'holp', 'how', 'hel', 'h', '?', 'helpp'])
-if 'Help' in help_aliases: help_aliases.remove('Help')
-uptime_aliases = mixedCase('uptime')
-uptime_aliases.extend(['downtime'])
-if 'Uptime' in uptime_aliases: uptime_aliases.remove('Uptime')
-instruction_aliases = mixedCase('instruction')
-instruction_aliases.extend(['detailed'])
-if 'Instruction' in instruction_aliases: instruction_aliases.remove('Instruction')
-ping_aliases = mixedCase('ping')
-ping_aliases.extend(['pong'])
-if 'Ping' in ping_aliases: ping_aliases.remove('ping')
-emoji_aliases = mixedCase('emoji')
-emoji_aliases.extend(['animate'])
-if 'Emoji' in emoji_aliases: emoji_aliases.remove('Emoji')
-daily_aliases = mixedCase('daily')
-daily_aliases.extend(['collect', 'dailt', 'daliy', 'dail', 'd', 'daiyl', 'day', 'dialy'])
-if 'Daily' in daily_aliases: daily_aliases.remove('Daily')
-
 
 class endpoints:
     ac = "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode"
@@ -206,7 +171,7 @@ async def info_command(message):
     await message.send(embed=embed)
 
 @client.command(name='Info',
-                aliases=info_aliases,
+                aliases=['inf'],
                 description='Used to see stats and info about the bot hosting service')
 async def info(ctx):
     await info_command(ctx)
@@ -295,7 +260,7 @@ async def slashreward(ctx, day='Uhoh-stinky', limit=7):
 
 
 # noinspection PyShadowingBuiltins
-@client.command(name='Help', aliases=help_aliases, description='Well, this tells you what commands are available.')
+@client.command(name='Help', aliases=['h'], description='Well, this tells you what commands are available.')
 async def help(message):
     print(f'help requested by: {message.author.name}')
     embed = discord.Embed(title='Help', description='Commands:', colour=discord.Colour.red())
@@ -359,7 +324,8 @@ async def instruction_command(message, arg):
                     inline=False)
     await message.send(embed=embed)
 
-@client.command(name='Instruction', aliases=instruction_aliases,
+@client.command(name='Instruction',
+                aliases=['ins'],
                 description='Detailed instructions to get auth token and claim daily')
 async def instruction(ctx):
     await instruction_command(ctx, 'norm')
@@ -405,7 +371,7 @@ async def ping_command(message):
     await msg.edit(embed=embed2)
 
 @client.command(name='ping',
-                aliases=ping_aliases,
+                aliases=['pong'],
                 description='Send websocket ping and embed edit latency')
 async def ping(ctx):
     await ping_command(ctx)
@@ -753,7 +719,7 @@ async def daily_command(message, token=''):
         await msg.edit(embed=embed)
 
 @client.command(name='Daily',
-                aliases=daily_aliases,
+                aliases=['d','claim'],
                 description='The main star of the show. parses daily command')
 async def daily(ctx, token=''):
     await daily_command(ctx, token)
@@ -775,4 +741,4 @@ async def slashdaily(ctx, token=''):
     
 # noinspection SpellCheckingInspection
 client.loop.create_task(update_status())
-client.run('NDI1ODkwMjY3NjY5NzI1MTg0.WrHvOA.fKdf9NIGm-v1w3RWCmn_x4WDOdU')
+client.run('Balls')
