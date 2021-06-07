@@ -11,8 +11,12 @@ import psutil
 import requests
 from discord.ext import commands
 import items
+from discord_slash import SlashCommand
+from discord_slash.utils.manage_commands import create_option, create_choice
 
 
+# ur function is broken its only guaranteed for 2020
+# :o your right..
 def mixedCase(*args):
     """
     Generates a completely random number
@@ -26,58 +30,23 @@ def mixedCase(*args):
     return list(total)
 
 
-client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '), shard_count=1)
+client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '))
 client.remove_command('help')
+slash = SlashCommand(client, sync_commands=True)
+
 uptime_start = datetime.datetime.utcnow()
 daily_feedback = ""
 r = ''
+guild_ids = None
 amount2 = ''
 rewards = ''
-last_error_py = 'Nothing'
-last_error_server = 'Nothing'
 errorList = ["That wasn't supposed to happen", "Whoops!", "We hit a roadblock", "Not the llama you're looking for",
              "Uh-oh! Something goofed"]
 tipsList = [
     "You can [refresh the final page](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code) to get a new code (if you're signed in)",
     "Follow [@STW_Daily](https://twitter.com/STW_Daily) on Twitter for the latest updates in your timeline",
-    "Found a problem? Report it by using stw report!",
-    "Found problems with the translation feature? Let me know with stw report!", "You are epic! Keep doing you! ❤"]
-
-"""
-im really sorry that this is
-so scuffed but whatever ~~report
-"""
-report_aliases = mixedCase('report')
-report_aliases.extend(['debug'])
-if 'Report' in report_aliases: report_aliases.remove('Report')
-reply_aliases = mixedCase('reply')
-if 'Reply' in reply_aliases: reply_aliases.remove('Reply')
-info_aliases = mixedCase('info')
-info_aliases.extend(['infomation'])
-if 'Info' in info_aliases: info_aliases.remove('Info')
-temp_aliases = mixedCase('temp')
-if 'Temp' in temp_aliases: temp_aliases.remove('Temp')
-getmtime_aliases = mixedCase('getmtime')
-getmtime_aliases.extend(['update'])
-if 'Getmtime' in getmtime_aliases: getmtime_aliases.remove('getmtime')
-help_aliases = mixedCase('help')
-help_aliases.extend(['halp', 'holp', 'how', 'hel', 'h', '?', 'helpp'])
-if 'Help' in help_aliases: help_aliases.remove('Help')
-uptime_aliases = mixedCase('uptime')
-uptime_aliases.extend(['downtime'])
-if 'Uptime' in uptime_aliases: uptime_aliases.remove('Uptime')
-instruction_aliases = mixedCase('instruction')
-instruction_aliases.extend(['detailed'])
-if 'Instruction' in instruction_aliases: instruction_aliases.remove('Instruction')
-ping_aliases = mixedCase('ping')
-ping_aliases.extend(['pong'])
-if 'Ping' in ping_aliases: ping_aliases.remove('ping')
-emoji_aliases = mixedCase('emoji')
-emoji_aliases.extend(['animate'])
-if 'Emoji' in emoji_aliases: emoji_aliases.remove('Emoji')
-daily_aliases = mixedCase('daily')
-daily_aliases.extend(['collect', 'dailt', 'daliy', 'dail', 'd', 'daiyl', 'day', 'dialy'])
-if 'Daily' in daily_aliases: daily_aliases.remove('Daily')
+    "Found a problem? [Join the support server](https://discord.gg/MtSgUu)",
+    "Found problems with the translation feature? [Join the support server](https://discord.gg/MtSgUu) and let us know!", "You are epic! Keep doing you! ❤"]
 
 
 class endpoints:
@@ -86,9 +55,18 @@ class endpoints:
     reward = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{0}/client/ClaimLoginReward?profileId=campaign"
 
 
+def lastmfunction():
+    try:
+        # put path to ur py file here if u want the most useless functionality
+        lastm = datetime.datetime.utcfromtimestamp(os.path.getmtime(r'/app/stw-daily-heroku.py')).strftime(
+            '%I:%M %p - %d/%m/%Y')
+    except:
+        lastm = 'Not available'
+    return lastm
+
+
 # noinspection PyUnboundLocalVariable,PyShadowingNames
 def getToken(authCode: str):
-    global last_error_py, last_error_server
     h = {
         "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": "basic ZWM2ODRiOGM2ODdmNDc5ZmFkZWEzY2IyYWQ4M2Y1YzY6ZTFmMzFjMjExZjI4NDEzMTg2MjYyZDM3YTEzZmM4NGQ="
@@ -111,7 +89,6 @@ def getToken(authCode: str):
             print(f"[ERROR] {r['errorCode']}")
             err = r['errorCode']
             reason = r['errorMessage']
-            last_error_server = err
         else:
             print("[ERROR] Unknown error")
         return False, err, reason
@@ -146,20 +123,6 @@ def time_until_end_of_day():
     # print(fmt.format(h=hours, m=minutes))
 
 
-def lastmfunction():
-    try:
-        lastm = datetime.datetime.utcfromtimestamp(os.path.getmtime(r'/app/stw-daily-heroku.py')).strftime(
-            '%I:%M %p - %d/%m/%Y')
-    except:
-        try:
-            lastm = datetime.datetime.utcfromtimestamp(os.path.getmtime(
-                r'C:\Users\dippy\OneDrive - NSW Department of Education\Desktop\discord bots\Save The world Daily\Save the World Daily.py')).strftime(
-                '%I:%M %p - %d/%m/%Y')
-        except:
-            lastm = 'Not available'
-    return lastm
-
-
 @client.event
 async def on_ready():
     print('Client open')
@@ -177,47 +140,8 @@ async def update_status():
         await asyncio.sleep(60)
 
 
-@client.command(name='Report', aliases=report_aliases, description='Used to send reports.')
-async def report(message):
-    if message.message.content[10:] == '':
-        await message.channel.send(embed=discord.Embed(title="I'm gonna need a little more detail than that i'm afraid"
-                                                             " :/", description='This command is used to report errors'
-                                                                                ' to the developer. Append your report '
-                                                                                'content.',
-                                                       color=discord.Colour.blue()))
-    else:
-        user = client.get_user(349076896266452994)
-        message_content = str(message.message.content)
-        author_id = message.author.id
-        print(f'Report Created by {client.get_user(message.author.id)}. Content: {message_content}')
-        embed = discord.Embed(title='Information', description='_ _', colour=discord.Colour.red())
-        embed.set_author(name=message.author.name, icon_url=message.author.avatar_url)
-        embed.add_field(name='Report Content:', value=f'{message_content}', inline=False)
-        embed.add_field(name='Invoker ID:', value=f'{author_id} | {client.get_user(message.author.id)}', inline=False)
-        embed.add_field(name='Last Py Error:', value=f'{last_error_py}', inline=True)
-        embed.add_field(name='Last Server Error:', value=f'{last_error_server}', inline=True)
-        embed.set_footer(text=f"\nReport generated on behalf of: {message.author.name} • "
-                              f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
-                         , icon_url=message.author.avatar_url)
-        await user.send(embed=embed)
-        embed = discord.Embed(title="Your report has been sent.",
-                              description='Thanks for helping to improve **STW Daily**.',
-                              color=discord.Colour.blue())
-        embed.add_field(name='Looking for a reply?',
-                        value=f'You need to join the [support server](https://discord.gg/7FqPNAn)', inline=False)
-        await message.channel.send(embed=embed)
-
-
-@client.command(name='Reply', aliases=reply_aliases, description='Used to reply to reports. Exclusive to bot owner. F')
-async def reply(message):
-    await message.channel.send('Sorry. The command you were looking for has been deprecated due to privacy concerns.')
-
-
 # noinspection PyBroadException
-@client.command(name='Info', aliases=info_aliases,
-                description='Used to see stats and info about the bot hosting service')
-async def info(message):
-    print(f'info requested by: {message.author.name}')
+async def info_command(message):
     try:
         osgetlogin = os.getlogin()
     except:
@@ -238,27 +162,36 @@ async def info(message):
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                      , icon_url=message.author.avatar_url)
-    await message.channel.send(embed=embed)
+    await message.send(embed=embed)
 
 
-@client.command(name='Temp', aliases=temp_aliases, description='Used')
-async def temp(message):
-    print(f'temp requested by: {message.author.name}')
-    try:
-        psutilsensors_temperatures = psutil.sensors_temperatures()
-    except:
-        psutilsensors_temperatures = 'Not available'
-    await message.channel.send(psutilsensors_temperatures)
+@client.command(name='inf',
+                aliases=mixedCase('info') + ['infomation', 'stats', 'statistics'],
+                description='Used to see stats and info about the bot hosting service')
+async def info(ctx):
+    await info_command(ctx)
 
 
-@client.command(name='Reward Info', aliases=["rwrd"], description='Sends info based on a dictionary of items')
-async def reward(message, day='Uhoh-stinky', limit=7):
+@slash.slash(name='info',
+             description='Used to see stats and info about the bot hosting service',
+             guild_ids=guild_ids)
+async def slashinfo(ctx):
+    await info_command(ctx)
+
+
+def getReward(day):
+    day_mod = int(day) % 336
+    if day_mod == 0:
+        day_mod = 336
+    return items.ItemDictonary[str(day_mod)]
+
+
+async def reward_command(message, day, limit):
     global rewards
-    print(f'reward info requested by: {message.author.name}')
     if day == 'Uhoh-stinky':
-        await message.channel.send('specify the day (number) of which you would like to see.')
+        await message.send('specify the day (number) of which you would like to see.')
     elif not day.isnumeric():
-        await message.channel.send('specify a number only please. your argument is what day you want to know about.')
+        await message.send('specify a number only please. your argument is what day you want to know about.')
     else:
         embed = discord.Embed(title=f"Reward info", description=f'For day **{day}**', color=discord.Color(0xff00ff))
         embed.add_field(name=f'**Item: **', value=f'{getReward(day)}')
@@ -288,66 +221,68 @@ async def reward(message, day='Uhoh-stinky', limit=7):
         embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        await message.channel.send(embed=embed)
+        await message.send(embed=embed)
 
 
-def getReward(day):
-    day_mod = int(day) % 336
-    if day_mod == 0:
-        day_mod = 336
-    return items.ItemDictonary[str(day_mod)]
+@client.command(name='rwd',
+                aliases=mixedCase('reward') + ['dayinfo', 'dailyinfo', 'rwrd', 'RWRD'],
+                description='View info about a specified days reward')
+async def reward(ctx, day='Uhoh-stinky', limit=7):
+    await reward_command(ctx, day, limit)
 
 
-@client.command(name='getmtime', aliases=getmtime_aliases,
-                description='Used to get the last modified date of the python file')
-async def getmtime(message):
-    print(f'getmtime requested by: {message.author.name}')
-    await message.channel.send(lastmfunction())
+@slash.slash(name='reward',
+             description='View info about a specified days reward',
+             options=[
+                 create_option(name="day",
+                               description="The day of which you would like to see.",
+                               option_type=4,
+                               required=True),
+
+                 create_option(name="limit",
+                               description="Amount of rewards to view from set day.",
+                               option_type=4,
+                               required=False),
+
+             ], guild_ids=guild_ids
+             )
+async def slashreward(ctx, day='Uhoh-stinky', limit=7):
+    await reward_command(ctx, str(day), limit)
 
 
 # noinspection PyShadowingBuiltins
-@client.command(name='Help', aliases=help_aliases, description='Well, this tells you what commands are available.')
+@client.command(name='helpfullmao', aliases=mixedCase('help') + ['halp', 'holp', 'how', 'hel', 'h', '?', 'helpp', 'huh'], description='Well, this tells you what commands are available.')
 async def help(message):
-    print(f'help requested by: {message.author.name}')
     embed = discord.Embed(title='Help', description='Commands:', colour=discord.Colour.red())
     embed.set_thumbnail(
         url='https://cdn.discordapp.com/attachments/448073494660644884/757803329027047444/Asset_2.24x.1.png')
     embed.set_author(name=message.author.name, icon_url=message.author.avatar_url)
     embed.add_field(name='**stw daily** [AUTH TOKEN]',
-                    value="Collect your daily reward without even opening the game\nDefeats the whole point of the "
-                          "system but who cares?\n**Requires: Auth Token**\n[You can get an auth token by following this "
+                    value="Collect your daily reward\n**Requires: Auth Token**\n[You can get an auth token by following this "
                           "link](https://tinyurl.com/epicauthcode)\nThen just simply copy your code from the response "
                           "and append to your command.",
                     inline=False)
     embed.add_field(name='**stw instruction**', value='More detailed instructions for using the bot', inline=False)
-    embed.add_field(name='**stw rwrd [day] [future day]**',
+    embed.add_field(name='**stw reward [day] [future day]**',
                     value='Sends the friendly name of a reward for the given day.')
     embed.add_field(name='**stw ping**',
                     value='Sends the WebSocket latency and actual latency.')
     embed.add_field(name='**stw info**', value='Returns information about the bots host')
     embed.add_field(name='Want to quickly see some relevant information?',
                     value='Have a look at the bot playing status')
-    embed.add_field(name='**Encountered an issue?**',
-                    value='**Use **``stw report``** to send a report.**\nUsage: ``stw report [info about your issue]``.',
+    embed.add_field(name='**Need an invite?**',
+                    value='**Use **`stw invite`** to get a [server invite](https://discord.gg/MtSgUu) and a [bot invite](https://tinyurl.com/stwdailyinvite).**',
                     inline=False)
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                           f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                      , icon_url=message.author.avatar_url)
-    await message.channel.send(embed=embed)
+    await message.send(embed=embed)
 
 
-@client.command(name='Uptime', aliases=uptime_aliases,
-                description='Send bot uptime. Note that on heroku, dynos are cycled every 24 hours')
-async def uptime(message):
-    print(f'uptime requested by: {message.author.name}')
-    """Tells you how long the bot has been up for."""
-    await message.send('Uptime: **{}**'.format(get_bot_uptime()))
-
-
-@client.command(name='Instruction', aliases=instruction_aliases,
-                description='Detailed instructions to get auth token and claim daily')
-async def instruction(message):
-    print(f'instruction requested by: {message.author.name}')
+async def instruction_command(message, arg):
+    examples = {'norm': 'stw daily a51c1f4d35b1457c8e34a1f6026faa35',
+                'slash': '/daily a51c1f4d35b1457c8e34a1f6026faa35'
+                }
     embed = discord.Embed(title='How to use "STW Daily"', color=discord.Color.blurple())
     embed.set_footer(text='This bot was made by Dippy is not here', icon_url=message.author.avatar_url)
     embed.add_field(name='Welcome',
@@ -360,7 +295,7 @@ async def instruction(message):
                           '\n{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b14'
                           '57c8e34a1f6026faa35","sid":null}\n```\nwill become\n```\n'
                           'a51c1f4d35b1457c8e34a1f6026faa35\n```\n\nThen, just simply copy paste that into '
-                          'your command, like so:\n``stw daily a51c1f4d35b1457c8e34a1f6026faa35``\n:bulb: '
+                          f'your command, like so:\n``{examples.get(arg)}``\n:bulb: '
                           'Pro tip: In most browsers, double click on or below the code and it should '
                           'highlight just the code\n\nIf you need help, [join the server](https://discord.gg/MtSgUu).'
                           ' Don\'t be afraid to ask!',
@@ -370,18 +305,30 @@ async def instruction(message):
                           ' [read the source code](https://github.com/dippyshere/stw-daily), or check out '
                           '<#771902446737162240> over in [STW Dailies](https://discord.gg/MtSgUu)',
                     inline=False)
-    await message.channel.send(embed=embed)
+    await message.send(embed=embed)
+
+
+@client.command(name='ins',
+                aliases=mixedCase('instruction') + ['detailed', 'instruct', 'what', 'inst'],
+                description='Detailed instructions to get auth token and claim daily')
+async def instruction(ctx):
+    await instruction_command(ctx, 'norm')
+
+
+@slash.slash(name='Instruction',
+             description='Detailed instructions to get auth token and claim daily',
+             guild_ids=guild_ids)
+async def slashinstruction(ctx):
+    await instruction_command(ctx, 'slash')
 
 
 # noinspection SpellCheckingInspection,PyShadowingNames
-@client.command(name='ping', aliases=ping_aliases, description='Send websocket ping and embed edit latency')
-async def ping(message):
-    print(f'ping requested by: {message.author.name}')
+async def ping_command(message):
     websocket_ping = '{0}'.format(int(client.latency * 100)) + ' ms'
     before = time.monotonic()
     # msg = await message.send("Pong!")
     # await msg.edit(content=f"Pong!  `{int(ping)}ms`")
-    # await message.channel.send(f'websocket latency: {client.latency*100}ms')
+    # await message.send(f'websocket latency: {client.latency*100}ms')
     # await message.send('websocket: {0}'.format(int(client.latency * 100)) + ' ms')
     embed = discord.Embed(title='Latency', color=discord.Color.blurple())
     embed.set_footer(text=f"\nRequested by: {message.author.name} • "
@@ -396,7 +343,7 @@ async def ping(message):
                            f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                       , icon_url=message.author.avatar_url)
     embed2.add_field(name='Websocket :electric_plug:', value=websocket_ping, inline=True)
-    msg = await message.channel.send(embed=embed)
+    msg = await message.send(embed=embed)
     ping = (time.monotonic() - before) * 1000
     embed2.add_field(name='Actual :microphone:',
                      value=f'{int(ping)}ms', inline=True)
@@ -405,18 +352,42 @@ async def ping(message):
     await msg.edit(embed=embed2)
 
 
-@client.command(name='Emoji', aliases=emoji_aliases, description='Sends an animated loading emoji')
-async def emoji(message):
-    print(f'emoji requested by: {message.author.name}')
-    # await message.channel.send('<a:loading:759292972784418800>')
-    # await message.channel.send(f'<a:god:424520269315440650>')
-    await message.channel.send('<a:loadin:759293511475527760>')
+@client.command(name='pin',
+                aliases=mixedCase('ping') + ['pong', 'latency'],
+                description='Send websocket ping and embed edit latency')
+async def ping(ctx):
+    await ping_command(ctx)
+
+
+@slash.slash(name='ping',
+             description='Send websocket ping and embed edit latency',
+             guild_ids=guild_ids)
+async def slashping(ctx):
+    await ctx.defer()
+    await ping_command(ctx)
+
+
+async def invite_command(ctx):
+    await ctx.send('Support server: https://discord.gg/Mt7SgUu\nBot invite: https://tinyurl.com/stwdailyinvite')
+
+
+@client.command(name='in',
+                aliases=mixedCase('invite') + ['inv', 'INV', 'iNV', 'add', 'server', 'link'],
+                description='If you need help, want to report a problem, or just want somewhere to use the bot.')
+async def invite(ctx):
+    await invite_command(ctx)
+
+
+@slash.slash(name='invite',
+             description='If you need help, want to report a problem, or just want somewhere to use the bot.',
+             guild_ids=guild_ids)
+async def slashinvite(ctx):
+    await ctx.send('Support server: https://discord.gg/Mt7SgUu\nBot invite: <https://tinyurl.com/stwdailyinvite>')
 
 
 # noinspection PyUnboundLocalVariable,PyUnusedLocal,PyBroadException
-@client.command(name='Daily', aliases=daily_aliases, description='The main star of the show. parses daily command')
-async def daily(message, token=''):
-    global last_error_py, last_error_server, amount2, rewards
+async def daily_command(message, token=''):
+    global amount2, rewards
     print(f'daily requested by: {message.author.name}')
     global daily_feedback, r
     daily_feedback = ""
@@ -433,7 +404,7 @@ async def daily(message, token=''):
         embed.set_footer(text=f"Requested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}",
                          icon_url=message.author.avatar_url)
-        await message.channel.send(embed=embed)
+        await message.send(embed=embed)
     elif len(token) != 32:
         embed = discord.Embed(title="Incorrect formatting", description='', colour=discord.Color.red())
         embed.add_field(name='It should be 32 characters long, and only contain numbers and letters',
@@ -443,14 +414,14 @@ async def daily(message, token=''):
         embed.set_footer(text=f"Requested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        await message.channel.send(embed=embed)
+        await message.send(embed=embed)
     else:
         embed = discord.Embed(title="Logging in and processing <a:loadin:759293511475527760>",
                               description='This shouldn\'t take long...', colour=discord.Color.green())
         embed.set_footer(text=f"Requested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        msg = await message.channel.send(embed=embed)
+        msg = await message.send(embed=embed)
         gtResult = getToken(token)
         if not gtResult[0]:
             # print(str(gtResult))
@@ -492,23 +463,15 @@ async def daily(message, token=''):
                 # login error
                 embed = discord.Embed(
                     title=errorList[random.randint(0, 4)],
-                    description='You probably don\'t have Save the World',
+                    description='You don\'t have Save the World',
                     colour=0xf63a32
                 )
                 embed.set_thumbnail(
                     url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
-                embed.add_field(name="Why this happens:",
-                                value='You signed into the wrong or a different Epic Games account',
+                embed.add_field(name="You need STW for STW Daily rewards",
+                                value='This may appear if you signed into the wrong account. '
+                                      'Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
                                 inline=False)
-                embed.add_field(name="How to fix:",
-                                value='Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
-                                inline=False)
-                embed.add_field(
-                    name="But I do have Save the world, and I\'m absolutely sure I used the correct account.",
-                    value='This message may be a mistake then. If it is, let the owner know somehow. Join the'
-                          ' [support server](https://discord.gg/mt7sguu)',
-                    inline=False)
-            last_error_server = gtResult[1]
         else:
             h = {
                 "Authorization": f"bearer {gtResult[0]}",
@@ -556,112 +519,68 @@ async def daily(message, token=''):
                     # login error
                     embed = discord.Embed(
                         title=errorList[random.randint(0, 4)],
-                        description='You probably don\'t have Save the World',
+                        description='You don\'t have Save the World',
                         colour=0xf63a32
                     )
                     embed.set_thumbnail(
                         url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
-                    embed.add_field(name="Why this happens:",
-                                    value='You signed into the wrong or a different Epic Games account',
+                    embed.add_field(name="You need STW for STW Daily rewards",
+                                    value='This may appear if you signed into the wrong account. '
+                                          'Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
                                     inline=False)
-                    embed.add_field(name="How to fix:",
-                                    value='Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
-                                    inline=False)
-                    embed.add_field(
-                        name="But I do have Save the world, and I\'m absolutely sure I used the correct account.",
-                        value='This message may be a mistake then. If it is, let the owner know somehow. Join the'
-                              ' [support server](https://discord.gg/mt7sguu)',
-                        inline=False)
-                last_error_server = gtResult[1]
-                print(str(r.text).split('{"errorCode":"', 1)[1].split('","errorMessage":"', 1)[0])
-                last_error_server = str(r.text).split('{"errorCode":"', 1)[1].split('","errorMessage":"', 1)[0]
             else:
                 try:
                     # print(str(str(r.text).split("notifications", 1)[1][2:].split('],"profile', 1)[0]))
                     daily_feedback = str(r.text).split("notifications", 1)[1][4:].split('],"profile', 1)[0]
                     day = str(daily_feedback).split('"daysLoggedIn":', 1)[1].split(',"items":[', 1)[0]
                     try:
-                        # await message.channel.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
+                        # await message.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
                         item = str(daily_feedback).split('[{"itemType":"', 1)[1].split('","itemGuid"', 1)[0]
                         amount = str(daily_feedback).split('"quantity":', 1)[1].split("}]}", 1)[0]
                         embed = discord.Embed(title='Success',
                                               colour=0x00c113)
                         embed.set_thumbnail(
                             url='https://cdn.discordapp.com/attachments/448073494660644884/757803334198624336/Asset_2.1.14x2.png')
-                        try:
-                            if "}" in amount:
-                                amount2 = str(amount).split("},", 1)[0]
-                                fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
-                                fndr_amount = str(amount).split('quantity":', 1)[1]
-                                if fndr_item == 'CardPack:cardpack_event_founders':
-                                    fndr_item_f = "Founder's Llama"
-                                elif fndr_item == 'CardPack:cardpack_bronze':
-                                    fndr_item_f = "Upgrade Llama (bronze)"
-                                else:
-                                    fndr_item_f = fndr_item
-                                embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day)}**",
-                                                inline=False)
-                                embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item_f}**",
-                                                inline=False)
-                                embed.add_field(name=f'Internal names:', value=f"**{amount2}** **{item}**",
-                                                inline=False)
-                                embed.add_field(name=f'Founders:', value=f"**{fndr_amount}** **{fndr_item}**",
-                                                inline=False)
+                        if "}" in amount:
+                            amount2 = str(amount).split("},", 1)[0]
+                            fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
+                            fndr_amount = str(amount).split('quantity":', 1)[1]
+                            if fndr_item == 'CardPack:cardpack_event_founders':
+                                fndr_item_f = "Founder's Llama"
+                            elif fndr_item == 'CardPack:cardpack_bronze':
+                                fndr_item_f = "Upgrade Llama (bronze)"
                             else:
-                                embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day)}**",
-                                                inline=False)
-                                embed.add_field(name=f'Internal name:', value=f"**{amount}** **{item}**",
-                                                inline=False)
-                        except:
-                            if "}" in amount:
-                                amount2 = str(amount).split("},", 1)[0]
-                                fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
-                                fndr_amount = str(amount).split('quantity":', 1)[1]
-                                embed.add_field(name=f'On day **{day}**, you received:',
-                                                value=f"**{amount2}** **{item}**",
-                                                inline=False)
-                                embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item}**",
-                                                inline=False)
-                                embed.add_field(name=f'Using backup code',
-                                                value=f"An error occurred in trying to display the friendly name of items. Please report this issue via ``stw report [content]``",
-                                                inline=False)
-                                print('using backup')
-                            else:
-                                embed.add_field(name=f'On day **{day}**, you received:',
-                                                value=f"**{amount}** **{item}**",
-                                                inline=False)
-                                embed.add_field(name=f'Using backup code',
-                                                value=f"An error occurred in trying to display the friendly name of items. Please report this issue via ``stw report [content]``",
-                                                inline=False)
-                                print('using backup')
+                                fndr_item_f = fndr_item
+                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day)}**",
+                                            inline=False)
+                            embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item_f}**",
+                                            inline=False)
+                        else:
+                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day)}**",
+                                            inline=False)
                         print('success')
                         print(item)
                         print(amount)
-                        try:
-                            rewards = ''
-                            for i in range(1, 7):
-                                rewards += getReward(int(day) + i)
-                                if not (i + 1 == 7):
-                                    rewards += ', '
-                                else:
-                                    rewards += '.'
-                            embed.add_field(name=f'Rewards for the next **7** days:', value=f'{rewards}', inline=False)
-                        except Exception as e:
-                            print(e)
-                            print('error when trying to display future rewards.')
+                        rewards = ''
+                        for i in range(1, 7):
+                            rewards += getReward(int(day) + i)
+                            if not (i + 1 == 7):
+                                rewards += ', '
+                            else:
+                                rewards += '.'
+                        embed.add_field(name=f'Rewards for the next **7** days:', value=f'{rewards}', inline=False)
                     except Exception as e:
-                        # await message.channel.send(f'Debugging info because sometimes it breaks:\n{e}')
+                        # await message.send(f'Debugging info because sometimes it breaks:\n{e}')
                         embed = discord.Embed(title=errorList[random.randint(0, 4)],
                                               colour=0xeeaf00)
                         embed.set_thumbnail(
                             url='https://cdn.discordapp.com/attachments/448073494660644884/757803329299415163/Asset_1.14x2.png')
-                        embed.add_field(name='Looks like you already have today\'s reward.',
+                        embed.add_field(name='You already claimed today\'s reward.',
                                         value=f"You are on day **{day}**", inline=False)
                         embed.add_field(name='Today\'s reward was:',
                                         value=f"{getReward(day)}", inline=False)
                         print('Daily was already claimed or i screwed up')
                         print(f'Error info: {e}')
-                        last_error_py = str(e)
                 except:
                     errorType = str(gtResult[1])
                     if errorType == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
@@ -701,25 +620,16 @@ async def daily(message, token=''):
                         # login error
                         embed = discord.Embed(
                             title=errorList[random.randint(0, 4)],
-                            description='You probably don\'t have Save the World',
+                            description='You don\'t have Save the World',
                             colour=0xf63a32
                         )
                         embed.set_thumbnail(
                             url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
-                        embed.add_field(name="Why this happens:",
-                                        value='You signed into the wrong or a different Epic Games account',
+                        embed.add_field(name="You need STW for STW Daily rewards",
+                                        value='This may appear if you signed into the wrong account. '
+                                              'Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
                                         inline=False)
-                        embed.add_field(name="How to fix:",
-                                        value='Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
-                                        inline=False)
-                        embed.add_field(
-                            name="But I do have Save the world, and I\'m absolutely sure I used the correct account.",
-                            value='This message may be a mistake then. If it is, let the owner know somehow. Join the'
-                                  ' [support server](https://discord.gg/mt7sguu)',
-                            inline=False)
-                    last_error_server = gtResult[1]
-                    print(f'error: {gtResult[1]}')
-                    last_error_server = gtResult[1]
+                        print(f'error: {gtResult[1]}')
         except:
             pass
         # embed.set_author(name=str(message.message.content)[9:],
@@ -728,9 +638,31 @@ async def daily(message, token=''):
         embed.set_footer(text=f"\nRequested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
                          , icon_url=message.author.avatar_url)
-        # await message.channel.send(embed=embed)
+        # await message.send(embed=embed)
         await asyncio.sleep(0.5)
         await msg.edit(embed=embed)
+
+
+@client.command(name='d',
+                aliases=mixedCase('daily') + ['collect', 'dailt', 'daliy', 'dail', 'daiyl', 'day', 'dialy', 'da', 'dly', 'login', 'claim'],
+                description='Claim your daily reward')
+async def daily(ctx, token=''):
+    await daily_command(ctx, token)
+
+
+@slash.slash(name='daily',
+             description='Claim your daily reward',
+             options=[
+                 create_option(name="token",
+                               description="The auth code for your daily. "
+                                           "You can one by sending the command without token.",
+                               option_type=3,
+                               required=False),
+
+             ], guild_ids=guild_ids
+             )
+async def slashdaily(ctx, token=''):
+    await daily_command(ctx, token)
 
 
 # noinspection SpellCheckingInspection
