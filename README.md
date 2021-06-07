@@ -12,6 +12,7 @@ Clone the repo, install the dependencies below (manually for now), add token for
 ## Requirements and dependencies
 * Python (Tested with 3.9)
 * Discord.py
+* Discord-py-slash-commands
 * Requests
 * psutil (only used for some statistics. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself)
 * An account with campaign access (Fortnite: Save the world)
