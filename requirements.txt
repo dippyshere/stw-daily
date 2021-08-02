@@ -1,0 +1,6 @@
+discord
+discord-py-slash-command
+asyncio
+aiohttp
+requests
+psutil
