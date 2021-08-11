@@ -30,7 +30,7 @@ def mixedCase(*args):
     return list(total)
 
 
-client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '))
+client = commands.AutoShardedBot(case_insensitive=True, command_prefix=mixedCase('stw '))
 client.remove_command('help')
 slash = SlashCommand(client, sync_commands=True)
 
