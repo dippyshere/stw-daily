@@ -1,6 +1,6 @@
-discord
-discord-py-slash-command
-asyncio
-aiohttp
-requests
-psutil
+discord >= 1.7.3
+discord-py-slash-command >= 3.0.3
+asyncio >= 3.4.3
+aiohttp >= 3.7.4.post0
+requests >= 2.26.0
+psutil >= 5.8.0
