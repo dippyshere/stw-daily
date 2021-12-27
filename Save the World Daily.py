@@ -30,7 +30,7 @@ def mixedCase(*args):
     return list(total)
 
 
-client = commands.AutoShardedBot(case_insensitive=True, command_prefix=mixedCase('stw '))
+client = commands.AutoShardedBot(case_insensetive=True, command_prefix=mixedCase('stw '))
 client.remove_command('help')
 slash = SlashCommand(client, sync_commands=True)
 
@@ -148,7 +148,7 @@ async def info_command(message):
         osgetlogin = 'Not Available'
     embed = discord.Embed(title='Information', description='Statistics:', colour=discord.Colour.red())
     embed.set_thumbnail(
-        url='https://cdn.discordapp.com/attachments/695117839383920641/759372935676559400/Asset_4.14x.png')
+        url='https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png')
     embed.set_author(name=message.author.name, icon_url=message.author.avatar_url)
     embed.add_field(name='Host statistics:', value=f'os.name: {os.name}\nos.cpu_count: {os.cpu_count()}\n'
                                                    f'os.getcwd: {os.getcwd()}\nos.getlogin: {osgetlogin}\n'
@@ -255,7 +255,7 @@ async def slashreward(ctx, day='Uhoh-stinky', limit=7):
 async def help(message):
     embed = discord.Embed(title='Help', description='Commands:', colour=discord.Colour.red())
     embed.set_thumbnail(
-        url='https://cdn.discordapp.com/attachments/448073494660644884/757803329027047444/Asset_2.24x.1.png')
+        url='https://cdn.discordapp.com/attachments/748078936424185877/924999902247936000/helpstwdaily.png')
     embed.set_author(name=message.author.name, icon_url=message.author.avatar_url)
     embed.add_field(name='**stw daily** [AUTH TOKEN]',
                     value="Collect your daily reward\n**Requires: Auth Token**\n[You can get an auth token by following this "
@@ -295,7 +295,7 @@ async def instruction_command(message, arg):
                           '\n{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b14'
                           '57c8e34a1f6026faa35","sid":null}\n```\nwill become\n```\n'
                           'a51c1f4d35b1457c8e34a1f6026faa35\n```\n\nThen, just simply copy paste that into '
-                          f'your command, like so:\n``{examples.get(arg)}``\n:bulb: '
+                          f'your command, like so:\n`{examples.get(arg)}`\n:bulb: '
                           'Pro tip: In most browsers, double click on or below the code and it should '
                           'highlight just the code\n\nIf you need help, [join the server](https://discord.gg/MtSgUu).'
                           ' Don\'t be afraid to ask!',
@@ -397,7 +397,7 @@ async def daily_command(message, token=''):
         embed.add_field(name='You can get it from:',
                         value='[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)\n[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)',
                         inline=False)
-        embed.add_field(name='Need help? Run ``stw instruction``',
+        embed.add_field(name='Need help? Run `stw instruction`',
                         value='Or [Join the support server](https://discord.gg/Mt7SgUu).', inline=True)
         embed.add_field(name='Note: You need a new code __every day__.',
                         value='Thank you for using my bot ❤', inline=True)
@@ -434,7 +434,7 @@ async def daily_command(message, token=''):
                     colour=0xf63a32
                 )
                 embed.set_thumbnail(
-                    url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                    url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                 embed.add_field(name="Why this happens:",
                                 value='Your code is expired, or of the wrong type\n(e.g. from url instead of page body)',
                                 inline=False)
@@ -452,7 +452,7 @@ async def daily_command(message, token=''):
                     colour=0xf63a32
                 )
                 embed.set_thumbnail(
-                    url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                    url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                 embed.add_field(name="Why this happens:",
                                 value='You used a different link to get your token',
                                 inline=False)
@@ -467,7 +467,7 @@ async def daily_command(message, token=''):
                     colour=0xf63a32
                 )
                 embed.set_thumbnail(
-                    url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                    url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                 embed.add_field(name="You need STW for STW Daily rewards",
                                 value='This may appear if you signed into the wrong account. '
                                       'Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
@@ -490,7 +490,7 @@ async def daily_command(message, token=''):
                         colour=0xf63a32
                     )
                     embed.set_thumbnail(
-                        url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                        url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                     embed.add_field(name="Why this happens:",
                                     value='Your code is expired, or of the wrong type\n(e.g. from url instead of page body)',
                                     inline=False)
@@ -508,7 +508,7 @@ async def daily_command(message, token=''):
                         colour=0xf63a32
                     )
                     embed.set_thumbnail(
-                        url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                        url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                     embed.add_field(name="Why this happens:",
                                     value='You used a different link to get your token',
                                     inline=False)
@@ -523,7 +523,7 @@ async def daily_command(message, token=''):
                         colour=0xf63a32
                     )
                     embed.set_thumbnail(
-                        url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                        url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                     embed.add_field(name="You need STW for STW Daily rewards",
                                     value='This may appear if you signed into the wrong account. '
                                           'Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
@@ -540,7 +540,7 @@ async def daily_command(message, token=''):
                         embed = discord.Embed(title='Success',
                                               colour=0x00c113)
                         embed.set_thumbnail(
-                            url='https://cdn.discordapp.com/attachments/448073494660644884/757803334198624336/Asset_2.1.14x2.png')
+                            url='https://cdn.discordapp.com/attachments/748078936424185877/924999903116165120/checkmarkstwdaily.png')
                         if "}" in amount:
                             amount2 = str(amount).split("},", 1)[0]
                             fndr_item = str(amount).split('itemType":"', 1)[1].split('","', 1)[0]
@@ -574,7 +574,7 @@ async def daily_command(message, token=''):
                         embed = discord.Embed(title=errorList[random.randint(0, 4)],
                                               colour=0xeeaf00)
                         embed.set_thumbnail(
-                            url='https://cdn.discordapp.com/attachments/448073494660644884/757803329299415163/Asset_1.14x2.png')
+                            url='https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png')
                         embed.add_field(name='You already claimed today\'s reward.',
                                         value=f"You are on day **{day}**", inline=False)
                         embed.add_field(name='Today\'s reward was:',
@@ -591,7 +591,7 @@ async def daily_command(message, token=''):
                             colour=0xf63a32
                         )
                         embed.set_thumbnail(
-                            url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                            url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                         embed.add_field(name="Why this happens:",
                                         value='Your code is expired, or of the wrong type\n(e.g. from url instead of page body)',
                                         inline=False)
@@ -609,7 +609,7 @@ async def daily_command(message, token=''):
                             colour=0xf63a32
                         )
                         embed.set_thumbnail(
-                            url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                            url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                         embed.add_field(name="Why this happens:",
                                         value='You used a different link to get your token',
                                         inline=False)
@@ -624,7 +624,7 @@ async def daily_command(message, token=''):
                             colour=0xf63a32
                         )
                         embed.set_thumbnail(
-                            url='https://cdn.discordapp.com/attachments/448073494660644884/758129079064068096/Asset_4.14x2.png')
+                            url='https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png')
                         embed.add_field(name="You need STW for STW Daily rewards",
                                         value='This may appear if you signed into the wrong account. '
                                               'Try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)',
