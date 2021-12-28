@@ -579,6 +579,7 @@ async def daily_command(message, token=''):
                                         value=f"You are on day **{day}**", inline=False)
                         embed.add_field(name='Today\'s reward was:',
                                         value=f"{getReward(day)}", inline=False)
+                        embed.add_field(name='You can claim tomorrow\'s reward:', value=f"<t:{int(datetime.datetime.combine(datetime.date.today()+datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>", inline=False)
                         print('Daily was already claimed or i screwed up')
                         print(f'Error info: {e}')
                 except:
