@@ -1,21 +1,29 @@
-# Fortnite: Save the World Daily Rewards Discord
+# Fortnite: Save the World Daily Rewards Discord Bot
 
-This is a discord bot that will collect your daily reward by using API requests. It is an adaptation of [this repository](https://github.com/Londiuh/fstwrc)
+The official source code of the Discord Bot [STW Daily](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands), which can claim your STW daily reward. It is an adaptation of [this repository](https://github.com/Londiuh/fstwrc) by [Londiuh](https://github.com/Londiuh/).
 
-# Important Information:
-## Using Public Hosted one:
+## Important Information
+### Using Public Hosted one:
 Either [join the server](https://discord.gg/Mt7SgUu) or [invite the bot to your own server](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands), and run the commands you want. You can even do it in DMs with the bot if you want (but you need a mutual server with it).
 
-## Self Hosting:
-Clone the repo, install the dependencies below (manually for now), add token for your application, invite your application to your server, run commands.
+### Self Hosting:
+ - Clone the repo
+ - Install the dependencies below
+ - Add token for your bot at the bottom of the "Save the World Daily.py" file
+ - Invite your bot to your server
+##### If you encounter any errors relating to "duplicate aliases" when running the bot, you'll need to manually remove each alias it get's angry about. 
+
+### FAQ
+You can read some commonly asked questions on the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions)
 
 ## Requirements and dependencies
-* Python (Tested with 3.9)
-* Discord.py
-* Discord-py-slash-commands
-* Requests
-* psutil (only used for some statistics. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself)
-* An account with campaign access (Fortnite: Save the world)
+* Python (Tested with 3.10)
+* discord-py >= 1.7.3
+* discord-py-slash-command >= 3.0.3
+* requests >= 2.26.0
+* psutil >= 5.8.0 
+  * Only used in the "info" command. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself)
+* An Epic Games account with campaign access (Fortnite: Save the world)
 
 ## How to start the bot
 Edit the token with your bots token (located on the last line), then run the python file.
@@ -54,9 +62,16 @@ This code will expire shortly after it is issued. If you require a new code, you
 If you require assistance, just want to chat, or would prefer to use the bot in a different server to your own, you can [join the STW Daily discord](https://discord.gg/Mt7SgUu)
 
 ## Credits
-Thanks to [Londiuh](https://github.com/Londiuh) for their [code to collect daily rewards](https://github.com/Londiuh/fstwrc)
-Icons are created by [dippyshere ;)](https://github.com/dippyshere)
+[Londiuh](https://github.com/Londiuh) for their [code to collect daily rewards](https://github.com/Londiuh/fstwrc)
+
+[Epic Research](https://github.com/MixV2/EpicResearch/)
+
+Icons by [dippyshere ;)](https://github.com/dippyshere)
 
 ## Info
-An auth token can be used to do (i believe) anything to your account that is possible with an API. If you dont trust this bot, read the code, and if you still dont trust it, dont use it.
-No affiliation with Epic Games.
+A valid auth token can be used maliciously, even though it expires when used, be careful, if you would like, you can [read more here](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions) 
+
+###### <p align=center> Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. </p>
+###### <p align=center> All rights reserved by Epic. </p>
+###### <p align=center> This material is not official and is not endorsed by Epic. </p>
+###### <p align=center> All badges/icons (except the "Llama Calendar") are original copyrighted works by the author. </p>
