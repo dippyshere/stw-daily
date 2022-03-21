@@ -196,13 +196,13 @@ async def reward_command(message, day, limit):
         embed = discord.Embed(title=f"Reward info", description=f'For day **{day}**', color=discord.Color(0xff00ff))
         embed.add_field(name=f'**Item: **', value=f'{getReward(day)}')
         for day1 in items.ItemDictonary:
-            if 'vBucks' in items.ItemDictonary[day1]:
+            if 'V-Bucks & X-Ray Tickets' in items.ItemDictonary[day1]:
                 if int(day) % 336 < int(day1):
                     if int(day1) - int(day) % 336 == 1:
-                        embed.add_field(name=f'**Next vBuck reward in: **',
+                        embed.add_field(name=f'**Next V-Buck & X-Ray Ticket reward in: **',
                                         value=f'**{int(day1) - int(day) % 336}** day.')
                     else:
-                        embed.add_field(name=f'**Next vBuck reward in: **',
+                        embed.add_field(name=f'**Next V-Buck & X-Ray Ticket reward in: **',
                                         value=f'**{int(day1) - int(day) % 336}** days.')
                     break
         rewards = ''
