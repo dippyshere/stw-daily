@@ -17,11 +17,11 @@ Either [join the server](https://discord.gg/Mt7SgUu) or [invite the bot to your 
 You can read some commonly asked questions on the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions)
 
 ## Requirements and dependencies
-* Python (Tested with 3.10)
+* Python (Tested with 3.10.3)
 * discord-py >= 1.7.3
 * discord-py-slash-command >= 3.0.3
-* requests >= 2.26.0
-* psutil >= 5.8.0 
+* requests >= 2.27.1
+* psutil >= 5.9.0 
   * Only used in the "info" command. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself)
 * An Epic Games account with campaign access (Fortnite: Save the world)
 
