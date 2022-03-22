@@ -192,6 +192,8 @@ async def reward_command(message, day, limit):
         await message.send('specify the day (number) of which you would like to see.')
     elif not day.isnumeric():
         await message.send('specify a number only please. your argument is what day you want to know about.')
+    elif limit > 50:
+        await message.send('Sorry, the limit you have specified is a little too high. Please specify a number below 50.')
     else:
         embed = discord.Embed(title=f"Reward info", description=f'For day **{day}**', color=discord.Color(0xff00ff))
         embed.add_field(name=f'**Item: **', value=f'{getReward(day)}')
@@ -214,6 +216,8 @@ async def reward_command(message, day, limit):
                 rewards += ', '
             else:
                 rewards += '.'
+            if day2 % 7 == 0:
+                rewards += '\n\n'
         if limit == 1:
             embed.add_field(name=f'**Tomorrow\'s reward:**', value=f'{getReward(int(day) + 1)}', inline=False)
         else:
@@ -336,7 +340,7 @@ async def ping_command(message):
                      , icon_url=message.author.avatar_url)
     embed.add_field(name='Websocket :electric_plug:', value=websocket_ping, inline=True)
     embed.add_field(name='Actual :microphone:',
-                    value='<a:loadin:759293511475527760>', inline=True)
+                    value='<a:stwloading:947844940594044948>', inline=True)
     # embed.add_field(name='Uptime :alarm_clock:', value=f'{get_bot_uptime()}', inline=True)
     embed2 = discord.Embed(title='Latency', color=discord.Color.blurple())
     embed2.set_footer(text=f"\nRequested by: {message.author.name} • "
@@ -416,7 +420,7 @@ async def daily_command(message, token=''):
                          , icon_url=message.author.avatar_url)
         await message.send(embed=embed)
     else:
-        embed = discord.Embed(title="Logging in and processing <a:loadin:759293511475527760>",
+        embed = discord.Embed(title="Logging in and processing <a:stwloading:947844940594044948>",
                               description='This shouldn\'t take long...', colour=discord.Color.green())
         embed.set_footer(text=f"Requested by: {message.author.name} • "
                               f"{time.strftime('%H:%M')} {datetime.date.today().strftime('%d/%m/%Y')}"
