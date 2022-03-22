@@ -179,11 +179,12 @@ async def slashinfo(ctx):
     await info_command(ctx)
 
 
-def getReward(day):
+def getReward(day, bReceiveMtx = False):
     day_mod = int(day) % 336
     if day_mod == 0:
         day_mod = 336
-    return items.ItemDictonary[str(day_mod)]
+    if bReceiveMtx == True: return items.ItemDictonary[str(day_mod)]
+    else: return items.ItemDictonary[str(day_mod)].replace("V-Bucks & X-Ray Tickets", "X-Ray Tickets")
 
 
 async def reward_command(message, day, limit):
@@ -533,6 +534,8 @@ async def daily_command(message, token=''):
                     # print(str(str(r.text).split("notifications", 1)[1][2:].split('],"profile', 1)[0]))
                     daily_feedback = str(r.text).split("notifications", 1)[1][4:].split('],"profile', 1)[0]
                     day = str(daily_feedback).split('"daysLoggedIn":', 1)[1].split(',"items":[', 1)[0]
+                    bReceiveMtx = False
+                    if "\"Token:receivemtxcurrency\"" in r.text: bReceiveMtx = True
                     try:
                         # await message.send(f'Debugging info because sometimes it breaks:\n{daily_feedback}')
                         item = str(daily_feedback).split('[{"itemType":"', 1)[1].split('","itemGuid"', 1)[0]
@@ -551,19 +554,19 @@ async def daily_command(message, token=''):
                                 fndr_item_f = "Upgrade Llama (bronze)"
                             else:
                                 fndr_item_f = fndr_item
-                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day)}**",
+                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day, bReceiveMtx)}**",
                                             inline=False)
                             embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item_f}**",
                                             inline=False)
                         else:
-                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day)}**",
+                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day, bReceiveMtx)}**",
                                             inline=False)
                         print('success')
                         print(item)
                         print(amount)
                         rewards = ''
                         for i in range(1, 7):
-                            rewards += getReward(int(day) + i)
+                            rewards += getReward(int(day) + i, bReceiveMtx)
                             if not (i + 1 == 7):
                                 rewards += ', '
                             else:
@@ -578,7 +581,7 @@ async def daily_command(message, token=''):
                         embed.add_field(name='You already claimed today\'s reward.',
                                         value=f"You are on day **{day}**", inline=False)
                         embed.add_field(name='Today\'s reward was:',
-                                        value=f"{getReward(day)}", inline=False)
+                                        value=f"{getReward(day, bReceiveMtx)}", inline=False)
                         embed.add_field(name='You can claim tomorrow\'s reward:', value=f"<t:{int(datetime.datetime.combine(datetime.datetime.utcnow()+datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>", inline=False)
                         print('Daily was already claimed or i screwed up')
                         print(f'Error info: {e}')
