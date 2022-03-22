@@ -179,7 +179,7 @@ async def slashinfo(ctx):
     await info_command(ctx)
 
 
-def getReward(day, bReceiveMtx = False):
+def getReward(day, bReceiveMtx = True):
     day_mod = int(day) % 336
     if day_mod == 0:
         day_mod = 336
