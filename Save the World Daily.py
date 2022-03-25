@@ -46,7 +46,8 @@ tipsList = [
     "You can [refresh the final page](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code) to get a new code (if you're signed in)",
     "Follow [@STW_Daily](https://twitter.com/STW_Daily) on Twitter for the latest updates in your timeline",
     "Found a problem? [Join the support server](https://discord.gg/MtSgUu)",
-    "Found problems with the translation feature? [Join the support server](https://discord.gg/MtSgUu) and let us know!", "You are epic! Keep doing you! ❤"]
+    "Found problems with the translation feature? [Join the support server](https://discord.gg/MtSgUu) and let us know!",
+    "You are epic! Keep doing you! ❤"]
 
 
 class endpoints:
@@ -140,6 +141,29 @@ async def update_status():
         await asyncio.sleep(60)
 
 
+def is_me(m):
+    return m.author == client.user
+
+
+async def dailyreminder():
+    await client.wait_until_ready()
+    while True:
+        if str(datetime.datetime.utcnow().replace(second=0, microsecond=0).time()) == "00:00:00":
+            channel = client.get_channel(956006055282896976)
+            await channel.purge(limit=2, check=is_me)
+            embed = discord.Embed(title='Daily reminder:', description='You can now claim today\'s daily reward.',
+                                  colour=discord.Colour.blue())
+            embed.add_field(name='Item shop:', value='[fnbr.co/shop](https://fnbr.co/shop)', inline=True)
+            embed.add_field(name='Mission alerts:', value='[seebot.dev/missions.php](https://seebot.dev/missions.php)',
+                            inline=True)
+            embed.set_thumbnail(
+                url='https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png')
+            embed.set_footer(text=f"This is an automated reminder for {client.user.name}"
+                             , icon_url=client.user.avatar_url)
+            await channel.send("<@&956005357346488341>", embed=embed)
+        await asyncio.sleep(60)
+
+
 # noinspection PyBroadException
 async def info_command(message):
     try:
@@ -179,12 +203,14 @@ async def slashinfo(ctx):
     await info_command(ctx)
 
 
-def getReward(day, bReceiveMtx = True):
+def getReward(day, bReceiveMtx=True):
     day_mod = int(day) % 336
     if day_mod == 0:
         day_mod = 336
-    if bReceiveMtx == True: return items.ItemDictonary[str(day_mod)]
-    else: return items.ItemDictonary[str(day_mod)].replace("V-Bucks & X-Ray Tickets", "X-Ray Tickets")
+    if bReceiveMtx == True:
+        return items.ItemDictonary[str(day_mod)]
+    else:
+        return items.ItemDictonary[str(day_mod)].replace("V-Bucks & X-Ray Tickets", "X-Ray Tickets")
 
 
 async def reward_command(message, day, limit):
@@ -194,7 +220,8 @@ async def reward_command(message, day, limit):
     elif not day.isnumeric():
         await message.send('specify a number only please. your argument is what day you want to know about.')
     elif limit > 50:
-        await message.send('Sorry, the limit you have specified is a little too high. Please specify a number below 50.')
+        await message.send(
+            'Sorry, the limit you have specified is a little too high. Please specify a number below 50.')
     else:
         embed = discord.Embed(title=f"Reward info", description=f'For day **{day}**', color=discord.Color(0xff00ff))
         embed.add_field(name=f'**Item: **', value=f'{getReward(day)}')
@@ -256,7 +283,9 @@ async def slashreward(ctx, day='Uhoh-stinky', limit=7):
 
 
 # noinspection PyShadowingBuiltins
-@client.command(name='helpfullmao', aliases=mixedCase('help') + ['halp', 'holp', 'how', 'hel', 'h', '?', 'helpp', 'huh'], description='Well, this tells you what commands are available.')
+@client.command(name='helpfullmao',
+                aliases=mixedCase('help') + ['halp', 'holp', 'how', 'hel', 'h', '?', 'helpp', 'huh'],
+                description='Well, this tells you what commands are available.')
 async def help(message):
     embed = discord.Embed(title='Help', description='Commands:', colour=discord.Colour.red())
     embed.set_thumbnail(
@@ -558,12 +587,14 @@ async def daily_command(message, token=''):
                                 fndr_item_f = "Upgrade Llama (bronze)"
                             else:
                                 fndr_item_f = fndr_item
-                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day, bReceiveMtx)}**",
+                            embed.add_field(name=f'On day **{day}**, you received:',
+                                            value=f"**{getReward(day, bReceiveMtx)}**",
                                             inline=False)
                             embed.add_field(name=f'Founders rewards:', value=f"**{fndr_amount}** **{fndr_item_f}**",
                                             inline=False)
                         else:
-                            embed.add_field(name=f'On day **{day}**, you received:', value=f"**{getReward(day, bReceiveMtx)}**",
+                            embed.add_field(name=f'On day **{day}**, you received:',
+                                            value=f"**{getReward(day, bReceiveMtx)}**",
                                             inline=False)
                         print('success')
                         print(item)
@@ -586,7 +617,9 @@ async def daily_command(message, token=''):
                                         value=f"You are on day **{day}**", inline=False)
                         embed.add_field(name='Today\'s reward was:',
                                         value=f"{getReward(day, bReceiveMtx)}", inline=False)
-                        embed.add_field(name='You can claim tomorrow\'s reward:', value=f"<t:{int(datetime.datetime.combine(datetime.datetime.utcnow()+datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>", inline=False)
+                        embed.add_field(name='You can claim tomorrow\'s reward:',
+                                        value=f"<t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>",
+                                        inline=False)
                         print('Daily was already claimed or i screwed up')
                         print(f'Error info: {e}')
                 except:
@@ -652,7 +685,8 @@ async def daily_command(message, token=''):
 
 
 @client.command(name='d',
-                aliases=mixedCase('daily') + ['collect', 'dailt', 'daliy', 'dail', 'daiyl', 'day', 'dialy', 'da', 'dly', 'login', 'claim'],
+                aliases=mixedCase('daily') + ['collect', 'dailt', 'daliy', 'dail', 'daiyl', 'day', 'dialy', 'da', 'dly',
+                                              'login', 'claim'],
                 description='Claim your daily reward')
 async def daily(ctx, token=''):
     await daily_command(ctx, token)
@@ -675,4 +709,5 @@ async def slashdaily(ctx, token=''):
 
 # noinspection SpellCheckingInspection
 client.loop.create_task(update_status())
+client.loop.create_task(dailyreminder())
 client.run('token')
