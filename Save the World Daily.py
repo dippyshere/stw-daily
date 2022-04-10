@@ -620,6 +620,8 @@ async def daily_command(message, token=''):
                         embed.add_field(name='You can claim tomorrow\'s reward:',
                                         value=f"<t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>",
                                         inline=False)
+                        if not bReceiveMtx:
+                            embed.add_field(name="Note:",value=f"Your account will receive <:TItemsCurrencyXRayLlamaL:812201308286091264> X-Ray Tickets instead of <:TItemsMTXL:812201307786969128><:TItemsCurrencyXRayLlamaL:812201308286091264> V-Bucks & X-Ray Tickets. You will **not be able to claim V-Bucks using <@!{client.user.id}>**.\n[Visit the STW Daily FAQ to learn more about this](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions#:~:text=Why%20am%20I%20unable%20to%20claim%20V%2DBucks%20from%20STW%20Daily%3F)",inline=False)
                         print('Daily was already claimed or i screwed up')
                         print(f'Error info: {e}')
                 except:
