@@ -2,3 +2,4 @@ aiohttp<3.9.0,>=3.6.0
 py-cord>=2.0.1
 psutil>=5.9.1
 tomli>=2.0.1
+
