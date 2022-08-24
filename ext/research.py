@@ -203,17 +203,20 @@ class ResearchView(discord.ui.View):
         await self.universal_stat_process(button, interaction, "technology")
 
 async def default_current_values(current_levels):
+    if current_levels == None:
+        current_levels = {}
+
     try:    current_levels["fortitude"]
-    except: current_levels["fortitude"] = 0
+    except: current_levels["fortitude"] = 120
 
     try:    current_levels["offense"]
-    except: current_levels["offense"] = 0
+    except: current_levels["offense"] = 120
 
     try:    current_levels["resistance"]
-    except: current_levels["resistance"] = 0
+    except: current_levels["resistance"] = 120
 
     try:    current_levels["technology"]
-    except: current_levels["technology"] = 0
+    except: current_levels["technology"] = 120
 
 # cog for the research related commands.
 class Research(ext.Cog):
