@@ -21,6 +21,7 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 )
 
 async def add_fort_fields(client, embed, current_levels, extra_white_space=False):
+    print(current_levels)
     offense = current_levels["offense"]
     fortitude = current_levels["fortitude"]
     resistance = current_levels["resistance"]
@@ -102,9 +103,13 @@ class ResearchView(discord.ui.View):
                 return
         except:
             pass
+
+        current_research_statistics_request = await stw.profile_request(self.client, "query", self.auth_info[1])
+        json_response = await current_research_statistics_request.json()
+        current_levels = await research_query(interaction, self.client, self.auth_info, self.slash, [], json_response)
+        if current_levels == None:
+            return
         
-        current_levels = purchased_json['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
-        current_levels = await default_current_values(current_levels)   
         self.current_levels = current_levels
         
         # What i believe happens is that epic games removes the research points item if you use it all... not too sure if they change the research token guid
@@ -147,7 +152,7 @@ class ResearchView(discord.ui.View):
 
         
     #creo kinda fire though ngl
-    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, context):
+    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, context, slash):
         super().__init__()
         self.client = client
         self.context = context
@@ -157,6 +162,7 @@ class ResearchView(discord.ui.View):
         self.total_points = total_points
         self.current_levels = current_levels
         self.research_token_guid = research_token_guid
+        self.slash = slash
 
         self.button_emojis = {
             'fortitude': self.client.config["emojis"]["fortitude"],
@@ -202,22 +208,60 @@ class ResearchView(discord.ui.View):
     async def technology_button(self, button, interaction):
         await self.universal_stat_process(button, interaction, "technology")
 
-async def default_current_values(current_levels):
-    if current_levels == None:
+async def research_query(ctx, client, auth_info, slash, final_embeds, json_response):
+        error_colour = client.colours["error_red"]
+        gren = client.colours["research_green"]
+        yellow = client.colours["warning_yellow"]
+        crown_yellow = client.colours["crown_yellow"]
+        
+        
+        support_url = client.config["support_url"]
+        acc_name = auth_info[1]["account_name"]
+            
+        try:
+            error_code = json_response["errorCode"]
+            embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
+            final_embeds.append(embed)
+            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        except: pass
+
         current_levels = {}
+        try:
+            current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
+        except Exception as e:
+            print(e, "assuming max research level im not sure??", json_response)
+            current_levels = {'fortitude':120, 'offense': 120, 'resistance':120, 'technology': 120}
+            pass
 
-    try:    current_levels["fortitude"]
-    except: current_levels["fortitude"] = 120
+        # I'm not too sure what happens here but if current_levels doesnt exist im assuming its at maximum.
+        proc_max = False
+        try:
+            if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
+                proc_max = True
+            else:
+                False
+        except TypeError:
 
-    try:    current_levels["offense"]
-    except: current_levels["offense"] = 120
+            current_levels = {'offense': 120, 'fortitude': 120, 'resistance': 120, 'technology': 120}
+            proc_max = True
+            
+        if proc_max:
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(client, "Max", "crown"),
+                description="""\u200b
+                Congratulations, you have **maximum** FORT stats.\n\u200b\n\u200b""",
+                colour=crown_yellow
+            )
+            
+            await add_fort_fields(client, embed, current_levels, True)
+            embed = await stw.set_thumbnail(client, embed, "crown")
+            embed = await stw.add_requested_footer(ctx, embed)
+            final_embeds.append(embed)
+            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            return None
 
-    try:    current_levels["resistance"]
-    except: current_levels["resistance"] = 120
-
-    try:    current_levels["technology"]
-    except: current_levels["technology"] = 120
-
+        return current_levels
+    
 # cog for the research related commands.
 class Research(ext.Cog):
     
@@ -275,41 +319,10 @@ class Research(ext.Cog):
         if ainfo3 != "logged_in_processing" and auth_info[2] != []:
             final_embeds = auth_info[2]
 
-        # CRS stands for "current_research_statistics"
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
         json_response = await current_research_statistics_request.json()
-
-        support_url = self.client.config["support_url"]
-        acc_name = auth_info[1]["account_name"]
-            
-        try:
-            error_code = json_response["errorCode"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
-            final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-        except: pass
-
-        try:
-            current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
-        except Exception as e:
-            print(e, "assuming max research level im not sure??", json_response)
-            current_levels = {'fortitude':120, 'offense': 120, 'resistance':120, 'technology': 120}
-            pass
-
-        current_levels = await default_current_values(current_levels)        
-        if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
-            embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, "Max", "crown"),
-                description="""\u200b
-                Congratulations, you have **maximum** FORT stats.\n\u200b\n\u200b""",
-                colour=crown_yellow
-            )
-            
-            await add_fort_fields(self.client, embed, current_levels, True)
-            embed = await stw.set_thumbnail(self.client, embed, "crown")
-            embed = await stw.add_requested_footer(ctx, embed)
-            final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        current_levels = await research_query(ctx, self.client, auth_info, slash, final_embeds, json_response)
+        if current_levels == None:
             return
         
         # Find research guid to post too required for ClaimCollectedResources json
@@ -409,7 +422,7 @@ class Research(ext.Cog):
         embed = await stw.add_requested_footer(ctx, embed)
 
         final_embeds.append(embed)
-        research_view = ResearchView(self.client, auth_info, ctx.author, total_points, current_levels, rp_token_guid, ctx)
+        research_view = ResearchView(self.client, auth_info, ctx.author, total_points, current_levels, rp_token_guid, ctx, slash)
         research_view.message = await stw.slash_edit_original(auth_info[0], slash, final_embeds, view=research_view)
 
     
