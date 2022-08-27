@@ -21,9 +21,8 @@ You can read some commonly asked questions about the bot on the [STW Daily websi
 
 ## Requirements and dependencies
 * Python 3 (Tested with 3.10.6)
-* py-cord >= 2.0.1
+* py-cord >= 2.1.1
 * aiohttp < 3.9, >= 3.6.0
-* requests >= 2.27.1
 * psutil >= 5.9.1 
   * Only used in the "info" command. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself.
 * An Epic Games account with campaign access (Fortnite: Save the world)
