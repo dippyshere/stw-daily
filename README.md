@@ -33,7 +33,7 @@ pip install -r requirements.txt
 ```
 
 ## How to start the bot
-Set your bot token as the value for the environment variable "STW_DAILY_TOKEN"
+Set your bot token as the value for the environment variable "STW_DAILY_TOKEN", then run "daily core.py"
 
 If you don't know what a bot token is or need one, you can [create an application on discord](https://discord.com/developers/applications), then create a bot and copy it's token.
 
@@ -49,7 +49,7 @@ To interact with STW Daily, start your message by mentioning the bot (STW Daily)
 
 You can learn more about all the new features and interactions STW Daily can provide by using `@STW Daily help`.
 ### / Slash command method
-To get started with slash commands, start by typing "/". You can learn more about slash commands [here](https://discord.com/blog/slash-commands-are-here).
+To get started with slash commands, start by typing `/`. You can learn more about slash commands [here](https://discord.com/blog/slash-commands-are-here).
 
 How to get a code
 ---
