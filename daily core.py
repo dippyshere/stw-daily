@@ -61,6 +61,7 @@ def main():
         "daily",
         "info",
         "research",
+        "reminder",
         ]
 
     # load the extensions
@@ -86,6 +87,7 @@ async def update_status():
     await client.change_presence(
         activity=discord.Activity(type=discord.ActivityType.listening,
                                   name=f"@{client.user.name}  |  Reset in: \n{stw.time_until_end_of_day()}\n  |  In {len(client.guilds)} guilds"))
+
 
 if __name__ == "__main__":
     main()

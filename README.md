@@ -11,6 +11,7 @@ Either [join the server](https://discord.gg/Mt7SgUu) or [invite the bot to your 
  - Install the dependencies below
  - Add token for your bot as an environment variable for "STW_DAILY_TOKEN"
  - Invite your bot to your server
+ - Run "daily core.py"
 
 ### Skids:
 [Super easy 1-click hosting method](https://media.tenor.com/AKkrwSZSpZ0AAAPo/talking-ben.mp4)
@@ -20,11 +21,10 @@ You can read some commonly asked questions about the bot on the [STW Daily websi
 
 ## Requirements and dependencies
 * Python 3 (Tested with 3.10.6)
-* py-cord >= 2.0.1
+* py-cord >= 2.1.1
 * aiohttp < 3.9, >= 3.6.0
-* requests >= 2.27.1
 * psutil >= 5.9.1 
-  * Only used in the "info" command. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself)
+  * Only used in the "info" command. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself.
 * An Epic Games account with campaign access (Fortnite: Save the world)
 
 You can install the required dependencies with:
@@ -33,9 +33,9 @@ pip install -r requirements.txt
 ```
 
 ## How to start the bot
-Set your bot token as the value for the environment variable "STW_DAILY_TOKEN"
+Set your bot token as the value for the environment variable "STW_DAILY_TOKEN", then run "daily core.py"
 
-If you dont know what a bot token is or need one, you can [create an application on discord](https://discord.com/developers/applications), then create a bot and copy it's token.
+If you don't know what a bot token is or need one, you can [create an application on discord](https://discord.com/developers/applications), then create a bot and copy it's token.
 
 Alternatively, you can [Use my publicly one hosted on heroku here.](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands)
 
@@ -49,7 +49,7 @@ To interact with STW Daily, start your message by mentioning the bot (STW Daily)
 
 You can learn more about all the new features and interactions STW Daily can provide by using `@STW Daily help`.
 ### / Slash command method
-To get started with slash commands, start by typing "/". You can learn more about slash commands [here](https://discord.com/blog/slash-commands-are-here).
+To get started with slash commands, start by typing `/`. You can learn more about slash commands [here](https://discord.com/blog/slash-commands-are-here).
 
 How to get a code
 ---
@@ -61,13 +61,13 @@ You will then be taken to an empty webpage, with your authcode being displayed a
 {"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35","authorizationCode":"a51c1f4d35b1457c8e34a1f6026faa35","sid":null}
 ```
 
-Copy only the authorisation code code (you can double click it in most browsers), and then add that to your command.
+Copy only the authorisation code (you can double-click it in most browsers), and then add that to your command.
 
 ``@STW Daily d a51c1f4d35b1457c8e34a1f6026faa35``
 
 The auth code will expire shortly after issued, and if used by STW Daily, will immediately expire. If you require a new code, you can simply [refresh the page](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code) to get a new code.
 
-**NEW** in STW Daily beta: Authentication Sessions! Your authentication session will be saved for ~8 hours, allowing you to claim a daily, claim your research points and spend them without needing a new code each time. You will still need to provide a new code when the authentication session expires. You can opt out of automatically starting an authentication session by specifying any text after your auth code, e.g. `@STW Daily d a51c1f4d35b1457c8e34a1f6026faa35 no`. You can end an authetication session with `@STW Daily kill`
+**NEW** in STW Daily beta: Authentication Sessions! Your authentication session will be saved for ~8 hours, allowing you to claim a daily, claim your research points and spend them without needing a new code each time. You will still need to provide a new code when the authentication session expires. You can opt out of automatically starting an authentication session by specifying any text after your auth code, e.g. `@STW Daily d a51c1f4d35b1457c8e34a1f6026faa35 no`. You can end an authentication session with `@STW Daily kill`
 
 ## Support
 If you require assistance, just want to chat, or would prefer to use the bot in a different server to your own, you can [join the STW Daily discord](https://discord.gg/Mt7SgUu). Feel free to reach out directly to us via the server.

@@ -1,17 +1,4 @@
-import asyncio
-import aiohttp
-
 import math
-import random
-import json
-import re
-import os
-import sys
-import psutil
-import datetime
-import time
-import stwutil as stw
-import items
 
 import discord
 import discord.ext.commands as ext
@@ -20,6 +7,9 @@ from discord.commands import (  # Importing the decorator that makes slash comma
     slash_command,
 )
 
+import stwutil as stw
+
+
 # cog for the auth command.
 class Auth(ext.Cog):
 
@@ -27,27 +17,28 @@ class Auth(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-
-    async def auth_command(self, ctx, token='', slash = False):
+    async def auth_command(self, ctx, token='', slash=False):
         err_colour = self.client.colours["error_red"]
         succ_colour = self.client.colours["success_green"]
         white = self.client.colours["auth_white"]
-        
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, slash, True, True)
-        if auth_info[0] == False:
-            return
 
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, slash, True, True)
+        if not auth_info[0]:
+            return
 
         # i am braindead
         ainfo3 = ""
-        try: ainfo3 = auth_info[3]
-        except: pass
+        try:
+            ainfo3 = auth_info[3]
+        except:
+            pass
 
-        # what is this black magic???????? i totally forgot what any of this is
-        if auth_info[0] != None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
+        # what is this black magic???????? I totally forgot what any of this is
+        if auth_info[0] is not None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
             await stw.slash_edit_original(auth_info[0], slash, auth_info[2])
         else:
-            embed = discord.Embed(title= await stw.add_emoji_title(self.client, "Currently Authenticated","whitekey"), description=f"""\u200b
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Currently Authenticated", "whitekey"),
+                                  description=f"""\u200b
             Existing Auth Session Found For:
             ```{auth_info[1]['account_name']}```
             **Your auth session expires** <t:{math.floor(auth_info[1]['expiry'])}:R>
@@ -60,25 +51,27 @@ class Auth(ext.Cog):
             Or [Join the support server]({self.client.config['support_url']})
             Note: You need a new code __every time you authenticate__\n\u200b
             """, colour=white)
-            embed = await stw.set_thumbnail(self.client, embed,"keycard")
+            embed = await stw.set_thumbnail(self.client, embed, "keycard")
             embed = await stw.add_requested_footer(ctx, embed)
             await stw.slash_edit_original(auth_info[0], slash, embed)
-    
-    async def kill_command(self, ctx ,slash=False):
+
+    async def kill_command(self, ctx, slash=False):
         white = self.client.colours["auth_white"]
-        embed = discord.Embed(title= await stw.add_emoji_title(self.client, "Killed Auth Session","whitekey"), description=f"""```Sucessfully ended authentication session.```
+        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Killed Auth Session", "whitekey"),
+                              description=f"""```Successfully ended authentication session.```
         """, colour=white)
         await stw.manslaughter_session(self.client, ctx.author.id, "override")
-        
-        embed = await stw.set_thumbnail(self.client, embed,"keycard")
+
+        embed = await stw.set_thumbnail(self.client, embed, "keycard")
         embed = await stw.add_requested_footer(ctx, embed)
         await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.command(name='auth',
-                aliases=['login', 'authenticate', 'atuh', 'uath', 'lgoin', 'authcode', 'gettoken', 'a'],
-                extras={'emoji':"keycard", 'args':{'token': "The authentication token retrieved from epic games used to authenticate you to claim rewards"}},
-                brief="Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.",
-                description="""This command allows you to claim your Fortnite: Save The World rewards including dailies, research points and llamas, utilise other utility commands etc, Note that you must get a new token __every time you authenticate__. For a guide on how to authenticate\n\u200b
+                 aliases=['login', 'authenticate', 'atuh', 'uath', 'lgoin', 'authcode', 'gettoken', 'a'],
+                 extras={'emoji': "keycard", 'args': {
+                     'token': "The authentication token retrieved from epic games used to authenticate you to claim rewards"}},
+                 brief="Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.",
+                 description="""This command allows you to claim your Fortnite: Save The World rewards including dailies, research points and llamas, utilise other utility commands etc, Note that you must get a new token __every time you authenticate__. For a guide on how to authenticate\n\u200b
                 \n[Firstly visit this link by clicking here](https://tinyurl.com/epicauthcode) You'll have to sign into your epic account, and then you should see something like:
                 \n```yaml\n{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35","sid":null})```
                 Copy only the authentication token part which for our example would be:
@@ -97,26 +90,28 @@ class Auth(ext.Cog):
         await self.auth_command(ctx, token)
 
     @ext.command(name='kill',
-                aliases=['end', 'baibai', 'bai','bye','imakillyou','🔪','keel-over-and-die'],
-                extras={'emoji':"whitekey", "args":{}},
-                brief="Ends your currently active authentication session",
-                description="This command will kill your active authentication session if any currently exist within the bot.")
+                 aliases=['end', 'baibai', 'bai', 'bye', 'imakillyou', '🔪', 'keel-over-and-die'],
+                 extras={'emoji': "whitekey", "args": {}},
+                 brief="Ends your currently active authentication session",
+                 description="This command will kill your active authentication session if any currently exist within the bot.")
     async def kill(self, ctx):
         await self.kill_command(ctx)
-    
+
     @slash_command(name='auth',
-             description='Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.',
-             guild_ids=stw.guild_ids)
+                   description='Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.',
+                   guild_ids=stw.guild_ids)
     async def slashauth(self, ctx: discord.ApplicationContext,
-                        authcode: Option(str, "Your authcode you can get by sending this command without this parameter")= ''):
+                        authcode: Option(str,
+                                         "Your authcode you can get by sending this command without this parameter") = ''):
 
         await self.auth_command(ctx, authcode, True)
 
     @slash_command(name='kill',
-             description='Ends your currently active authentication session',
-             guild_ids=stw.guild_ids)
+                   description='Ends your currently active authentication session',
+                   guild_ids=stw.guild_ids)
     async def slashkill(self, ctx):
         await self.kill_command(ctx, True)
-    
+
+
 def setup(client):
     client.add_cog(Auth(client))
