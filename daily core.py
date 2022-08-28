@@ -47,7 +47,7 @@ def main():
         "daily",
         "info",
         "research",
-        "reminder",
+        "serverext",
     ]
 
     # load the extensions
