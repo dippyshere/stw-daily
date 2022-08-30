@@ -58,7 +58,7 @@ class TradingNag(ext.Cog):
         self.tradingnag.start()
 
     # simple task to send reminder to stw dailies reminder channel everyday
-    @tasks.loop(time=datetime.time(12, 16, tzinfo=datetime.timezone.utc))
+    @tasks.loop(time=datetime.time(6, 40, tzinfo=datetime.timezone.utc))
     async def tradingnag(self):
         await self.client.wait_until_ready()
         # TODO: change channel back to 956006055282896976
@@ -68,14 +68,17 @@ class TradingNag(ext.Cog):
         def is_me(m):
             return m.author == self.client.user
 
-        await channel.purge(limit=1, check=is_me)
+        await channel.purge(limit=50, check=is_me)
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Welcome to the trading channel!",
                                             "checkmark"), description="\u200b", colour=succ_colour)
         embed.add_field(name=f'<:warningstwdaily:925648230736347158> **Some rules:**',
                         value=f"```- Scam = Clown\n- If scammed, DM Staff with proof + Discord ID```", inline=True)
+        embed.set_footer(text=
+                         f"\nTrading nag for STW Dailies"
+                         , icon_url=self.client.user.display_avatar.url)
+        embed.timestamp = datetime.datetime.now()
         embed = await stw.set_thumbnail(self.client, embed, "check")
-        embed = await stw.add_requested_footer(self.client, embed)
         await channel.send(embed=embed)
 
 
