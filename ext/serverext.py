@@ -58,7 +58,7 @@ class TradingNag(ext.Cog):
         self.tradingnag.start()
 
     # simple task to send reminder to stw dailies reminder channel everyday
-    @tasks.loop(time=datetime.time(4, 58, tzinfo=datetime.timezone.utc))
+    @tasks.loop(time=datetime.time(12, 16, tzinfo=datetime.timezone.utc))
     async def tradingnag(self):
         await self.client.wait_until_ready()
         # TODO: change channel back to 956006055282896976
@@ -70,16 +70,10 @@ class TradingNag(ext.Cog):
 
         await channel.purge(limit=1, check=is_me)
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Welcome to the <#997924614548226078> channel! :D",
-                                            "checkmark"), description=
-            f"""\u200b
-            Here you can Trade all of your valuable items for Save The World and also have various trade related discussions.
-            \u200b
-            <:warningstwdaily:925648230736347158> IF YOU GET SCAMMED IT IS NOT OUR RESPONSABILITY. <:warningstwdaily:925648230736347158>
-            \u200b
-            <:warningstwdaily:925648230736347158> IF YOU HAVE PROOF OF BEING SCAMMED PLEASE DM A STAFF MEMBER WITH THE PROOF AND THE SCAMMERS DISCORD ID. <:warningstwdaily:925648230736347158>
-            \u200b
-            """, colour=succ_colour)
+            title=await stw.add_emoji_title(self.client, "Welcome to the trading channel!",
+                                            "checkmark"), description="\u200b", colour=succ_colour)
+        embed.add_field(name=f'<:warningstwdaily:925648230736347158> **Some rules:**',
+                        value=f"```- Scam = Clown\n- If scammed, DM Staff with proof + Discord ID```", inline=True)
         embed = await stw.set_thumbnail(self.client, embed, "check")
         embed = await stw.add_requested_footer(self.client, embed)
         await channel.send(embed=embed)
