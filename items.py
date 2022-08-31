@@ -1,5 +1,6 @@
 # this is misspelt, but I am not bothered to fix it
-ItemDictonary = {
+# i am
+ItemDictionary = {
     "1": ["300 Hero XP", "heroxp"],
     "2": ["2 Mini Llamas", "minillama"],
     "3": ["Rare Hero", "herogeneric"],

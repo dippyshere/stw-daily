@@ -1,20 +1,13 @@
 # Utility library for STW daily.
 import asyncio
-import aiohttp
-import math
-import random
-import json
-import re
-import os
-import sys
-import psutil
 import datetime
+import random
+import re
 import time
-import items
 
 import discord
-import discord.ext.commands as ext
-from discord import Option
+
+import items
 
 guild_ids = None
 
@@ -27,12 +20,12 @@ async def slash_send_embed(ctx, slash, embeds, view=None):
         embeds = [embeds]
 
     if slash:
-        if view != None:
+        if view is not None:
             return await ctx.respond(embeds=embeds, view=view)
         else:
             return await ctx.respond(embeds=embeds)
     else:
-        if view != None:
+        if view is not None:
             return await ctx.send(embeds=embeds, view=view)
         else:
             return await ctx.send(embeds=embeds)
@@ -77,8 +70,6 @@ async def mention_string(client, prompt):
 
 # adds the requested by person thing to the footer
 async def add_requested_footer(ctx, embed):
-    current_time = int(time.time())
-
     try:
         embed.set_footer(text=
                          f"\nRequested by: {ctx.author.name}"
@@ -110,7 +101,7 @@ def get_reward(client, day, vbucks=True):
     if day_mod == 0:
         day_mod = 336
 
-    item = items.ItemDictonary[str(day_mod)]
+    item = items.ItemDictionary[str(day_mod)]
     emojis = item[1:]
 
     if not vbucks:
@@ -251,12 +242,12 @@ async def slash_edit_original(msg, slash, embeds, view=None):
         embeds = [embeds]
 
     if not slash:
-        if view != None:
+        if view is not None:
             return await msg.edit(embeds=embeds, view=view)
         else:
             return await msg.edit(embeds=embeds)
     else:
-        if view != None:
+        if view is not None:
             return await msg.edit_original_message(embeds=embeds, view=view)
         else:
             return await msg.edit_original_message(embeds=embeds)
@@ -270,7 +261,7 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None):
         "Authorization": f"bearer {token}"
     }
 
-    if json == None:
+    if json is None:
         return await client.stw_session.post(url, headers=header, data=data)
     else:
         return await client.stw_session.post(url, headers=header, json=json)
@@ -323,7 +314,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
     profile = await profile_request(client, "query", entry)
     vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
     others = await asyncio.gather(asyncio.to_thread(json_query_check, await profile.json()))
-    if others[0] != None:
+    if others[0] is not None:
         entry["day"] = others[0]
 
     if vbucks[0]:
@@ -444,7 +435,7 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
         Note: You need a new code __every time you authenticate__\n\u200b""",
                                     colour=error_colour)
 
-    if error_embed != None:
+    if error_embed is not None:
         embed = await set_thumbnail(client, error_embed, "error")
         embed = await add_requested_footer(ctx, embed)
         await slash_send_embed(ctx, slash, embed)
@@ -478,7 +469,6 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
 
 async def post_error_possibilities(ctx, client, command, acc_name, error_code, support_url):
     error_colour = client.colours["error_red"]
-    embed = None
 
     # Epic Games Error Codes
     if error_code == "errors.com.epicgames.common.missing_action":

@@ -41,7 +41,7 @@ Alternatively, you can [Use my publicly one hosted on heroku here.](https://disc
 
 You can also [join my server](https://discord.gg/Mt7SgUu) if you would prefer to use the bot that way.
 
-![Discord Banner 2](https://discordapp.com/api/guilds/757765475823517851/widget.png?style=banner2)
+![STW Dailies Discord Invite](https://discordapp.com/api/guilds/757765475823517851/widget.png?style=banner2 "Discord Server Banner")
 
 ## How to use the bot
 ### @STW Daily {command} method

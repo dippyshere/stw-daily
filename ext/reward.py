@@ -1,12 +1,12 @@
-import stwutil as stw
-import items
-
 import discord
 import discord.ext.commands as ext
 from discord import Option
 from discord.commands import (  # Importing the decorator that makes slash commands.
     slash_command,
 )
+
+import items
+import stwutil as stw
 
 
 # cog for the reward command.
@@ -87,8 +87,8 @@ class Reward(ext.Cog):
                 return
 
             embed.add_field(name=f'**{reward[1]} Item: **', value=f'```{reward[0]}```\u200b')
-            for day1 in items.ItemDictonary:
-                if 'V-Bucks & X-Ray Tickets' in items.ItemDictonary[day1][0]:
+            for day1 in items.ItemDictionary:
+                if 'V-Bucks & X-Ray Tickets' in items.ItemDictionary[day1][0]:
                     if int(day) % 336 < int(day1):
                         if int(day1) - int(day) % 336 == 1:
                             day_string = "day."
