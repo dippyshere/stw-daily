@@ -9,57 +9,68 @@ Either [join the server](https://discord.gg/Mt7SgUu) or [invite the bot to your 
 ### Self Hosting:
  - Clone the repo
  - Install the dependencies below
- - Add token for your bot at the bottom of the "Save the World Daily.py" file
+ - Add token for your bot as an environment variable for "STW_DAILY_TOKEN"
  - Invite your bot to your server
-##### If you encounter any errors relating to "duplicate aliases" when running the bot, you'll need to manually remove each alias it get's angry about. 
+ - Run "daily core.py"
+
+### Skids:
+[Super easy 1-click hosting method](https://media.tenor.com/AKkrwSZSpZ0AAAPo/talking-ben.mp4)
 
 ### FAQ
-You can read some commonly asked questions on the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions)
+You can read some commonly asked questions about the bot on the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions)
 
 ## Requirements and dependencies
-* Python (Tested with 3.10.3)
-* discord-py >= 1.7.3
-* discord-py-slash-command >= 3.0.3
-* requests >= 2.27.1
-* psutil >= 5.9.0 
-  * Only used in the "info" command. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself)
+* Python 3 (Tested with 3.10.6)
+* py-cord >= 2.1.1
+* aiohttp < 3.9, >= 3.6.0
+* psutil >= 5.9.1 
+  * Only used in the "info" command. It is not essential to the functionality of the bot and can/should be removed; but you need to remove the code that uses it yourself.
 * An Epic Games account with campaign access (Fortnite: Save the world)
 
-## How to start the bot
-Edit the token with your bots token (located on the last line), then run the python file.
+You can install the required dependencies with:
+```
+pip install -r requirements.txt
+```
 
-If you dont know what a bot token is or need one, you can [create an application on discord](https://discord.com/developers/applications), then create a bot and copy it's token.
+## How to start the bot
+Set your bot token as the value for the environment variable "STW_DAILY_TOKEN", then run "daily core.py"
+
+If you don't know what a bot token is or need one, you can [create an application on discord](https://discord.com/developers/applications), then create a bot and copy it's token.
 
 Alternatively, you can [Use my publicly one hosted on heroku here.](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands)
 
 You can also [join my server](https://discord.gg/Mt7SgUu) if you would prefer to use the bot that way.
 
-![Discord Banner 2](https://discordapp.com/api/guilds/757765475823517851/widget.png?style=banner2)
+![STW Dailies Discord Invite](https://discordapp.com/api/guilds/757765475823517851/widget.png?style=banner2 "Discord Server Banner")
 
 ## How to use the bot
-The bot's default prefix is ``stw``. You can change it manually at the top of the file.
+### @STW Daily {command} method
+To interact with STW Daily, start your message by mentioning the bot (STW Daily), followed by the command you wish to use. For example, to authenticate and claim a daily reward, you will now run `@STW Daily d {code}`, instead of `stw d {code}`. Please note the space between the mention and the command.
 
+You can learn more about all the new features and interactions STW Daily can provide by using `@STW Daily help`.
+### / Slash command method
+To get started with slash commands, start by typing `/`. You can learn more about slash commands [here](https://discord.com/blog/slash-commands-are-here).
+
+How to get a code
 ---
-The built in help commands are: ``stw help`` and ``stw instruction``; the latter of which will provide more detailed instructions.
+To get an auth code [visit this website](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode) and sign in with your Epic Games account.
 
----
-First, [visit this website](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode) and sign in with your **Epic Games** account.
-
-You will then be redirected to a website that will look something like this:
+You will then be taken to an empty webpage, with your authcode being displayed at the top left. 
 
 ```js
-{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35","sid":null}
+{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35","authorizationCode":"a51c1f4d35b1457c8e34a1f6026faa35","sid":null}
 ```
 
-Copy the code (you can double click it in most browsers), and then append that to your command.
+Copy only the authorisation code (you can double-click it in most browsers), and then add that to your command.
 
-For example:
+``@STW Daily d a51c1f4d35b1457c8e34a1f6026faa35``
 
-``stw daily a51c1f4d35b1457c8e34a1f6026faa35``
-This code will expire shortly after it is issued. If you require a new code, you can simply refresh the page and it should generate a new one.
+The auth code will expire shortly after issued, and if used by STW Daily, will immediately expire. If you require a new code, you can simply [refresh the page](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code) to get a new code.
+
+**NEW** in STW Daily beta: Authentication Sessions! Your authentication session will be saved for ~8 hours, allowing you to claim a daily, claim your research points and spend them without needing a new code each time. You will still need to provide a new code when the authentication session expires. You can opt out of automatically starting an authentication session by specifying any text after your auth code, e.g. `@STW Daily d a51c1f4d35b1457c8e34a1f6026faa35 no`. You can end an authentication session with `@STW Daily kill`
 
 ## Support
-If you require assistance, just want to chat, or would prefer to use the bot in a different server to your own, you can [join the STW Daily discord](https://discord.gg/Mt7SgUu)
+If you require assistance, just want to chat, or would prefer to use the bot in a different server to your own, you can [join the STW Daily discord](https://discord.gg/Mt7SgUu). Feel free to reach out directly to us via the server.
 
 ## Credits
 [Londiuh](https://github.com/Londiuh) for their [code to collect daily rewards](https://github.com/Londiuh/fstwrc)

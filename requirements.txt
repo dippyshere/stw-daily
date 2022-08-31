@@ -1,6 +1,5 @@
-discord.py == 1.7.3
-discord-py-slash-command == 3.0.3
-asyncio == 3.4.3
-aiohttp == 3.7.4.post0
-requests >= 2.28.1
-psutil >= 5.9.1
+aiohttp<3.9.0,>=3.6.0
+py-cord>=2.1.1
+psutil>=5.9.1
+tomli>=2.0.1
+
