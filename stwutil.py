@@ -625,10 +625,10 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
     elif error_code == "errors.stwdaily.not_author_interaction_response":
         embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
-            description=f"""```You need to be the author to utilise the {command} view!```
-            If you want to utilise this view, please use the command yourself.
+            description=f"""\u200bNot the author:```You need to be the author to utilise the {command} view!```
+            **If you want to utilise this view, please use the command yourself.**
 
-            NOTE: *This message is only sent one time, attempting to use buttons after receiving this will return with ``interaction failed``*
+            NOTE: *This message is only sent one time, attempting to use buttons after receiving this will return with `` interaction failed ``*
             \u200b
             **If you need any help try:**
             {await mention_string(client, f"help {command}")}
