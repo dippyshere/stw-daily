@@ -43,13 +43,13 @@ class Auth(ext.Cog):
             ```{auth_info[1]['account_name']}```
             **Your auth session expires** <t:{math.floor(auth_info[1]['expiry'])}:R>
             \u200b
-            Rerun this command with a new auth code to change accounts, you can one from:
+            Rerun this command with a new auth code to change accounts, you can get one from:
             [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)
             [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n
             **Need Help? Run**
             {await stw.mention_string(self.client, 'help auth')}
             Or [Join the support server]({self.client.config['support_url']})
-            Note: You need a new code __every time you authenticate__\n\u200b
+            Note: You need a new code __each time you authenticate__\n\u200b
             """, colour=white)
             embed = await stw.set_thumbnail(self.client, embed, "keycard")
             embed = await stw.add_requested_footer(ctx, embed)
@@ -71,7 +71,7 @@ class Auth(ext.Cog):
                  extras={'emoji': "keycard", 'args': {
                      'token': "The authentication token retrieved from epic games used to authenticate you to claim rewards"}},
                  brief="Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.",
-                 description="""This command allows you to claim your Fortnite: Save The World rewards including dailies, research points and llamas, utilise other utility commands etc, Note that you must get a new token __every time you authenticate__. For a guide on how to authenticate\n\u200b
+                 description="""This command allows you to claim your Fortnite: Save The World rewards including dailies, research points and llamas, utilise other utility commands etc, Note that you must get a new token __each time you authenticate__. For a guide on how to authenticate\n\u200b
                 \n[Firstly visit this link by clicking here](https://tinyurl.com/epicauthcode) You'll have to sign into your epic account, and then you should see something like:
                 \n```yaml\n{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35","sid":null})```
                 Copy only the authentication token part which for our example would be:
