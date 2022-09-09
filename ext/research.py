@@ -1,4 +1,5 @@
 import asyncio
+from types import NoneType
 
 import discord
 import discord.ext.commands as ext
@@ -213,11 +214,12 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
         embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
         final_embeds.append(embed)
         await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        return 
     except:
         pass
 
     current_levels = {}
-    try:
+    try:    
         current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
     except Exception as e:
         print(e, "assuming max research level im not sure??", json_response)
@@ -230,9 +232,12 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
         if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
             proc_max = True
     except TypeError:
-
-        current_levels = {'offense': 120, 'fortitude': 120, 'resistance': 120, 'technology': 120}
-        proc_max = True
+        
+        for stat in ["offense", "fortitude", "resistance", "technology"]:
+            if stat not in current_levels:
+                current_levels[stat] = 0
+        
+        pass
 
     if proc_max:
         embed = discord.Embed(
