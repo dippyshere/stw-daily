@@ -147,10 +147,10 @@ class Reward(ext.Cog):
     @slash_command(name='reward',
                    description='View daily rewards from a certain day for a certain amount of days after.',
                    guild_ids=stw.guild_ids)
-    async def slashauth(self, ctx: discord.ApplicationContext,
+    async def slashreward(self, ctx: discord.ApplicationContext,
                         day: Option(int, "The day you would like to view rewards for"),
                         limit: Option(int, "The amount of days you would like to view rewards for after") = 7):
-        await self.auth_command(ctx, day, limit, True)
+        await self.reward_command(ctx, day, limit, True)
 
 
 def setup(client):
