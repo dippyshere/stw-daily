@@ -148,7 +148,7 @@ class Reward(ext.Cog):
                    description='View daily rewards from a certain day for a certain amount of days after.',
                    guild_ids=stw.guild_ids)
     async def slashreward(self, ctx: discord.ApplicationContext,
-                        day: Option(int, "The day you would like to view rewards for"),
+                        day: Option(int, "The day you would like to view rewards for")='hi readers of the bot',
                         limit: Option(int, "The amount of days you would like to view rewards for after") = 7):
         await self.reward_command(ctx, day, limit, True)
 
