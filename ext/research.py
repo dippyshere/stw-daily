@@ -1,5 +1,4 @@
 import asyncio
-from types import NoneType
 
 import discord
 import discord.ext.commands as ext
@@ -219,7 +218,7 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
         pass
 
     current_levels = {}
-    try:    
+    try:
         current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
     except Exception as e:
         print(e, "assuming max research level im not sure??", json_response)
