@@ -67,7 +67,21 @@ class Auth(ext.Cog):
         await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.command(name='auth',
-                 aliases=['login', 'authenticate', 'atuh', 'uath', 'lgoin', 'authcode', 'gettoken', 'a'],
+                 aliases=['login', 'authenticate', "uth", "ath", "auh", "aut", 
+                          "aauth", "auuth", "autth", "authh", "uath", "atuh", 
+                          "auht", "quth", "wuth", "suth", "xuth", "zuth", "ayth",
+                          "a7th", "a8th", "aith", "akth", "ajth", "ahth", "aurh", 
+                          "au5h", "au6h", "auyh", "auhh", "augh", "aufh", "autg", 
+                          "auty", "autu", "autj", "autn", "autb", "qauth", "aquth",
+                          "wauth", "awuth", "sauth", "asuth", "xauth", "axuth", "zauth",
+                          "azuth", "ayuth", "auyth", "a7uth", "au7th", "a8uth", "au8th",
+                          "aiuth", "auith", "akuth", "aukth", "ajuth", "aujth", "ahuth", 
+                          "auhth", "aurth", "autrh", "au5th", "aut5h", "au6th", "aut6h", 
+                          "auyth", "autyh", "auhth", "authh", "augth", "autgh", "aufth", 
+                          "autfh", "autgh", "authg", "autyh", "authy", "autuh", "authu", 
+                          "autjh", "authj", "autnh", "authn", "autbh", "authb", 'lgoin', 
+                          'authcode', 'gettoken', 'a'],
+                 
                  extras={'emoji': "keycard", 'args': {
                      'token': "The authentication token retrieved from epic games used to authenticate you to claim rewards"}},
                  brief="Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.",
