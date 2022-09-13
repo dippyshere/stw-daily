@@ -74,11 +74,11 @@ class Auth(ext.Cog):
                           "au5h", "au6h", "auyh", "auhh", "augh", "aufh", "autg", 
                           "auty", "autu", "autj", "autn", "autb", "qauth", "aquth",
                           "wauth", "awuth", "sauth", "asuth", "xauth", "axuth", "zauth",
-                          "azuth", "ayuth", "auyth", "a7uth", "au7th", "a8uth", "au8th",
+                          "azuth", "ayuth", "a7uth", "au7th", "a8uth", "au8th",
                           "aiuth", "auith", "akuth", "aukth", "ajuth", "aujth", "ahuth", 
                           "auhth", "aurth", "autrh", "au5th", "aut5h", "au6th", "aut6h", 
-                          "auyth", "autyh", "auhth", "authh", "augth", "autgh", "aufth", 
-                          "autfh", "autgh", "authg", "autyh", "authy", "autuh", "authu", 
+                          "auyth", "autyh", "augth",  "aufth", 
+                          "autfh", "autgh", "authg", "authy", "autuh", "authu", 
                           "autjh", "authj", "autnh", "authn", "autbh", "authb", 'lgoin', 
                           'authcode', 'gettoken', 'a'],
                  
@@ -104,7 +104,16 @@ class Auth(ext.Cog):
         await self.auth_command(ctx, token)
 
     @ext.command(name='kill',
-                 aliases=['end', 'baibai', 'bai', 'bye', 'imakillyou', '🔪', 'keel-over-and-die'],
+                 aliases=['koll', 'ki9ll', 'imakillyou', 'k8ll', 'kkll',
+                          'mkill', 'kuill', 'end', 'oill', 'kjill', 'k8ill',
+                          'k9ill', 'bai', 'keel-over-and-dieill', 'jill',
+                          'kiol', 'klill', 'kil', 'ikll', 'kikll', 'kipl',
+                          'kilk', 'okill', 'klll', 'kilkl', 'kilol', 'kipll',
+                          'ikill', 'lkill', 'kilpl', 'mill', 'bye', 'kjll',
+                          'koill', 'baibai', 'killk', 'kilo', 'k9ll', 'kkill',
+                          'killl', 'killo', 'kll', 'killp', 'kikl', 'kioll',
+                          'iill', 'kull', 'jkill', 'kmill', 'klil', '🔪', 'kiull',
+                          'kiill', 'lill', 'kijll', 'kilp', 'ki8ll'],
                  extras={'emoji': "whitekey", "args": {}},
                  brief="Ends your currently active authentication session",
                  description="This command will kill your active authentication session if any currently exist within the bot.")

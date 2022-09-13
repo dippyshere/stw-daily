@@ -75,7 +75,20 @@ class Information(ext.Cog):
         await stw.slash_edit_original(msg, slash, embed)
 
     @ext.command(name='info',
-                 aliases=['inf', 'ifno', 'inof', 'nifo', 'information', 'le_bot_stuf', 'blinding-lights'],
+                 aliases=['inffo',
+                          'inro', 'infoi',
+                          'infvo', 'infgo',
+                          'inf9', 'nifo',
+                          'infio', 'infko',
+                          'onfo', 'ifno',
+                          'inrfo', 'injfo', 'infpo',
+                          'unfo', 'jnfo', 'inbfo', 'infdo', 'incfo',
+                          'indfo', 'infco', 'infl', 'iknfo', 'ibfo', 'blinding-lights', 'i9nfo',
+                          'imnfo', 'info9', 'ionfo', 'inflo', 'i8nfo', 'intfo', 'inf0o', '8nfo', 'uinfo', 'inco', 'infro',
+                          'iinfo', '9info', 'infol', 'information', 'kinfo', 'nfo', 'infop', 'infk', 'innfo', 'infp', 'info0', 'indo', 'inhfo', 'ihfo', 'inof',
+                          'ingo', 'inf9o', 'ifo', 'ijnfo', 'linfo', '9nfo', 'ino', 'infoo', 'lnfo', 'invo', 'inmfo', 'ibnfo', 'infto', 'imfo', 'inf0',
+                          'knfo', 'infi', 'ilnfo', 'oinfo', 'ihnfo', 'ingfo', 'iunfo', 'jinfo', 'infok', 'le_bot_stuf',
+                          '8info', 'invfo', 'ijfo', 'into', 'inf'],
                  extras={'emoji': "hard_drive", "args": {}},
                  brief="Get information about the bot and this shard",
                  description="This command displays information both about the shard and information about the bots hosting service along with latency. not really useful for the end user.")
