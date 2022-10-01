@@ -213,7 +213,7 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
         embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
         final_embeds.append(embed)
         await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-        return 
+        return
     except:
         pass
 
@@ -230,12 +230,12 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
     try:
         if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
             proc_max = True
-    except TypeError:
-        
+    except:
+
         for stat in ["offense", "fortitude", "resistance", "technology"]:
             if stat not in current_levels:
                 current_levels[stat] = 0
-        
+
         pass
 
     if proc_max:
