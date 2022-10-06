@@ -37,8 +37,8 @@ class Homebase(ext.Cog):
         if ainfo3 != "logged_in_processing" and auth_info[2] != []:
             final_embeds = auth_info[2]
 
-        # ok now we have the authcode information stuff, so it's time to attempt to claim daily
-        request = await stw.profile_request(self.client, "login", auth_info[1])
+        # set homebase name
+        request = await stw.profile_request(self.client, "homebase", auth_info[1], profile_id="common", data={"homebaseName": f"{name}"})
         json_response = await request.json()
         vbucks = auth_info[1]["vbucks"]
 
@@ -47,7 +47,7 @@ class Homebase(ext.Cog):
             error_code = json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "daily", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
         except:
