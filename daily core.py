@@ -48,6 +48,8 @@ def main():
         "info",
         "research",
         "serverext",
+        "reload",
+        "homebase"
     ]
 
     # load the extensions
