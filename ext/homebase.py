@@ -38,9 +38,8 @@ class Homebase(ext.Cog):
             final_embeds = auth_info[2]
 
         # set homebase name
-        request = await stw.profile_request(self.client, "homebase", auth_info[1], profile_id="common", data={"homebaseName": f"{name}"})
-        json_response = await request.json()
-        vbucks = auth_info[1]["vbucks"]
+        # request = await stw.profile_request(self.client, "homebase", auth_info[1], profile_id="common", data={"homebaseName": f"{name}"})
+        # json_response = await request.json()
 
         # check for le error code
         try:
@@ -51,33 +50,29 @@ class Homebase(ext.Cog):
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
         except:
-            daily_feedback = json_response["notifications"]
+            # daily_feedback = json_response["notifications"]
 
-            for notification in daily_feedback:
-                if notification["type"] == "daily_rewards":
-                    daily_feedback = notification
-                    break
+            # for notification in daily_feedback:
+            #     if notification["type"] == "daily_rewards":
+            #         daily_feedback = notification
+            #         break
 
-            day = daily_feedback["daysLoggedIn"]
+            # day = daily_feedback["daysLoggedIn"]
 
-            try:
-                self.client.temp_auth[ctx.author.id]["day"] = day
-            except:
-                pass
+            # try:
+            #     self.client.temp_auth[ctx.author.id]["day"] = day
+            # except:
+            #     pass
 
-            items = daily_feedback["items"]
-
-            # Empty items means that daily was already claimed
-            if len(items) == 0:
-                reward = stw.get_reward(self.client, day, vbucks)
+            # items = daily_feedback["items"]
+            current = "current name here"
+            # Empty name should fetch current name
+            if name == "":
                 embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, stw.ranerror(self.client), "warning"), description=
+                    title=await stw.add_emoji_title(self.client, "Homebase Name", "teammatexpboost"), description=
                     f"""\u200b
-                You have already claimed your reward for day **{day}**.
-                \u200b
-                **{reward[1]} Todays reward was:**
-                ```{reward[0]}```
-                You can claim tomorrow's reward <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                **Your current Homebase name is:**
+                ```{current}```
                 \u200b
                 """, colour=yellow)
                 embed = await stw.set_thumbnail(self.client, embed, "warn")
@@ -91,55 +86,14 @@ class Homebase(ext.Cog):
                                   description="\u200b",
                                   colour=succ_colour)
 
-            # First item is the default daily reward, add it using the get_reward method
-            reward = stw.get_reward(self.client, day, vbucks)
-
-            # Add any excess items + the default daily reward
-            for item in items[2:]:
-                try:
-                    amount = item["quantity"]
-                    itemtype = item["itemType"]
-                    reward[0] += f", {amount} {itemtype}"
-                except:
-                    pass
-
-            embed.add_field(name=f'{reward[1]} On day **{day}**, you received:', value=f"```{reward[0]}```",
+            embed.add_field(name=f'Changed Homebase name from:', value=f"```{current}```",
                             inline=True)
 
-            # Second item is founders reward
-            try:
-                founders = items[1]
-                amount = founders["quantity"]
-                itemtype = founders["itemType"]
+            embed.add_field(name=f'To:', value=f"```{name}```",
+                            inline=True)
 
-                display_itemtype = ""
-                if itemtype == 'CardPack:cardpack_event_founders':
-                    display_itemtype = "Founder's Llama"
-                elif itemtype == 'CardPack:cardpack_bronze':
-                    display_itemtype = "Upgrade Llama (bronze)"
-                else:
-                    display_itemtype = itemtype
+            print('Successfully changed homebase name')
 
-                embed.add_field(name=f'{self.client.config["emojis"]["founders"]} Founders rewards:',
-                                value=f"```{amount} {display_itemtype}```",
-                                inline=True)
-            except:
-                pass
-
-            print('Successfully claimed daily:')
-            print(reward[0])
-
-            rewards = ''
-            for i in range(1, 8):
-                rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
-                if not (i + 1 == 8):
-                    rewards += ', '
-                else:
-                    rewards += '.'
-
-            calendar = self.client.config["emojis"]["calendar"]
-            embed.add_field(name=f'\u200b\n{calendar} Rewards for the next 7 days:', value=f'```{rewards}```\u200b',
-                            inline=False)
             embed = await stw.set_thumbnail(self.client, embed, "check")
 
             embed = await stw.add_requested_footer(ctx, embed)
