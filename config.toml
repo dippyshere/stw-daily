@@ -126,10 +126,12 @@ crown_yellow	= [255, 204, 77]
 # endpoints for requests to be sent to
 [endpoints]
 token 		= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token"
-profile 	= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId=campaign"
+profile 	= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId={}"
 account 	= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}"
 kill_token 	= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/sessions/kill/{}"
 exchange 	= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
+device_auth = "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
+store		= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
 
 # different requests under profile
 [profile]
@@ -137,3 +139,13 @@ query 				= "QueryProfile"
 resources 			= "ClaimCollectedResources"
 login				= "ClaimLoginReward"
 purchase_research 	= "PurchaseResearchStatUpgrade"
+llamas				= "PopulatePrerolledOffers"
+purchase			= "PurchaseCatalogEntry"
+batch_recycle		= "RecycleItemBatch"
+set_homebase		= "SetHomebaseName"
+
+# different profile ids under some endpoints
+[profileid]
+common				= "common_core"
+stw					= "campaign"
+br					= "athena"
