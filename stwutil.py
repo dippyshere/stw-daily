@@ -663,3 +663,12 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 async def strip_string(string):
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
+
+# regex for 32 character hex
+async def is_auth_code(string):
+    return re.match(r"^[0-9a-f]{32}$", string)
+
+
+# regex for under 16 character alphanumeric with extra allowed chars
+async def is_legal_homebase_name(string):
+    return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string)
