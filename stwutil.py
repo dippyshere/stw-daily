@@ -253,9 +253,9 @@ async def slash_edit_original(msg, slash, embeds, view=None):
             return await msg.edit_original_message(embeds=embeds)
 
 
-async def profile_request(client, req_type, auth_entry, data="{}", json=None):
+async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw"):
     token = auth_entry["token"]
-    url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type])
+    url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type], client.config["profileid"][profile_id])
     header = {
         "Content-Type": "application/json",
         "Authorization": f"bearer {token}"
