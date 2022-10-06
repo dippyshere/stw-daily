@@ -362,7 +362,7 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
     some sort of embed which represents the successful authentication]
 
     That hopefully covers everything,
-    if your reading this then say hello in the STW-Daily discord server general channel.
+    if you're reading this then say hello in the STW-Daily discord server general channel. ;D
     """
 
     embeds = []
