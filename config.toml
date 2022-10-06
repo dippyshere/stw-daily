@@ -137,7 +137,7 @@ store		= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/s
 [profile]
 query 				= "QueryProfile"
 resources 			= "ClaimCollectedResources"
-login				= "ClaimLoginReward"
+daily				= "ClaimLoginReward"
 purchase_research 	= "PurchaseResearchStatUpgrade"
 llamas				= "PopulatePrerolledOffers"
 purchase			= "PurchaseCatalogEntry"

@@ -37,7 +37,7 @@ class Daily(ext.Cog):
             final_embeds = auth_info[2]
 
         # ok now we have the authcode information stuff, so it's time to attempt to claim daily
-        request = await stw.profile_request(self.client, "login", auth_info[1])
+        request = await stw.profile_request(self.client, "daily", auth_info[1])
         json_response = await request.json()
         vbucks = auth_info[1]["vbucks"]
 
