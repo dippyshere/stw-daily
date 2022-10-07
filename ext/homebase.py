@@ -1,5 +1,3 @@
-import datetime
-
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -37,6 +35,14 @@ class Homebase(ext.Cog):
         if ainfo3 != "logged_in_processing" and auth_info[2] != []:
             final_embeds = auth_info[2]
 
+        public_request = await stw.profile_request(self.client, "query_public", auth_info[1], profile_id="common_public")
+        public_json_response = await public_request.json()
+        # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
+
+        current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+        homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
+        homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
+
         # set homebase name
         # request = await stw.profile_request(self.client, "homebase", auth_info[1], profile_id="common", data={"homebaseName": f"{name}"})
         # json_response = await request.json()
@@ -65,7 +71,6 @@ class Homebase(ext.Cog):
             #     pass
 
             # items = daily_feedback["items"]
-            current = "current name here"
             # Empty name should fetch current name
             if name == "":
                 embed = discord.Embed(
@@ -75,7 +80,8 @@ class Homebase(ext.Cog):
                 ```{current}```
                 \u200b
                 """, colour=yellow)
-                embed = await stw.set_thumbnail(self.client, embed, "warn")
+                # embed = await stw.set_thumbnail(self.client, embed, "warn")
+                embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
                 embed = await stw.add_requested_footer(ctx, embed)
                 final_embeds.append(embed)
                 await stw.slash_edit_original(auth_info[0], slash, final_embeds)
@@ -86,16 +92,15 @@ class Homebase(ext.Cog):
                                   description="\u200b",
                                   colour=succ_colour)
 
-            embed.add_field(name=f'Changed Homebase name from:', value=f"```{current}```",
-                            inline=True)
+            embed.add_field(name=f'Changed Homebase name from:', value=f"```{current}```\u200b",
+                            inline=False)
 
-            embed.add_field(name=f'To:', value=f"```{name}```",
-                            inline=True)
-
-            print('Successfully changed homebase name')
+            embed.add_field(name=f'To:', value=f"```{name}```\u200b",
+                            inline=False)
 
             embed = await stw.set_thumbnail(self.client, embed, "check")
-
+            # set embed thumbnail
+            # embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
             embed = await stw.add_requested_footer(ctx, embed)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
