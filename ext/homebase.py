@@ -12,7 +12,7 @@ class Homebase(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def hbrename_command(self, ctx, slash, authcode, auth_opt_out, name):
+    async def hbrename_command(self, ctx, slash, name, authcode, auth_opt_out):
         error_colour = self.client.colours["error_red"]
         succ_colour = self.client.colours["success_green"]
         yellow = self.client.colours["warning_yellow"]
@@ -49,7 +49,7 @@ class Homebase(ext.Cog):
 
         # check for le error code
         try:
-            error_code = json_response["errorCode"]
+            error_code = public_json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
@@ -73,6 +73,21 @@ class Homebase(ext.Cog):
             # items = daily_feedback["items"]
             # Empty name should fetch current name
             if name == "":
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, "Homebase Name", "teammatexpboost"), description=
+                    f"""\u200b
+                **Your current Homebase name is:**
+                ```{current}```
+                \u200b
+                """, colour=yellow)
+                # embed = await stw.set_thumbnail(self.client, embed, "warn")
+                embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
+                embed = await stw.add_requested_footer(ctx, embed)
+                final_embeds.append(embed)
+                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                return
+
+            if await stw.is_legal_homebase_name(name):
                 embed = discord.Embed(
                     title=await stw.add_emoji_title(self.client, "Homebase Name", "teammatexpboost"), description=
                     f"""\u200b
@@ -114,7 +129,7 @@ class Homebase(ext.Cog):
                             token: Option(str,
                                           "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
                             auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
-        await self.hbrename_command(ctx, True, token, not auth_opt_out, name)
+        await self.hbrename_command(ctx, True, name, token, not auth_opt_out)
 
     @ext.command(name='hbrename',
                  aliases=['homebase', 'hbrn', 'rename', 'changehomebase'],
@@ -127,14 +142,14 @@ class Homebase(ext.Cog):
                 \u200b
                 ⦾ There are limitations on what your Homebase name can be, placeholer ^[0-9a-zA-Z '\\-._~]{1,16}$
                 """)
-    async def hbrename(self, ctx, authcode='', optout=None, name=''):
+    async def hbrename(self, ctx, name='', authcode='', optout=None):
 
         if optout is not None:
             optout = True
         else:
             optout = False
 
-        await self.hbrename_command(ctx, False, authcode, not optout, name)
+        await self.hbrename_command(ctx, False, name, authcode, not optout)
 
 
 def setup(client):
