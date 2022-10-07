@@ -248,9 +248,9 @@ async def slash_edit_original(msg, slash, embeds, view=None):
             return await msg.edit(embeds=embeds)
     else:
         if view is not None:
-            return await msg.edit_original_message(embeds=embeds, view=view)
+            return await msg.edit_original_response(embeds=embeds, view=view)
         else:
-            return await msg.edit_original_message(embeds=embeds)
+            return await msg.edit_original_response(embeds=embeds)
 
 
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw"):
