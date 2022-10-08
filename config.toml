@@ -4,10 +4,10 @@
 
 # A list of error messages the bot can pick from for the error embeds.
 error_messages = [
-	"That wasn't supposed to happen", 
-	"Whoops!", 
-	"We hit a roadblock", 
-	"Not the llama you're looking for",         
+	"That wasn't supposed to happen",
+	"Whoops!",
+	"We hit a roadblock",
+	"Not the llama you're looking for",
 	"Uh-oh! Something goofed"
 	]
 
@@ -49,7 +49,7 @@ shard_names = [
    "Ouranos", "Helios", "Eos",
    "Prometheus", "Styx", "Atlas"
    ]
-	
+
 # a list of emojis the bot utilises throughout (please do not change the keys.)
 [emojis]
 info				= "<:helpstwdaily:925648230488883230>"
@@ -92,6 +92,13 @@ survivorgeneric		= "<:GenericWorkercopy:947728015683616778>"
 teammatexpboost 	= "<:IconGiftXPXL:812201304670601227>"
 crown 				= "👑"
 celebrate 			= "🎉"
+stopwatch_anim		= "⏲"
+experimental		= "⚗"
+broken_heart		= "💔"
+vbuck_book			= "📔"
+storm_shield		= "🏚️"
+mtxswap_combined	= "🪙"
+placeholder			= "❓"
 
 
 #a list of links to thumbnails that the bot utilises for embeds
@@ -109,7 +116,7 @@ keycard				= "https://media.discordapp.net/attachments/643743040372080653/956798
 stormbottle 		= "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png?width=410&height=410"
 crown 				= "https://cdn.discordapp.com/attachments/643743040372080653/1000266990272913448/discordW_3.png"
 
-   
+
 # Different colours for commands
 [colours]
 generic_blue 		= [11, 123, 185]
@@ -120,7 +127,7 @@ reward_magenta 		= [255, 0, 255]
 success_green 		= [0, 210, 71]
 auth_white      	= [255, 255 ,255]
 crown_yellow		= [255, 204, 77]
-			  
+
 # Dont edit values beyond this point unless you know what you're doing!
 
 # endpoints for requests to be sent to
