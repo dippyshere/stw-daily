@@ -656,6 +656,40 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             colour=error_colour
         )
 
+    elif error_code == "errors.stwdaily.homebase_large":
+        embed = discord.Embed(
+            title=await add_emoji_title(client, ranerror(client), "error"),
+            description=f"""\u200b
+                Attempted to change Homebase name to:
+                ```{acc_name}```
+                **This name is too long.**
+                ⦾ Homebase names must be under 16 characters
+                ⦾ Homebase names also have additional criteria, to check them, try running {await mention_string(client, f"help {command}")}
+                \u200b
+                **If you need any help try:**
+                {await mention_string(client, f"help {command}")}
+                Or [Join the support server]({support_url})
+                Note: You need a new code __every time you authenticate__\n\u200b""",
+            colour=error_colour
+        )
+
+    elif error_code == "errors.stwdaily.homebase_illegal":
+        embed = discord.Embed(
+            title=await add_emoji_title(client, ranerror(client), "error"),
+            description=f"""\u200b
+                Attempted to change Homebase name to:
+                ```{acc_name}```
+                **This name contains unacceptable characters.**
+                ⦾ Homebase names must be alphanumeric, with limited support for extra characters.
+                ⦾ Homebase names also have additional criteria, to check them, try running {await mention_string(client, f"help {command}")}
+                \u200b
+                **If you need any help try:**
+                {await mention_string(client, f"help {command}")}
+                Or [Join the support server]({support_url})
+                Note: You need a new code __every time you authenticate__\n\u200b""",
+            colour=error_colour
+        )
+
     else:
         embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
@@ -695,4 +729,5 @@ async def extract_auth_code(string):
 
 # regex for under 16 character alphanumeric with extra allowed chars
 async def is_legal_homebase_name(string):
+    # TODO: add obfuscated filter for protected homebase names
     return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string)
