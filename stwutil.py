@@ -665,8 +665,8 @@ async def strip_string(string):
 
 
 # regex for 32 character hex
-async def is_auth_code(string):
-    return re.match(r"^[0-9a-f]{32}$", string)
+async def extract_auth_code(string):
+    return re.search(r"[0-9a-f]{32}", string)[0]
 
 
 # regex for under 16 character alphanumeric with extra allowed chars
