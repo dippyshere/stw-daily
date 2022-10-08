@@ -333,7 +333,7 @@ def json_query_check(profile_text):
         return None
 
 
-async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add_entry=False, processing=True):
+async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 
@@ -365,6 +365,9 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
     if you're reading this then say hello in the STW-Daily discord server general channel. ;D
     """
 
+    # extract auth code from auth_code
+    extracted_auth_code = await extract_auth_code(original_auth_code)
+
     embeds = []
 
     # Attempt to retrieve the existing auth code.
@@ -374,7 +377,7 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
         existing_auth = None
 
     # Return auth code if it exists
-    if existing_auth is not None and auth_code == "":
+    if existing_auth is not None and extracted_auth_code == "":
 
         # Send the logging in & processing if given
         if processing:
@@ -391,7 +394,7 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
     support_url = client.config["support_url"]
 
     # Basic checks so that we don't stab stab epic games so much
-    if auth_code == "":
+    if extracted_auth_code == "":
         error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=f"""\u200b\n**You need an auth code, you can get one from:**
           [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)
           [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n
@@ -400,12 +403,12 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
             Or [Join the support server]({support_url})
             Note: You need a new code __every time you authenticate__\n\u200b""", colour=error_colour)
 
-    elif auth_code in client.config["known_auth_codes"]:
+    elif extracted_auth_code in client.config["known_auth_codes"]:
         error_embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
             description=f"""\u200b
             Attempted to authenticate with authcode:
-            ```{auth_code}```
+            ```{extracted_auth_code}```
             **This authcode is from the URL & not from the body of the page:**
             ⦾ The authcode you need is the one from the pages body, not the one from the url.
             \u200b
@@ -419,11 +422,27 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
             colour=error_colour
         )
 
-    elif len(auth_code) != 32 or (re.sub('[ -~]', '', auth_code)) != "":
+    elif len(extracted_auth_code) != 32 or (re.sub('[ -~]', '', extracted_auth_code)) != "":
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
-        ```{auth_code}```
+        ```{extracted_auth_code}```
         Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
+        **An Example:**
+        ```a51c1f4d35b1457c8e34a1f6026faa35```
+        If you need a new authcode you can get one by:
+        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)
+        \u200b
+        **If you need any help try:**
+        {await mention_string(client, f"help {command}")}
+        Or [Join the support server]({support_url})
+        Note: You need a new code __every time you authenticate__\n\u200b""",
+                                    colour=error_colour)
+
+    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code":
+        error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
+        Attempted to authenticate with authcode:
+        ```{original_auth_code}```
+        Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
@@ -444,9 +463,9 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
     proc_embed = await processing_embed(client, ctx)
     message = await slash_send_embed(ctx, slash, proc_embed)
 
-    token_req = await get_token(client, auth_code)
+    token_req = await get_token(client, extracted_auth_code)
     response = await token_req.json()
-    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command, auth_code,
+    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command, extracted_auth_code,
                                                                   slash, support_url)
 
     if not success:
@@ -666,7 +685,12 @@ async def strip_string(string):
 
 # regex for 32 character hex
 async def extract_auth_code(string):
-    return re.search(r"[0-9a-f]{32}", string)[0]
+    try:
+        return re.search(r"[0-9a-f]{32}", string)[0]
+    except TypeError:
+        if len(string) == 32:
+            return "errors.stwdaily.illegal_auth_code"
+        return string
 
 
 # regex for under 16 character alphanumeric with extra allowed chars
