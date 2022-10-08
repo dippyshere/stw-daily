@@ -83,14 +83,14 @@ class Homebase(ext.Cog):
         if not await stw.is_legal_homebase_name(name):
             if name > 16:
                 error_code = "errors.stwdaily.homebase_long"
-                embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
-                                                           support_url)
+                embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
+                                                           self.client.config["support_url"])
                 final_embeds.append(embed)
                 await stw.slash_edit_original(auth_info[0], slash, final_embeds)
                 return
             error_code = "errors.stwdaily.homebase_illegal"
-            embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
-                                                       support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
+                                                       self.client.config["support_url"])
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
             return
@@ -99,6 +99,10 @@ class Homebase(ext.Cog):
         request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data={"homebaseName": f"{name}"})
         json_response = await request.json()
         print(json_response)
+
+        # check for le error code
+        if not await self.check_errors(ctx, json_response, auth_info, final_embeds, slash):
+            return
 
         # If passed all checks and changed name, present success embed
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
