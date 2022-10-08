@@ -100,7 +100,7 @@ class Auth(ext.Cog):
                 **Important Disclaimer:**
                 AFAIK, your auth code can be used maliciously, if you are sceptical, [check out the source code here](https://github.com/dippyshere/stw-daily), or check out #transparency in [STW Dailies]({self.client.config['support_url']})
                 """)
-    async def auth(self, ctx, token=''):
+    async def auth(self, ctx, *, token=''):
         await self.auth_command(ctx, token)
 
     @ext.command(name='kill',
