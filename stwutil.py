@@ -478,7 +478,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     """, colour=white_colour)
 
     if not entry['vbucks']:
-        embed.description += f"""\n⦾ You cannot receive {client.config['emojis']['vbucks']} V-Bucks from claiming daily rewards only {client.config['emojis']['xray']} X-Ray tickets.\n\u200b"""
+        embed.description += f"""⦾ You cannot receive {client.config['emojis']['vbucks']} V-Bucks from claiming daily rewards only {client.config['emojis']['xray']} X-Ray tickets.\n\u200b"""
 
     embed = await set_thumbnail(client, embed, "keycard")
     embed = await add_requested_footer(ctx, embed)
