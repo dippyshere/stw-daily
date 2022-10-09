@@ -220,7 +220,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
             Attempted to authenticate with:
             ```{auth_code}```
             Unknown reason for not being able to authenticate please try again, error received from epic:
-            ```{poderosa}```
+            ```{error_code}```
             \u200b
             **If you need any help try:**
             {await mention_string(client, f"help {command}")}
@@ -657,6 +657,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
         )
 
     elif error_code == "errors.stwdaily.homebase_large":
+        # TODO: limit size
         embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
             description=f"""\u200b

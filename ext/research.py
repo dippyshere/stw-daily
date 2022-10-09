@@ -321,6 +321,10 @@ class Research(ext.Cog):
         if current_levels is None:
             return
 
+        # assign variables for error embeds
+        support_url = self.client.config["support_url"]
+        acc_name = auth_info[1]["account_name"]
+
         # Find research guid to post too required for ClaimCollectedResources json
         research_guid_check = await asyncio.gather(asyncio.to_thread(self.check_for_research_guid_key, json_response))
         print(research_guid_check)
