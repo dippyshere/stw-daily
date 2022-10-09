@@ -657,7 +657,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             colour=error_colour
         )
 
-    elif error_code == "errors.stwdaily.homebase_large":
+    elif error_code == "errors.stwdaily.homebase_long":
         # TODO: limit size
         embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
