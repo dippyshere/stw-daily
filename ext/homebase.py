@@ -145,7 +145,7 @@ class Homebase(ext.Cog):
                 ⦾ It may only contain alphanumerics (0-9, a-z) + additional characters ('\\-._~) + spaces
                 ⦾ When entering a name with spaces while not using slash commands, please put "quote marks" around the new name
                 ⦾ Support for other languages will be available in the future
-                ⦾ Please note that this command is still experimental ⚗
+                ⦾ Please note that this command is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>
                 """)
     async def hbrename(self, ctx, name='', authcode='', optout=None):
 
