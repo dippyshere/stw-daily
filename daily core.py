@@ -48,7 +48,6 @@ def main():
         "info",
         "research",
         "serverext",
-        "reload",
         "homebase"
     ]
 
