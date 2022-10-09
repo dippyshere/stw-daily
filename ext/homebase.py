@@ -22,7 +22,17 @@ class Homebase(ext.Cog):
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
             return True
         except:
-            return False
+            try:
+                homebase = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+                return False
+            except:
+                support_url = self.client.config["support_url"]
+                acc_name = auth_info[1]["account_name"]
+                error_code = "errors.com.epicgames.fortnite.check_access_failed"
+                embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
+                final_embeds.append(embed)
+                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                return True
 
     async def hbrename_command(self, ctx, slash, name, authcode, auth_opt_out):
         succ_colour = self.client.colours["success_green"]
