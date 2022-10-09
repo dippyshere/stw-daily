@@ -1,6 +1,7 @@
 import discord
 import discord.ext.commands as ext
 from discord import Option
+import json
 
 import stwutil as stw
 
@@ -12,27 +13,33 @@ class Homebase(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, slash):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, slash, name=""):
         try:
+            # general error
             error_code = public_json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-            return True
+            return error_code
         except:
             try:
+                # if there is a homebase name, continue with command
                 homebase = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
                 return False
             except:
-                support_url = self.client.config["support_url"]
-                acc_name = auth_info[1]["account_name"]
-                error_code = "errors.com.epicgames.fortnite.check_access_failed"
-                embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
-                final_embeds.append(embed)
-                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-                return True
+                # trying to check homebase with no stw or homebase, assume error
+                if name == "":
+                    support_url = self.client.config["support_url"]
+                    acc_name = auth_info[1]["account_name"]
+                    error_code = "errors.com.epicgames.fortnite.check_access_failed"
+                    embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
+                    final_embeds.append(embed)
+                    await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                    return error_code
+                # allow name change for no stw because it works somehow
+                return "errors.stwdaily.no_stw"
 
     async def hbrename_command(self, ctx, slash, name, authcode, auth_opt_out):
         succ_colour = self.client.colours["success_green"]
@@ -62,13 +69,20 @@ class Homebase(ext.Cog):
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # check for le error code
-        if await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash):
+        error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash, name)
+        if error_check == "errors.stwdaily.no_stw":
+            current = " "
+            homebase_icon = "placeholder"
+        elif error_check:
             return
-
-        # extract info from response
-        current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
-        homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
-        homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
+        else:
+            # extract info from response
+            current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+            try:
+                homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
+            except:
+                homebase_icon = "placeholder"
+            # homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
 
         # Empty name should fetch current name
         if name == "":
@@ -81,7 +95,10 @@ class Homebase(ext.Cog):
             # embed = await stw.set_thumbnail(self.client, embed, "warn")
             # set thumbnail to user's banner
             # TODO: screen filter banner and change to user's colour
-            embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
+            if homebase_icon != "placeholder":
+                embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
+            else:
+                embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])
             embed = await stw.add_requested_footer(ctx, embed)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
@@ -104,13 +121,13 @@ class Homebase(ext.Cog):
             return
 
         # wih all checks passed, we may now attempt to change name
-        # request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data={"homebaseName": f"{name}"})
-        # json_response = await request.json()
-        # print(json_response)
+        request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data=json.dumps({"homebaseName": f"{name}"}))
+        json_response = await request.json()
 
         # check for le error code
-        # if not await self.check_errors(ctx, json_response, auth_info, final_embeds, slash):
-        #     return
+        error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash, name)
+        if error_check:
+            return
 
         # If passed all checks and changed name, present success embed
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
@@ -120,7 +137,7 @@ class Homebase(ext.Cog):
         embed.add_field(name=f'{self.emojis["broken_heart"]} Changed Homebase name from:', value=f"```{current}```\u200b",
                         inline=False)
 
-        embed.add_field(name=f'{self.emojis["placeholder"]} To:', value=f"```{name}```\u200b",
+        embed.add_field(name=f'{self.emojis["storm_shield"]} To:', value=f"```{name}```\u200b",
                         inline=False)
 
         embed = await stw.set_thumbnail(self.client, embed, "check")
