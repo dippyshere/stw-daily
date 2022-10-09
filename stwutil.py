@@ -4,6 +4,7 @@ import datetime
 import random
 import re
 import time
+import math
 
 import discord
 
@@ -473,7 +474,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry)
     embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
-                          description=f"""```Welcome, {entry['account_name']}```
+                          description=f"""```Welcome, {entry['account_name']}```\n{client.config['emojis']['stopwatch_anim']} Your session will expire <t:{math.floor(client.config['auth_expire_time'] + time.time())}:R>\n\u200b
     """, colour=white_colour)
 
     if not entry['vbucks']:
