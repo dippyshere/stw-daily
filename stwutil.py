@@ -423,7 +423,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
             colour=error_colour
         )
 
-    elif len(extracted_auth_code) != 32 or (re.sub('[ -~]', '', extracted_auth_code)) != "":
+    elif len(extracted_auth_code) != 32:
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
         ```{extracted_auth_code}```
