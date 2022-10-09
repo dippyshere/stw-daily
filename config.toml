@@ -135,6 +135,7 @@ reward_magenta 		= [255, 0, 255]
 success_green 		= [0, 210, 71]
 auth_white      	= [255, 255 ,255]
 crown_yellow		= [255, 204, 77]
+vbuck_blue			= [99, 240, 238]
 
 # Dont edit values beyond this point unless you know what you're doing!
 
