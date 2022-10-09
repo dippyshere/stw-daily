@@ -18,8 +18,6 @@ class Auth(ext.Cog):
         self.emojis = client.config["emojis"]
 
     async def auth_command(self, ctx, token='', slash=False):
-        err_colour = self.client.colours["error_red"]
-        succ_colour = self.client.colours["success_green"]
         white = self.client.colours["auth_white"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, slash, True, True)

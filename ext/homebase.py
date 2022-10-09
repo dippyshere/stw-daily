@@ -24,9 +24,7 @@ class Homebase(ext.Cog):
             return False
 
     async def hbrename_command(self, ctx, slash, name, authcode, auth_opt_out):
-        error_colour = self.client.colours["error_red"]
         succ_colour = self.client.colours["success_green"]
-        yellow = self.client.colours["warning_yellow"]
         white = self.client.colours["auth_white"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "homebase", authcode, slash, auth_opt_out,
