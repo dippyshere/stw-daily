@@ -439,7 +439,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         Note: You need a new code __every time you authenticate__\n\u200b""",
                                     colour=error_colour)
 
-    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code":
+    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
         ```{original_auth_code}```
