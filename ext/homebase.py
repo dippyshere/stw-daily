@@ -19,7 +19,8 @@ class Homebase(ext.Cog):
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            return await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            return True
         except:
             return False
 
@@ -51,7 +52,7 @@ class Homebase(ext.Cog):
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # check for le error code
-        if not await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash):
+        if await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash):
             return
 
         # extract info from response
@@ -66,7 +67,6 @@ class Homebase(ext.Cog):
                 f"""\u200b
             **Your current Homebase name is:**
             ```{current}```
-            \u200b
             """, colour=white)
             # embed = await stw.set_thumbnail(self.client, embed, "warn")
             # set thumbnail to user's banner
@@ -79,7 +79,7 @@ class Homebase(ext.Cog):
 
         # failing this check means the name has problems thus we cannot accept it
         if not await stw.is_legal_homebase_name(name):
-            if name > 16:
+            if len(name) > 16:
                 error_code = "errors.stwdaily.homebase_long"
                 embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
                                                            self.client.config["support_url"])
@@ -94,13 +94,13 @@ class Homebase(ext.Cog):
             return
 
         # wih all checks passed, we may now attempt to change name
-        request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data={"homebaseName": f"{name}"})
-        json_response = await request.json()
-        print(json_response)
+        # request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data={"homebaseName": f"{name}"})
+        # json_response = await request.json()
+        # print(json_response)
 
         # check for le error code
-        if not await self.check_errors(ctx, json_response, auth_info, final_embeds, slash):
-            return
+        # if not await self.check_errors(ctx, json_response, auth_info, final_embeds, slash):
+        #     return
 
         # If passed all checks and changed name, present success embed
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
