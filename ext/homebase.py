@@ -164,7 +164,7 @@ class Homebase(ext.Cog):
                      'name': 'The new name for your Homebase, if left blank it will give you your current Homebase name (Optional)',
                      'authcode': 'The authcode to start an authentication session with if one does not exist, if an auth session already exists this argument is optional (Optional)',
                      'opt-out': 'Any value inputted into this field will opt you out of the authentication session system when you enter the authcode for this command (Optional)'}},
-                 brief="Let's you change your STW Homebase name",
+                 brief="Lets you change your STW Homebase name (auth req.)",
                  description="""This command allows you to change the name of your Homebase in Save The World, you must be authenticated to use this command.
                 \u200b
                 **Please note there are limitations on what your Homebase name can be:**
@@ -172,6 +172,7 @@ class Homebase(ext.Cog):
                 ⦾ It may only contain alphanumerics (0-9, a-z) + additional characters ('\\-._~) + spaces
                 ⦾ When entering a name with spaces while not using slash commands, please put "quote marks" around the new name
                 ⦾ Support for other languages will be available in the future
+                ⦾ STW isn't required but what's the point?
                 ⦾ Please note that this command is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>
                 """)
     async def hbrename(self, ctx, name='', authcode='', optout=None):
