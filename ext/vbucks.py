@@ -55,11 +55,12 @@ class Vbucks(ext.Cog):
         core_json_response = await core_request.json()
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
-        vbucks = await asyncio.gather(asyncio.to_thread(extract_vbucks, await core_json_response))
-
         # check for le error code
         if await self.check_errors(ctx, core_json_response, auth_info, final_embeds, slash):
             return
+
+        vbucks = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await core_json_response,
+                                                        item_string="Currency:Mtx"))
 
         # fetch x-ray ticket count
         stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
@@ -71,12 +72,21 @@ class Vbucks(ext.Cog):
         if error_check:
             return
 
+        xray = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await stw_json_response,
+                                                      item_string="AccountResource:currency_xrayllama"))
+
         # With all info extracted, create the output
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "V-Bucks", "vbuck_book"),
                               description="\u200b",
                               colour=succ_colour)
+        # add entry for each platform detected
+        for entry in vbucks:
+            embed.description += f"""{self.emojis["placeholder"]} {entry["templateId"]} x{entry["quantity"]}\n"""
 
-        embed.description += f"""{self.emojis["placeholder"]} x999\n"""
+        # add entry for x-ray if detected
+        if xray:
+            for entry in xray:
+                embed.description += f"""{self.emojis["xray"]} X-Ray Tickets: {entry["quantity"]}\n\u200b"""
 
         embed = await stw.set_thumbnail(self.client, embed, "vbuck_book")
         embed = await stw.add_requested_footer(ctx, embed)
@@ -88,9 +98,9 @@ class Vbucks(ext.Cog):
                        description='Lets you view your V-Bucks balance',
                        guild_ids=stw.guild_ids)
     async def slashvbucks(self, ctx: discord.ApplicationContext,
-                            token: Option(str,
-                                          "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                            auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
+                          token: Option(str,
+                                        "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
+                          auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
         await self.vbuck_command(ctx, True, token, not auth_opt_out)
 
     @ext.command(name='vbucks',
@@ -102,7 +112,7 @@ class Vbucks(ext.Cog):
                  description="""This command allows you to view your V-Bucks balance and breakdown accross platforms, you must be authenticated to use this command.
                 \u200b
                 """)
-    async def vbucks(self, ctx,authcode='', optout=None):
+    async def vbucks(self, ctx, authcode='', optout=None):
 
         if optout is not None:
             optout = True
