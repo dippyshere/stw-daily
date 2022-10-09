@@ -48,7 +48,8 @@ def main():
         "info",
         "research",
         "serverext",
-        "homebase"
+        "homebase",
+        "vbucks"
     ]
 
     # load the extensions
