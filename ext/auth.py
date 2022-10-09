@@ -18,8 +18,6 @@ class Auth(ext.Cog):
         self.emojis = client.config["emojis"]
 
     async def auth_command(self, ctx, token='', slash=False):
-        err_colour = self.client.colours["error_red"]
-        succ_colour = self.client.colours["success_green"]
         white = self.client.colours["auth_white"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, slash, True, True)
@@ -41,7 +39,7 @@ class Auth(ext.Cog):
                                   description=f"""\u200b
             Existing Auth Session Found For:
             ```{auth_info[1]['account_name']}```
-            **Your auth session expires** <t:{math.floor(auth_info[1]['expiry'])}:R>
+            {self.emojis["stopwatch_anim"]} **Your auth session expires** <t:{math.floor(auth_info[1]['expiry'])}:R>
             \u200b
             Rerun this command with a new auth code to change accounts, you can get one from:
             [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)
@@ -100,7 +98,7 @@ class Auth(ext.Cog):
                 **Important Disclaimer:**
                 AFAIK, your auth code can be used maliciously, if you are sceptical, [check out the source code here](https://github.com/dippyshere/stw-daily), or check out #transparency in [STW Dailies]({self.client.config['support_url']})
                 """)
-    async def auth(self, ctx, token=''):
+    async def auth(self, ctx, *, token=''):
         await self.auth_command(ctx, token)
 
     @ext.command(name='kill',

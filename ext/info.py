@@ -35,7 +35,11 @@ class Information(ext.Cog):
                                                        f'{psutil.virtual_memory().total // 1000000}mb\nUsed: '
                                                        f'{psutil.virtual_memory().used // 1000000}mb\nFree: '
                                                        f'{psutil.virtual_memory().free // 1000000}mb\nUtilisation: '
-                                                       f'{psutil.virtual_memory().percent}%```\u200b', inline=False)
+                                                       f'{psutil.virtual_memory().percent}%\nDisk Usage:\nTotal:'
+                                                       f'{round(psutil.disk_usage("/")[0]/1000000000, 1)}GB\nUsed:'
+                                                       f'{round(psutil.disk_usage("/")[1]/1000000000, 1)}GB\nFree:'
+                                                       f'{round(psutil.disk_usage("/")[2]/1000000000, 1)}GB\nUtilisation:'
+                                                       f'{psutil.disk_usage("/")[3]}%```\u200b', inline=False)
 
         shard_ping = "Not Available"
         shard_name = "Not Available"

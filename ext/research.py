@@ -221,9 +221,21 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
     try:
         current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
     except Exception as e:
-        print(e, "assuming max research level im not sure??", json_response)
-        current_levels = {'fortitude': 120, 'offense': 120, 'resistance': 120, 'technology': 120}
-        pass
+        # account may not have stw
+        try:
+            # check if account has daily reward stats, if not, then account doesn't have stw
+            daily_check = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
+            print(e, "assuming max research level im not sure??", json_response)
+            # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
+            current_levels = {'fortitude': 0, 'offense': 0, 'resistance': 0, 'technology': 0}
+            pass
+        except Exception as e:
+            # account doesn't have stw
+            error_code = "errors.com.epicgames.fortnite.check_access_failed"
+            embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
+            final_embeds.append(embed)
+            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            return
 
     # I'm not too sure what happens here but if current_levels doesn't exist im assuming its at maximum.
     proc_max = False
@@ -320,6 +332,10 @@ class Research(ext.Cog):
         current_levels = await research_query(ctx, self.client, auth_info, slash, final_embeds, json_response)
         if current_levels is None:
             return
+
+        # assign variables for error embeds
+        support_url = self.client.config["support_url"]
+        acc_name = auth_info[1]["account_name"]
 
         # Find research guid to post too required for ClaimCollectedResources json
         research_guid_check = await asyncio.gather(asyncio.to_thread(self.check_for_research_guid_key, json_response))

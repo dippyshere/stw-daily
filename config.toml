@@ -4,10 +4,10 @@
 
 # A list of error messages the bot can pick from for the error embeds.
 error_messages = [
-	"That wasn't supposed to happen", 
-	"Whoops!", 
-	"We hit a roadblock", 
-	"Not the llama you're looking for",         
+	"That wasn't supposed to happen",
+	"Whoops!",
+	"We hit a roadblock",
+	"Not the llama you're looking for",
 	"Uh-oh! Something goofed"
 	]
 
@@ -36,7 +36,7 @@ known_auth_codes = [
 	]
 
 # permitted time for an auth session to run for (keep it below 5 hours)
-auth_expire_time = 28800
+auth_expire_time 	= 28800
 
 # Names for the different shards
 shard_names = [
@@ -49,93 +49,109 @@ shard_names = [
    "Ouranos", "Helios", "Eos",
    "Prometheus", "Styx", "Atlas"
    ]
-	
+
 # a list of emojis the bot utilises throughout (please do not change the keys.)
 [emojis]
-info			= "<:helpstwdaily:925648230488883230>"
-hard_drive  	= "<:TIconHardDriveL:812201309591175168>"
-electric_plug	= "🔌"
-research_point	= "<:TIconResearchPoint128:812201303781408828>"
-error			= "<:errorstwdaily:925648230753107999>"
-skill_point		= "<:TIconSkillPoint128:812201303505764373>"
-warning			= "<:warningstwdaily:925648230736347158>"
-vbucks			= "<:TItemsMTXL:812201307786969128>"
-bulb			= "💡"
-processing		= "<a:stwloading:947844940594044948>"
-checkmark		= "<:checkmarkstwdaily:925648230912524338>"
-founders		= "<:TIconFoundersBadge512:812201305736085524>"
-calendar		= "<:TDestroyTheWorld:947752260295872532>"
-blueinfo		= "<:infostwdaily:947807681404608532>"
-xray			= "<:TItemsCurrencyXRayLlamaL:812201308286091264>"
-keycard			= "<:ghostkeycard:956678535093813340>"
-whitekey		= "<:librarykey:956794272412233730>"
-llama			= "<:PinataStandardPack:947728062739542036>"
-gold			= "<:TItemGoldBarsL:947728044448153611>"
-stormeye		= "<:TItemsReagentCT03L:947728066984157214>"
-bottlelightning = "<:TItemsReagentCT02L:947728059795120179>"
-heroxp 			= "<:THeroXPL:947728056326422528>"
-minillama		= "<:PinataMiniRewardPack:947728056334819328>"
-herogeneric		= "<:TIconHeroGeneric:947792566454210592>"
-rangedgeneric	= "<:TIconRangedCARD:947728032045600788>"
-meleegeneric	= "<:TIconMeleeCARD:947728031764611132>"
-pdor			= "<:TItemsReagentCT01L:947728041596059718>"
-freedoms_herald	= "<:TIconWeaponsSKFireCrackerGunL:947728057895125052>"
-trapgeneric		= "<:TIconTrapsCARD:947728032813183076>"
-defendergeneric = "<:TIconDefenders_CARD:947728018657390632>"
-leadsurvivor	= "<:TIconSurvivorLeaderCARD:947728019450126356>"
-xpboost			= "<:IconXPXL:812201307133313044>"
-fortitude 		= "<:TIconFortitude:1000217972549357568>"
-technology		= "<:TIconTech:1000217968560578600>"
-offense 		= "<:TIconOffense:1000217970552877086>"
-resistance 		= "<:TIconResistance:1000217966618615828>"
-survivorgeneric	= "<:GenericWorkercopy:947728015683616778>"
-teammatexpboost = "<:IconGiftXPXL:812201304670601227>"
-crown 			= "👑"
-celebrate 		= "🎉"
+info				= "<:helpstwdaily:925648230488883230>"
+hard_drive  		= "<:TIconHardDriveL:812201309591175168>"
+electric_plug		= "🔌"
+research_point		= "<:TIconResearchPoint128:812201303781408828>"
+error				= "<:errorstwdaily:925648230753107999>"
+skill_point			= "<:TIconSkillPoint128:812201303505764373>"
+warning				= "<:warningstwdaily:925648230736347158>"
+vbucks				= "<:TItemsMTXL:812201307786969128>"
+bulb				= "💡"
+processing			= "<a:stwloading:947844940594044948>"
+checkmark			= "<:checkmarkstwdaily:925648230912524338>"
+founders			= "<:TIconFoundersBadge512:812201305736085524>"
+calendar			= "<:TDestroyTheWorld:947752260295872532>"
+blueinfo			= "<:infostwdaily:947807681404608532>"
+xray				= "<:TItemsCurrencyXRayLlamaL:812201308286091264>"
+keycard				= "<:ghostkeycard:956678535093813340>"
+whitekey			= "<:librarykey:956794272412233730>"
+llama				= "<:PinataStandardPack:947728062739542036>"
+gold				= "<:TItemGoldBarsL:947728044448153611>"
+stormeye			= "<:TItemsReagentCT03L:947728066984157214>"
+bottlelightning 	= "<:TItemsReagentCT02L:947728059795120179>"
+heroxp 				= "<:THeroXPL:947728056326422528>"
+minillama_full		= "<:PinataMiniRewardPack:947728056334819328>"
+minillama			= "<:TItemsVoucherBasicLrealesrganx4p:1028513525137674241>"
+herogeneric			= "<:TIconHeroGeneric:947792566454210592>"
+rangedgeneric		= "<:TIconRangedCARD:947728032045600788>"
+meleegeneric		= "<:TIconMeleeCARD:947728031764611132>"
+pdor				= "<:TItemsReagentCT01L:947728041596059718>"
+freedoms_herald		= "<:TIconWeaponsSKFireCrackerGunL:947728057895125052>"
+trapgeneric			= "<:TIconTrapsCARD:947728032813183076>"
+defendergeneric 	= "<:TIconDefenders_CARD:947728018657390632>"
+leadsurvivor		= "<:TIconSurvivorLeaderCARD:947728019450126356>"
+xpboost				= "<:IconXPXL:812201307133313044>"
+fortitude 			= "<:TIconFortitude:1000217972549357568>"
+technology			= "<:TIconTech:1000217968560578600>"
+offense 			= "<:TIconOffense:1000217970552877086>"
+resistance 			= "<:TIconResistance:1000217966618615828>"
+survivorgeneric		= "<:GenericWorkercopy:947728015683616778>"
+teammatexpboost 	= "<:IconGiftXPXL:812201304670601227>"
+crown 				= "👑"
+celebrate 			= "🎉"
+stopwatch_anim		= "<a:stwstopwatch2:1028520039596445757>"
+experimental		= "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"
+broken_heart		= "<:TBannersIconsLightningHeartLreal:1028513513364271145>"
+vbuck_book			= "<:TIconVBuckChallengesLrealesrganx:1028513533366898748>"
+storm_shield		= "<:TIconOutpost256realesrganx4plus:1028513536483274803>"
+mtxswap_combined	= "<:TItemsCurrencyMTXXRayLlamaLreale:1028513530753847327>"
+library_cal			= "<:T_UI_IconLibrary_Calendar_128rea:1028513523128614932>"
+stormshard			= "<:TItemsReagentCT04Lrealesrganx4pl:1028513528375689366>"
+placeholder			= "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
 
 
 #a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]
-error		= "https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png"
-warn		= "https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png?size=4096"
-info		= "https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png"
-help		= "https://cdn.discordapp.com/attachments/748078936424185877/924999902247936000/helpstwdaily.png"
-check		= "https://cdn.discordapp.com/attachments/748078936424185877/924999903116165120/checkmarkstwdaily.png"
-research	= "https://cdn.discordapp.com/attachments/767607876348018689/947812260724764712/T-Icon-ResearchPoint-128-realesrgan-x4plus.png"
-processing	= "https://cdn.discordapp.com/attachments/767607876348018689/947999234169397248/stwloading.gif"
-calendar	= "https://cdn.discordapp.com/attachments/767607876348018689/947752089549946930/Layer_4.png"
-urlauthcode	= "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png?size=4096"
-keycard		= "https://media.discordapp.net/attachments/643743040372080653/956798526149509120/Ghost_Keycard.PNG"
-stormbottle = "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png?width=410&height=410"
-crown 		= "https://cdn.discordapp.com/attachments/643743040372080653/1000266990272913448/discordW_3.png"
+error				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png"
+warn				= "https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png?size=4096"
+info				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png"
+help				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902247936000/helpstwdaily.png"
+check				= "https://cdn.discordapp.com/attachments/748078936424185877/924999903116165120/checkmarkstwdaily.png"
+research			= "https://cdn.discordapp.com/attachments/767607876348018689/947812260724764712/T-Icon-ResearchPoint-128-realesrgan-x4plus.png"
+processing			= "https://cdn.discordapp.com/attachments/767607876348018689/947999234169397248/stwloading.gif"
+calendar			= "https://cdn.discordapp.com/attachments/767607876348018689/947752089549946930/Layer_4.png"
+urlauthcode			= "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png?size=4096"
+keycard				= "https://media.discordapp.net/attachments/643743040372080653/956798526149509120/Ghost_Keycard.PNG"
+stormbottle 		= "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png?width=410&height=410"
+crown 				= "https://cdn.discordapp.com/attachments/643743040372080653/1000266990272913448/discordW_3.png"
+placeholder			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186514510839878/T_UI_Challenge_MysteryReward-L.png"
+gold				= "https://cdn.discordapp.com/attachments/643743040372080653/1028186514976428032/T-Icon-S-Loot-GoldCurrency-L.png"
+vbuck_book			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186515773337640/T-Icon-VBuckChallenges-L.png"
+daily_coin			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186636900646942/T-Items-DailyCoin-L.png"
+freedom_herald		= "https://cdn.discordapp.com/attachments/643743040372080653/1028186936613011456/WID_Pistol_FireCracker_R_Ore_T01.png"
 
-   
+
 # Different colours for commands
 [colours]
-generic_blue 	= [11, 123, 185]
-error_red 		= [255,70,15]
-warning_yellow 	= [252,224,44]
-research_green 	= [114, 189, 134]
-reward_magenta 	= [255, 0, 255]
-success_green 	= [0, 210, 71]
-auth_white      = [255, 255 ,255]
-crown_yellow	= [255, 204, 77]
-			  
+generic_blue 		= [11, 123, 185]
+error_red 			= [255,70,15]
+warning_yellow 		= [252,224,44]
+research_green 		= [114, 189, 134]
+reward_magenta 		= [255, 0, 255]
+success_green 		= [0, 210, 71]
+auth_white      	= [255, 255 ,255]
+crown_yellow		= [255, 204, 77]
+
 # Dont edit values beyond this point unless you know what you're doing!
 
 # endpoints for requests to be sent to
 [endpoints]
-token 		= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token"
-profile 	= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId={}"
-account 	= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}"
-kill_token 	= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/sessions/kill/{}"
-exchange 	= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
-device_auth = "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
-store		= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
+token 				= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token"
+profile 			= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId={}"
+account 			= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}"
+kill_token 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/sessions/kill/{}"
+exchange 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
+device_auth 		= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
+store				= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
 
 # different requests under profile
 [profile]
 query 				= "QueryProfile"
+query_public 		= "QueryPublicProfile"
 resources 			= "ClaimCollectedResources"
 daily				= "ClaimLoginReward"
 purchase_research 	= "PurchaseResearchStatUpgrade"
@@ -143,9 +159,114 @@ llamas				= "PopulatePrerolledOffers"
 purchase			= "PurchaseCatalogEntry"
 batch_recycle		= "RecycleItemBatch"
 set_homebase		= "SetHomebaseName"
+# thanks github?
+set_banner			= "SetBanner"
+set_banner_colour	= "SetBannerColor"
+set_favourite		= "SetFavoriteHero"
+set_favourite_loadout = "SetFavoriteLoadout"
+set_favourite_schematic = "SetFavoriteSchematic"
+set_favourite_survivor = "SetFavoriteSurvivor"
+set_favourite_support = "SetFavoriteSupport"
+set_favourite_trap 	= "SetFavoriteTrap"
+set_favourite_weapon = "SetFavoriteWeapon"
+set_favourite_backpack = "SetFavoriteBackpack"
+set_favourite_pet 	= "SetFavoritePet"
+set_favourite_pickaxe = "SetFavoritePickaxe"
+set_favourite_glider = "SetFavoriteGlider"
+set_favourite_emote = "SetFavoriteEmote"
+set_favourite_skydive = "SetFavoriteSkydiveContrail"
+set_favourite_musicpack = "SetFavoriteMusicPack"
+set_favourite_loading = "SetFavoriteLoadingScreen"
+set_favourite_battlebus = "SetFavoriteBattleBus"
+set_favourite_battlepass = "SetFavoriteBattlePass"
+set_favourite_battlepass_tier = "SetFavoriteBattlePassTier"
+set_favourite_battlepass_star = "SetFavoriteBattlePassStar"
+set_favourite_battlepass_star_tier = "SetFavoriteBattlePassStarTier"
+set_favourite_battlepass_star_tier_reward = "SetFavoriteBattlePassStarTierReward"
+set_favourite_battlepass_star_tier_reward_type = "SetFavoriteBattlePassStarTierRewardType"
+set_favourite_battlepass_star_tier_reward_type_id = "SetFavoriteBattlePassStarTierRewardTypeId"
+set_favourite_battlepass_star_tier_reward_type_id_name = "SetFavoriteBattlePassStarTierRewardTypeIdName"
+set_favourite_battlepass_star_tier_reward_type_id_name_description = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescription"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImage"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackground"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColor"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorR"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorG"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorB"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorA"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHex"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlpha"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValue"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueR"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueG"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueB"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueA"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHex"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlpha"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValue"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueR"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueG"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueB"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueA"
+set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueHex"
 
 # different profile ids under some endpoints
 [profileid]
-common				= "common_core"
+common_core			= "common_core"
+common_public		= "common_public"
 stw					= "campaign"
 br					= "athena"
+# i dont actually know if these are real github just suggested it
+common_core_public	= "common_core_public"
+campaign_missions	= "campaign_missions"
+campaign_rewards	= "campaign_rewards"
+collection_book		= "collection_book"
+event_flags			= "event_flags"
+event_rewards		= "event_rewards"
+event_missions		= "event_missions"
+
+[bannercolours]
+defaultcolor1 		= "#545454"
+defaultcolor2 		= "#c10000"
+defaultcolor3 		= "#e44b00"
+defaultcolor4 		= "#df7500"
+defaultcolor5 		= "#ffbd00"
+defaultcolor6 		= "#f7ce00"
+defaultcolor7 		= "#f1df00"
+defaultcolor8 		= "#bbe000"
+defaultcolor9 		= "#91ed00"
+defaultcolor10 		= "#00e28a"
+defaultcolor11 		= "#00d6b3"
+defaultcolor12 		= "#00f0f0"
+defaultcolor13 		= "#00e8e8"
+defaultcolor14 		= "#00bfe5"
+defaultcolor15 		= "#00a3ff"
+defaultcolor16 		= "#0000f8"
+defaultcolor17 		= "#9300f0"
+defaultcolor18 		= "#c800f0"
+defaultcolor19 		= "#ed00ed"
+defaultcolor20 		= "#f80098"
+defaultcolor21 		= "#df0088"
+defaultcolor22 		= "#191919"
+defaultcolor23 		= "#4c0000"
+defaultcolor24 		= "#5b2b00"
+defaultcolor25 		= "#5c4400"
+defaultcolor26 		= "#505d00"
+defaultcolor27 		= "#395f00"
+defaultcolor28 		= "#005b00"
+defaultcolor29 		= "#005c4f"
+defaultcolor30 		= "#003559"
+defaultcolor31 		= "#000059"
+defaultcolor32 		= "#3b0060"
+defaultcolor33 		= "#50005d"
+defaultcolor34 		= "#5f003a"
+defaultcolor35 		= "#e0e0e0"
+defaultcolor36 		= "#ff7f7f"
+defaultcolor37 		= "#ffc766"
+defaultcolor38 		= "#fff8a2"
+defaultcolor39 		= "#cdff6e"
+defaultcolor40 		= "#96ff96"
+defaultcolor41 		= "#814bff"
+defaultcolor42 		= "#9f9fff"
+defaultcolor43 		= "#dba4ff"
+defaultcolor44 		= "#ff97ff"

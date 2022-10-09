@@ -4,6 +4,7 @@ import datetime
 import random
 import re
 import time
+import math
 
 import discord
 
@@ -220,7 +221,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
             Attempted to authenticate with:
             ```{auth_code}```
             Unknown reason for not being able to authenticate please try again, error received from epic:
-            ```{poderosa}```
+            ```{error_code}```
             \u200b
             **If you need any help try:**
             {await mention_string(client, f"help {command}")}
@@ -248,9 +249,9 @@ async def slash_edit_original(msg, slash, embeds, view=None):
             return await msg.edit(embeds=embeds)
     else:
         if view is not None:
-            return await msg.edit_original_message(embeds=embeds, view=view)
+            return await msg.edit_original_response(embeds=embeds, view=view)
         else:
-            return await msg.edit_original_message(embeds=embeds)
+            return await msg.edit_original_response(embeds=embeds)
 
 
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw"):
@@ -333,7 +334,7 @@ def json_query_check(profile_text):
         return None
 
 
-async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add_entry=False, processing=True):
+async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 
@@ -365,6 +366,9 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
     if you're reading this then say hello in the STW-Daily discord server general channel. ;D
     """
 
+    # extract auth code from auth_code
+    extracted_auth_code = await extract_auth_code(original_auth_code)
+
     embeds = []
 
     # Attempt to retrieve the existing auth code.
@@ -374,7 +378,7 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
         existing_auth = None
 
     # Return auth code if it exists
-    if existing_auth is not None and auth_code == "":
+    if existing_auth is not None and extracted_auth_code == "":
 
         # Send the logging in & processing if given
         if processing:
@@ -391,7 +395,7 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
     support_url = client.config["support_url"]
 
     # Basic checks so that we don't stab stab epic games so much
-    if auth_code == "":
+    if extracted_auth_code == "":
         error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=f"""\u200b\n**You need an auth code, you can get one from:**
           [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)
           [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n
@@ -400,12 +404,12 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
             Or [Join the support server]({support_url})
             Note: You need a new code __every time you authenticate__\n\u200b""", colour=error_colour)
 
-    elif auth_code in client.config["known_auth_codes"]:
+    elif extracted_auth_code in client.config["known_auth_codes"]:
         error_embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
             description=f"""\u200b
             Attempted to authenticate with authcode:
-            ```{auth_code}```
+            ```{extracted_auth_code}```
             **This authcode is from the URL & not from the body of the page:**
             ⦾ The authcode you need is the one from the pages body, not the one from the url.
             \u200b
@@ -419,11 +423,27 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
             colour=error_colour
         )
 
-    elif len(auth_code) != 32 or (re.sub('[ -~]', '', auth_code)) != "":
+    elif len(extracted_auth_code) != 32:
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
-        ```{auth_code}```
+        ```{extracted_auth_code}```
         Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
+        **An Example:**
+        ```a51c1f4d35b1457c8e34a1f6026faa35```
+        If you need a new authcode you can get one by:
+        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)
+        \u200b
+        **If you need any help try:**
+        {await mention_string(client, f"help {command}")}
+        Or [Join the support server]({support_url})
+        Note: You need a new code __every time you authenticate__\n\u200b""",
+                                    colour=error_colour)
+
+    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
+        error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
+        Attempted to authenticate with authcode:
+        ```{original_auth_code}```
+        Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
@@ -444,9 +464,9 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
     proc_embed = await processing_embed(client, ctx)
     message = await slash_send_embed(ctx, slash, proc_embed)
 
-    token_req = await get_token(client, auth_code)
+    token_req = await get_token(client, extracted_auth_code)
     response = await token_req.json()
-    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command, auth_code,
+    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command, extracted_auth_code,
                                                                   slash, support_url)
 
     if not success:
@@ -454,11 +474,11 @@ async def get_or_create_auth_session(client, ctx, command, auth_code, slash, add
 
     entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry)
     embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
-                          description=f"""```Welcome, {entry['account_name']}```
+                          description=f"""```Welcome, {entry['account_name']}```\n{client.config['emojis']['stopwatch_anim']} Your session will expire <t:{math.floor(client.config['auth_expire_time'] + time.time())}:R>\n\u200b
     """, colour=white_colour)
 
     if not entry['vbucks']:
-        embed.description += f"""\n⦾ You cannot receive {client.config['emojis']['vbucks']} V-Bucks from claiming daily rewards only {client.config['emojis']['xray']} X-Ray tickets.\n\u200b"""
+        embed.description += f"""⦾ You cannot receive {client.config['emojis']['vbucks']} V-Bucks from claiming daily rewards only {client.config['emojis']['xray']} X-Ray tickets.\n\u200b"""
 
     embed = await set_thumbnail(client, embed, "keycard")
     embed = await add_requested_footer(ctx, embed)
@@ -637,6 +657,41 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             colour=error_colour
         )
 
+    elif error_code == "errors.stwdaily.homebase_long":
+        # TODO: limit size
+        embed = discord.Embed(
+            title=await add_emoji_title(client, ranerror(client), "error"),
+            description=f"""\u200b
+                Attempted to change Homebase name to:
+                ```{acc_name}```
+                **This name is too long.**
+                ⦾ Homebase names must be under 16 characters
+                ⦾ Homebase names also have additional criteria, to check them, try running {await mention_string(client, f"help {command}")}
+                \u200b
+                **If you need any help try:**
+                {await mention_string(client, f"help {command}")}
+                Or [Join the support server]({support_url})
+                Note: You need a new code __every time you authenticate__\n\u200b""",
+            colour=error_colour
+        )
+
+    elif error_code == "errors.stwdaily.homebase_illegal":
+        embed = discord.Embed(
+            title=await add_emoji_title(client, ranerror(client), "error"),
+            description=f"""\u200b
+                Attempted to change Homebase name to:
+                ```{acc_name}```
+                **This name contains unacceptable characters.**
+                ⦾ Homebase names must be alphanumeric, with limited support for extra characters.
+                ⦾ Homebase names also have additional criteria, to check them, try running {await mention_string(client, f"help {command}")}
+                \u200b
+                **If you need any help try:**
+                {await mention_string(client, f"help {command}")}
+                Or [Join the support server]({support_url})
+                Note: You need a new code __every time you authenticate__\n\u200b""",
+            colour=error_colour
+        )
+
     else:
         embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
@@ -665,10 +720,16 @@ async def strip_string(string):
 
 
 # regex for 32 character hex
-async def is_auth_code(string):
-    return re.match(r"^[0-9a-f]{32}$", string)
+async def extract_auth_code(string):
+    try:
+        return re.search(r"[0-9a-f]{32}", string)[0]
+    except TypeError:
+        if len(string) == 32:
+            return "errors.stwdaily.illegal_auth_code"
+        return string
 
 
 # regex for under 16 character alphanumeric with extra allowed chars
 async def is_legal_homebase_name(string):
+    # TODO: add obfuscated filter for protected homebase names
     return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string)
