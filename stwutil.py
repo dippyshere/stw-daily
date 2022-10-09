@@ -334,6 +334,15 @@ def json_query_check(profile_text):
         return None
 
 
+# method to extract desired item from items
+def extract_item(profile_json, item_string="Currency:Mtx"):
+    found_items = {}
+    for item in profile_json["profileChanges"][0]["profile"]["items"]:
+        if item_string in item["templateId"]:
+            found_items += item
+    return found_items
+
+
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
