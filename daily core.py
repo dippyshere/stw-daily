@@ -70,6 +70,7 @@ async def on_ready():
     print("Started STW Daily")
 
 
+    
 # simple task which updates the status every 60 seconds to display time until next day/reset
 @tasks.loop(seconds=60)
 async def update_status():
