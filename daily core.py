@@ -70,7 +70,14 @@ async def on_ready():
     client.stw_session = await create_http_session()
     print("Started STW Daily")
 
-
+@client.event
+async def on_message(message):
+    if '"' in message.content:
+        quote_count = message.content.count('"')
+        if quote_count % 2 != 0:
+            message.content = message.content.replace('"','')
+    await client.process_commands(message)
+    
 # simple task which updates the status every 60 seconds to display time until next day/reset
 @tasks.loop(seconds=60)
 async def update_status():

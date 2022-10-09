@@ -368,7 +368,6 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     # extract auth code from auth_code
     extracted_auth_code = await extract_auth_code(original_auth_code)
-
     embeds = []
 
     # Attempt to retrieve the existing auth code.
@@ -723,9 +722,11 @@ async def strip_string(string):
 async def extract_auth_code(string):
     try:
         return re.search(r"[0-9a-f]{32}", string)[0]
+    
     except TypeError:
         if len(string) == 32:
             return "errors.stwdaily.illegal_auth_code"
+        
         return string
 
 
