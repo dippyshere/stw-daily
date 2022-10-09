@@ -337,9 +337,12 @@ def json_query_check(profile_text):
 # method to extract desired item from items
 def extract_item(profile_json, item_string="Currency:Mtx"):
     found_items = {}
-    for item in profile_json["profileChanges"][0]["profile"]["items"]:
-        if item_string in item["templateId"]:
-            found_items += item
+    try:
+        for item in profile_json["profileChanges"][0]["profile"]["items"]:
+            if item_string in item["templateId"]:
+                found_items += item
+    except:
+        pass
     return found_items
 
 
