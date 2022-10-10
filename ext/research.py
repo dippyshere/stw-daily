@@ -59,7 +59,7 @@ class ResearchView(discord.ui.View):
         await self.message.edit(embed=embed, view=self)
         return
 
-    async def universal_stat_process(self, button, interaction, stat):
+    async def universal_stat_process(self, interaction, stat):
         gren = self.client.colours["research_green"]
 
         for child in self.children:
@@ -183,26 +183,23 @@ class ResearchView(discord.ui.View):
                 return False
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="fortitude")
-    async def fortitude_button(self, button, interaction):
-        await self.universal_stat_process(button, interaction, "fortitude")
+    async def fortitude_button(self, interaction):
+        await self.universal_stat_process(interaction, "fortitude")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="offense")
-    async def offense_button(self, button, interaction):
-        await self.universal_stat_process(button, interaction, "offense")
+    async def offense_button(self, interaction):
+        await self.universal_stat_process(interaction, "offense")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="resistance")
-    async def resistance_button(self, button, interaction):
-        await self.universal_stat_process(button, interaction, "resistance")
+    async def resistance_button(self, interaction):
+        await self.universal_stat_process(interaction, "resistance")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="technology")
-    async def technology_button(self, button, interaction):
-        await self.universal_stat_process(button, interaction, "technology")
+    async def technology_button(self, interaction):
+        await self.universal_stat_process(interaction, "technology")
 
 
 async def research_query(ctx, client, auth_info, slash, final_embeds, json_response):
-    error_colour = client.colours["error_red"]
-    gren = client.colours["research_green"]
-    yellow = client.colours["warning_yellow"]
     crown_yellow = client.colours["crown_yellow"]
 
     support_url = client.config["support_url"]
@@ -217,7 +214,6 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
     except:
         pass
 
-    current_levels = {}
     try:
         current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
     except Exception as e:
@@ -229,7 +225,7 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
             current_levels = {'fortitude': 0, 'offense': 0, 'resistance': 0, 'technology': 0}
             pass
-        except Exception as e:
+        except:
             # account doesn't have stw
             error_code = "errors.com.epicgames.fortnite.check_access_failed"
             embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
@@ -305,10 +301,7 @@ class Research(ext.Cog):
         return None
 
     async def research_command(self, ctx, slash, authcode, auth_opt_out):
-        error_colour = self.client.colours["error_red"]
         gren = self.client.colours["research_green"]
-        yellow = self.client.colours["warning_yellow"]
-        crown_yellow = self.client.colours["crown_yellow"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, slash, auth_opt_out, True)
         if not auth_info[0]:
@@ -417,8 +410,6 @@ class Research(ext.Cog):
             pass
 
         # Create the embed for displaying nyaa~
-
-        claimed_text = ""
 
         if research_points_claimed is not None:
             if research_points_claimed == 1:

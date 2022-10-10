@@ -122,7 +122,6 @@ class Homebase(ext.Cog):
 
         # wih all checks passed, we may now attempt to change name
         request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data=json.dumps({"homebaseName": f"{name}"}))
-        json_response = await request.json()
 
         # check for le error code
         error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash, name)

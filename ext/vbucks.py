@@ -1,8 +1,8 @@
+import asyncio
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
-import json
-import asyncio
 
 import stwutil as stw
 

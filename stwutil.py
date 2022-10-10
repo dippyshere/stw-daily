@@ -5,7 +5,6 @@ import random
 import re
 import time
 import math
-import json
 
 import discord
 
@@ -23,22 +22,22 @@ def process_quotes_in_message(message):
 
     if len(indices) == 1:
         indices = []
-        
+
     else:
 
         rem_values = []
-        
+
         # true represents an ending ", False represents a starting "
         temp_indices = [True if content[index] == '"' else False for index in indices]
 
         for index, value in enumerate(temp_indices[:-1]):
 
-            if value == False:
+            if not value:
                 indices[index] += 1
-                if temp_indices[index + 1] == False:
+                if not temp_indices[index + 1]:
                     rem_values.append(index + 1)
-                
-            elif temp_indices[index + 1] == True and value == True:
+
+            elif temp_indices[index + 1] and value:
                 rem_values.append(index)
 
         for remove_index in rem_values:
@@ -46,11 +45,12 @@ def process_quotes_in_message(message):
 
     # fear my list comprehension
     escaped_content = [r'\\"' if char == '"' and index not in indices else char for index, char in enumerate(content)]
-    
+
     # reform list into a string
     message.content = "".join(escaped_content)
 
     return message
+
 
 # a small bridge helper function between slash commands and normal commands
 async def slash_send_embed(ctx, slash, embeds, view=None):
@@ -295,7 +295,8 @@ async def slash_edit_original(msg, slash, embeds, view=None):
 
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw"):
     token = auth_entry["token"]
-    url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type], client.config["profileid"][profile_id])
+    url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type],
+                                                       client.config["profileid"][profile_id])
     header = {
         "Content-Type": "application/json",
         "Authorization": f"bearer {token}"
@@ -415,6 +416,7 @@ async def calculate_vbucks(items):
                 else:
                     vbucks += val["quantity"]
     return vbucks
+
 
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
     """
@@ -547,7 +549,8 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     token_req = await get_token(client, extracted_auth_code)
     response = await token_req.json()
-    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command, extracted_auth_code,
+    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command,
+                                                                  extracted_auth_code,
                                                                   slash, support_url)
 
     if not success:
@@ -644,7 +647,6 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             Note: You need a new code __every time you authenticate__\n\u200b""",
             colour=error_colour
         )
-
 
     # STW Daily Error Codes
     elif error_code == "errors.stwdaily.failed_guid_research":
@@ -804,11 +806,11 @@ async def strip_string(string):
 async def extract_auth_code(string):
     try:
         return re.search(r"[0-9a-f]{32}", string)[0]
-    
+
     except TypeError:
         if len(string) == 32:
             return "errors.stwdaily.illegal_auth_code"
-        
+
         return string
 
 
