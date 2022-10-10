@@ -5,6 +5,7 @@ import random
 import re
 import time
 import math
+import json
 
 import discord
 
@@ -337,14 +338,45 @@ def json_query_check(profile_text):
 # method to extract desired item from items
 def extract_item(profile_json, item_string="Currency:Mtx"):
     found_items = {}
+    num = 0
     try:
-        for item in profile_json["profileChanges"][0]["profile"]["items"]:
-            if item_string in item["templateId"]:
-                found_items += item
+        for attribute, value in profile_json["profileChanges"][0]["profile"]["items"].items():
+            if item_string in value["templateId"]:
+                found_items.update({num: value})
+                num += 1
     except:
         pass
     return found_items
 
+
+# method to resolve internal name -> user-friendly name + emoji
+async def resolve_vbuck_source(vbuck_source):
+    if vbuck_source == "Currency:MtxGiveaway":
+        return "Battle Pass", "bp_icon"
+    elif vbuck_source == "Currency:MtxComplimentary":
+        return "Save the World", "library_cal"
+    elif vbuck_source == "Currency:MtxPurchased":
+        return "Purchased", "vbuck_icon"
+    # idk the casing for this
+    elif vbuck_source.lower() == "currency:mtxpurchasebonus":
+        return "Purchase Bonus", "vbuck_icon"
+    elif vbuck_source == "Currency:MtxDebt":
+        return "Debt", "LMAO"
+    else:
+        return vbuck_source, "placeholder"
+
+
+# method to calculate total vbucks from a list of items
+async def calculate_vbucks(items):
+    vbucks = 0
+    if items:
+        for item in items:
+            for attr, val in item.items():
+                if "debt" in val["templateId"].lower():
+                    vbucks -= val["quantity"]
+                else:
+                    vbucks += val["quantity"]
+    return vbucks
 
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
     """
