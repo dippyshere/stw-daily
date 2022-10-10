@@ -102,18 +102,16 @@ class Help(ext.Cog):
             embed = await self.add_brief_command_info(embed, command)
         return embed
 
-    async def help_embed(self, ctx, command):
+    async def help_embed(self, ctx, inputted_command):
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
                               description="\u200b")
-        names = map(lambda command: command.name, self.client.commands)
-
-        if command not in names:
+        
+        if inputted_command not in self.client.command_name_list:
             embed = await self.add_default_page(ctx, embed_colour)
         else:
-            for command_retrieved in self.client.commands:
-                if command_retrieved.name == command:
-                    embed = await self.add_big_command_info(ctx, embed, command_retrieved)
+            command_retrieved = self.client.command_dict[self.client.command_name_dict[inputted_command]]
+            embed = await self.add_big_command_info(ctx, embed, command_retrieved)
 
         return embed
 
