@@ -5,6 +5,7 @@ import random
 import re
 import time
 import math
+import json
 
 import discord
 
@@ -12,6 +13,44 @@ import items
 
 guild_ids = None
 
+
+def process_quotes_in_message(message):
+    # do not question the ways of the regex
+    re_iter = re.finditer(r'((?:(?:^|\s)\")|(?:\"(?:\s|$)))', message.content)
+
+    indices = [m.start(0) for m in re_iter]
+    content = list(message.content)
+
+    if len(indices) == 1:
+        indices = []
+        
+    else:
+
+        rem_values = []
+        
+        # true represents an ending ", False represents a starting "
+        temp_indices = [True if content[index] == '"' else False for index in indices]
+
+        for index, value in enumerate(temp_indices[:-1]):
+
+            if value == False:
+                indices[index] += 1
+                if temp_indices[index + 1] == False:
+                    rem_values.append(index + 1)
+                
+            elif temp_indices[index + 1] == True and value == True:
+                rem_values.append(index)
+
+        for remove_index in rem_values:
+            indices[remove_index] = 0
+
+    # fear my list comprehension
+    escaped_content = [r'\\"' if char == '"' and index not in indices else char for index, char in enumerate(content)]
+    
+    # reform list into a string
+    message.content = "".join(escaped_content)
+
+    return message
 
 # a small bridge helper function between slash commands and normal commands
 async def slash_send_embed(ctx, slash, embeds, view=None):
@@ -333,6 +372,49 @@ def json_query_check(profile_text):
     except:
         return None
 
+
+# method to extract desired item from items
+def extract_item(profile_json, item_string="Currency:Mtx"):
+    found_items = {}
+    num = 0
+    try:
+        for attribute, value in profile_json["profileChanges"][0]["profile"]["items"].items():
+            if item_string in value["templateId"]:
+                found_items.update({num: value})
+                num += 1
+    except:
+        pass
+    return found_items
+
+
+# method to resolve internal name -> user-friendly name + emoji
+async def resolve_vbuck_source(vbuck_source):
+    if vbuck_source == "Currency:MtxGiveaway":
+        return "Battle Pass", "bp_icon"
+    elif vbuck_source == "Currency:MtxComplimentary":
+        return "Save the World", "library_cal"
+    elif vbuck_source == "Currency:MtxPurchased":
+        return "Purchased", "vbuck_icon"
+    # idk the casing for this
+    elif vbuck_source.lower() == "currency:mtxpurchasebonus":
+        return "Purchase Bonus", "vbuck_icon"
+    elif vbuck_source == "Currency:MtxDebt":
+        return "Debt", "LMAO"
+    else:
+        return vbuck_source, "placeholder"
+
+
+# method to calculate total vbucks from a list of items
+async def calculate_vbucks(items):
+    vbucks = 0
+    if items:
+        for item in items:
+            for attr, val in item.items():
+                if "debt" in val["templateId"].lower():
+                    vbucks -= val["quantity"]
+                else:
+                    vbucks += val["quantity"]
+    return vbucks
 
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
     """
