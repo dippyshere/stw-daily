@@ -100,8 +100,13 @@ vbuck_book			= "<:TIconVBuckChallengesLrealesrganx:1028513533366898748>"
 storm_shield		= "<:TIconOutpost256realesrganx4plus:1028513536483274803>"
 mtxswap_combined	= "<:TItemsCurrencyMTXXRayLlamaLreale:1028513530753847327>"
 library_cal			= "<:T_UI_IconLibrary_Calendar_128rea:1028513523128614932>"
+vbuck_icon			= "<:T_UI_icon_vbucks_128realesrganx4:1028828835002720286>"
 stormshard			= "<:TItemsReagentCT04Lrealesrganx4pl:1028513528375689366>"
+bp_icon				= "<:BPIcon:1028828256658534503>"
 placeholder			= "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
+LMAO				= "😂"
+spongebob			= "<a:sadspongebob:1028829840977182770>"
+megamind			= "<:megamind:1028829842776526868>"
 
 
 #a list of links to thumbnails that the bot utilises for embeds
