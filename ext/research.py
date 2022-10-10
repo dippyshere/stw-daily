@@ -89,7 +89,7 @@ class ResearchView(discord.ui.View):
                 embed = await stw.add_requested_footer(interaction, embed)
                 embed = await add_fort_fields(self.client, embed, current_levels)
                 embed.add_field(name=f"\u200b", value=f"*You do not have enough points to level up **{stat}***\n\u200b")
-                await interaction.edit_original_message(embed=embed, view=self)
+                await interaction.edit_original_response(embed=embed, view=self)
                 return
         except:
             pass
@@ -120,7 +120,7 @@ class ResearchView(discord.ui.View):
             embed = await stw.add_requested_footer(interaction, embed)
             for child in self.children:
                 child.disabled = True
-            await interaction.edit_original_message(embed=embed, view=self)
+            await interaction.edit_original_response(embed=embed, view=self)
             return
 
         spent_points = self.total_points['quantity'] - research_points_item['quantity']
@@ -137,7 +137,7 @@ class ResearchView(discord.ui.View):
         embed = await stw.add_requested_footer(interaction, embed)
         self.total_points = research_points_item
 
-        await interaction.edit_original_message(embed=embed, view=self)
+        await interaction.edit_original_response(embed=embed, view=self)
 
     # creo kinda fire though ngl
     def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, context, slash):
@@ -183,19 +183,19 @@ class ResearchView(discord.ui.View):
                 return False
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="fortitude")
-    async def fortitude_button(self, interaction):
+    async def fortitude_button(self, _button, interaction):
         await self.universal_stat_process(interaction, "fortitude")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="offense")
-    async def offense_button(self, interaction):
+    async def offense_button(self, _button, interaction):
         await self.universal_stat_process(interaction, "offense")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="resistance")
-    async def resistance_button(self, interaction):
+    async def resistance_button(self, _button,  interaction):
         await self.universal_stat_process(interaction, "resistance")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="technology")
-    async def technology_button(self, interaction):
+    async def technology_button(self, _button,  interaction):
         await self.universal_stat_process(interaction, "technology")
 
 
