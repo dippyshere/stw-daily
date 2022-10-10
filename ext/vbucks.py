@@ -29,8 +29,7 @@ class Vbucks(ext.Cog):
             return False
 
     async def vbuck_command(self, ctx, slash, authcode, auth_opt_out):
-        succ_colour = self.client.colours["success_green"]
-        white = self.client.colours["auth_white"]
+        vbucc_colour = self.client.colours["vbuck_blue"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, slash, auth_opt_out,
                                                          True)
@@ -59,7 +58,7 @@ class Vbucks(ext.Cog):
         if await self.check_errors(ctx, core_json_response, auth_info, final_embeds, slash):
             return
 
-        vbucks = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await core_json_response,
+        vbucks = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await core_request.json(),
                                                         item_string="Currency:Mtx"))
 
         # fetch x-ray ticket count
@@ -67,26 +66,35 @@ class Vbucks(ext.Cog):
         stw_json_response = await stw_request.json()
 
         # check for le error code
-        # TODO: handle x-ray without stw
         error_check = await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, slash)
         if error_check:
             return
 
-        xray = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await stw_json_response,
+        xray = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await stw_request.json(),
                                                       item_string="AccountResource:currency_xrayllama"))
+
 
         # With all info extracted, create the output
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "V-Bucks", "vbuck_book"),
-                              description="\u200b",
-                              colour=succ_colour)
+                              description=f"\u200b\n**Total V-Bucks: {await stw.calculate_vbucks(vbucks)}**\u200b\n",
+                              colour=vbucc_colour)
+
         # add entry for each platform detected
-        for entry in vbucks:
-            embed.description += f"""{self.emojis["placeholder"]} {entry["templateId"]} x{entry["quantity"]}\n"""
+        if vbucks:
+            for item in vbucks:
+                for attr, val in item.items():
+                    name, emoji = await stw.resolve_vbuck_source(val["templateId"])
+                    embed.description += f"""{self.emojis[emoji]} {name}: {val["quantity"]}\n"""
+        else:
+            embed.description += f"""{self.emojis["spongebob"]} No V-Bucks {self.emojis["megamind"]}\n"""
 
         # add entry for x-ray if detected
         if xray:
-            for entry in xray:
-                embed.description += f"""{self.emojis["xray"]} X-Ray Tickets: {entry["quantity"]}\n\u200b"""
+            for item in xray:
+                for attr, val in item.items():
+                    embed.description += f"""\u200b\n{self.emojis["xray"]} X-Ray Tickets: {val["quantity"]}\n"""
+
+        embed.description += "\u200b"
 
         embed = await stw.set_thumbnail(self.client, embed, "vbuck_book")
         embed = await stw.add_requested_footer(ctx, embed)
