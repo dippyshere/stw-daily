@@ -14,6 +14,44 @@ import items
 guild_ids = None
 
 
+def process_quotes_in_message(message):
+    # do not question the ways of the regex
+    re_iter = re.finditer(r'((?:(?:^|\s)\")|(?:\"(?:\s|$)))', message.content)
+
+    indices = [m.start(0) for m in re_iter]
+    content = list(message.content)
+
+    if len(indices) == 1:
+        indices = []
+        
+    else:
+
+        rem_values = []
+        
+        # true represents an ending ", False represents a starting "
+        temp_indices = [True if content[index] == '"' else False for index in indices]
+
+        for index, value in enumerate(temp_indices[:-1]):
+
+            if value == False:
+                indices[index] += 1
+                if temp_indices[index + 1] == False:
+                    rem_values.append(index + 1)
+                
+            elif temp_indices[index + 1] == True and value == True:
+                rem_values.append(index)
+
+        for remove_index in rem_values:
+            indices[remove_index] = 0
+
+    # fear my list comprehension
+    escaped_content = [r'\\"' if char == '"' and index not in indices else char for index, char in enumerate(content)]
+    
+    # reform list into a string
+    message.content = "".join(escaped_content)
+
+    return message
+
 # a small bridge helper function between slash commands and normal commands
 async def slash_send_embed(ctx, slash, embeds, view=None):
     try:
