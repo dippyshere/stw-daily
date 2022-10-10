@@ -86,7 +86,7 @@ class Vbucks(ext.Cog):
                     name, emoji = await stw.resolve_vbuck_source(val["templateId"])
                     embed.description += f"""{self.emojis[emoji]} {name}: {val["quantity"]}\n"""
         else:
-            embed.description += f"""{self.emojis["spongebob"]} No V-Bucks {self.emojis["megamind"]}\n"""
+            embed.description += f"""{self.emojis["spongebob"]} No V-Bucks? {self.emojis["megamind"]}\n"""
 
         # add entry for x-ray if detected
         if xray:
@@ -96,7 +96,10 @@ class Vbucks(ext.Cog):
 
         embed.description += "\u200b"
 
-        embed = await stw.set_thumbnail(self.client, embed, "vbuck_book")
+        if vbucks:
+            embed = await stw.set_thumbnail(self.client, embed, "vbuck_book")
+        else:
+            embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
         await stw.slash_edit_original(auth_info[0], slash, final_embeds)
