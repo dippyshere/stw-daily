@@ -22,12 +22,12 @@ class Homebase(ext.Cog):
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-            return error_code
+            return error_code, True
         except:
             try:
                 # if there is a homebase name, continue with command
                 homebase = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
-                return False
+                return False, False
             except:
                 # trying to check homebase with no stw or homebase, assume error
                 if name == "":
@@ -37,9 +37,9 @@ class Homebase(ext.Cog):
                     embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
                     final_embeds.append(embed)
                     await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-                    return error_code
+                    return error_code, True
                 # allow name change for no stw because it works somehow
-                return "errors.stwdaily.no_stw"
+                return "errors.stwdaily.no_stw", False
 
     async def hbrename_command(self, ctx, slash, name, authcode, auth_opt_out):
         succ_colour = self.client.colours["success_green"]
@@ -70,10 +70,10 @@ class Homebase(ext.Cog):
 
         # check for le error code
         error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash, name)
-        if error_check == "errors.stwdaily.no_stw":
+        if error_check[0] == "errors.stwdaily.no_stw":
             current = " "
             homebase_icon = "placeholder"
-        elif error_check:
+        elif error_check[1]:
             return
         else:
             # extract info from response
@@ -126,7 +126,7 @@ class Homebase(ext.Cog):
 
         # check for le error code
         error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash, name)
-        if error_check:
+        if error_check[1]:
             return
 
         # If passed all checks and changed name, present success embed
