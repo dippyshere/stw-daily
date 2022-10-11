@@ -13,6 +13,45 @@ import items
 guild_ids = None
 
 
+def process_quotes_in_message(message):
+    # do not question the ways of the regex
+    re_iter = re.finditer(r'((?:(?:^|\s)\")|(?:\"(?:\s|$)))', message.content)
+
+    indices = [m.start(0) for m in re_iter]
+    content = list(message.content)
+
+    if len(indices) == 1:
+        indices = []
+
+    else:
+
+        rem_values = []
+
+        # true represents an ending ", False represents a starting "
+        temp_indices = [True if content[index] == '"' else False for index in indices]
+
+        for index, value in enumerate(temp_indices[:-1]):
+
+            if not value:
+                indices[index] += 1
+                if not temp_indices[index + 1]:
+                    rem_values.append(index + 1)
+
+            elif temp_indices[index + 1] and value:
+                rem_values.append(index)
+
+        for remove_index in rem_values:
+            indices[remove_index] = 0
+
+    # fear my list comprehension
+    escaped_content = [r'\\"' if char == '"' and index not in indices else char for index, char in enumerate(content)]
+
+    # reform list into a string
+    message.content = "".join(escaped_content)
+
+    return message
+
+
 # a small bridge helper function between slash commands and normal commands
 async def slash_send_embed(ctx, slash, embeds, view=None):
     try:
@@ -256,7 +295,8 @@ async def slash_edit_original(msg, slash, embeds, view=None):
 
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw"):
     token = auth_entry["token"]
-    url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type], client.config["profileid"][profile_id])
+    url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type],
+                                                       client.config["profileid"][profile_id])
     header = {
         "Content-Type": "application/json",
         "Authorization": f"bearer {token}"
@@ -332,6 +372,50 @@ def json_query_check(profile_text):
         return profile_text["profileChanges"][0]["profile"]["stats"]["attributes"]["daily_rewards"]["totalDaysLoggedIn"]
     except:
         return None
+
+
+# method to extract desired item from items
+def extract_item(profile_json, item_string="Currency:Mtx"):
+    found_items = {}
+    num = 0
+    try:
+        for attribute, value in profile_json["profileChanges"][0]["profile"]["items"].items():
+            if item_string in value["templateId"]:
+                found_items.update({num: value})
+                num += 1
+    except:
+        pass
+    return found_items
+
+
+# method to resolve internal name -> user-friendly name + emoji
+async def resolve_vbuck_source(vbuck_source):
+    if vbuck_source == "Currency:MtxGiveaway":
+        return "Battle Pass", "bp_icon"
+    elif vbuck_source == "Currency:MtxComplimentary":
+        return "Save the World", "library_cal"
+    elif vbuck_source == "Currency:MtxPurchased":
+        return "Purchased", "vbuck_icon"
+    # idk the casing for this
+    elif vbuck_source.lower() == "currency:mtxpurchasebonus":
+        return "Purchase Bonus", "vbuck_icon"
+    elif vbuck_source == "Currency:MtxDebt":
+        return "Debt", "LMAO"
+    else:
+        return vbuck_source, "placeholder"
+
+
+# method to calculate total vbucks from a list of items
+async def calculate_vbucks(items):
+    vbucks = 0
+    if items:
+        for item in items:
+            for attr, val in item.items():
+                if "debt" in val["templateId"].lower():
+                    vbucks -= val["quantity"]
+                else:
+                    vbucks += val["quantity"]
+    return vbucks
 
 
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
@@ -465,7 +549,8 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     token_req = await get_token(client, extracted_auth_code)
     response = await token_req.json()
-    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command, extracted_auth_code,
+    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command,
+                                                                  extracted_auth_code,
                                                                   slash, support_url)
 
     if not success:
@@ -562,7 +647,6 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             Note: You need a new code __every time you authenticate__\n\u200b""",
             colour=error_colour
         )
-
 
     # STW Daily Error Codes
     elif error_code == "errors.stwdaily.failed_guid_research":
@@ -717,16 +801,30 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 async def strip_string(string):
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
+def create_command_dict(client):
+    command_name_dict = {}
+    command_dict = {}
+    
+    # Gets aliases and adds them to commmand_name_dict so we can match for aliases too in the command arg
+    for command in client.commands:
+        command_name_dict[command.name] = command.name
+        for alias in command.aliases:
+            command_name_dict[alias] = command.name
+
+        # Adds the command to the 
+        command_dict[command.name] = command
+
+    return command_name_dict, command_dict, list(command_name_dict)
 
 # regex for 32 character hex
 async def extract_auth_code(string):
     try:
         return re.search(r"[0-9a-f]{32}", string)[0]
-    
+
     except TypeError:
         if len(string) == 32:
             return "errors.stwdaily.illegal_auth_code"
-        
+
         return string
 
 

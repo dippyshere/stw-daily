@@ -15,7 +15,6 @@ class Daily(ext.Cog):
         self.emojis = client.config["emojis"]
 
     async def daily_command(self, ctx, slash, authcode, auth_opt_out):
-        error_colour = self.client.colours["error_red"]
         succ_colour = self.client.colours["success_green"]
         yellow = self.client.colours["warning_yellow"]
 
@@ -111,7 +110,6 @@ class Daily(ext.Cog):
                 amount = founders["quantity"]
                 itemtype = founders["itemType"]
 
-                display_itemtype = ""
                 if itemtype == 'CardPack:cardpack_event_founders':
                     display_itemtype = "Founder's Llama"
                 elif itemtype == 'CardPack:cardpack_bronze':

@@ -1,7 +1,6 @@
 print("Starting STW Daily")
 
 import os
-
 import aiohttp
 import discord
 import discord.ext.commands as ext
@@ -48,7 +47,9 @@ def main():
         "info",
         "research",
         "serverext",
-        "homebase"
+        "homebase",
+        "vbucks",
+        "reload"
     ]
 
     # load the extensions
@@ -67,16 +68,18 @@ async def create_http_session():
 @client.event
 async def on_ready():
     client.stw_session = await create_http_session()
+    client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
     print("Started STW Daily")
+
 
 @client.event
 async def on_message(message):
     if '"' in message.content:
-        quote_count = message.content.count('"')
-        if quote_count % 2 != 0:
-            message.content = message.content.replace('"','')
+        message = stw.process_quotes_in_message(message)
+
     await client.process_commands(message)
-    
+
+
 # simple task which updates the status every 60 seconds to display time until next day/reset
 @tasks.loop(seconds=60)
 async def update_status():

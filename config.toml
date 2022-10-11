@@ -100,8 +100,13 @@ vbuck_book			= "<:TIconVBuckChallengesLrealesrganx:1028513533366898748>"
 storm_shield		= "<:TIconOutpost256realesrganx4plus:1028513536483274803>"
 mtxswap_combined	= "<:TItemsCurrencyMTXXRayLlamaLreale:1028513530753847327>"
 library_cal			= "<:T_UI_IconLibrary_Calendar_128rea:1028513523128614932>"
+vbuck_icon			= "<:T_UI_icon_vbucks_128realesrganx4:1028828835002720286>"
 stormshard			= "<:TItemsReagentCT04Lrealesrganx4pl:1028513528375689366>"
+bp_icon				= "<:BPIcon:1028828256658534503>"
 placeholder			= "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
+LMAO				= "😂"
+spongebob			= "<a:sadspongebob:1028829840977182770>"
+megamind			= "<:megamind:1028829842776526868>"
 
 
 #a list of links to thumbnails that the bot utilises for embeds
@@ -123,6 +128,7 @@ gold				= "https://cdn.discordapp.com/attachments/643743040372080653/10281865149
 vbuck_book			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186515773337640/T-Icon-VBuckChallenges-L.png"
 daily_coin			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186636900646942/T-Items-DailyCoin-L.png"
 freedom_herald		= "https://cdn.discordapp.com/attachments/643743040372080653/1028186936613011456/WID_Pistol_FireCracker_R_Ore_T01.png"
+clown				= "https://cdn.discordapp.com/attachments/917697167102206022/998935319313404004/20220719_224839.jpg"
 
 
 # Different colours for commands
@@ -135,6 +141,7 @@ reward_magenta 		= [255, 0, 255]
 success_green 		= [0, 210, 71]
 auth_white      	= [255, 255 ,255]
 crown_yellow		= [255, 204, 77]
+vbuck_blue			= [99, 240, 238]
 
 # Dont edit values beyond this point unless you know what you're doing!
 

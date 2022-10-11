@@ -56,7 +56,7 @@ class Help(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def add_brief_command_info(self, ctx, embed, command):
+    async def add_brief_command_info(self, embed, command):
         name_string = f"{self.emojis[command.extras['emoji']]}  {command.name}"
         for argument in command.extras["args"].keys():
             name_string += f" <{argument}>"
@@ -92,28 +92,26 @@ class Help(ext.Cog):
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
 
-    async def add_default_page(self, ctx, embed, embed_colour):
+    async def add_default_page(self, ctx, embed_colour):
         embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
                               description=f"\u200b\n**To use a command mention the bot, then type the name and arguments after e.g:** {await stw.mention_string(self.client, 'reward 7')}\n\u200b\n\u200b")
 
         embed = await stw.add_requested_footer(ctx, embed)
 
         for command in self.client.commands:
-            embed = await self.add_brief_command_info(ctx, embed, command)
+            embed = await self.add_brief_command_info(embed, command)
         return embed
 
-    async def help_embed(self, ctx, command):
+    async def help_embed(self, ctx, inputted_command):
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
                               description="\u200b")
-        names = map(lambda command: command.name, self.client.commands)
-
-        if command not in names:
-            embed = await self.add_default_page(ctx, embed, embed_colour)
+        
+        if inputted_command not in self.client.command_name_list:
+            embed = await self.add_default_page(ctx, embed_colour)
         else:
-            for command_retrieved in self.client.commands:
-                if command_retrieved.name == command:
-                    embed = await self.add_big_command_info(ctx, embed, command_retrieved)
+            command_retrieved = self.client.command_dict[self.client.command_name_dict[inputted_command]]
+            embed = await self.add_big_command_info(ctx, embed, command_retrieved)
 
         return embed
 

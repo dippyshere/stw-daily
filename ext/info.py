@@ -44,7 +44,7 @@ class Information(ext.Cog):
         shard_ping = "Not Available"
         shard_name = "Not Available"
         shard_id = "Not Available"
-        shard_count = "Not Available"
+        shards = "Not Available"
         try:
             shards = str(len(self.client.shards))
             shard_id = ctx.guild.shard_id

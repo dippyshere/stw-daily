@@ -164,7 +164,7 @@ class Reward(ext.Cog):
                  brief="View daily rewards from a certain day for a certain amount of days after",
                  description="Allows you to utilise the built in library for items to view your Save The World rewards starting from a certain day and for a certain amount of days afterwards")
     async def reward(self, ctx, day='hi readers of the bot', limit='7'):
-        await self.reward_command(ctx, day, limit)
+        await self.reward_command(ctx, day, int(limit))
 
     @slash_command(name='reward',
                    description='View daily rewards from a certain day for a certain amount of days after.',
