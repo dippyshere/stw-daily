@@ -107,7 +107,7 @@ placeholder			= "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
 LMAO				= "😂"
 spongebob			= "<a:sadspongebob:1028829840977182770>"
 megamind			= "<:megamind:1028829842776526868>"
-
+cross				= "<:Cross:812201302041427969>"
 
 #a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]
