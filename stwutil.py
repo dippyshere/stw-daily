@@ -558,8 +558,13 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry)
     embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
-                          description=f"""```Welcome, {entry['account_name']}```\n{client.config['emojis']['stopwatch_anim']} Your session will expire <t:{math.floor(client.config['auth_expire_time'] + time.time())}:R>\n\u200b
+                          description=f"""```Welcome, {entry['account_name']}```
     """, colour=white_colour)
+
+    if add_entry:
+        embed.description += f"{client.config['emojis']['stopwatch_anim']} Your session will expire <t:{math.floor(client.config['auth_expire_time'] + time.time())}:R>\n\u200b\n"
+    else:
+        embed.description += f"{client.config['emojis']['cross']} Did not start an auth session\n\u200b\n"
 
     if not entry['vbucks']:
         embed.description += f"""⦾ You cannot receive {client.config['emojis']['vbucks']} V-Bucks from claiming daily rewards only {client.config['emojis']['xray']} X-Ray tickets.\n\u200b"""
