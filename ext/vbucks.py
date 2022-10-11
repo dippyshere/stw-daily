@@ -74,13 +74,16 @@ class Vbucks(ext.Cog):
                                                       item_string="AccountResource:currency_xrayllama"))
 
 
+        # fetch vbucks total
+        vbucks_total = await stw.calculate_vbucks(vbucks)
+
         # With all info extracted, create the output
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "V-Bucks", "vbuck_book"),
-                              description=f"\u200b\n**Total V-Bucks: {await stw.calculate_vbucks(vbucks)}**\u200b\n",
+                              description=f"\u200b\n**Total V-Bucks: {vbucks_total}**\u200b\n",
                               colour=vbucc_colour)
 
         # add entry for each platform detected
-        if vbucks:
+        if vbucks_total != 0:
             for item in vbucks:
                 for attr, val in item.items():
                     name, emoji = await stw.resolve_vbuck_source(val["templateId"])
