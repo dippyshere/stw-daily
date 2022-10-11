@@ -99,7 +99,7 @@ class Vbucks(ext.Cog):
 
         embed.description += "\u200b"
 
-        if vbucks:
+        if vbucks_total != 0:
             embed = await stw.set_thumbnail(self.client, embed, "vbuck_book")
         else:
             embed = await stw.set_thumbnail(self.client, embed, "clown")
