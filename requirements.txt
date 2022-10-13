@@ -5,4 +5,4 @@ tomli>=2.0.1
 aiodns>=3.0.0
 brotlipy>=0.7.0
 cchardet>=2.1.7
-orjson>=3.8.0
+motor>=3.1.0.dev0
