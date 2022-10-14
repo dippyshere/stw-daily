@@ -14,20 +14,21 @@ import stwutil as stw
 
 import motor.motor_asyncio
 
+
 async def insert_default_document(client, user_snowflake):
-    
+    pass
+
 
 # define function to read mongodb database and return a list of all the collections in the database
 async def get_user_document(client, user_snowflake):
     # which one lol
     # what do u want to call the database and collection? actually we can just slap this into config too :) sure
     document = await client.stw_database.find_one({'user_snowflake': user_snowflake})
-    print(document) # need default document insertion if it cant find it hm
+    print(document)  # need default document insertion if it cant find it hm
 
     if document is None:
         document = await insert_default_document(client, user_snowflake)
     return document
-
 
 
 # create dictionary with user snowflake as keys and a list of all documents in that collection asi summon thee
@@ -60,6 +61,7 @@ def setup(client):
     # client.get_collections = get_collections
     # :3
     client.add_cog(BongoTest(client))
+
 
 # cog for the reloading related commands.
 class BongoTest(ext.Cog):
