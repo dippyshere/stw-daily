@@ -832,7 +832,6 @@ async def extract_auth_code(string):
 
         return string
 
-
 # regex for under 16 character alphanumeric with extra allowed chars
 async def is_legal_homebase_name(string):
     # TODO: add obfuscated filter for protected homebase names

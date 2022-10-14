@@ -49,9 +49,9 @@ def main():
         "serverext",
         "homebase",
         "vbucks",
-        "reload"
-    ]
-
+        "reload",
+        "bongodb"
+    ] # why no ext.bongodb :( doot doot doot doot
     # load the extensions
     for ext in extensions:
         print(client.load_extension(f"ext.{ext}"))

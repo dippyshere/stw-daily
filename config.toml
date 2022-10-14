@@ -277,3 +277,8 @@ defaultcolor41 		= "#814bff"
 defaultcolor42 		= "#9f9fff"
 defaultcolor43 		= "#dba4ff"
 defaultcolor44 		= "#ff97ff"
+
+[mango] # you have a UTI (urinary tract infection) you suffer from P.M.S (what) (postmenstural something)
+uri_env_var = "STW_MONGO_URI" # added the env var mongodb://localhost:27017
+database = "stw_dailies"
+collection = "user_info"
