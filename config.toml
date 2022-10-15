@@ -50,6 +50,7 @@ shard_names = [
    "Prometheus", "Styx", "Atlas"
    ]
 
+
 # a list of emojis the bot utilises throughout (please do not change the keys.)
 [emojis]
 info				= "<:helpstwdaily:925648230488883230>"
@@ -109,6 +110,39 @@ spongebob			= "<a:sadspongebob:1028829840977182770>"
 megamind			= "<:megamind:1028829842776526868>"
 cal_anim			= "<a:cal_teams:1030710470493085798> "
 cross				= "<:Cross:812201302041427969>"
+left_delta			= "<:left_delta:1030665031257432084>"
+right_delta			= "<:right_delta:1030665032985485484>"
+0					= "<:zero_stw:1030710720607834182>"
+1					= "<:one_stw:1030710718934302780>"
+2					= "<:two_stw:1030710717252374578>"
+3					= "<:three_stw:1030710715272658956>"
+4					= "<:four_stw:1030710713959841902>"
+5					= "<:five_stw:1030710712055627808> "
+6					= "<:six_stw:1030710710608601138>"
+7					= "<:seven_stw:1030710708972830750>"
+8					= "<:eight_stw:1030710707097968670>"
+9					= "<:nine_stw:1030710705495744572>"
+10					= "<:ten_stw:1030710703574765568>"
+11					= "<:eleven_stw:1030719414233993276>"
+12					= "<:twelve_stw:1030719410996002826>"
+13					= "<:thirteen_stw:1030719409079201792>"
+14					= "<:fourteen_stw:1030719407258877992>"
+15					= "<:fifteen_stw:1030719405551783967>"
+16					= "<:sixteen_stw:1030719403773407322>"
+17					= "<:seventeen_stw:1030719401684652062>"
+18					= "<:eighteen_stw:1030719399545548801>"
+19					= "<:nineteen_stw:1030719398102712370>"
+20					= "<:twenty_stw:1030719386924884078>"
+21					= "<:twentyone_stw:1030719396315930727>"
+22					= "<:twentytwo_stw:1030719394550136882>"
+23					= "<:twentythree_stw:1030719392645918790>"
+24					= "<:twentyfour_stw:1030719390938832956>"
+25					= "<:twentyfive_stw:1030719388774580295>"
+
+[profile_settings]
+max_friendly_name_length = 100
+min_friendly_name_length = 1
+maximum_profiles = 25
 
 #a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]
@@ -130,7 +164,7 @@ vbuck_book			= "https://cdn.discordapp.com/attachments/643743040372080653/102818
 daily_coin			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186636900646942/T-Items-DailyCoin-L.png"
 freedom_herald		= "https://cdn.discordapp.com/attachments/643743040372080653/1028186936613011456/WID_Pistol_FireCracker_R_Ore_T01.png"
 clown				= "https://cdn.discordapp.com/attachments/917697167102206022/998935319313404004/20220719_224839.jpg"
-
+storm_shard			= "https://media.discordapp.net/attachments/643743040372080653/1028186513730699274/T-Items-Reagent-C-T04-L.png"
 
 # Different colours for commands
 [colours]
@@ -143,7 +177,7 @@ success_green 		= [0, 210, 71]
 auth_white      	= [255, 255 ,255]
 crown_yellow		= [255, 176, 41]
 vbuck_blue			= [99, 240, 238]
-
+profile_lavendar	= [217, 146, 255]
 # Dont edit values beyond this point unless you know what you're doing!
 
 # endpoints for requests to be sent to

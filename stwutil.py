@@ -129,6 +129,10 @@ async def add_emoji_title(client, title, emoji):
     emoji = client.config["emojis"][emoji]
     return f"{emoji}  {title}  {emoji}"
 
+async def split_emoji_title(client, title, emoji_1, emoji_2):
+    emoji_1 = client.config["emojis"][emoji_1]
+    emoji_2 = client.config["emojis"][emoji_2]
+    return f"{emoji_1}  {title}  {emoji_2}"
 
 # shortens setting thumbnails for embeds
 async def set_thumbnail(client, embed, thumb_type):
@@ -734,7 +738,8 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
     elif error_code == "errors.stwdaily.not_author_interaction_response":
         embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
-            description=f"""\u200bNot the author:```You need to be the author to utilise the {command} view!```
+            description=f"""\u200b
+            Not the author:```You need to be the author to utilise the {command} view!```
             **If you want to utilise this view, please use the command yourself.**
 
             NOTE: *This message is only sent one time, attempting to use buttons after receiving this will return with `` interaction failed ``*

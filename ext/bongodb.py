@@ -1,8 +1,8 @@
 # mongo interaction
 
 import asyncio
+import json
 import os
-
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -16,18 +16,56 @@ import motor.motor_asyncio
 
 
 async def insert_default_document(client, user_snowflake):
-    pass
 
+    default_document = client.user_default
+    default_document['user_snowflake'] = user_snowflake
+    await client.stw_database.insert_one(default_document)
+
+    return default_document
+
+async def replace_user_document(client, document):
+    await client.stw_database.replace_one({"user_snowflake": document["user_snowflake"]}, document)
+
+async def check_profile_ver_document(client, document):
+
+    current_profile_ver = client.user_default["global"]["profiles_ver"]
+
+    try:
+        if document["global"]["profiles_ver"] >= current_profile_ver:
+            return document
+
+    except KeyError:
+        pass
+
+    copied_default = client.user_default.copy()
+    new_base = await asyncio.gather(asyncio.to_thread(deep_merge, copied_default, document))
+    new_base = new_base[0]
+    for profile in list(new_base["profiles"].keys()):
+        new_base["profiles"][profile] = await asyncio.gather(asyncio.to_thread(deep_merge, copied_default["profiles"]["0"], new_base["profiles"][profile]))
+
+
+    new_base["global"]["profiles_ver"] = current_profile_ver
+
+    await replace_user_document(client, new_base)
+    return new_base
+
+def deep_merge(dict1, dict2):
+    def _val(value_1, value_2):
+        if isinstance(value_1, dict) and isinstance(value_2, dict):
+            return deep_merge(value_1, value_2)
+        return value_2 or value_1
+    return {key: _val(dict1.get(key), dict2.get(key)) for key in dict1.keys() | dict2.keys()}
 
 # define function to read mongodb database and return a list of all the collections in the database
 async def get_user_document(client, user_snowflake):
     # which one lol
     # what do u want to call the database and collection? actually we can just slap this into config too :) sure
     document = await client.stw_database.find_one({'user_snowflake': user_snowflake})
-    print(document)  # need default document insertion if it cant find it hm
 
     if document is None:
         document = await insert_default_document(client, user_snowflake)
+
+    document = await check_profile_ver_document(client, document)
     return document
 
 
@@ -58,31 +96,228 @@ def setup(client):
     client.stw_database = client.database_client[database][collection]
     # i win <3 idk if it works tho lmao i keep forgetting u dont need to switch to the daily core.py file to run
     client.get_user_document = get_user_document
+    client.processing_queue = {}  # dictionaries are alot faster than lists :thumbs_up:
+
+    with open("profile_default.json", "r") as user_default:
+        client.user_default = json.load(user_default)
+
+
     # client.get_collections = get_collections
     # :3
-    client.add_cog(BongoTest(client))
+    client.add_cog(Profile(client))
+
+async def create_main_embed(ctx, client, current_selected_profile, user_document):
+    embed_colour = client.colours["profile_lavendar"]
+    embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
+                          description=f"""\u200b
+                          **Currently Selected Profile {current_selected_profile}**
+                          ```{user_document["profiles"][str(current_selected_profile)]["friendly_name"]}```""",
+                          color=embed_colour)
+    embed = await stw.set_thumbnail(client, embed, "storm_shard")
+    embed = await stw.add_requested_footer(ctx, embed)
+    return embed
 
 
-# cog for the reloading related commands.
-class BongoTest(ext.Cog):
+
+class ProfileMainView(discord.ui.View):
+    def __init__(self, ctx, client, profile_options, current_selected_profile, user_document):
+        super().__init__()
+        self.client = client
+        self.children[0].options = profile_options
+        self.ctx = ctx
+        self.author = ctx.author
+        self.current_selected_profile = current_selected_profile
+        self.user_document = user_document
+        self.interaction_check_done = {}
+
+        self.button_emojis = {
+            'meleegeneric': self.client.config["emojis"]["meleegeneric"],
+            'leadsurvivor': self.client.config["emojis"]['leadsurvivor'],
+            'cross': self.client.config["emojis"]['cross'],
+        }
+
+        if not (len(user_document["profiles"].keys()) < client.config["profile_settings"]["maximum_profiles"]):
+            self.children[2].disabled = True
+
+        self.children[1:] = list(map(self.map_button_emojis, self.children[1:]))
+
+    async def on_timeout(self):
+
+        for child in self.children:
+            child.disabled = True
+
+        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
+        embed.description += "\n*Timed out, please reuse command to continue*\n\u200b"
+        await self.message.edit(embed=embed, view=self)
+        return
+
+    def map_button_emojis(self, button):
+        button.emoji = self.button_emojis[button.emoji.name]
+        return button
+
+    async def interaction_check(self, interaction):
+        if self.author == interaction.user:
+            return True
+        else:
+            try:
+                already_notified = self.interaction_check_done[interaction.user.id]
+            except:
+                already_notified = False
+                self.interaction_check_done[interaction.user.id] = True
+
+            if not already_notified:
+                support_url = self.client.config["support_url"]
+                acc_name = ""
+                error_code = "errors.stwdaily.not_author_interaction_response"
+                embed = await stw.post_error_possibilities(interaction, self.client, "help", acc_name, error_code,
+                                                           support_url)
+                await interaction.response.send_message(embed=embed, ephemeral=True)
+                return False
+            else:
+                return False
+
+    @discord.ui.select(
+        placeholder="Select another profile here",
+        min_values=1,
+        max_values=1,
+        options=[],
+    )
+    async def selected_option(self, select, interaction):
+        pass
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Profile", emoji="meleegeneric")
+    async def edit_button(self, _button, interaction):
+        pass
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor")
+    async def new_button(self, _button, interaction):
+        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document))
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross")
+    async def delete_button(self, _button, interaction):
+
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
+        del self.user_document["profiles"][str(self.current_selected_profile)]
+
+        new_selected = len(self.user_document["profiles"]) - 1
+        if new_selected == -1:
+            new_selected = None
+
+        self.user_document["global"]["selected_profile"] = new_selected
+        profile_keys = list(self.user_document["profiles"].keys())
+
+        for profile in profile_keys:
+            profile_int = int(profile)
+            if profile_int > self.current_selected_profile:
+                self.user_document["profiles"][profile]["id"] = profile_int - 1
+                self.user_document["profiles"][str(profile_int - 1)] = self.user_document["profiles"][profile]
+                del self.user_document["profiles"][profile]
+
+        await replace_user_document(self.client, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, new_selected, self.user_document)
+        embed.description += f"\n*Deleted Profile **{new_selected}***\n\u200b"
+        select_options = generate_select_options(self.client, new_selected, self.user_document)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document)
+
+        await interaction.response.edit_message(embed=embed, view=profile_view)
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
+
+class NewProfileModal(discord.ui.Modal):
+    def __init__(self, ctx, client, user_document):
+
+        self.ctx = ctx
+        self.client = client
+        self.cur_profile_id = len(user_document["profiles"])
+
+        self.user_document = user_document
+        super().__init__(title = f"Create profile {self.cur_profile_id}")
+
+        # Add the required items into this modal for entering
+
+        profile_settings = client.config["profile_settings"]
+
+        # The profile friendly name
+        input_profile_name = discord.ui.InputText(
+            style=discord.InputTextStyle.short,
+            label="Enter a name to identify this profile",
+            min_length=profile_settings["min_friendly_name_length"],
+            max_length=profile_settings["max_friendly_name_length"],
+            placeholder="Friendly Name"
+        )
+
+        self.add_item(input_profile_name)
+
+    async def callback(self, interaction: discord.Interaction):
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
+        self.user_document["global"]["selected_profile"] = self.cur_profile_id
+
+        # there is probably a better way to do this
+        self.user_document["profiles"][str(self.cur_profile_id)] = self.client.user_default["profiles"]["0"].copy()
+        self.user_document["profiles"][str(self.cur_profile_id)]["friendly_name"] = self.children[0].value
+        self.user_document["profiles"][str(self.cur_profile_id)]["id"] = self.cur_profile_id
+
+        await replace_user_document(self.client, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
+        embed.description += f"\n*Created profile **{self.cur_profile_id}***\n\u200b"
+        select_options = generate_select_options(self.client, self.cur_profile_id, self.user_document)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document)
+
+        await interaction.response.edit_message(embed=embed, view=profile_view)
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
+
+def generate_select_options(client, current_selected_profile, user_document):
+    select_options = []
+
+    for profile in user_document["profiles"]:
+
+        profile = user_document["profiles"][profile]
+
+        selected = False
+        profile_id = profile["id"]
+        if profile_id == current_selected_profile:
+            selected = True
+
+        profile_id = str(profile_id)
+        select_options.append(discord.SelectOption(
+            label=profile["friendly_name"],
+            value=profile_id,
+            default=False,
+            emoji=client.config["emojis"][profile_id]
+        ))
+
+    return select_options
+
+# cog for the profile related commands
+class Profile(ext.Cog):
 
     def __init__(self, client):
         self.client = client
         # can u not unindent by ctrl shift + [ weird nanny
 
-    async def bongo_command(self, ctx):
-        embed_colour = self.client.colours["auth_white"]
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Bongo Test", "spongebob"),
-                              description=f'\u200b\n{await self.client.get_user_document(self.client, ctx.author.id)}\n\u200b',
-                              color=embed_colour)
-        embed = await stw.set_thumbnail(self.client, embed, "clown")
-        embed = await stw.add_requested_footer(ctx, embed)
-        # brb back gtg soonish
-        await stw.slash_send_embed(ctx, False, embed)
 
-    @ext.command(name='bongo',
-                 extras={'emoji': "spongebob", "args": {'ext': 'what args'}},
+    async def profile_command(self, ctx):
+
+        user_document = await self.client.get_user_document(self.client, ctx.author.id)
+        current_selected_profile = user_document["global"]["selected_profile"]
+        print(user_document)
+
+        embed = await create_main_embed(ctx, self.client, current_selected_profile, user_document)
+        embed.description += "\n*Waiting for command*\n\u200b"
+        select_options = generate_select_options(self.client, current_selected_profile, user_document)
+        profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document)
+        # brb back gtg soonish
+        await stw.slash_send_embed(ctx, False, embed, profile_view)
+
+    @ext.command(name='profile',
+                 extras={'emoji': "stormshard", "args": {'ext': 'what args'}},
                  brief="mango drum b",
                  description="donkey kong ooga booga's cogs to mango changes")
-    async def bongo(self, ctx):
-        await self.bongo_command(ctx)
+    async def profile(self, ctx):
+        await self.profile_command(ctx)
+
+    @ext.command(name='profile2',
+                 extras={'emoji': "stormshard", "args": {'ext': 'what args'}},
+                 brief="mango drum b",
+                 description="donkey kong ooga booga's cogs to mango changes")
+    async def profile2(self, ctx):
+        await self.client.stw_database.delete_one({"user_snowflake": ctx.author.id})

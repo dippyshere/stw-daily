@@ -55,7 +55,7 @@ class ResearchView(discord.ui.View):
         embed = await stw.set_thumbnail(self.client, embed, "research")
         embed = await stw.add_requested_footer(self.context, embed)
         embed = await add_fort_fields(self.client, embed, current_levels)
-        embed.add_field(name=f"\u200b", value=f"*Timed out, please reuse the command to continue.*\n\u200b")
+        embed.add_field(name=f"\u200b", value=f"*Timed out, please reuse command to continue*\n\u200b")
         await self.message.edit(embed=embed, view=self)
         return
 

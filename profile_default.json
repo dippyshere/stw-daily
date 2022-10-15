@@ -23,31 +23,27 @@
     "auto_trial_claimed": false
   },
 
-  "profile_0": {
-
-    "id": 0,
-    "friendly_name": "Automatically Generated Profile",
-
-    "statistics": {
-      "total_times_claimed_manual": 0,
-      "total_times_claimed_auto": 0,
-      "vbucks_claimed": 0,
-      "first_claimed": null,
-      "tos_accepted": false,
-      "tos_accepted_date": null,
-      "tos_accepted_version": null
-    },
-
-    "settings": {
-      "data_opt_out": false,
-      "upcoming_display": true,
-      "upcoming_display_days": 7,
-      "display_epic": false,
-      "claim_research": false,
-      "claim_free_llamas": true,
-      "claim_daily": false,
-      "dm_on_claim": false,
-      "digest": {
+  "profiles": {
+    "0": {
+      "id": 0,
+      "friendly_name": "Automatically Generated Profile",
+      "statistics": {
+        "total_times_claimed_manual": 0,
+        "total_times_claimed_auto": 0,
+        "vbucks_claimed": 0,
+        "first_claimed": null,
+        "tos_accepted": false,
+        "tos_accepted_date": null,
+        "tos_accepted_version": null
+      },
+      "settings": {
+        "upcoming_display": true,
+        "upcoming_display_days": 7,
+        "display_epic": true,
+        "claim_research": false,
+        "claim_free_llamas": false,
+        "claim_daily": false,
+        "digest": {
           "enabled": false,
           "last_checked": 0
         }
