@@ -30,8 +30,8 @@ class DevAuth(ext.Cog):
 
     async def devauth_command(self, ctx, slash, authcode, auth_opt_out):
         vbucc_colour = self.client.colours["vbuck_blue"]
-
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, slash, auth_opt_out,
+        # veebu cc
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "device", authcode, slash, auth_opt_out,
                                                          True)
         if not auth_info[0]:
             return
@@ -49,59 +49,34 @@ class DevAuth(ext.Cog):
         if ainfo3 != "logged_in_processing" and auth_info[2] != []:
             final_embeds = auth_info[2]
 
-        # get common core profile
+
+        # create device auth
+        device_request = await stw.device_request(self.client, "deviceAuth", auth_info[1])
+        device_json_response = await device_request.json()
+
+        # # get common core profile
         core_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="common_core")
-        core_json_response = await core_request.json()
-        # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
-
-        # check for le error code
-        if await self.check_errors(ctx, core_json_response, auth_info, final_embeds, slash):
-            return
-
-        vbucks = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await core_request.json(),
-                                                        item_string="Currency:Mtx"))
-
-        # fetch x-ray ticket count
-        stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
-        stw_json_response = await stw_request.json()
-
-        # check for le error code
-        error_check = await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, slash)
-        if error_check:
-            return
-
-        xray = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await stw_request.json(),
-                                                      item_string="AccountResource:currency_xrayllama"))
-
-        # fetch vbucks total
-        vbucks_total = await stw.calculate_vbucks(vbucks)
+        # core_json_response = await core_request.json()
+        # # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
+        #
+        # # check for le error code
+        # if await self.check_errors(ctx, core_json_response, auth_info, final_embeds, slash):
+        #     return
 
         # With all info extracted, create the output
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "V-Bucks", "vbuck_book"),
-                              description=f"\u200b\n**Total V-Bucks: {vbucks_total}**\u200b\n",
+        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Device auth", "placeholder"),
+                              description=f"\u200b\n",
                               colour=vbucc_colour)
 
         # add entry for each platform detected
-        if vbucks_total != 0:
-            for item in vbucks:
-                for attr, val in item.items():
-                    name, emoji = await stw.resolve_vbuck_source(val["templateId"])
-                    embed.description += f"""{self.emojis[emoji]} {name}: {val["quantity"]}\n"""
+        if True:
+            embed.description += f"""{self.emojis["checkmark"]} Successfully made device auth idk\n"""
         else:
-            embed.description += f"""{self.emojis["spongebob"]} No V-Bucks? {self.emojis["megamind"]}\n"""
-
-        # add entry for x-ray if detected
-        if xray:
-            for item in xray:
-                for attr, val in item.items():
-                    embed.description += f"""\u200b\n{self.emojis["xray"]} X-Ray Tickets: {val["quantity"]}\n"""
+            embed.description += f"""{self.emojis["spongebob"]} Failed creating device auth\n"""
 
         embed.description += "\u200b"
 
-        if vbucks_total != 0:
-            embed = await stw.set_thumbnail(self.client, embed, "vbuck_book")
-        else:
-            embed = await stw.set_thumbnail(self.client, embed, "clown")
+        embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
         await stw.slash_edit_original(auth_info[0], slash, final_embeds)
@@ -320,7 +295,7 @@ class DevAuth(ext.Cog):
     """
 
     @ext.command(name='device',
-                 aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'deviceauthcodes', 'deviceauthcodes'],
+                 aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode'],
                  extras={'emoji': "placeholder", "args": {
                      'authcode': 'The authcode to start an authentication session with if one does not exist, if an auth session already exists this argument is optional (Optional)',
                      'opt-out': 'Any value inputted into this field will opt you out of the authentication session system when you enter the authcode for this command (Optional)'}},

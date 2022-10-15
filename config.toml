@@ -54,13 +54,13 @@ shard_names = [
 [emojis]
 info				= "<:helpstwdaily:925648230488883230>"
 hard_drive  		= "<:TIconHardDriveL:812201309591175168>"
-electric_plug		= "🔌"
+electric_plug		= "<:electricplug_teams:1030710464776245268>"
 research_point		= "<:TIconResearchPoint128:812201303781408828>"
 error				= "<:errorstwdaily:925648230753107999>"
 skill_point			= "<:TIconSkillPoint128:812201303505764373>"
 warning				= "<:warningstwdaily:925648230736347158>"
 vbucks				= "<:TItemsMTXL:812201307786969128>"
-bulb				= "💡"
+bulb				= "<:lightbulb_teams:1030710463274684467>"
 processing			= "<a:stwloading:947844940594044948>"
 checkmark			= "<:checkmarkstwdaily:925648230912524338>"
 founders			= "<:TIconFoundersBadge512:812201305736085524>"
@@ -91,8 +91,8 @@ offense 			= "<:TIconOffense:1000217970552877086>"
 resistance 			= "<:TIconResistance:1000217966618615828>"
 survivorgeneric		= "<:GenericWorkercopy:947728015683616778>"
 teammatexpboost 	= "<:IconGiftXPXL:812201304670601227>"
-crown 				= "👑"
-celebrate 			= "🎉"
+crown 				= "<:crown_teams:1030710461655678977>"
+celebrate 			= "<a:tada_teams:1030710460078633010>"
 stopwatch_anim		= "<a:stwstopwatch2:1028520039596445757>"
 experimental		= "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"
 broken_heart		= "<:TBannersIconsLightningHeartLreal:1028513513364271145>"
@@ -107,22 +107,23 @@ placeholder			= "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
 LMAO				= "😂"
 spongebob			= "<a:sadspongebob:1028829840977182770>"
 megamind			= "<:megamind:1028829842776526868>"
+cal_anim			= "<a:cal_teams:1030710470493085798> "
 cross				= "<:Cross:812201302041427969>"
 
 #a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]
 error				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png"
-warn				= "https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png?size=4096"
+warn				= "https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png"
 info				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png"
 help				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902247936000/helpstwdaily.png"
 check				= "https://cdn.discordapp.com/attachments/748078936424185877/924999903116165120/checkmarkstwdaily.png"
 research			= "https://cdn.discordapp.com/attachments/767607876348018689/947812260724764712/T-Icon-ResearchPoint-128-realesrgan-x4plus.png"
 processing			= "https://cdn.discordapp.com/attachments/767607876348018689/947999234169397248/stwloading.gif"
 calendar			= "https://cdn.discordapp.com/attachments/767607876348018689/947752089549946930/Layer_4.png"
-urlauthcode			= "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png?size=4096"
+urlauthcode			= "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png"
 keycard				= "https://media.discordapp.net/attachments/643743040372080653/956798526149509120/Ghost_Keycard.PNG"
-stormbottle 		= "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png?width=410&height=410"
-crown 				= "https://cdn.discordapp.com/attachments/643743040372080653/1000266990272913448/discordW_3.png"
+stormbottle 		= "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png"
+crown 				= "https://cdn.discordapp.com/attachments/767607876348018689/1030709275384881172/unknown.png"
 placeholder			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186514510839878/T_UI_Challenge_MysteryReward-L.png"
 gold				= "https://cdn.discordapp.com/attachments/643743040372080653/1028186514976428032/T-Icon-S-Loot-GoldCurrency-L.png"
 vbuck_book			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186515773337640/T-Icon-VBuckChallenges-L.png"
@@ -140,7 +141,7 @@ research_green 		= [114, 189, 134]
 reward_magenta 		= [255, 0, 255]
 success_green 		= [0, 210, 71]
 auth_white      	= [255, 255 ,255]
-crown_yellow		= [255, 204, 77]
+crown_yellow		= [255, 176, 41]
 vbuck_blue			= [99, 240, 238]
 
 # Dont edit values beyond this point unless you know what you're doing!

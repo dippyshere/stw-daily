@@ -1,9 +1,10 @@
 {
   "global": {
-    // suggestions?
-    // i know but this is grey so whatever
-    "banned": false, // we gonna ban people? lol um we should move this to a um global storage thing
-    "banned_reason": null, // bans were suggested by skuby for chargebacks ahh
+
+    "profiles_ver": 6,
+    "selected_profile": 0,
+    "banned": false,
+    "banned_reason": null,
     "banned_by": null,
     "banned_date": null,
     "banned_duration": null,
@@ -19,7 +20,7 @@
       "start_time": 0,
       "end_time": 0
     },
-    "auto_trial_claimed": false,
+    "auto_trial_claimed": false
   },
 
   "profile_0": {
@@ -48,17 +49,15 @@
       "dm_on_claim": false,
       "digest": {
           "enabled": false,
-          "interval": 0,
-          "channel": null
+          "last_checked": 0
+        }
+      },
+      "authentication": {
+        "accountId": null,
+        "deviceId": null,
+        "secret": null,
+        "expires": null
       }
-    },
-
-    "authentication": {
-      "accountId": null,
-      "deviceId": null,
-      "secret": null,
-      "expires": null
-    }
     }
   }
 }

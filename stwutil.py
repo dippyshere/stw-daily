@@ -418,7 +418,8 @@ async def calculate_vbucks(items):
     return vbucks
 
 
-async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True):
+async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True,
+                                     epic_auth_client="PC"):  # hi bye
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 
@@ -506,11 +507,11 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
             colour=error_colour
         )
 
-    elif len(extracted_auth_code) != 32:
+    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
-        ```{extracted_auth_code}```
-        Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
+        ```{original_auth_code}```
+        Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
@@ -522,11 +523,11 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         Note: You need a new code __every time you authenticate__\n\u200b""",
                                     colour=error_colour)
 
-    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
+    elif len(extracted_auth_code) != 32:
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
-        ```{original_auth_code}```
-        Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
+        ```{extracted_auth_code}```
+        Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
@@ -806,10 +807,11 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 async def strip_string(string):
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
+
 def create_command_dict(client):
     command_name_dict = {}
     command_dict = {}
-    
+
     # Gets aliases and adds them to commmand_name_dict so we can match for aliases too in the command arg
     for command in client.commands:
         command_name_dict[command.name] = command.name
@@ -821,6 +823,7 @@ def create_command_dict(client):
 
     return command_name_dict, command_dict, list(command_name_dict)
 
+
 # regex for 32 character hex
 async def extract_auth_code(string):
     try:
@@ -831,6 +834,7 @@ async def extract_auth_code(string):
             return "errors.stwdaily.illegal_auth_code"
 
         return string
+
 
 # regex for under 16 character alphanumeric with extra allowed chars
 async def is_legal_homebase_name(string):
