@@ -111,21 +111,40 @@ def setup(client):
 
 async def create_main_embed(ctx, client, current_selected_profile, user_document):
     embed_colour = client.colours["profile_lavendar"]
-    embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
-                          description=f"""\u200b
-                          **Currently Selected Profile {current_selected_profile}**
-                          ```{user_document["profiles"][str(current_selected_profile)]["friendly_name"]}```""",
-                          color=embed_colour)
+
+    if current_selected_profile is None:
+        embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
+                              description=f"""\u200b
+                              **No Available Profiles**
+                              ```Create a new profile using the "New Profile" Button!```""",
+                              color=embed_colour)
+    else:
+        embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
+                              description=f"""\u200b
+                              **Currently Selected Profile {current_selected_profile}**
+                              ```{user_document["profiles"][str(current_selected_profile)]["friendly_name"]}```""",
+                              color=embed_colour)
     embed = await stw.set_thumbnail(client, embed, "storm_shard")
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
 
 
 class ProfileMainView(discord.ui.View):
-    def __init__(self, ctx, client, profile_options, current_selected_profile, user_document):
+    def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None):
         super().__init__()
         self.client = client
         self.children[0].options = profile_options
+
+        if previous_message is not None:
+            self.message = previous_message
+
+        # look ok it works dont judge arvo
+        if current_selected_profile is None:
+            self.children[0].disabled = True
+            self.children[1].disabled = True
+            self.children[3].disabled = True
+            self.children[0].placeholder = "No available profiles"
+
         self.ctx = ctx
         self.author = ctx.author
         self.current_selected_profile = current_selected_profile
@@ -184,15 +203,40 @@ class ProfileMainView(discord.ui.View):
         options=[],
     )
     async def selected_option(self, select, interaction):
-        pass
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
+
+        new_profile_selected = int(select.values[0])
+        self.user_document["global"]["selected_profile"] = new_profile_selected
+
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(view=self)
+        self.stop()
+
+        await replace_user_document(self.client, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, new_profile_selected, self.user_document)
+        embed.description += f"\n*Selected profile **{new_profile_selected}***\n\u200b"
+        select_options = generate_select_options(self.client, new_profile_selected, self.user_document)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document, self.message)
+
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
+        self.timeout = False
+        await interaction.edit_original_response(embed=embed, view=profile_view)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Profile", emoji="meleegeneric")
     async def edit_button(self, _button, interaction):
+        await self.on_timeout()
         pass
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor")
     async def new_button(self, _button, interaction):
-        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document))
+        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
+
+        for child in self.children:
+            child.disabled = True
+
+        await interaction.edit_original_response(view=self)
+        self.stop()
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross")
     async def delete_button(self, _button, interaction):
@@ -200,7 +244,17 @@ class ProfileMainView(discord.ui.View):
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
         del self.user_document["profiles"][str(self.current_selected_profile)]
 
-        new_selected = len(self.user_document["profiles"]) - 1
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(view=self)
+        self.stop()
+
+        profiles_length = len(self.user_document["profiles"]) - 1
+        if self.current_selected_profile <= profiles_length:
+            new_selected = self.current_selected_profile
+        else:
+            new_selected = profiles_length
+
         if new_selected == -1:
             new_selected = None
 
@@ -216,11 +270,10 @@ class ProfileMainView(discord.ui.View):
 
         await replace_user_document(self.client, self.user_document)
         embed = await create_main_embed(self.ctx, self.client, new_selected, self.user_document)
-        embed.description += f"\n*Deleted Profile **{new_selected}***\n\u200b"
+        embed.description += f"\n*Deleted Profile **{self.current_selected_profile}***\n\u200b"
         select_options = generate_select_options(self.client, new_selected, self.user_document)
-        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document, self.message)
 
-        await interaction.response.edit_message(embed=embed, view=profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
@@ -246,7 +299,7 @@ class NewProfileModal(discord.ui.Modal):
             max_length=profile_settings["max_friendly_name_length"],
             placeholder="Friendly Name"
         )
-
+        self.message = message
         self.add_item(input_profile_name)
 
     async def callback(self, interaction: discord.Interaction):
@@ -262,14 +315,22 @@ class NewProfileModal(discord.ui.Modal):
         embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
         embed.description += f"\n*Created profile **{self.cur_profile_id}***\n\u200b"
         select_options = generate_select_options(self.client, self.cur_profile_id, self.user_document)
-        profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document, self.message)
 
-        await interaction.response.edit_message(embed=embed, view=profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
+        await interaction.response.edit_message(embed=embed, view=profile_view)
 
 
 def generate_select_options(client, current_selected_profile, user_document):
     select_options = []
+
+    if current_selected_profile is None:
+        select_options.append(discord.SelectOption(
+            label="No Available Profiles!",
+            value="None",
+            default=False,
+            emoji=client.config["emojis"]["error"]
+        ))
 
     for profile in user_document["profiles"]:
 
