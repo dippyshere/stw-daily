@@ -52,7 +52,7 @@ def main():
         "reload",
         "bongodb",
         "devauth",
-    ] # why no ext.bongodb :( doot doot doot doot
+    ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
     for ext in extensions:
         print(client.load_extension(f"ext.{ext}"))

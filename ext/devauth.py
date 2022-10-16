@@ -49,7 +49,7 @@ class DevAuth(ext.Cog):
         if ainfo3 != "logged_in_processing" and auth_info[2] != []:
             final_embeds = auth_info[2]
 
-
+        # hi there :3
         # create device auth
         device_request = await stw.device_request(self.client, "deviceAuth", auth_info[1])
         device_json_response = await device_request.json()
@@ -90,6 +90,7 @@ class DevAuth(ext.Cog):
                                            "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
                              auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
         await self.devauth_command(ctx, True, token, not auth_opt_out)
+
     # why do we have auto_trial thing hm i guess i mean it makes sense but seems kinda redundant why not just have one flag thats like auto_trial claimed and grant them auto_claim days
     # there is a lot of redudant data in that json :D but true we could do that
     # just wanted it as a separate thing if we want to stop the trial grant in the future / change it for future users (e.g. default profile for chrissy is 3 months autoclaim, after holiday season its only 1 month) whats digest

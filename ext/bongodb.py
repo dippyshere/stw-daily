@@ -16,18 +16,18 @@ import motor.motor_asyncio
 
 
 async def insert_default_document(client, user_snowflake):
-
     default_document = client.user_default
     default_document['user_snowflake'] = user_snowflake
     await client.stw_database.insert_one(default_document)
 
     return default_document
 
+
 async def replace_user_document(client, document):
     await client.stw_database.replace_one({"user_snowflake": document["user_snowflake"]}, document)
 
-async def check_profile_ver_document(client, document):
 
+async def check_profile_ver_document(client, document):
     current_profile_ver = client.user_default["global"]["profiles_ver"]
 
     try:
@@ -41,20 +41,23 @@ async def check_profile_ver_document(client, document):
     new_base = await asyncio.gather(asyncio.to_thread(deep_merge, copied_default, document))
     new_base = new_base[0]
     for profile in list(new_base["profiles"].keys()):
-        new_base["profiles"][profile] = await asyncio.gather(asyncio.to_thread(deep_merge, copied_default["profiles"]["0"], new_base["profiles"][profile]))
-
+        new_base["profiles"][profile] = await asyncio.gather(
+            asyncio.to_thread(deep_merge, copied_default["profiles"]["0"], new_base["profiles"][profile]))
 
     new_base["global"]["profiles_ver"] = current_profile_ver
 
     await replace_user_document(client, new_base)
     return new_base
 
+
 def deep_merge(dict1, dict2):
     def _val(value_1, value_2):
         if isinstance(value_1, dict) and isinstance(value_2, dict):
             return deep_merge(value_1, value_2)
         return value_2 or value_1
+
     return {key: _val(dict1.get(key), dict2.get(key)) for key in dict1.keys() | dict2.keys()}
+
 
 # define function to read mongodb database and return a list of all the collections in the database
 async def get_user_document(client, user_snowflake):
@@ -101,10 +104,10 @@ def setup(client):
     with open("profile_default.json", "r") as user_default:
         client.user_default = json.load(user_default)
 
-
     # client.get_collections = get_collections
     # :3
     client.add_cog(Profile(client))
+
 
 async def create_main_embed(ctx, client, current_selected_profile, user_document):
     embed_colour = client.colours["profile_lavendar"]
@@ -116,7 +119,6 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
     embed = await stw.set_thumbnail(client, embed, "storm_shard")
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
-
 
 
 class ProfileMainView(discord.ui.View):
@@ -149,7 +151,6 @@ class ProfileMainView(discord.ui.View):
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
         embed.description += "\n*Timed out, please reuse command to continue*\n\u200b"
         await self.message.edit(embed=embed, view=self)
-        return
 
     def map_button_emojis(self, button):
         button.emoji = self.button_emojis[button.emoji.name]
@@ -221,16 +222,17 @@ class ProfileMainView(discord.ui.View):
 
         await interaction.response.edit_message(embed=embed, view=profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
+        await interaction.edit_original_response(embed=embed, view=profile_view)
+
 
 class NewProfileModal(discord.ui.Modal):
-    def __init__(self, ctx, client, user_document):
-
+    def __init__(self, ctx, client, user_document, message):
         self.ctx = ctx
         self.client = client
         self.cur_profile_id = len(user_document["profiles"])
 
         self.user_document = user_document
-        super().__init__(title = f"Create profile {self.cur_profile_id}")
+        super().__init__(title=f"Create profile {self.cur_profile_id}")
 
         # Add the required items into this modal for entering
 
@@ -265,6 +267,7 @@ class NewProfileModal(discord.ui.Modal):
         await interaction.response.edit_message(embed=embed, view=profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
 
+
 def generate_select_options(client, current_selected_profile, user_document):
     select_options = []
 
@@ -287,6 +290,7 @@ def generate_select_options(client, current_selected_profile, user_document):
 
     return select_options
 
+
 # cog for the profile related commands
 class Profile(ext.Cog):
 
@@ -294,9 +298,7 @@ class Profile(ext.Cog):
         self.client = client
         # can u not unindent by ctrl shift + [ weird nanny
 
-
     async def profile_command(self, ctx):
-
         user_document = await self.client.get_user_document(self.client, ctx.author.id)
         current_selected_profile = user_document["global"]["selected_profile"]
         print(user_document)

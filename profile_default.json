@@ -1,59 +1,57 @@
 {
-  "global": {
-
-    "profiles_ver": 6,
-    "selected_profile": 0,
-    "banned": false,
-    "banned_reason": null,
-    "banned_by": null,
-    "banned_date": null,
-    "banned_duration": null,
-    "isServerBoosting": false,
-    "isServerBoostingSince": null,
-    "isServerBoostingUntil": null,
-    "isServerMember": null,
-    "isServerMemberSince": null,
-    "donation_source": null,
-    "donation_tier": 0,
-    "auto_claim": {
-      "days_remaining": 0,
-      "start_time": 0,
-      "end_time": 0
+    "global": {
+        "profiles_ver": 6,
+        "selected_profile": 0,
+        "banned": false,
+        "banned_reason": null,
+        "banned_by": null,
+        "banned_date": null,
+        "banned_duration": null,
+        "isServerBoosting": false,
+        "isServerBoostingSince": null,
+        "isServerBoostingUntil": null,
+        "isServerMember": null,
+        "isServerMemberSince": null,
+        "donation_source": null,
+        "donation_tier": 0,
+        "auto_claim": {
+            "days_remaining": 0,
+            "start_time": 0,
+            "end_time": 0
+        },
+        "auto_trial_claimed": false
     },
-    "auto_trial_claimed": false
-  },
-
-  "profiles": {
-    "0": {
-      "id": 0,
-      "friendly_name": "Automatically Generated Profile",
-      "statistics": {
-        "total_times_claimed_manual": 0,
-        "total_times_claimed_auto": 0,
-        "vbucks_claimed": 0,
-        "first_claimed": null,
-        "tos_accepted": false,
-        "tos_accepted_date": null,
-        "tos_accepted_version": null
-      },
-      "settings": {
-        "upcoming_display": true,
-        "upcoming_display_days": 7,
-        "display_epic": true,
-        "claim_research": false,
-        "claim_free_llamas": false,
-        "claim_daily": false,
-        "digest": {
-          "enabled": false,
-          "last_checked": 0
+    "profiles": {
+        "0": {
+            "id": 0,
+            "friendly_name": "Automatically Generated Profile",
+            "statistics": {
+                "total_times_claimed_manual": 0,
+                "total_times_claimed_auto": 0,
+                "vbucks_claimed": 0,
+                "first_claimed": null,
+                "tos_accepted": false,
+                "tos_accepted_date": null,
+                "tos_accepted_version": null
+            },
+            "settings": {
+                "upcoming_display": true,
+                "upcoming_display_days": 7,
+                "display_epic": true,
+                "claim_research": false,
+                "claim_free_llamas": false,
+                "claim_daily": false,
+                "digest": {
+                    "enabled": false,
+                    "last_checked": 0
+                }
+            },
+            "authentication": {
+                "accountId": null,
+                "deviceId": null,
+                "secret": null,
+                "expires": null
+            }
         }
-      },
-      "authentication": {
-        "accountId": null,
-        "deviceId": null,
-        "secret": null,
-        "expires": null
-      }
     }
-  }
 }
