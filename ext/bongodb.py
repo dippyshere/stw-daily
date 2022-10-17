@@ -217,7 +217,8 @@ class ProfileMainView(discord.ui.View):
         embed = await create_main_embed(self.ctx, self.client, new_profile_selected, self.user_document)
         embed.description += f"\n*Selected profile **{new_profile_selected}***\n\u200b"
         select_options = generate_select_options(self.client, new_profile_selected, self.user_document)
-        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document, self.message)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document,
+                                       self.message)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         self.timeout = False
@@ -272,7 +273,8 @@ class ProfileMainView(discord.ui.View):
         embed = await create_main_embed(self.ctx, self.client, new_selected, self.user_document)
         embed.description += f"\n*Deleted Profile **{self.current_selected_profile}***\n\u200b"
         select_options = generate_select_options(self.client, new_selected, self.user_document)
-        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document, self.message)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document,
+                                       self.message)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
@@ -315,7 +317,8 @@ class NewProfileModal(discord.ui.Modal):
         embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
         embed.description += f"\n*Created profile **{self.cur_profile_id}***\n\u200b"
         select_options = generate_select_options(self.client, self.cur_profile_id, self.user_document)
-        profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document, self.message)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
+                                       self.message)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.response.edit_message(embed=embed, view=profile_view)
