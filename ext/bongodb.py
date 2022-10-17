@@ -50,6 +50,7 @@ async def check_profile_ver_document(client, document):
     return new_base
 
 
+# you are zoommin :(((   ong ok bye have fun i am having the fun PLEASE WAIT HOST IS WORKING WITH A SETTINGS DIALOG
 def deep_merge(dict1, dict2):
     def _val(value_1, value_2):
         if isinstance(value_1, dict) and isinstance(value_2, dict):
