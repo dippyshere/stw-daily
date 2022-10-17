@@ -506,11 +506,11 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
             colour=error_colour
         )
 
-    elif len(extracted_auth_code) != 32:
+    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
-        ```{extracted_auth_code}```
-        Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
+        ```{original_auth_code}```
+        Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
@@ -522,11 +522,11 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         Note: You need a new code __every time you authenticate__\n\u200b""",
                                     colour=error_colour)
 
-    elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
+    elif len(extracted_auth_code) != 32:
         error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
-        ```{original_auth_code}```
-        Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
+        ```{extracted_auth_code}```
+        Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
