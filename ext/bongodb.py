@@ -5,7 +5,7 @@ import json
 import os
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import Option, slash_command
 
 import stwutil as stw
 
@@ -221,13 +221,17 @@ class ProfileMainView(discord.ui.View):
                                        self.message)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
-        self.timeout = False
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Profile", emoji="meleegeneric")
-    async def edit_button(self, _button, interaction):
-        await self.on_timeout()
-        pass
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="meleegeneric")
+    async def name_button(self, _button, interaction):
+        await interaction.response.send_modal(ChangeNameModal(self.ctx, self.client, self.user_document, self.message))
+
+        for child in self.children:
+            child.disabled = True
+
+        await interaction.edit_original_response(view=self)
+        self.stop()
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor")
     async def new_button(self, _button, interaction):
@@ -278,6 +282,47 @@ class ProfileMainView(discord.ui.View):
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
+
+
+class ChangeNameModal(discord.ui.Modal):
+    def __init__(self, ctx, client, user_document, message):
+        self.ctx = ctx
+        self.client = client
+        self.cur_profile_id = user_document["global"]["selected_profile"]
+
+        self.user_document = user_document
+        super().__init__(title=f"Change name of profile {self.cur_profile_id}")
+
+        # Add the required items into this modal for entering
+
+        profile_settings = client.config["profile_settings"]
+
+        # The profile friendly name
+        input_profile_name = discord.ui.InputText(
+            style=discord.InputTextStyle.short,
+            label="Enter a new name to identify this profile",
+            min_length=profile_settings["min_friendly_name_length"],
+            max_length=profile_settings["max_friendly_name_length"],
+            placeholder="Enter new name"
+        )
+        self.message = message
+        self.add_item(input_profile_name)
+
+    async def callback(self, interaction: discord.Interaction):
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
+
+        # there is probably a better way to do this
+        self.user_document["profiles"][str(self.cur_profile_id)]["friendly_name"] = self.children[0].value
+
+        await replace_user_document(self.client, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
+        embed.description += f"\n*Changed name of profile **{self.cur_profile_id}***\n\u200b"
+        select_options = generate_select_options(self.client, self.cur_profile_id, self.user_document)
+        profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
+                                       self.message)
+
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
+        await interaction.response.edit_message(embed=embed, view=profile_view)
 
 
 class NewProfileModal(discord.ui.Modal):
@@ -362,28 +407,43 @@ class Profile(ext.Cog):
         self.client = client
         # can u not unindent by ctrl shift + [ weird nanny
 
-    async def profile_command(self, ctx):
+    async def profile_command(self, ctx, new_profile, slash=False):
+        user_document = await self.client.get_user_document(self.client, ctx.author.id)
+        current_command = "\n*Waiting for command*\n\u200b"
+
+        if new_profile is not None:
+
+            if new_profile not in list(user_document["profiles"].keys()):
+                current_command = "\n*Attempted to switch to non-existent profile*\n\u200b"
+            else:
+                self.client.processing_queue[user_document["user_snowflake"]] = True
+
+                user_document["global"]["selected_profile"] = int(new_profile)
+                await replace_user_document(self.client, user_document)
+                current_command = f"\n*Selected profile **{new_profile}***\n\u200b"
+                del self.client.processing_queue[user_document["user_snowflake"]]
+
         user_document = await self.client.get_user_document(self.client, ctx.author.id)
         current_selected_profile = user_document["global"]["selected_profile"]
-        print(user_document)
 
         embed = await create_main_embed(ctx, self.client, current_selected_profile, user_document)
-        embed.description += "\n*Waiting for command*\n\u200b"
+        embed.description += current_command
         select_options = generate_select_options(self.client, current_selected_profile, user_document)
         profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document)
         # brb back gtg soonish
-        await stw.slash_send_embed(ctx, False, embed, profile_view)
+        await stw.slash_send_embed(ctx, slash, embed, profile_view)
 
     @ext.command(name='profile',
-                 extras={'emoji': "stormshard", "args": {'ext': 'what args'}},
-                 brief="mango drum b",
-                 description="donkey kong ooga booga's cogs to mango changes")
-    async def profile(self, ctx):
-        await self.profile_command(ctx)
+                 extras={'emoji': "stormshard", "args": {'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)'}},
+                 brief="Allows you to create, change the name of, select, & delete profiles",
+                 description="A command which allows you to interact with a view to switch between profiles, create new profiles utilising a modal, delete existing profiles and edit the name of existing profiles")
+    async def profile(self, ctx, profile=None):
+        await self.profile_command(ctx, profile)
 
-    @ext.command(name='profile2',
-                 extras={'emoji': "stormshard", "args": {'ext': 'what args'}},
-                 brief="mango drum b",
-                 description="donkey kong ooga booga's cogs to mango changes")
-    async def profile2(self, ctx):
-        await self.client.stw_database.delete_one({"user_snowflake": ctx.author.id})
+    @slash_command(name='profile',
+                   description="Allows you to create, change the name of, select, & delete profiles",
+                   guild_ids=stw.guild_ids)
+    async def slashprofile(self, ctx: discord.ApplicationContext,
+                            profile: Option(int,
+                                          "Which profile you wish to switch to (Leave empty if you wish to utilise the View)") = None):
+        await self.profile_command(ctx, profile, True)
