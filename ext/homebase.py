@@ -154,7 +154,7 @@ class Homebase(ext.Cog):
                             name: Option(str, "The new name for your Homebase; to view current, leave blank") = "",
                             token: Option(str,
                                           "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                            auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
+                            auth_opt_out: Option(bool, "Opt Out of Authentication session") = False, ):
         await self.hbrename_command(ctx, True, name, token, not auth_opt_out)
 
     @ext.command(name='homebase',

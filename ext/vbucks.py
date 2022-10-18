@@ -114,7 +114,7 @@ class Vbucks(ext.Cog):
     async def slashvbucks(self, ctx: discord.ApplicationContext,
                           token: Option(str,
                                         "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                          auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
+                          auth_opt_out: Option(bool, "Opt Out of Authentication session") = False, ):
         await self.vbuck_command(ctx, True, token, not auth_opt_out)
 
     @ext.command(name='vbucks',
