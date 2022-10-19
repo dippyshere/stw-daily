@@ -130,6 +130,10 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
     return embed
 
 
+def edit_emoji_button(client, button):
+    button.emoji = client.config["emojis"][button.emoji.name]
+    return button
+
 class ProfileMainView(discord.ui.View):
     def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None):
         super().__init__()
@@ -152,16 +156,11 @@ class ProfileMainView(discord.ui.View):
         self.user_document = user_document
         self.interaction_check_done = {}
 
-        self.button_emojis = {
-            'meleegeneric': self.client.config["emojis"]["meleegeneric"],
-            'leadsurvivor': self.client.config["emojis"]['leadsurvivor'],
-            'cross': self.client.config["emojis"]['cross'],
-        }
 
         if not (len(user_document["profiles"].keys()) < client.config["profile_settings"]["maximum_profiles"]):
             self.children[2].disabled = True
 
-        self.children[1:] = list(map(self.map_button_emojis, self.children[1:]))
+        self.children[1:] = list(map(lambda button: edit_emoji_button(self.client, button), self.children[1:]))
 
     async def on_timeout(self):
 
@@ -224,7 +223,7 @@ class ProfileMainView(discord.ui.View):
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="meleegeneric")
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="survivorgeneric", row=1)
     async def name_button(self, _button, interaction):
         await interaction.response.send_modal(ChangeNameModal(self.ctx, self.client, self.user_document, self.message))
 
@@ -234,7 +233,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.edit_original_response(view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor")
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor",row=1)
     async def new_button(self, _button, interaction):
         await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
 
@@ -244,7 +243,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.edit_original_response(view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross")
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross",row=1)
     async def delete_button(self, _button, interaction):
 
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
@@ -285,6 +284,35 @@ class ProfileMainView(discord.ui.View):
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
 
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="meleegeneric",row=2)
+    async def settings_button(self, _button, interaction):
+        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
+
+        for child in self.children:
+            child.disabled = True
+
+        await interaction.edit_original_response(view=self)
+        self.stop()
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="locked",row=2)
+    async def auth_button(self, _button, interaction):
+        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
+
+        for child in self.children:
+            child.disabled = True
+
+        await interaction.edit_original_response(view=self)
+        self.stop()
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Information", emoji="experimental",row=2)
+    async def acc_button(self, _button, interaction):
+        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
+
+        for child in self.children:
+            child.disabled = True
+
+        await interaction.edit_original_response(view=self)
+        self.stop()
 class ChangeNameModal(discord.ui.Modal):
     def __init__(self, ctx, client, user_document, message):
         self.ctx = ctx

@@ -140,6 +140,7 @@ left_icon			= "<:left_stw:1032194339398488064>"
 23					= "<:twentythree_stw:1030719392645918790>"
 24					= "<:twentyfour_stw:1030719390938832956>"
 25					= "<:twentyfive_stw:1030719388774580295>"
+locked 				= "<:Locked:812201301848358923>"
 
 [profile_settings]
 max_friendly_name_length = 100
@@ -165,7 +166,7 @@ gold				= "https://cdn.discordapp.com/attachments/643743040372080653/10281865149
 vbuck_book			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186515773337640/T-Icon-VBuckChallenges-L.png"
 daily_coin			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186636900646942/T-Items-DailyCoin-L.png"
 freedom_herald		= "https://cdn.discordapp.com/attachments/643743040372080653/1028186936613011456/WID_Pistol_FireCracker_R_Ore_T01.png"
-clown				= "https://cdn.discordapp.com/attachments/767607876348018689/1032250365430738944/pensiveclown.png"
+clown				= "https://cdn.discordapp.com/attachments/767607876348018689/1032250365430738944/pensiveclown.png" # alexander hanson
 storm_shard			= "https://media.discordapp.net/attachments/643743040372080653/1028186513730699274/T-Items-Reagent-C-T04-L.png"
 
 # Different colours for commands
