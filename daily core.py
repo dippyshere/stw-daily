@@ -49,6 +49,7 @@ def main():
         "serverext",
         "homebase",
         "vbucks",
+        "news",
         "reload"
     ]
 
