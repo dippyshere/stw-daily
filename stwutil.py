@@ -392,6 +392,40 @@ def extract_item(profile_json, item_string="Currency:Mtx"):
     return found_items
 
 
+# method to get stw news from epic
+async def get_stw_news(client):
+    endpoint = client.config["endpoints"]["stw_news"]
+    return await client.stw_session.get(endpoint)
+
+
+# method to get br news from fortnite-api
+async def get_br_news(client):
+    endpoint = client.config["endpoints"]["br_news"]
+    return await client.stw_session.get(endpoint)
+
+
+# news page embed
+async def create_news_page(self, ctx, news_json, current, total):
+    generic = self.client.colours["generic_blue"]
+    embed = discord.Embed(title=await add_emoji_title(self.client, "News", "placeholder"),
+                          description=f"\u200b\n**News page {current} of {total}:**\u200b\n"
+                                      f"**{news_json[current - 1]['title']}**"
+                                      f"\n{news_json[current - 1]['body']}",
+                          colour=generic)
+
+    embed.description += "\u200b\n\u200b"
+
+    # set embed image
+    embed = await set_embed_image(embed, news_json[current - 1]["image"])
+    embed = await set_thumbnail(self.client, embed, "clown")
+    embed = await add_requested_footer(ctx, embed)
+    return embed
+
+
+async def set_embed_image(embed, image_url):
+    return embed.set_image(url=image_url)
+
+
 # method to resolve internal name -> user-friendly name + emoji
 async def resolve_vbuck_source(vbuck_source):
     if vbuck_source == "Currency:MtxGiveaway":

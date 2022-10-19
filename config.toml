@@ -112,6 +112,8 @@ cal_anim			= "<a:cal_teams:1030710470493085798> "
 cross				= "<:Cross:812201302041427969>"
 left_delta			= "<:left_delta:1030665031257432084>"
 right_delta			= "<:right_delta:1030665032985485484>"
+right_icon			= "<:right_stw:1032194337783697419>"
+left_icon			= "<:left_stw:1032194339398488064>"
 0					= "<:zero_stw:1030710720607834182>"
 1					= "<:one_stw:1030710718934302780>"
 2					= "<:two_stw:1030710717252374578>"
@@ -189,6 +191,10 @@ kill_token 			= "https://account-public-service-prod.ol.epicgames.com/account/ap
 exchange 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
 device_auth 		= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
 store				= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
+news				= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game"
+stw_news			= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews"
+br_news				= "https://fortnite-api.com/v2/news/br"
+pve_info			= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
 
 # different requests under profile
 [profile]

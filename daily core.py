@@ -52,6 +52,7 @@ def main():
         "reload",
         "bongodb",
         "devauth",
+        "news",
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
     for ext in extensions:

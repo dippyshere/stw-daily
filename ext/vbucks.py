@@ -73,7 +73,6 @@ class Vbucks(ext.Cog):
         xray = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await stw_request.json(),
                                                       item_string="AccountResource:currency_xrayllama"))
 
-
         # fetch vbucks total
         vbucks_total = await stw.calculate_vbucks(vbucks)
 
