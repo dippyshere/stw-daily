@@ -163,7 +163,7 @@ class Help(ext.Cog):
                  brief="Displays commands info, only the author may use the select",
                  description="A command which displays information about all other commands, helpful to understand the usage of each command and their purpose.")
     async def help(self, ctx, command=None):
-        await self.help_command(ctx, command)
+        await self.help_command(ctx, str(command).lower())
 
     @slash_command(name='help',
                    description='Displays information about other commands',
@@ -174,7 +174,7 @@ class Help(ext.Cog):
             command: Option(str, "Choose a command to view help of",
                             choices=["help", "kill", "auth", "daily", "info", "reward"]) = None):
 
-        await self.help_command(ctx, command, True)
+        await self.help_command(ctx, str(command).lower(), True)
 
     # hello command
 
