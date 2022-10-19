@@ -108,6 +108,8 @@ LMAO				= "😂"
 spongebob			= "<a:sadspongebob:1028829840977182770>"
 megamind			= "<:megamind:1028829842776526868>"
 cross				= "<:Cross:812201302041427969>"
+right_icon			= "<:right_stw:1032194337783697419>"
+left_icon			= "<:left_stw:1032194339398488064>"
 
 #a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]
