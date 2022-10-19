@@ -388,6 +388,16 @@ def extract_item(profile_json, item_string="Currency:Mtx"):
     return found_items
 
 
+# method to get stw news from epic
+async def get_stw_news(client):
+    endpoint = client.config["endpoints"]["stw_news"]
+    return await client.stw_session.get(endpoint)
+
+
+async def set_embed_image(embed, image_url):
+    return embed.set_image(url=image_url)
+
+
 # method to resolve internal name -> user-friendly name + emoji
 async def resolve_vbuck_source(vbuck_source):
     if vbuck_source == "Currency:MtxGiveaway":
@@ -806,10 +816,11 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 async def strip_string(string):
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
+
 def create_command_dict(client):
     command_name_dict = {}
     command_dict = {}
-    
+
     # Gets aliases and adds them to commmand_name_dict so we can match for aliases too in the command arg
     for command in client.commands:
         command_name_dict[command.name] = command.name
@@ -820,6 +831,7 @@ def create_command_dict(client):
         command_dict[command.name] = command
 
     return command_name_dict, command_dict, list(command_name_dict)
+
 
 # regex for 32 character hex
 async def extract_auth_code(string):

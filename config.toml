@@ -154,6 +154,10 @@ kill_token 			= "https://account-public-service-prod.ol.epicgames.com/account/ap
 exchange 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
 device_auth 		= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
 store				= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
+news				= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game"
+stw_news			= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews"
+br_news				= "https://fortnite-api.com/v2/news/br"
+pve_info			= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
 
 # different requests under profile
 [profile]
