@@ -134,6 +134,7 @@ def edit_emoji_button(client, button):
     button.emoji = client.config["emojis"][button.emoji.name]
     return button
 
+
 class ProfileMainView(discord.ui.View):
     def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None):
         super().__init__()
@@ -155,7 +156,6 @@ class ProfileMainView(discord.ui.View):
         self.current_selected_profile = current_selected_profile
         self.user_document = user_document
         self.interaction_check_done = {}
-
 
         if not (len(user_document["profiles"].keys()) < client.config["profile_settings"]["maximum_profiles"]):
             self.children[2].disabled = True
@@ -233,7 +233,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.edit_original_response(view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor",row=1)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor", row=1)
     async def new_button(self, _button, interaction):
         await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
 
@@ -243,7 +243,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.edit_original_response(view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross",row=1)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross", row=1)
     async def delete_button(self, _button, interaction):
 
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
@@ -283,8 +283,7 @@ class ProfileMainView(discord.ui.View):
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
-
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="meleegeneric",row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="meleegeneric", row=2)
     async def settings_button(self, _button, interaction):
         await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
 
@@ -294,7 +293,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.edit_original_response(view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="locked",row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="locked", row=2)
     async def auth_button(self, _button, interaction):
         await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
 
@@ -304,7 +303,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.edit_original_response(view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Information", emoji="experimental",row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Information", emoji="experimental", row=2)
     async def acc_button(self, _button, interaction):
         await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
 
@@ -313,6 +312,15 @@ class ProfileMainView(discord.ui.View):
 
         await interaction.edit_original_response(view=self)
         self.stop()
+
+
+# How do I explain to my gynecologist that I don't want to get rid of my pubic lice? I am infertile and my sweet little crab babies are the closest thing I have to birthing actual children...
+# i cant pay electric bill
+# oh hey i just bouta go to bed
+# i know we couldan skype tonigh
+# but thats alrigh
+# goodnigh girl
+# i see you tommoro
 class ChangeNameModal(discord.ui.Modal):
     def __init__(self, ctx, client, user_document, message):
         self.ctx = ctx
@@ -463,7 +471,8 @@ class Profile(ext.Cog):
         await stw.slash_send_embed(ctx, slash, embed, profile_view)
 
     @ext.command(name='profile',
-                 extras={'emoji': "stormshard", "args": {'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)'}},
+                 extras={'emoji': "stormshard", "args": {
+                     'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)'}},
                  brief="Allows you to create, change the name of, select, & delete profiles",
                  description="A command which allows you to interact with a view to switch between profiles, create new profiles utilising a modal, delete existing profiles and edit the name of existing profiles")
     async def profile(self, ctx, profile=None):
@@ -473,6 +482,6 @@ class Profile(ext.Cog):
                    description="Allows you to create, change the name of, select, & delete profiles",
                    guild_ids=stw.guild_ids)
     async def slashprofile(self, ctx: discord.ApplicationContext,
-                            profile: Option(int,
-                                          "Which profile you wish to switch to (Leave empty if you wish to utilise the View)") = None):
+                           profile: Option(int,
+                                           "Which profile you wish to switch to (Leave empty if you wish to utilise the View)") = None):
         await self.profile_command(ctx, profile, True)
