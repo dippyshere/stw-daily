@@ -50,8 +50,8 @@ def main():
         "homebase",
         "vbucks",
         "reload",
-        "bongodb",
-        "devauth",
+        "profile.bongodb",
+        "profile.devauth",
         "news",
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
