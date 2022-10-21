@@ -28,7 +28,7 @@ class NewsView(discord.ui.View):
         self.button_emojis = {
             'prev': self.client.config["emojis"]["left_icon"],
             'next': self.client.config["emojis"]['right_icon'],
-            'stw': self.client.config["emojis"]['library_cal'],
+            'stw': self.client.config["emojis"]['stw_box'],
             'br': self.client.config["emojis"]['bp_icon']
         }
 
@@ -149,7 +149,7 @@ class News(ext.Cog):
             embed = await stw.create_news_page(self, ctx, br_news, page, br_pages_length)
         else:
             embed = await stw.create_news_page(self, ctx, stw_news, page, stw_pages_length)
-        embed = await stw.set_thumbnail(self.client, embed, "clown")
+        embed = await stw.set_thumbnail(self.client, embed, "newspaper")
         embed = await stw.add_requested_footer(ctx, embed)
 
         news_view = NewsView(self.client, ctx.author, ctx, slash, page, stw_news, stw_pages_length, br_news,
@@ -167,7 +167,7 @@ class News(ext.Cog):
 
     @ext.command(name='news',
                  aliases=['n'],
-                 extras={'emoji': "placeholder", "args": {'page': "The page number you want to see (Optional)",
+                 extras={'emoji': "bang", "args": {'page': "The page number you want to see (Optional)",
                                                           "mode": "The game mode you want to see news from (stw/br) (Optional)"}},
                  brief="Get the latest news from Fortnite.",
                  description="""This command allows you to see the latest news from Fortnite in both Battle Royale and Save the World.
