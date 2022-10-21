@@ -7,8 +7,8 @@ from discord import Option
 import stwutil as stw
 
 
-# cog for the device auth login testing command.
-class DevAuth(ext.Cog):
+# cog for the device auth login command.
+class ProfileAuth(ext.Cog):
 
     def __init__(self, client):
         self.client = client
@@ -64,7 +64,7 @@ class DevAuth(ext.Cog):
         #     return
 
         # With all info extracted, create the output
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Device auth", "placeholder"),
+        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Device auth", "link_acc"),
                               description=f"\u200b\n",
                               colour=vbucc_colour)
 
@@ -91,12 +91,28 @@ class DevAuth(ext.Cog):
                              auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
         await self.devauth_command(ctx, True, token, not auth_opt_out)
 
+
+    @ext.command(name='device',
+                 aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'profileauth', 'proauth'],
+                 extras={'emoji': "link_acc", "args": {
+                     'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)'}},
+                brief="Add permanent authentication to a profile",
+                 description="""This command allows you to create a device auth session, which will keep you logged in while utilising the profile which has been linked to the account specified by the device authentication.
+                \u200b
+                """)
+    async def device(self, ctx, authcode=''):
+        await self.devauth_command(ctx, False, authcode)
+
+
+def setup(client):
+    client.add_cog(ProfileAuth(client))
+
     # why do we have auto_trial thing hm i guess i mean it makes sense but seems kinda redundant why not just have one flag thats like auto_trial claimed and grant them auto_claim days
     # there is a lot of redudant data in that json :D but true we could do that
     # just wanted it as a separate thing if we want to stop the trial grant in the future / change it for future users (e.g. default profile for chrissy is 3 months autoclaim, after holiday season its only 1 month) whats digest
     # hi im going to write this here cause ur more likely to read it on discord than here :3
     """
-    
+
     so i had this idea to sort of make it alot easier to deal with data issues relating to concurrency
     whenever a user say adds data to the database we should have some sort of check to prevent that their new data
     that they've entered wont like really interfere with data that is still being entered
@@ -108,19 +124,19 @@ class DevAuth(ext.Cog):
     and while it is in the queue the user will be met with an error message that says soemthing like currently processing account data
     when they try to get their data or update/write to it, this just helps prevent the issue where somehow the user is met with
     old data that they just updated or somehow overwrite their new data with old data 
-    
+
     tldr;
     new processing_queue system for mongodb is going to be added which helps prevent issues related to concurrency and
     prevents old data from overwriting new data though it does slightly impact the user experience but modern internet
     speed should just easily prevent it from impacting that much
-    
+
     um wouldnt it be possible to like display the processing embed then just try their action again?
-    
+
     yes it would be possible to display the processing embed but what about if they like try to read their data while its 
     being updated? it would just read the old data or something? idk lol idk how mongodb works
     ummm mongo pretty fast, but ya i guess we could  hi just idk also was very funny watching you retype eaktiphmalkertymjhlkae4mydtjgak,lertdmhjgnblkoamedtlokhhmablkiortgdjmahlokiryfmjlk oh wait ctrl z exists my question
     do u have any other ideas 
-    
+
     here are stuff that we need idea for:
     default document when they dont have stuff in mongodb already
         - store in a table thing with their id being their snowflake or something, then try to get _id using snowflake, if not found then create
@@ -148,7 +164,7 @@ class DevAuth(ext.Cog):
         - stores settings for the snowflake # should this be global or per user profile um per profile rather than per server for now
             - per profile as in per snowflake not per device account :D
             - settings only added to mongo if they are changd  from defaults because epic loves to do this :sob:
-        
+
         so should we just  ugh i dont want to hard code defaults TwT how else can we do it?? 
         :( i guess we havee to rightt atleast can we make a seperate file TwT yeah ofc we dont HAVE to keep stuff out of mongo if it doesnt have its default changed or whatever idk
         its fine if we hard code it as long as we do it outside of the code :thumbs_up: true
@@ -162,25 +178,25 @@ class DevAuth(ext.Cog):
                     'total_times_claimed_manual': 0,
                     'total_times_claimed_auto': 0,
                     'vbucks_claimed': 0,
-        
+
                     'donation_source': 'none',
                     'donation_tier': 0,
-                    
+
                     'auto_claim': {
                       'days_remaining': 0,
                     },
-                    
+
                     'banned': False,
                     'banned_reason': 'none',
                     'banned_by': 'none',
                     'banned_date': 'none',
                     'banned_duration': 'none',
-                    
+
                     'tos_accepted': False,
                     'tos_accepted_date': 'none',
                     'tos_accepted_version': 'none',
-                    
-                    
+
+
                     'auto_trial': {
                         'eligible': False,
                         'claimed': False,
@@ -191,16 +207,16 @@ class DevAuth(ext.Cog):
                         'vbucks_claimed': 0,
                         'total_times_claimed': 0,
                     },
-                    
+
                     'isServerBoosting': False,
                     'isServerBoostingSince': None,
                     'isServerBoostingUntil': None,
                     'isServerMember': None,
                     'isServerMemberSince': None,
                     'first_claimed': None,
-        
+
                     // dinner brb tell me what u hve for dinner ttoo even though u already had dinner chicken sumthn
-                    
+
                     # ALRIGHT SO
                     # wanna make like idk get profiles working?
                     # sure idk
@@ -241,7 +257,7 @@ class DevAuth(ext.Cog):
                     'authentication': {}
                 },
         }
-        
+
         what we already get document by user snowflake like ? hm ok then i see
         use the bongo test command thing it will add new document and anytime u fetch it'll fetch by ur user_snowflake thing
     wow lmao github
@@ -294,25 +310,3 @@ class DevAuth(ext.Cog):
     thank you
     you are welcome sorry i forgor what githubs questions were
     """
-
-    @ext.command(name='device',
-                 aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode'],
-                 extras={'emoji': "placeholder", "args": {
-                     'authcode': 'The authcode to start an authentication session with if one does not exist, if an auth session already exists this argument is optional (Optional)',
-                     'opt-out': 'Any value inputted into this field will opt you out of the authentication session system when you enter the authcode for this command (Optional)'}},
-                 brief="Create a device auth session",
-                 description="""This command allows you to create a device auth session, which will keep you logged in. hi You must be authenticated to use this command.
-                \u200b
-                """)
-    async def device(self, ctx, authcode='', optout=None):
-
-        if optout is not None:
-            optout = True
-        else:
-            optout = False
-
-        await self.devauth_command(ctx, False, authcode, not optout)
-
-
-def setup(client):
-    client.add_cog(DevAuth(client))

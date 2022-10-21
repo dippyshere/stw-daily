@@ -15,6 +15,3 @@ import stwutil as stw
 import motor.motor_asyncio
 
 import bongodb
-
-async def shinunoga():
-    pass

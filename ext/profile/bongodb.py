@@ -295,13 +295,7 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="locked", row=2)
     async def auth_button(self, _button, interaction):
-        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
-
-        for child in self.children:
-            child.disabled = True
-
-        await interaction.edit_original_response(view=self)
-        self.stop()
+        pass
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Information", emoji="experimental", row=2)
     async def acc_button(self, _button, interaction):
