@@ -162,11 +162,17 @@ def get_reward(client, day, vbucks=True):
     return [item[0], emoji_text]
 
 
-async def get_token(client, auth_code: str):
-    h = {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": "basic ZWM2ODRiOGM2ODdmNDc5ZmFkZWEzY2IyYWQ4M2Y1YzY6ZTFmMzFjMjExZjI4NDEzMTg2MjYyZDM3YTEzZmM4NGQ="
-    }
+async def get_token(client, auth_code: str, game="fn"):
+    if game == "bb":
+        h = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "basic M2NmNzhjZDNiMDBiNDM5YTg3NTVhODc4YjE2MGM3YWQ6YjM4M2UwZjQtZjBjYy00ZDE0LTk5ZTMtODEzYzMzZmMxZTlk="
+        }
+    else:
+        h = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "basic ZWM2ODRiOGM2ODdmNDc5ZmFkZWEzY2IyYWQ4M2Y1YzY6ZTFmMzFjMjExZjI4NDEzMTg2MjYyZDM3YTEzZmM4NGQ="
+        }
     d = {
         "grant_type": "authorization_code",
         "code": auth_code
@@ -297,10 +303,14 @@ async def slash_edit_original(msg, slash, embeds, view=None):
             return await msg.edit_original_response(embeds=embeds)
 
 
-async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw"):
-    token = auth_entry["token"]
-    url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type],
-                                                       client.config["profileid"][profile_id])
+async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn"):
+    if game == "bb":
+        token = auth_entry["token"]
+        url = client.config["endpoints"]["bb_profile"].format(auth_entry["account_id"], client.config["profile"][req_type])
+    else:
+        token = auth_entry["token"]
+        url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type],
+                                                           client.config["profileid"][profile_id])
     header = {
         "Content-Type": "application/json",
         "Authorization": f"bearer {token}"
@@ -407,7 +417,7 @@ async def get_br_news(client):
 # news page embed
 async def create_news_page(self, ctx, news_json, current, total):
     generic = self.client.colours["generic_blue"]
-    embed = discord.Embed(title=await add_emoji_title(self.client, "News", "placeholder"),
+    embed = discord.Embed(title=await add_emoji_title(self.client, "News", "bang"),
                           description=f"\u200b\n**News page {current} of {total}:**\u200b\n"
                                       f"**{news_json[current - 1]['title']}**"
                                       f"\n{news_json[current - 1]['body']}",
@@ -417,7 +427,7 @@ async def create_news_page(self, ctx, news_json, current, total):
 
     # set embed image
     embed = await set_embed_image(embed, news_json[current - 1]["image"])
-    embed = await set_thumbnail(self.client, embed, "clown")
+    embed = await set_thumbnail(self.client, embed, "newspaper")
     embed = await add_requested_footer(ctx, embed)
     return embed
 
@@ -429,7 +439,7 @@ async def set_embed_image(embed, image_url):
 # method to resolve internal name -> user-friendly name + emoji
 async def resolve_vbuck_source(vbuck_source):
     if vbuck_source == "Currency:MtxGiveaway":
-        return "Battle Pass", "bp_icon"
+        return "Battle Pass", "bp_icon2"
     elif vbuck_source == "Currency:MtxComplimentary":
         return "Save the World", "library_cal"
     elif vbuck_source == "Currency:MtxPurchased":
@@ -457,7 +467,7 @@ async def calculate_vbucks(items):
 
 
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True,
-                                     epic_auth_client="PC"):  # hi bye
+                                     epic_auth_client="PC", game="fn"):  # hi bye
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 
