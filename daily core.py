@@ -30,7 +30,7 @@ def main():
     config_path = "config.toml"
     client.config = load_config(config_path)
 
-    # simple way to parse the colours from config into usable colours
+    # simple way to parse the colours from config into usable colours;
     client.colours = {}
     for name, colour in client.config["colours"].items():
         client.colours[name] = discord.Colour.from_rgb(colour[0], colour[1], colour[2])

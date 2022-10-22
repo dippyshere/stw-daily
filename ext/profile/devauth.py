@@ -82,20 +82,20 @@ class ProfileAuth(ext.Cog):
         await stw.slash_edit_original(auth_info[0], slash, final_embeds)
         return
 
-    @ext.slash_command(name='deviceauth',
-                       description='Test device auth login :D',
+    @ext.slash_command(name='device',
+                       description='Add permanent authentication to the currently selected or another profile',
                        guild_ids=stw.guild_ids)
-    async def slashcreatedev(self, ctx: discord.ApplicationContext,
+    async def slash_device(self, ctx: discord.ApplicationContext,
                              token: Option(str,
-                                           "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                             auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
-        await self.devauth_command(ctx, True, token, not auth_opt_out)
+                                           "An optional authcode that can be entered later on during the setup process, will be used to link your account to a profile") = ""
+                           ):
+        await self.devauth_command(ctx, True, token)
 
     @ext.command(name='device',
                  aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'profileauth', 'proauth'],
                  extras={'emoji': "link_acc", "args": {
                      'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)'}},
-                 brief="Add permanent authentication to a profile",
+                 brief="Add permanent authentication to the currently selected or another profile",
                  description="""This command allows you to create a device auth session, which will keep you logged in while utilising the profile which has been linked to the account specified by the device authentication.
                 \u200b
                 """)
