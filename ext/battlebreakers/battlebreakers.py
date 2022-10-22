@@ -34,7 +34,7 @@ class BattleBreakersDaily(ext.Cog):
         yellow = self.client.colours["warning_yellow"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "bbdaily", authcode, slash, auth_opt_out,
-                                                         True)
+                                                         True, game="bb")
         if not auth_info[0]:
             return
 
@@ -54,14 +54,13 @@ class BattleBreakersDaily(ext.Cog):
         # ok now we have the authcode information stuff, so it's time to attempt to claim daily on the road
         request = await stw.profile_request(self.client, "daily", auth_info[1], game="bb")
         json_response = await request.json()
-        vbucks = auth_info[1]["vbucks"]
 
         # check for le error code
         try:
             error_code = json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "daily", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
         except:

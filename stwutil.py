@@ -5,10 +5,15 @@ import random
 import re
 import time
 import math
+import json
 
 import discord
 
 import items
+import ext.battlebreakers.BBLootTable  # dinnerbrb
+
+with open("ext.battlebreakers.LoginRewards.json", "r") as LoginRewards:
+    LoginRewards = json.load(LoginRewards)
 
 guild_ids = None
 
@@ -129,10 +134,12 @@ async def add_emoji_title(client, title, emoji):
     emoji = client.config["emojis"][emoji]
     return f"{emoji}  {title}  {emoji}"
 
+
 async def split_emoji_title(client, title, emoji_1, emoji_2):
     emoji_1 = client.config["emojis"][emoji_1]
     emoji_2 = client.config["emojis"][emoji_2]
     return f"{emoji_1}  {title}  {emoji_2}"
+
 
 # shortens setting thumbnails for embeds
 async def set_thumbnail(client, embed, thumb_type):
@@ -160,6 +167,27 @@ def get_reward(client, day, vbucks=True):
         emoji_text += client.config["emojis"][emoji]
 
     return [item[0], emoji_text]
+
+
+def get_bb_reward_data(client, response, error=False):
+    if error:
+        day = response['messageVars'][0]  # hello world explorer hi
+    else:  # do u see me minimizing it no
+        day = response["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"];
+
+    # im not sure if it actually loops after day 1800, but just in case not like anyone will use this command anyway
+    day_mod = int(day) % 1800
+    if day_mod == 0:
+        day_mod = 1800
+
+    # done FORTIFICAITION OF THE NIGHT
+    asset_path_name = LoginRewards[0]['Rows'][day_mod - 1]['ItemDefinition']['AssetPathName']
+
+    emoji, name, description = ext.battlebreakers.BBLootTable.BBLootTable[asset_path_name]
+
+    emoji_text = client.config["emojis"][emoji]
+
+    return [day, name, emoji_text, description]
 
 
 async def get_token(client, auth_code: str, game="fn"):
@@ -305,8 +333,9 @@ async def slash_edit_original(msg, slash, embeds, view=None):
 
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn"):
     if game == "bb":
-        token = auth_entry["token"]
-        url = client.config["endpoints"]["bb_profile"].format(auth_entry["account_id"], client.config["profile"][req_type])
+        token = auth_entry["bb_token"]
+        url = client.config["endpoints"]["bb_profile"].format(auth_entry["account_id"],
+                                                              client.config["profile"][req_type])
     else:
         token = auth_entry["token"]
         url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type],
@@ -363,6 +392,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         'expiry': time.time() + client.config["auth_expire_time"],
         "day": None,
         "bb_token": bb_token,
+        "bb_day": None
     }
 
     if add_entry:
@@ -626,8 +656,10 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     return [message, entry, embeds]
 
 
-async def post_error_possibilities(ctx, client, command, acc_name, error_code, support_url):
+async def post_error_possibilities(ctx, client, command, acc_name, error_code, support_url, error_level="error",
+                                   response=None):
     error_colour = client.colours["error_red"]
+    yellow = client.colours["warning_yellow"]
 
     # Epic Games Error Codes
     if error_code == "errors.com.epicgames.common.missing_action":
@@ -702,6 +734,20 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             Note: You need a new code __every time you authenticate__\n\u200b""",
             colour=error_colour
         )
+    # battle breakers error codes
+    elif error_code == "errors.com.epicgames.world_explorers.login_reward_not_available":
+        reward = get_bb_reward_data(client, response, True)
+        embed = discord.Embed(
+            title=await add_emoji_title(client, ranerror(client), "warning"), description=
+            f"""\u200b
+                        You have already claimed your reward for day **{reward[0]}**.
+                        \u200b
+                        **{reward[1]} Todays reward was:**
+                        ```{reward[2]}```
+                        You can claim tomorrow's reward <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                        \u200b
+                        """, colour=yellow)
+        error_level = "warn"
 
     # STW Daily Error Codes
     elif error_code == "errors.stwdaily.failed_guid_research":
@@ -849,7 +895,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             colour=error_colour
         )
 
-    embed = await set_thumbnail(client, embed, "error")
+    embed = await set_thumbnail(client, embed, error_level)
     embed = await add_requested_footer(ctx, embed)
     return embed
 
