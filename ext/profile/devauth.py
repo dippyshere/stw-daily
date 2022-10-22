@@ -91,12 +91,11 @@ class ProfileAuth(ext.Cog):
                              auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
         await self.devauth_command(ctx, True, token, not auth_opt_out)
 
-
     @ext.command(name='device',
                  aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'profileauth', 'proauth'],
                  extras={'emoji': "link_acc", "args": {
                      'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)'}},
-                brief="Add permanent authentication to a profile",
+                 brief="Add permanent authentication to a profile",
                  description="""This command allows you to create a device auth session, which will keep you logged in while utilising the profile which has been linked to the account specified by the device authentication.
                 \u200b
                 """)

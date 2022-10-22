@@ -352,7 +352,7 @@ async def manslaughter_session(client, account_id, kill_stamp):
         # 😳 they'll never know 😳
 
 
-async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry):
+async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None):
     display_name = response["displayName"]
 
     entry = {
@@ -362,6 +362,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         "account_name": f"{display_name}",
         'expiry': time.time() + client.config["auth_expire_time"],
         "day": None,
+        "bb_token": bb_token,
     }
 
     if add_entry:
