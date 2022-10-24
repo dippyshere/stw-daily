@@ -177,7 +177,7 @@ def get_bb_reward_data(client, response, error=False):
     if day_mod == 0:
         day_mod = 1800
 
-    # done FORTIFICAITION OF THE NIGHT
+    # done FORTIFICAITION OF THE NIGHT hmm i see folders
     asset_path_name = LoginRewards[0]["Rows"][str(day_mod - 1)]["ItemDefinition"]["AssetPathName"]
 
     emoji, name, description = ext.battlebreakers.BBLootTable.BBLootTable[asset_path_name]
