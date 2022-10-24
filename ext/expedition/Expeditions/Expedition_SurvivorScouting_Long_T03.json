@@ -1,0 +1,31 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_SurvivorScouting_Long_T03",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T03",
+      "ExpeditionDuration_Minutes": 1200.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 470,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "SurvivorScouting_Long_T03"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "5EBBF12F4CA92E6480F4BB8A4F48ECF2",
+        "SourceString": "... Of the Fittest"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "2D7A9AE14E52E7F96179349C3272F0A2",
+        "SourceString": "The finest survivors face off in a heated competition to decide who joins the Commander's crew!"
+      }
+    }
+  }
+]

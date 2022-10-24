@@ -1,0 +1,31 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_CraftingRun_Medium_T01",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T01",
+      "ExpeditionDuration_Minutes": 960.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 30,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "CraftingRun_Medium_T01"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "2FB82F29432BC4011C6FC3BEB6DE2F6D",
+        "SourceString": "Stock Up"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "FE2949544B505FABC3E7278276206086",
+        "SourceString": "Assemble a powerful team to search the area for resources. "
+      }
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_ResourceRun_Wood_Short",
+    "Properties": {
+      "ExpeditionDuration_Minutes": 480.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 20,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "ResourceRun_Wood_Short"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "78482BFA405205F7652193AB3220A784",
+        "SourceString": "In the Pines"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "6411DDC447554097B8E5008632461934",
+        "SourceString": "Assemble a scavenging team to collect wood. "
+      }
+    }
+  }
+]

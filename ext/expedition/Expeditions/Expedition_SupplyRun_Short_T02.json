@@ -1,0 +1,31 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_SupplyRun_Short_T02",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
+      "ExpeditionDuration_Minutes": 480.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 80,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "SupplyRun_Short_T02"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "8E8553EF444DEE9047EBDA8604218291",
+        "SourceString": "Cache Grab"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "53E40F9044793ABE4BE2BCA8A758F9DC",
+        "SourceString": "Dispatch a team to raid a nearby supply cache!"
+      }
+    }
+  }
+]

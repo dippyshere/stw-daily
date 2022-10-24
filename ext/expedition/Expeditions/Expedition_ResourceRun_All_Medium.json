@@ -1,0 +1,30 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_ResourceRun_All_Medium",
+    "Properties": {
+      "ExpeditionDuration_Minutes": 960.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 80,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "ResourceRun_All_Medium"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "9A3E3A7B40ECF5C3571230849C47144A",
+        "SourceString": "Resourceful  - All"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "26AAFE6C43FBEBFFF95066BEBE7E53F7",
+        "SourceString": "Assemble a scavenging team to collect valuable resources."
+      }
+    }
+  }
+]

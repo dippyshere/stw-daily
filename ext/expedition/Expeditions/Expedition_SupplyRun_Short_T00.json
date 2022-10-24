@@ -1,0 +1,31 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_SupplyRun_Short_T00",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T01",
+      "ExpeditionDuration_Minutes": 240.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 20,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "SupplyRun_Short_T00"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "CE2D20634013E13B8C8C2C82A788F78F",
+        "SourceString": "The Gathering"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "F27E728F4FA90397EFEE32805A52BD10",
+        "SourceString": "Send a small team to gather supplies locally."
+      }
+    }
+  }
+]

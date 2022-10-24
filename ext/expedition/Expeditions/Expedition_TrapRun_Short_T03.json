@@ -1,0 +1,31 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_TrapRun_Short_T03",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T03",
+      "ExpeditionDuration_Minutes": 480.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 280,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "TrapRun_Short_T03"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "377A90B848AE914BA27E9DAFB8E1C6EA",
+        "SourceString": "It's Most Certainly a Trap"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "04FA6392416D2F92A1D080BD5FBFA8FF",
+        "SourceString": "Send a team to search for unused traps in nearby warehouses and bunkers!"
+      }
+    }
+  }
+]

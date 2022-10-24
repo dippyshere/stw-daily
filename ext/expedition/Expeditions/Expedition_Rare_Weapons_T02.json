@@ -1,0 +1,32 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_Rare_Weapons_T02",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
+      "ExpeditionDuration_Minutes": 1320.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 180,
+      "TierFactor": 35,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "Rare_Weapons_T02"
+      },
+      "Rarity": "EFortRarity::Rare",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "9216B028494BFB6A1AC52A9F6F5CA8C6",
+        "SourceString": "Weapons - RARE"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "474B2E2244C673B28F6CB9B18915CAA3",
+        "SourceString": "Investigate rumors of a weapons cache."
+      }
+    }
+  }
+]

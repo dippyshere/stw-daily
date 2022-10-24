@@ -1,0 +1,32 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_Rare_Air_Heroes_T04",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T04",
+      "ExpeditionDuration_Minutes": 1320.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 1500,
+      "TierFactor": 35,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "Rare_Air_Heroes_T04"
+      },
+      "Rarity": "EFortRarity::Rare",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "44DF7C074B9B1FE0D153CEB43A739E6B",
+        "SourceString": "The Mile High Club - RARE"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "B37724F34A7BDD247C50A79313D925EA",
+        "SourceString": "Train your bravest Heroes in the art of balloon based aerial combat. "
+      }
+    }
+  }
+]

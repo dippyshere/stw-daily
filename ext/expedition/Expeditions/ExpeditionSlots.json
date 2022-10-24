@@ -1,0 +1,158 @@
+[
+  {
+    "Type": "DataTable",
+    "Name": "ExpeditionSlots",
+    "Properties": {
+      "RowStruct": {
+        "ObjectName": "Class ExpeditionSlot",
+        "ObjectPath": "/Script/FortniteGame"
+      }
+    },
+    "Rows": {
+      "Air2_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Air.T02_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Air_T02"
+      },
+      "Air2_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Air.T02_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Air_T02"
+      },
+      "Air3_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Air.T03_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Air_T03"
+      },
+      "Air3_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Air.T03_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Air_T03"
+      },
+      "Air4_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Air.T04_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Air_T04"
+      },
+      "Air4_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Air.T04_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Air_T04"
+      },
+      "ChoppingWood": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.ChoppingWood"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_MiningOre_T00"
+      },
+      "Land1_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T01_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T01"
+      },
+      "Land1_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T01_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T01"
+      },
+      "Land2_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T02_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T02"
+      },
+      "Land2_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T02_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T02"
+      },
+      "Land3_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T03_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T03"
+      },
+      "Land3_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T03_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T03"
+      },
+      "Land4_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T04_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T04"
+      },
+      "Land4_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Land.T04_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Land_T04"
+      },
+      "MiningOre": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.MiningOre"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_ChoppingWood_T00"
+      },
+      "Sea1_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T01_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T01"
+      },
+      "Sea1_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T01_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T01"
+      },
+      "Sea2_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T02_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T02"
+      },
+      "Sea2_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T02_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T02"
+      },
+      "Sea3_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T03_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T03"
+      },
+      "Sea3_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T03_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T03"
+      },
+      "Sea4_0": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T04_0"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T04"
+      },
+      "Sea4_1": {
+        "SlotTag": {
+          "TagName": "Expedition.Generation.Sea.T04_1"
+        },
+        "LootTierGroup": "ZCP_ExpeditionGenerator_Sea_T04"
+      }
+    }
+  }
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_CraftingRun_Short_T00",
+    "Properties": {
+      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T01",
+      "ExpeditionDuration_Minutes": 240.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 20,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "CraftingRun_Short_T00"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "735DD0DF4230E48001C0499B9D664CE5",
+        "SourceString": "Crafting Supply Run"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "639E5DD248DF613C52351EBF042452F3",
+        "SourceString": "Deploy a team to search the area for resources. "
+      }
+    }
+  }
+]

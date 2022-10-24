@@ -1,0 +1,30 @@
+[
+  {
+    "Type": "FortExpeditionItemDefinition",
+    "Name": "Expedition_ResourceRun_Metal_Short",
+    "Properties": {
+      "ExpeditionDuration_Minutes": 480.0,
+      "ExpeditionExpirationDuration_Minutes": 90.0,
+      "BaseTargetPowerRating": 50,
+      "TierFactor": 20,
+      "MaxTargetPowerClamp": 5000,
+      "ExpeditionRules": {
+        "DataTable": {
+          "ObjectName": "DataTable ExpeditionRecipes",
+          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+        },
+        "RowName": "ResourceRun_Metal_Short"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "8BF0916846F22772E5267BACEBA0E65E",
+        "SourceString": "Full Metal Junket"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "DCB172B24B56632DF21DB5ACD4AF39B0",
+        "SourceString": "Assemble a scavenging team to collect some heavy metals. "
+      }
+    }
+  }
+]
