@@ -12,7 +12,7 @@ import discord
 import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb
 
-with open("ext.battlebreakers.LoginRewards.json", "r") as LoginRewards:
+with open("ext/battlebreakers/LoginRewards.json", "r") as LoginRewards:
     LoginRewards = json.load(LoginRewards)
 
 guild_ids = None
@@ -178,7 +178,7 @@ def get_bb_reward_data(client, response, error=False):
         day_mod = 1800
 
     # done FORTIFICAITION OF THE NIGHT
-    asset_path_name = LoginRewards[0]['Rows'][day_mod - 1]['ItemDefinition']['AssetPathName']
+    asset_path_name = LoginRewards[0]["Rows"][str(day_mod - 1)]["ItemDefinition"]["AssetPathName"]
 
     emoji, name, description = ext.battlebreakers.BBLootTable.BBLootTable[asset_path_name]
 
