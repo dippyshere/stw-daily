@@ -95,7 +95,7 @@ class Homebase(ext.Cog):
             # embed = await stw.set_thumbnail(self.client, embed, "warn")
             # set thumbnail to user's banner
             # TODO: screen filter banner and change to user's colour
-            if homebase_icon is not "placeholder":
+            if homebase_icon != "placeholder":
                 embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
             else:
                 embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])

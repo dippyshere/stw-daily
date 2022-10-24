@@ -86,8 +86,8 @@ class ProfileAuth(ext.Cog):
                        description='Add permanent authentication to the currently selected or another profile',
                        guild_ids=stw.guild_ids)
     async def slash_device(self, ctx: discord.ApplicationContext,
-                             token: Option(str,
-                                           "An optional authcode that can be entered later on during the setup process, will be used to link your account to a profile") = ""
+                             token: Option(str, 
+                                           "An authcode (can be entered later), used to link a profile to an account") = ""
                            ):
         await self.devauth_command(ctx, True, token)
 
@@ -96,7 +96,7 @@ class ProfileAuth(ext.Cog):
                  extras={'emoji': "link_acc", "args": {
                      'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)'}},
                  brief="Add permanent authentication to the currently selected or another profile",
-                 description="""This command allows you to create a device auth session, which will keep you logged in while utilising the profile which has been linked to the account specified by the device authentication.
+                 description="""This command allows you to create a device auth session, keeping you logged in.
                 \u200b
                 """)
     async def device(self, ctx, authcode=''):
