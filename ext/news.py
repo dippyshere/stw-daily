@@ -41,11 +41,11 @@ class NewsView(discord.ui.View):
     async def on_timeout(self):
         if self.mode == "stw":
             embed = await stw.create_news_page(self, self.context, self.stw_news, self.page, self.stw_pages_length)
-            embed = await stw.set_thumbnail(self.client, embed, "clown")
+            embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             embed = await stw.add_requested_footer(self.context, embed)
         else:
             embed = await stw.create_news_page(self, self.context, self.br_news, self.page, self.br_pages_length)
-            embed = await stw.set_thumbnail(self.client, embed, "clown")
+            embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             embed = await stw.add_requested_footer(self.context, embed)
         for button in self.children:
             button.disabled = True
@@ -60,13 +60,13 @@ class NewsView(discord.ui.View):
         if self.mode == "stw":
             self.page = ((self.page - 1) % self.stw_pages_length) + 1
             embed = await stw.create_news_page(self, self.context, self.stw_news, self.page, self.stw_pages_length)
-            embed = await stw.set_thumbnail(self.client, embed, "clown")
-            embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            # embed = await stw.add_requested_footer(self.context, embed)
         else:
             self.page = ((self.page - 1) % self.br_pages_length) + 1
             embed = await stw.create_news_page(self, self.context, self.br_news, self.page, self.br_pages_length)
-            embed = await stw.set_thumbnail(self.client, embed, "clown")
-            embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            # embed = await stw.add_requested_footer(self.context, embed)
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
@@ -75,16 +75,16 @@ class NewsView(discord.ui.View):
             self.mode = "stw"
             self.page = 1
             embed = await stw.create_news_page(self, self.context, self.stw_news, self.page, self.stw_pages_length)
-            embed = await stw.set_thumbnail(self.client, embed, "clown")
-            embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            # embed = await stw.add_requested_footer(self.context, embed)
             self.children[2].disabled = True
             self.children[3].disabled = False
         else:
             self.mode = "br"
             self.page = 1
             embed = await stw.create_news_page(self, self.context, self.br_news, self.page, self.br_pages_length)
-            embed = await stw.set_thumbnail(self.client, embed, "clown")
-            embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            # embed = await stw.add_requested_footer(self.context, embed)
             self.children[2].disabled = False
             self.children[3].disabled = True
         await interaction.response.edit_message(embed=embed, view=self)
