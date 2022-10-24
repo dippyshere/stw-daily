@@ -154,6 +154,15 @@ recycle				= "<:TSlotIconRecycle128realesrganx4p:1032865761254973501>"
 bp_icon2			= "<:t_icon_nav_mobile_battlepass_128:1032865768041361500>"
 newspaper			= "<:newspaper_1f4f0:1032867588029562980>"
 stw_box				= "<:FortniteGamebox:812201311570886666>"
+expedition_all		= "<:TIconExpeditionAll512:1034006500043141171>"
+expedition_airplane	= "<:TIconSTAirplane128:1034006497945993216>"
+expedition_dirtbike	= "<:TIconSTDirtbike128:1034006495345520671>"
+expedition_glider	= "<:TIconSTHangGlider128:1034006492854112296>"
+expedition_helicopter= "<:TIconSTHelicopter128:1034006490543034418>"
+expedition_rowboat	= "<:TIconSTRowboat128:1034006488626253824>"
+expedition_speedboat= "<:TIconSTSpeedboat128:1034006486080294913>"
+expedition_truck	= "<:TIconSTStruck128:1034006484490661888>"
+
 # battle breakers emojis :sob:
 Cleric_VR2_Dark_TerrRifle_T04_Icon = "<:Cleric_VR2_Dark_TerrRifle_T04_Ic:1033295042086973450>"
 CoinIcon                           = "<:CoinIcon:1033294973942120448>"
@@ -223,6 +232,7 @@ freedom_herald		= "https://cdn.discordapp.com/attachments/643743040372080653/102
 clown				= "https://cdn.discordapp.com/attachments/767607876348018689/1032250365430738944/pensiveclown.png" # alexander hanson
 storm_shard			= "https://media.discordapp.net/attachments/643743040372080653/1028186513730699274/T-Items-Reagent-C-T04-L.png"
 newspaper			= "https://cdn.discordapp.com/attachments/859237140043137047/1032867800387178496/newspaper_1f4f0.png"
+expedition			= "https://cdn.discordapp.com/attachments/767607876348018689/1034005649178239026/unknown.png"
 
 # Different colours for commands
 [colours]
