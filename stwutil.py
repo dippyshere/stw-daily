@@ -104,13 +104,10 @@ def time_until_end_of_day():
 
 async def mention_string(client, prompt):
     me = client.user
-    mention_string = "Mention me and then type {prompt} after!"
     try:
-        mention_string = f"{me.mention} {prompt}"
-    except:
-        pass
-
-    return mention_string
+        return f"{me.mention} {prompt}"
+    except AttributeError:
+        return "Mention me and then type {prompt} after!"
 
 
 # adds the requested by person thing to the footer
@@ -173,7 +170,7 @@ def get_bb_reward_data(client, response, error=False):
     if error:
         day = response['messageVars'][0]  # hello world explorer hi
     else:  # do u see me minimizing it no
-        day = response["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"];
+        day = response["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"]
 
     # im not sure if it actually loops after day 1800, but just in case not like anyone will use this command anyway
     day_mod = int(day) % 1800
@@ -381,7 +378,7 @@ async def manslaughter_session(client, account_id, kill_stamp):
         # 😳 they'll never know 😳
 
 
-async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None):
+async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None, game="fn"):
     display_name = response["displayName"]
 
     entry = {
@@ -536,7 +533,10 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     # Attempt to retrieve the existing auth code.
     try:
-        existing_auth = client.temp_auth[ctx.author.id]
+        if game == "bb":
+            existing_auth = client.temp_auth[ctx.author.id]["bb_token"]
+        else:
+            existing_auth = client.temp_auth[ctx.author.id]["auth_code"]
     except:
         existing_auth = None
 
