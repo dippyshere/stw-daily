@@ -95,7 +95,7 @@ class Homebase(ext.Cog):
             # embed = await stw.set_thumbnail(self.client, embed, "warn")
             # set thumbnail to user's banner
             # TODO: screen filter banner and change to user's colour
-            if homebase_icon != "placeholder":
+            if homebase_icon is not "placeholder":
                 embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
             else:
                 embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])
@@ -122,9 +122,10 @@ class Homebase(ext.Cog):
 
         # wih all checks passed, we may now attempt to change name
         request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data=json.dumps({"homebaseName": f"{name}"}))
+        request_json_response = await request.json()
 
         # check for le error code
-        error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash, name)
+        error_check = await self.check_errors(ctx, request_json_response, auth_info, final_embeds, slash, name)
         if error_check[1]:
             return
 
