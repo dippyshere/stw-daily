@@ -247,11 +247,10 @@ kill_token 			= "https://account-public-service-prod.ol.epicgames.com/account/ap
 exchange 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
 device_auth 		= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
 store				= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
-news				= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game"
+news				= "https://prm-dialogue-public-api-prod.edea.live.use1a.on.epicgames.com/api/v1/fortnite-br/surfaces/motd/target"
 stw_news			= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews"
 br_news				= "https://fortnite-api.com/v2/news/br"
 pve_info			= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
-pve_stats			= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/stats/accountId/{}/bulk/window/alltime"
 bb_profile			= "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId=profile0"
 
 
@@ -266,71 +265,31 @@ llamas				= "PopulatePrerolledOffers"
 purchase			= "PurchaseCatalogEntry"
 batch_recycle		= "RecycleItemBatch"
 set_homebase		= "SetHomebaseName"
-# thanks github?
-set_banner			= "SetBanner"
-set_banner_colour	= "SetBannerColor"
-set_favourite		= "SetFavoriteHero"
-set_favourite_loadout = "SetFavoriteLoadout"
-set_favourite_schematic = "SetFavoriteSchematic"
-set_favourite_survivor = "SetFavoriteSurvivor"
-set_favourite_support = "SetFavoriteSupport"
-set_favourite_trap 	= "SetFavoriteTrap"
-set_favourite_weapon = "SetFavoriteWeapon"
-set_favourite_backpack = "SetFavoriteBackpack"
-set_favourite_pet 	= "SetFavoritePet"
-set_favourite_pickaxe = "SetFavoritePickaxe"
-set_favourite_glider = "SetFavoriteGlider"
-set_favourite_emote = "SetFavoriteEmote"
-set_favourite_skydive = "SetFavoriteSkydiveContrail"
-set_favourite_musicpack = "SetFavoriteMusicPack"
-set_favourite_loading = "SetFavoriteLoadingScreen"
-set_favourite_battlebus = "SetFavoriteBattleBus"
-set_favourite_battlepass = "SetFavoriteBattlePass"
-set_favourite_battlepass_tier = "SetFavoriteBattlePassTier"
-set_favourite_battlepass_star = "SetFavoriteBattlePassStar"
-set_favourite_battlepass_star_tier = "SetFavoriteBattlePassStarTier"
-set_favourite_battlepass_star_tier_reward = "SetFavoriteBattlePassStarTierReward"
-set_favourite_battlepass_star_tier_reward_type = "SetFavoriteBattlePassStarTierRewardType"
-set_favourite_battlepass_star_tier_reward_type_id = "SetFavoriteBattlePassStarTierRewardTypeId"
-set_favourite_battlepass_star_tier_reward_type_id_name = "SetFavoriteBattlePassStarTierRewardTypeIdName"
-set_favourite_battlepass_star_tier_reward_type_id_name_description = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescription"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImage"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackground"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColor"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorR"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorG"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorB"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorA"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHex"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlpha"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValue"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueR"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueG"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueB"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueA"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHex"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlpha"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValue"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueR"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueG"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueB"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueA"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueHex"
+set_banner			= "SetHomebaseBanner"
+open_llama			= "OpenCardPack"
+open_llamas			= "OpenCardPackBatch"
+purchase			= "PurchaseCatalogEntry"
+refresh_expeditions	= "RefreshExpeditions"
+start_expedition	= "StartExpedition"
+abandon_expedition	= "AbandonExpedition"
+collect_expedition	= "CollectExpedition"
 
 # different profile ids under some endpoints
 [profileid]
-common_core			= "common_core"
-common_public		= "common_public"
-stw					= "campaign"
-br					= "athena"
-# i dont actually know if these are real github just suggested it
-common_core_public	= "common_core_public"
-campaign_missions	= "campaign_missions"
-campaign_rewards	= "campaign_rewards"
-collection_book		= "collection_book"
-event_flags			= "event_flags"
-event_rewards		= "event_rewards"
-event_missions		= "event_missions"
+common_core			= "common_core" # common info accross modes
+common_public		= "common_public" # public user data
+stw					= "campaign" # save the world
+br					= "athena" # battle royale
+cr 					= "creative" # creative
+collections			= "collections" # br collections (fishing/npc)
+metadata			= "metadata" # stw homebase metadata (access)
+collection_book_people0 = "collection_book_people0" # stw collection book (hero, survivor, defender)
+collection_book_schematics0	= "collection_book_schematics0" # stw collection book (schematics)
+outpost0			= "outpost0" # stw storage
+theater0			= "theater0" # stw backpack
+theater1			= "theater1" # stw event backpack
+theater2			= "theater2" # stw ventures data
+recycle_bin			= "recycle_bin" # stw recycle bin
 
 [bannercolours]
 defaultcolor1 		= "#545454"
