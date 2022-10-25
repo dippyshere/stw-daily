@@ -15,6 +15,7 @@ import datetime
 import discord
 import discord.ext.commands as ext
 from discord import Option
+import asyncio
 
 import stwutil as stw
 
@@ -31,7 +32,6 @@ class BattleBreakersDaily(ext.Cog):
 
     async def bbdaily_command(self, ctx, slash, authcode, auth_opt_out):
         succ_colour = self.client.colours["success_green"]
-        yellow = self.client.colours["warning_yellow"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "bbdaily", authcode, slash, auth_opt_out,
                                                          True, game="bb")
@@ -64,86 +64,32 @@ class BattleBreakersDaily(ext.Cog):
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
         except:
-            daily_feedback = json_response["notifications"]
-
-            for notification in daily_feedback:
-                if notification["type"] == "daily_rewards":
-                    daily_feedback = notification
-                    break
-
-            day = daily_feedback["daysLoggedIn"]
+            day = await asyncio.gather(asyncio.to_thread(stw.bb_day_query_check, json_response))
 
             try:
-                self.client.temp_auth[ctx.author.id]["day"] = day
+                self.client.temp_auth[ctx.author.id]["bb_day"] = day[0]
             except:
                 pass
 
-            items = daily_feedback["items"]
+            dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client, json_response, pre_calc_day=day)
 
-            # Empty items means that daily was already claimed
-            if len(items) == 0:
-                reward = stw.get_reward(self.client, day, vbucks)
-                embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, stw.ranerror(self.client), "warning"), description=
-                    f"""\u200b
-                You have already claimed your reward for day **{day}**.
-                \u200b
-                **{reward[1]} Todays reward was:**
-                ```{reward[0]}```
-                You can claim tomorrow's reward <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
-                \u200b
-                """, colour=yellow)
-                embed = await stw.set_thumbnail(self.client, embed, "warn")
-                embed = await stw.add_requested_footer(ctx, embed)
-                final_embeds.append(embed)
-                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-                return
+            # already claimed is handled in error since wex does that
 
             # Initialise the claimed embed
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
                                   description="\u200b",
                                   colour=succ_colour)
 
-            # First item is the default daily reward, add it using the get_reward method
-            reward = stw.get_reward(self.client, day, vbucks)
-
-            # Add any excess items + the default daily reward
-            for item in items[2:]:
-                try:
-                    amount = item["quantity"]
-                    itemtype = item["itemType"]
-                    reward[0] += f", {amount} {itemtype}"
-                except:
-                    pass
-
-            embed.add_field(name=f'{reward[1]} On day **{day}**, you received:', value=f"```{reward[0]}```",
+            embed.add_field(name=f'{emoji_text} On day **{day[0]}**, you received:', value=f"```{amount} {name}```",
                             inline=True)
 
-            # Second item is founders reward
-            try:
-                founders = items[1]
-                amount = founders["quantity"]
-                itemtype = founders["itemType"]
-
-                if itemtype == 'CardPack:cardpack_event_founders':
-                    display_itemtype = "Founder's Llama"
-                elif itemtype == 'CardPack:cardpack_bronze':
-                    display_itemtype = "Upgrade Llama (bronze)"
-                else:
-                    display_itemtype = itemtype
-
-                embed.add_field(name=f'{self.client.config["emojis"]["founders"]} Founders rewards:',
-                                value=f"```{amount} {display_itemtype}```",
-                                inline=True)
-            except:
-                pass
-
-            print('Successfully claimed daily:')
-            print(reward[0])
+            print('Successfully claimed battle breaker daily:')
+            print(name)
 
             rewards = ''
             for i in range(1, 8):
-                rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
+                data = stw.get_bb_reward_data(self.client, pre_calc_day=day[0] + i)
+                rewards += data[4] + " " + data[1]
                 if not (i + 1 == 8):
                     rewards += ', '
                 else:

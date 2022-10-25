@@ -166,11 +166,13 @@ def get_reward(client, day, vbucks=True):
     return [item[0], emoji_text]
 
 
-def get_bb_reward_data(client, response, error=False):
+def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
     if error:
-        day = response['messageVars'][0]  # hello world explorer hi
-    else:  # do u see me minimizing it no
-        day = response["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"]
+        day = response['messageVars'][0] - 1  # hello world explorer hi
+    elif pre_calc_day > 0:  # do u see me minimizing it no
+        day = pre_calc_day
+    else:
+        day = response["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"] - 1
 
     # im not sure if it actually loops after day 1800, but just in case not like anyone will use this command anyway
     day_mod = int(day) % 1800
@@ -178,7 +180,8 @@ def get_bb_reward_data(client, response, error=False):
         day_mod = 1800
 
     # done FORTIFICAITION OF THE NIGHT hmm i see folders
-    asset_path_name = LoginRewards[0]["Rows"][str(day_mod - 1)]["ItemDefinition"]["AssetPathName"]
+    asset_path_name = LoginRewards[0]["Rows"][str(day_mod)]["ItemDefinition"]["AssetPathName"]
+    quantity = LoginRewards[0]['Rows'][str(day_mod)]['ItemCount']
 
     emoji, name, description = ext.battlebreakers.BBLootTable.BBLootTable[asset_path_name]
 
@@ -229,6 +232,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     error_colour = client.colours["error_red"]
 
     print(f'[ERROR]: {error_code}')
+    # TODO: change links client id's
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
         # login error
         embed = discord.Embed(
@@ -384,7 +388,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
     entry = {
         "token": auth_token,
         "account_id": account_id,
-        "vbucks": False,
+        "vbucks": True,
         "account_name": f"{display_name}",
         'expiry': time.time() + client.config["auth_expire_time"],
         "day": None,
@@ -394,14 +398,18 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
 
     if add_entry:
         asyncio.get_event_loop().create_task(auto_stab_stab_session(client, ctx.author.id, entry['expiry']))
-    profile = await profile_request(client, "query", entry)
-    vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
-    others = await asyncio.gather(asyncio.to_thread(json_query_check, await profile.json()))
-    if others[0] is not None:
-        entry["day"] = others[0]
-
-    if vbucks[0]:
-        entry["vbucks"] = True
+    profile = await profile_request(client, "query", entry, game=game)
+    if game == "fn":
+        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
+        others = await asyncio.gather(asyncio.to_thread(json_query_check, await profile.json()))
+        if others[0] is not None:
+            entry["day"] = others[0]
+        if not vbucks[0]:
+            entry["vbucks"] = False
+    if game == "bb":
+        others = await asyncio.gather(asyncio.to_thread(bb_day_query_check, await profile.json()))
+        if others[0] is not None:
+            entry["bb_day"] = others[0] - 1
 
     if add_entry:
         client.temp_auth[ctx.author.id] = entry
@@ -412,6 +420,14 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
 def json_query_check(profile_text):
     try:
         return profile_text["profileChanges"][0]["profile"]["stats"]["attributes"]["daily_rewards"]["totalDaysLoggedIn"]
+    except:
+        return None
+
+
+def bb_day_query_check(profile_text):
+    try:
+        # ROOT.profileChanges[0].profile.stats.attributes.login_reward.next_level
+        return profile_text["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"]
     except:
         return None
 
@@ -536,7 +552,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         if game == "bb":
             existing_auth = client.temp_auth[ctx.author.id]["bb_token"]
         else:
-            existing_auth = client.temp_auth[ctx.author.id]["auth_code"]
+            existing_auth = client.temp_auth[ctx.author.id]["token"]
     except:
         existing_auth = None
 
@@ -556,12 +572,16 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     white_colour = client.colours["auth_white"]
     error_embed = None
     support_url = client.config["support_url"]
+    if game == "bb":
+        clientId = "3cf78cd3b00b439a8755a878b160c7ad"
+    else:
+        clientId = "ec684b8c687f479fadea3cb2ad83f5c6"
 
     # Basic checks so that we don't stab stab epic games so much
     if extracted_auth_code == "":
         error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=f"""\u200b\n**You need an auth code, you can get one from:**
-          [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)
-          [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n
+          [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D{clientId}%2526responseType%253Dcode)
+          [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)\n
             **Need Help? Run**
             {await mention_string(client, f"help {command}")}
             Or [Join the support server]({support_url})
@@ -577,7 +597,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
             ⦾ The authcode you need is the one from the pages body, not the one from the url.
             \u200b
             If you need a new authcode you can get one by:
-            [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)
+            [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)
             \u200b
             **If you need any help try:**
             {await mention_string(client, f"help {command}")}
@@ -594,7 +614,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
-        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)
+        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)
         \u200b
         **If you need any help try:**
         {await mention_string(client, f"help {command}")}
@@ -610,7 +630,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
-        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)
+        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)
         \u200b
         **If you need any help try:**
         {await mention_string(client, f"help {command}")}
@@ -627,7 +647,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     proc_embed = await processing_embed(client, ctx)
     message = await slash_send_embed(ctx, slash, proc_embed)
 
-    token_req = await get_token(client, extracted_auth_code)
+    token_req = await get_token(client, extracted_auth_code, game)
     response = await token_req.json()
     success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command,
                                                                   extracted_auth_code,
@@ -636,7 +656,37 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     if not success:
         return [False]
 
-    entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry)
+    # if authing for battle breakers
+    if game == "bb":
+        # if session already exists
+        try:
+            # if existing fn session exists
+            if client.temp_auth[ctx.author.id]["token"] is not None:
+                entry = await add_temp_entry(client, ctx, client.temp_auth[ctx.author.id]["token"],
+                                             account_id, response, add_entry, bb_token=auth_token, game=game)
+            # no fn session, set fn token to none
+            else:
+                entry = await add_temp_entry(client, ctx, None, account_id, response, add_entry, bb_token=auth_token,
+                                             game=game)
+        # no session at all
+        except:
+            entry = await add_temp_entry(client, ctx, None, account_id, response, add_entry, bb_token=auth_token,
+                                         game=game)
+    # if authing for fn
+    else:
+        # if session already exists
+        try:
+            # if existing bb session exists
+            if client.temp_auth[ctx.author.id]["bb_token"] is not None:
+                entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry,
+                                             bb_token=client.temp_auth[ctx.author.id]["bb_token"], game=game)
+            # no bb session, set bb token to None
+            else:
+                entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, game=game)
+        # no session at all (most common outcome of all this junk 🫠)
+        except:
+            entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, game=game)
+
     embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
                           description=f"""```Welcome, {entry['account_name']}```
     """, colour=white_colour)
