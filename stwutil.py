@@ -187,7 +187,7 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
 
     emoji_text = client.config["emojis"][emoji]
 
-    return [day, name, emoji_text, description]
+    return [day, name, emoji_text, description, quantity]
 
 
 async def get_token(client, auth_code: str, game="fn"):

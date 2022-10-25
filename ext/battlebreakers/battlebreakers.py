@@ -110,20 +110,21 @@ class BattleBreakersDaily(ext.Cog):
                        guild_ids=stw.guild_ids)
     async def slashbbdaily(self, ctx: discord.ApplicationContext,
                            token: Option(str,
-                                         "Rip") = "",
+                                         "A Battle-Breakers auth code (different to a normal code)") = "",
                            auth_opt_out: Option(bool, "Opt Out of Authentication session") = False, ):
         await self.bbdaily_command(ctx, True, token, not auth_opt_out)
 
     # Battle Breakers is a new tactical role-playing game developed by Epic Games for mobile and PC.
     @ext.command(name='bbdaily',
-                 aliases=['bb'],
-                 extras={'emoji': "vbucks", "args": {
+                 aliases=['bb', 'bbd', 'battlebreakersdaily', 'wex', 'bd'],
+                 extras={'emoji': "placeholder", "args": {
                      'authcode': 'The authcode to use (Optional)',
-                     'opt-out': 'Any value inputted D: into this field will opt you out of the authentication session system when you enter the authcode for this command (Optional)'}},
-                 brief="Allows you to claim your Battle Breakers daily rewards (auth req.)",
+                     'opt-out': 'Any value entered into this field will opt you out of an authentication session (Optional)'}},
+                 brief="Allows you to claim your Battle Breakers daily rewards (BB auth req.)",
                  description="""This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.
                 \u200b
                 ⦾ You can check when you can claim your daily again by checking the bots status
+                ⦾ This command requires getting an auth code from a different link, please use the ones provided by the bot.
                 """)
     async def bbdaily(self, ctx, authcode='', optout=None):
 
