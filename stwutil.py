@@ -510,6 +510,7 @@ async def calculate_vbucks(items):
     return vbucks
 
 
+# alexanda  now who is she
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True,
                                      epic_auth_client="PC", game="fn"):  # hi bye
     """
