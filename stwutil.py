@@ -10,7 +10,7 @@ import json
 import discord
 
 import items
-import ext.battlebreakers.BBLootTable  # dinnerbrb
+import ext.battlebreakers.BBLootTable  # dinnerbrb  
 
 with open("ext/battlebreakers/LoginRewards.json", "r") as LoginRewards:
     LoginRewards = json.load(LoginRewards)
@@ -190,8 +190,7 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
     return [day, name, emoji_text, description, quantity]
 
 
-
-async def get_token(client, auth_code: str, game="fn"):
+def get_game_headers(game):
     if game == "bb":
         h = {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -202,9 +201,36 @@ async def get_token(client, auth_code: str, game="fn"):
             "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": "basic ZWM2ODRiOGM2ODdmNDc5ZmFkZWEzY2IyYWQ4M2Y1YzY6ZTFmMzFjMjExZjI4NDEzMTg2MjYyZDM3YTEzZmM4NGQ="
         }
+    return h
+
+
+async def get_token(client, auth_code: str, game="fn"):
+    h = get_game_headers(game)
     d = {
         "grant_type": "authorization_code",
         "code": auth_code
+    }
+    url = client.config["endpoints"]["token"]
+
+    return await client.stw_session.post(url, headers=h, data=d)
+
+
+# hi
+async def exchange_games(client, auth_token, game="fn"):
+    h = {
+        "Content-Type": "application/json",
+        "Authorization": f"bearer {auth_token}"
+    }
+    url = client.config["endpoints"]["exchange"]
+    response = await client.stw_session.get(url, headers=h)
+
+    exchange_json = await response.json()
+    exchange_code = exchange_json["code"]
+
+    h = get_game_headers(game)
+    d = {
+        "grant_type": "exchange_code",
+        "exchange_code": exchange_code
     }
     url = client.config["endpoints"]["token"]
 
@@ -428,28 +454,21 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         'expiry': time.time() + client.config["auth_expire_time"],
         "day": None,
         "bb_token": bb_token,
-        "bb_day": None
+        "bb_day": None,
+        "games": [game],
     }
     if add_entry:
         asyncio.get_event_loop().create_task(auto_stab_stab_session(client, ctx.author.id, entry['expiry']))
-    profile = await profile_request(client, "query", entry, game=game)
-    if game == "fn":
-        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
-        others = await asyncio.gather(asyncio.to_thread(json_query_check, await profile.json()))
-        if others[0] is not None:
-            entry["day"] = others[0]
-        if not vbucks[0]:
-            entry["vbucks"] = False
-    if game == "bb":
-        others = await asyncio.gather(asyncio.to_thread(bb_day_query_check, await profile.json()))
-        if others[0] is not None:
-            entry["bb_day"] = others[0] - 1
+
+    entry = await entry_profile_req(client, entry, game)
 
     if add_entry:
         client.temp_auth[ctx.author.id] = entry
+        other_games = list(client.config["entry_token_key_for_game"].keys())
+        other_games.remove(game)
+        asyncio.get_event_loop().create_task(add_other_game_entry(client, ctx.author.id, entry, game, other_games))
 
     return entry
-
 
 
 def json_query_check(profile_text):
@@ -605,6 +624,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     white_colour = client.colours["auth_white"]
     error_embed = None
     support_url = client.config["support_url"]
+
     if game == "bb":
         clientId = "3cf78cd3b00b439a8755a878b160c7ad"
     else:
@@ -968,7 +988,6 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             ```{acc_name}```
             **Unknown error received from epic games:**
             ```{error_code}```
-            
             You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
             \u200b
             **If you need any help try:**

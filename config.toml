@@ -348,5 +348,9 @@ defaultcolor44 		= "#ff97ff"
 
 [mango] # you have a UTI (urinary tract infection) you suffer from P.M.S (what) (postmenstural something)
 uri_env_var = "STW_MONGO_URI" # added the env var mongodb://localhost:27017
-database = "stw_dailies"
-collection = "user_info"
+database 	= "stw_dailies"
+collection 	= "user_info"
+
+[entry_token_key_for_game]
+fn = "token"
+bb = "bb_token"
