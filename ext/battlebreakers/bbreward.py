@@ -79,23 +79,23 @@ class BBReward(ext.Cog):
                 return
 
             embed.add_field(name=f'**{reward[2]} Item: **', value=f'```{reward[4]} {reward[1]}```\u200b')
-            for attr, val in stw.LoginRewards[0]['Rows']:
-                if 'MtxGiveaway' in val['ItemDefinition']['AssetPathName']:
-                    if int(day) % 1800 < int(attr):
-                        if int(attr) - int(day) % 1800 == 1:
+            for row in stw.LoginRewards[0]['Rows']:
+                if 'MtxGiveaway' in stw.LoginRewards[0]['Rows'][row]['ItemDefinition']['AssetPathName']:
+                    if int(day) % 1800 < int(row):
+                        if int(row) - int(day) % 1800 == 1:
                             day_string = "day."
                         else:
                             day_string = "days."
                         embed.add_field(
                             name=f'**{self.client.config["emojis"]["T_MTX_Gem_Icon"]} Next Gem reward in: **',
-                            value=f'```{int(attr) - int(day) % 1800} {day_string}```\u200b', inline=False)
+                            value=f'```{int(row) - int(day) % 1800} {day_string}```\u200b', inline=False)
                         break
 
             rewards = ''
-            for i in range(1, 8):
+            for i in range(1, limit + 1):
                 data = stw.get_bb_reward_data(self.client, pre_calc_day=day + i)
-                rewards += data[4] + " " + data[1]
-                if not (i + 1 == 8):
+                rewards += str(data[4]) + " " + str(data[1])
+                if not (i + 1 == limit + 1):
                     rewards += ', '
                 else:
                     rewards += '.'
@@ -124,7 +124,7 @@ class BBReward(ext.Cog):
                 await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.command(name='bbreward',
-                 aliases=['bbr', 'bbrwrd', 'bbreward', 'battlebreakersreward'],
+                 aliases=['bbr', 'bbrwrd', 'battlebreakersreward'],
                  extras={'emoji': "placeholder", "args": {'day': 'The day to view the reward for',
                                                           'limit': 'The amount of days after the specified days that rewards will be given for (Optional)'}},
                  brief="View daily rewards from a certain day for a certain amount of days after",

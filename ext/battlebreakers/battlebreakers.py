@@ -60,7 +60,7 @@ class BattleBreakersDaily(ext.Cog):
             error_code = json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url, response=json_response)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
         except:
@@ -71,7 +71,7 @@ class BattleBreakersDaily(ext.Cog):
             except:
                 pass
 
-            dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client, json_response, pre_calc_day=day)
+            dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client, json_response, pre_calc_day=day[0])
 
             # already claimed is handled in error since wex does that
 
@@ -89,7 +89,7 @@ class BattleBreakersDaily(ext.Cog):
             rewards = ''
             for i in range(1, 8):
                 data = stw.get_bb_reward_data(self.client, pre_calc_day=day[0] + i)
-                rewards += data[4] + " " + data[1]
+                rewards += str(data[4]) + " " + str(data[1])
                 if not (i + 1 == 8):
                     rewards += ', '
                 else:

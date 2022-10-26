@@ -54,6 +54,7 @@ def main():
         "profile.devauth",
         "news",
         "battlebreakers.battlebreakers", # why do you only call me when you're high
+        "battlebreakers.bbreward",
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
     for ext in extensions:

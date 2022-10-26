@@ -168,7 +168,7 @@ def get_reward(client, day, vbucks=True):
 
 def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
     if error:
-        day = response['messageVars'][0] - 1  # hello world explorer hi
+        day = int(response['messageVars'][0]) - 1  # hello world explorer hi
     elif pre_calc_day > 0:  # do u see me minimizing it no
         day = pre_calc_day
     else:
@@ -188,6 +188,7 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
     emoji_text = client.config["emojis"][emoji]
 
     return [day, name, emoji_text, description, quantity]
+
 
 
 async def get_token(client, auth_code: str, game="fn"):
@@ -382,6 +383,40 @@ async def manslaughter_session(client, account_id, kill_stamp):
         # 😳 they'll never know 😳
 
 
+async def entry_profile_req(client, entry, game):
+    profile = await profile_request(client, "query", entry, game=game)
+
+    if game == "fn":
+        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
+        others = await asyncio.gather(asyncio.to_thread(json_query_check, await profile.json()))
+        if others[0] is not None:
+            entry["day"] = others[0]
+        if not vbucks[0]:
+            entry["vbucks"] = False
+
+    if game == "bb":
+        others = await asyncio.gather(asyncio.to_thread(bb_day_query_check, await profile.json()))
+        if others[0] is not None:
+            entry["bb_day"] = others[0] - 1
+
+    return entry
+
+
+async def add_other_game_entry(client, user_id, entry, game, other_games):
+    token = entry[client.config["entry_token_key_for_game"][game]]
+
+    for other_game in other_games:
+        exchange = await exchange_games(client, token, other_game)
+        exchange_json = await exchange.json()
+        new_token = exchange_json["access_token"]
+
+        entry[client.config["entry_token_key_for_game"][other_game]] = new_token
+
+        entry["games"].append(other_game)
+        entry = await entry_profile_req(client, entry, other_game)
+        client.temp_auth[user_id] = entry
+
+
 async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None, game="fn"):
     display_name = response["displayName"]
 
@@ -395,7 +430,6 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         "bb_token": bb_token,
         "bb_day": None
     }
-
     if add_entry:
         asyncio.get_event_loop().create_task(auto_stab_stab_session(client, ctx.author.id, entry['expiry']))
     profile = await profile_request(client, "query", entry, game=game)
@@ -415,6 +449,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         client.temp_auth[ctx.author.id] = entry
 
     return entry
+
 
 
 def json_query_check(profile_text):
@@ -550,10 +585,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     # Attempt to retrieve the existing auth code.
     try:
-        if game == "bb":
-            existing_auth = client.temp_auth[ctx.author.id]["bb_token"]
-        else:
-            existing_auth = client.temp_auth[ctx.author.id]["token"]
+        existing_auth = client.temp_auth[ctx.author.id]
     except:
         existing_auth = None
 
@@ -793,8 +825,8 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             f"""\u200b
                         You have already claimed your reward for day **{reward[0]}**.
                         \u200b
-                        **{reward[1]} Todays reward was:**
-                        ```{reward[2]}```
+                        **{reward[2]} Todays reward was:**
+                        ```{reward[4]} {reward[1]}```
                         You can claim tomorrow's reward <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
                         \u200b
                         """, colour=yellow)
