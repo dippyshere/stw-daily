@@ -2,6 +2,7 @@ import asyncio
 import os
 import platform
 import time
+import base64
 
 import discord
 import discord.ext.commands as ext
