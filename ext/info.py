@@ -1,5 +1,6 @@
 import asyncio
 import os
+import platform
 import time
 
 import discord
@@ -35,11 +36,13 @@ class Information(ext.Cog):
                                                        f'{psutil.virtual_memory().total // 1000000}mb\nUsed: '
                                                        f'{psutil.virtual_memory().used // 1000000}mb\nFree: '
                                                        f'{psutil.virtual_memory().free // 1000000}mb\nUtilisation: '
-                                                       f'{psutil.virtual_memory().percent}%\nDisk Usage:\nTotal:'
-                                                       f'{round(psutil.disk_usage("/")[0]/1000000000, 1)}GB\nUsed:'
-                                                       f'{round(psutil.disk_usage("/")[1]/1000000000, 1)}GB\nFree:'
-                                                       f'{round(psutil.disk_usage("/")[2]/1000000000, 1)}GB\nUtilisation:'
-                                                       f'{psutil.disk_usage("/")[3]}%```\u200b', inline=False)
+                                                       f'{psutil.virtual_memory().percent}%\nDisk Usage:\nTotal: '
+                                                       f'{round(psutil.disk_usage("/")[0] / 1000000000, 1)}GB\nUsed: '
+                                                       f'{round(psutil.disk_usage("/")[1] / 1000000000, 1)}GB\nFree: '
+                                                       f'{round(psutil.disk_usage("/")[2] / 1000000000, 1)}GB\nUtilisation: '
+                                                       f'{psutil.disk_usage("/")[3]}%\nPython Version: '
+                                                       f'{platform.python_version()}\nPy-cord Version: '
+                                                       f'{discord.__version__}```\u200b', inline=False)
 
         shard_ping = "Not Available"
         shard_name = "Not Available"
@@ -64,16 +67,21 @@ class Information(ext.Cog):
         websocket_ping = '{0}'.format(int(self.client.latency * 100)) + ' ms'
         embed.add_field(name='Latency Information:', value=f'```Websocket: {websocket_ping}\n'
                                                            f'Shard: {shard_ping}\n'
-                                                           f'Actual: ...```\u200b', inline=False)
-        embed = await stw.add_requested_footer(ctx, embed)
+                                                           f'Actual: ...\n'
+                                                           f'```\u200b', inline=True)
+
+        # TODO: encode this dumb thing into a dumbass bytes object for this stupid standard library why the f does EVERTYTHING NEED TO BE A BYTES OBJECT BUT THERES NO WAY TO MAKE IT A BYTES OBJECT WITHOUT COPYING TEXT TO AN NTFS DRIVE ON MACOS TO USE A BOOP APP ON MACOS OMG I HATE THIS RAAAAAAAAAAA HO HE HA
+        # embed.add_field(name='Made with ❤ by:', value=f'```\nDippyshere\nJean1398reborn\nhttps://github.com/dippyshere/stw-daily\n{self.client.a[0]}```\u200b', inline=False)
+        eval(bytes.fromhex("656D6265642E6164645F6669656C64286E616D653D274D6164652077697468203A68656172743A2062793A272C2076616C75653D66276060605C6E446970707973686572655C6E4A65616E313339387265626F726E5C6E68747470733A2F2F6769746875622E636F6D2F646970707973686572652F7374772D6461696C795C6E7B73656C662E636C69656E742E615B305D7D6060605C7532303062272C20696E6C696E653D46616C736529"))
+        embed = await stw.add_requested_footer(ctx, embed) # there are two of you ? ;o  ;o yay
         embed = await stw.set_thumbnail(self.client, embed, "info")
 
         before = time.monotonic()
         msg = await stw.slash_send_embed(ctx, slash, embed)
         ping = (time.monotonic() - before) * 1000
-        embed.set_field_at(-1, name='Latency Information:', value=f'```Websocket: {websocket_ping}\n'
+        embed.set_field_at(-2, name='Latency Information:', value=f'```Websocket: {websocket_ping}\n'
                                                                   f'Shard: {shard_ping}\n'
-                                                                  f'Actual: {int(ping)}ms```\u200b', inline=False)
+                                                                  f'Actual: {int(ping)}ms```\u200b', inline=True)
 
         await asyncio.sleep(4)
         await stw.slash_edit_original(msg, slash, embed)
@@ -88,9 +96,12 @@ class Information(ext.Cog):
                           'inrfo', 'injfo', 'infpo',
                           'unfo', 'jnfo', 'inbfo', 'infdo', 'incfo',
                           'indfo', 'infco', 'infl', 'iknfo', 'ibfo', 'blinding-lights', 'i9nfo',
-                          'imnfo', 'info9', 'ionfo', 'inflo', 'i8nfo', 'intfo', 'inf0o', '8nfo', 'uinfo', 'inco', 'infro',
-                          'iinfo', '9info', 'infol', 'information', 'kinfo', 'nfo', 'infop', 'infk', 'innfo', 'infp', 'info0', 'indo', 'inhfo', 'ihfo', 'inof',
-                          'ingo', 'inf9o', 'ifo', 'ijnfo', 'linfo', '9nfo', 'ino', 'infoo', 'lnfo', 'invo', 'inmfo', 'ibnfo', 'infto', 'imfo', 'inf0',
+                          'imnfo', 'info9', 'ionfo', 'inflo', 'i8nfo', 'intfo', 'inf0o', '8nfo', 'uinfo', 'inco',
+                          'infro',
+                          'iinfo', '9info', 'infol', 'information', 'kinfo', 'nfo', 'infop', 'infk', 'innfo', 'infp',
+                          'info0', 'indo', 'inhfo', 'ihfo', 'inof',
+                          'ingo', 'inf9o', 'ifo', 'ijnfo', 'linfo', '9nfo', 'ino', 'infoo', 'lnfo', 'invo', 'inmfo',
+                          'ibnfo', 'infto', 'imfo', 'inf0',
                           'knfo', 'infi', 'ilnfo', 'oinfo', 'ihnfo', 'ingfo', 'iunfo', 'jinfo', 'infok', 'le_bot_stuf',
                           '8info', 'invfo', 'ijfo', 'into', 'inf'],
                  extras={'emoji': "hard_drive", "args": {}},

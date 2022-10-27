@@ -86,8 +86,8 @@ class ProfileAuth(ext.Cog):
                        description='Add permanent authentication to the currently selected or another profile',
                        guild_ids=stw.guild_ids)
     async def slash_device(self, ctx: discord.ApplicationContext,
-                             token: Option(str,
-                                           "An authcode (can be entered later), used to link a profile to an account") = ""
+                           token: Option(str,
+                                         "An authcode (can be entered later), used to link a profile to an account") = ""
                            ):
         await self.devauth_command(ctx, True, token)
 

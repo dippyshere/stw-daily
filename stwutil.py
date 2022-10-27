@@ -10,7 +10,7 @@ import json
 import discord
 
 import items
-import ext.battlebreakers.BBLootTable  # dinnerbrb  
+import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 
 with open("ext/battlebreakers/LoginRewards.json", "r") as LoginRewards:
     LoginRewards = json.load(LoginRewards)

@@ -1,8 +1,11 @@
-aiohttp<3.9.0,>=3.6.0
-py-cord>=2.2.2
-psutil>=5.9.2
+aiohttp<3.9.0,>=3.8.3
+# py-cord>=2.2.2
+# for python 3.11
+git+https://github.com/Pycord-Development/pycord
+psutil>=5.9.3
 tomli>=2.0.1
 aiodns>=3.0.0
 brotlipy>=0.7.0
+Cython>=3.0.0a11
 cchardet>=2.1.7
-motor>=3.1.0.dev0
+motor>=3.1.1

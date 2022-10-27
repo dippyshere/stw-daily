@@ -53,10 +53,11 @@ def main():
         "profile.bongodb",
         "profile.devauth",
         "news",
-        "battlebreakers.battlebreakers", # why do you only call me when you're high
+        "battlebreakers.battlebreakers",  # why do you only call me when you're high
         "battlebreakers.bbreward",
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
+    client.a = "✅ Official Verified Deployment", True #seleckted
     for ext in extensions:
         print(client.load_extension(f"ext.{ext}"))
 
