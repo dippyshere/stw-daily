@@ -143,7 +143,8 @@ left_icon			= "<:left_stw:1032194339398488064>"
 locked 				= "<:Locked:812201301848358923>"
 championleague 		= "<:championleague:1032854538484453467>"
 add_acc 			= "<:T_UI_Icon_AddFriends_128:1032861023507599450>"
-link_acc			= "<:T_UI_Icon_FriendLink_64:1032860374267072532>"
+link_acc			= "<:T_UI_Icon_ChainPerson_White:1035117130892455946>"
+pink_link			= "<:T_Icon_ChainLink_Purple:1035115632171163709>"
 settings			= "<:T_UI_Icon_LocalUserSettings:1032861019837575288>"
 multi_acc			= "<:T_UI_Icon_SocialPanel_64:1032861026309373962>"
 bang				= "<:T_UI_Icon_TextureBang:1032862760905736262>"
@@ -233,6 +234,7 @@ clown				= "https://cdn.discordapp.com/attachments/767607876348018689/1032250365
 storm_shard			= "https://media.discordapp.net/attachments/643743040372080653/1028186513730699274/T-Items-Reagent-C-T04-L.png"
 newspaper			= "https://cdn.discordapp.com/attachments/859237140043137047/1032867800387178496/newspaper_1f4f0.png"
 expedition			= "https://cdn.discordapp.com/attachments/767607876348018689/1034005649178239026/unknown.png"
+pink_link			= "https://cdn.discordapp.com/attachments/859237140043137047/1035116393802252328/soryy.png"
 
 # Different colours for commands
 [colours]

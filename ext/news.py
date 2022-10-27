@@ -61,7 +61,7 @@ class NewsView(discord.ui.View):
             self.page = ((self.page - 1) % self.stw_pages_length) + 1
             embed = await stw.create_news_page(self, self.context, self.stw_news, self.page, self.stw_pages_length)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            # embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.add_requested_footer(self.context, embed) #hi
         else:
             self.page = ((self.page - 1) % self.br_pages_length) + 1
             embed = await stw.create_news_page(self, self.context, self.br_news, self.page, self.br_pages_length)

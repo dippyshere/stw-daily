@@ -7,6 +7,22 @@ from discord import Option
 import stwutil as stw
 
 
+async def tos_acceptance_embed(client, ctx):
+    # TODO: Create proper TOS, Privacy Policy & EULA for this command
+    embed_colour = client.colours["profile_lavendar"]
+    embed = discord.Embed(title=await stw.add_emoji_title(client, "User Agreement", "pink_link"),
+                          description=f"""\u200b
+                          
+                          
+                          
+                          \u200b""",
+                          colour=embed_colour)
+
+    embed = await stw.set_thumbnail(client, embed, "pink_link")
+    embed = await stw.add_requested_footer(ctx, embed)
+    return embed
+
+
 # cog for the device auth login command.
 class ProfileAuth(ext.Cog):
 
@@ -28,59 +44,9 @@ class ProfileAuth(ext.Cog):
             # no error
             return False
 
-    async def devauth_command(self, ctx, slash, authcode, auth_opt_out):
-        vbucc_colour = self.client.colours["vbuck_blue"]
-        # veebu cc
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "device", authcode, slash, auth_opt_out,
-                                                         True)
-        if not auth_info[0]:
-            return
-
-        final_embeds = []
-
-        ainfo3 = ""
-        try:
-            ainfo3 = auth_info[3]
-        except:
-            pass
-
-        # what is this black magic???????? I totally forgot what any of this is and how is there a third value to the auth_info??
-        # okay I discovered what it is, it's basically the "welcome whoever" embed that is edited
-        if ainfo3 != "logged_in_processing" and auth_info[2] != []:
-            final_embeds = auth_info[2]
-
-        # hi there :3
-        # create device auth
-        device_request = await stw.device_request(self.client, "deviceAuth", auth_info[1])
-        device_json_response = await device_request.json()
-
-        # # get common core profile
-        core_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="common_core")
-        # core_json_response = await core_request.json()
-        # # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
-        #
-        # # check for le error code
-        # if await self.check_errors(ctx, core_json_response, auth_info, final_embeds, slash):
-        #     return
-
-        # With all info extracted, create the output
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Device auth", "link_acc"),
-                              description=f"\u200b\n",
-                              colour=vbucc_colour)
-
-        # add entry for each platform detected
-        if True:
-            embed.description += f"""{self.emojis["checkmark"]} Successfully made device auth idk\n"""
-        else:
-            embed.description += f"""{self.emojis["spongebob"]} Failed creating device auth\n"""
-
-        embed.description += "\u200b"
-
-        embed = await stw.set_thumbnail(self.client, embed, "clown")
-        embed = await stw.add_requested_footer(ctx, embed)
-        final_embeds.append(embed)
-        await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-        return
+    async def devauth_command(self, ctx, slash, authcode=None):
+        embed = await tos_acceptance_embed(self.client, ctx)
+        await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.slash_command(name='device',
                        description='Add permanent authentication to the currently selected or another profile',
