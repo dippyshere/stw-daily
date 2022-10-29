@@ -13,7 +13,7 @@ async def tos_acceptance_embed(client, ctx):
     embed = discord.Embed(title=await stw.add_emoji_title(client, "User Agreement", "pink_link"),
                           description=f"""\u200b
                           
-                          
+                        goood night then i guess ;p gl with multi ty
                           
                           \u200b""",
                           colour=embed_colour)
