@@ -1,0 +1,4354 @@
+[
+  {
+    "Type": "DataTable",
+    "Name": "AccountLevels",
+    "Properties": {
+      "RowStruct": {
+        "ObjectName": "Class FortLevelUpDataV2",
+        "ObjectPath": "/Script/FortniteGame"
+      }
+    },
+    "Rows": {
+      "1": {
+        "Xp": 0,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.005,
+        "Rewards": [
+          {
+            "TemplateId": "",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 19637889,
+        "RestXPRechargeRate": 16365,
+        "BoostXPPerConsumable": 4609818
+      },
+      "2": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.005,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 19637889,
+        "RestXPRechargeRate": 16365,
+        "BoostXPPerConsumable": 4609818
+      },
+      "3": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.0055,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 19637889,
+        "RestXPRechargeRate": 16365,
+        "BoostXPPerConsumable": 4609818
+      },
+      "4": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.006,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 21423152,
+        "RestXPRechargeRate": 17853,
+        "BoostXPPerConsumable": 4609818
+      },
+      "5": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.008285,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 18205735,
+        "RestXPRechargeRate": 15171,
+        "BoostXPPerConsumable": 4609818
+      },
+      "6": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.00938,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_assault_semiauto_uc_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 18651998,
+        "RestXPRechargeRate": 15543,
+        "BoostXPPerConsumable": 4609818
+      },
+      "7": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.010082,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_edged_sword_light_uc_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 19920436,
+        "RestXPRechargeRate": 16600,
+        "BoostXPPerConsumable": 4609818
+      },
+      "8": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.010784,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_floor_spikes_wood_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 21189928,
+        "RestXPRechargeRate": 17658,
+        "BoostXPPerConsumable": 4609818
+      },
+      "9": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.011486,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_wall_wood_spikes_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22459688,
+        "RestXPRechargeRate": 18716,
+        "BoostXPPerConsumable": 4609818
+      },
+      "10": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.0125475,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 23049092,
+        "RestXPRechargeRate": 19208,
+        "BoostXPPerConsumable": 4609818
+      },
+      "11": {
+        "Xp": 10000000,
+        "DifficultyLevel": 1,
+        "XPDisplayMultiplier": 0.01327,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude_team",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 23005398,
+        "RestXPRechargeRate": 19171,
+        "BoostXPPerConsumable": 4601080
+      },
+      "12": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.0139925,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense_team",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 22965579,
+        "RestXPRechargeRate": 19138,
+        "BoostXPPerConsumable": 4593116
+      },
+      "13": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.014716,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance_team",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 22928803,
+        "RestXPRechargeRate": 19107,
+        "BoostXPPerConsumable": 4585761
+      },
+      "14": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.015439,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology_team",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 22895305,
+        "RestXPRechargeRate": 19079,
+        "BoostXPPerConsumable": 4579061
+      },
+      "15": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.016163,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22864005,
+        "RestXPRechargeRate": 19053,
+        "BoostXPPerConsumable": 4572801
+      },
+      "16": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.016887,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22834887,
+        "RestXPRechargeRate": 19029,
+        "BoostXPPerConsumable": 4566977
+      },
+      "17": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.017612,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_ceiling_electric_single_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22807410,
+        "RestXPRechargeRate": 19006,
+        "BoostXPPerConsumable": 4561482
+      },
+      "18": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.018337,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_shotgun_break_uc_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22781826,
+        "RestXPRechargeRate": 18985,
+        "BoostXPPerConsumable": 4556365
+      },
+      "19": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.019063,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_blunt_medium_uc_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22757339,
+        "RestXPRechargeRate": 18964,
+        "BoostXPPerConsumable": 4551468
+      },
+      "20": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.0197885,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22734463,
+        "RestXPRechargeRate": 18945,
+        "BoostXPPerConsumable": 4546893
+      },
+      "21": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.020515,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 22712669,
+        "RestXPRechargeRate": 18927,
+        "BoostXPPerConsumable": 4542534
+      },
+      "22": {
+        "Xp": 10000000,
+        "DifficultyLevel": 3,
+        "XPDisplayMultiplier": 0.021242,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 22691953,
+        "RestXPRechargeRate": 18910,
+        "BoostXPPerConsumable": 4538391
+      },
+      "23": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.021969,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 22672307,
+        "RestXPRechargeRate": 18894,
+        "BoostXPPerConsumable": 4534461
+      },
+      "24": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.022697,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 22652952,
+        "RestXPRechargeRate": 18877,
+        "BoostXPPerConsumable": 4530590
+      },
+      "25": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.0234245,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22635176,
+        "RestXPRechargeRate": 18863,
+        "BoostXPPerConsumable": 4527035
+      },
+      "26": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.024153,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_commando_008_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22617684,
+        "RestXPRechargeRate": 18848,
+        "BoostXPPerConsumable": 4523537
+      },
+      "27": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.0248825,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22600732,
+        "RestXPRechargeRate": 18834,
+        "BoostXPPerConsumable": 4520146
+      },
+      "28": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.025611,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22585088,
+        "RestXPRechargeRate": 18821,
+        "BoostXPPerConsumable": 4517018
+      },
+      "29": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.026341,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_pistol_auto_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22569209,
+        "RestXPRechargeRate": 18808,
+        "BoostXPPerConsumable": 4513842
+      },
+      "30": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.0270705,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22554374,
+        "RestXPRechargeRate": 18795,
+        "BoostXPPerConsumable": 4510875
+      },
+      "31": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.027801,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22539815,
+        "RestXPRechargeRate": 18783,
+        "BoostXPPerConsumable": 4507963
+      },
+      "32": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.0285315,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22525784,
+        "RestXPRechargeRate": 18771,
+        "BoostXPPerConsumable": 4505157
+      },
+      "33": {
+        "Xp": 10000000,
+        "DifficultyLevel": 5,
+        "XPDisplayMultiplier": 0.029262,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22512534,
+        "RestXPRechargeRate": 18760,
+        "BoostXPPerConsumable": 4502507
+      },
+      "34": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.0299935,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22499301,
+        "RestXPRechargeRate": 18749,
+        "BoostXPPerConsumable": 4499860
+      },
+      "35": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.030725,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22486590,
+        "RestXPRechargeRate": 18739,
+        "BoostXPPerConsumable": 4497318
+      },
+      "36": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.0314565,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_floor_spikes_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22474402,
+        "RestXPRechargeRate": 18729,
+        "BoostXPPerConsumable": 4494880
+      },
+      "37": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.032189,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_edged_axe_heavy_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22462227,
+        "RestXPRechargeRate": 18719,
+        "BoostXPPerConsumable": 4492445
+      },
+      "38": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.032921,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_wall_launcher_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22450571,
+        "RestXPRechargeRate": 18709,
+        "BoostXPPerConsumable": 4490114
+      },
+      "39": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.0336535,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_ceiling_electric_aoe_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22439434,
+        "RestXPRechargeRate": 18700,
+        "BoostXPPerConsumable": 4487887
+      },
+      "40": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.0343865,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22428307,
+        "RestXPRechargeRate": 18690,
+        "BoostXPPerConsumable": 4485661
+      },
+      "41": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.03512,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22417445,
+        "RestXPRechargeRate": 18681,
+        "BoostXPPerConsumable": 4483489
+      },
+      "42": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.0358535,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22406844,
+        "RestXPRechargeRate": 18672,
+        "BoostXPPerConsumable": 4481369
+      },
+      "43": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.0365875,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22396506,
+        "RestXPRechargeRate": 18664,
+        "BoostXPPerConsumable": 4479301
+      },
+      "44": {
+        "Xp": 10000000,
+        "DifficultyLevel": 7,
+        "XPDisplayMultiplier": 0.037321,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 22386933,
+        "RestXPRechargeRate": 18656,
+        "BoostXPPerConsumable": 4477387
+      },
+      "45": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.038056,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22376865,
+        "RestXPRechargeRate": 18647,
+        "BoostXPPerConsumable": 4475373
+      },
+      "46": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.03879,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managersoldier_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22367560,
+        "RestXPRechargeRate": 18640,
+        "BoostXPPerConsumable": 4473512
+      },
+      "47": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.039525,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_ninja_slashbreath_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22358012,
+        "RestXPRechargeRate": 18632,
+        "BoostXPPerConsumable": 4471602
+      },
+      "48": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.04026,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_wall_light_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22348974,
+        "RestXPRechargeRate": 18624,
+        "BoostXPPerConsumable": 4469795
+      },
+      "49": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.0409955,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22339943,
+        "RestXPRechargeRate": 18617,
+        "BoostXPPerConsumable": 4467989
+      },
+      "50": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.041731,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22331420,
+        "RestXPRechargeRate": 18610,
+        "BoostXPPerConsumable": 4466284
+      },
+      "51": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.0424665,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 2500
+          }
+        ],
+        "RestXPCap": 22322904,
+        "RestXPRechargeRate": 18602,
+        "BoostXPPerConsumable": 4464581
+      },
+      "52": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.043202,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 2500
+          }
+        ],
+        "RestXPCap": 22314645,
+        "RestXPRechargeRate": 18596,
+        "BoostXPPerConsumable": 4462929
+      },
+      "53": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.0439385,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22306392,
+        "RestXPRechargeRate": 18589,
+        "BoostXPPerConsumable": 4461278
+      },
+      "54": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.044675,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 10000
+          }
+        ],
+        "RestXPCap": 22298394,
+        "RestXPRechargeRate": 18582,
+        "BoostXPPerConsumable": 4459679
+      },
+      "55": {
+        "Xp": 10000000,
+        "DifficultyLevel": 10,
+        "XPDisplayMultiplier": 0.045412,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 22290153,
+        "RestXPRechargeRate": 18575,
+        "BoostXPPerConsumable": 4458031
+      },
+      "56": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.0472335,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude_team",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 21770803,
+        "RestXPRechargeRate": 18142,
+        "BoostXPPerConsumable": 4354161
+      },
+      "57": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.047988,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense_team",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 21763423,
+        "RestXPRechargeRate": 18136,
+        "BoostXPPerConsumable": 4352685
+      },
+      "58": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.0487425,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance_team",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 21756048,
+        "RestXPRechargeRate": 18130,
+        "BoostXPPerConsumable": 4351210
+      },
+      "59": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.0494965,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology_team",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 21749391,
+        "RestXPRechargeRate": 18124,
+        "BoostXPPerConsumable": 4349878
+      },
+      "60": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.050251,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 21742501,
+        "RestXPRechargeRate": 18119,
+        "BoostXPPerConsumable": 4348500
+      },
+      "61": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.051006,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 21735615,
+        "RestXPRechargeRate": 18113,
+        "BoostXPPerConsumable": 4347123
+      },
+      "62": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.053055,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 21198995,
+        "RestXPRechargeRate": 17666,
+        "BoostXPPerConsumable": 4239799
+      },
+      "63": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.055141,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 20688385,
+        "RestXPRechargeRate": 17240,
+        "BoostXPPerConsumable": 4137677
+      },
+      "64": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.057263,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 20202409,
+        "RestXPRechargeRate": 16835,
+        "BoostXPPerConsumable": 4040482
+      },
+      "65": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.0594235,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 19738309,
+        "RestXPRechargeRate": 16449,
+        "BoostXPPerConsumable": 3947662
+      },
+      "66": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.061621,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managerdoctor_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 19295049,
+        "RestXPRechargeRate": 16079,
+        "BoostXPPerConsumable": 3859010
+      },
+      "67": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.0638565,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_people",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 18871269,
+        "RestXPRechargeRate": 15726,
+        "BoostXPPerConsumable": 3774254
+      },
+      "68": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.0661305,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_traps",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 18465323,
+        "RestXPRechargeRate": 15388,
+        "BoostXPPerConsumable": 3693065
+      },
+      "69": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.068441,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_weapons",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 18076688,
+        "RestXPRechargeRate": 15064,
+        "BoostXPPerConsumable": 3615338
+      },
+      "70": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.0707905,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 17703724,
+        "RestXPRechargeRate": 14753,
+        "BoostXPPerConsumable": 3540745
+      },
+      "71": {
+        "Xp": 10000000,
+        "DifficultyLevel": 12,
+        "XPDisplayMultiplier": 0.073177,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 17345869,
+        "RestXPRechargeRate": 14455,
+        "BoostXPPerConsumable": 3469174
+      },
+      "72": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.075602,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 17002049,
+        "RestXPRechargeRate": 14168,
+        "BoostXPPerConsumable": 3400410
+      },
+      "73": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.078065,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 16671455,
+        "RestXPRechargeRate": 13893,
+        "BoostXPPerConsumable": 3334291
+      },
+      "74": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.080566,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 16353338,
+        "RestXPRechargeRate": 13628,
+        "BoostXPPerConsumable": 3270668
+      },
+      "75": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.0831045,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 16047179,
+        "RestXPRechargeRate": 13373,
+        "BoostXPPerConsumable": 3209436
+      },
+      "76": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.085681,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_constructor_008_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 15752154,
+        "RestXPRechargeRate": 13127,
+        "BoostXPPerConsumable": 3150431
+      },
+      "77": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.0882955,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 15467667,
+        "RestXPRechargeRate": 12890,
+        "BoostXPPerConsumable": 3093533
+      },
+      "78": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.0909485,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_sniper_boltaction_scope_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 15193164,
+        "RestXPRechargeRate": 12661,
+        "BoostXPPerConsumable": 3038633
+      },
+      "79": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.0936375,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_floor_flamegrill_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 14928452,
+        "RestXPRechargeRate": 12440,
+        "BoostXPPerConsumable": 2985690
+      },
+      "80": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.0963665,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 14672396,
+        "RestXPRechargeRate": 12227,
+        "BoostXPPerConsumable": 2934479
+      },
+      "81": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.099133,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 14425032,
+        "RestXPRechargeRate": 12021,
+        "BoostXPPerConsumable": 2885006
+      },
+      "82": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.1019365,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_piercing_spear_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 14185934,
+        "RestXPRechargeRate": 11822,
+        "BoostXPPerConsumable": 2837187
+      },
+      "83": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.104778,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_wall_wood_spikes_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 13954550,
+        "RestXPRechargeRate": 11629,
+        "BoostXPPerConsumable": 2790910
+      },
+      "84": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.107658,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 13730513,
+        "RestXPRechargeRate": 11442,
+        "BoostXPPerConsumable": 2746103
+      },
+      "85": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.110576,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 13513477,
+        "RestXPRechargeRate": 11261,
+        "BoostXPPerConsumable": 2702695
+      },
+      "86": {
+        "Xp": 10000000,
+        "DifficultyLevel": 14,
+        "XPDisplayMultiplier": 0.113532,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 13303121,
+        "RestXPRechargeRate": 11086,
+        "BoostXPPerConsumable": 2660624
+      },
+      "87": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.1165265,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 13099140,
+        "RestXPRechargeRate": 10916,
+        "BoostXPPerConsumable": 2619828
+      },
+      "88": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.1195595,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 12901248,
+        "RestXPRechargeRate": 10751,
+        "BoostXPPerConsumable": 2580250
+      },
+      "89": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.122628,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 12709454,
+        "RestXPRechargeRate": 10591,
+        "BoostXPPerConsumable": 2541891
+      },
+      "90": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.1257375,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 12522948,
+        "RestXPRechargeRate": 10436,
+        "BoostXPPerConsumable": 2504590
+      },
+      "91": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.1288835,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 3500
+          }
+        ],
+        "RestXPCap": 12341905,
+        "RestXPRechargeRate": 10285,
+        "BoostXPPerConsumable": 2468381
+      },
+      "92": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.1320665,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 3500
+          }
+        ],
+        "RestXPCap": 12166095,
+        "RestXPRechargeRate": 10138,
+        "BoostXPPerConsumable": 2433219
+      },
+      "93": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.135288,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_outlander_009_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 11995170,
+        "RestXPRechargeRate": 9996,
+        "BoostXPPerConsumable": 2399034
+      },
+      "94": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.138549,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 25000
+          }
+        ],
+        "RestXPCap": 11828799,
+        "RestXPRechargeRate": 9857,
+        "BoostXPPerConsumable": 2365760
+      },
+      "95": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.141847,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 11667052,
+        "RestXPRechargeRate": 9723,
+        "BoostXPPerConsumable": 2333410
+      },
+      "96": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.1451835,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 11509619,
+        "RestXPRechargeRate": 9591,
+        "BoostXPPerConsumable": 2301924
+      },
+      "97": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.148558,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 11356330,
+        "RestXPRechargeRate": 9464,
+        "BoostXPPerConsumable": 2271266
+      },
+      "98": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.151971,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 11207022,
+        "RestXPRechargeRate": 9339,
+        "BoostXPPerConsumable": 2241404
+      },
+      "99": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.1554205,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 11061664,
+        "RestXPRechargeRate": 9218,
+        "BoostXPPerConsumable": 2212333
+      },
+      "100": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.15891,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 10919868,
+        "RestXPRechargeRate": 9100,
+        "BoostXPPerConsumable": 2183974
+      },
+      "101": {
+        "Xp": 10000000,
+        "DifficultyLevel": 16,
+        "XPDisplayMultiplier": 0.162436,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managerengineer_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 10781734,
+        "RestXPRechargeRate": 8985,
+        "BoostXPPerConsumable": 2156347
+      },
+      "102": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.1660005,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_assault_lmg_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 10647011,
+        "RestXPRechargeRate": 8873,
+        "BoostXPPerConsumable": 2129402
+      },
+      "103": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.1696035,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_floor_freeze_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 10515574,
+        "RestXPRechargeRate": 8763,
+        "BoostXPPerConsumable": 2103115
+      },
+      "104": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.1732445,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 10387306,
+        "RestXPRechargeRate": 8656,
+        "BoostXPPerConsumable": 2077461
+      },
+      "105": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.176924,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 10262091,
+        "RestXPRechargeRate": 8552,
+        "BoostXPPerConsumable": 2052418
+      },
+      "106": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.18064,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 10139934,
+        "RestXPRechargeRate": 8450,
+        "BoostXPPerConsumable": 2027987
+      },
+      "107": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.1843965,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 10020509,
+        "RestXPRechargeRate": 8350,
+        "BoostXPPerConsumable": 2004102
+      },
+      "108": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.188189,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 9903937,
+        "RestXPRechargeRate": 8253,
+        "BoostXPPerConsumable": 1980787
+      },
+      "109": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.1920225,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 9789908,
+        "RestXPRechargeRate": 8158,
+        "BoostXPPerConsumable": 1957982
+      },
+      "110": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.19589,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 9678653,
+        "RestXPRechargeRate": 8066,
+        "BoostXPPerConsumable": 1935731
+      },
+      "111": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.1998,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_pistol_autoheavy_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 9569662,
+        "RestXPRechargeRate": 7975,
+        "BoostXPPerConsumable": 1913932
+      },
+      "112": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.203744,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_edged_scythe_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 9463273,
+        "RestXPRechargeRate": 7886,
+        "BoostXPPerConsumable": 1892655
+      },
+      "113": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.2077285,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managergadgeteer_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 9359095,
+        "RestXPRechargeRate": 7799,
+        "BoostXPPerConsumable": 1871819
+      },
+      "114": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.2117515,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_floor_ward_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 9257158,
+        "RestXPRechargeRate": 7714,
+        "BoostXPPerConsumable": 1851432
+      },
+      "115": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.215813,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 2
+          }
+        ],
+        "RestXPCap": 9157390,
+        "RestXPRechargeRate": 7631,
+        "BoostXPPerConsumable": 1831478
+      },
+      "116": {
+        "Xp": 10000000,
+        "DifficultyLevel": 18,
+        "XPDisplayMultiplier": 0.219911,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_people",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 9059821,
+        "RestXPRechargeRate": 7550,
+        "BoostXPPerConsumable": 1811964
+      },
+      "117": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.224047,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_traps",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 8964285,
+        "RestXPRechargeRate": 7470,
+        "BoostXPPerConsumable": 1792857
+      },
+      "118": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.2282215,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 8870719,
+        "RestXPRechargeRate": 7392,
+        "BoostXPPerConsumable": 1774144
+      },
+      "119": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.232437,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_weapons",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 8778968,
+        "RestXPRechargeRate": 7316,
+        "BoostXPPerConsumable": 1755794
+      },
+      "120": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.2366855,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 8689258,
+        "RestXPRechargeRate": 7241,
+        "BoostXPPerConsumable": 1737852
+      },
+      "121": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.2409755,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude_team",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 8601251,
+        "RestXPRechargeRate": 7168,
+        "BoostXPPerConsumable": 1720250
+      },
+      "122": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.2453035,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense_team",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 8514986,
+        "RestXPRechargeRate": 7096,
+        "BoostXPPerConsumable": 1702997
+      },
+      "123": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.2496675,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance_team",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 8430504,
+        "RestXPRechargeRate": 7025,
+        "BoostXPPerConsumable": 1686101
+      },
+      "124": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.254073,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology_team",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 8347572,
+        "RestXPRechargeRate": 6956,
+        "BoostXPPerConsumable": 1669514
+      },
+      "125": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.2585165,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 8266236,
+        "RestXPRechargeRate": 6889,
+        "BoostXPPerConsumable": 1653247
+      },
+      "126": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.262999,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 8186449,
+        "RestXPRechargeRate": 6822,
+        "BoostXPPerConsumable": 1637290
+      },
+      "127": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.267517,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_edged_sword_heavy_r_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 8108255,
+        "RestXPRechargeRate": 6757,
+        "BoostXPPerConsumable": 1621651
+      },
+      "128": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.27207,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managermartialartist_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 8031610,
+        "RestXPRechargeRate": 6693,
+        "BoostXPPerConsumable": 1606322
+      },
+      "129": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.276668,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_commando_009_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 7956212,
+        "RestXPRechargeRate": 6630,
+        "BoostXPPerConsumable": 1591242
+      },
+      "130": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.281301,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 7882284,
+        "RestXPRechargeRate": 6569,
+        "BoostXPPerConsumable": 1576457
+      },
+      "131": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.285973,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 7809700,
+        "RestXPRechargeRate": 6508,
+        "BoostXPPerConsumable": 1561940
+      },
+      "132": {
+        "Xp": 10000000,
+        "DifficultyLevel": 20,
+        "XPDisplayMultiplier": 0.2906835,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 7738423,
+        "RestXPRechargeRate": 6449,
+        "BoostXPPerConsumable": 1547685
+      },
+      "133": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.295432,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 7668420,
+        "RestXPRechargeRate": 6390,
+        "BoostXPPerConsumable": 1533684
+      },
+      "134": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3070205,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 7431315,
+        "RestXPRechargeRate": 6193,
+        "BoostXPPerConsumable": 1486263
+      },
+      "135": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3119515,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 7365351,
+        "RestXPRechargeRate": 6138,
+        "BoostXPPerConsumable": 1473070
+      },
+      "136": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3169255,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 7300458,
+        "RestXPRechargeRate": 6084,
+        "BoostXPPerConsumable": 1460092
+      },
+      "137": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3219385,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_people",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 7236683,
+        "RestXPRechargeRate": 6031,
+        "BoostXPPerConsumable": 1447337
+      },
+      "138": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3269845,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_traps",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 7174150,
+        "RestXPRechargeRate": 5978,
+        "BoostXPPerConsumable": 1434830
+      },
+      "139": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3320765,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_weapons",
+            "Quantity": 75
+          }
+        ],
+        "RestXPCap": 7112528,
+        "RestXPRechargeRate": 5927,
+        "BoostXPPerConsumable": 1422506
+      },
+      "140": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.337208,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 7051941,
+        "RestXPRechargeRate": 5877,
+        "BoostXPPerConsumable": 1410388
+      },
+      "141": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3423715,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6992511,
+        "RestXPRechargeRate": 5827,
+        "BoostXPPerConsumable": 1398502
+      },
+      "142": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.347582,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6933918,
+        "RestXPRechargeRate": 5778,
+        "BoostXPPerConsumable": 1386784
+      },
+      "143": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3528245,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6876430,
+        "RestXPRechargeRate": 5730,
+        "BoostXPPerConsumable": 1375286
+      },
+      "144": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3581135,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6819734,
+        "RestXPRechargeRate": 5683,
+        "BoostXPPerConsumable": 1363947
+      },
+      "145": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3634345,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 6764094,
+        "RestXPRechargeRate": 5637,
+        "BoostXPPerConsumable": 1352819
+      },
+      "146": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.368803,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managertrainer_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 6709204,
+        "RestXPRechargeRate": 5591,
+        "BoostXPPerConsumable": 1341841
+      },
+      "147": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.374203,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_assault_burst_vr_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 6655326,
+        "RestXPRechargeRate": 5546,
+        "BoostXPPerConsumable": 1331065
+      },
+      "148": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.379646,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 6602226,
+        "RestXPRechargeRate": 5502,
+        "BoostXPPerConsumable": 1320445
+      },
+      "149": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3851285,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 6549956,
+        "RestXPRechargeRate": 5458,
+        "BoostXPPerConsumable": 1309991
+      },
+      "150": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.3906095,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 6499181,
+        "RestXPRechargeRate": 5416,
+        "BoostXPPerConsumable": 1299836
+      },
+      "151": {
+        "Xp": 10000000,
+        "DifficultyLevel": 22,
+        "XPDisplayMultiplier": 0.396129,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 4000
+          }
+        ],
+        "RestXPCap": 6449188,
+        "RestXPRechargeRate": 5374,
+        "BoostXPPerConsumable": 1289838
+      },
+      "152": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.401687,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 4000
+          }
+        ],
+        "RestXPCap": 6399957,
+        "RestXPRechargeRate": 5333,
+        "BoostXPPerConsumable": 1279991
+      },
+      "153": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.407283,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 6351473,
+        "RestXPRechargeRate": 5293,
+        "BoostXPPerConsumable": 1270295
+      },
+      "154": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.412917,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 40000
+          }
+        ],
+        "RestXPCap": 6303717,
+        "RestXPRechargeRate": 5253,
+        "BoostXPPerConsumable": 1260743
+      },
+      "155": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.41859,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 6256675,
+        "RestXPRechargeRate": 5214,
+        "BoostXPPerConsumable": 1251335
+      },
+      "156": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.424301,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6210329,
+        "RestXPRechargeRate": 5175,
+        "BoostXPPerConsumable": 1242066
+      },
+      "157": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.43005,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6164665,
+        "RestXPRechargeRate": 5137,
+        "BoostXPPerConsumable": 1232933
+      },
+      "158": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.435838,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6119667,
+        "RestXPRechargeRate": 5100,
+        "BoostXPPerConsumable": 1223933
+      },
+      "159": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.441664,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 6075322,
+        "RestXPRechargeRate": 5063,
+        "BoostXPPerConsumable": 1215064
+      },
+      "160": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.447528,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 6031614,
+        "RestXPRechargeRate": 5026,
+        "BoostXPPerConsumable": 1206323
+      },
+      "161": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.453431,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managerinventor_uc_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5988531,
+        "RestXPRechargeRate": 4990,
+        "BoostXPPerConsumable": 1197706
+      },
+      "162": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.459372,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_wall_darts_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5946060,
+        "RestXPRechargeRate": 4955,
+        "BoostXPPerConsumable": 1189212
+      },
+      "163": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.465351,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5904186,
+        "RestXPRechargeRate": 4920,
+        "BoostXPPerConsumable": 1180837
+      },
+      "164": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.4713685,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_floor_spikes_wood_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5862898,
+        "RestXPRechargeRate": 4886,
+        "BoostXPPerConsumable": 1172580
+      },
+      "165": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.4774245,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 5822183,
+        "RestXPRechargeRate": 4852,
+        "BoostXPPerConsumable": 1164437
+      },
+      "166": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.483519,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_people",
+            "Quantity": 200
+          }
+        ],
+        "RestXPCap": 5782030,
+        "RestXPRechargeRate": 4818,
+        "BoostXPPerConsumable": 1156406
+      },
+      "167": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.4896515,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_traps",
+            "Quantity": 200
+          }
+        ],
+        "RestXPCap": 5742427,
+        "RestXPRechargeRate": 4785,
+        "BoostXPPerConsumable": 1148485
+      },
+      "168": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.4958225,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_weapons",
+            "Quantity": 200
+          }
+        ],
+        "RestXPCap": 5703363,
+        "RestXPRechargeRate": 4753,
+        "BoostXPPerConsumable": 1140673
+      },
+      "169": {
+        "Xp": 10000000,
+        "DifficultyLevel": 24,
+        "XPDisplayMultiplier": 0.502032,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_ceiling_electric_single_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5664827,
+        "RestXPRechargeRate": 4721,
+        "BoostXPPerConsumable": 1132965
+      },
+      "170": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5082795,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 3
+          }
+        ],
+        "RestXPCap": 5626808,
+        "RestXPRechargeRate": 4689,
+        "BoostXPPerConsumable": 1125362
+      },
+      "171": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5145655,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_ninja_007_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5589296,
+        "RestXPRechargeRate": 4658,
+        "BoostXPPerConsumable": 1117859
+      },
+      "172": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5208895,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 5552281,
+        "RestXPRechargeRate": 4627,
+        "BoostXPPerConsumable": 1110456
+      },
+      "173": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.527252,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_blunt_club_light_vr_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5515753,
+        "RestXPRechargeRate": 4596,
+        "BoostXPPerConsumable": 1103151
+      },
+      "174": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.533653,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 5479702,
+        "RestXPRechargeRate": 4566,
+        "BoostXPPerConsumable": 1095940
+      },
+      "175": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5400925,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 5444119,
+        "RestXPRechargeRate": 4537,
+        "BoostXPPerConsumable": 1088824
+      },
+      "176": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.54657,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 5408996,
+        "RestXPRechargeRate": 4507,
+        "BoostXPPerConsumable": 1081799
+      },
+      "177": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.553086,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 5374323,
+        "RestXPRechargeRate": 4479,
+        "BoostXPPerConsumable": 1074865
+      },
+      "178": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.55964,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 5340092,
+        "RestXPRechargeRate": 4450,
+        "BoostXPPerConsumable": 1068018
+      },
+      "179": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5662325,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 5306294,
+        "RestXPRechargeRate": 4422,
+        "BoostXPPerConsumable": 1061259
+      },
+      "180": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5728635,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 5272921,
+        "RestXPRechargeRate": 4394,
+        "BoostXPPerConsumable": 1054584
+      },
+      "181": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.579533,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 4500
+          }
+        ],
+        "RestXPCap": 5239965,
+        "RestXPRechargeRate": 4367,
+        "BoostXPPerConsumable": 1047993
+      },
+      "182": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5862405,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 4500
+          }
+        ],
+        "RestXPCap": 5207419,
+        "RestXPRechargeRate": 4340,
+        "BoostXPPerConsumable": 1041484
+      },
+      "183": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5929865,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 50000
+          }
+        ],
+        "RestXPCap": 5175274,
+        "RestXPRechargeRate": 4313,
+        "BoostXPPerConsumable": 1035055
+      },
+      "184": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.5997705,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5143524,
+        "RestXPRechargeRate": 4286,
+        "BoostXPPerConsumable": 1028705
+      },
+      "185": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.606593,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 5112161,
+        "RestXPRechargeRate": 4260,
+        "BoostXPPerConsumable": 1022432
+      },
+      "186": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.613454,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_wall_wood_spikes_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5081178,
+        "RestXPRechargeRate": 4234,
+        "BoostXPPerConsumable": 1016236
+      },
+      "187": {
+        "Xp": 10000000,
+        "DifficultyLevel": 26,
+        "XPDisplayMultiplier": 0.620353,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5050569,
+        "RestXPRechargeRate": 4209,
+        "BoostXPPerConsumable": 1010114
+      },
+      "188": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.6272905,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_shotgun_standard_vr_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 5020326,
+        "RestXPRechargeRate": 4184,
+        "BoostXPPerConsumable": 1004065
+      },
+      "189": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.6342665,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_ceiling_gas_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4990443,
+        "RestXPRechargeRate": 4159,
+        "BoostXPPerConsumable": 998089
+      },
+      "190": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.6412805,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 4960914,
+        "RestXPRechargeRate": 4134,
+        "BoostXPPerConsumable": 992183
+      },
+      "191": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.648333,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managerexplorer_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4931732,
+        "RestXPRechargeRate": 4110,
+        "BoostXPPerConsumable": 986346
+      },
+      "192": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.655424,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 4902891,
+        "RestXPRechargeRate": 4086,
+        "BoostXPPerConsumable": 980578
+      },
+      "193": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.662553,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_constructor_009_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4874386,
+        "RestXPRechargeRate": 4062,
+        "BoostXPPerConsumable": 974877
+      },
+      "194": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.6697205,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4846210,
+        "RestXPRechargeRate": 4039,
+        "BoostXPPerConsumable": 969242
+      },
+      "195": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.6769265,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 4818359,
+        "RestXPRechargeRate": 4015,
+        "BoostXPPerConsumable": 963672
+      },
+      "196": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.6841705,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 4790825,
+        "RestXPRechargeRate": 3992,
+        "BoostXPPerConsumable": 958165
+      },
+      "197": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.691453,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 4763604,
+        "RestXPRechargeRate": 3970,
+        "BoostXPPerConsumable": 952721
+      },
+      "198": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.698774,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 4736691,
+        "RestXPRechargeRate": 3947,
+        "BoostXPPerConsumable": 947338
+      },
+      "199": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.706133,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 9
+          }
+        ],
+        "RestXPCap": 4710081,
+        "RestXPRechargeRate": 3925,
+        "BoostXPPerConsumable": 942016
+      },
+      "200": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.7135305,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 4683768,
+        "RestXPRechargeRate": 3903,
+        "BoostXPPerConsumable": 936754
+      },
+      "201": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.7209665,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 5000
+          }
+        ],
+        "RestXPCap": 4657747,
+        "RestXPRechargeRate": 3881,
+        "BoostXPPerConsumable": 931549
+      },
+      "202": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.7284405,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 5000
+          }
+        ],
+        "RestXPCap": 4632013,
+        "RestXPRechargeRate": 3860,
+        "BoostXPPerConsumable": 926403
+      },
+      "203": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.735953,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 60000
+          }
+        ],
+        "RestXPCap": 4606563,
+        "RestXPRechargeRate": 3839,
+        "BoostXPPerConsumable": 921313
+      },
+      "204": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.743504,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_floor_launcher_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4581390,
+        "RestXPRechargeRate": 3818,
+        "BoostXPPerConsumable": 916278
+      },
+      "205": {
+        "Xp": 10000000,
+        "DifficultyLevel": 28,
+        "XPDisplayMultiplier": 0.751093,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 4556491,
+        "RestXPRechargeRate": 3797,
+        "BoostXPPerConsumable": 911298
+      },
+      "206": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.7587205,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 4531862,
+        "RestXPRechargeRate": 3777,
+        "BoostXPPerConsumable": 906372
+      },
+      "207": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.766386,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_sniper_shredder_vr_ore_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4507497,
+        "RestXPRechargeRate": 3756,
+        "BoostXPPerConsumable": 901499
+      },
+      "208": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.7740905,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4483392,
+        "RestXPRechargeRate": 3736,
+        "BoostXPPerConsumable": 896678
+      },
+      "209": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.7818325,
+        "Rewards": [
+          {
+            "TemplateId": "Hero:hid_outlander_007_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4459545,
+        "RestXPRechargeRate": 3716,
+        "BoostXPPerConsumable": 891909
+      },
+      "210": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.7896135,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 4435949,
+        "RestXPRechargeRate": 3697,
+        "BoostXPPerConsumable": 887190
+      },
+      "211": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.7974325,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_people",
+            "Quantity": 200
+          }
+        ],
+        "RestXPCap": 4412602,
+        "RestXPRechargeRate": 3677,
+        "BoostXPPerConsumable": 882520
+      },
+      "212": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.80529,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_traps",
+            "Quantity": 200
+          }
+        ],
+        "RestXPCap": 4389499,
+        "RestXPRechargeRate": 3658,
+        "BoostXPPerConsumable": 877900
+      },
+      "213": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.813186,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_weapons",
+            "Quantity": 200
+          }
+        ],
+        "RestXPCap": 4366637,
+        "RestXPRechargeRate": 3639,
+        "BoostXPPerConsumable": 873327
+      },
+      "214": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.82112,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4344012,
+        "RestXPRechargeRate": 3620,
+        "BoostXPPerConsumable": 868802
+      },
+      "215": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.8290925,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 4
+          }
+        ],
+        "RestXPCap": 4321621,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864324
+      },
+      "216": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.8329385,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 6000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "217": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.836657,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 6000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "218": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.8403755,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "219": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.8440935,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 70000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "220": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.847812,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "221": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.8515305,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "222": {
+        "Xp": 10000000,
+        "DifficultyLevel": 30,
+        "XPDisplayMultiplier": 0.855249,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "223": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.8589675,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "224": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.862686,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "225": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.8664045,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "226": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.870123,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managerdoctor_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "227": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.8738415,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "228": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.87756,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "229": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.8812785,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "230": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.884997,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "231": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.8887155,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude_team",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "232": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.892434,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense_team",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "233": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.8961525,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance_team",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "234": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.899871,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology_team",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "235": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.9035895,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "236": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.907308,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "237": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.9110265,
+        "Rewards": [
+          {
+            "TemplateId": "Schematic:sid_wall_electric_vr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "238": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.9147445,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_sr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "239": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.918463,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managersoldier_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "240": {
+        "Xp": 10000000,
+        "DifficultyLevel": 32,
+        "XPDisplayMultiplier": 0.9221815,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "241": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9259,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "242": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9296185,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "243": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.933337,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "244": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9370555,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "245": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.940774,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "246": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9444925,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 7500
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "247": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.948211,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 7500
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "248": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9519295,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "249": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.955648,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 100000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "250": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9593665,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "251": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.963085,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_people",
+            "Quantity": 325
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "252": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9668035,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_traps",
+            "Quantity": 325
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "253": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.970522,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_weapons",
+            "Quantity": 325
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "254": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9742405,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managerengineer_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "255": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.977959,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "256": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.9816775,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 11
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "257": {
+        "Xp": 10000000,
+        "DifficultyLevel": 34,
+        "XPDisplayMultiplier": 0.985396,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 11
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "258": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 0.989114,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 11
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "259": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 0.9928325,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 11
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "260": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 0.996551,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "261": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.0002695,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_sr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "262": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.003988,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "263": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.0077065,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "264": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.011425,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "265": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.0151435,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "266": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.018862,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 8000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "267": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.0225805,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 8000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "268": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.026299,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 120000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "269": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.0300175,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managergadgeteer_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "270": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.033736,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "271": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.0374545,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 12
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "272": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.041173,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 12
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "273": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.0448915,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 12
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "274": {
+        "Xp": 10000000,
+        "DifficultyLevel": 36,
+        "XPDisplayMultiplier": 1.04861,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 12
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "275": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.0523285,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 6
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "276": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.056047,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_people",
+            "Quantity": 325
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "277": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.0597655,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_traps",
+            "Quantity": 325
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "278": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.0634835,
+        "Rewards": [
+          {
+            "TemplateId": "HomebaseNode:commanderlevel_rpcollection",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "279": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.067202,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_weapons",
+            "Quantity": 325
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "280": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.0709205,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "281": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.074639,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "282": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.0783575,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "283": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.082076,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "284": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.0857944,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managermartialartist_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "285": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.089513,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "286": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.0932316,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 8500
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "287": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.09695,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 8500
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "288": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.1006685,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_sr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "289": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.104387,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 135000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "290": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.1081055,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "291": {
+        "Xp": 10000000,
+        "DifficultyLevel": 38,
+        "XPDisplayMultiplier": 1.111824,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:fortitude",
+            "Quantity": 13
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "292": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1155425,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:offense",
+            "Quantity": 13
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "293": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.119261,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:resistance",
+            "Quantity": 13
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "294": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1229795,
+        "Rewards": [
+          {
+            "TemplateId": "Stat:technology",
+            "Quantity": 13
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "295": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.126698,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 7
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "296": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1304165,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managertrainer_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "297": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1341345,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 9000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "298": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.137853,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 9000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "299": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1415715,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 145000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "300": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.14529,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "301": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1490085,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 20
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "302": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.152727,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 10
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "303": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1564455,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 5
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "304": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.160164,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:workerbasic_sr_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "305": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1638825,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "306": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.167601,
+        "Rewards": [
+          {
+            "TemplateId": "Worker:managerinventor_r_t01",
+            "Quantity": 1
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "307": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.1713195,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:heroxp",
+            "Quantity": 9500
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "308": {
+        "Xp": 10000000,
+        "DifficultyLevel": 40,
+        "XPDisplayMultiplier": 1.175038,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:schematicxp",
+            "Quantity": 9500
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "309": {
+        "Xp": 10000000,
+        "DifficultyLevel": 41,
+        "XPDisplayMultiplier": 1.1787565,
+        "Rewards": [
+          {
+            "TemplateId": "AccountResource:personnelxp",
+            "Quantity": 150000
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      },
+      "310": {
+        "Xp": 10000000,
+        "DifficultyLevel": 42,
+        "XPDisplayMultiplier": 1.182475,
+        "Rewards": [
+          {
+            "TemplateId": "Token:homebasepoints",
+            "Quantity": 8
+          }
+        ],
+        "RestXPCap": 4320956,
+        "RestXPRechargeRate": 3601,
+        "BoostXPPerConsumable": 864191
+      }
+    }
+  }
+]
