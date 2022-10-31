@@ -57,7 +57,7 @@ def main():
         "battlebreakers.bbreward",
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
-    client.a = "✅ Official Verified Deployment", True #seleckted
+    client.a = "✅ Official Verified Deployment", True  # seleckted
     for ext in extensions:
         print(client.load_extension(f"ext.{ext}"))
 

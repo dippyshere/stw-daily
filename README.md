@@ -1,4 +1,6 @@
-# Fortnite: Save the World Daily Rewards Discord Bot
+<h1 align=center> Fortnite: Save the World Daily Rewards Discord Bot</h1>
+
+<img src='res/Stableupdated.png' width='128' alt="">
 
 The official source code of the Discord Bot [STW Daily](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands), which can claim your STW daily reward. It is an adaptation of [this repository](https://github.com/Londiuh/fstwrc) by [Londiuh](https://github.com/Londiuh/).
 
@@ -86,3 +88,10 @@ A valid auth token can be used maliciously, even though it expires when used, be
 ###### <p align=center> All rights reserved by Epic. </p>
 ###### <p align=center> This material is not official and is not endorsed by Epic. </p>
 ###### <p align=center> All badges/icons (except the "Llama Calendar") are original copyrighted works by the author. </p>
+
+![Discord Badge](https://img.shields.io/discord/757765475823517851)
+![Repository Size Badge](https://img.shields.io/github/repo-size/dippyshere/stw-daily?label=Repository%20Size)
+![Code Size Badge](https://img.shields.io/github/languages/code-size/dippyshere/stw-daily)
+![Issues Open Badge](https://img.shields.io/github/issues/dippyshere/stw-daily)
+![Issues Closed Badge](https://img.shields.io/github/issues-closed/dippyshere/stw-daily)
+![License Badge](https://img.shields.io/github/license/dippyshere/stw-daily)
