@@ -14,6 +14,10 @@ import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 
 with open("ext/battlebreakers/LoginRewards.json", "r") as LoginRewards:
     LoginRewards = json.load(LoginRewards)
+with open('SurvivorItemRating.json') as f:
+    SurvivorItemRating = json.load(f)
+with open('HomebaseRatingMapping.json') as f:
+    HomebaseRatingMapping = json.load(f)
 
 guild_ids = None
 
@@ -562,6 +566,195 @@ async def calculate_vbucks(items):
                 else:
                     vbucks += val["quantity"]
     return vbucks
+
+
+def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0):
+    row_data = data_table[0]['Rows'][row]
+    # ROOT[0].Rows.Default_C_T01.Keys[0].Time
+    # clamp to lower bound.
+    if time_input < row_data['Keys'][0]['Time']:
+        return row_data['Keys'][0]['Value']
+
+    # clamp to upper bound.
+    if time_input >= row_data['Keys'][-1]['Time']:
+        return row_data['Keys'][-1]['Value']
+
+    # find the two keys that the time_input is between.
+    for i in range(len(row_data['Keys']) - 1):
+        if row_data['Keys'][i]['Time'] <= time_input < row_data['Keys'][i + 1]['Time']:
+            # interpolate between the two keys.
+            return row_data['Keys'][i]['Value'] + (time_input - row_data['Keys'][i]['Time']) / (
+                    row_data['Keys'][i + 1]['Time'] - row_data['Keys'][i]['Time']) * (
+                           row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])
+
+
+# Worker:managerexplorer_sr_eagle_t05 ; Worker:workerbasic_sr_t05;
+# Worker:worker_halloween_smasher_sr_t05; Worker:worker_joel_ur_t05
+def parse_survivor_template_id(template_id):
+    # STWSurvivorType = 'special' | 'manager' | 'basic'
+    # STWItemRarity = 'c' | 'uc' | 'r' | 'vr' | 'sr' | 'ur'
+    # STWItemTier = 1 | 2 | 3 | 4 | 5 | 6
+    tid = template_id.split(":")[1]
+    fields = tid.split("_")
+
+    if fields[0] == "worker":
+        survivor_type = "special"
+        fields.pop(0)
+    elif "manager" in fields[0]:
+        survivor_type = "manager"
+        fields[0] = fields[0].split("manager")[1]
+    else:
+        survivor_type = "basic"
+        fields.pop(0)
+
+    tier = fields.pop(-1)
+
+    if survivor_type == "manager":
+        rarity = fields.pop(-2)
+    else:
+        rarity = fields.pop(-1)
+
+    name = ""
+    for val in fields:
+        name += val + "_"
+
+    return survivor_type, tier, rarity, name[:-1]
+
+
+# print(parse_survivor_template_id("Worker:managerexplorer_sr_eagle_t05"))
+# print(parse_survivor_template_id("Worker:workerbasic_sr_t05"))
+# print(parse_survivor_template_id("Worker:worker_halloween_smasher_sr_t05"))
+# print(parse_survivor_template_id("Worker:worker_joel_ur_t05"))
+
+# print(get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating", time_input=52025))
+# print(get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=50))
+
+# leader = {
+#     'templateId': 'Worker:managergadgeteer_sr_fixer_t05',
+#     'attributes': {
+#         'squad_id': 'squad_attribute_scavenging_gadgeteers',
+#         'personality': 'Homebase.Worker.Personality.IsAnalytical',
+#         'level': 50,
+#         'squad_slot_idx': 0,
+#         'item_seen': True,
+#         'managerSynergy': 'Homebase.Manager.IsGadgeteer',
+#         'portrait': 'WorkerPortrait:IconDef-ManagerPortrait-SR-Gadgeteer-fixer',
+#         'favorite': True,
+#         'building_slot_used': -1
+#     },
+#     'quantity': 1
+# }
+# worker = {
+#     'templateId': 'Worker:workerbasic_sr_t05',
+#     'attributes': {
+#         'personality': 'Homebase.Worker.Personality.IsAnalytical',
+#         'gender': '1',
+#         'squad_id': 'squad_attribute_scavenging_gadgeteers',
+#         'level': 50,
+#         'squad_slot_idx': 5,
+#         'item_seen': True,
+#         'portrait': 'WorkerPortrait:IconDef-WorkerPortrait-Analytical-M03',
+#         'building_slot_used': -1,
+#         'set_bonus': 'Homebase.Worker.SetBonus.IsAbilityDamageLow'
+#     },
+#     'quantity': 1
+# }
+
+
+def get_survivor_rating(survivor):
+    survivor_info = parse_survivor_template_id(survivor["templateId"])
+    if survivor_info[0] == "manager":
+        survivor_type = "Manager"
+    else:
+        survivor_type = "Default"
+    return get_rating(data_table=SurvivorItemRating,
+                      row=f"{survivor_type}_{survivor_info[2].upper()}_{survivor_info[1].upper()}",
+                      time_input=survivor["attributes"]["level"]), survivor_info
+
+
+# print(get_survivor_rating(leader))
+# print(get_survivor_rating(worker))
+
+def get_survivor_bonus(leader_personality, survivor_personality, leader_rarity, survivor_rating):
+    if leader_personality == survivor_personality:
+        if leader_rarity == 'sr' or leader_rarity == 'ur':
+            return 8
+        if leader_rarity == 'vr':
+            return 5
+        if leader_rarity == 'r':
+            return 4
+        if leader_rarity == 'uc':
+            return 3
+        if leader_rarity == 'c':
+            return 2
+
+    elif leader_rarity == 'sr':
+        if survivor_rating <= 2:
+            return 0
+        return -2
+
+    return 0
+
+
+def get_lead_bonus(lead_synergy, squad_name, rating):
+    # TODO: move this to a better location
+    STWLeadSynergy = {
+        "trainingteam": 'IsTrainer',
+        "fireteamalpha": 'IsSoldier',
+        "closeassaultsquad": 'IsMartialArtist',
+        "thethinktank": 'IsInventor',
+        "emtsquad": 'IsDoctor',
+        "corpsofengineering": 'IsEngineer',
+        "scoutingparty": 'IsExplorer',
+        "gadgeteers": 'IsGadgeteer'
+    }
+    if STWLeadSynergy[squad_name] == lead_synergy:
+        return rating
+    return 0
+
+
+def calculate_homebase_rating(profile):
+    # ROOT.profileChanges[0].profile.items
+    workers = extract_item(profile, "Worker:")
+    survivors = {}
+    total_stats = 0
+    # organise into a dict
+    for attr, val in workers.items():
+        rating, info = get_survivor_rating(val)
+        personality = val["attributes"]["personality"].split(".")[-1]
+        squad = val["attributes"]["squad_id"]
+        if info[0] == "manager":
+            synergy = val["attributes"]["managerSynergy"]
+            try:
+                survivors[squad].update({f"Leader": [rating, info, personality, synergy]})
+            except:
+                survivors.update({squad: {f"Leader": [rating, info, personality, synergy]}})
+        else:
+            try:
+                survivors[squad]["Followers"].update({f"Follower{attr}": [rating, info, personality]})
+            except:
+                survivors.update({squad: {"Followers": {f"Follower{attr}": [rating, info, personality]}}})
+        # survivors.update()
+        # print(rating, personality, squad)
+
+    # leader / survivor bonuses
+    for attr, val in survivors.items():
+        val["Leader"][0] += get_lead_bonus(val["Leader"][-1].split(".")[-1], attr.split("_")[-1], val["Leader"][0])
+        for follower, stats in val["Followers"].items():
+            stats[0] += get_survivor_bonus(val["Leader"][-2], stats[-1], val["Leader"][1][-2], stats[0])
+
+    # research stats
+    # ROOT.profileChanges[0].profile.stats.attributes.research_levels
+    research_levels = profile["profileChanges"][0]["profile"]["stats"]["attributes"]["research_levels"]
+    for attr, val in research_levels.items():
+        total_stats += val
+    for attr, val in survivors.items():
+        total_stats += val["Leader"][0]
+        for follower, stats in val["Followers"].items():
+            total_stats += stats[0]
+
+    print(survivors)
+    return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating", time_input=total_stats * 4)
 
 
 # alexanda  now who is she
