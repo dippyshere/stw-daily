@@ -66,12 +66,16 @@ class Power(ext.Cog):
         if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, slash):
             return
 
-        power_level, total = stw.calculate_homebase_rating(stw_json_response)
+        power_level, total, total_stats = stw.calculate_homebase_rating(stw_json_response)
 
         # With all info extracted, create the output
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Power Level", "power_level"),
                               description=f"\u200b\n**Your powerlevel is: {self.emojis['power_level']}{power_level}**\u200b\n"
-                                          f"\u200b\n**Total FORT stats: {self.emojis['power_level']}{total}**\u200b\n",
+                                          f"\u200b\n**Total FORT stats: {self.emojis['power_level']}{total}**\u200b\n"
+                              f"\u200b\n**Fortitude: {self.emojis['fortitude']} {total_stats['fortitude']}**\u200b\n"
+                              f"\u200b\n**Offense: {self.emojis['offense']} {total_stats['offense']}**\u200b\n"
+                              f"\u200b\n**Resistance: {self.emojis['resistance']} {total_stats['resistance']}**\u200b\n"
+                              f"\u200b\n**Technology: {self.emojis['technology']} {total_stats['technology']}**\u200b\n",
                               colour=vbucc_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "clown")

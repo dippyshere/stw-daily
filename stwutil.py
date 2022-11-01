@@ -20,6 +20,8 @@ with open('ext/DataTables/HomebaseRatingMapping.json') as f:
     HomebaseRatingMapping = json.load(f)
 with open('ext/DataTables/ResearchSystem.json') as f:
     ResearchSystem = json.load(f)
+with open('ext/DataTables/AccountLevels.json') as f:
+    AccountLevels = json.load(f)
 
 guild_ids = None
 
@@ -727,7 +729,20 @@ def calculate_homebase_rating(profile):
     # ROOT.profileChanges[0].profile.items
     workers = extract_item(profile, "Worker:")
     survivors = {}
-    total_stats = 0
+    total_stats = {"fortitude": 0,
+                   "offense": 0,
+                   "resistance": 0,
+                   "technology": 0}
+    STWRoleMap = {
+        "IsTrainer": 'fortitude',
+        "IsSoldier": 'offense',
+        "IsMartialArtist": 'offense',
+        "IsInventor": 'technology',
+        "IsDoctor": 'fortitude',
+        "IsEngineer": 'technology',
+        "IsExplorer": 'resistance',
+        "IsGadgeteer": 'resistance'
+    }
     # organise into a dict
     for attr, val in workers.items():
         if val["attributes"]["squad_slot_idx"] == -1:
@@ -774,28 +789,48 @@ def calculate_homebase_rating(profile):
     research_levels = extract_item(profile, "Stat:")
     for attr, val in research_levels.items():
         if "_team" in val["templateId"]:
-            total_stats += get_rating(data_table=ResearchSystem, row=f"{val['templateId'].split(':')[1]}_cumulative",
+            total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem, row=f"{val['templateId'].split(':')[1]}_cumulative",
                                       time_input=val["quantity"])
         else:
-            total_stats += get_rating(data_table=ResearchSystem,
+            total_stats[val['templateId'].split(':')[1].lower()] += get_rating(data_table=ResearchSystem,
                                       row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
                                       time_input=val["quantity"])
     # for attr, val in research_levels.items():
     #     total_stats += val
     for attr, val in survivors.items():
         try:
-            total_stats += val["Leader"][0]
+            total_stats[STWRoleMap[val["Leader"][-1].split(".")[-1]]] += val["Leader"][0]
         except:
-            pass
+            continue
         for follower, stats in val["Followers"].items():
             try:
-                total_stats += stats[0]
+                total_stats[STWRoleMap[val["Leader"][-1].split(".")[-1]]] += stats[0]
             except:
-                pass
+                continue
 
     # print(survivors)
     # print(workers)
-    return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating", time_input=total_stats * 4), total_stats
+
+    cmd_level = profile["profileChanges"][0]["profile"]["stats"]["attributes"]["level"]
+    # print(cmd_level)
+    # print(total_stats)
+    for attr, val in AccountLevels[0]["Rows"].items():
+        if val["Rewards"][0]["TemplateId"] == "Stat:fortitude":
+            total_stats['fortitude'] += val["Rewards"][0]["Quantity"]
+        if val["Rewards"][0]["TemplateId"] == "Stat:offense":
+            total_stats['offense'] += val["Rewards"][0]["Quantity"]
+        if val["Rewards"][0]["TemplateId"] == "Stat:resistance":
+            total_stats['resistance'] += val["Rewards"][0]["Quantity"]
+        if val["Rewards"][0]["TemplateId"] == "Stat:technology":
+            total_stats['technology'] += val["Rewards"][0]["Quantity"]
+
+    # combine total stats into one number
+    total = 0
+    for attr, val in total_stats.items():
+        total_stats[attr] = int(val + 24)
+        total += val + 24
+    return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating",
+                      time_input=total * 4), total, total_stats
 
 
 # alexanda  now who is she
