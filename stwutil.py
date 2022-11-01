@@ -14,10 +14,12 @@ import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 
 with open("ext/battlebreakers/LoginRewards.json", "r") as LoginRewards:
     LoginRewards = json.load(LoginRewards)
-with open('SurvivorItemRating.json') as f:
+with open('ext/DataTables/SurvivorItemRating.json') as f:
     SurvivorItemRating = json.load(f)
-with open('HomebaseRatingMapping.json') as f:
+with open('ext/DataTables/HomebaseRatingMapping.json') as f:
     HomebaseRatingMapping = json.load(f)
+with open('ext/DataTables/ResearchSystem.json') as f:
+    ResearchSystem = json.load(f)
 
 guild_ids = None
 
@@ -609,10 +611,18 @@ def parse_survivor_template_id(template_id):
 
     tier = fields.pop(-1)
 
-    if survivor_type == "manager":
-        rarity = fields.pop(-2)
+    if "halloween" in fields[0]:
+        fields.pop(0)
+
+    if len(fields) == 1:
+        rarity = fields.pop(0)
     else:
-        rarity = fields.pop(-1)
+        rarity = fields.pop(1)
+
+    # if survivor_type == "manager":
+    #     rarity = fields.pop(-2)
+    # else:
+    #     rarity = fields.pop(-1)
 
     name = ""
     for val in fields:
@@ -720,9 +730,19 @@ def calculate_homebase_rating(profile):
     total_stats = 0
     # organise into a dict
     for attr, val in workers.items():
-        rating, info = get_survivor_rating(val)
+        if val["attributes"]["squad_slot_idx"] == -1:
+            continue
+
+        # if val["attributes"]["squad_slot_idx"] == 0:
+        #     survivors.update({"leader": val})
+        # else:
+        #     survivors.update({val["attributes"]["squad_slot_idx"]: val})
+        # print(val)
         personality = val["attributes"]["personality"].split(".")[-1]
         squad = val["attributes"]["squad_id"]
+        if squad == '':
+            continue
+        rating, info = get_survivor_rating(val)
         if info[0] == "manager":
             synergy = val["attributes"]["managerSynergy"]
             try:
@@ -736,25 +756,46 @@ def calculate_homebase_rating(profile):
                 survivors.update({squad: {"Followers": {f"Follower{attr}": [rating, info, personality]}}})
         # survivors.update()
         # print(rating, personality, squad)
-
+    # print(survivors)
     # leader / survivor bonuses
     for attr, val in survivors.items():
-        val["Leader"][0] += get_lead_bonus(val["Leader"][-1].split(".")[-1], attr.split("_")[-1], val["Leader"][0])
+        try:
+            val["Leader"][0] += get_lead_bonus(val["Leader"][-1].split(".")[-1], attr.split("_")[-1], val["Leader"][0])
+        except:
+            pass
         for follower, stats in val["Followers"].items():
-            stats[0] += get_survivor_bonus(val["Leader"][-2], stats[-1], val["Leader"][1][-2], stats[0])
+            try:
+                stats[0] += get_survivor_bonus(val["Leader"][-2], stats[-1], val["Leader"][1][-2], stats[0])
+            except:
+                pass
 
     # research stats
     # ROOT.profileChanges[0].profile.stats.attributes.research_levels
-    research_levels = profile["profileChanges"][0]["profile"]["stats"]["attributes"]["research_levels"]
+    research_levels = extract_item(profile, "Stat:")
     for attr, val in research_levels.items():
-        total_stats += val
+        if "_team" in val["templateId"]:
+            total_stats += get_rating(data_table=ResearchSystem, row=f"{val['templateId'].split(':')[1]}_cumulative",
+                                      time_input=val["quantity"])
+        else:
+            total_stats += get_rating(data_table=ResearchSystem,
+                                      row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
+                                      time_input=val["quantity"])
+    # for attr, val in research_levels.items():
+    #     total_stats += val
     for attr, val in survivors.items():
-        total_stats += val["Leader"][0]
+        try:
+            total_stats += val["Leader"][0]
+        except:
+            pass
         for follower, stats in val["Followers"].items():
-            total_stats += stats[0]
+            try:
+                total_stats += stats[0]
+            except:
+                pass
 
-    print(survivors)
-    return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating", time_input=total_stats * 4)
+    # print(survivors)
+    # print(workers)
+    return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating", time_input=total_stats * 4), total_stats
 
 
 # alexanda  now who is she
