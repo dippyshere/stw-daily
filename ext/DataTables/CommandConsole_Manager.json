@@ -1,0 +1,882 @@
+[
+  {
+    "Type": "FortHomebaseManager",
+    "Name": "CommandConsole_Manager",
+    "Properties": {
+      "HomebaseNodeGameplayEffectDataTable": {
+        "ObjectName": "FortHomebaseNodeGameplayEffectDataTable CommandConsole_GEImporter_NewSkillTree",
+        "ObjectPath": "/SaveTheWorld/Abilities/CommandConsole/CommandConsole_GEImporter_NewSkillTree.0"
+      },
+      "ResearchSystemUpgradesTable": {
+        "ObjectName": "CurveTable ResearchSystem",
+        "ObjectPath": "/SaveTheWorld/Research/ResearchSystem.0"
+      },
+      "StatsGamplayEffect": {
+        "ObjectName": "BlueprintGeneratedClass CCStatsGameplayEffect_C",
+        "ObjectPath": "/SaveTheWorld/Abilities/CommandConsole/CCStatsGameplayEffect.0"
+      },
+      "HomebaseSquadDataTable": {
+        "ObjectName": "DataTable CCSquads",
+        "ObjectPath": "/SaveTheWorld/CommandConsole/CCSquads.0"
+      },
+      "ExpeditionSlotsDataTable": {
+        "ObjectName": "DataTable ExpeditionSlots",
+        "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionSlots.0"
+      },
+      "ManagerSquadSynergyBonusTable": {
+        "ObjectName": "CurveTable JobFitBonusPerLevel",
+        "ObjectPath": "/SaveTheWorld/Balance/DataTables/JobFitBonusPerLevel.0"
+      },
+      "SquadGE": {
+        "ObjectName": "BlueprintGeneratedClass GE_SquadBuff_C",
+        "ObjectPath": "/SaveTheWorld/CommandConsole/GE_SquadBuff.0"
+      },
+      "WorkerPersonalities": [
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsAdventurous"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "4A5F3A8649690A782EE9D4BF319C42AF",
+            "SourceString": "Adventurous"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Adventurous-M01.IconDef-WorkerPortrait-Adventurous-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Adventurous-M02.IconDef-WorkerPortrait-Adventurous-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Adventurous-M03.IconDef-WorkerPortrait-Adventurous-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Adventurous-F01.IconDef-WorkerPortrait-Adventurous-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Adventurous-F02.IconDef-WorkerPortrait-Adventurous-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Adventurous-F03.IconDef-WorkerPortrait-Adventurous-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsAnalytical"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "F406D0F4438F292545F4C888578B08C6",
+            "SourceString": "Analytical"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Analytical-M01.IconDef-WorkerPortrait-Analytical-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Analytical-M02.IconDef-WorkerPortrait-Analytical-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Analytical-M03.IconDef-WorkerPortrait-Analytical-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Analytical-F01.IconDef-WorkerPortrait-Analytical-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Analytical-F02.IconDef-WorkerPortrait-Analytical-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Analytical-F03.IconDef-WorkerPortrait-Analytical-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsCompetitive"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "8C92307F4B4BD0F900309FAC97CE11B5",
+            "SourceString": "Competitive"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Competitive-M01.IconDef-WorkerPortrait-Competitive-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Competitive-M02.IconDef-WorkerPortrait-Competitive-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Competitive-M03.IconDef-WorkerPortrait-Competitive-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Competitive-F01.IconDef-WorkerPortrait-Competitive-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Competitive-F02.IconDef-WorkerPortrait-Competitive-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Competitive-F03.IconDef-WorkerPortrait-Competitive-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsCooperative"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "87669F054054EA10FF759DA7E99B949B",
+            "SourceString": "Cooperative"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Cooperative-M01.IconDef-WorkerPortrait-Cooperative-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Cooperative-M02.IconDef-WorkerPortrait-Cooperative-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Cooperative-M03.IconDef-WorkerPortrait-Cooperative-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Cooperative-F01.IconDef-WorkerPortrait-Cooperative-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Cooperative-F02.IconDef-WorkerPortrait-Cooperative-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Cooperative-F03.IconDef-WorkerPortrait-Cooperative-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsCurious"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "CBB2A0E74D5CF36E160F3CA04B9B8D76",
+            "SourceString": "Curious"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Curious-M01.IconDef-WorkerPortrait-Curious-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Curious-M02.IconDef-WorkerPortrait-Curious-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Curious-M03.IconDef-WorkerPortrait-Curious-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Curious-F01.IconDef-WorkerPortrait-Curious-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Curious-F02.IconDef-WorkerPortrait-Curious-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Curious-F03.IconDef-WorkerPortrait-Curious-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsDependable"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "B5CC73E8431F4401B8C28F8765501733",
+            "SourceString": "Dependable"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dependable-M01.IconDef-WorkerPortrait-Dependable-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dependable-M02.IconDef-WorkerPortrait-Dependable-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dependable-M03.IconDef-WorkerPortrait-Dependable-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dependable-F01.IconDef-WorkerPortrait-Dependable-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dependable-F02.IconDef-WorkerPortrait-Dependable-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dependable-F03.IconDef-WorkerPortrait-Dependable-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsDreamer"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "99E953DE4607F9E384A19F90B0C76605",
+            "SourceString": "Dreamer"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dreamer-M01.IconDef-WorkerPortrait-Dreamer-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dreamer-M02.IconDef-WorkerPortrait-Dreamer-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dreamer-M03.IconDef-WorkerPortrait-Dreamer-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dreamer-F01.IconDef-WorkerPortrait-Dreamer-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dreamer-F02.IconDef-WorkerPortrait-Dreamer-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Dreamer-F03.IconDef-WorkerPortrait-Dreamer-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "PersonalityTypeTag": {
+            "TagName": "Homebase.Worker.Personality.IsPragmatic"
+          },
+          "PersonalityName": {
+            "Namespace": "",
+            "Key": "0FB867234279F675154ABE9E01BB29D1",
+            "SourceString": "Pragmatic"
+          },
+          "SelectionWeight": 1,
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Pragmatic-M01.IconDef-WorkerPortrait-Pragmatic-M01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Pragmatic-M02.IconDef-WorkerPortrait-Pragmatic-M02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Pragmatic-M03.IconDef-WorkerPortrait-Pragmatic-M03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Pragmatic-F01.IconDef-WorkerPortrait-Pragmatic-F01",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Pragmatic-F02.IconDef-WorkerPortrait-Pragmatic-F02",
+                    "SubPathString": ""
+                  }
+                },
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-WorkerPortrait-Pragmatic-F03.IconDef-WorkerPortrait-Pragmatic-F03",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "WorkerSetBonuses": [
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsResistanceLow"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "B01A1B014DD442F6EAF066BA8716F013",
+            "SourceString": "Shield Bonus"
+          },
+          "RequiredWorkersCount": 2,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_MaxShield_High_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_MaxShield_High.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        },
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsAbilityDamageLow"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "488F09434773FAB5A31339BC3010EDF2",
+            "SourceString": "Ability Damage Bonus"
+          },
+          "RequiredWorkersCount": 3,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_AbilityDamage_Low_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_AbilityDamage_Low.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        },
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsMeleeDamageLow"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "F92D12A04126E820A02CC6A290ADCB79",
+            "SourceString": "Melee Damage Bonus"
+          },
+          "RequiredWorkersCount": 3,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_MeleeDamage_Low_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_MeleeDamage_Low.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        },
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsRangedDamageLow"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "E8AEC3694F55803B5D3857A2073F219D",
+            "SourceString": "Ranged Damage Bonus"
+          },
+          "RequiredWorkersCount": 3,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_RangedDamage_Low_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_RangedDamage_Low.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        },
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsShieldRegenLow"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "32F8397C4C317588298B7684BBDF33A9",
+            "SourceString": "Shield Regen Bonus"
+          },
+          "RequiredWorkersCount": 2,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_ShieldRegen_Low_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_ShieldRegen_Low.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        },
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsFortitudeLow"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "0DF22BD147071943513D0889DCD5BEFC",
+            "SourceString": "Health Bonus"
+          },
+          "RequiredWorkersCount": 2,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_MaxHealth_High_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_MaxHealth_High.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        },
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsTrapDurabilityHigh"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "1FA1F38A4496D124CE58C190B9834F4A",
+            "SourceString": "Trap Durability"
+          },
+          "RequiredWorkersCount": 2,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_TrapDurability_High_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_TrapDurability_High.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        },
+        {
+          "SetBonusTypeTag": {
+            "TagName": "Homebase.Worker.SetBonus.IsTrapDamageLow"
+          },
+          "DisplayName": {
+            "Namespace": "",
+            "Key": "1A67E35B40841628DBCE45AC77173348",
+            "SourceString": "Trap Damage"
+          },
+          "RequiredWorkersCount": 3,
+          "SetBonusEffect": {
+            "ObjectName": "BlueprintGeneratedClass SetBonus_TrapDamage_Low_C",
+            "ObjectPath": "/SaveTheWorld/Abilities/Homebase/Personnel/SetBonuses/SetBonus_TrapDamage_Low.0"
+          },
+          "SelectionWeight": 1,
+          "PowerPoints": 20
+        }
+      ],
+      "ManagerSynergies": [
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsDoctor"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Doctor-M01.IconDef-ManagerPortrait-Doctor-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Doctor-F01.IconDef-ManagerPortrait-Doctor-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsEngineer"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Engineer-M01.IconDef-ManagerPortrait-Engineer-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Engineer-F01.IconDef-ManagerPortrait-Engineer-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsExplorer"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Explorer-M01.IconDef-ManagerPortrait-Explorer-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Explorer-F01.IconDef-ManagerPortrait-Explorer-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsGadgeteer"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Gadgeteer-M01.IconDef-ManagerPortrait-Gadgeteer-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Gadgeteer-F01.IconDef-ManagerPortrait-Gadgeteer-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsInventor"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Inventor-M01.IconDef-ManagerPortrait-Inventor-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Inventor-F01.IconDef-ManagerPortrait-Inventor-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsMartialArtist"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-MartialArtist-M01.IconDef-ManagerPortrait-MartialArtist-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-MartialArtist-F01.IconDef-ManagerPortrait-MartialArtist-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsSoldier"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Marksman-M01.IconDef-ManagerPortrait-Marksman-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-Marksman-F01.IconDef-ManagerPortrait-Marksman-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SynergyTypeTag": {
+            "TagName": "Homebase.Manager.IsTrainer"
+          },
+          "GenderData": [
+            {
+              "Gender": "EFortCustomGender::Male",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-PersonalTrainer-M01.IconDef-ManagerPortrait-PersonalTrainer-M01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            },
+            {
+              "Gender": "EFortCustomGender::Female",
+              "PotraitData": [
+                {
+                  "Portrait": {
+                    "AssetPathName": "/SaveTheWorld/UI/Icons/Icon-Worker/IconDefinitions/IconDef-ManagerPortrait-PersonalTrainer-F01.IconDef-ManagerPortrait-PersonalTrainer-F01",
+                    "SubPathString": ""
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
