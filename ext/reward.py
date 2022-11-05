@@ -28,10 +28,10 @@ class Reward(ext.Cog):
                     daye = temp_auth["day"]
                     if daye is not None:
                         day = daye
-                except:
+                except KeyError:
                     pass
 
-        except:
+        except KeyError:
             pass
 
         embed_colour = self.client.colours["reward_magenta"]
@@ -53,7 +53,7 @@ class Reward(ext.Cog):
                 if limit < 1:
                     limit = 7
 
-            except:
+            except ValueError:
                 embed = discord.Embed(colour=err_colour,
                                       title=await stw.add_emoji_title(self.client, "Non Numeric Day or Limit", "error"),
                                       description="```The inputted day or limit must be a valid integer, please try again```")

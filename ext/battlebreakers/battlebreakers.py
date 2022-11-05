@@ -10,7 +10,6 @@
 # ctrl + shift + o what does that do :o
 # BATTLE BREAKERS!
 # :D
-import datetime
 
 import discord
 import discord.ext.commands as ext

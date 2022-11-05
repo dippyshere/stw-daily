@@ -24,7 +24,7 @@ class Vbucks(ext.Cog):
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
             return True
-        except:
+        except KeyError:
             # no error
             return False
 
@@ -41,7 +41,7 @@ class Vbucks(ext.Cog):
         ainfo3 = ""
         try:
             ainfo3 = auth_info[3]
-        except:
+        except IndexError:
             pass
 
         # what is this black magic???????? I totally forgot what any of this is and how is there a third value to the auth_info??

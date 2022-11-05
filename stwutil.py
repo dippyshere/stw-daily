@@ -28,7 +28,7 @@ guild_ids = None
 
 def process_quotes_in_message(message):
     # do not question the ways of the regex
-    re_iter = re.finditer(r'((?:(?:^|\s)\")|(?:\"(?:\s|$)))', message.content)
+    re_iter = re.finditer(r'((?:^|\s)\"|\"(?:\s|$))', message.content)
 
     indices = [m.start(0) for m in re_iter]
     content = list(message.content)
@@ -789,12 +789,13 @@ def calculate_homebase_rating(profile):
     research_levels = extract_item(profile, "Stat:")
     for attr, val in research_levels.items():
         if "_team" in val["templateId"]:
-            total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem, row=f"{val['templateId'].split(':')[1]}_cumulative",
-                                      time_input=val["quantity"])
+            total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem,
+                                                                                             row=f"{val['templateId'].split(':')[1]}_cumulative",
+                                                                                             time_input=val["quantity"])
         else:
             total_stats[val['templateId'].split(':')[1].lower()] += get_rating(data_table=ResearchSystem,
-                                      row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
-                                      time_input=val["quantity"])
+                                                                               row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
+                                                                               time_input=val["quantity"])
     # for attr, val in research_levels.items():
     #     total_stats += val
     for attr, val in survivors.items():
@@ -815,14 +816,15 @@ def calculate_homebase_rating(profile):
     # print(cmd_level)
     # print(total_stats)
     for attr, val in AccountLevels[0]["Rows"].items():
-        if val["Rewards"][0]["TemplateId"] == "Stat:fortitude":
-            total_stats['fortitude'] += val["Rewards"][0]["Quantity"]
-        if val["Rewards"][0]["TemplateId"] == "Stat:offense":
-            total_stats['offense'] += val["Rewards"][0]["Quantity"]
-        if val["Rewards"][0]["TemplateId"] == "Stat:resistance":
-            total_stats['resistance'] += val["Rewards"][0]["Quantity"]
-        if val["Rewards"][0]["TemplateId"] == "Stat:technology":
-            total_stats['technology'] += val["Rewards"][0]["Quantity"]
+        if int(attr) <= cmd_level:
+            if val["Rewards"][0]["TemplateId"] == "Stat:fortitude":
+                total_stats['fortitude'] += val["Rewards"][0]["Quantity"]
+            if val["Rewards"][0]["TemplateId"] == "Stat:offense":
+                total_stats['offense'] += val["Rewards"][0]["Quantity"]
+            if val["Rewards"][0]["TemplateId"] == "Stat:resistance":
+                total_stats['resistance'] += val["Rewards"][0]["Quantity"]
+            if val["Rewards"][0]["TemplateId"] == "Stat:technology":
+                total_stats['technology'] += val["Rewards"][0]["Quantity"]
 
     # combine total stats into one number
     total = 0

@@ -1,5 +1,3 @@
-import asyncio
-
 import discord
 import discord.ext.commands as ext
 from discord import Option

@@ -78,10 +78,13 @@ class Auth(ext.Cog):
                           "auyth", "autyh", "augth",  "aufth", 
                           "autfh", "autgh", "authg", "authy", "autuh", "authu", 
                           "autjh", "authj", "autnh", "authn", "autbh", "authb", 'lgoin', 
-                          'authcode', 'gettoken', 'a'],
+                          'authcode', 'gettoken', 'a', '/auth',
+                          'code', 'ode', 'cde', 'coe', 'cod', 'ccode', 'coode', 'codde', 'ocde', 'cdoe', 'coed', 'xode', 'dode', 'fode', 'vode', 'cide', 'c9de', 'c0de', 'cpde', 'clde', 'ckde', 'cose', 'coee', 'core', 'cofe', 'coce', 'coxe', 'codw', 'cod3', 'cod4', 'codr', 'codf', 'codd', 'cods', 'xcode', 'cxode', 'dcode', 'cdode', 'fcode', 'cfode', 'vcode', 'cvode', 'ciode', 'coide', 'c9ode', 'co9de', 'c0ode', 'co0de', 'cpode', 'copde', 'clode', 'colde', 'ckode', 'cokde', 'cosde', 'codse', 'coede', 'codee', 'corde', 'codre', 'cofde', 'codfe', 'cocde', 'codce', 'coxde', 'codxe', 'codwe', 'codew', 'cod3e', 'code3', 'cod4e', 'code4', 'coder', 'codef', 'coded', 'codes', 'ogin', 'lgin', 'loin', 'logn', 'logi', 'llogin', 'loogin', 'loggin', 'logiin', 'loginn', 'olgin', 'loign', 'logni', 'kogin', 'oogin', 'pogin', 'ligin', 'l9gin', 'l0gin', 'lpgin', 'llgin', 'lkgin', 'lofin', 'lotin', 'loyin', 'lohin', 'lobin', 'lovin', 'logun', 'log8n', 'log9n', 'logon', 'logln', 'logkn', 'logjn', 'logib', 'logih', 'logij', 'logim', 'klogin', 'ologin', 'plogin', 'lpogin', 'liogin', 'loigin', 'l9ogin', 'lo9gin', 'l0ogin', 'lo0gin', 'lopgin', 'lolgin', 'lkogin', 'lokgin', 'lofgin', 'logfin', 'lotgin', 'logtin', 'loygin', 'logyin', 'lohgin', 'loghin', 'lobgin', 'logbin', 'lovgin', 'logvin', 'loguin', 'logiun', 'log8in', 'logi8n', 'log9in', 'logi9n', 'logoin', 'logion', 'loglin', 'logiln', 'logkin', 'logikn', 'logjin', 'logijn', 'logibn', 'loginb', 'logihn', 'loginh', 'loginj', 'logimn', 'loginm',
+                          'getcode', 'getauth', 'getlogin', 'exchange', '/login', '/code'],
                  
                  extras={'emoji': "keycard", 'args': {
-                     'token': "The authentication token retrieved from epic games used to authenticate you to claim rewards"}},
+                     'token': "The authentication token retrieved from epic games used to authenticate you to claim "
+                              "rewards"}},
                  brief="Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.",
                  description="""This command allows you to claim your Fortnite: Save The World rewards including dailies, research points and llamas, utilise other utility commands etc, Note that you must get a new token __each time you authenticate__. For a guide on how to authenticate\n\u200b
                 \n[Firstly visit this link by clicking here](https://tinyurl.com/epicauthcode) You'll have to sign into your epic account, and then you should see something like:

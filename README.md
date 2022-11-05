@@ -1,6 +1,59 @@
-<h1 align=center> Fortnite: Save the World Daily Rewards Discord Bot</h1>
+<img src='res/STWDaily1024.png' width='96' alt="" style="position: absolute; right: 5vw; top: 5vh; " />
+<div align=center>
+<h1 > STW Daily </h1>
+<h4> A Discord bot for all of your Fortnite: Save the World needs</h4>
+</div>
 
-<img src='res/Stableupdated.png' width='128' alt="">
+___
+<h6 align=center> Auto claim daily rewards, research points, llamas, and more!</h6>
+<div align=center>
+<a href="https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Invite-STW Daily-5865F2.svg?style=for-the-badge&logo=Discord" alt="Invite Bot"></a>
+<a href="https://discord.gg/stw-dailies-757765475823517851"><img src="https://img.shields.io/badge/Join-STW Dailies-5865F2.svg?style=for-the-badge&logo=Discord" alt="Join STW Dailies"></a>
+
+<a href="https://paypal.me/AHanson047"><img src="https://img.shields.io/badge/PayPal-Donate-036ab6.svg?style=flat-square" alt="PayPal Donate"></a>
+<a href="https://ko-fi.com/dippyshere"><img src="https://img.shields.io/badge/Ko--fi-Donate-ff5e5b.svg?style=flat-square" alt="Ko-fi Donate"></a>
+</div>
+
+___
+
+<details>
+<summary>
+
+## Commands
+</summary>
+
+### General
+
+- `help`: Shows this message
+- `info`: Shows info about the bot
+- `invite`: Shows the invite link for the bot
+- `ping`: Shows the bot's current ping
+- `prefix`: Shows the current prefix for the server
+- `prefix <new prefix>`: Changes the prefix for the server
+- `stats`: Shows the bot's stats
+
+### Daily
+
+- `daily`: Shows the daily rewards for the current day
+- `daily <day>`: Shows the daily rewards for the specified day
+- `daily claim`: Claims the daily rewards for the current day
+- `daily claim <day>`: Claims the daily rewards for the specified day
+- `daily claim all`: Claims all daily rewards
+- `daily claim all <day>`: Claims all daily rewards starting from the specified day
+- `daily claim all <start day> <end day>`: Claims all daily rewards between the specified days
+- `daily claim all <start day> <end day> <delay>`: Claims all daily rewards between the specified days with the specified delay
+
+### Llama
+
+- `llama`: Shows the llama rewards for the current day
+- `llama <day>`: Shows the llama rewards for the specified day
+- `llama claim`: Claims the llama rewards for the current day
+- `llama claim <day>`: Claims the llama rewards for the specified day
+- `llama claim all`: Claims all llama rewards
+- `llama claim all <day>`: Claims all llama rewards starting from the specified day
+- `
+
+</details>
 
 The official source code of the Discord Bot [STW Daily](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands), which can claim your STW daily reward. It is an adaptation of [this repository](https://github.com/Londiuh/fstwrc) by [Londiuh](https://github.com/Londiuh/).
 
@@ -82,16 +135,18 @@ If you require assistance, just want to chat, or would prefer to use the bot in 
 Icons by [dippyshere ;)](https://github.com/dippyshere)
 
 ## Info
-A valid auth token can be used maliciously, even though it expires when used, be careful, if you would like, you can [read more here](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions) 
+> **Note** Valid auth codes may allow an attacker to compromise your account.  [read more here](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions) 
 
 ###### <p align=center> Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. </p>
 ###### <p align=center> All rights reserved by Epic. </p>
 ###### <p align=center> This material is not official and is not endorsed by Epic. </p>
 ###### <p align=center> All badges/icons (except the "Llama Calendar") are original copyrighted works by the author. </p>
 
-![Discord Badge](https://img.shields.io/discord/757765475823517851)
-![Repository Size Badge](https://img.shields.io/github/repo-size/dippyshere/stw-daily?label=Repository%20Size)
-![Code Size Badge](https://img.shields.io/github/languages/code-size/dippyshere/stw-daily)
-![Issues Open Badge](https://img.shields.io/github/issues/dippyshere/stw-daily)
-![Issues Closed Badge](https://img.shields.io/github/issues-closed/dippyshere/stw-daily)
-![License Badge](https://img.shields.io/github/license/dippyshere/stw-daily)
+<div align="center">
+<img src="https://img.shields.io/discord/757765475823517851?label=STW Dailies&color=5865F2" alt="Join STW Dailies">
+<img src="https://img.shields.io/github/repo-size/dippyshere/stw-daily?label=Repository%20Size" alt="Repository Size badge">
+<img src="https://img.shields.io/github/languages/code-size/dippyshere/stw-daily" alt="Code size badge">
+<img src="https://img.shields.io/github/issues/dippyshere/stw-daily" alt="open issues badge">
+<img src="https://img.shields.io/github/issues-closed/dippyshere/stw-daily" alt="closed issues badge">
+<img src="https://img.shields.io/github/license/dippyshere/stw-daily" alt="gpl 3 license badge">
+</div>
