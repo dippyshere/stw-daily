@@ -1,8 +1,14 @@
-<img src='res/STWDaily1024.png' width='96' alt="" style="position: absolute; right: 5vw; top: 5vh; " />
+<br />
 <div align=center>
-<h1 > STW Daily </h1>
-<h4> A Discord bot for all of your Fortnite: Save the World needs</h4>
+  <a href="https://github.com/dippyshere/stw-daily">
+    <img src='res/STWDaily1024.png' width='96' alt="" />
+  </a>
+  <div align="center">
+  <img src="res/stwdailyh1.svg" alt="STW Daily" >    
 </div>
+  <h4> A Discord bot for all of your Fortnite: Save the World needs</h4>
+</div>
+
 
 ___
 <h6 align=center> Auto claim daily rewards, research points, llamas, and more!</h6>
