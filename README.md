@@ -1,16 +1,16 @@
 <br />
 <div align=center>
-  <a href="https://github.com/dippyshere/stw-daily">
-    <img src='res/STWDaily1024.png' width='96' alt="" />
-  </a>
   <div align="center">
-  <img src="res/stwdailyh1.svg" alt="STW Daily" >    
+  <a href="https://github.com/dippyshere/stw-daily">
+    <img src='res/STWDaily1024.png' width='79' alt="" />
+  </a>
+  <img src="res/stwdailyh1.svg" alt="STW Daily" >
 </div>
   <h4> A Discord bot for all of your Fortnite: Save the World needs</h4>
 </div>
 
-
 ___
+
 <h6 align=center> Auto claim daily rewards, research points, llamas, and more!</h6>
 <div align=center>
 <a href="https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Invite-STW Daily-5865F2.svg?style=for-the-badge&logo=Discord" alt="Invite Bot"></a>
@@ -18,10 +18,37 @@ ___
 
 <a href="https://paypal.me/AHanson047"><img src="https://img.shields.io/badge/PayPal-Donate-036ab6.svg?style=flat-square" alt="PayPal Donate"></a>
 <a href="https://ko-fi.com/dippyshere"><img src="https://img.shields.io/badge/Ko--fi-Donate-ff5e5b.svg?style=flat-square" alt="Ko-fi Donate"></a>
-</div>
+<h4>
+    <a href="#links">Commands</a>
+    •
+    <a href="#versions">Roadmap</a>
+    •
+    <a href="#roadmap">Requirements</a>
+    •
+    <a href="#development-guide">How to use</a>
+    •
+    <a href="#deployment">Support</a>
+    •
+    <a href="#contact">Credits</a>
+    •
+    <a href="#copyright">Info</a>
+</h4>
+</div>  
 
 ___
 
+<img align=center src='res/commands2.png' alt="" />
+
+___
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg">
+  <img alt="@STW Daily" src="res/stwmentiondark.svg"> <span>help</span>
+</picture>
+
+___
 <details>
 <summary>
 
@@ -59,6 +86,7 @@ ___
 - `llama claim all <day>`: Claims all llama rewards starting from the specified day
 - `
 
+<p align="right"><a href="#readme"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 The official source code of the Discord Bot [STW Daily](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands), which can claim your STW daily reward. It is an adaptation of [this repository](https://github.com/Londiuh/fstwrc) by [Londiuh](https://github.com/Londiuh/).
@@ -134,6 +162,10 @@ The auth code will expire shortly after issued, and if used by STW Daily, will i
 If you require assistance, just want to chat, or would prefer to use the bot in a different server to your own, you can [join the STW Daily discord](https://discord.gg/Mt7SgUu). Feel free to reach out directly to us via the server.
 
 ## Credits
+<a href="https://github.com/dippyshere/stw-daily/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=dippyshere/stw-daily&anon=1" />
+</a>
+
 [Londiuh](https://github.com/Londiuh) for their [code to collect daily rewards](https://github.com/Londiuh/fstwrc)
 
 [Epic Research](https://github.com/MixV2/EpicResearch/)
