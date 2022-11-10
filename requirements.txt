@@ -2,7 +2,7 @@ aiohttp<3.9.0,>=3.8.3
 # py-cord>=2.2.2
 # for python 3.11
 git+https://github.com/Pycord-Development/pycord
-psutil>=5.9.3
+psutil>=5.9.4
 tomli>=2.0.1
 aiodns>=3.0.0
 brotlipy>=0.7.0
