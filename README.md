@@ -1,11 +1,12 @@
 <br />
 <div align=center>
-  <div align="center">
-  <a href="https://github.com/dippyshere/stw-daily">
-    <img src='res/STWDaily1024.png' width='79' alt="" />
-  </a>
-  <img src="res/stwdailyh1.svg" alt="STW Daily" >
-</div>
+    <a id="back-to-top"></a>
+    <div align="center">
+        <a href="https://github.com/dippyshere/stw-daily">
+            <img src='res/stwdaily snow2048.png' width='79' alt="" />
+        <img src="res/stwdailyh1.svg" alt="STW Daily" />
+        </a>
+    </div>
   <h4> A Discord bot for all of your Fortnite: Save the World needs</h4>
 </div>
 
@@ -19,7 +20,7 @@ ___
 <a href="https://paypal.me/AHanson047"><img src="https://img.shields.io/badge/PayPal-Donate-036ab6.svg?style=flat-square" alt="PayPal Donate"></a>
 <a href="https://ko-fi.com/dippyshere"><img src="https://img.shields.io/badge/Ko--fi-Donate-ff5e5b.svg?style=flat-square" alt="Ko-fi Donate"></a>
 <h4>
-    <a href="#links">Commands</a>
+    <a href="#commands">Commands</a>
     •
     <a href="#versions">Roadmap</a>
     •
@@ -40,54 +41,463 @@ ___
 <img align=center src='res/commands2.png' alt="" />
 
 ___
+## Commands <a id="commands2"></a>
+<details open>
+    <summary><b>Information</b></summary>
+    <ul>
+    <span>There are two ways to use commands with STW Daily:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>{command} {parameters}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands<a></a>:
+        </li>
+        <kbd>/{command}</kbd>
+        </div>
+        </ol>
+        <br>
+        <p>To use a command you want, replace {command} with the name of the command, and {parameters} with any parameters needed.
+        <br>When mentioning the bot to invoke a command, a single space is required between the mention and the command. This is usually added for you.</p>
+        <p><b>Click on the names of commands below to see examples of how to use them.</b></p>
+    </ul>
+</details>
 
+<details>
+    <summary><b>Daily</b></summary>
+    <ul>
+    <p>This command will instantly claim your daily reward, if available. To use this command, you'll need Fortnite: Save the World on the account you will claim with.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>daily {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/daily token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>daily a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will claim your daily reward, and will automatically start an authentication session.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>d a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will claim your daily reward, and will not create an authentication session.</span>
+    </ul>
+    <img src="res/daily.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg">
-  <img alt="@STW Daily" src="res/stwmentiondark.svg"> <span>help</span>
-</picture>
+<details>
+    <a id="auth"></a>
+    <summary><b>Auth</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Auth command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Help</b></summary>
+    <ul>
+    <p>This command provides an interactive interface to view all available commands, and help for how to use each command.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>help {command}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/help {command}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {command} with the name (or alias) of the specific command you want to view help for. This parameter is optional—not providing one will return all available commands.</p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>help</sup>
+        <br><span> This will return a list of available commands, and allow you to choose commands to view detailed help for.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>help auth</sup>
+        <br><span> This will return detailed help for the auth command, and allow you to choose other commands to view detailed help for.</span>
+    </ul>
+    <img src="res/help.png" alt="Help command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Homebase</b></summary>
+    <ul>
+    <p>This command allows you to view / change the name of your Homebase in STW. You don't need STW to use, but the command is effectively useless without it.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>homebase {name} {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/homebase name:{name} token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {name} with the new name for your homebase. If your new name has spaces, wrap the name in <kbd>"</kbd> quotes (see examples below). This parameter is optional—if you leave it empty, the bot will display your current homebase name. Your new homebase name must:<ul><li>Be between 1-16 characters</li><li>Only contain alphanumerics (0-9, a-z) + additional characters ('-._~) + spaces</li></ul><br><br>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>homebase</sup>
+        <br><span> This will return your current homebase name (provided you are authenticated)</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>hbrn "cool name" a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will change your homebase name to <kbd>cool name</kbd>, and start an authentication session</span>
+    </ul>
+    <img src="res/homebase.png" alt="Homebase rename command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>V-Bucks</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Research</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>News</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Reward</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Battle Breakers Daily</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Battle Breakers Reward</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Info</b></summary>
+    <ul>
+    <p>This command will </p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>cmd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will </span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will </span>
+    </ul>
+    <img src="res/auth.png" alt="Daily command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
 
 ___
-<details>
-<summary>
-
-## Commands
-</summary>
-
-### General
-
-- `help`: Shows this message
-- `info`: Shows info about the bot
-- `invite`: Shows the invite link for the bot
-- `ping`: Shows the bot's current ping
-- `prefix`: Shows the current prefix for the server
-- `prefix <new prefix>`: Changes the prefix for the server
-- `stats`: Shows the bot's stats
-
-### Daily
-
-- `daily`: Shows the daily rewards for the current day
-- `daily <day>`: Shows the daily rewards for the specified day
-- `daily claim`: Claims the daily rewards for the current day
-- `daily claim <day>`: Claims the daily rewards for the specified day
-- `daily claim all`: Claims all daily rewards
-- `daily claim all <day>`: Claims all daily rewards starting from the specified day
-- `daily claim all <start day> <end day>`: Claims all daily rewards between the specified days
-- `daily claim all <start day> <end day> <delay>`: Claims all daily rewards between the specified days with the specified delay
-
-### Llama
-
-- `llama`: Shows the llama rewards for the current day
-- `llama <day>`: Shows the llama rewards for the specified day
-- `llama claim`: Claims the llama rewards for the current day
-- `llama claim <day>`: Claims the llama rewards for the specified day
-- `llama claim all`: Claims all llama rewards
-- `llama claim all <day>`: Claims all llama rewards starting from the specified day
-- `
-
-<p align="right"><a href="#readme"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
-</details>
 
 The official source code of the Discord Bot [STW Daily](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands), which can claim your STW daily reward. It is an adaptation of [this repository](https://github.com/Londiuh/fstwrc) by [Londiuh](https://github.com/Londiuh/).
 
