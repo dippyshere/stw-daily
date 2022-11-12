@@ -3,7 +3,7 @@ import discord.ext.commands as ext
 from discord import Option
 
 import stwutil as stw
-
+from ext.profile.bongodb import get_user_document
 
 async def tos_acceptance_embed(client, ctx):
     # TODO: Create proper TOS, Privacy Policy & EULA for this command
@@ -11,7 +11,14 @@ async def tos_acceptance_embed(client, ctx):
     embed = discord.Embed(title=await stw.add_emoji_title(client, "User Agreement", "pink_link"),
                           description=f"""\u200b
                           
-                        goood night then i guess ;p gl with multi ty
+                          **slap**
+                          ***slap***
+                          ~~grab~~
+                          __choke__
+                          *shut up*
+                          `bitch`
+                          ```sex```
+                          
                           
                           \u200b""",
                           colour=embed_colour)
@@ -20,31 +27,32 @@ async def tos_acceptance_embed(client, ctx):
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
 
+async def handle_dev_auth(client, ctx, slash, authcode=None, from_interaction=False):
+
+    # Retrieve information on the currently selected profile of the user accociated with this ctx
+
+    if from_interaction:
+        current_author_id = ctx.user.id
+    else:
+        current_author_id = ctx.author.id
+
+    user_document = await get_user_document(client, current_author_id)
+
+    # Get the currently selected profile
+    currently_selected_profile_id = user_document["global"]["selected_profile"]
+
+
+    embed = await tos_acceptance_embed(client, ctx)
+    await stw.slash_send_embed(ctx, slash, embed, interaction=from_interaction)
 
 # cog for the device auth login command.
 class ProfileAuth(ext.Cog):
 
     def __init__(self, client):
         self.client = client
-        self.emojis = client.config["emojis"]
-
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, slash):
-        try:
-            # general error
-            error_code = public_json_response["errorCode"]
-            support_url = self.client.config["support_url"]
-            acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "vbucks", acc_name, error_code, support_url)
-            final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-            return True
-        except:
-            # no error
-            return False
 
     async def devauth_command(self, ctx, slash, authcode=None):
-        embed = await tos_acceptance_embed(self.client, ctx)
-        await stw.slash_send_embed(ctx, slash, embed)
+        await handle_dev_auth(self.client, ctx, slash, authcode)
 
     @ext.slash_command(name='device',
                        description='Add permanent authentication to the currently selected or another profile',

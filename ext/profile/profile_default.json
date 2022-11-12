@@ -1,6 +1,7 @@
 {
     "global": {
-        "profiles_ver": 6,
+        "profiles_ver": 384,
+        "rewrite_older": true,
         "selected_profile": 0,
         "banned": false,
         "banned_reason": null,
@@ -35,16 +36,7 @@
                 "tos_accepted_version": null
             },
             "settings": {
-                "upcoming_display": true,
-                "upcoming_display_days": 7,
-                "display_epic": true,
-                "claim_research": false,
-                "claim_free_llamas": false,
-                "claim_daily": false,
-                "digest": {
-                    "enabled": false,
-                    "last_checked": 0
-                }
+
             },
             "authentication": {
                 "accountId": null,

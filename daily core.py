@@ -50,7 +50,7 @@ def main():
         "homebase",
         "vbucks",
         "reload",
-        "profile.bongodb",
+        "profile.lavendar",
         "profile.devauth",
         "news",
         "battlebreakers.battlebreakers",  # why do you only call me when you're high

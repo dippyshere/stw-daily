@@ -23,7 +23,7 @@ with open('ext/DataTables/ResearchSystem.json') as f:
 with open('ext/DataTables/AccountLevels.json') as f:
     AccountLevels = json.load(f)
 
-guild_ids = None
+guild_ids = [757765475823517851]
 
 
 def process_quotes_in_message(message):
@@ -66,7 +66,7 @@ def process_quotes_in_message(message):
 
 
 # a small bridge helper function between slash commands and normal commands
-async def slash_send_embed(ctx, slash, embeds, view=None):
+async def slash_send_embed(ctx, slash, embeds, view=None, interaction=False):
     try:
         embeds[0]
     except:
@@ -77,6 +77,11 @@ async def slash_send_embed(ctx, slash, embeds, view=None):
             return await ctx.respond(embeds=embeds, view=view)
         else:
             return await ctx.respond(embeds=embeds)
+    elif interaction:
+        if view is not None:
+            return await ctx.response.send_message(embeds=embeds, view=view)
+        else:
+            return await ctx.response.send_message(embeds=embeds)
     else:
         if view is not None:
             return await ctx.send(embeds=embeds, view=view)
