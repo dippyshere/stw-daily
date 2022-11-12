@@ -794,10 +794,15 @@ def calculate_homebase_rating(profile):
     research_levels = extract_item(profile, "Stat:")
     for attr, val in research_levels.items():
         if "_team" in val["templateId"]:
+            if "phoenix" in val['templateId'].lower():
+                continue
             total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem,
                                                                                              row=f"{val['templateId'].split(':')[1]}_cumulative",
                                                                                              time_input=val["quantity"])
         else:
+            # exclude phoenix stats
+            if "phoenix" in val['templateId'].lower():
+                continue
             total_stats[val['templateId'].split(':')[1].lower()] += get_rating(data_table=ResearchSystem,
                                                                                row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
                                                                                time_input=val["quantity"])

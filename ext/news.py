@@ -158,7 +158,8 @@ class News(ext.Cog):
                        description='Get the latest news from Fortnite.',
                        guild_ids=stw.guild_ids)
     async def slashnews(self, ctx: discord.ApplicationContext,
-                        page: int = 1,
+                        page: Option(int,
+                                        "The page number to view") = 1,
                         mode: Option(str, description="Choose a Game Mode to get news from", choices=["stw", "br"]) = "stw"):
         await self.news_command(ctx, True, page, mode)
 

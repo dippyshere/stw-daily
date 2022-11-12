@@ -20,7 +20,7 @@ ___
 <a href="https://paypal.me/AHanson047"><img src="https://img.shields.io/badge/PayPal-Donate-036ab6.svg?style=flat-square" alt="PayPal Donate"></a>
 <a href="https://ko-fi.com/dippyshere"><img src="https://img.shields.io/badge/Ko--fi-Donate-ff5e5b.svg?style=flat-square" alt="Ko-fi Donate"></a>
 <h4>
-    <a href="#commands">Commands</a>
+    <a href="#commands2">Commands</a>
     •
     <a href="#versions">Roadmap</a>
     •
@@ -55,7 +55,7 @@ ___
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
             </picture> <sup>{command} {parameters}</sup>
         <li>
-            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands<a></a>:
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
         <kbd>/{command}</kbd>
         </div>
@@ -227,7 +227,7 @@ ___
 <details>
     <summary><b>V-Bucks</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command will display your total V-Bucks, provide a breakdown on the source(s) of those V-Bucks, and additionally display how many X-Ray tickets you have.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -236,11 +236,11 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>cmd {token} {opt-out}</sup>
+            </picture> <sup>vbucks {token} {opt-out}</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/vbucks token:{token} auth_opt_out:{opt-out}</kbd>
         </div>
         <br>
         </ol>
@@ -250,23 +250,23 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
+        </picture> <sup>vbucks a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will start an authentication session and display your V-Bucks</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        </picture> <sup>v</sup>
+        <br><span> This will display your V-Bucks if authenticated, otherwise it will prompt you to authenticate.</span>
     </ul>
-    <img src="res/auth.png" alt="Daily command example" width="640">
+    <img src="res/vbucks.png" alt="V-Bucks command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 <details>
     <summary><b>Research</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command allows you to claim your available research points, view your FORT research levels, and upgrade those levels. Press the button corresponding with the stat you wish to upgrade to upgrade it.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -275,11 +275,11 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>cmd {token} {opt-out}</sup>
+            </picture> <sup>research {token} {opt-out}</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/research token:{token} auth_opt_out:{opt-out}</kbd>
         </div>
         <br>
         </ol>
@@ -289,23 +289,23 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
+        </picture> <sup>res</sup>
+        <br><span> This will claim your available research points, and then allow you to spend them, if you are authenticated. If not, the bot will provide you with links to authenticate.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        </picture> <sup>research a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will This will claim your available research points, and then allow you to spend them. An authentication session will not be created</span>
     </ul>
-    <img src="res/auth.png" alt="Daily command example" width="640">
+    <img src="res/research.png" alt="Research command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 <details>
     <summary><b>News</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command will fetch and display the latest news from the game. You can switch between viewing Save the World or Battle Royale news by pressing the corresponding buttons. Cycle between pages by pressing the left/right arrow buttons.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -314,37 +314,37 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>cmd {token} {opt-out}</sup>
+            </picture> <sup>news {page} {mode}</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/news page:{page} mode:{mode}</kbd>
         </div>
         <br>
         </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p>Replace {page} with a page number to view. This parameter is optional—leaving it blank will show page one.<br>Replace {mode} with either stw, or br to view the news for the respective game mode. This parameter is optional—leaving it blank will show STW news.</p> 
         <p><b>Examples:</b></p>
         <picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
+        </picture> <sup>news</sup>
+        <br><span> This will display page 1 of the news for Save the World. Interact with the buttons to change pages / modes.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        </picture> <sup>news 1 br</sup>
+        <br><span> This will show page 1 of the news for Battle Royale. Interact with the buttons to change pages / modes.</span>
     </ul>
-    <img src="res/auth.png" alt="Daily command example" width="640">
+    <img src="res/news.png" alt="News command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 <details>
     <summary><b>Reward</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command returns information about a specific day's reward, and the rewards that follow.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -353,37 +353,37 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>cmd {token} {opt-out}</sup>
+            </picture> <sup>reward {day} {future-days}</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/reward day:{day} limit:{future-days}</kbd>
         </div>
         <br>
-        </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        </ol> 
+        <p>Replace {day} with the day you want to view the reward of. If you have an authentication session active, the day will be your current day unless you specify a day.<br><br>Replace {future-days} with the amount days you would like to see. </p> 
         <p><b>Examples:</b></p>
         <picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
+        </picture> <sup>reward</sup>
+        <br><span> This will display the reward for your current day and 7 days after, if authenticated. If you aren't authenticated, you must specify a day.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        </picture> <sup>rwrd 336 21</sup>
+        <br><span> This will display the reward for day 336, and additionally the rewards for day 337-358 (21 days).</span>
     </ul>
-    <img src="res/auth.png" alt="Daily command example" width="640">
+    <img src="res/reward.png" alt="Reward command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 <details>
     <summary><b>Battle Breakers Daily</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command will claim your daily reward in Battle Breakers.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -392,11 +392,11 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>cmd {token} {opt-out}</sup>
+            </picture> <sup>bbd {token} {opt-out}</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/bbdaily token:{token} auth_opt_out:{opt-out}</kbd>
         </div>
         <br>
         </ol>
@@ -406,23 +406,23 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
+        </picture> <sup>bbdaily a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will claim your Battle Breakers daily reward, and will create an authentication session.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        </picture> <sup>bbd</sup>
+        <br><span> This will claim your Battle Breakers daily reward if authenticated, otherwise it will prompt you to authenticate.  </span>
     </ul>
-    <img src="res/auth.png" alt="Daily command example" width="640">
+    <img src="res/bbdaily.png" alt="Battle Breakers Daily command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 <details>
     <summary><b>Battle Breakers Reward</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command returns information about a specific day's reward, and the rewards that follow for Battle Breakers.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -431,37 +431,37 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>cmd {token} {opt-out}</sup>
+            </picture> <sup>bbreward {day} {future-days}</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/bbreward day:{day} limit:{future-days}</kbd>
         </div>
         <br>
-        </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        </ol> 
+        <p>Replace {day} with the day you want to view the reward of. If you have an authentication session active, the day will be your current day unless you specify a day.<br><br>Replace {future-days} with the amount days you would like to see. </p> 
         <p><b>Examples:</b></p>
         <picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
+        </picture> <sup>bbreward</sup>
+        <br><span> This will display the reward for your current day and 7 days after, if authenticated. If you aren't authenticated, you must specify a day.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        </picture> <sup>bbr 336 21</sup>
+        <br><span> This will display the reward for day 336, and additionally the rewards for day 337-358 (21 days).</span>
     </ul>
-    <img src="res/auth.png" alt="Daily command example" width="640">
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Batle breakers reward command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 <details>
     <summary><b>Info</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command will return various bits of information about the bot, which you may find interesting as a developer.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -470,30 +470,17 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>cmd {token} {opt-out}</sup>
+            </picture> <sup>info</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/info</kbd>
         </div>
         <br>
         </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
-        <p><b>Examples:</b></p>
-        <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
-        <br><br><picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        <p>The info command also provides a convenient way to verify the authenticity of the bot you are using. If the bot does <b>not</b> have a verified bot tag, or contains a message other than "✅Official Verified Deployment", DO NOT use that bot. The bot may have been tampered with, or may be a skid. Use of that bot may put your account at risk/inhibit the development of STW Daily. Learn more <a>here.</a></p>
     </ul>
-    <img src="res/auth.png" alt="Daily command example" width="640">
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Info command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
