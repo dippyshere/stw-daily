@@ -577,6 +577,10 @@ async def calculate_vbucks(items):
     return vbucks
 
 
+def truncate(string, length=100, end="..."):
+    return (string[:length-3] + end) if len(string) > length else string
+
+
 def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0):
     row_data = data_table[0]['Rows'][row]
     # ROOT[0].Rows.Default_C_T01.Keys[0].Time

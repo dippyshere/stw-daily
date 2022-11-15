@@ -149,8 +149,8 @@ class Daily(ext.Cog):
                        guild_ids=stw.guild_ids)
     async def slashdaily(self, ctx: discord.ApplicationContext,
                          token: Option(str,
-                                       "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                         auth_opt_out: Option(bool, "Opt Out of Authentication session") = False, ):
+                                       "Your Epic Games authcode. Required unless you have an active session.") = "",
+                         auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
         await self.daily_command(ctx, True, token, not auth_opt_out)
 
     @ext.command(name='daily',
@@ -184,14 +184,17 @@ class Daily(ext.Cog):
                           'collkect', 'cklaim', 'co0llect', 'copllect', 'colledct',
                           'edaily', 'dail7y', 'dauily', 'cllaim', 'collectr',
                           'claaim', 'faily', 'daipy', 'coillect',
-                          'dail6y'],
+                          'dail6y', '/claim', '/daily', '/d', '/collect'],
                  extras={'emoji': "vbucks", "args": {
-                     'authcode': 'The authcode to start an authentication session with if one does not exist, if an auth session already exists this argument is optional (Optional)',
-                     'opt-out': 'Any value inputted into this field will opt you out of the authentication session system when you enter the authcode for this command (Optional)'}},
-                 brief="Allows you to claim your Fortnite: Save The World daily rewards (auth req.)",
-                 description="""This command allows you to claim your Fortnite: Save The World daily rewards every single day, you must be authenticated to use this command.
+                        'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                        'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
+                        'dev': False},
+                 brief="Claim your Save The World daily reward (authentication requried)",
+                 description=f"""This command will instantly claim your daily reward, if available. To use this command, you'll need Fortnite: Save the World on the account you will claim with. You must be authenticated to use this command.
                 \u200b
-                ⦾ You can check when you can claim your daily again by checking the bots status
+                ⦾ This command only runs once, be sure to come back <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                ⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!
+                ⦾ Looking for help on authcodes? Check out help for the `auth` command.
                 """)
     async def daily(self, ctx, authcode='', optout=None):
 

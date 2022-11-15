@@ -65,27 +65,42 @@ class Auth(ext.Cog):
         await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.command(name='auth',
-                 aliases=['login', 'authenticate', "uth", "ath", "auh", "aut", 
-                          "aauth", "auuth", "autth", "authh", "uath", "atuh", 
+                 aliases=['login', 'authenticate', "uth", "ath", "auh", "aut",
+                          "aauth", "auuth", "autth", "authh", "uath", "atuh",
                           "auht", "quth", "wuth", "suth", "xuth", "zuth", "ayth",
-                          "a7th", "a8th", "aith", "akth", "ajth", "ahth", "aurh", 
-                          "au5h", "au6h", "auyh", "auhh", "augh", "aufh", "autg", 
+                          "a7th", "a8th", "aith", "akth", "ajth", "ahth", "aurh",
+                          "au5h", "au6h", "auyh", "auhh", "augh", "aufh", "autg",
                           "auty", "autu", "autj", "autn", "autb", "qauth", "aquth",
                           "wauth", "awuth", "sauth", "asuth", "xauth", "axuth", "zauth",
                           "azuth", "ayuth", "a7uth", "au7th", "a8uth", "au8th",
-                          "aiuth", "auith", "akuth", "aukth", "ajuth", "aujth", "ahuth", 
-                          "auhth", "aurth", "autrh", "au5th", "aut5h", "au6th", "aut6h", 
-                          "auyth", "autyh", "augth",  "aufth", 
-                          "autfh", "autgh", "authg", "authy", "autuh", "authu", 
-                          "autjh", "authj", "autnh", "authn", "autbh", "authb", 'lgoin', 
+                          "aiuth", "auith", "akuth", "aukth", "ajuth", "aujth", "ahuth",
+                          "auhth", "aurth", "autrh", "au5th", "aut5h", "au6th", "aut6h",
+                          "auyth", "autyh", "augth", "aufth",
+                          "autfh", "autgh", "authg", "authy", "autuh", "authu",
+                          "autjh", "authj", "autnh", "authn", "autbh", "authb", 'lgoin',
                           'authcode', 'gettoken', 'a', '/auth',
-                          'code', 'ode', 'cde', 'coe', 'cod', 'ccode', 'coode', 'codde', 'ocde', 'cdoe', 'coed', 'xode', 'dode', 'fode', 'vode', 'cide', 'c9de', 'c0de', 'cpde', 'clde', 'ckde', 'cose', 'coee', 'core', 'cofe', 'coce', 'coxe', 'codw', 'cod3', 'cod4', 'codr', 'codf', 'codd', 'cods', 'xcode', 'cxode', 'dcode', 'cdode', 'fcode', 'cfode', 'vcode', 'cvode', 'ciode', 'coide', 'c9ode', 'co9de', 'c0ode', 'co0de', 'cpode', 'copde', 'clode', 'colde', 'ckode', 'cokde', 'cosde', 'codse', 'coede', 'codee', 'corde', 'codre', 'cofde', 'codfe', 'cocde', 'codce', 'coxde', 'codxe', 'codwe', 'codew', 'cod3e', 'code3', 'cod4e', 'code4', 'coder', 'codef', 'coded', 'codes', 'ogin', 'lgin', 'loin', 'logn', 'logi', 'llogin', 'loogin', 'loggin', 'logiin', 'loginn', 'olgin', 'loign', 'logni', 'kogin', 'oogin', 'pogin', 'ligin', 'l9gin', 'l0gin', 'lpgin', 'llgin', 'lkgin', 'lofin', 'lotin', 'loyin', 'lohin', 'lobin', 'lovin', 'logun', 'log8n', 'log9n', 'logon', 'logln', 'logkn', 'logjn', 'logib', 'logih', 'logij', 'logim', 'klogin', 'ologin', 'plogin', 'lpogin', 'liogin', 'loigin', 'l9ogin', 'lo9gin', 'l0ogin', 'lo0gin', 'lopgin', 'lolgin', 'lkogin', 'lokgin', 'lofgin', 'logfin', 'lotgin', 'logtin', 'loygin', 'logyin', 'lohgin', 'loghin', 'lobgin', 'logbin', 'lovgin', 'logvin', 'loguin', 'logiun', 'log8in', 'logi8n', 'log9in', 'logi9n', 'logoin', 'logion', 'loglin', 'logiln', 'logkin', 'logikn', 'logjin', 'logijn', 'logibn', 'loginb', 'logihn', 'loginh', 'loginj', 'logimn', 'loginm',
-                          'getcode', 'getauth', 'getlogin', 'exchange', '/login', '/code'],
-                 
+                          'code', 'ode', 'cde', 'coe', 'cod', 'ccode', 'coode', 'codde', 'ocde', 'cdoe', 'coed', 'xode',
+                          'dode', 'fode', 'vode', 'cide', 'c9de', 'c0de', 'cpde', 'clde', 'ckde', 'cose', 'coee',
+                          'core', 'cofe', 'coce', 'coxe', 'codw', 'cod3', 'cod4', 'codr', 'codf', 'codd', 'cods',
+                          'xcode', 'cxode', 'dcode', 'cdode', 'fcode', 'cfode', 'vcode', 'cvode', 'ciode', 'coide',
+                          'c9ode', 'co9de', 'c0ode', 'co0de', 'cpode', 'copde', 'clode', 'colde', 'ckode', 'cokde',
+                          'cosde', 'codse', 'coede', 'codee', 'corde', 'codre', 'cofde', 'codfe', 'cocde', 'codce',
+                          'coxde', 'codxe', 'codwe', 'codew', 'cod3e', 'code3', 'cod4e', 'code4', 'coder', 'codef',
+                          'coded', 'codes', 'ogin', 'lgin', 'loin', 'logn', 'logi', 'llogin', 'loogin', 'loggin',
+                          'logiin', 'loginn', 'olgin', 'loign', 'logni', 'kogin', 'oogin', 'pogin', 'ligin', 'l9gin',
+                          'l0gin', 'lpgin', 'llgin', 'lkgin', 'lofin', 'lotin', 'loyin', 'lohin', 'lobin', 'lovin',
+                          'logun', 'log8n', 'log9n', 'logon', 'logln', 'logkn', 'logjn', 'logib', 'logih', 'logij',
+                          'logim', 'klogin', 'ologin', 'plogin', 'lpogin', 'liogin', 'loigin', 'l9ogin', 'lo9gin',
+                          'l0ogin', 'lo0gin', 'lopgin', 'lolgin', 'lkogin', 'lokgin', 'lofgin', 'logfin', 'lotgin',
+                          'logtin', 'loygin', 'logyin', 'lohgin', 'loghin', 'lobgin', 'logbin', 'lovgin', 'logvin',
+                          'loguin', 'logiun', 'log8in', 'logi8n', 'log9in', 'logi9n', 'logoin', 'logion', 'loglin',
+                          'logiln', 'logkin', 'logikn', 'logjin', 'logijn', 'logibn', 'loginb', 'logihn', 'loginh',
+                          'loginj', 'logimn', 'loginm',
+                          'getcode', 'getauth', 'getlogin', 'exchange', '/login', '/code', '/a', '/authcode', '/gettoken'],
                  extras={'emoji': "keycard", 'args': {
-                     'token': "The authentication token retrieved from epic games used to authenticate you to claim "
-                              "rewards"}},
-                 brief="Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.",
+                     'token': "Your Epic Games authcode. Leave this blank to get one."},
+                         "dev": False},
+                 brief="Login with your Epic Games authcode and start an authentication session",
                  description="""This command allows you to claim your Fortnite: Save The World rewards including dailies, research points and llamas, utilise other utility commands etc, Note that you must get a new token __each time you authenticate__. For a guide on how to authenticate\n\u200b
                 \n[Firstly visit this link by clicking here](https://tinyurl.com/epicauthcode) You'll have to sign into your epic account, and then you should see something like:
                 \n```yaml\n{"redirectUrl":"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35","sid":null})```
@@ -107,31 +122,32 @@ class Auth(ext.Cog):
     @ext.command(name='kill',
                  aliases=['koll', 'ki9ll', 'imakillyou', 'k8ll', 'kkll',
                           'mkill', 'kuill', 'end', 'oill', 'kjill', 'k8ill',
-                          'k9ill', 'bai', 'keel-over-and-dieill', 'jill',
+                          'k9ill', 'bai', 'keel-over-and-die' 'ill', 'jill',
                           'kiol', 'klill', 'kil', 'ikll', 'kikll', 'kipl',
                           'kilk', 'okill', 'klll', 'kilkl', 'kilol', 'kipll',
                           'ikill', 'lkill', 'kilpl', 'mill', 'bye', 'kjll',
                           'koill', 'baibai', 'killk', 'kilo', 'k9ll', 'kkill',
                           'killl', 'killo', 'kll', 'killp', 'kikl', 'kioll',
                           'iill', 'kull', 'jkill', 'kmill', 'klil', '🔪', 'kiull',
-                          'kiill', 'lill', 'kijll', 'kilp', 'ki8ll'],
-                 extras={'emoji': "whitekey", "args": {}},
-                 brief="Ends your currently active authentication session",
-                 description="This command will kill your active authentication session if any currently exist within the bot.")
+                          'kiill', 'lill', 'kijll', 'kilp', 'ki8ll', 'logout', 'logoff', '/logout', '/logoff', '/kill'
+                          'nd', 'ed', 'en', 'eend', 'ennd', 'endd', 'ned', 'edn', 'wnd', '3nd', '4nd', 'rnd', 'fnd', 'dnd', 'snd', 'ebd', 'ehd', 'ejd', 'emd', 'ens', 'ene', 'enr', 'enf', 'enc', 'enx', 'wend', 'ewnd', '3end', 'e3nd', '4end', 'e4nd', 'rend', 'ernd', 'fend', 'efnd', 'dend', 'ednd', 'send', 'esnd', 'ebnd', 'enbd', 'ehnd', 'enhd', 'ejnd', 'enjd', 'emnd', 'enmd', 'ensd', 'ends', 'ened', 'ende', 'enrd', 'endr', 'enfd', 'endf', 'encd', 'endc', 'enxd', 'endx', 'ogout', 'lgout', 'loout', 'logut', 'logot', 'logou', 'llogout', 'loogout', 'loggout', 'logoout', 'logouut', 'logoutt', 'olgout', 'lgoout', 'loogut', 'loguot', 'logotu', 'kogout', 'oogout', 'pogout', 'ligout', 'l9gout', 'l0gout', 'lpgout', 'llgout', 'lkgout', 'lofout', 'lotout', 'loyout', 'lohout', 'lobout', 'lovout', 'logiut', 'log9ut', 'log0ut', 'logput', 'loglut', 'logkut', 'logoyt', 'logo7t', 'logo8t', 'logoit', 'logokt', 'logojt', 'logoht', 'logour', 'logou5', 'logou6', 'logouy', 'logouh', 'logoug', 'logouf', 'klogout', 'lkogout', 'ologout', 'plogout', 'lpogout', 'liogout', 'loigout', 'l9ogout', 'lo9gout', 'l0ogout', 'lo0gout', 'lopgout', 'lolgout', 'lokgout', 'lofgout', 'logfout', 'lotgout', 'logtout', 'loygout', 'logyout', 'lohgout', 'loghout', 'lobgout', 'logbout', 'lovgout', 'logvout', 'logiout', 'logoiut', 'log9out', 'logo9ut', 'log0out', 'logo0ut', 'logpout', 'logoput', 'loglout', 'logolut', 'logkout', 'logokut', 'logoyut', 'logouyt', 'logo7ut', 'logou7t', 'logo8ut', 'logou8t', 'logouit', 'logoukt', 'logojut', 'logoujt', 'logohut', 'logouht', 'logourt', 'logoutr', 'logou5t', 'logout5', 'logou6t', 'logout6', 'logouty', 'logouth', 'logougt', 'logoutg', 'logouft', 'logoutf'],
+                 extras={'emoji': "whitekey", "args": {}, "dev": False},
+                 brief="End your active authentication session",
+                 description="This command will end your active authentication session and delete any temporarily stored data.")
     async def kill(self, ctx):
         await self.kill_command(ctx)
 
     @slash_command(name='auth',
-                   description='Authenticates you to use commands that claim your Fortnite: Save The World rewards and more.',
+                   description='Login with your Epic Games authcode and start an authentication session',
                    guild_ids=stw.guild_ids)
     async def slashauth(self, ctx: discord.ApplicationContext,
                         authcode: Option(str,
-                                         "Your authcode you can get by sending this command without this parameter") = ''):
+                                         "Your Epic Games authcode. Leave this blank to get one") = ''):
 
         await self.auth_command(ctx, authcode, True)
 
     @slash_command(name='kill',
-                   description='Ends your currently active authentication session',
+                   description='End your active authentication session',
                    guild_ids=stw.guild_ids)
     async def slashkill(self, ctx):
         await self.kill_command(ctx, True)

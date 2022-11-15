@@ -15,6 +15,7 @@ import discord
 import discord.ext.commands as ext
 from discord import Option
 import asyncio
+import datetime
 
 import stwutil as stw
 
@@ -105,25 +106,28 @@ class BattleBreakersDaily(ext.Cog):
             return
 
     @ext.slash_command(name='bbdaily',
-                       description='Allows you to claim your Battle Breakers daily rewards (rip)',
+                       description='Claim your Battle Breakers daily reward (authentication required)',
                        guild_ids=stw.guild_ids)
     async def slashbbdaily(self, ctx: discord.ApplicationContext,
                            token: Option(str,
-                                         "A Battle-Breakers auth code (different to a normal code)") = "",
-                           auth_opt_out: Option(bool, "Opt Out of Authentication session") = False, ):
+                                         "Your Epic Games authcode. Required unless you have an active session.") = "",
+                           auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
         await self.bbdaily_command(ctx, True, token, not auth_opt_out)
 
     # Battle Breakers is a new tactical role-playing game developed by Epic Games for mobile and PC.
     @ext.command(name='bbdaily',
-                 aliases=['bb', 'bbd', 'battlebreakersdaily', 'wex', 'bd'],
-                 extras={'emoji': "placeholder", "args": {
-                     'authcode': 'The authcode to use (Optional)',
-                     'opt-out': 'Any value entered into this field will opt you out of an authentication session (Optional)'}},
-                 brief="Allows you to claim your Battle Breakers daily rewards (BB auth req.)",
-                 description="""This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.
+                 aliases=['bbd', 'battlebreakersdaily', 'wex', 'bd', 'bb', 'bbbd', 'bbdd', 'bdb', 'vbd', 'gbd', 'hbd', 'nbd', 'bvd', 'bgd', 'bhd', 'bnd', 'bbs', 'bbe', 'bbf', 'bbc', 'bbx', 'vbbd', 'bvbd', 'gbbd', 'bgbd', 'hbbd', 'bhbd', 'nbbd', 'bnbd', 'bbvd', 'bbgd', 'bbhd', 'bbnd', 'bbsd', 'bbds', 'bbed', 'bbde', 'bbrd', 'bbdr', 'bbfd', 'bbdf', 'bbcd', 'bbdc', 'bbxd', 'bbdx', 'bdaily', 'bbaily', 'bbdily', 'bbdaly', 'bbdaiy', 'bbdail', 'bbbdaily', 'bbddaily', 'bbdaaily', 'bbdaiily', 'bbdailly', 'bbdailyy', 'bdbaily', 'bbadily', 'bbdialy', 'bbdaliy', 'bbdaiyl', 'vbdaily', 'gbdaily', 'hbdaily', 'nbdaily', 'bvdaily', 'bgdaily', 'bhdaily', 'bndaily', 'bbsaily', 'bbeaily', 'bbraily', 'bbfaily', 'bbcaily', 'bbxaily', 'bbdqily', 'bbdwily', 'bbdsily', 'bbdxily', 'bbdzily', 'bbdauly', 'bbda8ly', 'bbda9ly', 'bbdaoly', 'bbdally', 'bbdakly', 'bbdajly', 'bbdaiky', 'bbdaioy', 'bbdaipy', 'bbdailt', 'bbdail6', 'bbdail7', 'bbdailu', 'bbdailj', 'bbdailh', 'bbdailg', 'vbbdaily', 'bvbdaily', 'gbbdaily', 'bgbdaily', 'hbbdaily', 'bhbdaily', 'nbbdaily', 'bnbdaily', 'bbvdaily', 'bbgdaily', 'bbhdaily', 'bbndaily', 'bbsdaily', 'bbdsaily', 'bbedaily', 'bbdeaily', 'bbrdaily', 'bbdraily', 'bbfdaily', 'bbdfaily', 'bbcdaily', 'bbdcaily', 'bbxdaily', 'bbdxaily', 'bbdqaily', 'bbdaqily', 'bbdwaily', 'bbdawily', 'bbdasily', 'bbdaxily', 'bbdzaily', 'bbdazily', 'bbdauily', 'bbdaiuly', 'bbda8ily', 'bbdai8ly', 'bbda9ily', 'bbdai9ly', 'bbdaoily', 'bbdaioly', 'bbdalily', 'bbdakily', 'bbdaikly', 'bbdajily', 'bbdaijly', 'bbdailky', 'bbdailoy', 'bbdaiply', 'bbdailpy', 'bbdailty', 'bbdailyt', 'bbdail6y', 'bbdaily6', 'bbdail7y', 'bbdaily7', 'bbdailuy', 'bbdailyu', 'bbdailjy', 'bbdailyj', 'bbdailhy', 'bbdailyh', 'bbdailgy', 'bbdailyg', '/bbd', 'battlebreakers', '/battlebreakers', '/wex', '/bd', '/bbdaily'],
+                 extras={'emoji': "T_MTX_Gem_Icon", "args": {
+                        'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                        'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
+                        "dev": False},
+                 brief="Claim your Battle Breakers daily reward (authentication required)",
+                 description=f"""This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.
                 \u200b
-                ⦾ You can check when you can claim your daily again by checking the bots status
-                ⦾ This command requires getting an auth code from a different link, please use the ones provided by the bot.
+                ⦾ This command only runs once, be sure to come back <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                ⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!
+                ⦾ Looking for help on authcodes? Check out help for the `auth` command.
+                ⦾ Looking for Fortnite daily rewards? Check out the `daily` command.
                 """)
     async def bbdaily(self, ctx, authcode='', optout=None):
 

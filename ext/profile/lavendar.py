@@ -14,6 +14,7 @@ import motor.motor_asyncio
 from ext.profile.devauth import handle_dev_auth
 from ext.profile.bongodb import *
 
+
 # create dictionary with user snowflake as keys and a list of all documents in that collection asi summon thee
 # how should we make mongodb thingy ;w;
 # um we should like gram their snowflake = 123456789012345678 post it on the gram? brb sending it to hayk yes ofc
@@ -253,7 +254,6 @@ class ProfileMainView(discord.ui.View):
         )
 
 
-
 # How do I explain to my gynecologist that I don't want to get rid of my pubic lice? I am infertile and my sweet little crab babies are the closest thing I have to birthing actual children...
 # i cant pay electric bill
 # oh hey i just bouta go to bed
@@ -412,16 +412,17 @@ class Profile(ext.Cog):
 
     @ext.command(name='profile',
                  extras={'emoji': "stormshard", "args": {
-                     'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)'}},
-                 brief="Allows you to create, change the name of, select, & delete profiles",
-                 description="A command which allows you to interact with a view to switch between profiles, create new profiles utilising a modal, delete existing profiles and edit the name of existing profiles")
+                        'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)(PENDING)'},
+                        "dev": False},
+                 brief="Allows you to create, change the name of, select, & delete profiles(PENDING)",
+                 description="A command which allows you to interact with a view to switch between profiles, create new profiles utilising a modal, delete existing profiles and edit the name of existing profiles(PENDING)")
     async def profile(self, ctx, profile=None):
         await self.profile_command(ctx, profile)
 
     @slash_command(name='profile',
-                   description="Allows you to create, change the name of, select, & delete profiles",
+                   description="Allows you to create, change the name of, select, & delete profiles(PENDING)",
                    guild_ids=stw.guild_ids)
     async def slashprofile(self, ctx: discord.ApplicationContext,
                            profile: Option(int,
-                                           "Which profile you wish to switch to (Leave empty if you wish to utilise the View)") = -1):
+                                           "Which profile you wish to switch to (Leave empty if you wish to utilise the View)(PENDING)") = -1):
         await self.profile_command(ctx, profile, True)

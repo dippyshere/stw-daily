@@ -75,19 +75,24 @@ class Help(ext.Cog):
         except:
             pass
 
-        name_string = cmd
+        name_string = f"**{await stw.add_emoji_title(self.client, command.name.title(), command.extras['emoji'])}**\n{cmd}"
+        for argument in command.extras["args"].keys():
+            name_string += f" <{argument}>"
+        name_string += "\n"
         for argument in command.extras["args"].keys():
             arg = f"<{argument}>"
             info = command.extras['args'][argument]
 
             if "(Optional)" in info:
                 info = info.replace("(Optional)", "")
-                arg = f"(Optional) {arg}"
+                info += f"**\n*This argument is optional*"
+            else:
+                info += "**"
 
-            name_string += f"\n{arg} : {info}\n"
+            name_string += f"\n**{arg} : {info}\n"
 
-        embed_desc = f"\n\u200b\n**{name_string}**\n\u200b\n{command.description}\n\u200b".replace("<@mention_me>",
-                                                                                                   f"{mention}")
+        embed_desc = f"\n\u200b\n{name_string}\n\u200b\n{command.description}\n\u200b".replace("<@mention_me>",
+                                                                                               f"{mention}")
         embed.description = embed_desc
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
@@ -99,14 +104,21 @@ class Help(ext.Cog):
         embed = await stw.add_requested_footer(ctx, embed)
 
         for command in self.client.commands:
-            embed = await self.add_brief_command_info(embed, command)
+            try:
+                if not command.extras["dev"]:
+                    embed = await self.add_brief_command_info(embed, command)
+                else:
+                    if ctx.author.id in self.client.config["devs"]:
+                        embed = await self.add_brief_command_info(embed, command)
+            except KeyError:
+                embed = await self.add_brief_command_info(embed, command)
         return embed
 
     async def help_embed(self, ctx, inputted_command):
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
                               description="\u200b")
-        
+
         if inputted_command not in self.client.command_name_list:
             embed = await self.add_default_page(ctx, embed_colour)
         else:
@@ -115,23 +127,36 @@ class Help(ext.Cog):
 
         return embed
 
-    async def select_options_commands(self):
+    async def select_options_commands(self, ctx):
         options = []
 
         for command in self.client.commands:
-            options.append(
-                discord.SelectOption(label=command.name, value=command.name, description=command.brief,
-                                     emoji=self.emojis[command.extras['emoji']], default=False)
-            )
+            try:
+                if not command.extras["dev"]:
+                    options.append(
+                        discord.SelectOption(label=command.name, value=command.name, description=stw.truncate(command.brief, 100),
+                                             emoji=self.emojis[command.extras['emoji']], default=False)
+                    )
+                else:
+                    if ctx.author.id in self.client.config["devs"]:
+                        options.append(
+                            discord.SelectOption(label=command.name, value=command.name, description=stw.truncate(command.brief, 100),
+                                                 emoji=self.emojis[command.extras['emoji']], default=False)
+                        )
+            except KeyError:
+                options.append(
+                    discord.SelectOption(label=command.name, value=command.name, description=stw.truncate(command.brief, 100),
+                                         emoji=self.emojis[command.extras['emoji']], default=False)
+                )
 
         return options
 
     async def help_command(self, ctx, command, slash=False):
         embed = await self.help_embed(ctx, command)
         help_options = [discord.SelectOption(label="all", value="main_menu",
-                                             description="Display a brief amount of info about every command",
+                                             description="Return to viewing all available commands",
                                              emoji=self.emojis['blueinfo'], default=False)]
-        help_options += await self.select_options_commands()
+        help_options += await self.select_options_commands(ctx)
 
         help_view = HelpView(ctx, help_options, self.client)
         help_view.help = self
@@ -157,11 +182,13 @@ class Help(ext.Cog):
                           'hwelp', 'hdlp', '?', 'hnelp', 'hep', 'hlep',
                           'hewlp', 'h4elp', 'hrlp', 'hflp', 'jhelp', 'hdelp',
                           'hellp', 'elp', 'helkp', 'hjelp', 'helpo', 'how', 'hel0',
-                          'hfelp', 'h3lp', 'hepp', 'hel0p', 'belp', 'uhelp', 'gelp', 'he4lp'],
+                          'hfelp', 'h3lp', 'hepp', 'hel0p', 'belp', 'uhelp', 'gelp', 'he4lp', '/help', '/h', '/how',
+                          '/?'],
                  extras={'emoji': "info",
-                         'args': {'command': "A command to display a more detailed information guide of (Optional)"}},
-                 brief="Displays commands info, only the author may use the select",
-                 description="A command which displays information about all other commands, helpful to understand the usage of each command and their purpose.")
+                         'args': {'command': "The name of a command to display detailed information on (Optional)"},
+                         "dev": False},
+                 brief="An interactive view of all available commands",
+                 description="This command provides an interactive interface to view all available commands, and help for how to use each command. The select menu is only available to the author of the command, and will display more detailed information of the selected command. If no command is selected, brief info about all available command will be displayed.")
     async def help(self, ctx, command=None):
         await self.help_command(ctx, str(command).lower())
 
@@ -189,7 +216,7 @@ class Help(ext.Cog):
         return autocomplete_choices
 
     @slash_command(name='help',
-                   description='Displays information about other commands',
+                   description='An interactive view of all available commands',
                    guild_ids=stw.guild_ids)
     async def slashhelp(
             self,

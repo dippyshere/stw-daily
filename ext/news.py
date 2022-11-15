@@ -155,20 +155,22 @@ class News(ext.Cog):
         return
 
     @ext.slash_command(name='news',
-                       description='Get the latest news from Fortnite.',
+                       description='View the latest in-game news from Fortnite',
                        guild_ids=stw.guild_ids)
     async def slashnews(self, ctx: discord.ApplicationContext,
                         page: Option(int,
-                                        "The page number to view") = 1,
-                        mode: Option(str, description="Choose a Game Mode to get news from", choices=["stw", "br"]) = "stw"):
+                                     "The page number to view") = 1,
+                        mode: Option(str, description="Choose a game mode to see news from",
+                                     choices=["stw", "br"]) = "stw"):
         await self.news_command(ctx, True, page, mode)
 
     @ext.command(name='news',
-                 aliases=['n'],
-                 extras={'emoji': "bang", "args": {'page': "The page number you want to see (Optional)",
-                                                          "mode": "The game mode you want to see news from (stw/br) (Optional)"}},
-                 brief="Get the latest news from Fortnite.",
-                 description="""This command allows you to see the latest news from Fortnite in both Battle Royale and Save the World.
+                 aliases=['ew', 'nw', 'ne', 'nnew', 'neew', 'neww', 'enw', 'nwe', 'bew', 'hew', 'jew', 'mew', 'nww', 'n3w', 'n4w', 'nrw', 'nfw', 'ndw', 'nsw', 'neq', 'ne2', 'ne3', 'nee', 'nes', 'nea', 'bnew', 'nbew', 'hnew', 'nhew', 'jnew', 'njew', 'mnew', 'nmew', 'nwew', 'n3ew', 'ne3w', 'n4ew', 'ne4w', 'nrew', 'nerw', 'nfew', 'nefw', 'ndew', 'nedw', 'nsew', 'nesw', 'neqw', 'newq', 'ne2w', 'new2', 'new3', 'newe', 'newd', 'neaw', 'newa', 'ews', 'nws', 'new', 'nnews', 'neews', 'newws', 'newss', 'enws', 'nwes', 'bews', 'hews', 'jews', 'mews', 'nwws', 'n3ws', 'n4ws', 'nrws', 'nfws', 'ndws', 'nsws', 'neqs', 'ne2s', 'ne3s', 'nees', 'neds', 'ness', 'neas', 'newx', 'newz', 'bnews', 'nbews', 'hnews', 'nhews', 'jnews', 'njews', 'mnews', 'nmews', 'nwews', 'n3ews', 'ne3ws', 'n4ews', 'ne4ws', 'nrews', 'nerws', 'nfews', 'nefws', 'ndews', 'nedws', 'nsews', 'nesws', 'neqws', 'newqs', 'ne2ws', 'new2s', 'new3s', 'newes', 'newds', 'neaws', 'newas', 'newsa', 'newsw', 'newse', 'newsd', 'newxs', 'newsx', 'newzs', 'newsz', 'n', '/n', '/new', '/news'],
+                 extras={'emoji': "bang", "args": {'page': "The page number to view (Optional)",
+                                                   "mode": "The game mode to see news from (stw/br) (Optional)"},
+                         "dev": False},
+                 brief="View the latest in-game news from Fortnite",
+                 description="""This command will fetch and display the latest news from the game. You can switch between viewing Save the World or Battle Royale news by pressing the corresponding buttons. Cycle between pages by pressing the left/right arrow buttons.
                 \u200b
                 """)
     async def news(self, ctx, page=1, mode="stw"):

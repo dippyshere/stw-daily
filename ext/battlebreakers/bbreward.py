@@ -62,7 +62,7 @@ class BBReward(ext.Cog):
                 await stw.slash_send_embed(ctx, slash, embed)
                 return
 
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "placeholder"),
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "Shared2"),
                                   description=f'\u200b\nDisplaying rewards for day **{day}** and **{limit}** days after\n\u200b',
                                   color=embed_colour)
 
@@ -110,7 +110,7 @@ class BBReward(ext.Cog):
                     name=f'{self.client.config["emojis"]["calendar"]} Rewards for the next **{limit}** days:',
                     value=f'```{rewards}```\u200b', inline=False)
 
-            embed = await stw.set_thumbnail(self.client, embed, "placeholder")
+            embed = await stw.set_thumbnail(self.client, embed, "Shared2")
             embed = await stw.add_requested_footer(ctx, embed)
 
             try:
@@ -124,20 +124,22 @@ class BBReward(ext.Cog):
                 await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.command(name='bbreward',
-                 aliases=['bbr', 'bbrwrd', 'battlebreakersreward'],
-                 extras={'emoji': "placeholder", "args": {'day': 'The day to view the reward for',
-                                                          'limit': 'The amount of days after the specified days that rewards will be given for (Optional)'}},
-                 brief="View daily rewards from a certain day for a certain amount of days after",
-                 description="Allows you to utilise the built in library for items to view Battle Breakers rewards starting from a certain day and for a certain amount of days afterwards")
+                 aliases=['bbr', 'bbrwrd', 'battlebreakersreward', 'breward', 'bbeward', 'bbrward', 'bbreard', 'bbrewrd', 'bbrewad', 'bbrewar', 'bbbreward', 'bbrreward', 'bbreeward', 'bbrewward', 'bbrewaard', 'bbrewarrd', 'bbrewardd', 'brbeward', 'bberward', 'bbrweard', 'bbreawrd', 'bbrewrad', 'bbrewadr', 'vbreward', 'gbreward', 'hbreward', 'nbreward', 'bvreward', 'bgreward', 'bhreward', 'bnreward', 'bbeeward', 'bb4eward', 'bb5eward', 'bbteward', 'bbgeward', 'bbfeward', 'bbdeward', 'bbrwward', 'bbr3ward', 'bbr4ward', 'bbrrward', 'bbrfward', 'bbrdward', 'bbrsward', 'bbreqard', 'bbre2ard', 'bbre3ard', 'bbreeard', 'bbredard', 'bbresard', 'bbreaard', 'bbrewqrd', 'bbrewwrd', 'bbrewsrd', 'bbrewxrd', 'bbrewzrd', 'bbrewaed', 'bbrewa4d', 'bbrewa5d', 'bbrewatd', 'bbrewagd', 'bbrewafd', 'bbrewadd', 'bbrewars', 'bbreware', 'bbrewarr', 'bbrewarf', 'bbrewarc', 'bbrewarx', 'vbbreward', 'bvbreward', 'gbbreward', 'bgbreward', 'hbbreward', 'bhbreward', 'nbbreward', 'bnbreward', 'bbvreward', 'bbgreward', 'bbhreward', 'bbnreward', 'bbereward', 'bb4reward', 'bbr4eward', 'bb5reward', 'bbr5eward', 'bbtreward', 'bbrteward', 'bbrgeward', 'bbfreward', 'bbrfeward', 'bbdreward', 'bbrdeward', 'bbrweward', 'bbr3eward', 'bbre3ward', 'bbre4ward', 'bbrerward', 'bbrefward', 'bbredward', 'bbrseward', 'bbresward', 'bbreqward', 'bbrewqard', 'bbre2ward', 'bbrew2ard', 'bbrew3ard', 'bbreweard', 'bbrewdard', 'bbrewsard', 'bbreaward', 'bbrewaqrd', 'bbrewawrd', 'bbrewasrd', 'bbrewxard', 'bbrewaxrd', 'bbrewzard', 'bbrewazrd', 'bbrewaerd', 'bbrewared', 'bbrewa4rd', 'bbrewar4d', 'bbrewa5rd', 'bbrewar5d', 'bbrewatrd', 'bbrewartd', 'bbrewagrd', 'bbrewargd', 'bbrewafrd', 'bbrewarfd', 'bbrewadrd', 'bbrewarsd', 'bbrewards', 'bbrewarde', 'bbrewardr', 'bbrewardf', 'bbrewarcd', 'bbrewardc', 'bbrewarxd', 'bbrewardx', 'brwrd', 'bbwrd', 'bbrrd', 'bbrwd', 'bbrwr', 'bbbrwrd', 'bbrrwrd', 'bbrwwrd', 'bbrwrrd', 'bbrwrdd', 'brbwrd', 'bbwrrd', 'bbrrwd', 'bbrwdr', 'vbrwrd', 'gbrwrd', 'hbrwrd', 'nbrwrd', 'bvrwrd', 'bgrwrd', 'bhrwrd', 'bnrwrd', 'bbewrd', 'bb4wrd', 'bb5wrd', 'bbtwrd', 'bbgwrd', 'bbfwrd', 'bbdwrd', 'bbrqrd', 'bbr2rd', 'bbr3rd', 'bbrerd', 'bbrdrd', 'bbrsrd', 'bbrard', 'bbrwed', 'bbrw4d', 'bbrw5d', 'bbrwtd', 'bbrwgd', 'bbrwfd', 'bbrwdd', 'bbrwrs', 'bbrwre', 'bbrwrr', 'bbrwrf', 'bbrwrc', 'bbrwrx', 'vbbrwrd', 'bvbrwrd', 'gbbrwrd', 'bgbrwrd', 'hbbrwrd', 'bhbrwrd', 'nbbrwrd', 'bnbrwrd', 'bbvrwrd', 'bbgrwrd', 'bbhrwrd', 'bbnrwrd', 'bberwrd', 'bb4rwrd', 'bbr4wrd', 'bb5rwrd', 'bbr5wrd', 'bbtrwrd', 'bbrtwrd', 'bbrgwrd', 'bbfrwrd', 'bbrfwrd', 'bbdrwrd', 'bbrdwrd', 'bbrqwrd', 'bbrwqrd', 'bbr2wrd', 'bbrw2rd', 'bbr3wrd', 'bbrw3rd', 'bbrwerd', 'bbrwdrd', 'bbrswrd', 'bbrwsrd', 'bbrawrd', 'bbrwred', 'bbrw4rd', 'bbrwr4d', 'bbrw5rd', 'bbrwr5d', 'bbrwtrd', 'bbrwrtd', 'bbrwgrd', 'bbrwrgd', 'bbrwfrd', 'bbrwrfd', 'bbrwrsd', 'bbrwrds', 'bbrwrde', 'bbrwrdr', 'bbrwrdf', 'bbrwrcd', 'bbrwrdc', 'bbrwrxd', 'bbrwrdx', '/bbr', '/bbrwrd', '/bbreward', '/battlebreakersrewards', 'battlebreakersrewards', 'bbitem', '/bbitem'],
+                 extras={'emoji': "Shared2", "args": {'day': 'The day to get the rewards of. Not required if you '
+                                                                 'are authenticated',
+                                                          'limit': 'The number of upcoming days to see (Optional)'},
+                         "dev": False},
+                 brief="View info about a specific day\'s reward, and the rewards that follow in Battle Breakers",
+                 description="This command lets you view the rewards of any specific day, and any number of rewards that follow. This command is for Battle Breakers rewards.")
     async def bbreward(self, ctx, day='hi readers of the bot', limit='7'):
         await self.bbreward_command(ctx, day, int(limit))
 
     @slash_command(name='bbreward',
-                   description='View daily rewards from a certain day for a certain amount of days after.',
+                   description='View info about a specific day\'s reward, and the rewards that follow in Battle Breakers',
                    guild_ids=stw.guild_ids)
     async def bbslashreward(self, ctx: discord.ApplicationContext,
-                            day: Option(int, "The day you would like to view rewards for") = 'hi readers of the bot',
-                            limit: Option(int, "The amount of days you would like to view rewards for after") = 7):
+                            day: Option(int, "The day to get the rewards of. Not required if you are authenticated") = 'hi readers of the bot',
+                            limit: Option(int, "The number of upcoming days to see") = 7):
         await self.bbreward_command(ctx, day, limit, True)
 
 

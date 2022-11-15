@@ -461,13 +461,14 @@ class Research(ext.Cog):
                           'rdsearch', 'ges', 'researcn', 'researcg', '4research', 'researcb', 'ree', 'resz',
                           'reseacrh', 'red', 'resdearch', 'reseawrch', '5es', 'rese', 'reseafrch', 'reaearch',
                           'researh', 'tesearch', 'researxh', 'r5esearch', 'resrarch', 'researvch', 'res3arch',
-                          'resewrch', 'rezs', 're4search', 'tes', 'resedarch'],
+                          'resewrch', 'rezs', 're4search', 'tes', 'resedarch', '/res', '/r', '/research'],
                  extras={'emoji': "research_point", "args": {
-                     'authcode': 'The authcode to start an authentication session with if one does not exist, if an auth session already exists this argument is optional (Optional)',
-                     'opt-out': 'Any value inputted into this field will opt you out of the authentication session system when you enter the authcode for this command (Optional)'}},
-                 brief="Allows you to distribute and claim your research points (auth req.)",
-                 description="""This command allows you to claim your Fortnite: Save The World research points for the FORT (Fortification, Offence, Resistance, Tech) stats, You can view how many currently available research points you have and then distribute them to your choosing through the interface provided by the embed.
-                """)
+                        'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                        'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
+                         "dev": False},
+                 brief="Claim and spend your research points (authentication required)",
+                 description="""This command lets you claim your available research points, view your FORT research levels, and upgrade those levels. Press the button corresponding with the stat you want to upgrade.
+                 """)
     async def research(self, ctx, authcode='', optout=None):
 
         if optout is not None:
@@ -478,12 +479,12 @@ class Research(ext.Cog):
         await self.research_command(ctx, False, authcode, not optout)
 
     @slash_command(name='research',
-                   description="Allows you to distribute and claim your research points (auth req.)",
+                   description="Claim and spend your research points (authentication required)",
                    guild_ids=stw.guild_ids)
     async def slashresearch(self, ctx: discord.ApplicationContext,
                             token: Option(str,
-                                          "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                            auth_opt_out: Option(bool, "Opt Out of Authentication session") = False, ):
+                                          "Your Epic Games authcode. Required unless you have an active session.") = "",
+                            auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
         await self.research_command(ctx, True, token, not auth_opt_out)
 
 

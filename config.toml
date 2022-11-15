@@ -51,6 +51,10 @@ shard_names = [
    ]
 
 
+devs = [
+	349076896266452994, 237465974545055744, 563988053962653696, 260047769228541952
+	]
+
 # a list of emojis the bot utilises throughout (please do not change the keys.)
 [emojis]
 info				= "<:helpstwdaily:925648230488883230>"

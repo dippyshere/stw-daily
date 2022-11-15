@@ -14,12 +14,12 @@ class Reload(ext.Cog):
         try:
             self.client.reload_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reload cog", "hard_drive"),
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reload cog", "experimental"),
                                   description=f'\u200b\nReloaded cog: {extension}\n\u200b',
                                   color=embed_colour)
         except Exception as e:
             embed_colour = self.client.colours["error_red"]
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reload cog", "hard_drive"),
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reload cog", "experimental"),
                                   description=f'\u200b\nFailed to reload cog: {extension}\n\u200b',
                                   color=embed_colour)
             embed.add_field(name="Error:", value=f"```{e}```", inline=False)
@@ -30,9 +30,10 @@ class Reload(ext.Cog):
         await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.command(name='rlcg',
-                 extras={'emoji': "hard_drive", "args": {'ext': 'The cog to reload'}},
-                 brief="reloads cogs",
-                 description="Reloads cogs to apply changes")
+                 aliases=['rl', 'reload', '/rlcg'],
+                 extras={'emoji': "experimental", "args": {'ext': 'The cog to reload'}, "dev": True},
+                 brief="Reload STW Daily extensions (cogs)",
+                 description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot")
     async def rlcg(self, ctx, extension):
         await self.reload_command(ctx, extension)
 
@@ -40,12 +41,12 @@ class Reload(ext.Cog):
         try:
             self.client.load_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Load cog", "hard_drive"),
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Load cog", "experimental"),
                                   description=f'\u200b\nLoaded cog: {extension}\n\u200b',
                                   color=embed_colour)
         except Exception as e:
             embed_colour = self.client.colours["error_red"]
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Load cog", "hard_drive"),
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Load cog", "experimental"),
                                   description=f'\u200b\nFailed to load cog: {extension}\n\u200b',
                                   color=embed_colour)
             embed.add_field(name="Error:", value=f"```{e}```", inline=False)
@@ -56,9 +57,10 @@ class Reload(ext.Cog):
         await stw.slash_send_embed(ctx, slash, embed)
 
     @ext.command(name='lcg',
-                 extras={'emoji': "hard_drive", "args": {'ext': 'The cog to load'}},
-                 brief="loads cogs",
-                 description="Loads cogs to apply changes")
+                 aliases=['lc', 'load', '/lcg'],
+                 extras={'emoji': "experimental", "args": {'ext': 'The cog to load'}, "dev": True},
+                 brief="Load STW Daily extensions (cogs)",
+                 description="Load STW Daily extensions (cogs) to apply changes without restarting the bot")
     async def lcg(self, ctx, extension):
         await self.load_command(ctx, extension)
 

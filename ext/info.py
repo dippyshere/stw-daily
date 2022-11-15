@@ -103,15 +103,15 @@ class Information(ext.Cog):
                           'ingo', 'inf9o', 'ifo', 'ijnfo', 'linfo', '9nfo', 'ino', 'infoo', 'lnfo', 'invo', 'inmfo',
                           'ibnfo', 'infto', 'imfo', 'inf0',
                           'knfo', 'infi', 'ilnfo', 'oinfo', 'ihnfo', 'ingfo', 'iunfo', 'jinfo', 'infok', 'le_bot_stuf',
-                          '8info', 'invfo', 'ijfo', 'into', 'inf'],
-                 extras={'emoji': "hard_drive", "args": {}},
-                 brief="Get information about the bot and this shard",
-                 description="This command displays information both about the shard and information about the bots hosting service along with latency. not really useful for the end user.")
+                          '8info', 'invfo', 'ijfo', 'into', 'inf', 'tats', 'sats', 'stts', 'stas', 'stat', 'sstats', 'sttats', 'staats', 'statts', 'statss', 'tsats', 'satts', 'sttas', 'stast', 'atats', 'wtats', 'etats', 'dtats', 'xtats', 'ztats', 'srats', 's5ats', 's6ats', 'syats', 'shats', 'sgats', 'sfats', 'stqts', 'stwts', 'ststs', 'stxts', 'stzts', 'stars', 'sta5s', 'sta6s', 'stays', 'stahs', 'stags', 'stafs', 'stata', 'statw', 'state', 'statd', 'statx', 'statz', 'astats', 'satats', 'wstats', 'swtats', 'estats', 'setats', 'dstats', 'sdtats', 'xstats', 'sxtats', 'zstats', 'sztats', 'srtats', 'strats', 's5tats', 'st5ats', 's6tats', 'st6ats', 'sytats', 'styats', 'shtats', 'sthats', 'sgtats', 'stgats', 'sftats', 'stfats', 'stqats', 'staqts', 'stwats', 'stawts', 'stsats', 'stasts', 'stxats', 'staxts', 'stzats', 'stazts', 'starts', 'statrs', 'sta5ts', 'stat5s', 'sta6ts', 'stat6s', 'stayts', 'statys', 'stahts', 'staths', 'stagts', 'statgs', 'stafts', 'statfs', 'statas', 'statsa', 'statws', 'statsw', 'states', 'statse', 'statds', 'statsd', 'statxs', 'statsx', 'statzs', 'statsz', '/inf', 'infomation', '/info', '/information', 'stats', '/stats'],
+                 extras={'emoji': "hard_drive", "args": {}, "dev": False},
+                 brief="View information about STW Daily's host, the bot, and the bot's developer. Also verify authenticity of the bot.",
+                 description="This command will return various bits of information about the bot, which you may find interesting as a developer. It will also verify the authenticity of the bot.")
     async def info(self, ctx):
         await self.info_command(ctx)
 
     @slash_command(name='info',
-                   description="Get information about the bots latency and hosting service for this shard.",
+                   description="View information about STW Daily! Also verify authenticity of the bot.",
                    guild_ids=stw.guild_ids)
     async def slashinfo(self, ctx):
         await self.info_command(ctx, True)

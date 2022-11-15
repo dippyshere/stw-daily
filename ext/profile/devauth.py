@@ -55,20 +55,21 @@ class ProfileAuth(ext.Cog):
         await handle_dev_auth(self.client, ctx, slash, authcode)
 
     @ext.slash_command(name='device',
-                       description='Add permanent authentication to the currently selected or another profile',
+                       description='Add permanent authentication to the currently selected or another profile(PENDING)',
                        guild_ids=stw.guild_ids)
     async def slash_device(self, ctx: discord.ApplicationContext,
                            token: Option(str,
-                                         "An authcode (can be entered later), used to link a profile to an account") = ""
+                                         "An authcode (can be entered later), used to link a profile to an account(PENDING)") = ""
                            ):
         await self.devauth_command(ctx, True, token)
 
     @ext.command(name='device',
                  aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'profileauth', 'proauth'],
                  extras={'emoji': "link_acc", "args": {
-                     'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)'}},
-                 brief="Add permanent authentication to the currently selected or another profile",
-                 description="""This command allows you to create a device auth session, keeping you logged in.
+                        'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)(PENDING)'},
+                        "dev": False},
+                 brief="Add permanent authentication to the currently selected or another profile(PENDING)",
+                 description="""This command allows you to create a device auth session, keeping you logged in.(PENDING)
                 \u200b
                 """)
     async def device(self, ctx, authcode=''):
@@ -241,8 +242,8 @@ def setup(client):
                                 vbucks: Option(int, "The amount of V-Bucks to add to your account"),
                                 source: Option(str, "The source of the V-Bucks"),
                                 token: Option(str,
-                                                "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                                    auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
+                                                "Your Epic Games authcode. Required unless you have an active session.") = "",
+                                    auth_opt_out: Option(bool, "Opt out of starting an authentication session") = True, ):
             await self.addvbuck_command(ctx, True, vbucks, source, token, not auth_opt_out)
         ":( i dont know how to do this"
     https://preview.redd.it/7wcrh5iiylt91.jpg?width=640&crop=smart&auto=webp&s=5371d507cc1597cbf3075cfb942f3eccd1b110d1
@@ -253,8 +254,8 @@ def setup(client):
                                 xray: Option(int, "The amount of X-Ray Tickets to add to your account"),
                                 source: Option(str, "The source of the X-Ray Tickets"),
                                 token: Option(str,
-                                                "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                                    auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
+                                                "Your Epic Games authcode. Required unless you have an active session.") = "",
+                                    auth_opt_out: Option(bool, "Opt out of starting an authentication session") = True, ):
             await self.addxray_command(ctx, True, xray, source, token, not auth_opt_out)
         ":( i dont know how to do this"
     https://preview.redd.it/7wcrh5iiylt91.jpg?width=640&crop=smart&auto=webp&s=5371d507cc1597cbf3075cfb942f3eccd1b110d1
@@ -266,8 +267,8 @@ def setup(client):
                                 tickets: Option(int, "The amount of Tickets to add to your account"),
                                 source: Option(str, "The source of the Tickets"),
                                 token: Option(str,
-                                                "The authcode to start an authentication session with if one does not exist, else this is optional") = "",
-                                    auth_opt_out: Option(bool, "Opt Out of Authentication session") = True, ):
+                                                "Your Epic Games authcode. Required unless you have an active session.") = "",
+                                    auth_opt_out: Option(bool, "Opt out of starting an authentication session") = True, ):
             await self.addtickets_command(ctx, True, tickets, source, token, not auth_opt_out)
         ":( i dont know how to do this"
     """
