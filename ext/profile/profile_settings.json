@@ -2,7 +2,7 @@
     "upcoming_display_days": {
         "aliases": ["toule_dans_le_vide"],
         "default": 7,
-        "description": "NOT IMPLEMENTED YET (this also utilises the string setting stuff btw as its just a modal lol) How many upcoming days should STW Daily display for your upcoming rewards after claiming daily rewards?",
+        "description": "How many upcoming days should STW Daily display for your upcoming rewards after claiming daily rewards?",
         "modal_title": "Change upcoming display days",
         "input_label": "Enter a new value between 25 and 0",
         "check_function": "check_upcoming_display_days"
@@ -11,39 +11,81 @@
     "display_name_on_auth": {
         "aliases": ["ookay_thief"],
         "default": true,
-        "description": "NOT IMPLEMENTED YET Should STW Daily display your epic games on authentication?"
+        "description": "Should STW Daily display your epic games on authentication?"
     },
 
     "claim_research": {
         "aliases": ["land_down_under"],
         "default": false,
-        "description": "NOT IMPLEMENTED YET Should STW Daily automatically claim your research points?"
+        "description": "Should STW Daily automatically claim your research points?"
     },
 
     "claim_free_llamas": {
         "aliases": ["twenty_five_commands_is_the_limit"],
         "default": false,
-        "description": "NOT IMPLEMENTED YET Should STW Daily automatically purchase any free llamas available?"
+        "description": "Should STW Daily automatically purchase any free llamas available?"
     },
 
     "claim_daily": {
         "aliases": ["dangerous_big_data"],
         "default": false,
-        "description": "NOT IMPLEMENTED YET Should STW Daily automatically claim your daily whenever it is available?"
+        "description": "Should STW Daily automatically claim your daily whenever it is available?"
     },
 
     "ephemeral": {
         "aliases": ["im_just_a_selfish_ghost"],
         "default": false,
-        "description": "NOT IMPLEMENTED YET Should STW Daily make any embeds sent through the utilisation of slash commands ephemeral? (Only visible to you)"
+        "description": "Should STW Daily make any embeds sent through the utilisation of slash commands ephemeral? (Only visible to you)"
     },
 
     "default_command": {
         "aliases": ["tbh idk what happens when you dont use underscores so here's an attempt at that i guess lmao"],
         "default": "daily",
-        "description": "NOT IMPLEMENTED YET (I JUST WANTED AN EXAMPLE FOR STRING SETTING STUFF) What should the default command be when you utilise stw daily? (For when you mention stw daily and send arguments without utilising any command prefix)",
+        "description": "What should the default command be when you utilise stw daily? (For when you mention stw daily and send arguments without utilising any command prefix)",
         "modal_title": "Change default command",
         "input_label": "Enter an existing commands prefix",
         "check_function": "check_default_command_change"
+    },
+
+    "setting_eight": {
+        "aliases": [],
+        "default": false,
+        "description": "but the rain always comes at the worst times"
+    },
+
+    "setting_9": {
+        "aliases": [],
+        "default": false,
+        "description": "nobody does it like you do"
+    },
+
+    "setting_10": {
+        "aliases": [],
+        "default": false,
+        "description": "i do whatever i could do"
+    },
+
+    "setting_11": {
+        "aliases": [],
+        "default": false,
+        "description": "dying to let you know"
+    },
+
+    "setting_12": {
+        "aliases": [],
+        "default": false,
+        "description": "left at first"
+    },
+
+        "setting_13": {
+        "aliases": [],
+        "default": false,
+        "description": "setting 14"
+    },
+
+    "setting_14": {
+        "aliases": [],
+        "default": false,
+        "description": "h"
     }
 }

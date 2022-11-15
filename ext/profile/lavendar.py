@@ -46,10 +46,12 @@ def setup(client):
     with open("ext/profile/profile_default.json", "r") as user_default:
         client.user_default = json.load(user_default)
 
+    client.settings_choices = []
     with open("ext/profile/profile_settings.json") as settings_default:
         client.default_settings = json.load(settings_default)
         for setting in client.default_settings:
             client.user_default["profiles"]["0"]["settings"][setting] = client.default_settings[setting]["default"]
+            client.settings_choices.append(setting)
 
     # client.get_collections = get_collections
     # :3

@@ -165,14 +165,37 @@ class Help(ext.Cog):
     async def help(self, ctx, command=None):
         await self.help_command(ctx, str(command).lower())
 
+    async def get_bot_commands(self, actx: discord.AutocompleteContext):
+
+        # how to get id pro tutorial ft jean1398reborn
+        # first thing we must get ze interaction
+        le_fishe_interaction = actx.interaction
+        # le next step get the user
+        le_user_of_fishe_interaction = le_fishe_interaction.user
+        # finale step get ze id of the user
+        le_id_of_the_user_of_the_fishe_interaction = le_user_of_fishe_interaction.id
+
+        autocomplete_choices = []
+        for command in self.client.commands:
+            try:
+                if not command.extras["dev"]:
+                    autocomplete_choices.append(command.name)
+                else:
+                    if le_id_of_the_user_of_the_fishe_interaction in self.client.config["devs"]:
+                        autocomplete_choices.append(command.name)
+            except KeyError:
+                autocomplete_choices.append(command.name)
+
+        return autocomplete_choices
+
     @slash_command(name='help',
                    description='Displays information about other commands',
                    guild_ids=stw.guild_ids)
     async def slashhelp(
             self,
             ctx: discord.ApplicationContext,
-            command: Option(str, "Choose a command to view help of",
-                            choices=["help", "kill", "auth", "daily", "info", "reward"]) = None):
+            command: Option(str, "Choose a command to display detailed information on",
+                            autocomplete=get_bot_commands) = None):
 
         await self.help_command(ctx, str(command).lower(), True)
 
