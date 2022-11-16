@@ -75,7 +75,6 @@ async def create_http_session():
 # basic information for you <33
 @client.event
 async def on_ready():
-
     client.stw_session = await create_http_session()
     for command in client.commands:
         if command.name == "auth":
@@ -93,9 +92,12 @@ async def on_message(message):
 
     # pro watch me i am the real github copilot
     # make epic auth system thing
-    if len(stw.extract_auth_code(message.content)) == 32:
-        await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
-        return
+    try:
+        if len(stw.extract_auth_code(message.content.split(" ")[1])) == 32:
+            await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
+            return
+    except IndexError:
+        pass
 
     await client.process_commands(message)
 
