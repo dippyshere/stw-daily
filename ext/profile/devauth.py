@@ -5,6 +5,7 @@ from discord import Option
 import stwutil as stw
 from ext.profile.bongodb import get_user_document
 
+
 async def tos_acceptance_embed(client, ctx):
     # TODO: Create proper TOS, Privacy Policy & EULA for this command
     embed_colour = client.colours["profile_lavendar"]
@@ -27,8 +28,8 @@ async def tos_acceptance_embed(client, ctx):
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
 
-async def handle_dev_auth(client, ctx, slash, authcode=None):
 
+async def handle_dev_auth(client, ctx, slash, authcode=None):
     # Retrieve information on the currently selected profile of the user accociated with this ctx
 
     if from_interaction:
@@ -41,9 +42,9 @@ async def handle_dev_auth(client, ctx, slash, authcode=None):
     # Get the currently selected profile
     currently_selected_profile_id = user_document["global"]["selected_profile"]
 
-
     embed = await tos_acceptance_embed(client, ctx)
     await stw.slash_send_embed(ctx, slash, embed)
+
 
 # cog for the device auth login command.
 class ProfileAuth(ext.Cog):
@@ -66,8 +67,8 @@ class ProfileAuth(ext.Cog):
     @ext.command(name='device',
                  aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'profileauth', 'proauth'],
                  extras={'emoji': "link_acc", "args": {
-                        'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)(PENDING)'},
-                        "dev": False},
+                     'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)(PENDING)'},
+                         "dev": False},
                  brief="Add permanent authentication to the currently selected or another profile(PENDING)",
                  description="""This command allows you to create a device auth session, keeping you logged in.(PENDING)
                 \u200b

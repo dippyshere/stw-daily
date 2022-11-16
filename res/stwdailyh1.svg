@@ -2,15 +2,17 @@
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
-            @font-face {
+                @font-face {
                 font-family: google-sans;
                 src: url(https://raw.githubusercontent.com/AndyH0ng/Google-Sans-Font/master/GoogleSans-Bold.ttf);
                 font-weight: bold;
-            }
+                }
 
-            h1 {
+                h1 {
                 font-family: google-sans, sans-serif;
-                background: linear-gradient(125deg, rgba(0,99,255,1) 0%, rgba(0,116,255,1) 20%, rgba(0,211,255,1) 35%, rgba(91,221,249,1) 40%, rgba(0,211,255,1) 45%, rgba(0,211,255,1) 56%, rgba(91,221,249,1) 60%, rgba(0,211,255,1) 65%, rgba(0,99,255,1) 80%, rgba(0,99,255,1) 100%);
+                background: linear-gradient(125deg, rgba(0,99,255,1) 0%, rgba(0,116,255,1) 20%, rgba(0,211,255,1) 35%,
+                rgba(91,221,249,1) 40%, rgba(0,211,255,1) 45%, rgba(0,211,255,1) 56%, rgba(91,221,249,1) 60%,
+                rgba(0,211,255,1) 65%, rgba(0,99,255,1) 80%, rgba(0,99,255,1) 100%);
                 background-size: 1000% 5000%;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
@@ -22,35 +24,35 @@
                 top: 50%;
                 -ms-transform: translateY(-50%);
                 transform: translateY(-50%);
-            }
+                }
 
-            @keyframes mymove {
+                @keyframes mymove {
                 from {
-                    background: linear-gradient(90deg, rgba(0,116,255,1) 0%, rgba(0,236,255,1) 100%);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
+                background: linear-gradient(90deg, rgba(0,116,255,1) 0%, rgba(0,236,255,1) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
                 }
                 to {
-                    background: linear-gradient(90deg, rgba(0,236,255,1) 0%, rgba(0,116,255,1) 100%);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
+                background: linear-gradient(90deg, rgba(0,236,255,1) 0%, rgba(0,116,255,1) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
                 }
-            }
+                }
 
-            @keyframes gradient {
+                @keyframes gradient {
                 0% {
-                    background-position: 0% 50%;
-                    filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
                 }
                 50% {
-                    background-position: 100% 50%;
-                    filter: drop-shadow(0 0 0.5rem rgba(0,211,255,1));
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 0.5rem rgba(0,211,255,1));
                 }
                 100% {
-                    background-position: 0% 50%;
-                    filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
                 }
-            }
+                }
             </style>
             <h1 align="center">STW Daily</h1>
         </div>

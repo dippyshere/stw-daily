@@ -1,32 +1,32 @@
 [
-  {
-    "Type": "FortExpeditionItemDefinition",
-    "Name": "Expedition_Rare_Sea_Managers_T05",
-    "Properties": {
-      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T05",
-      "ExpeditionDuration_Minutes": 1440.0,
-      "ExpeditionExpirationDuration_Minutes": 90.0,
-      "BaseTargetPowerRating": 1500,
-      "TierFactor": 35,
-      "MaxTargetPowerClamp": 5000,
-      "ExpeditionRules": {
-        "DataTable": {
-          "ObjectName": "DataTable ExpeditionRecipes",
-          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
-        },
-        "RowName": "Rare_Sea_Managers_T05"
-      },
-      "Rarity": "EFortRarity::Epic",
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "C73E955541DA29964FF5FD8E06792E4B",
-        "SourceString": "Manager Sea Training - RARE"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "18EBC9EE4718354A4FE409828E59A73F",
-        "SourceString": "Train your bravest Managers in the deadly art of maritime management."
-      }
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Rare_Sea_Managers_T05",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T05",
+            "ExpeditionDuration_Minutes": 1440.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 1500,
+            "TierFactor": 35,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Rare_Sea_Managers_T05"
+            },
+            "Rarity": "EFortRarity::Epic",
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "C73E955541DA29964FF5FD8E06792E4B",
+                "SourceString": "Manager Sea Training - RARE"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "18EBC9EE4718354A4FE409828E59A73F",
+                "SourceString": "Train your bravest Managers in the deadly art of maritime management."
+            }
+        }
     }
-  }
 ]

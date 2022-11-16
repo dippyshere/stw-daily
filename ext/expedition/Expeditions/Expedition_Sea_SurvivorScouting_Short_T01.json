@@ -1,31 +1,31 @@
 [
-  {
-    "Type": "FortExpeditionItemDefinition",
-    "Name": "Expedition_Sea_SurvivorScouting_Short_T01",
-    "Properties": {
-      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T01",
-      "ExpeditionDuration_Minutes": 480.0,
-      "ExpeditionExpirationDuration_Minutes": 90.0,
-      "BaseTargetPowerRating": 45,
-      "TierFactor": 20,
-      "MaxTargetPowerClamp": 5000,
-      "ExpeditionRules": {
-        "DataTable": {
-          "ObjectName": "DataTable ExpeditionRecipes",
-          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
-        },
-        "RowName": "Sea_SurvivorScouting_Short_T01"
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "AC4EB0E941631024627DE7927621B6FE",
-        "SourceString": "Tiny Titanic"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "6EAE7A304E406C70F5A60BB7036A7981",
-        "SourceString": "A small boat capsized in a nearby lake. See if there are any survivors!"
-      }
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Sea_SurvivorScouting_Short_T01",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T01",
+            "ExpeditionDuration_Minutes": 480.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 45,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Sea_SurvivorScouting_Short_T01"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "AC4EB0E941631024627DE7927621B6FE",
+                "SourceString": "Tiny Titanic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "6EAE7A304E406C70F5A60BB7036A7981",
+                "SourceString": "A small boat capsized in a nearby lake. See if there are any survivors!"
+            }
+        }
     }
-  }
 ]

@@ -1,4 +1,5 @@
-[{
+[
+    {
         "Type": "DataTable",
         "Name": "LoginRewards",
         "Properties": {

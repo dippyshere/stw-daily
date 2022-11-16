@@ -1,30 +1,30 @@
 [
-  {
-    "Type": "FortExpeditionItemDefinition",
-    "Name": "Expedition_ResourceRun_WoodStone_Short",
-    "Properties": {
-      "ExpeditionDuration_Minutes": 480.0,
-      "ExpeditionExpirationDuration_Minutes": 90.0,
-      "BaseTargetPowerRating": 45,
-      "TierFactor": 20,
-      "MaxTargetPowerClamp": 5000,
-      "ExpeditionRules": {
-        "DataTable": {
-          "ObjectName": "DataTable ExpeditionRecipes",
-          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
-        },
-        "RowName": "ResourceRun_WoodStone_Short"
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "926B8EAF49309C2820587FA959AB3E5B",
-        "SourceString": "...But Not Metal"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "F8AE9B97440EF077820054A983C17DFE",
-        "SourceString": "Assemble a scavenging team to collect wood and stone. "
-      }
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_ResourceRun_WoodStone_Short",
+        "Properties": {
+            "ExpeditionDuration_Minutes": 480.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 45,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "ResourceRun_WoodStone_Short"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "926B8EAF49309C2820587FA959AB3E5B",
+                "SourceString": "...But Not Metal"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "F8AE9B97440EF077820054A983C17DFE",
+                "SourceString": "Assemble a scavenging team to collect wood and stone. "
+            }
+        }
     }
-  }
 ]

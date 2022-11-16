@@ -1332,7 +1332,7 @@ def create_command_dict(client):
     command_name_dict = {}
     command_dict = {}
 
-    # Gets aliases and adds them to commmand_name_dict so we can match for aliases too in the command arg
+    # Gets aliases and adds them to command_name_dict so we can match for aliases too in the command arg
     for command in client.commands:
         command_name_dict[command.name] = command.name
         for alias in command.aliases:

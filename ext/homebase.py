@@ -26,7 +26,7 @@ class Homebase(ext.Cog):
         except:
             try:
                 # if there is a homebase name, continue with command
-                homebase = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+                check_hbname = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
                 return False, False
             except:
                 # trying to check homebase with no stw or homebase, assume error
@@ -34,7 +34,8 @@ class Homebase(ext.Cog):
                     support_url = self.client.config["support_url"]
                     acc_name = auth_info[1]["account_name"]
                     error_code = "errors.com.epicgames.fortnite.check_access_failed"
-                    embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
+                    embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
+                                                               support_url)
                     final_embeds.append(embed)
                     await stw.slash_edit_original(auth_info[0], slash, final_embeds)
                     return error_code, True
@@ -64,7 +65,8 @@ class Homebase(ext.Cog):
             final_embeds = auth_info[2]
 
         # get public info about current Homebase name
-        public_request = await stw.profile_request(self.client, "query_public", auth_info[1], profile_id="common_public")
+        public_request = await stw.profile_request(self.client, "query_public", auth_info[1],
+                                                   profile_id="common_public")
         public_json_response = await public_request.json()
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
@@ -79,7 +81,8 @@ class Homebase(ext.Cog):
             # extract info from response
             current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
             try:
-                homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
+                homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
+                    "banner_icon"]
             except:
                 homebase_icon = "placeholder"
             # homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
@@ -121,7 +124,8 @@ class Homebase(ext.Cog):
             return
 
         # wih all checks passed, we may now attempt to change name
-        request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public", data=json.dumps({"homebaseName": f"{name}"}))
+        request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public",
+                                            data=json.dumps({"homebaseName": f"{name}"}))
         request_json_response = await request.json()
 
         # check for le error code
@@ -134,7 +138,8 @@ class Homebase(ext.Cog):
                               description="\u200b",
                               colour=succ_colour)
 
-        embed.add_field(name=f'{self.emojis["broken_heart"]} Changed Homebase name from:', value=f"```{current}```\u200b",
+        embed.add_field(name=f'{self.emojis["broken_heart"]} Changed Homebase name from:',
+                        value=f"```{current}```\u200b",
                         inline=False)
 
         embed.add_field(name=f'{self.emojis["storm_shield"]} To:', value=f"```{name}```\u200b",
@@ -152,19 +157,70 @@ class Homebase(ext.Cog):
                        description='This command allows you to view / change the name of your Homebase in STW',
                        guild_ids=stw.guild_ids)
     async def slashhbrename(self, ctx: discord.ApplicationContext,
-                            name: Option(str, "The new name for your Homebase. Leave blank to view your current name + banner") = "",
+                            name: Option(str,
+                                         "The new name for your Homebase. Leave blank to view your current name + banner") = "",
                             token: Option(str,
                                           "Your Epic Games authcode. Required unless you have an active session.") = "",
                             auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
         await self.hbrename_command(ctx, True, name, token, not auth_opt_out)
 
     @ext.command(name='homebase',
-                 aliases=['hbrename', 'hbrn', 'rename', 'changehomebase', 'homebasename', 'hbname', 'hb', 'brn', 'hrn', 'hbn', 'hbr', 'hhbrn', 'hbbrn', 'hbrrn', 'hbrnn', 'bhrn', 'hrbn', 'hbnr', 'gbrn', 'ybrn', 'ubrn', 'jbrn', 'nbrn', 'bbrn', 'hvrn', 'hgrn', 'hhrn', 'hnrn', 'hben', 'hb4n', 'hb5n', 'hbtn', 'hbgn', 'hbfn', 'hbdn', 'hbrb', 'hbrh', 'hbrj', 'hbrm', 'ghbrn', 'hgbrn', 'yhbrn', 'hybrn', 'uhbrn', 'hubrn', 'jhbrn', 'hjbrn', 'nhbrn', 'hnbrn', 'bhbrn', 'hvbrn', 'hbvrn', 'hbgrn', 'hbhrn', 'hbnrn', 'hbern', 'hbren', 'hb4rn', 'hbr4n', 'hb5rn', 'hbr5n', 'hbtrn', 'hbrtn', 'hbrgn', 'hbfrn', 'hbrfn', 'hbdrn', 'hbrdn', 'hbrbn', 'hbrnb', 'hbrhn', 'hbrnh', 'hbrjn', 'hbrnj', 'hbrmn', 'hbrnm', 'omebase', 'hmebase', 'hoebase', 'hombase', 'homease', 'homebse', 'homebae', 'homebas', 'hhomebase', 'hoomebase', 'hommebase', 'homeebase', 'homebbase', 'homebaase', 'homebasse', 'homebasee', 'ohmebase', 'hmoebase', 'hoembase', 'hombease', 'homeabse', 'homebsae', 'homebaes', 'gomebase', 'yomebase', 'uomebase', 'jomebase', 'nomebase', 'bomebase', 'himebase', 'h9mebase', 'h0mebase', 'hpmebase', 'hlmebase', 'hkmebase', 'honebase', 'hojebase', 'hokebase', 'homwbase', 'hom3base', 'hom4base', 'homrbase', 'homfbase', 'homdbase', 'homsbase', 'homevase', 'homegase', 'homehase', 'homenase', 'homebqse', 'homebwse', 'homebsse', 'homebxse', 'homebzse', 'homebaae', 'homebawe', 'homebaee', 'homebade', 'homebaxe', 'homebaze', 'homebasw', 'homebas3', 'homebas4', 'homebasr', 'homebasf', 'homebasd', 'homebass', 'ghomebase', 'hgomebase', 'yhomebase', 'hyomebase', 'uhomebase', 'huomebase', 'jhomebase', 'hjomebase', 'nhomebase', 'hnomebase', 'bhomebase', 'hbomebase', 'hiomebase', 'hoimebase', 'h9omebase', 'ho9mebase', 'h0omebase', 'ho0mebase', 'hpomebase', 'hopmebase', 'hlomebase', 'holmebase', 'hkomebase', 'hokmebase', 'honmebase', 'homnebase', 'hojmebase', 'homjebase', 'homkebase', 'homwebase', 'homewbase', 'hom3ebase', 'home3base', 'hom4ebase', 'home4base', 'homrebase', 'homerbase', 'homfebase', 'homefbase', 'homdebase', 'homedbase', 'homsebase', 'homesbase', 'homevbase', 'homebvase', 'homegbase', 'homebgase', 'homehbase', 'homebhase', 'homenbase', 'homebnase', 'homebqase', 'homebaqse', 'homebwase', 'homebawse', 'homebsase', 'homebxase', 'homebaxse', 'homebzase', 'homebazse', 'homebasae', 'homebaswe', 'homebaese', 'homebadse', 'homebasde', 'homebasxe', 'homebasze', 'homebasew', 'homebas3e', 'homebase3', 'homebas4e', 'homebase4', 'homebasre', 'homebaser', 'homebasfe', 'homebasef', 'homebased', 'homebases', 'hhb', 'hbb', 'bh', 'gb', 'yb', 'ub', 'jb', 'nb', 'hv', 'hg', 'hh', 'hn', 'ghb', 'hgb', 'yhb', 'hyb', 'uhb', 'hub', 'jhb', 'hjb', 'nhb', 'hnb', 'bhb', 'hvb', 'hbv', 'hbg', 'hbh', 'brename', 'hrename', 'hbename', 'hbrname', 'hbreame', 'hbrenme', 'hbrenae', 'hbrenam', 'hhbrename', 'hbbrename', 'hbrrename', 'hbreename', 'hbrenname', 'hbrenaame', 'hbrenamme', 'hbrenamee', 'bhrename', 'hrbename', 'hbername', 'hbrneame', 'hbreanme', 'hbrenmae', 'hbrenaem', 'gbrename', 'ybrename', 'ubrename', 'jbrename', 'nbrename', 'bbrename', 'hvrename', 'hgrename', 'hhrename', 'hnrename', 'hbeename', 'hb4ename', 'hb5ename', 'hbtename', 'hbgename', 'hbfename', 'hbdename', 'hbrwname', 'hbr3name', 'hbr4name', 'hbrrname', 'hbrfname', 'hbrdname', 'hbrsname', 'hbrebame', 'hbrehame', 'hbrejame', 'hbremame', 'hbrenqme', 'hbrenwme', 'hbrensme', 'hbrenxme', 'hbrenzme', 'hbrenane', 'hbrenaje', 'hbrenake', 'hbrenamw', 'hbrenam3', 'hbrenam4', 'hbrenamr', 'hbrenamf', 'hbrenamd', 'hbrenams', 'ghbrename', 'hgbrename', 'yhbrename', 'hybrename', 'uhbrename', 'hubrename', 'jhbrename', 'hjbrename', 'nhbrename', 'hnbrename', 'bhbrename', 'hvbrename', 'hbvrename', 'hbgrename', 'hbhrename', 'hbnrename', 'hberename', 'hb4rename', 'hbr4ename', 'hb5rename', 'hbr5ename', 'hbtrename', 'hbrtename', 'hbrgename', 'hbfrename', 'hbrfename', 'hbdrename', 'hbrdename', 'hbrwename', 'hbrewname', 'hbr3ename', 'hbre3name', 'hbre4name', 'hbrername', 'hbrefname', 'hbredname', 'hbrsename', 'hbresname', 'hbrebname', 'hbrenbame', 'hbrehname', 'hbrenhame', 'hbrejname', 'hbrenjame', 'hbremname', 'hbrenmame', 'hbrenqame', 'hbrenaqme', 'hbrenwame', 'hbrenawme', 'hbrensame', 'hbrenasme', 'hbrenxame', 'hbrenaxme', 'hbrenzame', 'hbrenazme', 'hbrenanme', 'hbrenamne', 'hbrenajme', 'hbrenamje', 'hbrenakme', 'hbrenamke', 'hbrenamwe', 'hbrenamew', 'hbrenam3e', 'hbrename3', 'hbrenam4e', 'hbrename4', 'hbrenamre', 'hbrenamer', 'hbrenamfe', 'hbrenamef', 'hbrenamde', 'hbrenamed', 'hbrenamse', 'hbrenames', '/hbrn', '/homebase', '/hbrename', '/homebasern', '/rename', '/hbname'],
+                 aliases=['hbrename', 'hbrn', 'rename', 'changehomebase', 'homebasename', 'hbname', 'hb', 'brn', 'hrn',
+                          'hbn', 'hbr', 'hhbrn', 'hbbrn', 'hbrrn', 'hbrnn', 'bhrn', 'hrbn', 'hbnr', 'gbrn', 'ybrn',
+                          'ubrn', 'jbrn', 'nbrn', 'bbrn', 'hvrn', 'hgrn', 'hhrn', 'hnrn', 'hben', 'hb4n', 'hb5n',
+                          'hbtn', 'hbgn', 'hbfn', 'hbdn', 'hbrb', 'hbrh', 'hbrj', 'hbrm', 'ghbrn', 'hgbrn', 'yhbrn',
+                          'hybrn', 'uhbrn', 'hubrn', 'jhbrn', 'hjbrn', 'nhbrn', 'hnbrn', 'bhbrn', 'hvbrn', 'hbvrn',
+                          'hbgrn', 'hbhrn', 'hbnrn', 'hbern', 'hbren', 'hb4rn', 'hbr4n', 'hb5rn', 'hbr5n', 'hbtrn',
+                          'hbrtn', 'hbrgn', 'hbfrn', 'hbrfn', 'hbdrn', 'hbrdn', 'hbrbn', 'hbrnb', 'hbrhn', 'hbrnh',
+                          'hbrjn', 'hbrnj', 'hbrmn', 'hbrnm', 'omebase', 'hmebase', 'hoebase', 'hombase', 'homease',
+                          'homebse', 'homebae', 'homebas', 'hhomebase', 'hoomebase', 'hommebase', 'homeebase',
+                          'homebbase', 'homebaase', 'homebasse', 'homebasee', 'ohmebase', 'hmoebase', 'hoembase',
+                          'hombease', 'homeabse', 'homebsae', 'homebaes', 'gomebase', 'yomebase', 'uomebase',
+                          'jomebase', 'nomebase', 'bomebase', 'himebase', 'h9mebase', 'h0mebase', 'hpmebase',
+                          'hlmebase', 'hkmebase', 'honebase', 'hojebase', 'hokebase', 'homwbase', 'hom3base',
+                          'hom4base', 'homrbase', 'homfbase', 'homdbase', 'homsbase', 'homevase', 'homegase',
+                          'homehase', 'homenase', 'homebqse', 'homebwse', 'homebsse', 'homebxse', 'homebzse',
+                          'homebaae', 'homebawe', 'homebaee', 'homebade', 'homebaxe', 'homebaze', 'homebasw',
+                          'homebas3', 'homebas4', 'homebasr', 'homebasf', 'homebasd', 'homebass', 'ghomebase',
+                          'hgomebase', 'yhomebase', 'hyomebase', 'uhomebase', 'huomebase', 'jhomebase', 'hjomebase',
+                          'nhomebase', 'hnomebase', 'bhomebase', 'hbomebase', 'hiomebase', 'hoimebase', 'h9omebase',
+                          'ho9mebase', 'h0omebase', 'ho0mebase', 'hpomebase', 'hopmebase', 'hlomebase', 'holmebase',
+                          'hkomebase', 'hokmebase', 'honmebase', 'homnebase', 'hojmebase', 'homjebase', 'homkebase',
+                          'homwebase', 'homewbase', 'hom3ebase', 'home3base', 'hom4ebase', 'home4base', 'homrebase',
+                          'homerbase', 'homfebase', 'homefbase', 'homdebase', 'homedbase', 'homsebase', 'homesbase',
+                          'homevbase', 'homebvase', 'homegbase', 'homebgase', 'homehbase', 'homebhase', 'homenbase',
+                          'homebnase', 'homebqase', 'homebaqse', 'homebwase', 'homebawse', 'homebsase', 'homebxase',
+                          'homebaxse', 'homebzase', 'homebazse', 'homebasae', 'homebaswe', 'homebaese', 'homebadse',
+                          'homebasde', 'homebasxe', 'homebasze', 'homebasew', 'homebas3e', 'homebase3', 'homebas4e',
+                          'homebase4', 'homebasre', 'homebaser', 'homebasfe', 'homebasef', 'homebased', 'homebases',
+                          'hhb', 'hbb', 'bh', 'gb', 'yb', 'ub', 'jb', 'nb', 'hv', 'hg', 'hh', 'hn', 'ghb', 'hgb', 'yhb',
+                          'hyb', 'uhb', 'hub', 'jhb', 'hjb', 'nhb', 'hnb', 'bhb', 'hvb', 'hbv', 'hbg', 'hbh', 'brename',
+                          'hrename', 'hbename', 'hbrname', 'hbreame', 'hbrenme', 'hbrenae', 'hbrenam', 'hhbrename',
+                          'hbbrename', 'hbrrename', 'hbreename', 'hbrenname', 'hbrenaame', 'hbrenamme', 'hbrenamee',
+                          'bhrename', 'hrbename', 'hbername', 'hbrneame', 'hbreanme', 'hbrenmae', 'hbrenaem',
+                          'gbrename', 'ybrename', 'ubrename', 'jbrename', 'nbrename', 'bbrename', 'hvrename',
+                          'hgrename', 'hhrename', 'hnrename', 'hbeename', 'hb4ename', 'hb5ename', 'hbtename',
+                          'hbgename', 'hbfename', 'hbdename', 'hbrwname', 'hbr3name', 'hbr4name', 'hbrrname',
+                          'hbrfname', 'hbrdname', 'hbrsname', 'hbrebame', 'hbrehame', 'hbrejame', 'hbremame',
+                          'hbrenqme', 'hbrenwme', 'hbrensme', 'hbrenxme', 'hbrenzme', 'hbrenane', 'hbrenaje',
+                          'hbrenake', 'hbrenamw', 'hbrenam3', 'hbrenam4', 'hbrenamr', 'hbrenamf', 'hbrenamd',
+                          'hbrenams', 'ghbrename', 'hgbrename', 'yhbrename', 'hybrename', 'uhbrename', 'hubrename',
+                          'jhbrename', 'hjbrename', 'nhbrename', 'hnbrename', 'bhbrename', 'hvbrename', 'hbvrename',
+                          'hbgrename', 'hbhrename', 'hbnrename', 'hberename', 'hb4rename', 'hbr4ename', 'hb5rename',
+                          'hbr5ename', 'hbtrename', 'hbrtename', 'hbrgename', 'hbfrename', 'hbrfename', 'hbdrename',
+                          'hbrdename', 'hbrwename', 'hbrewname', 'hbr3ename', 'hbre3name', 'hbre4name', 'hbrername',
+                          'hbrefname', 'hbredname', 'hbrsename', 'hbresname', 'hbrebname', 'hbrenbame', 'hbrehname',
+                          'hbrenhame', 'hbrejname', 'hbrenjame', 'hbremname', 'hbrenmame', 'hbrenqame', 'hbrenaqme',
+                          'hbrenwame', 'hbrenawme', 'hbrensame', 'hbrenasme', 'hbrenxame', 'hbrenaxme', 'hbrenzame',
+                          'hbrenazme', 'hbrenanme', 'hbrenamne', 'hbrenajme', 'hbrenamje', 'hbrenakme', 'hbrenamke',
+                          'hbrenamwe', 'hbrenamew', 'hbrenam3e', 'hbrename3', 'hbrenam4e', 'hbrename4', 'hbrenamre',
+                          'hbrenamer', 'hbrenamfe', 'hbrenamef', 'hbrenamde', 'hbrenamed', 'hbrenamse', 'hbrenames',
+                          '/hbrn', '/homebase', '/hbrename', '/homebasern', '/rename', '/hbname'],
                  extras={'emoji': "storm_shield", "args": {
-                        'name': 'The new name for your Homebase. Leave blank to view your current name + banner (Optional)',
-                        'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                        'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                        'dev': False},
+                     'name': 'The new name for your Homebase. Leave blank to view your current name + banner (Optional)',
+                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
+                         'dev': False},
                  brief="View / change the name of your Homebase in STW (authentication required)",
                  description="""This command allows you to view / change the name of your Homebase in STW. You must be authenticated to use this command.
                 \u200b

@@ -1,31 +1,31 @@
 [
-  {
-    "Type": "FortExpeditionItemDefinition",
-    "Name": "Expedition_CraftingRun_Short_T02",
-    "Properties": {
-      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
-      "ExpeditionDuration_Minutes": 480.0,
-      "ExpeditionExpirationDuration_Minutes": 90.0,
-      "BaseTargetPowerRating": 80,
-      "TierFactor": 20,
-      "MaxTargetPowerClamp": 5000,
-      "ExpeditionRules": {
-        "DataTable": {
-          "ObjectName": "DataTable ExpeditionRecipes",
-          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
-        },
-        "RowName": "CraftingRun_Short_T02"
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "CAE1B9C74EEA87BA44CDEB9DA116A8C7",
-        "SourceString": "Martial Arts and Crafts"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "49CE68CD454409F2A5268DA81B6F53A2",
-        "SourceString": "Deploy a team to search the area for resources. "
-      }
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_CraftingRun_Short_T02",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
+            "ExpeditionDuration_Minutes": 480.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 80,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "CraftingRun_Short_T02"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "CAE1B9C74EEA87BA44CDEB9DA116A8C7",
+                "SourceString": "Martial Arts and Crafts"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "49CE68CD454409F2A5268DA81B6F53A2",
+                "SourceString": "Deploy a team to search the area for resources. "
+            }
+        }
     }
-  }
 ]

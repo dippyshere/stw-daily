@@ -1,31 +1,31 @@
 [
-  {
-    "Type": "FortExpeditionItemDefinition",
-    "Name": "Expedition_TrapRun_Air_Medium_T04",
-    "Properties": {
-      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T04",
-      "ExpeditionDuration_Minutes": 960.0,
-      "ExpeditionExpirationDuration_Minutes": 90.0,
-      "BaseTargetPowerRating": 540,
-      "TierFactor": 35,
-      "MaxTargetPowerClamp": 5000,
-      "ExpeditionRules": {
-        "DataTable": {
-          "ObjectName": "DataTable ExpeditionRecipes",
-          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
-        },
-        "RowName": "TrapRun_Air_Medium_T04"
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "7B2BA1EB440299F90C40F89690CEFFD3",
-        "SourceString": "Yeah, It's Totally a Trap"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "7435AA054D902B225DE4FD975818354B",
-        "SourceString": "Send a team to search for unused traps in nearby warehouses and bunkers!"
-      }
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_TrapRun_Air_Medium_T04",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T04",
+            "ExpeditionDuration_Minutes": 960.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 540,
+            "TierFactor": 35,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "TrapRun_Air_Medium_T04"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "7B2BA1EB440299F90C40F89690CEFFD3",
+                "SourceString": "Yeah, It's Totally a Trap"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "7435AA054D902B225DE4FD975818354B",
+                "SourceString": "Send a team to search for unused traps in nearby warehouses and bunkers!"
+            }
+        }
     }
-  }
 ]

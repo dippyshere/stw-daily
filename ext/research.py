@@ -173,11 +173,11 @@ class ResearchView(discord.ui.View):
         await self.universal_stat_process(interaction, "offense")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="resistance")
-    async def resistance_button(self, _button,  interaction):
+    async def resistance_button(self, _button, interaction):
         await self.universal_stat_process(interaction, "resistance")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="technology")
-    async def technology_button(self, _button,  interaction):
+    async def technology_button(self, _button, interaction):
         await self.universal_stat_process(interaction, "technology")
 
 
@@ -202,7 +202,7 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
         # account may not have stw
         try:
             # check if account has daily reward stats, if not, then account doesn't have stw
-            daily_check = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
+            check_stw = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
             print(e, "assuming max research level im not sure??", json_response)
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
             current_levels = {'fortitude': 0, 'offense': 0, 'resistance': 0, 'technology': 0}
@@ -386,7 +386,7 @@ class Research(ext.Cog):
                 final_embeds.append(embed)
                 await stw.slash_edit_original(auth_info[0], slash, final_embeds)
                 return
-
+            # this variable might be referenced before assignment hmm
             research_points_claimed = research_item['quantity']
         except:
             pass
@@ -427,17 +427,28 @@ class Research(ext.Cog):
                           'esearch', 'resezrch', 're3s', 'reseearch', 'reasearch', 'rew', 'reds',
                           'rses', 'researcyh', 'researdh', 'res4arch', 'ressearch', '5esearch', 'rezearch',
                           'reseatch', 'researcfh', 'rrsearch', 'ees', 'researcgh', 'rseearch', 'reesarch', 'resaearch',
-                          'resear4ch', 'rds', 'rewsearch', 'tresearch', 'resefarch', 'reseaarch', 'researcxh', '4res', 'resx',
-                          'resesrch', 'resexarch', 'r4search', 'r4esearch', '4es', 'rresearch', 'resrearch', 'rs', 'resea4ch', 'fes',
-                          'gresearch', 'reseagch', 'es', 'r5es', 'rsearch', 'researvh', 'r3esearch', 'res4earch', 'researcjh', 'researech',
-                          'researchn', 'resesarch', 'researcy', 'researrch', 'resfearch', 'researcj', 'reseasrch', 'resear5ch', 'rez', 'r3es',
-                          'r3search', 'researc', 'res', 'researchj', 'refsearch', 'dres', 'rex', 'researchg', 'rrs', 'researchu', 'redsearch', 'rersearch',
-                          'reseafch', 'reesearch', 'researcvh', 'eesearch', 'resezarch', '5research', 'res3earch', 'resewarch', 'fesearch', 'reearch', 'resxearch',
-                          'rwes', 'rees', 'reswearch', 'reseaxrch', 'researcuh', 'refs', 'reseaqrch', 'resea4rch', 'rfs', 'fres', 'researgch', 'gres', 'reeearch',
-                          'resea5ch', 'rtes', 'resexrch', 'rws', 'tres', 'researchy', 'researcnh', 'rdesearch', 'researcch', 'rexs', 'rges', 'reserch',
-                          'resaerch', 'rese4arch', 'reserarch', 'researcu', 'researcbh', 'fresearch', 'rdes', 'rwesearch', 'rexsearch', 'desearch',
-                          'reseqarch', 'dresearch', 'rezsearch', 'researchb', 'reseaech', 'eresearch', 'researxch', 'researdch', 'r4s',
-                          'rfsearch', 'rres', 'reseagrch', 'reseaerch', 'ress', 'resaesaer', 'reseqrch', 'rfes', '4esearch',
+                          'resear4ch', 'rds', 'rewsearch', 'tresearch', 'resefarch', 'reseaarch', 'researcxh', '4res',
+                          'resx',
+                          'resesrch', 'resexarch', 'r4search', 'r4esearch', '4es', 'rresearch', 'resrearch', 'rs',
+                          'resea4ch', 'fes',
+                          'gresearch', 'reseagch', 'es', 'r5es', 'rsearch', 'researvh', 'r3esearch', 'res4earch',
+                          'researcjh', 'researech',
+                          'researchn', 'resesarch', 'researcy', 'researrch', 'resfearch', 'researcj', 'reseasrch',
+                          'resear5ch', 'rez', 'r3es',
+                          'r3search', 'researc', 'res', 'researchj', 'refsearch', 'dres', 'rex', 'researchg', 'rrs',
+                          'researchu', 'redsearch', 'rersearch',
+                          'reseafch', 'reesearch', 'researcvh', 'eesearch', 'resezarch', '5research', 'res3earch',
+                          'resewarch', 'fesearch', 'reearch', 'resxearch',
+                          'rwes', 'rees', 'reswearch', 'reseaxrch', 'researcuh', 'refs', 'reseaqrch', 'resea4rch',
+                          'rfs', 'fres', 'researgch', 'gres', 'reeearch',
+                          'resea5ch', 'rtes', 'resexrch', 'rws', 'tres', 'researchy', 'researcnh', 'rdesearch',
+                          'researcch', 'rexs', 'rges', 'reserch',
+                          'resaerch', 'rese4arch', 'reserarch', 'researcu', 'researcbh', 'fresearch', 'rdes',
+                          'rwesearch', 'rexsearch', 'desearch',
+                          'reseqarch', 'dresearch', 'rezsearch', 'researchb', 'reseaech', 'eresearch', 'researxch',
+                          'researdch', 'r4s',
+                          'rfsearch', 'rres', 'reseagrch', 'reseaerch', 'ress', 'resaesaer', 'reseqrch', 'rfes',
+                          '4esearch',
                           'rwsearch', 'resea5rch', 'rtesearch', 'researfch', '5res', 'researcdh', 'eres', 'ressarch',
                           'resfarch', 'reseadch', 'rss', 'reszearch', 'reserach', 'reach', 'ersearch', 'reseazrch',
                           'rdsearch', 'ges', 'researcn', 'researcg', '4research', 'researcb', 'ree', 'resz',
@@ -445,8 +456,8 @@ class Research(ext.Cog):
                           'researh', 'tesearch', 'researxh', 'r5esearch', 'resrarch', 'researvch', 'res3arch',
                           'resewrch', 'rezs', 're4search', 'tes', 'resedarch', '/res', '/r', '/research'],
                  extras={'emoji': "research_point", "args": {
-                        'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                        'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
+                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="Claim and spend your research points (authentication required)",
                  description="""This command lets you claim your available research points, view your FORT research levels, and upgrade those levels. Press the button corresponding with the stat you want to upgrade.

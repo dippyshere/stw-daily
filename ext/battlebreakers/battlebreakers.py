@@ -11,11 +11,11 @@
 # BATTLE BREAKERS!
 # :D
 
+import asyncio
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
-import asyncio
-import datetime
 
 import stwutil as stw
 
@@ -60,7 +60,8 @@ class BattleBreakersDaily(ext.Cog):
             error_code = json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url, response=json_response)
+            embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url,
+                                                       response=json_response)
             final_embeds.append(embed)
             await stw.slash_edit_original(auth_info[0], slash, final_embeds)
         except:
@@ -71,7 +72,9 @@ class BattleBreakersDaily(ext.Cog):
             except:
                 pass
 
-            dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client, json_response, pre_calc_day=day[0])
+            dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client,
+                                                                                              json_response,
+                                                                                              pre_calc_day=day[0])
 
             # already claimed is handled in error since wex does that
 
@@ -116,11 +119,31 @@ class BattleBreakersDaily(ext.Cog):
 
     # Battle Breakers is a new tactical role-playing game developed by Epic Games for mobile and PC.
     @ext.command(name='bbdaily',
-                 aliases=['bbd', 'battlebreakersdaily', 'wex', 'bd', 'bb', 'bbbd', 'bbdd', 'bdb', 'vbd', 'gbd', 'hbd', 'nbd', 'bvd', 'bgd', 'bhd', 'bnd', 'bbs', 'bbe', 'bbf', 'bbc', 'bbx', 'vbbd', 'bvbd', 'gbbd', 'bgbd', 'hbbd', 'bhbd', 'nbbd', 'bnbd', 'bbvd', 'bbgd', 'bbhd', 'bbnd', 'bbsd', 'bbds', 'bbed', 'bbde', 'bbrd', 'bbdr', 'bbfd', 'bbdf', 'bbcd', 'bbdc', 'bbxd', 'bbdx', 'bdaily', 'bbaily', 'bbdily', 'bbdaly', 'bbdaiy', 'bbdail', 'bbbdaily', 'bbddaily', 'bbdaaily', 'bbdaiily', 'bbdailly', 'bbdailyy', 'bdbaily', 'bbadily', 'bbdialy', 'bbdaliy', 'bbdaiyl', 'vbdaily', 'gbdaily', 'hbdaily', 'nbdaily', 'bvdaily', 'bgdaily', 'bhdaily', 'bndaily', 'bbsaily', 'bbeaily', 'bbraily', 'bbfaily', 'bbcaily', 'bbxaily', 'bbdqily', 'bbdwily', 'bbdsily', 'bbdxily', 'bbdzily', 'bbdauly', 'bbda8ly', 'bbda9ly', 'bbdaoly', 'bbdally', 'bbdakly', 'bbdajly', 'bbdaiky', 'bbdaioy', 'bbdaipy', 'bbdailt', 'bbdail6', 'bbdail7', 'bbdailu', 'bbdailj', 'bbdailh', 'bbdailg', 'vbbdaily', 'bvbdaily', 'gbbdaily', 'bgbdaily', 'hbbdaily', 'bhbdaily', 'nbbdaily', 'bnbdaily', 'bbvdaily', 'bbgdaily', 'bbhdaily', 'bbndaily', 'bbsdaily', 'bbdsaily', 'bbedaily', 'bbdeaily', 'bbrdaily', 'bbdraily', 'bbfdaily', 'bbdfaily', 'bbcdaily', 'bbdcaily', 'bbxdaily', 'bbdxaily', 'bbdqaily', 'bbdaqily', 'bbdwaily', 'bbdawily', 'bbdasily', 'bbdaxily', 'bbdzaily', 'bbdazily', 'bbdauily', 'bbdaiuly', 'bbda8ily', 'bbdai8ly', 'bbda9ily', 'bbdai9ly', 'bbdaoily', 'bbdaioly', 'bbdalily', 'bbdakily', 'bbdaikly', 'bbdajily', 'bbdaijly', 'bbdailky', 'bbdailoy', 'bbdaiply', 'bbdailpy', 'bbdailty', 'bbdailyt', 'bbdail6y', 'bbdaily6', 'bbdail7y', 'bbdaily7', 'bbdailuy', 'bbdailyu', 'bbdailjy', 'bbdailyj', 'bbdailhy', 'bbdailyh', 'bbdailgy', 'bbdailyg', '/bbd', 'battlebreakers', '/battlebreakers', '/wex', '/bd', '/bbdaily'],
+                 aliases=['bbd', 'battlebreakersdaily', 'wex', 'bd', 'bb', 'bbbd', 'bbdd', 'bdb', 'vbd', 'gbd', 'hbd',
+                          'nbd', 'bvd', 'bgd', 'bhd', 'bnd', 'bbs', 'bbe', 'bbf', 'bbc', 'bbx', 'vbbd', 'bvbd', 'gbbd',
+                          'bgbd', 'hbbd', 'bhbd', 'nbbd', 'bnbd', 'bbvd', 'bbgd', 'bbhd', 'bbnd', 'bbsd', 'bbds',
+                          'bbed', 'bbde', 'bbrd', 'bbdr', 'bbfd', 'bbdf', 'bbcd', 'bbdc', 'bbxd', 'bbdx', 'bdaily',
+                          'bbaily', 'bbdily', 'bbdaly', 'bbdaiy', 'bbdail', 'bbbdaily', 'bbddaily', 'bbdaaily',
+                          'bbdaiily', 'bbdailly', 'bbdailyy', 'bdbaily', 'bbadily', 'bbdialy', 'bbdaliy', 'bbdaiyl',
+                          'vbdaily', 'gbdaily', 'hbdaily', 'nbdaily', 'bvdaily', 'bgdaily', 'bhdaily', 'bndaily',
+                          'bbsaily', 'bbeaily', 'bbraily', 'bbfaily', 'bbcaily', 'bbxaily', 'bbdqily', 'bbdwily',
+                          'bbdsily', 'bbdxily', 'bbdzily', 'bbdauly', 'bbda8ly', 'bbda9ly', 'bbdaoly', 'bbdally',
+                          'bbdakly', 'bbdajly', 'bbdaiky', 'bbdaioy', 'bbdaipy', 'bbdailt', 'bbdail6', 'bbdail7',
+                          'bbdailu', 'bbdailj', 'bbdailh', 'bbdailg', 'vbbdaily', 'bvbdaily', 'gbbdaily', 'bgbdaily',
+                          'hbbdaily', 'bhbdaily', 'nbbdaily', 'bnbdaily', 'bbvdaily', 'bbgdaily', 'bbhdaily',
+                          'bbndaily', 'bbsdaily', 'bbdsaily', 'bbedaily', 'bbdeaily', 'bbrdaily', 'bbdraily',
+                          'bbfdaily', 'bbdfaily', 'bbcdaily', 'bbdcaily', 'bbxdaily', 'bbdxaily', 'bbdqaily',
+                          'bbdaqily', 'bbdwaily', 'bbdawily', 'bbdasily', 'bbdaxily', 'bbdzaily', 'bbdazily',
+                          'bbdauily', 'bbdaiuly', 'bbda8ily', 'bbdai8ly', 'bbda9ily', 'bbdai9ly', 'bbdaoily',
+                          'bbdaioly', 'bbdalily', 'bbdakily', 'bbdaikly', 'bbdajily', 'bbdaijly', 'bbdailky',
+                          'bbdailoy', 'bbdaiply', 'bbdailpy', 'bbdailty', 'bbdailyt', 'bbdail6y', 'bbdaily6',
+                          'bbdail7y', 'bbdaily7', 'bbdailuy', 'bbdailyu', 'bbdailjy', 'bbdailyj', 'bbdailhy',
+                          'bbdailyh', 'bbdailgy', 'bbdailyg', '/bbd', 'battlebreakers', '/battlebreakers', '/wex',
+                          '/bd', '/bbdaily'],
                  extras={'emoji': "T_MTX_Gem_Icon", "args": {
-                        'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                        'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                        "dev": False},
+                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
+                         "dev": False},
                  brief="Claim your Battle Breakers daily reward (authentication required)",
                  description=f"""This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.
                 \u200b

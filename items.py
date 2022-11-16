@@ -36,7 +36,8 @@ ItemDictionary = {
     "33": ["Upgrade Llama", "llama"],
     "34": ["3 XP Boosts", "xpboost"],
     "35": ["150 V-Bucks & X-Ray Tickets", "vbucks", "xray"],
-    "36": ["20 Gold", "gold"], # Lil Nas X - MONTERO (Call Me By Your Name) [SATAN’S EXTENDED VERSION] thank you for coming to my ted talk
+    "36": ["20 Gold", "gold"],
+    # Lil Nas X - MONTERO (Call Me By Your Name) [SATAN’S EXTENDED VERSION] thank you for coming to my ted talk
     "37": ["10 Pure Drops of Rain", "pdor"],
     "38": ["Rare Ranged Weapon", "rangedgeneric"],
     "39": ["5 Lightning in a Bottle", "bottlelightning"],

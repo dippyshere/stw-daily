@@ -1,30 +1,30 @@
 [
-  {
-    "Type": "FortExpeditionItemDefinition",
-    "Name": "TestExpedition_Long",
-    "Properties": {
-      "ExpeditionDuration_Minutes": 5.0,
-      "ExpeditionExpirationDuration_Minutes": 60.0,
-      "BaseTargetPowerRating": 500,
-      "TierFactor": 5,
-      "MaxTargetPowerClamp": 5000,
-      "ExpeditionRules": {
-        "DataTable": {
-          "ObjectName": "DataTable ExpeditionRecipes",
-          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
-        },
-        "RowName": "ResourceRun_All_Medium"
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "BEB137104F535EE25FC9B4A34AAF3BFA",
-        "SourceString": "Long expedition"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "ED3E30BB4D891D430F570B98BDA854E0",
-        "SourceString": "Adventure time! Put your finest crew together to raid a husk outpost for vital resources."
-      }
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "TestExpedition_Long",
+        "Properties": {
+            "ExpeditionDuration_Minutes": 5.0,
+            "ExpeditionExpirationDuration_Minutes": 60.0,
+            "BaseTargetPowerRating": 500,
+            "TierFactor": 5,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "ResourceRun_All_Medium"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "BEB137104F535EE25FC9B4A34AAF3BFA",
+                "SourceString": "Long expedition"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "ED3E30BB4D891D430F570B98BDA854E0",
+                "SourceString": "Adventure time! Put your finest crew together to raid a husk outpost for vital resources."
+            }
+        }
     }
-  }
 ]

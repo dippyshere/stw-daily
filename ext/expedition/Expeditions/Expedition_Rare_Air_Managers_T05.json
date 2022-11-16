@@ -1,32 +1,32 @@
 [
-  {
-    "Type": "FortExpeditionItemDefinition",
-    "Name": "Expedition_Rare_Air_Managers_T05",
-    "Properties": {
-      "CriteriaRequirementsLootTier": "Expeditions_Criteria_T05",
-      "ExpeditionDuration_Minutes": 1440.0,
-      "ExpeditionExpirationDuration_Minutes": 90.0,
-      "BaseTargetPowerRating": 1500,
-      "TierFactor": 35,
-      "MaxTargetPowerClamp": 5000,
-      "ExpeditionRules": {
-        "DataTable": {
-          "ObjectName": "DataTable ExpeditionRecipes",
-          "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
-        },
-        "RowName": "Rare_Air_Managers_T05"
-      },
-      "Rarity": "EFortRarity::Epic",
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "44C7989B48B0C697681C1CAC2CB28592",
-        "SourceString": "Highflier  - RARE"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "E19B8CE4486326BC8961438310BB686D",
-        "SourceString": "Train your bravest Managers in the art of balloon based aerial management. "
-      }
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Rare_Air_Managers_T05",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T05",
+            "ExpeditionDuration_Minutes": 1440.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 1500,
+            "TierFactor": 35,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Rare_Air_Managers_T05"
+            },
+            "Rarity": "EFortRarity::Epic",
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "44C7989B48B0C697681C1CAC2CB28592",
+                "SourceString": "Highflier  - RARE"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "E19B8CE4486326BC8961438310BB686D",
+                "SourceString": "Train your bravest Managers in the art of balloon based aerial management. "
+            }
+        }
     }
-  }
 ]

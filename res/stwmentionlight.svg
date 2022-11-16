@@ -2,7 +2,7 @@
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
-            .mention {
+                .mention {
                 background-attachment: scroll;
                 background-clip: border-box;
                 background-color: rgba(88, 101, 242, 0.15);
@@ -71,9 +71,9 @@
                 white-space: break-spaces;
                 width: auto;
                 -webkit-box-direction: normal;
-            }
+                }
 
-            .mention:hover {
+                .mention:hover {
                 color: rgb(255, 255, 255);
                 background-color: rgb(88, 101, 242);
                 border-bottom-color: rgb(255, 255, 255);
@@ -81,7 +81,7 @@
                 border-right-color: rgb(255, 255, 255);
                 border-top-color: rgb(255, 255, 255);
                 outline-color: rgb(255, 255, 255);
-            }
+                }
             </style>
             <span class="mention">@STW Daily</span>
         </div>

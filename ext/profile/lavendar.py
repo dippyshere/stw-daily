@@ -15,6 +15,7 @@ from ext.profile.devauth import handle_dev_auth
 from ext.profile.bongodb import *
 from ext.profile.sunday import settings_command
 
+
 # create dictionary with user snowflake as keys and a list of all documents in that collection asi summon thee
 # how should we make mongodb thingy ;w;
 # um we should like gram their snowflake = 123456789012345678 post it on the gram? brb sending it to hayk yes ofc
@@ -77,9 +78,6 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
     embed = await stw.set_thumbnail(client, embed, "storm_shard")
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
-
-
-
 
 
 class ProfileMainView(discord.ui.View):
@@ -154,11 +152,13 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="survivorgeneric", row=1)
     async def name_button(self, _button, interaction):
-        await interaction.response.send_modal(ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self))
+        await interaction.response.send_modal(
+            ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self))
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor", row=1)
     async def new_button(self, _button, interaction):
-        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message, self))
+        await interaction.response.send_modal(
+            NewProfileModal(self.ctx, self.client, self.user_document, self.message, self))
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross", row=1)
     async def delete_button(self, _button, interaction):
@@ -334,8 +334,6 @@ class NewProfileModal(discord.ui.Modal):
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
 
-
-
 # cog for the profile related commands
 class Profile(ext.Cog):
 
@@ -371,8 +369,8 @@ class Profile(ext.Cog):
 
     @ext.command(name='profile',
                  extras={'emoji': "stormshard", "args": {
-                        'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)(PENDING)'},
-                        "dev": False},
+                     'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)(PENDING)'},
+                         "dev": False},
                  brief="Allows you to create, change the name of, select, & delete profiles(PENDING)",
                  description="A command which allows you to interact with a view to switch between profiles, create new profiles utilising a modal, delete existing profiles and edit the name of existing profiles(PENDING)")
     async def profile(self, ctx, profile=None):

@@ -70,10 +70,10 @@ class Power(ext.Cog):
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Power Level", "power_level"),
                               description=f"\u200b\n**Your powerlevel is: {self.emojis['power_level']}{power_level}**\u200b\n"
                                           f"\u200b\n**Total FORT stats: {self.emojis['power_level']}{total}**\u200b\n"
-                              f"\u200b\n**Fortitude: {self.emojis['fortitude']} {total_stats['fortitude']}**\u200b\n"
-                              f"\u200b\n**Offense: {self.emojis['offense']} {total_stats['offense']}**\u200b\n"
-                              f"\u200b\n**Resistance: {self.emojis['resistance']} {total_stats['resistance']}**\u200b\n"
-                              f"\u200b\n**Technology: {self.emojis['technology']} {total_stats['technology']}**\u200b\n",
+                                          f"\u200b\n**Fortitude: {self.emojis['fortitude']} {total_stats['fortitude']}**\u200b\n"
+                                          f"\u200b\n**Offense: {self.emojis['offense']} {total_stats['offense']}**\u200b\n"
+                                          f"\u200b\n**Resistance: {self.emojis['resistance']} {total_stats['resistance']}**\u200b\n"
+                                          f"\u200b\n**Technology: {self.emojis['technology']} {total_stats['technology']}**\u200b\n",
                               colour=vbucc_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "clown")
@@ -86,16 +86,16 @@ class Power(ext.Cog):
                        description='View your Power level (authentication required)',
                        guild_ids=stw.guild_ids)
     async def slashpower(self, ctx: discord.ApplicationContext,
-                          token: Option(str,
-                                        "Your Epic Games authcode. Required unless you have an active session.") = "",
-                          auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+                         token: Option(str,
+                                       "Your Epic Games authcode. Required unless you have an active session.") = "",
+                         auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
         await self.power_command(ctx, True, token, not auth_opt_out)
 
     @ext.command(name='power',
                  aliases=['pow', 'powerlevel', 'rating', 'level', 'pwr'],
                  extras={'emoji': "power_level", "args": {
-                        'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                        'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
+                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="View your Power level (authentication required)",
                  description="""This command allows you to view the power level of your STW homebase, you must be authenticated to use this command for now.

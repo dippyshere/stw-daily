@@ -39,7 +39,7 @@ async def check_profile_ver_document(client, document):
     except KeyError:
         pass
 
-    if force_overwrite == False:
+    if not force_overwrite:
         copied_default = client.user_default.copy()
         new_base = await asyncio.gather(asyncio.to_thread(deep_merge, copied_default, document))
         new_base = new_base[0]
@@ -54,6 +54,7 @@ async def check_profile_ver_document(client, document):
 
     await replace_user_document(client, new_base)
     return new_base
+
 
 def generate_profile_select_options(client, current_selected_profile, user_document):
     select_options = []
@@ -84,6 +85,7 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
         ))
 
     return select_options
+
 
 # you are zoommin :(((   ong ok bye have fun i am having the fun PLEASE WAIT HOST IS WORKING WITH A SETTINGS DIALOG
 def deep_merge(dict1, dict2):
