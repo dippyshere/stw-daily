@@ -124,7 +124,7 @@ class BattleBreakersDaily(ext.Cog):
                  brief="Claim your Battle Breakers daily reward (authentication required)",
                  description=f"""This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.
                 \u200b
-                ⦾ This command only runs once, be sure to come back <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                ⦾ This command only runs once, be sure to come back <t:{stw.get_tomorrow_midnight_epoch()}:R>
                 ⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!
                 ⦾ Looking for help on authcodes? Check out help for the `auth` command.
                 ⦾ Looking for Fortnite daily rewards? Check out the `daily` command.

@@ -1,5 +1,3 @@
-import datetime
-
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -75,7 +73,7 @@ class Daily(ext.Cog):
                 \u200b
                 **{reward[1]} Todays reward was:**
                 ```{reward[0]}```
-                You can claim tomorrow's reward <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>
                 \u200b
                 """, colour=yellow)
                 embed = await stw.set_thumbnail(self.client, embed, "warn")
@@ -192,7 +190,7 @@ class Daily(ext.Cog):
                  brief="Claim your Save The World daily reward (authentication requried)",
                  description=f"""This command will instantly claim your daily reward, if available. To use this command, you'll need Fortnite: Save the World on the account you will claim with. You must be authenticated to use this command.
                 \u200b
-                ⦾ This command only runs once, be sure to come back <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                ⦾ This command only runs once, be sure to come back <t:{stw.get_tomorrow_midnight_epoch()}:R>
                 ⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!
                 ⦾ Looking for help on authcodes? Check out help for the `auth` command.
                 """)

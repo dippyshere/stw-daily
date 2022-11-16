@@ -57,6 +57,7 @@ def main():
         "battlebreakers.battlebreakers",  # why do you only call me when you're high
         "battlebreakers.bbreward",
         "power",
+        # "invite",
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
     client.a = "✅ Official Verified Deployment", True  # seleckted
@@ -83,6 +84,12 @@ async def on_ready():
 async def on_message(message):
     if '"' in message.content:
         message = stw.process_quotes_in_message(message)
+
+    # pro watch me i am the real github copilot
+    # make epic auth system thing
+    if len(stw.extract_auth_code(message.content)) == 32:
+        await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
+        return
 
     await client.process_commands(message)
 

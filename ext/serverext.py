@@ -28,7 +28,7 @@ class Reminder(ext.Cog):
         # skuby was here
         embed = discord.Embed(title='Daily reminder:',
                               description=f'You can now claim today\'s daily reward. \n '
-                                          f'Next daily reminder <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>.',
+                                          f'Next daily reminder <t:{stw.get_tomorrow_midnight_epoch()}:R>.',
                               colour=discord.Colour.blue())
         embed.add_field(name='Item shop:', value='[fnbr.co/shop](https://fnbr.co/shop)', inline=True)
         embed.add_field(name='\u200b', value='\u200b')

@@ -26,6 +26,7 @@ with open('ext/DataTables/AccountLevels.json') as f:
 guild_ids = [757765475823517851]
 
 
+
 def process_quotes_in_message(message):
     # do not question the ways of the regex
     re_iter = re.finditer(r'((?:^|\s)\"|\"(?:\s|$))', message.content)
@@ -65,7 +66,7 @@ def process_quotes_in_message(message):
     return message
 
 
-# a small bridge helper function between slash commands and normal commands
+# a """small""" bridge helper function between slash commands and normal commands
 async def slash_send_embed(ctx, slash, embeds, view=None, interaction=False):
     try:
         embeds[0]
@@ -578,7 +579,11 @@ async def calculate_vbucks(items):
 
 
 def truncate(string, length=100, end="..."):
-    return (string[:length-3] + end) if len(string) > length else string
+    return (string[:length - 3] + end) if len(string) > length else string
+
+
+def get_tomorrow_midnight_epoch():
+    return int(time.time() + 86400 - time.time() % 86400)
 
 
 def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0):
@@ -884,7 +889,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     """
 
     # extract auth code from auth_code
-    extracted_auth_code = await extract_auth_code(original_auth_code)
+    extracted_auth_code = extract_auth_code(original_auth_code)
     embeds = []
 
     # Attempt to retrieve the existing auth code.
@@ -1132,7 +1137,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
                         \u200b
                         **{reward[2]} Todays reward was:**
                         ```{reward[4]} {reward[1]}```
-                        You can claim tomorrow's reward <t:{int(datetime.datetime.combine(datetime.datetime.utcnow() + datetime.timedelta(days=1), datetime.datetime.min.time()).replace(tzinfo=datetime.timezone.utc).timestamp())}:R>
+                        You can claim tomorrow's reward <t:{get_tomorrow_midnight_epoch()}:R>
                         \u200b
                         """, colour=yellow)
         error_level = "warn"
@@ -1308,7 +1313,7 @@ def create_command_dict(client):
 
 
 # regex for 32 character hex
-async def extract_auth_code(string):
+def extract_auth_code(string):
     try:
         return re.search(r"[0-9a-f]{32}", string)[0]
 
