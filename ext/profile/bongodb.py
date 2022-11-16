@@ -55,6 +55,35 @@ async def check_profile_ver_document(client, document):
     await replace_user_document(client, new_base)
     return new_base
 
+def generate_profile_select_options(client, current_selected_profile, user_document):
+    select_options = []
+
+    if current_selected_profile is None:
+        select_options.append(discord.SelectOption(
+            label="No Available Profiles!",
+            value="None",
+            default=False,
+            emoji=client.config["emojis"]["error"]
+        ))
+
+    for profile in user_document["profiles"]:
+
+        profile = user_document["profiles"][profile]
+
+        selected = False
+        profile_id = profile["id"]
+        if profile_id == current_selected_profile:
+            selected = True
+
+        profile_id = str(profile_id)
+        select_options.append(discord.SelectOption(
+            label=profile["friendly_name"],
+            value=profile_id,
+            default=False,
+            emoji=client.config["emojis"][profile_id]
+        ))
+
+    return select_options
 
 # you are zoommin :(((   ong ok bye have fun i am having the fun PLEASE WAIT HOST IS WORKING WITH A SETTINGS DIALOG
 def deep_merge(dict1, dict2):

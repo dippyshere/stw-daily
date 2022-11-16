@@ -13,7 +13,7 @@ import motor.motor_asyncio
 
 from ext.profile.devauth import handle_dev_auth
 from ext.profile.bongodb import *
-
+from ext.profile.sunday import settings_command
 
 # create dictionary with user snowflake as keys and a list of all documents in that collection asi summon thee
 # how should we make mongodb thingy ;w;
@@ -79,9 +79,7 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
     return embed
 
 
-def edit_emoji_button(client, button):
-    button.emoji = client.config["emojis"][button.emoji.name]
-    return button
+
 
 
 class ProfileMainView(discord.ui.View):
@@ -109,7 +107,7 @@ class ProfileMainView(discord.ui.View):
         if not (len(user_document["profiles"].keys()) < client.config["profile_settings"]["maximum_profiles"]):
             self.children[2].disabled = True
 
-        self.children[1:] = list(map(lambda button: edit_emoji_button(self.client, button), self.children[1:]))
+        self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
 
     async def on_timeout(self):
 
@@ -125,25 +123,7 @@ class ProfileMainView(discord.ui.View):
         return button
 
     async def interaction_check(self, interaction):
-        if self.author == interaction.user:
-            return True
-        else:
-            try:
-                already_notified = self.interaction_check_done[interaction.user.id]
-            except:
-                already_notified = False
-                self.interaction_check_done[interaction.user.id] = True
-
-            if not already_notified:
-                support_url = self.client.config["support_url"]
-                acc_name = ""
-                error_code = "errors.stwdaily.not_author_interaction_response"
-                embed = await stw.post_error_possibilities(interaction, self.client, "help", acc_name, error_code,
-                                                           support_url)
-                await interaction.response.send_message(embed=embed, ephemeral=True)
-                return False
-            else:
-                return False
+        return await stw.view_interaction_check(self, interaction, "profile")
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -165,7 +145,7 @@ class ProfileMainView(discord.ui.View):
         await replace_user_document(self.client, self.user_document)
         embed = await create_main_embed(self.ctx, self.client, new_profile_selected, self.user_document)
         embed.description += f"\n*Selected profile **{new_profile_selected}***\n\u200b"
-        select_options = generate_select_options(self.client, new_profile_selected, self.user_document)
+        select_options = generate_profile_select_options(self.client, new_profile_selected, self.user_document)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document,
                                        self.message)
 
@@ -174,23 +154,11 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="survivorgeneric", row=1)
     async def name_button(self, _button, interaction):
-        await interaction.response.send_modal(ChangeNameModal(self.ctx, self.client, self.user_document, self.message))
-
-        for child in self.children:
-            child.disabled = True
-
-        await interaction.edit_original_response(view=self)
-        self.stop()
+        await interaction.response.send_modal(ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self))
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor", row=1)
     async def new_button(self, _button, interaction):
-        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
-
-        for child in self.children:
-            child.disabled = True
-
-        await interaction.edit_original_response(view=self)
-        self.stop()
+        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message, self))
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross", row=1)
     async def delete_button(self, _button, interaction):
@@ -225,7 +193,7 @@ class ProfileMainView(discord.ui.View):
         await replace_user_document(self.client, self.user_document)
         embed = await create_main_embed(self.ctx, self.client, new_selected, self.user_document)
         embed.description += f"\n*Deleted Profile **{self.current_selected_profile}***\n\u200b"
-        select_options = generate_select_options(self.client, new_selected, self.user_document)
+        select_options = generate_profile_select_options(self.client, new_selected, self.user_document)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document,
                                        self.message)
 
@@ -234,18 +202,27 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="meleegeneric", row=2)
     async def settings_button(self, _button, interaction):
-        await interaction.response.send_modal(NewProfileModal(self.ctx, self.client, self.user_document, self.message))
+        await settings_command(self.client, self.ctx)
+
+        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
+        embed.description += f"\n*Started settings interface, rerun to continue*\n\u200b"
 
         for child in self.children:
             child.disabled = True
-
-        await interaction.edit_original_response(view=self)
+        await interaction.response.edit_message(embed=embed, view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="locked", row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="link_icon", row=2)
     async def auth_button(self, _button, interaction):
-        await handle_dev_auth(self.client, interaction, False, from_interaction=True)
-        pass
+        await handle_dev_auth(self.client, self.ctx)
+
+        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
+        embed.description += f"\n*Started authentication interface, rerun to continue*\n\u200b"
+
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(embed=embed, view=self)
+        self.stop()
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Information", emoji="experimental", row=2)
     async def information_button(self, _button, interaction):
@@ -262,10 +239,11 @@ class ProfileMainView(discord.ui.View):
 # goodnigh girl
 # i see you tommoro
 class ChangeNameModal(discord.ui.Modal):
-    def __init__(self, ctx, client, user_document, message):
+    def __init__(self, ctx, client, user_document, message, view):
         self.ctx = ctx
         self.client = client
         self.cur_profile_id = user_document["global"]["selected_profile"]
+        self.view = view
 
         self.user_document = user_document
         super().__init__(title=f"Change name of profile {self.cur_profile_id}")
@@ -288,26 +266,31 @@ class ChangeNameModal(discord.ui.Modal):
     async def callback(self, interaction: discord.Interaction):
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
 
+        for child in self.view.children:
+            child.disabled = True
+        self.view.stop()
+        await interaction.response.edit_message(view=self.view)
+
         # there is probably a better way to do this
         self.user_document["profiles"][str(self.cur_profile_id)]["friendly_name"] = self.children[0].value
 
         await replace_user_document(self.client, self.user_document)
         embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
         embed.description += f"\n*Changed name of profile **{self.cur_profile_id}***\n\u200b"
-        select_options = generate_select_options(self.client, self.cur_profile_id, self.user_document)
+        select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
                                        self.message)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
-        await interaction.response.edit_message(embed=embed, view=profile_view)
+        await interaction.edit_original_response(embed=embed, view=profile_view)
 
 
 class NewProfileModal(discord.ui.Modal):
-    def __init__(self, ctx, client, user_document, message):
+    def __init__(self, ctx, client, user_document, message, view):
         self.ctx = ctx
         self.client = client
         self.cur_profile_id = len(user_document["profiles"])
-
+        self.view = view
         self.user_document = user_document
         super().__init__(title=f"Create profile {self.cur_profile_id}")
 
@@ -330,6 +313,11 @@ class NewProfileModal(discord.ui.Modal):
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
         self.user_document["global"]["selected_profile"] = self.cur_profile_id
 
+        for child in self.view.children:
+            child.disabled = True
+        self.view.stop()
+        await interaction.response.edit_message(view=self.view)
+
         # there is probably a better way to do this
         self.user_document["profiles"][str(self.cur_profile_id)] = self.client.user_default["profiles"]["0"].copy()
         self.user_document["profiles"][str(self.cur_profile_id)]["friendly_name"] = self.children[0].value
@@ -338,43 +326,14 @@ class NewProfileModal(discord.ui.Modal):
         await replace_user_document(self.client, self.user_document)
         embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
         embed.description += f"\n*Created profile **{self.cur_profile_id}***\n\u200b"
-        select_options = generate_select_options(self.client, self.cur_profile_id, self.user_document)
+        select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
                                        self.message)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
-        await interaction.response.edit_message(embed=embed, view=profile_view)
+        await interaction.edit_original_response(embed=embed, view=profile_view)
 
 
-def generate_select_options(client, current_selected_profile, user_document):
-    select_options = []
-
-    if current_selected_profile is None:
-        select_options.append(discord.SelectOption(
-            label="No Available Profiles!",
-            value="None",
-            default=False,
-            emoji=client.config["emojis"]["error"]
-        ))
-
-    for profile in user_document["profiles"]:
-
-        profile = user_document["profiles"][profile]
-
-        selected = False
-        profile_id = profile["id"]
-        if profile_id == current_selected_profile:
-            selected = True
-
-        profile_id = str(profile_id)
-        select_options.append(discord.SelectOption(
-            label=profile["friendly_name"],
-            value=profile_id,
-            default=False,
-            emoji=client.config["emojis"][profile_id]
-        ))
-
-    return select_options
 
 
 # cog for the profile related commands
@@ -405,7 +364,7 @@ class Profile(ext.Cog):
 
         embed = await create_main_embed(ctx, self.client, current_selected_profile, user_document)
         embed.description += current_command
-        select_options = generate_select_options(self.client, current_selected_profile, user_document)
+        select_options = generate_profile_select_options(self.client, current_selected_profile, user_document)
         profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document)
         # brb back gtg soonish
         await stw.slash_send_embed(ctx, slash, embed, profile_view)

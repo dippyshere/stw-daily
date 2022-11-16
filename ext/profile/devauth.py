@@ -27,7 +27,7 @@ async def tos_acceptance_embed(client, ctx):
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
 
-async def handle_dev_auth(client, ctx, slash, authcode=None, from_interaction=False):
+async def handle_dev_auth(client, ctx, slash, authcode=None):
 
     # Retrieve information on the currently selected profile of the user accociated with this ctx
 
@@ -43,7 +43,7 @@ async def handle_dev_auth(client, ctx, slash, authcode=None, from_interaction=Fa
 
 
     embed = await tos_acceptance_embed(client, ctx)
-    await stw.slash_send_embed(ctx, slash, embed, interaction=from_interaction)
+    await stw.slash_send_embed(ctx, slash, embed)
 
 # cog for the device auth login command.
 class ProfileAuth(ext.Cog):

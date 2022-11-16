@@ -75,7 +75,13 @@ async def create_http_session():
 # basic information for you <33
 @client.event
 async def on_ready():
+
     client.stw_session = await create_http_session()
+    for command in client.commands:
+        if command.name == "auth":
+            client.auth_command = command
+            break
+
     client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
     print("Started STW Daily")
 

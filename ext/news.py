@@ -7,11 +7,11 @@ import stwutil as stw
 
 class NewsView(discord.ui.View):
 
-    def __init__(self, client, author, context, slash, page, stw_news, stw_pages_length, br_news, br_pages_length,
+    def __init__(self, client, author, ctx, slash, page, stw_news, stw_pages_length, br_news, br_pages_length,
                  mode):
         super().__init__()
         self.client = client
-        self.context = context
+        self.ctx = ctx
         self.author = author
         self.interaction_check_done = {}
         self.slash = slash
@@ -37,13 +37,13 @@ class NewsView(discord.ui.View):
 
     async def on_timeout(self):
         if self.mode == "stw":
-            embed = await stw.create_news_page(self, self.context, self.stw_news, self.page, self.stw_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            embed = await stw.add_requested_footer(self.context, embed)
+            embed = await stw.add_requested_footer(self.ctx, embed)
         else:
-            embed = await stw.create_news_page(self, self.context, self.br_news, self.page, self.br_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            embed = await stw.add_requested_footer(self.context, embed)
+            embed = await stw.add_requested_footer(self.ctx, embed)
         for button in self.children:
             button.disabled = True
         await self.message.edit(embed=embed, view=self)
@@ -56,14 +56,14 @@ class NewsView(discord.ui.View):
             self.page -= 1
         if self.mode == "stw":
             self.page = ((self.page - 1) % self.stw_pages_length) + 1
-            embed = await stw.create_news_page(self, self.context, self.stw_news, self.page, self.stw_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            # embed = await stw.add_requested_footer(self.context, embed) #hi
+            # embed = await stw.add_requested_footer(self.ctx, embed) #hi
         else:
             self.page = ((self.page - 1) % self.br_pages_length) + 1
-            embed = await stw.create_news_page(self, self.context, self.br_news, self.page, self.br_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            # embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.add_requested_footer(self.ctx, embed)
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
@@ -71,42 +71,24 @@ class NewsView(discord.ui.View):
         if mode == "stw":
             self.mode = "stw"
             self.page = 1
-            embed = await stw.create_news_page(self, self.context, self.stw_news, self.page, self.stw_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            # embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.add_requested_footer(self.ctx, embed)
             self.children[2].disabled = True
             self.children[3].disabled = False
         else:
             self.mode = "br"
             self.page = 1
-            embed = await stw.create_news_page(self, self.context, self.br_news, self.page, self.br_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            # embed = await stw.add_requested_footer(self.context, embed)
+            # embed = await stw.add_requested_footer(self.ctx, embed)
             self.children[2].disabled = False
             self.children[3].disabled = True
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
     async def interaction_check(self, interaction):
-        if self.author == interaction.user:
-            return True
-        else:
-            try:
-                already_notified = self.interaction_check_done[interaction.user.id]
-            except:
-                already_notified = False
-                self.interaction_check_done[interaction.user.id] = True
-
-            if not already_notified:
-                support_url = self.client.config["support_url"]
-                acc_name = ""
-                error_code = "errors.stwdaily.not_author_interaction_response"
-                embed = await stw.post_error_possibilities(interaction, self.client, "news", acc_name, error_code,
-                                                           support_url)
-                await interaction.response.send_message(embed=embed, ephemeral=True)
-                return False
-            else:
-                return False
+        return await stw.view_interaction_check(self, interaction, "news")
 
     @discord.ui.button(style=discord.ButtonStyle.primary, emoji="prev", row=0)
     async def prev_button(self, _button, interaction):

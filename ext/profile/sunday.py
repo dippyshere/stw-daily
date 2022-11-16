@@ -15,8 +15,338 @@ import stwutil as stw
 
 import motor.motor_asyncio
 
-from ext.profile.bongodb import get_user_document
+from ext.profile.bongodb import *
 
+async def settings_profile_setting_select(view, select, interaction):
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    embed = await sub_setting_page(select.values[0][:-1], view.client, view.ctx, view.user_document)
+    embed.fields[0].value += f"\u200b\n*Selected Setting: **{select.values[0][:-1]}***\n\u200b\n"
+    sub_view = SettingProfileSettingsSettingViewOfSettingSettings(select.values[0][:-1], view.user_document, view.client, view.page, view.ctx, view.settings, int(select.values[0][-1]))
+    await interaction.edit_original_response(embed=embed, view=sub_view)
+
+async def back_to_main_page(view, interaction):
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+    main_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings)
+    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+    await interaction.edit_original_response(embed=embed, view=main_view)
+
+async def shift_page(view, interaction, amount):
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    view.page += amount
+
+    max_pages = math.ceil(len(view.client.default_settings) / view.settings_per_page)
+    if view.page < 1:
+        view.page = max_pages
+    elif view.page > max_pages:
+        view.page = 1
+
+    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+
+    embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
+
+    new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings)
+    await interaction.edit_original_response(embed=embed, view=new_view)
+
+async def shift_page_on_sub_page(view, interaction, amount):
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    view.page += amount
+
+    max_pages = math.ceil(len(view.client.default_settings) / view.settings_per_page)
+    if view.page < 1:
+        view.page = max_pages
+    elif view.page > max_pages:
+        view.page = 1
+
+    current_slice = get_current_settings_slice(view.page, view.settings_per_page, view.settings)
+
+    view.selected_setting = current_slice[max(0, min(int(view.selected_setting_index), len(current_slice) - 1))]
+
+    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+    embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
+    sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document, view.client, view.page, view.ctx, view.settings, view.selected_setting_index)
+    await interaction.edit_original_response(embed=embed, view=sub_view)
+
+async def sub_settings_profile_select_change(view, select, interaction):
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+
+    new_profile_selected = int(select.values[0])
+    view.user_document["global"]["selected_profile"] = new_profile_selected
+
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    await replace_user_document(view.client, view.user_document)
+    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+    embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
+    sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document, view.client, view.page, view.ctx, view.settings, view.selected_setting_index)
+
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
+    await interaction.edit_original_response(embed=embed, view=sub_view)
+
+async def settings_profile_select_change(view, select, interaction):
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+
+    new_profile_selected = int(select.values[0])
+    view.user_document["global"]["selected_profile"] = new_profile_selected
+
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    await replace_user_document(view.client, view.user_document)
+    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+    embed.fields[0].value += f"\u200b\n*Selected profile **{new_profile_selected}***\n\u200b"
+    new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings)
+
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
+    await interaction.edit_original_response(embed=embed, view=new_view)
+
+async def edit_current_setting(view, interaction):
+    selected_setting = view.selected_setting
+    setting_information = view.client.default_settings[selected_setting]
+    modal = RetrieveSettingChangeModal(setting_information, view.client, view, view.user_document, view.ctx)
+    await interaction.response.send_modal(modal)
+
+async def edit_current_setting_bool(view, interaction, set_value):
+    selected_setting = view.selected_setting
+    setting_information = view.client.default_settings[selected_setting]
+
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    view.user_document["profiles"][view.selected_profile]["settings"][view.selected_setting] = set_value
+    await replace_user_document(view.client, view.user_document)
+
+    current_value = view.user_document["profiles"][view.selected_profile]["settings"][view.selected_setting]
+
+    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+    embed.fields[0].value += f"\u200b\n*Changed **{view.selected_setting}** to **{current_value}***\n\u200b"
+    sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document, view.client, view.page, view.ctx, view.settings, view.selected_setting_index)
+
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
+    await interaction.edit_original_response(embed=embed, view=sub_view)
+
+class RetrieveSettingChangeModal(discord.ui.Modal):
+    def __init__(self, setting_information, client, view, user_document, ctx):
+
+        self.client = client
+        self.view = view
+        self.user_document = user_document
+        self.ctx = ctx
+        title = setting_information["modal_title"]
+        super().__init__(title=title)
+
+        # aliases default description modal_title input_label check_function emoji input_type req_string
+
+        input_style = discord.InputTextStyle.long if setting_information["input_type"] == "long" else discord.InputTextStyle.short
+        setting_input = discord.ui.InputText(style=input_style,
+                                             label=setting_information["input_label"],
+                                             placeholder=setting_information["input_placeholder"],
+                                             required=True,
+                                             min_length=setting_information["min_length"],
+                                             max_length=setting_information["max_length"])
+
+        self.add_item(setting_input)
+
+    async def callback(self, interaction: discord.Interaction):
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
+
+        for child in self.view.children:
+            child.disabled = True
+        self.view.stop()
+        await interaction.response.edit_message(view=self.view)
+
+        value = self.children[0].value
+        check_function = globals()[self.client.default_settings[self.view.selected_setting]['check_function']]
+        check_result = check_function(self.client, self.ctx, value)
+
+        view = self.view
+
+        if check_result == True:
+            selected_profile = self.user_document["global"]["selected_profile"]
+            self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = value
+            await replace_user_document(view.client, view.user_document)
+
+        embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+        sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
+                                                                      view.client, view.page, view.ctx, view.settings,
+                                                                      view.selected_setting_index)
+        if check_result == True:
+            embed.fields[0].value += f"\u200b\n*Changed Setting Value to **{value}***\n\u200b"
+        else:
+            embed.fields[0].value += f"\u200b\n*Invalid value entered! Try again*\n\u200b"
+
+        del view.client.processing_queue[view.user_document["user_snowflake"]]
+        await interaction.edit_original_response(embed=embed, view=sub_view)
+
+async def settings_view_timeout(view):
+    for child in view.children:
+        child.disabled = True
+
+    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+    embed.fields[0].value += f"\u200b\n*Timed out, please reuse command to continue*\n\u200b"
+    await view.message.edit(embed=embed, view=view)
+
+class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
+    def __init__(self, selected_setting, user_document, client, page, ctx, settings, selected_setting_index):
+        super().__init__()
+
+        settings_per_page = client.config["profile_settings"]["settings_per_page"]
+        self.user_document = user_document
+        self.client = client
+        self.page = page
+        self.ctx = ctx
+        self.settings_per_page = settings_per_page
+        self.settings = settings
+        self.interaction_check_done = {}
+        self.selected_setting_index = selected_setting_index
+        self.selected_setting = selected_setting
+        self.selected_profile = str(user_document["global"]["selected_profile"])
+        current_slice = get_current_settings_slice(page, settings_per_page, settings)
+        settings_options = generate_settings_view_options(client, current_slice)
+
+        selected_profile = user_document["global"]["selected_profile"]
+
+        self.children[0].options = generate_profile_select_options(client, selected_profile, user_document)
+        self.children[1].options = settings_options
+
+        self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
+
+        if isinstance(self.client.default_settings[selected_setting]["default"], bool):
+            self.children.pop(5)
+
+            if user_document["profiles"][self.selected_profile]["settings"][selected_setting] == True:
+                self.children[5].disabled = True
+            else:
+                self.children[6].disabled = True
+
+        else:
+            self.children = self.children[:-2]
+
+    async def on_timeout(self):
+        await settings_view_timeout(self)
+
+    async def interaction_check(self, interaction):
+        return await stw.view_interaction_check(self, interaction, "settings")
+
+    @discord.ui.select(
+        placeholder="Select another profile here",
+        min_values=1,
+        max_values=1,
+        options=[],
+    )
+    async def profile_select(self, select, interaction):
+        await sub_settings_profile_select_change(self, select, interaction)
+
+    @discord.ui.select(
+        placeholder="Select setting to view/change here",
+        min_values=1,
+        max_values=1,
+        options=[],
+    )
+    async def settings_select(self, select, interaction):
+        await settings_profile_setting_select(self, select, interaction)
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2)
+    async def previous_page(self, button, interaction):
+        await shift_page_on_sub_page(self, interaction, -1)
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2)
+    async def next_page(self, button, interaction):
+        await shift_page_on_sub_page(self, interaction, 1)
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_arrow", row=3)
+    async def exit_back(self, button, interaction):
+        await back_to_main_page(self, interaction)
+
+    @discord.ui.button(style=discord.ButtonStyle.blurple, emoji="meleegeneric", row=3)
+    async def edit_setting_non_bool(self, button, interaction):
+        await edit_current_setting(self, interaction)
+
+    @discord.ui.button(style=discord.ButtonStyle.green, emoji="check_checked", row=3)
+    async def edit_setting_bool_true(self, button, interaction):
+        await edit_current_setting_bool(self, interaction, True)
+
+    @discord.ui.button(style=discord.ButtonStyle.red, emoji="check_empty", row=3)
+    async def edit_setting_bool_false(self, button, interaction):
+        await edit_current_setting_bool(self, interaction, False)
+
+class MainPageProfileSettingsView(discord.ui.View):
+    def __init__(self, user_document, client, page, ctx, settings):
+        super().__init__()
+
+        settings_per_page = client.config["profile_settings"]["settings_per_page"]
+        self.user_document = user_document
+        self.client = client
+        self.page = page
+        self.ctx = ctx
+        self.settings_per_page = settings_per_page
+        self.settings = settings
+        self.interaction_check_done = {}
+
+        current_slice = get_current_settings_slice(page, settings_per_page, settings)
+        settings_options = generate_settings_view_options(client, current_slice)
+
+        selected_profile = user_document["global"]["selected_profile"]
+
+        self.children[0].options = generate_profile_select_options(client, selected_profile, user_document)
+        self.children[1].options = settings_options
+
+        self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
+
+    async def on_timeout(self):
+        await settings_view_timeout(self)
+
+    async def interaction_check(self, interaction):
+        return await stw.view_interaction_check(self, interaction, "settings")
+
+    @discord.ui.select(
+        placeholder="Select another profile here",
+        min_values=1,
+        max_values=1,
+        options=[],
+    )
+    async def profile_select(self, select, interaction):
+        await settings_profile_select_change(self, select, interaction)
+
+    @discord.ui.select(
+        placeholder="Select setting to view/change here",
+        min_values=1,
+        max_values=1,
+        options=[],
+    )
+    async def settings_select(self, select, interaction):
+        await settings_profile_setting_select(self, select, interaction)
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2)
+    async def previous_page(self, button, interaction):
+        await shift_page(self, interaction, -1)
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2)
+    async def next_page(self, button, interaction):
+        await shift_page(self, interaction, 1)
 
 async def add_field_to_page_embed(page_embed, setting, client, profile):
     setting_info = client.default_settings[setting]
@@ -25,19 +355,31 @@ async def add_field_to_page_embed(page_embed, setting, client, profile):
         0].value += f"""\n\n# {setting.replace("_", " ").capitalize()}\n> {setting.replace("_", "-")} | {profile["settings"][setting]}\n{setting_info['description']}"""
     return page_embed
 
+def generate_settings_view_options(client, current_slice):
 
-async def settings_page(page, client, ctx, pages, settings_per_page, selected_profile, selected_profile_data, settings,
-                        embed_colour):
-    page_embed = await main_page(page, client, ctx, pages, settings_per_page, selected_profile, selected_profile_data,
-                                 settings, embed_colour)
-    page_embed.fields[0].value += "\u200b\n*Waiting for an action*\n\u200b\n"
-    await stw.slash_send_embed(ctx, True, embeds=page_embed)
+    select_options = []
 
+    for index, setting_option in enumerate(current_slice):
+        emoji_key = client.default_settings[setting_option]["emoji"]
+        select_options.append(discord.SelectOption(label=setting_option, value=setting_option + str(index), emoji=client.config["emojis"][emoji_key]))
 
-async def main_page(page_number, client, ctx, pages, settings_per_page, selected_profile, selected_profile_data,
-                    settings, embed_colour):
-    shift = settings_per_page * page_number
-    current_slice = settings[(0 + shift):(settings_per_page + shift)]
+    return select_options
+
+def get_current_settings_slice(page_number, settings_per_page, settings):
+    shift = settings_per_page * (page_number - 1)
+    return settings[(0 + shift):(settings_per_page + shift)]
+
+async def main_page(page_number, client, ctx, user_profile,
+                    settings):
+
+    embed_colour = client.colours["profile_lavendar"]
+
+    selected_profile = user_profile["global"]["selected_profile"]
+    selected_profile_data = user_profile["profiles"][str(selected_profile)]
+    settings_per_page = client.config["profile_settings"]["settings_per_page"]
+
+    pages = math.ceil(len(client.default_settings) / settings_per_page)
+    current_slice = get_current_settings_slice(page_number, settings_per_page, settings)
 
     page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
                                description=f"""\u200b
@@ -47,7 +389,7 @@ async def main_page(page_number, client, ctx, pages, settings_per_page, selected
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
-    page_embed.add_field(name=f"Showing Settings Page {page_number + 1}/{pages}", value="```md", inline=False)
+    page_embed.add_field(name=f"Showing Settings Page {page_number}/{pages}", value="```md", inline=False)
     for setting in current_slice:
         page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data)
 
@@ -55,24 +397,46 @@ async def main_page(page_number, client, ctx, pages, settings_per_page, selected
 
     return page_embed
 
-
-async def settings_command(client, ctx, slash=False, setting=None, profile=None, value=None):
-    settings_per_page = 5
-    pages = math.ceil(len(client.default_settings) / settings_per_page)
-    settings = client.settings_choices
+async def sub_setting_page(setting, client, ctx, user_profile):
+    setting_info = client.default_settings[setting]
 
     embed_colour = client.colours["profile_lavendar"]
 
-    user_profile = await get_user_document(client, ctx.author.id)
     selected_profile = user_profile["global"]["selected_profile"]
     selected_profile_data = user_profile["profiles"][str(selected_profile)]
 
-    if setting is None and profile is None and value is None:
-        main_page_embed = await main_page(0, client, ctx, pages, settings_per_page, selected_profile,
-                                          selected_profile_data, settings, embed_colour)
-        main_page_embed.fields[0].value += "\u200b\n*Waiting for an action*\n\u200b\n"
-        await stw.slash_send_embed(ctx, slash, embeds=main_page_embed)
+    page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
+                               description=f"""\u200b
+                              **Currently Selected Profile {selected_profile}:**
+                              ```{selected_profile_data["friendly_name"]}```\u200b""",
+                               color=embed_colour)
+    page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
+    page_embed = await stw.add_requested_footer(ctx, page_embed)
 
+    requirement_string = ""
+    if isinstance(setting_info['default'], bool):
+        requirement_string = "True or False"
+    else:
+        requirement_string = setting_info['req_string']
+
+    page_embed.add_field(name=f"Selected Setting: {setting}", value=f"""```asciidoc\n== {setting.replace("_", " ").capitalize()}\n// {setting}\n\nCurrent Value:: {selected_profile_data["settings"][setting]}\n\n{setting_info["description"]}\n\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```""", inline=False)
+
+    return page_embed
+
+async def settings_command(client, ctx, slash=False, setting=None, profile=None, value=None):
+    settings = client.settings_choices
+
+    user_profile = await get_user_document(client, ctx.author.id)
+
+    if setting is None or profile is None or value is None:
+        page = 1
+
+        main_page_embed = await main_page(page, client, ctx, user_profile, settings)
+        main_page_embed.fields[0].value += "\u200b\n*Waiting for an action*\n\u200b\n"
+
+        settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings)
+        await stw.slash_send_embed(ctx, slash, embeds=main_page_embed, view=settings_view)
+        return
 
 # cog for the profile related settings & Disclosure - You & Me (Flume Remix)
 class ProfileSettings(ext.Cog):
@@ -115,3 +479,27 @@ class ProfileSettings(ext.Cog):
 
 def setup(client):
     client.add_cog(ProfileSettings(client))
+
+
+# ---- CHECK FUNCTIONS ----
+
+def check_default_command_change(client, ctx, value):
+    stringable = True
+    try:
+        str(value)
+    except:
+        stringable = False
+
+    return stringable
+
+
+def check_upcoming_display_days(client, ctx, value):
+    intable = True
+    try:
+        int(value)
+    except:
+        intable = False
+
+    return intable
+
+

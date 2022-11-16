@@ -2,40 +2,51 @@
     "upcoming_display_days": {
         "aliases": ["toule_dans_le_vide"],
         "default": 7,
+        "emoji": "cal_anim",
         "description": "How many upcoming days should STW Daily display for your upcoming rewards after claiming daily rewards?",
         "modal_title": "Change upcoming display days",
-        "input_label": "Enter a new value between 25 and 0",
-        "check_function": "check_upcoming_display_days"
+        "input_type": "short",
+        "input_placeholder": "Enter value here",
+        "input_label": "Enter a new value between 1 and 50",
+        "check_function": "check_upcoming_display_days",
+        "min_length": 1,
+        "max_length": 50,
+        "req_string": "Must be a value between 1 and 50"
     },
 
     "display_name_on_auth": {
         "aliases": ["ookay_thief"],
         "default": true,
-        "description": "Should STW Daily display your epic games on authentication?"
+        "description": "Should STW Daily display your epic games on authentication?",
+        "emoji": "storm_shield"
     },
 
     "claim_research": {
         "aliases": ["land_down_under"],
         "default": false,
-        "description": "Should STW Daily automatically claim your research points?"
+        "description": "Should STW Daily automatically claim your research points?",
+        "emoji": "research_point"
     },
 
     "claim_free_llamas": {
         "aliases": ["twenty_five_commands_is_the_limit"],
         "default": false,
-        "description": "Should STW Daily automatically purchase any free llamas available?"
+        "description": "Should STW Daily automatically purchase any free llamas available?",
+        "emoji": "minillama"
     },
 
     "claim_daily": {
         "aliases": ["dangerous_big_data"],
         "default": false,
-        "description": "Should STW Daily automatically claim your daily whenever it is available?"
+        "description": "Should STW Daily automatically claim your daily whenever it is available?",
+        "emoji": "mtxswap_combined"
     },
 
     "ephemeral": {
         "aliases": ["im_just_a_selfish_ghost"],
         "default": false,
-        "description": "Should STW Daily make any embeds sent through the utilisation of slash commands ephemeral? (Only visible to you)"
+        "description": "Should STW Daily make any embeds sent through the utilisation of slash commands ephemeral? (Only visible to you)",
+        "emoji": "check_empty"
     },
 
     "default_command": {
@@ -43,49 +54,62 @@
         "default": "daily",
         "description": "What should the default command be when you utilise stw daily? (For when you mention stw daily and send arguments without utilising any command prefix)",
         "modal_title": "Change default command",
+        "input_placeholder": "Enter value here",
         "input_label": "Enter an existing commands prefix",
-        "check_function": "check_default_command_change"
+        "check_function": "check_default_command_change",
+        "emoji": "calendar",
+        "input_type": "short",
+        "min_length": 0,
+        "max_length": 100,
+        "req_string": "Must be a valid commands name or its alias"
     },
 
     "setting_eight": {
         "aliases": [],
         "default": false,
-        "description": "but the rain always comes at the worst times"
+        "description": "but the rain always comes at the worst times",
+        "emoji": "8"
     },
 
     "setting_9": {
         "aliases": [],
         "default": false,
-        "description": "nobody does it like you do"
+        "description": "nobody does it like you do",
+        "emoji": "9"
     },
 
     "setting_10": {
         "aliases": [],
         "default": false,
-        "description": "i do whatever i could do"
+        "description": "i do whatever i could do",
+        "emoji": "10"
     },
 
     "setting_11": {
         "aliases": [],
         "default": false,
-        "description": "dying to let you know"
+        "description": "dying to let you know",
+        "emoji": "11"
     },
 
     "setting_12": {
         "aliases": [],
         "default": false,
-        "description": "left at first"
+        "description": "left at first",
+        "emoji": "12"
     },
 
-        "setting_13": {
+    "setting_13": {
         "aliases": [],
         "default": false,
-        "description": "setting 14"
+        "description": "setting 14",
+        "emoji": "13"
     },
 
     "setting_14": {
         "aliases": [],
         "default": false,
-        "description": "h"
+        "description": "h",
+        "emoji": "14"
     }
 }

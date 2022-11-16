@@ -18,25 +18,7 @@ class HelpView(discord.ui.View):
         self.interaction_check_done = {}
 
     async def interaction_check(self, interaction):
-        if self.author == interaction.user:
-            return True
-        else:
-            try:
-                already_notified = self.interaction_check_done[interaction.user.id]
-            except:
-                already_notified = False
-                self.interaction_check_done[interaction.user.id] = True
-
-            if not already_notified:
-                support_url = self.client.config["support_url"]
-                acc_name = ""
-                error_code = "errors.stwdaily.not_author_interaction_response"
-                embed = await stw.post_error_possibilities(interaction, self.client, "help", acc_name, error_code,
-                                                           support_url)
-                await interaction.response.send_message(embed=embed, ephemeral=True)
-                return False
-            else:
-                return False
+        return await stw.view_interaction_check(self, interaction, "help")
 
     @discord.ui.select(
         placeholder="Select a help page here",

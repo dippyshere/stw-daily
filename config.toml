@@ -167,6 +167,9 @@ expedition_helicopter= "<:TIconSTHelicopter128:1034006490543034418>"
 expedition_rowboat	= "<:TIconSTRowboat128:1034006488626253824>"
 expedition_speedboat= "<:TIconSTSpeedboat128:1034006486080294913>"
 expedition_truck	= "<:TIconSTStruck128:1034006484490661888>"
+left_arrow 			= "<:LeftArrow:1042410589810589727>"
+right_arrow			= "<:RightArrow:1042410587700854784>"
+link_icon			= "<:LinkIcon:1042410822682550282>"
 
 # battle breakers emojis :sob:
 Cleric_VR2_Dark_TerrRifle_T04_Icon = "<:Cleric_VR2_Dark_TerrRifle_T04_Ic:1033295042086973450>"
@@ -214,6 +217,7 @@ icon_xp_skill                      = "<:icon_xp_skill:1033294968925720678>"
 max_friendly_name_length = 100
 min_friendly_name_length = 1
 maximum_profiles = 25
+settings_per_page = 5
 
 #a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]

@@ -26,6 +26,33 @@ with open('ext/DataTables/AccountLevels.json') as f:
 guild_ids = [757765475823517851]
 
 
+async def view_interaction_check(view, interaction, command):
+    if view.ctx.author == interaction.user:
+        return True
+    else:
+        try:
+            already_notified = view.interaction_check_done[interaction.user.id]
+        except:
+            already_notified = False
+            view.interaction_check_done[interaction.user.id] = True
+
+        if not already_notified:
+
+            support_url = view.client.config["support_url"]
+            acc_name = ""
+            error_code = "errors.stwdaily.not_author_interaction_response"
+            embed = await post_error_possibilities(interaction, view.client, command, acc_name, error_code,
+                                                   support_url)
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return False, view
+        else:
+            return False
+
+
+def edit_emoji_button(client, button):
+    button.emoji = client.config["emojis"][button.emoji.name]
+    return button
+
 
 def process_quotes_in_message(message):
     # do not question the ways of the regex
@@ -73,6 +100,11 @@ async def slash_send_embed(ctx, slash, embeds, view=None, interaction=False):
     except:
         embeds = [embeds]
 
+    if isinstance(ctx, discord.Message):
+        if view is not None:
+            return await ctx.channel.send(embeds=embeds, view=view)
+        else:
+            return await ctx.channel.send(embeds=embeds)
     if slash:
         if view is not None:
             return await ctx.respond(embeds=embeds, view=view)
@@ -1315,7 +1347,7 @@ def create_command_dict(client):
 # regex for 32 character hex
 def extract_auth_code(string):
     try:
-        return re.search(r"[0-9a-f]{32}", string)[0]
+        return re.search(r"[0-9a-f]{32}", string)[0]  # hi
 
     except TypeError:
         if len(string) == 32:

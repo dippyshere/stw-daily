@@ -162,25 +162,7 @@ class ResearchView(discord.ui.View):
         self.children = list(map(self.map_button_emojis, self.children))
 
     async def interaction_check(self, interaction):
-        if self.author == interaction.user:
-            return True
-        else:
-            try:
-                already_notified = self.interaction_check_done[interaction.user.id]
-            except:
-                already_notified = False
-                self.interaction_check_done[interaction.user.id] = True
-
-            if not already_notified:
-                support_url = self.client.config["support_url"]
-                acc_name = ""
-                error_code = "errors.stwdaily.not_author_interaction_response"
-                embed = await stw.post_error_possibilities(interaction, self.client, "research", acc_name, error_code,
-                                                           support_url)
-                await interaction.response.send_message(embed=embed, ephemeral=True)
-                return False
-            else:
-                return False
+        return await stw.view_interaction_check(self, interaction, "research")
 
     @discord.ui.button(style=discord.ButtonStyle.success, emoji="fortitude")
     async def fortitude_button(self, _button, interaction):
