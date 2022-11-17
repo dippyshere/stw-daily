@@ -1,0 +1,35 @@
+{
+    "en": {
+        "vbucks.embed.title": "V-Bucks",
+        "vbucks.embed.description.total": "Total V-Bucks",
+        "vbucks.embed.description.zerovbucks": "No V-Bucks?",
+        "vbucks.embed.description.xray": "X-Ray Tickets",
+        "vbucks.slash.name": "vbucks",
+        "vbucks.slash.description": "View your V-Bucks and X-Ray Tickets balance (authentication required)",
+        "vbucks.meta.brief": "View your V-Bucks and X-Ray Tickets balance (authentication required)",
+        "vbucks.meta.description": "This command displays your total V-Bucks, provide a breakdown on the source(s) of those V-Bucks, and additionally display how many X-Ray tickets you have. You must be authenticated to use this command.",
+        "reward.embed.title": "Reward",
+        "reward.embed.description": "Displaying rewards for day **{0}** and **{0}** days after",
+        "reward.embed.field1": "Item",
+        "reward.embed.field1.day": "day.",
+        "reward.embed.field1.days": "days.",
+        "reward.embed.field2.founder": "Next V-Bucks & X-Ray Tickets reward in:",
+        "reward.embed.field2.nonfounder": "Next X-Ray Tickets reward in:",
+        "reward.embed.field3": "Tomorrow's reward", # imma pratice for dkt then ill go alright good luck with DKT its really easy <33 thxx :3
+        "reward.embed.field4": "Rewards for the next {0} days",
+        "reward.slash.name": "reward",
+        "reward.slash.description": "View info about a specific day's reward, and the rewards that follow",
+        "reward.meta.brief": "View info about a specific day's reward, and the rewards that follow",
+        "reward.meta.description": "This command lets you view the rewards of any specific day, and any number of rewards that follow.",
+        "reward.meta.args.day": "day",
+        "reward.meta.args.day.description": "The day to get the rewards of. Not required if you are authenticated",
+        "reward.meta.args.limit": "limit",
+        "reward.meta.args.limit.description": "The number of upcoming days to see",
+        "lmao": "LMAO",
+        "generic.slash.token": "Your Epic Games authcode. Required unless you have an active session.",
+        "generic.slash.optout": "Opt out of starting an authentication session",
+        "generic.meta.args.authcode": "authcode",
+        "generic.meta.args.optout": "opt-out",
+        "generic.meta.args.optout.description": "Any text given will opt you out of starting an authentication session"
+    }
+}

@@ -85,9 +85,77 @@ async def handle_dev_auth(client, ctx, slash, interaction=None, user_document = 
     currently_selected_profile_id = user_document["global"]["selected_profile"]
     current_profile = user_document["profiles"][str(currently_selected_profile_id)]
 
-    embed = await tos_acceptance_embed(client, ctx)
-    await stw.slash_send_embed(ctx, slash, embed)
+    if current_profile["statistics"]["tos_accepted"] is False:
+        embed = await tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx)
+        button_accept_view = EnslaveUserLicenseAgreementButton(user_document, client, ctx,
+                                                               currently_selected_profile_id)
 
+        if interaction is None:
+            await stw.slash_send_embed(ctx, slash, embeds=embed, view=button_accept_view)
+        else:
+            await interaction.edit_original_response(embed=embed, view=button_accept_view)
+
+    elif current_profile["authentication"]["accountId"] is None:
+        embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx)
+        account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id)
+
+        if interaction is None:
+            await stw.slash_send_embed(ctx, slash, embeds=embed, view=account_stealing_view)
+        else:
+            await interaction.edit_original_response(embed=embed, view=account_stealing_view)
+
+class EnslaveAndStealUserAccount(discord.ui.View):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id):
+        super().__init__()
+
+        self.currently_selected_profile_id = currently_selected_profile_id
+        self.client = client
+        self.user_document = user_document
+        self.ctx = ctx
+
+        self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
+                                                                  user_document)
+        self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
+
+    @discord.ui.select(
+        placeholder="Select another profile here",
+        min_values=1,
+        max_values=1,
+        options=[],
+    )
+    async def profile_select(self, select, interaction):
+        await select_change_profile(self, select, interaction)
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Authenticate", emoji="locked")
+    async def account_stealing_button(self, button, interaction):
+        pass
+
+
+class EnslaveUserLicenseAgreementButton(discord.ui.View):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id):
+        super().__init__()
+
+        self.currently_selected_profile_id = currently_selected_profile_id
+        self.client = client
+        self.user_document = user_document
+        self.ctx = ctx
+
+        self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id), user_document)
+        self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
+
+    @discord.ui.select(
+        placeholder="Select another profile here",
+        min_values=1,
+        max_values=1,
+        options=[],
+    )
+    async def profile_select(self, select, interaction):
+        await select_change_profile(self, select, interaction)
+
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Accept Agreement", emoji="library_handshake")
+    async def soul_selling_button(self, button, interaction):
+        await add_enslaved_user_accepted_license(self, interaction)
+        await handle_dev_auth(self.client, self.ctx, False, interaction, self.user_document)
 
 # cog for the device auth login command.
 class ProfileAuth(ext.Cog):

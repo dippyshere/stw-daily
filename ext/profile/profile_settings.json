@@ -1,7 +1,10 @@
 {
     "upcoming_display_days": {
         "aliases": [
-            "toule_dans_le_vide"
+            "upcoming",
+            "upcoming_display",
+            "upcoming_display_day",
+            "future_reward_display"
         ],
         "default": 7,
         "emoji": "cal_anim",
@@ -17,7 +20,9 @@
     },
     "display_name_on_auth": {
         "aliases": [
-            "ookay_thief"
+            "display_name_on_auth",
+            "display_name",
+            "auth_name"
         ],
         "default": true,
         "description": "Should STW Daily display your epic games on authentication?",
@@ -25,7 +30,8 @@
     },
     "claim_research": {
         "aliases": [
-            "land_down_under"
+            "research_claim",
+            "claim_res"
         ],
         "default": false,
         "description": "Should STW Daily automatically claim your research points?",
@@ -33,7 +39,10 @@
     },
     "claim_free_llamas": {
         "aliases": [
-            "twenty_five_commands_is_the_limit"
+            "llama_claim",
+            "claim_llamas",
+            "claim_free_llama",
+            "claim_free_llamas"
         ],
         "default": false,
         "description": "Should STW Daily automatically purchase any free llamas available?",
@@ -41,7 +50,11 @@
     },
     "claim_daily": {
         "aliases": [
-            "dangerous_big_data"
+            "daily_claim",
+            "claim_daily_rewards",
+            "claim_daily_reward",
+            "claim_daily",
+            "claim_dailies"
         ],
         "default": false,
         "description": "Should STW Daily automatically claim your daily whenever it is available?",
@@ -49,39 +62,56 @@
     },
     "ephemeral": {
         "aliases": [
-            "im_just_a_selfish_ghost"
+            "invisible",
+            "ephemeral",
+            "ephemeral_messages",
+            "ephemeral_message",
+            "hide_messages",
+            "hide_message",
+            "hide",
+            "hidden",
+            "invisible_messages",
+            "invisible_message",
+            "invisible_messages",
+            "hidden_messages",
+            "hidden_message"
         ],
         "default": false,
         "description": "Should STW Daily make any embeds sent through the utilisation of slash commands ephemeral? (Only visible to you)",
-        "emoji": "check_empty"
+        "emoji": "look_disabled_normal"
     },
-    "default_command": {
+    "language": {
         "aliases": [
-            "tbh idk what happens when you dont use underscores so here's an attempt at that i guess lmao"
+            "i18n",
+            "l10n",
+            "lang",
+            "language",
+            "locale",
+            "locales",
+            "localization",
+            "localizations",
+            "localise",
+            "localised",
+            "localize",
+            "localized",
+            "internationalisation",
+            "internationalization",
+            "internationalise",
+            "internationalised",
+            "internationalize",
+            "international"
         ],
-        "default": "daily",
-        "description": "What should the default command be when you utilise stw daily? (For when you mention stw daily and send arguments without utilising any command prefix)",
-        "modal_title": "Change default command",
+        "default": "en-GB",
+        "description": "Changes STW Dailies commands to localise command information into the language provided",
+        "modal_title": "Enter a valid locale",
         "input_placeholder": "Enter value here",
-        "input_label": "Enter an existing commands prefix",
-        "check_function": "check_default_command_change",
-        "emoji": "calendar",
+        "input_label": "Enter a new locale here",
+        "check_function": "check_localisation",
+        "emoji": "world_globe",
         "input_type": "short",
         "min_length": 0,
         "max_length": 100,
-        "req_string": "Must be a valid commands name or its alias"
-    },
-    "setting_eight": {
-        "aliases": [],
-        "default": false,
-        "description": "but the rain always comes at the worst times",
-        "emoji": "8"
-    },
-    "setting_9": {
-        "aliases": [],
-        "default": false,
-        "description": "nobody does it like you do",
-        "emoji": "9"
+        "req_string": "Must be a valid locale as given by https://discord.com/developers/docs/reference#locales"
     },
     "sex": {
         "aliases": [

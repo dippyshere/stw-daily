@@ -294,15 +294,15 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
     async def settings_select(self, select, interaction):
         await settings_profile_setting_select(self, select, interaction)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2, label="Previous Page")
     async def previous_page(self, button, interaction):
         await shift_page_on_sub_page(self, interaction, -1) # hio :3 hyanson
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2, label="Next Page")
     async def next_page(self, button, interaction):
         await shift_page_on_sub_page(self, interaction, 1)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_arrow", row=3)
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_arrow", row=3, label="Main Menu")
     async def exit_back(self, button, interaction):
         await back_to_main_page(self, interaction)
 
@@ -310,11 +310,11 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
     async def edit_setting_non_bool(self, button, interaction):
         await edit_current_setting(self, interaction)
 
-    @discord.ui.button(style=discord.ButtonStyle.green, emoji="check_checked", row=3)
+    @discord.ui.button(style=discord.ButtonStyle.green, emoji="check_checked", row=3, label="True")
     async def edit_setting_bool_true(self, button, interaction):
         await edit_current_setting_bool(self, interaction, True)
 
-    @discord.ui.button(style=discord.ButtonStyle.red, emoji="check_empty", row=3)
+    @discord.ui.button(style=discord.ButtonStyle.red, emoji="check_empty", row=3, label="False")
     async def edit_setting_bool_false(self, button, interaction):
         await edit_current_setting_bool(self, interaction, False)
 
@@ -369,11 +369,11 @@ class MainPageProfileSettingsView(discord.ui.View):
     async def settings_select(self, select, interaction):
         await settings_profile_setting_select(self, select, interaction)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2, label="Previous Page")
     async def previous_page(self, button, interaction):
         await shift_page(self, interaction, -1)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2, label="Next Page")
     async def next_page(self, button, interaction):
         await shift_page(self, interaction, 1)
 
@@ -635,23 +635,11 @@ class ProfileSettings(ext.Cog):
 def setup(client):
     client.add_cog(ProfileSettings(client))
 
-# ---- CHECK FUNCTIONS ----
-
-def check_default_command_change(client, ctx, value):
-    stringable = True
-    try:
-        str(value)
-    except:
-        stringable = False
-
-    return stringable
-
-
-def check_upcoming_display_days(client, ctx, value):
-    intable = True
-    try:
-        int(value)
-    except:
-        intable = False
-
-    return intable
+# le guide for ze epic function for le check for le non bool type of le setting
+# must be synchronous no async around here
+# ok so the name of the function must be unique and must be in this file, the parameters passed to the function are
+# bot client, context, value
+# where bot client is well the same fucking client as everywhere
+# context is either the context from a slash command or a normal command
+# value is the inputted value from the user which the function should check if it meets the requirements for this setting
+# the return type must be the value that the setting will become, or False if the value inputted is not allowed

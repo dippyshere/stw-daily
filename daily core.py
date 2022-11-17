@@ -57,7 +57,8 @@ def main():
         "battlebreakers.battlebreakers",  # why do you only call me when you're high
         "battlebreakers.bbreward",
         "power",
-        # "invite",
+        "i18n-testing",
+        "invite",
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
     client.a = "✅ Official Verified Deployment", True  # seleckted

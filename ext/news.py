@@ -90,19 +90,19 @@ class NewsView(discord.ui.View):
     async def interaction_check(self, interaction):
         return await stw.view_interaction_check(self, interaction, "news")
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="prev", row=0)
+    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="prev", row=0, label="Previous Page")
     async def prev_button(self, _button, interaction):
         await self.change_page(interaction, "prev")
 
-    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="next", row=0)
+    @discord.ui.button(style=discord.ButtonStyle.primary, emoji="next", row=0, label="Next Page")
     async def next_button(self, _button, interaction):
         await self.change_page(interaction, "next")
 
-    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="stw", disabled=True, row=1)
+    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="stw", disabled=True, row=1, label="Switch to STW")
     async def stw_button(self, _button, interaction):
         await self.change_mode(interaction, "stw")
 
-    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="br", row=1)
+    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="br", row=1, label="Switch to BR") # hi >:3 ?
     async def br_button(self, _button, interaction):
         await self.change_mode(interaction, "br")
 
