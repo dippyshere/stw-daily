@@ -16,7 +16,7 @@ import stwutil as stw
 import motor.motor_asyncio
 
 from ext.profile.bongodb import *
-
+from ext.profile.settings_checks import *
 
 async def settings_profile_setting_select(view, select, interaction):
     for child in view.children:
@@ -103,7 +103,7 @@ async def sub_settings_profile_select_change(view, select, interaction):
 
     await replace_user_document(view.client, view.user_document)
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
-    embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
+    embed.fields[0].value += f"\u200b\n*Selected Profile **{new_profile_selected}***\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index)
@@ -247,9 +247,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
         settings_options = generate_settings_view_options(client, current_slice)
 
-        selected_profile = user_document["global"]["selected_profile"]
-
-        self.children[0].options = generate_profile_select_options(client, selected_profile, user_document)
+        self.children[0].options = generate_profile_select_options(client, int(self.selected_profile), user_document)
         self.children[1].options = settings_options
 
         self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
@@ -264,6 +262,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
 
         else:
             self.children = self.children[:-2]
+
 
     async def on_timeout(self):
         await settings_view_timeout(self)
@@ -451,20 +450,138 @@ async def sub_setting_page(setting, client, ctx, user_profile):
     return page_embed
 
 
+async def map_settings_aliases(client):
+    default_settings = client.default_settings
+    setting_map = {}
+
+    for setting in default_settings:
+        setting_info = default_settings[setting]
+        setting_map[setting] = setting
+
+        for alias in setting_info["aliases"]:
+            setting_map[alias] = setting
+
+    return setting_map
+
+
+async def default_page_profile_settings(client, ctx, user_profile, settings, slash, message):
+    page = client.config["profile_settings"]["default_settings_page"]
+    main_page_embed = await main_page(page, client, ctx, user_profile, settings)
+    main_page_embed.fields[0].value += message
+
+    settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings)
+    await stw.slash_send_embed(ctx, slash, embeds=main_page_embed, view=settings_view)
+
+
 async def settings_command(client, ctx, slash=False, setting=None, profile=None, value=None):
     settings = client.settings_choices
 
     user_profile = await get_user_document(client, ctx.author.id)
+    user_snowflake = user_profile["user_snowflake"]
 
-    if setting is None or profile is None or value is None:
-        page = 1
+    if setting is not None or profile is not None or value is not None:
+        setting_map = await map_settings_aliases(client)
 
-        main_page_embed = await main_page(page, client, ctx, user_profile, settings)
-        main_page_embed.fields[0].value += "\u200b\n*Waiting for an action*\n\u200b\n"
+        happy_message = "\u200b\n*"
+        if setting in list(setting_map.keys()):
+            settings_per_page = client.config["profile_settings"]["settings_per_page"]
+            setting = setting_map[setting]
+            happy_message += f"Set Setting **{setting}**"
+        else:
+            setting = False
 
-        settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings)
-        await stw.slash_send_embed(ctx, slash, embeds=main_page_embed, view=settings_view)
-        return
+        if str(profile) in list(user_profile["profiles"].keys()):
+            client.processing_queue[user_snowflake] = True
+
+            new_profile_selected = int(profile)
+            user_profile["global"]["selected_profile"] = new_profile_selected
+            await replace_user_document(client, user_profile)
+
+            del client.processing_queue[user_snowflake]
+            happy_message += f" on profile **{profile}**"
+        elif profile is not None:
+            profile = False
+
+        if value is not None and value is not False and profile is not None and profile is not False and setting is not None and setting is not False:
+            client.processing_queue[user_snowflake] = True
+
+            if isinstance(client.default_settings[setting]['default'], bool):
+                check_function = check_bool
+            else:
+                check_function = globals()[client.default_settings[setting]['check_function']]
+
+            check_result = check_function(client, ctx, value)
+
+            if check_result is not False:
+                selected_profile = user_profile["global"]["selected_profile"]
+
+                if isinstance(client.default_settings[setting]['default'], bool):
+                    user_profile["profiles"][profile]["settings"][setting] = boolean_string_representation[value]
+                else:
+                    user_profile["profiles"][profile]["settings"][setting] = check_result
+
+                await replace_user_document(client, user_profile)
+
+            if check_result is not False:
+                happy_message += f" to **{value}**"
+            else:
+                value = False
+
+            del client.processing_queue[user_snowflake]
+
+            if value is not False:
+                embed = await sub_setting_page(setting, client, ctx, user_profile)
+
+                selected_setting_index = (settings.index(setting) % settings_per_page) - 1
+                page = math.ceil(settings.index(setting) / settings_per_page)
+
+                sub_view = SettingProfileSettingsSettingViewOfSettingSettings(setting, user_profile,
+                                                                              client, page, ctx,
+                                                                              settings,
+                                                                              selected_setting_index)
+                embed.fields[0].value += happy_message + "*\n\u200b\n"
+                await stw.slash_send_embed(ctx, slash, embeds=embed, view=sub_view)
+                return
+
+        elif value is not None:
+            value = False
+
+        list_of_potential_nones = [setting, profile, value]
+        associated_error = ["Invalid setting passed", "Invalid profile passed", "Invalid value passed"]
+        associated_missing = ["Missing setting passed", "Missing profile to apply change to", "Missing value to change to"]
+        base_error_message = "\u200b\n*Failed to apply setting change:"
+
+        for index, missing_or_error in enumerate(list_of_potential_nones):
+
+            if missing_or_error == False:
+                base_error_message += f" {associated_error[index]}"
+            elif missing_or_error == None:
+                base_error_message += f" {associated_missing[index]}"
+            if not missing_or_error or not missing_or_error:
+                if index < len(list_of_potential_nones) - 1:
+                    base_error_message += ","
+
+        base_error_message += "*\n\u200b\n"
+
+        if setting is not None and setting is not False:
+            embed = await sub_setting_page(setting, client, ctx, user_profile)
+            selected_setting_index = (settings.index(setting) % settings_per_page) - 1
+            page = math.floor(settings.index(setting) / settings_per_page) + 1
+
+            sub_view = SettingProfileSettingsSettingViewOfSettingSettings(setting, user_profile,
+                                                                          client, page, ctx,
+                                                                          settings,
+                                                                          selected_setting_index)
+            embed.fields[0].value += base_error_message
+            await stw.slash_send_embed(ctx, slash, embeds=embed, view=sub_view)
+            return
+        else:
+            await default_page_profile_settings(client, ctx, user_profile, settings, slash, base_error_message)
+            return
+
+    await default_page_profile_settings(client, ctx, user_profile, settings, slash,
+                                        "\u200b\n*Waiting for an action*\n\u200b\n")
+    return
 
 
 # cog for the profile related settings & Disclosure - You & Me (Flume Remix)
@@ -483,10 +600,10 @@ class ProfileSettings(ext.Cog):
                              setting: Option(str,
                                              "The name of the setting you wish to change",
                                              autocomplete=autocomplete_settings) = None,
+                             profile: Option(str,
+                                             "Which profile you would wish to execute this setting change on") = None,
                              value: Option(str,
-                                           "The value you wish to set this setting to") = None,
-                             profile: Option(int,
-                                             "Which profile you would wish to execute this setting change on") = None
+                                 "The value you wish to set this setting to") = None
                              ):
         await settings_command(self.client, ctx, True, setting, profile, value)
 
@@ -502,7 +619,7 @@ class ProfileSettings(ext.Cog):
                  This command allows you to change the settings of your profiles, you can either utilise the built in navigation of settings to change them, or change your settings through the utilisation of the commands arguments.(PENDING)
                 \u200b
                 """)
-    async def settings(self, ctx, setting=None, value=None, profile=None):
+    async def settings(self, ctx, setting=None, profile=None, value=None):
         await settings_command(self.client, ctx, False, setting, profile, value)
 
 

@@ -218,6 +218,7 @@ max_friendly_name_length = 100
 min_friendly_name_length = 1
 maximum_profiles = 25
 settings_per_page = 5
+default_settings_page = 1
 
 #a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]

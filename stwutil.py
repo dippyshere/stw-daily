@@ -44,7 +44,7 @@ async def view_interaction_check(view, interaction, command):
             embed = await post_error_possibilities(interaction, view.client, command, acc_name, error_code,
                                                    support_url)
             await interaction.response.send_message(embed=embed, ephemeral=True)
-            return False, view
+            return False
         else:
             return False
 
