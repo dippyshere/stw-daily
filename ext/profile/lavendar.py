@@ -150,17 +150,17 @@ class ProfileMainView(discord.ui.View):
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="survivorgeneric", row=1)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="library_person", row=1)
     async def name_button(self, _button, interaction):
         await interaction.response.send_modal(
             ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self))
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="leadsurvivor", row=1)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="library_add_person", row=1)
     async def new_button(self, _button, interaction):
         await interaction.response.send_modal(
             NewProfileModal(self.ctx, self.client, self.user_document, self.message, self))
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="cross", row=1)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="library_trashcan", row=1)
     async def delete_button(self, _button, interaction):
 
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
@@ -200,7 +200,7 @@ class ProfileMainView(discord.ui.View):
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="meleegeneric", row=2)
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="library_gear", row=2)
     async def settings_button(self, _button, interaction):
         await settings_command(self.client, self.ctx)
 
@@ -214,7 +214,7 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="link_icon", row=2)
     async def auth_button(self, _button, interaction):
-        await handle_dev_auth(self.client, self.ctx)
+        await handle_dev_auth(self.client, self.ctx, False)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
         embed.description += f"\n*Started authentication interface, rerun to continue*\n\u200b"

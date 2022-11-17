@@ -1,6 +1,6 @@
 {
     "global": {
-        "profiles_ver": 936,
+        "profiles_ver": 945,
         "rewrite_older": true,
         "selected_profile": 0,
         "banned": false,
@@ -39,6 +39,7 @@
             },
             "authentication": {
                 "accountId": null,
+                "epic_name": null,
                 "deviceId": null,
                 "secret": null,
                 "expires": null

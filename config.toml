@@ -11,6 +11,7 @@ error_messages = [
 	"Uh-oh! Something goofed"
 	]
 
+
 support_url = "https://discord.gg/QYgABPDqzH"
 
 # list of known auth codes which are automatically invalidated
@@ -163,13 +164,50 @@ expedition_all		= "<:TIconExpeditionAll512:1034006500043141171>"
 expedition_airplane	= "<:TIconSTAirplane128:1034006497945993216>"
 expedition_dirtbike	= "<:TIconSTDirtbike128:1034006495345520671>"
 expedition_glider	= "<:TIconSTHangGlider128:1034006492854112296>"
-expedition_helicopter= "<:TIconSTHelicopter128:1034006490543034418>"
+expedition_helicopter="<:TIconSTHelicopter128:1034006490543034418>"
 expedition_rowboat	= "<:TIconSTRowboat128:1034006488626253824>"
 expedition_speedboat= "<:TIconSTSpeedboat128:1034006486080294913>"
 expedition_truck	= "<:TIconSTStruck128:1034006484490661888>"
 left_arrow 			= "<:LeftArrow:1042410589810589727>"
 right_arrow			= "<:RightArrow:1042410587700854784>"
 link_icon			= "<:LinkIcon:1042410822682550282>"
+world_globe			= "<:globewithmeridians_teams:1042715257371623464>"
+# one second
+library_bell		= "<:T_UI_IconLibrary_Bell_128:1042715212639371284>"
+library_chat		= "<:T_UI_IconLibrary_Chat_128:1042715214296129556>"
+library_banknotes 	= "<:T_UI_IconLibrary_BankNotes_128:1042715210923917332>"
+library_clipboard 	= "<:T_UI_IconLibrary_Clipboard_128:1042715215793491988>"
+library_clock 		= "<:T_UI_IconLibrary_Clock_128:1042715217332813894>"
+library_cogs 		= "<:T_UI_IconLibrary_Cogs_128:1042715218909876234>"
+library_disconnected= "<:T_UI_IconLibrary_Disconnected_12:1042715220516282368>"
+library_electrical  = "<:T_UI_IconLibrary_Electrical_128:1042715224295342080>"
+library_fingerprint = "<:T_UI_IconLibrary_Fingerprint_128:1042715225864024064>"
+library_floppydisc 	= "<:T_UI_IconLibrary_FloppyDisc_128:1042715227453669396>"
+library_folder 		= "<:T_UI_IconLibrary_Folder_128:1042715228833591297>"
+library_gear 		= "<:T_UI_IconLibrary_Gear_128:1042715230712643594>"
+library_globe		= "<:T_UI_IconLibrary_Globe_128:1042715255224160258>"
+library_hammer 		= "<:T_UI_IconLibrary_Hammer_128:1042715231807348789>"
+library_handshake 	= "<:T_UI_IconLibrary_Handshake_128:1042715233447313480>"
+library_hourglass	= "<:T_UI_IconLibrary_Hourglass_128:1042715235393486858>"
+library_input		= "<:T_UI_IconLibrary_Input_128:1042715236874063932>"
+library_list		= "<:T_UI_IconLibrary_List_128:1042715238371442728>"
+library_message		= "<:T_UI_IconLibrary_Message_128:1042715239914942544>"
+library_paperclip	= "<:T_UI_IconLibrary_PaperClip_128:1042715241257107560>"
+library_people		= "<:T_UI_IconLibrary_People_128:1042715242943225907>"
+library_pin			= "<:T_UI_IconLibrary_Pin_128:1042715244214112258>"
+library_reset		= "<:T_UI_IconLibrary_Reset_128:1042715246160253069>"
+library_robotarm	= "<:T_UI_IconLibrary_RobotArm_128:1042715247418548245>"
+library_scissors	= "<:T_UI_IconLibrary_Scissors_128:1042715249394065449>"
+library_stop		= "<:T_UI_IconLibrary_Stop_128:1042717703057707089>"
+library_store		= "<:T_UI_IconLibrary_Store_128:1042715250954358784>"
+library_tape		= "<:T_UI_IconLibrary_Tape_128:1042715252082618387>"
+library_trashcan	= "<:T_UI_IconLibrary_TrashCan_128:1042715254049738752>"
+library_person		= "<:T_UI_IconLibrary_Person_128:1042718229971349555>"
+library_add_person	= "<:T_UI_IconLibrary_PlusPerson_128:1042718227207307324>"
+library_alarm_clock = "<:T_UI_IconLibrary_AlarmClock_128:1042721308380774460>"
+shield_normal		= "<:GunnerShield_Normal:1042721306715631677>"
+look_disabled_normal= "<:Look_Disabled_Normal:1042721270493626398>"
+look_normal 		= "<:Look_Normal:1042721268778147850>"
 
 # battle breakers emojis :sob:
 Cleric_VR2_Dark_TerrRifle_T04_Icon = "<:Cleric_VR2_Dark_TerrRifle_T04_Ic:1033295042086973450>"
@@ -362,6 +400,39 @@ defaultcolor44 		= "#ff97ff"
 uri_env_var = "STW_MONGO_URI" # added the env var mongodb://localhost:27017
 database 	= "stw_dailies"
 collection 	= "user_info"
+
+[valid_locales]
+da		= ["Danish", "Dansk", "da", "da-DK", "da_DK", "daDK"]
+de		= ["German", "Deutsch", "de", "germany", "de-DE", "de_DE", "deDE", "deutschland"]
+en-GB	= ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en"]
+en-US	= ["English US", "en-US", "US", "usa"]
+es-ES	= ["Spanish", "Español", "Espanol", "es-ES", "spain", "es_ES", "esES", "españa", "espana"]
+fr		= ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francais", "francaise", "francais"]
+hr		= ["Croatian", "Hrvatski", "hr", "croatia", "hr-HR", "hr_HR", "hrHR", "hrvatski", "hrvatska"]
+it		= ["Itallian", "Italian", "Italiano", "it", "italy", "it-IT", "it_IT", "itIT", "italiano", "italia"]
+lt		= ["Lithuanian", "Lietuviškai", "lt", "lithuania", "lt-LT", "lt_LT", "ltLT", "lietuviškai", "lietuva", "lietuviškai", "skubby"]
+hu		= ["Hungarian", "Magyar", "hu", "hungary", "hu-HU", "hu_HU", "huHU", "magyarorszag", "magyarország"]
+nl		= ["Dutch", "Nederlands", "nl", "netherlands", "nl-NL", "nl_NL", "nlNL", "nederland", "nederlandse"]
+no		= ["Norwegian", "Norsk", "Nork", "Norway", "no", "Nor", "Nynorsk", "Nordic", "Norse"]
+pl		= ["Polish", "Polski", "pl", "poland", "pl-PL", "pl_PL", "plPL", "polski", "polska", "Pol"]
+pt-BR	= ["Portuguese", "Português", "Portugues", "pt-BR", "brazil", "pt_BR", "ptBR", "portugues", "portuguese", "portugues"]
+ro		= ["Romanian", "Română", "Roman", "ro", "romania", "ro-RO", "ro_RO", "roRO", "romana", "romania", "thief"] # the only reason i kept making new files was cos dumbass github kept stopping
+fi		= ["Finnish", "Suomi", "fi", "finland", "finish", "suomi", "suomen kieli", "finnic", "fin"] #oh you dont want to put it in a seperate file? lmao ok thn mb ohhhh that makes sense :3
+sv-SE	= ["Swedish", "Svenska", "sv-SE", "sweden", "sv_SE", "svSE", "svenska", "svensk", "svenska"]
+vi		= ["Vietnamese", "Tiếng Việt", "Viet", "vi", "vietnam", "vi-VN", "vi_VN", "viVN", "vietnamese", "vietnam"]
+tr		= ["Turkish", "Türkçe", "Turk", "tr", "turkey", "tr-TR", "tr_TR", "trTR", "turkish", "turkce", "turkce"]
+cs		= ["Czech", "Čeština", "Cesky", "cs", "czech", "czech republic", "cs-CZ", "cs_CZ", "csCZ", "czech republic", "cesky", "ceska"]
+el		= ["Greek", "Ελληνικά", "el", "greece", "el-GR", "el_GR", "elGR", "greek", "greek"]
+bg		= ["Bulgarian", "български", "bg", "bulgaria", "bg-BG", "bg_BG", "bgBG", "bulgarian", "bulgarian"]
+ru		= ["Russian", "Pусский", "ru", "russia", "ru-RU", "ru_RU", "ruRU", "russian", "russian"]
+uk		= ["Ukrainian", "Українська", "uk", "ukraine", "uk-UA", "uk_UA", "ukUA", "ukrainian", "ukrainian"]
+hi		= ["Hindi", "हिन्दी", "hi", "india", "hi-IN", "hi_IN", "hiIN", "hindi", "hindi"]
+th		= ["Thai", "ไทย", "th", "thailand", "th-TH", "th_TH", "thTH", "thai", "thai"]
+zh-CN 	= ["Chinese, China", "中文", "zh", "zh-CN", "zh_CN", "zhCN", "zh-Hans", "zh_Hans", "zhHans"]
+ja		= ["Japanese", "日本語", "ja", "ja-JP", "ja_JP", "jaJP", "ja-JP-mac", "ja_JP_mac", "jaJPmac"]
+zh-TW	= ["Chinese, Taiwan", "繁體中文", "zh", "zh-TW", "zh_TW", "zhTW", "zh-Hant", "zh_Hant", "zhHant"]
+ko 		= ["Korean", "한국어", "ko", "ko-KR", "ko_KR", "koKR", "ko-KP", "ko_KP", "koKP"]
+# whats with tthe :sob: lmao what have you done oh you added more
 
 [entry_token_key_for_game]
 fn = "token"

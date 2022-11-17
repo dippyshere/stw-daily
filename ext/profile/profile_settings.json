@@ -8,7 +8,7 @@
         "description": "How many upcoming days should STW Daily display for your upcoming rewards after claiming daily rewards?",
         "modal_title": "Change upcoming display days",
         "input_type": "short",
-        "input_placeholder": "Enter value here",
+        "input_placeholder": "Enter value here, Current value: {0}",
         "input_label": "Enter a new value between 1 and 50",
         "check_function": "check_upcoming_display_days",
         "min_length": 1,
@@ -83,34 +83,22 @@
         "description": "nobody does it like you do",
         "emoji": "9"
     },
-    "setting_10": {
-        "aliases": [],
-        "default": false,
-        "description": "i do whatever i could do",
-        "emoji": "10"
-    },
-    "setting_11": {
-        "aliases": [],
-        "default": false,
-        "description": "dying to let you know",
-        "emoji": "11"
-    },
-    "setting_12": {
-        "aliases": [],
-        "default": false,
-        "description": "left at first",
-        "emoji": "12"
-    },
-    "setting_13": {
-        "aliases": [],
-        "default": false,
-        "description": "setting 14",
-        "emoji": "13"
-    },
-    "setting_14": {
-        "aliases": [],
-        "default": false,
-        "description": "h",
-        "emoji": "14"
+    "sex": {
+        "aliases": [
+            "sek",
+            "x",
+            "secks"
+        ],
+        "default": "sex yes yes i love the sekx",
+        "description": "many sex",
+        "modal_title": "sex???",
+        "input_placeholder": "sekcx",
+        "input_label": "pls sex",
+        "check_function": "sex_check",
+        "emoji": "spongebob",
+        "input_type": "long",
+        "min_length": 0,
+        "max_length": 4000,
+        "req_string": "much sex"
     }
 }

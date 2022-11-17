@@ -28,7 +28,7 @@ async def settings_profile_setting_select(view, select, interaction):
     embed.fields[0].value += f"\u200b\n*Selected Setting: **{select.values[0][:-1]}***\n\u200b\n"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(select.values[0][:-1], view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  int(select.values[0][-1]))
+                                                                  int(select.values[0][-1]), view.message)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
@@ -37,8 +37,9 @@ async def back_to_main_page(view, interaction):
         child.disabled = True
     await interaction.response.edit_message(view=view)
     view.stop()
-    main_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings)
+    main_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings, view.message)
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+    embed.fields[0].value += f"\u200b\n*Returned to main menu*\n\u200b\n"
     await interaction.edit_original_response(embed=embed, view=main_view)
 
 
@@ -60,7 +61,7 @@ async def shift_page(view, interaction, amount):
 
     embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
 
-    new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings)
+    new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings, view.message)
     await interaction.edit_original_response(embed=embed, view=new_view)
 
 
@@ -86,7 +87,7 @@ async def shift_page_on_sub_page(view, interaction, amount):
     embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  view.selected_setting_index)
+                                                                  view.selected_setting_index, view.message)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
@@ -106,7 +107,7 @@ async def sub_settings_profile_select_change(view, select, interaction):
     embed.fields[0].value += f"\u200b\n*Selected Profile **{new_profile_selected}***\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  view.selected_setting_index)
+                                                                  view.selected_setting_index, view.message)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=sub_view)
@@ -126,7 +127,7 @@ async def settings_profile_select_change(view, select, interaction):
     await replace_user_document(view.client, view.user_document)
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
     embed.fields[0].value += f"\u200b\n*Selected profile **{new_profile_selected}***\n\u200b"
-    new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings)
+    new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings, view.message)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=new_view)
@@ -135,7 +136,7 @@ async def settings_profile_select_change(view, select, interaction):
 async def edit_current_setting(view, interaction):
     selected_setting = view.selected_setting
     setting_information = view.client.default_settings[selected_setting]
-    modal = RetrieveSettingChangeModal(setting_information, view.client, view, view.user_document, view.ctx)
+    modal = RetrieveSettingChangeModal(setting_information, view.client, view, view.user_document, view.ctx, view.selected_setting)
     await interaction.response.send_modal(modal)
 
 
@@ -159,20 +160,22 @@ async def edit_current_setting_bool(view, interaction, set_value):
     embed.fields[0].value += f"\u200b\n*Changed **{view.selected_setting}** to **{current_value}***\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  view.selected_setting_index)
+                                                                  view.selected_setting_index, view.message)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
 class RetrieveSettingChangeModal(discord.ui.Modal):
-    def __init__(self, setting_information, client, view, user_document, ctx):
+    def __init__(self, setting_information, client, view, user_document, ctx, current_setting):
 
         self.client = client
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
-        title = setting_information["modal_title"]
+        self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+
+        title = setting_information["modal_title"].format(self.current_setting_value)
         super().__init__(title=title)
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
@@ -180,8 +183,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         input_style = discord.InputTextStyle.long if setting_information[
                                                          "input_type"] == "long" else discord.InputTextStyle.short
         setting_input = discord.ui.InputText(style=input_style,
-                                             label=setting_information["input_label"],
-                                             placeholder=setting_information["input_placeholder"],
+                                             label=setting_information["input_label"].format(self.current_setting_value),
+                                             placeholder=setting_information["input_placeholder"].format(self.current_setting_value),
                                              required=True,
                                              min_length=setting_information["min_length"],
                                              max_length=setting_information["max_length"])
@@ -202,15 +205,15 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
 
         view = self.view
 
-        if check_result:
+        if check_result is not False:
             selected_profile = self.user_document["global"]["selected_profile"]
-            self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = value
+            self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = check_result
             await replace_user_document(view.client, view.user_document)
 
         embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
         sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                       view.client, view.page, view.ctx, view.settings,
-                                                                      view.selected_setting_index)
+                                                                      view.selected_setting_index, view.message)
         if check_result:
             embed.fields[0].value += f"\u200b\n*Changed Setting Value to **{value}***\n\u200b"
         else:
@@ -230,8 +233,11 @@ async def settings_view_timeout(view):
 
 
 class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
-    def __init__(self, selected_setting, user_document, client, page, ctx, settings, selected_setting_index):
+    def __init__(self, selected_setting, user_document, client, page, ctx, settings, selected_setting_index, pass_message=None):
         super().__init__()
+
+        if pass_message != None:
+            self.message = pass_message
 
         settings_per_page = client.config["profile_settings"]["settings_per_page"]
         self.user_document = user_document
@@ -290,7 +296,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2)
     async def previous_page(self, button, interaction):
-        await shift_page_on_sub_page(self, interaction, -1)
+        await shift_page_on_sub_page(self, interaction, -1) # hio :3 hyanson
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2)
     async def next_page(self, button, interaction):
@@ -300,7 +306,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
     async def exit_back(self, button, interaction):
         await back_to_main_page(self, interaction)
 
-    @discord.ui.button(style=discord.ButtonStyle.blurple, emoji="meleegeneric", row=3)
+    @discord.ui.button(style=discord.ButtonStyle.blurple, emoji="library_cogs", row=3, label="Change Value")
     async def edit_setting_non_bool(self, button, interaction):
         await edit_current_setting(self, interaction)
 
@@ -314,8 +320,11 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
 
 
 class MainPageProfileSettingsView(discord.ui.View):
-    def __init__(self, user_document, client, page, ctx, settings):
+    def __init__(self, user_document, client, page, ctx, settings, pass_message=None):
         super().__init__()
+
+        if pass_message != None:
+            self.message = pass_message
 
         settings_per_page = client.config["profile_settings"]["settings_per_page"]
         self.user_document = user_document
@@ -354,8 +363,8 @@ class MainPageProfileSettingsView(discord.ui.View):
     @discord.ui.select(
         placeholder="Select setting to view/change here",
         min_values=1,
-        max_values=1,
-        options=[],
+        max_values=1, # i thought you were afk but it was just my theme :3
+        options=[],  # :3
     )
     async def settings_select(self, select, interaction):
         await settings_profile_setting_select(self, select, interaction)
@@ -443,7 +452,7 @@ async def sub_setting_page(setting, client, ctx, user_profile):
     else:
         requirement_string = setting_info['req_string']
 
-    page_embed.add_field(name=f"Selected Setting: {setting}",
+    page_embed.add_field(name=f"{client.config['emojis'][setting_info['emoji']]} Selected Setting: {setting}",
                          value=f"""```asciidoc\n== {setting.replace("_", " ").capitalize()}\n// {setting}\n\nCurrent Value:: {selected_profile_data["settings"][setting]}\n\n{setting_info["description"]}\n\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```""",
                          inline=False)
 
@@ -625,7 +634,6 @@ class ProfileSettings(ext.Cog):
 
 def setup(client):
     client.add_cog(ProfileSettings(client))
-
 
 # ---- CHECK FUNCTIONS ----
 

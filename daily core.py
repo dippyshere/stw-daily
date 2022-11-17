@@ -81,6 +81,7 @@ async def on_ready():
             client.auth_command = command
             break
 
+    client.localisation = stw.reverse_dict_with_list_keys(client.config["valid_locales"])
     client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
     print("Started STW Daily")
 

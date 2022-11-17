@@ -1,46 +1,89 @@
+import time
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
 
 import stwutil as stw
-from ext.profile.bongodb import get_user_document
+from ext.profile.bongodb import get_user_document, replace_user_document, generate_profile_select_options
+
+TOS_VERSION = 1
 
 
-async def tos_acceptance_embed(client, ctx):
+async def tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx):
     # TODO: Create proper TOS, Privacy Policy & EULA for this command
     embed_colour = client.colours["profile_lavendar"]
+    selected_profile_data = user_document["profiles"][str(currently_selected_profile_id)]
+
     embed = discord.Embed(title=await stw.add_emoji_title(client, "User Agreement", "pink_link"),
-                          description=f"""\u200b
-                          
-                          **slap**
-                          ***slap***
-                          ~~grab~~
-                          __choke__
-                          *shut up*
-                          `bitch`
-                          ```sex```
-                          
-                          
-                          \u200b""",
-                          colour=embed_colour)
+                               description=f"""\u200b
+                              **Currently Selected Profile {currently_selected_profile_id}:**
+                              ```{selected_profile_data["friendly_name"]}```\u200b\n""",
+                               color=embed_colour)
+    embed.description += f"""**You have not accepted the user agreement on profile {currently_selected_profile_id}**
+                          ```Agreement:\n\u200b\nUsage of these STW Daily features is governed by the following additional set of terms:\n\u200b\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus in mollis nunc sed id semper risus. Quis enim lobortis scelerisque fermentum dui faucibus in. Et sollicitudin ac orci phasellus. Orci dapibus ultrices in iaculis nunc. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum. Sapien faucibus et molestie ac feugiat sed. Ut ornare lectus sit amet est placerat in egestas. Non quam lacus suspendisse faucibus interdum posuere lorem. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Neque ornare aenean euismod elementum. Ultricies leo integer malesuada nunc vel risus commodo viverra maecenas. Donec massa sapien faucibus et molestie ac feugiat sed lectus. In fermentum et sollicitudin ac orci. Ut ornare lectus sit amet est placerat in egestas. Viverra adipiscing at in tellus. Eget velit aliquet sagittis id consectetur purus ut faucibus.\n\u200b\nEst ultricies integer quis auctor. Pulvinar elementum integer enim neque volutpat. At in tellus integer feugiat scelerisque varius morbi enim. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Proin sed libero enim sed faucibus turpis in eu mi. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Volutpat sed cras ornare arcu dui vivamus arcu felis. Suspendisse interdum consectetur libero id. Molestie nunc non blandit massa enim nec dui. Aliquam eleifend mi in nulla posuere sollicitudin. A condimentum vitae sapien pellentesque habitant morbi tristique. Suspendisse sed nisi lacus sed viverra tellus in hac. Vitae congue eu consequat ac felis donec et.\n\u200b\nA erat nam at lectus urna. Mi tempus imperdiet nulla malesuada pellentesque. Laoreet id donec ultrices tincidunt arcu. Enim praesent elementum facilisis leo vel. Nibh cras pulvinar mattis nunc sed blandit libero. Pretium fusce id velit ut tortor. Sociis natoque penatibus et magnis dis. Commodo odio aenean sed adipiscing. Tincidunt id aliquet risus feugiat in ante metus dictum at. Morbi tincidunt ornare massa eget egestas purus viverra accumsan. Phasellus egestas tellus rutrum tellus. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum. Iaculis nunc sed augue lacus viverra vitae congue. Commodo sed egestas egestas fringilla. Consequat semper viverra nam libero justo. In mollis nunc sed id semper risus in. Sollicitudin aliquam ultrices sagittis orci. Pretium aenean pharetra magna ac placerat vestibulum lectus.
+                          ```
+                          *Waiting for acceptance of agreement*
+                          \u200b
+                          """
 
     embed = await stw.set_thumbnail(client, embed, "pink_link")
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
 
 
-async def handle_dev_auth(client, ctx, slash, authcode=None):
-    # Retrieve information on the currently selected profile of the user accociated with this ctx
+async def add_enslaved_user_accepted_license(view, interaction):
+    view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"]["tos_accepted"] = True
+    view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"][
+        "tos_accepted_date"] = time.time_ns()  # how to get unix timestamp i forgor time.time is unix
+    view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"][
+        "tos_accepted_version"] = TOS_VERSION
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
 
-    if from_interaction:
-        current_author_id = ctx.user.id
-    else:
-        current_author_id = ctx.author.id
+    await replace_user_document(view.client, view.user_document)
 
-    user_document = await get_user_document(client, current_author_id)
+
+async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx):
+    embed_colour = client.colours["profile_lavendar"]
+    selected_profile_data = user_document["profiles"][str(currently_selected_profile_id)]
+
+    page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Device Authentication", "pink_link"),
+                               description=f"""\u200b
+                              **Currently Selected Profile {currently_selected_profile_id}:**
+                              ```{selected_profile_data["friendly_name"]}```\u200b""",
+                               color=embed_colour)
+    page_embed = await stw.set_thumbnail(client, page_embed, "pink_link")
+    page_embed = await stw.add_requested_footer(ctx, page_embed)
+
+    if selected_profile_data["authentication"]["accountId"] == None:
+        # Not authenticated yet data stuffy ;p
+        page_embed.add_field(name=f"No device authentication found for current profile",
+                             value=f"""
+                             \u200b
+                             [**To begin click here**](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3D3446cd72694c4a4485d81b77adbb2141%26responseType%3Dcode)\n
+                             Then copy your authentication code and enter it into the modal which appears from pressing the **{client.config['emojis']['locked']} Authenticate** Button below.
+                             \u200b
+                             *Waiting for authentication code*
+                             \u200b
+                             """,
+                             inline=False)
+
+    return page_embed
+
+
+async def handle_dev_auth(client, ctx, slash, interaction=None, user_document = None):
+    current_author_id = ctx.author.id
+
+    if user_document is None:
+        user_document = await get_user_document(client, current_author_id)
 
     # Get the currently selected profile
     currently_selected_profile_id = user_document["global"]["selected_profile"]
+    current_profile = user_document["profiles"][str(currently_selected_profile_id)]
 
     embed = await tos_acceptance_embed(client, ctx)
     await stw.slash_send_embed(ctx, slash, embed)
@@ -52,30 +95,40 @@ class ProfileAuth(ext.Cog):
     def __init__(self, client):
         self.client = client
 
-    async def devauth_command(self, ctx, slash, authcode=None):
-        await handle_dev_auth(self.client, ctx, slash, authcode)
+    async def devauth_command(self, ctx, slash):
+        await handle_dev_auth(self.client, ctx, slash)
 
     @ext.slash_command(name='device',
                        description='Add permanent authentication to the currently selected or another profile(PENDING)',
                        guild_ids=stw.guild_ids)
-    async def slash_device(self, ctx: discord.ApplicationContext,
-                           token: Option(str,
-                                         "An authcode (can be entered later), used to link a profile to an account(PENDING)") = ""
-                           ):
-        await self.devauth_command(ctx, True, token)
+    async def slash_device(self, ctx: discord.ApplicationContext):
+        await self.devauth_command(ctx, True)
 
     @ext.command(name='device',
                  aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'profileauth', 'proauth'],
-                 extras={'emoji': "link_acc", "args": {
-                     'authcode': 'The authcode which will be linked to authentication of the currently selected profile, can also be entered later in the process. (Optional)(PENDING)'},
-                         "dev": False},
+                 extras={'emoji': "link_acc", "args": {"dev": False}},
                  brief="Add permanent authentication to the currently selected or another profile(PENDING)",
                  description="""This command allows you to create a device auth session, keeping you logged in.(PENDING)
                 \u200b
                 """)
-    async def device(self, ctx, authcode=''):
-        await self.devauth_command(ctx, False, authcode)
+    async def device(self, ctx):
+        await self.devauth_command(ctx, False)
 
+async def select_change_profile(view, select, interaction):
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+
+    new_profile_selected = int(select.values[0])
+    view.user_document["global"]["selected_profile"] = new_profile_selected
+
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    await replace_user_document(view.client, view.user_document)
+    await handle_dev_auth(view.client, view.ctx, False, interaction, view.user_document)
+
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
 
 def setup(client):
     client.add_cog(ProfileAuth(client))
