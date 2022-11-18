@@ -35,7 +35,7 @@ class Invite(ext.Cog):
     async def invite_command(self, ctx, slash):
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Invite", "placeholder"),
-                              description=f'\u200b\nPress the buttons below to [Invite STW Daily]('
+                              description=f'\u200b\nPress the buttons below to:\n[Invite STW Daily]('
                                           f'https://canary.discord.com/api/oauth2/authorize?client_id'
                                           f'=757776996418715651&permissions=2147798080&scope=applications.commands'
                                           f'%20bot) to your server, '

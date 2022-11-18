@@ -118,7 +118,7 @@ class Information(ext.Cog):
                           'statse', 'statds', 'statsd', 'statxs', 'statsx', 'statzs', 'statsz', '/inf', 'infomation',
                           '/info', '/information', 'stats', '/stats'],
                  extras={'emoji': "hard_drive", "args": {}, "dev": False},
-                 brief="View information about STW Daily's host, the bot, and the bot's developer. Also verify authenticity of the bot.",
+                 brief="View information about STW Daily's host, the bot, and the bot's developer. Also verify authenticity.",
                  description="This command will return various bits of information about the bot, which you may find interesting as a developer. It will also verify the authenticity of the bot.")
     async def info(self, ctx):
         await self.info_command(ctx)

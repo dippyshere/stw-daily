@@ -92,7 +92,7 @@ class Homebase(ext.Cog):
             embed = discord.Embed(
                 title=await stw.add_emoji_title(self.client, "Homebase Name", "storm_shield"), description=
                 f"""\u200b
-            **Your current Homebase name is:**
+                **Your current Homebase name is:**
             ```{current}```
             """, colour=white)
             # embed = await stw.set_thumbnail(self.client, embed, "warn")

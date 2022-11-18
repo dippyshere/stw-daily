@@ -25,6 +25,7 @@ with open('ext/DataTables/AccountLevels.json') as f:
 
 guild_ids = [757765475823517851]
 
+
 def reverse_dict_with_list_keys(dict):
     new_dict = {}
 
@@ -33,6 +34,7 @@ def reverse_dict_with_list_keys(dict):
             new_dict[subkey.lower()] = key
 
     return new_dict
+
 
 async def view_interaction_check(view, interaction, command):
     if view.ctx.author == interaction.user:

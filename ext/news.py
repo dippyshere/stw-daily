@@ -102,7 +102,7 @@ class NewsView(discord.ui.View):
     async def stw_button(self, _button, interaction):
         await self.change_mode(interaction, "stw")
 
-    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="br", row=1, label="Switch to BR") # hi >:3 ?
+    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="br", row=1, label="Switch to BR")  # hi >:3 ?
     async def br_button(self, _button, interaction):
         await self.change_mode(interaction, "br")
 

@@ -111,7 +111,7 @@ class Daily(ext.Cog):
                 if itemtype == 'CardPack:cardpack_event_founders':
                     display_itemtype = "Founder's Llama"
                 elif itemtype == 'CardPack:cardpack_bronze':
-                    display_itemtype = "Upgrade Llama (bronze)"
+                    display_itemtype = "Regular Upgrade Llama"
                 else:
                     display_itemtype = itemtype
 
@@ -143,7 +143,7 @@ class Daily(ext.Cog):
             return
 
     @ext.slash_command(name='daily',
-                       description='Allows you to claim your Fortnite: Save The World daily rewards (must be authenticated/will create)',
+                       description='Claim your Save The World daily reward (authentication requried)',
                        guild_ids=stw.guild_ids)
     async def slashdaily(self, ctx: discord.ApplicationContext,
                          token: Option(str,

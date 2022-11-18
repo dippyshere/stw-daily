@@ -163,7 +163,8 @@ class BBReward(ext.Cog):
                                                       'limit': 'The number of upcoming days to see (Optional)'},
                          "dev": False},
                  brief="View info about a specific day\'s reward, and the rewards that follow in Battle Breakers",
-                 description="This command lets you view the rewards of any specific day, and any number of rewards that follow. This command is for Battle Breakers rewards.")
+                 description="This command lets you view the rewards of any specific day, and any number of rewards "
+                             "that follow. This command is for Battle Breakers rewards.")
     async def bbreward(self, ctx, day='hi readers of the bot', limit='7'):
         await self.bbreward_command(ctx, day, int(limit))
 

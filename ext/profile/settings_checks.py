@@ -11,8 +11,10 @@ def check_upcoming_display_days(client, ctx, value):
     except:
         return False
 
+
 boolean_string_representation = {'true': True, 't': True, '1': True,
-                 'false': False, 'f': False, '0': False}
+                                 'false': False, 'f': False, '0': False}
+
 
 def check_bool(client, ctx, value):
     try:
