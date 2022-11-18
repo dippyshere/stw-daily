@@ -61,11 +61,23 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
 
     if selected_profile_data["authentication"]["accountId"] == None:
         # Not authenticated yet data stuffy ;p
+
+        auth_session = False
+        try:
+            temp_auth = client.temp_auth[ctx.author.id]
+            auth_session = temp_auth
+        except:
+            pass
+
+        auth_session_found_message = f"Then copy your authentication code and enter it into the modal which appears from pressing the **{client.config['emojis']['locked']} Authenticate** Button below."
+        if auth_session != False:
+            auth_session_found_message = f"Found an existing authentication session, you can proceed utilising the account associated with this authentication session by pressing the **{client.config['emojis']['library_input']} Auth with session** Button below, or you can use a different account by copying the authentication code from the link above and type your authentication code into the modal that appears from pressing the the **{client.config['emojis']['locked']} Authenticate** Button"
+
         page_embed.add_field(name=f"No device authentication found for current profile",
                              value=f"""
                              \u200b
-                             [**To begin click here**](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3D3446cd72694c4a4485d81b77adbb2141%26responseType%3Dcode)\n
-                             Then copy your authentication code and enter it into the modal which appears from pressing the **{client.config['emojis']['locked']} Authenticate** Button below.
+                             [**To begin click here**](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode)
+                             {auth_session_found_message}
                              \u200b
                              *Waiting for authentication code*
                              \u200b
@@ -96,6 +108,7 @@ async def handle_dev_auth(client, ctx, slash, interaction=None, user_document = 
             await interaction.edit_original_response(embed=embed, view=button_accept_view)
 
     elif current_profile["authentication"]["accountId"] is None:
+
         embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx)
         account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id)
 
@@ -112,6 +125,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         self.client = client
         self.user_document = user_document
         self.ctx = ctx
+        self.interaction_check_done = {}
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                   user_document)
@@ -128,7 +142,9 @@ class EnslaveAndStealUserAccount(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authenticate", emoji="locked")
     async def account_stealing_button(self, button, interaction):
-        pass
+        modal = StealAccountLoginDetailsModal(self, self.user_document, self.client, self.ctx,
+                                              self.currently_selected_profile_id)
+        await interaction.response.send_modal(modal)
 
 
 class EnslaveUserLicenseAgreementButton(discord.ui.View):
@@ -139,6 +155,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         self.client = client
         self.user_document = user_document
         self.ctx = ctx
+        self.interaction_check_done = {}
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id), user_document)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
@@ -151,6 +168,9 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
     )
     async def profile_select(self, select, interaction):
         await select_change_profile(self, select, interaction)
+
+    async def interaction_check(self, interaction):
+        return await stw.view_interaction_check(self, interaction, "devauth")
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Accept Agreement", emoji="library_handshake")
     async def soul_selling_button(self, button, interaction):
@@ -197,6 +217,37 @@ async def select_change_profile(view, select, interaction):
     await handle_dev_auth(view.client, view.ctx, False, interaction, view.user_document)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
+
+
+class StealAccountLoginDetailsModal(discord.ui.Modal):
+    def __init__(self, view, user_document, client, ctx, currently_selected_profile_id):
+        self.client = client
+        self.view = view
+        self.user_document = user_document
+        self.ctx = ctx
+        self.currently_selected_profile_id = currently_selected_profile_id
+
+        super().__init__(title="Please enter authcode here")
+
+        # aliases default description modal_title input_label check_function emoji input_type req_string
+
+        setting_input = discord.ui.InputText(style=discord.InputTextStyle.long,
+                                             label="Enter authcode",
+                                             placeholder="Enter authcode here",
+                                             min_length=1,
+                                             max_length=500,
+                                             required=True)
+
+        self.add_item(setting_input)
+
+    async def callback(self, interaction: discord.Interaction):
+        for child in self.view.children:
+            child.disabled = True
+        self.view.stop()
+        await interaction.response.edit_message(view=self.view)
+
+        value = self.children[0].value
+        extracted_auth_c
 
 def setup(client):
     client.add_cog(ProfileAuth(client))
