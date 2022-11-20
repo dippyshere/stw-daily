@@ -115,7 +115,7 @@ async def slash_send_embed(ctx, slash, embeds, view=None, interaction=False):
             return await ctx.channel.send(embeds=embeds, view=view)
         else:
             return await ctx.channel.send(embeds=embeds)
-    if slash:
+    if isinstance(ctx, discord.ApplicationContext):
         if view is not None:
             return await ctx.respond(embeds=embeds, view=view)
         else:
@@ -251,6 +251,11 @@ def get_game_headers(game):
         h = {
             "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": "basic M2NmNzhjZDNiMDBiNDM5YTg3NTVhODc4YjE2MGM3YWQ6YjM4M2UwZjQtZjBjYy00ZDE0LTk5ZTMtODEzYzMzZmMxZTlk="
+        }
+    elif game == "ios":
+        h = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": "basic MzQ0NmNkNzI2OTRjNGE0NDg1ZDgxYjc3YWRiYjIxNDE6OTIwOWQ0YTVlMjVhNDU3ZmI5YjA3NDg5ZDMxM2I0MWE="
         }
     else:
         h = {
@@ -512,17 +517,18 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         "bb_token": bb_token,
         "bb_day": None,
         "games": [game],
+
     }
     if add_entry:
         asyncio.get_event_loop().create_task(auto_stab_stab_session(client, ctx.author.id, entry['expiry']))
 
     entry = await entry_profile_req(client, entry, game)
+    other_games = list(client.config["entry_token_key_for_game"].keys())
+    other_games.remove(game)
+    entry = await add_other_game_entry(client, ctx.author.id, entry, game, other_games)
 
     if add_entry:
         client.temp_auth[ctx.author.id] = entry
-        other_games = list(client.config["entry_token_key_for_game"].keys())
-        other_games.remove(game)
-        asyncio.get_event_loop().create_task(add_other_game_entry(client, ctx.author.id, entry, game, other_games))
 
     return entry
 
@@ -944,7 +950,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     if existing_auth is not None and extracted_auth_code == "":
 
         # Send the logging in & processing if given
-        if processing:
+        if processing and not dont_send_embeds:
             proc_embed = await processing_embed(client, ctx)
             return [await slash_send_embed(ctx, slash, proc_embed),
                     existing_auth,
@@ -1039,7 +1045,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
                                                                   slash, support_url)
 
     if not success:
-        return [False]
+        return [success]
 
     # if authing for battle breakers
     if game == "bb":

@@ -178,8 +178,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
-        self.current_setting_value =
-        user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
 
         title = setting_information["modal_title"].format(self.current_setting_value)
         super().__init__(title=title)

@@ -1,3 +1,4 @@
+import asyncio
 import time
 
 import discord
@@ -47,7 +48,7 @@ async def add_enslaved_user_accepted_license(view, interaction):
     await replace_user_document(view.client, view.user_document)
 
 
-async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx):
+async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction=None, exchange_auth_session=None):
     embed_colour = client.colours["profile_lavendar"]
     selected_profile_data = user_document["profiles"][str(currently_selected_profile_id)]
 
@@ -63,23 +64,36 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         # Not authenticated yet data stuffy ;p
 
         auth_session = False
-        try:
-            temp_auth = client.temp_auth[ctx.author.id]
-            auth_session = temp_auth
-        except:
-            pass
+        if exchange_auth_session == None:
+            try:
+                temp_auth = client.temp_auth[ctx.author.id]
+                auth_session = temp_auth
 
-        auth_session_found_message = f"Then copy your authentication code and enter it into the modal which appears from pressing the **{client.config['emojis']['locked']} Authenticate** Button below."
+                embed = await stw.processing_embed(client, ctx)
+
+                message = None
+                if interaction is None:
+                    message = await stw.slash_send_embed(ctx, embeds=embed)
+                else:
+                    await interaction.edit_original_response(embed=embed)
+
+                asyncio.get_event_loop().create_task(attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction, message))
+                return False
+            except:
+                pass
+        elif exchange_auth_session != False:
+            auth_session = True
+
+        auth_session_found_message = f"[**To begin click here**](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode)\nThen copy your authentication code and enter it into the modal which appears from pressing the **{client.config['emojis']['locked']} Authenticate** Button below."
         if auth_session != False:
-            auth_session_found_message = f"Found an existing authentication session, you can proceed utilising the account associated with this authentication session by pressing the **{client.config['emojis']['library_input']} Auth with session** Button below, or you can use a different account by copying the authentication code from the link above and type your authentication code into the modal that appears from pressing the the **{client.config['emojis']['locked']} Authenticate** Button"
+            auth_session_found_message = f"Found an existing authentication session, you can proceed utilising the account associated with this authentication session by pressing the **{client.config['emojis']['library_input']} Auth With Session** Button below\n\u200b\nYou can use a different account by copying the authentication code from [this link](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode) and then type your authentication code into the modal that appears from pressing the the **{client.config['emojis']['locked']} Authenticate** Button"
 
         page_embed.add_field(name=f"No device authentication found for current profile",
                              value=f"""
                              \u200b
-                             [**To begin click here**](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode)
                              {auth_session_found_message}
                              \u200b
-                             *Waiting for authentication code*
+                             *Waiting for action*
                              \u200b
                              """,
                              inline=False)
@@ -109,8 +123,17 @@ async def handle_dev_auth(client, ctx, slash, interaction=None, user_document=No
 
     elif current_profile["authentication"]["accountId"] is None:
 
-        embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx)
-        account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id)
+        embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction, exchange_auth_session)
+
+
+        if embed == False:
+            return
+
+        account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id, exchange_auth_session)
+
+        if message != None:
+            await stw.slash_edit_original(ctx, message, embeds=embed, view=account_stealing_view)
+            return
 
         if interaction is None:
             await stw.slash_send_embed(ctx, slash, embeds=embed, view=account_stealing_view)
@@ -119,7 +142,7 @@ async def handle_dev_auth(client, ctx, slash, interaction=None, user_document=No
 
 
 class EnslaveAndStealUserAccount(discord.ui.View):
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, ios_token):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -127,10 +150,14 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         self.user_document = user_document
         self.ctx = ctx
         self.interaction_check_done = {}
+        self.ios_token = ios_token
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
+
+        if self.ios_token == None:
+            del self.children[2]
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -145,11 +172,16 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         return await stw.view_interaction_check(self, interaction, "devauth")
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authenticate", emoji="locked")
-    async def account_stealing_button(self, button, interaction):
+    async def enter_your_account_to_be_stolen_button(self, button, interaction):
         modal = StealAccountLoginDetailsModal(self, self.user_document, self.client, self.ctx,
-                                              self.currently_selected_profile_id)
+                                              self.currently_selected_profile_id, self.ios_token)
         await interaction.response.send_modal(modal)
 
+    @discord.ui.button(style=discord.ButtonStyle.grey, label="Auth With Session", emoji="library_input")
+    async def existing_account_that_we_already_stole_button(self, button, interaction):
+        modal = StealAccountLoginDetailsModal(self, self.user_document, self.client, self.ctx,
+                                              self.currently_selected_profile_id, self.ios_token)
+        await interaction.response.send_modal(modal)
 
 class EnslaveUserLicenseAgreementButton(discord.ui.View):
     def __init__(self, user_document, client, ctx, currently_selected_profile_id):
@@ -227,12 +259,13 @@ async def select_change_profile(view, select, interaction):
 
 
 class StealAccountLoginDetailsModal(discord.ui.Modal):
-    def __init__(self, view, user_document, client, ctx, currently_selected_profile_id):
+    def __init__(self, view, user_document, client, ctx, currently_selected_profile_id, ios_token):
         self.client = client
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
         self.currently_selected_profile_id = currently_selected_profile_id
+        self.ios_token = ios_token
 
         super().__init__(title="Please enter authcode here")
 
@@ -254,7 +287,13 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         await interaction.response.edit_message(view=self.view)
 
         value = self.children[0].value
-        extracted_auth_c
+        print(value, self.children)
+
+        auth_session_result = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", value, False, False, True)
+        try:
+            auth_session_result[1]
+        except:
+            pass
 
 
 def setup(client):
