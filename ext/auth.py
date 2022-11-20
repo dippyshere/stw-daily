@@ -17,10 +17,10 @@ class Auth(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def auth_command(self, ctx, token='', slash=False):
+    async def auth_command(self, ctx, token=''):
         white = self.client.colours["auth_white"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, slash, True, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, True, True)
         if not auth_info[0]:
             return
 
@@ -33,7 +33,7 @@ class Auth(ext.Cog):
 
         # what is this black magic???????? I totally forgot what any of this is
         if auth_info[0] is not None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
-            await stw.slash_edit_original(auth_info[0], slash, auth_info[2])
+            await stw.slash_edit_original(ctx, auth_info[0], auth_info[2])
         else:
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Currently Authenticated", "whitekey"),
                                   description=f"""\u200b
@@ -51,9 +51,9 @@ class Auth(ext.Cog):
             """, colour=white)
             embed = await stw.set_thumbnail(self.client, embed, "keycard")
             embed = await stw.add_requested_footer(ctx, embed)
-            await stw.slash_edit_original(auth_info[0], slash, embed)
+            await stw.slash_edit_original(ctx, auth_info[0], embed)
 
-    async def kill_command(self, ctx, slash=False):
+    async def kill_command(self, ctx):
         white = self.client.colours["auth_white"]
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Killed Auth Session", "whitekey"),
                               description=f"""```Successfully ended authentication session.```
@@ -62,7 +62,7 @@ class Auth(ext.Cog):
 
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
         embed = await stw.add_requested_footer(ctx, embed)
-        await stw.slash_send_embed(ctx, slash, embed)
+        await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='auth',
                  aliases=['login', 'authenticate', "uth", "ath", "auh", "aut",
@@ -163,13 +163,13 @@ class Auth(ext.Cog):
                         authcode: Option(str,
                                          "Your Epic Games authcode. Leave this blank to get one") = ''):
 
-        await self.auth_command(ctx, authcode, True)
+        await self.auth_command(ctx, authcode)
 
     @slash_command(name='kill',
                    description='End your active authentication session',
                    guild_ids=stw.guild_ids)
     async def slashkill(self, ctx):
-        await self.kill_command(ctx, True)
+        await self.kill_command(ctx)
 
 
 def setup(client):

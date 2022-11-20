@@ -10,7 +10,7 @@ class Reload(ext.Cog):
     def __init__(self, client):
         self.client = client
 
-    async def reload_command(self, ctx, extension, slash=False):
+    async def reload_command(self, ctx, extension):
         try:
             self.client.reload_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
@@ -27,7 +27,7 @@ class Reload(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
         embed = await stw.add_requested_footer(ctx, embed)
 
-        await stw.slash_send_embed(ctx, slash, embed)
+        await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='rlcg',
                  aliases=['rl', 'reload', '/rlcg'],
@@ -37,7 +37,7 @@ class Reload(ext.Cog):
     async def rlcg(self, ctx, extension):
         await self.reload_command(ctx, extension)
 
-    async def load_command(self, ctx, extension, slash=False):
+    async def load_command(self, ctx, extension):
         try:
             self.client.load_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
@@ -54,7 +54,7 @@ class Reload(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
         embed = await stw.add_requested_footer(ctx, embed)
 
-        await stw.slash_send_embed(ctx, slash, embed)
+        await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='lcg',
                  aliases=['lc', 'load', '/lcg'],

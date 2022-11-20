@@ -214,7 +214,7 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="link_icon", row=2)
     async def auth_button(self, _button, interaction):
-        await handle_dev_auth(self.client, self.ctx, False)
+        await handle_dev_auth(self.client, self.ctx)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
         embed.description += f"\n*Started authentication interface, rerun to continue*\n\u200b"
@@ -341,7 +341,7 @@ class Profile(ext.Cog):
         self.client = client
         # can u not unindent by ctrl shift + [ weird nanny
 
-    async def profile_command(self, ctx, new_profile, slash=False):
+    async def profile_command(self, ctx, new_profile):
         user_document = await self.client.get_user_document(self.client, ctx.author.id)
         current_command = "\n*Waiting for command*\n\u200b"
 
@@ -365,7 +365,7 @@ class Profile(ext.Cog):
         select_options = generate_profile_select_options(self.client, current_selected_profile, user_document)
         profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document)
         # brb back gtg soonish
-        await stw.slash_send_embed(ctx, slash, embed, profile_view)
+        await stw.slash_send_embed(ctx, embed, profile_view)
 
     @ext.command(name='profile',
                  extras={'emoji': "stormshard", "args": {
@@ -382,4 +382,4 @@ class Profile(ext.Cog):
     async def slashprofile(self, ctx: discord.ApplicationContext,
                            profile: Option(int,
                                            "Which profile you wish to switch to (Leave empty if you wish to utilise the View)(PENDING)") = -1):
-        await self.profile_command(ctx, profile, True)
+        await self.profile_command(ctx, profile)

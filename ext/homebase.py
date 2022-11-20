@@ -13,7 +13,7 @@ class Homebase(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, slash, name=""):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, name=""):
         try:
             # general error
             error_code = public_json_response["errorCode"]
@@ -21,7 +21,7 @@ class Homebase(ext.Cog):
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return error_code, True
         except:
             try:
@@ -37,17 +37,16 @@ class Homebase(ext.Cog):
                     embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
                                                                support_url)
                     final_embeds.append(embed)
-                    await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                    await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                     return error_code, True
                 # allow name change for no stw because it works somehow
                 return "errors.stwdaily.no_stw", False
 
-    async def hbrename_command(self, ctx, slash, name, authcode, auth_opt_out):
+    async def hbrename_command(self, ctx, name, authcode, auth_opt_out):
         succ_colour = self.client.colours["success_green"]
         white = self.client.colours["auth_white"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "homebase", authcode, slash, auth_opt_out,
-                                                         True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "homebase", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 
@@ -71,7 +70,7 @@ class Homebase(ext.Cog):
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # check for le error code
-        error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, slash, name)
+        error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, name)
         if error_check[0] == "errors.stwdaily.no_stw":
             current = " "
             homebase_icon = "placeholder"
@@ -114,13 +113,13 @@ class Homebase(ext.Cog):
                 embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
                                                            self.client.config["support_url"])
                 final_embeds.append(embed)
-                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
             error_code = "errors.stwdaily.homebase_illegal"
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
                                                        self.client.config["support_url"])
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
         # wih all checks passed, we may now attempt to change name
@@ -129,7 +128,7 @@ class Homebase(ext.Cog):
         request_json_response = await request.json()
 
         # check for le error code
-        error_check = await self.check_errors(ctx, request_json_response, auth_info, final_embeds, slash, name)
+        error_check = await self.check_errors(ctx, request_json_response, auth_info, final_embeds, name)
         if error_check[1]:
             return
 
@@ -150,7 +149,7 @@ class Homebase(ext.Cog):
         # embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
     @ext.slash_command(name='homebase',
@@ -162,7 +161,7 @@ class Homebase(ext.Cog):
                             token: Option(str,
                                           "Your Epic Games authcode. Required unless you have an active session.") = "",
                             auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
-        await self.hbrename_command(ctx, True, name, token, not auth_opt_out)
+        await self.hbrename_command(ctx, name, token, not auth_opt_out)
 
     @ext.command(name='homebase',
                  aliases=['hbrename', 'hbrn', 'rename', 'changehomebase', 'homebasename', 'hbname', 'hb', 'brn', 'hrn',
@@ -239,7 +238,7 @@ class Homebase(ext.Cog):
         else:
             optout = False
 
-        await self.hbrename_command(ctx, False, name, authcode, not optout)
+        await self.hbrename_command(ctx, name, authcode, not optout)
 
 
 def setup(client):

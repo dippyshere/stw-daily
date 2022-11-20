@@ -96,7 +96,7 @@ class ResearchView(discord.ui.View):
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", self.auth_info[1])
         json_response = await current_research_statistics_request.json()
-        current_levels = await research_query(interaction, self.client, self.auth_info, self.slash, [], json_response)
+        current_levels = await research_query(interaction, self.client, self.auth_info, [], json_response)
         if current_levels is None:
             return
 
@@ -140,7 +140,7 @@ class ResearchView(discord.ui.View):
         await interaction.edit_original_response(embed=embed, view=self)
 
     # creo kinda fire though ngl
-    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, context, slash):
+    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, context):
         super().__init__()
         self.client = client
         self.context = context
@@ -150,7 +150,6 @@ class ResearchView(discord.ui.View):
         self.total_points = total_points
         self.current_levels = current_levels
         self.research_token_guid = research_token_guid
-        self.slash = slash
 
         self.button_emojis = {
             'fortitude': self.client.config["emojis"]["fortitude"],
@@ -181,7 +180,7 @@ class ResearchView(discord.ui.View):
         await self.universal_stat_process(interaction, "technology")
 
 
-async def research_query(ctx, client, auth_info, slash, final_embeds, json_response):
+async def research_query(ctx, client, auth_info, final_embeds, json_response):
     crown_yellow = client.colours["crown_yellow"]
 
     support_url = client.config["support_url"]
@@ -191,7 +190,7 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
         error_code = json_response["errorCode"]
         embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
         final_embeds.append(embed)
-        await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
     except:
         pass
@@ -212,7 +211,7 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
             error_code = "errors.com.epicgames.fortnite.check_access_failed"
             embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
     # I'm not too sure what happens here but if current_levels doesn't exist im assuming its at maximum.
@@ -240,7 +239,7 @@ async def research_query(ctx, client, auth_info, slash, final_embeds, json_respo
         embed = await stw.set_thumbnail(client, embed, "crown")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return None
 
     return current_levels
@@ -282,10 +281,10 @@ class Research(ext.Cog):
 
         return None
 
-    async def research_command(self, ctx, slash, authcode, auth_opt_out):
+    async def research_command(self, ctx, authcode, auth_opt_out):
         gren = self.client.colours["research_green"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, slash, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 
@@ -304,7 +303,7 @@ class Research(ext.Cog):
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
         json_response = await current_research_statistics_request.json()
-        current_levels = await research_query(ctx, self.client, auth_info, slash, final_embeds, json_response)
+        current_levels = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
         if current_levels is None:
             return
 
@@ -320,7 +319,7 @@ class Research(ext.Cog):
             error_code = "errors.stwdaily.failed_guid_research"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
         research_guid = research_guid_check[0]
@@ -334,7 +333,7 @@ class Research(ext.Cog):
             error_code = json_response["errorCode"]
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         except:
             pass
 
@@ -345,7 +344,7 @@ class Research(ext.Cog):
             error_code = "errors.stwdaily.failed_total_points"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
         total_points, rp_token_guid = total_points_check[0][0], total_points_check[0][1]
@@ -367,7 +366,7 @@ class Research(ext.Cog):
                 embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
                                                            support_url)
                 final_embeds.append(embed)
-                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
 
             available_research_items, check = research_feedback["loot"]["items"], False
@@ -384,7 +383,7 @@ class Research(ext.Cog):
                 embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
                                                            support_url)
                 final_embeds.append(embed)
-                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
             # this variable might be referenced before assignment hmm
             research_points_claimed = research_item['quantity']
@@ -414,8 +413,8 @@ class Research(ext.Cog):
 
         final_embeds.append(embed)
         research_view = ResearchView(self.client, auth_info, ctx.author, total_points, current_levels, rp_token_guid,
-                                     ctx, slash)
-        research_view.message = await stw.slash_edit_original(auth_info[0], slash, final_embeds, view=research_view)
+                                     ctx)
+        research_view.message = await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=research_view)
 
     @ext.command(name='research',
                  aliases=['rse', 'des', 'rgesearch', 'r4es', 'reas',
@@ -469,7 +468,7 @@ class Research(ext.Cog):
         else:
             optout = False
 
-        await self.research_command(ctx, False, authcode, not optout)
+        await self.research_command(ctx, authcode, not optout)
 
     @slash_command(name='research',
                    description="Claim and spend your research points (authentication required)",
@@ -478,7 +477,7 @@ class Research(ext.Cog):
                             token: Option(str,
                                           "Your Epic Games authcode. Required unless you have an active session.") = "",
                             auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
-        await self.research_command(ctx, True, token, not auth_opt_out)
+        await self.research_command(ctx, token, not auth_opt_out)
 
 
 def setup(client):

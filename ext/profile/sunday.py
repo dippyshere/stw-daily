@@ -480,16 +480,16 @@ async def map_settings_aliases(client):
     return setting_map
 
 
-async def default_page_profile_settings(client, ctx, user_profile, settings, slash, message):
+async def default_page_profile_settings(client, ctx, user_profile, settings, message):
     page = client.config["profile_settings"]["default_settings_page"]
     main_page_embed = await main_page(page, client, ctx, user_profile, settings)
     main_page_embed.fields[0].value += message
 
     settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings)
-    await stw.slash_send_embed(ctx, slash, embeds=main_page_embed, view=settings_view)
+    await stw.slash_send_embed(ctx, embeds=main_page_embed, view=settings_view)
 
 
-async def settings_command(client, ctx, slash=False, setting=None, profile=None, value=None):
+async def settings_command(client, ctx, setting=None, profile=None, value=None):
     settings = client.settings_choices
 
     user_profile = await get_user_document(client, ctx.author.id)
@@ -556,7 +556,7 @@ async def settings_command(client, ctx, slash=False, setting=None, profile=None,
                                                                               settings,
                                                                               selected_setting_index)
                 embed.fields[0].value += happy_message + "*\n\u200b\n"
-                await stw.slash_send_embed(ctx, slash, embeds=embed, view=sub_view)
+                await stw.slash_send_embed(ctx, embeds=embed, view=sub_view)
                 return
 
         elif value is not None:
@@ -590,13 +590,13 @@ async def settings_command(client, ctx, slash=False, setting=None, profile=None,
                                                                           settings,
                                                                           selected_setting_index)
             embed.fields[0].value += base_error_message
-            await stw.slash_send_embed(ctx, slash, embeds=embed, view=sub_view)
+            await stw.slash_send_embed(ctx, embeds=embed, view=sub_view)
             return
         else:
-            await default_page_profile_settings(client, ctx, user_profile, settings, slash, base_error_message)
+            await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message)
             return
 
-    await default_page_profile_settings(client, ctx, user_profile, settings, slash,
+    await default_page_profile_settings(client, ctx, user_profile, settings,
                                         "\u200b\n*Waiting for an action*\n\u200b\n")
     return
 
@@ -622,7 +622,7 @@ class ProfileSettings(ext.Cog):
                              value: Option(str,
                                            "The value you wish to set this setting to") = None
                              ):
-        await settings_command(self.client, ctx, True, setting, profile, value)
+        await settings_command(self.client, ctx, setting, profile, value)
 
     @ext.command(name='settings',
                  aliases=['boy'],
@@ -637,7 +637,7 @@ class ProfileSettings(ext.Cog):
                 \u200b
                 """)
     async def settings(self, ctx, setting=None, profile=None, value=None):
-        await settings_command(self.client, ctx, False, setting, profile, value)
+        await settings_command(self.client, ctx, setting, profile, value)
 
 
 def setup(client):

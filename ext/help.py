@@ -136,7 +136,7 @@ class Help(ext.Cog):
 
         return options
 
-    async def help_command(self, ctx, command, slash=False):
+    async def help_command(self, ctx, command):
         embed = await self.help_embed(ctx, command)
         help_options = [discord.SelectOption(label="all", value="main_menu",
                                              description="Return to viewing all available commands",
@@ -146,7 +146,7 @@ class Help(ext.Cog):
         help_view = HelpView(ctx, help_options, self.client)
         help_view.help = self
 
-        await stw.slash_send_embed(ctx, slash, embed, help_view)
+        await stw.slash_send_embed(ctx, embed, help_view)
 
     @ext.command(name='help',
                  aliases=['heklp',
@@ -209,7 +209,7 @@ class Help(ext.Cog):
             command: Option(str, "Choose a command to display detailed information on",
                             autocomplete=get_bot_commands) = None):
 
-        await self.help_command(ctx, str(command).lower(), True)
+        await self.help_command(ctx, str(command).lower())
 
     # hello command
 

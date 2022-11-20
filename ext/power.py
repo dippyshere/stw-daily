@@ -12,7 +12,7 @@ class Power(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, slash):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
         try:
             # general error
             error_code = public_json_response["errorCode"]
@@ -20,17 +20,16 @@ class Power(ext.Cog):
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "vbucks", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True
         except:
             # no error
             return False
 
-    async def power_command(self, ctx, slash, authcode, auth_opt_out):
+    async def power_command(self, ctx, authcode, auth_opt_out):
         vbucc_colour = self.client.colours["vbuck_blue"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, slash, auth_opt_out,
-                                                         True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 
@@ -61,7 +60,7 @@ class Power(ext.Cog):
         # print(stw3_json_response)
 
         # check for le error code
-        if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, slash):
+        if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds):
             return
 
         power_level, total, total_stats = stw.calculate_homebase_rating(stw_json_response)
@@ -79,7 +78,7 @@ class Power(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
     @ext.slash_command(name='power',
@@ -89,7 +88,7 @@ class Power(ext.Cog):
                          token: Option(str,
                                        "Your Epic Games authcode. Required unless you have an active session.") = "",
                          auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
-        await self.power_command(ctx, True, token, not auth_opt_out)
+        await self.power_command(ctx, token, not auth_opt_out)
 
     @ext.command(name='power',
                  aliases=['pow', 'powerlevel', 'rating', 'level', 'pwr'],
@@ -108,7 +107,7 @@ class Power(ext.Cog):
         else:
             optout = False
 
-        await self.power_command(ctx, False, authcode, not optout)
+        await self.power_command(ctx, authcode, not optout)
 
 
 def setup(client):

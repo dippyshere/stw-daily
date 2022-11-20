@@ -7,14 +7,12 @@ import stwutil as stw
 
 class NewsView(discord.ui.View):
 
-    def __init__(self, client, author, ctx, slash, page, stw_news, stw_pages_length, br_news, br_pages_length,
-                 mode):
+    def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode):
         super().__init__()
         self.client = client
         self.ctx = ctx
         self.author = author
         self.interaction_check_done = {}
-        self.slash = slash
         self.page = page
         self.mode = mode
         self.stw_news = stw_news
@@ -114,7 +112,7 @@ class News(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def news_command(self, ctx, slash, page, mode):
+    async def news_command(self, ctx, page, mode):
         stw_news_req = await stw.get_stw_news(self.client)
         stw_news_json = await stw_news_req.json(content_type=None)
         stw_news = stw_news_json["news"]["messages"]
@@ -131,9 +129,9 @@ class News(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "newspaper")
         embed = await stw.add_requested_footer(ctx, embed)
 
-        news_view = NewsView(self.client, ctx.author, ctx, slash, page, stw_news, stw_pages_length, br_news,
-                             br_pages_length, mode)
-        await stw.slash_send_embed(ctx, slash, embed, news_view)
+        news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
+                             mode)
+        await stw.slash_send_embed(ctx, embed, news_view)
         return
 
     @ext.slash_command(name='news',
@@ -144,7 +142,7 @@ class News(ext.Cog):
                                      "The page number to view") = 1,
                         mode: Option(str, description="Choose a game mode to see news from",
                                      choices=["stw", "br"]) = "stw"):
-        await self.news_command(ctx, True, page, mode)
+        await self.news_command(ctx, page, mode)
 
     @ext.command(name='news',
                  aliases=['ew', 'nw', 'ne', 'nnew', 'neew', 'neww', 'enw', 'nwe', 'bew', 'hew', 'jew', 'mew', 'nww',
@@ -167,7 +165,7 @@ class News(ext.Cog):
                 \u200b
                 """)
     async def news(self, ctx, page=1, mode="stw"):
-        await self.news_command(ctx, False, page, mode)
+        await self.news_command(ctx, page, mode)
 
 
 def setup(client):

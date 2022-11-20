@@ -100,8 +100,15 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
 
     return page_embed
 
+async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction=None, message=None):
+    get_ios_auth = await stw.exchange_games(client, temp_auth["token"], "ios")
+    try:
+        response_json = await get_ios_auth.json()
+        await handle_dev_auth(client, ctx, interaction, user_document, response_json["access_token"], message)
+    except:
+        await handle_dev_auth(client, ctx, interaction, user_document, False, message)
 
-async def handle_dev_auth(client, ctx, slash, interaction=None, user_document=None):
+async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exchange_auth_session=None, message=None):
     current_author_id = ctx.author.id
 
     if user_document is None:
@@ -117,7 +124,7 @@ async def handle_dev_auth(client, ctx, slash, interaction=None, user_document=No
                                                                currently_selected_profile_id)
 
         if interaction is None:
-            await stw.slash_send_embed(ctx, slash, embeds=embed, view=button_accept_view)
+            await stw.slash_send_embed(ctx, embeds=embed, view=button_accept_view)
         else:
             await interaction.edit_original_response(embed=embed, view=button_accept_view)
 
@@ -136,7 +143,7 @@ async def handle_dev_auth(client, ctx, slash, interaction=None, user_document=No
             return
 
         if interaction is None:
-            await stw.slash_send_embed(ctx, slash, embeds=embed, view=account_stealing_view)
+            await stw.slash_send_embed(ctx, embeds=embed, view=account_stealing_view)
         else:
             await interaction.edit_original_response(embed=embed, view=account_stealing_view)
 
@@ -212,7 +219,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Accept Agreement", emoji="library_handshake")
     async def soul_selling_button(self, button, interaction):
         await add_enslaved_user_accepted_license(self, interaction)
-        await handle_dev_auth(self.client, self.ctx, False, interaction, self.user_document)
+        await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
 
 
 # cog for the device auth login command.
@@ -221,14 +228,14 @@ class ProfileAuth(ext.Cog):
     def __init__(self, client):
         self.client = client
 
-    async def devauth_command(self, ctx, slash):
-        await handle_dev_auth(self.client, ctx, slash)
+    async def devauth_command(self, ctx):
+        await handle_dev_auth(self.client, ctx)
 
     @ext.slash_command(name='device',
                        description='Add permanent authentication to the currently selected or another profile(PENDING)',
                        guild_ids=stw.guild_ids)
     async def slash_device(self, ctx: discord.ApplicationContext):
-        await self.devauth_command(ctx, True)
+        await self.devauth_command(ctx)
 
     @ext.command(name='device',
                  aliases=['devauth', 'dev', 'deviceauth', 'deviceauthcode', 'profileauth', 'proauth'],
@@ -238,7 +245,7 @@ class ProfileAuth(ext.Cog):
                 \u200b
                 """)
     async def device(self, ctx):
-        await self.devauth_command(ctx, False)
+        await self.devauth_command(ctx)
 
 
 async def select_change_profile(view, select, interaction):
@@ -253,7 +260,7 @@ async def select_change_profile(view, select, interaction):
     view.stop()
 
     await replace_user_document(view.client, view.user_document)
-    await handle_dev_auth(view.client, view.ctx, False, interaction, view.user_document)
+    await handle_dev_auth(view.client, view.ctx, interaction, view.user_document)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 

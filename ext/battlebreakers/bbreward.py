@@ -14,7 +14,7 @@ class BBReward(ext.Cog):
     def __init__(self, client):
         self.client = client
 
-    async def bbreward_command(self, ctx, day, limit=7, slash=False):
+    async def bbreward_command(self, ctx, day, limit=7):
 
         try:
             temp_auth = self.client.temp_auth[ctx.author.id]
@@ -34,7 +34,7 @@ class BBReward(ext.Cog):
                                   description="```Please specify the day (number) of which you would like to see```")
             embed = await stw.add_requested_footer(ctx, embed)
             embed = await stw.set_thumbnail(self.client, embed, "error")
-            await stw.slash_send_embed(ctx, slash, embed)
+            await stw.slash_send_embed(ctx, embed)
 
         else:
             try:
@@ -50,7 +50,7 @@ class BBReward(ext.Cog):
                                       description="```The inputted day or limit must be a valid integer, please try again```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, slash, embed)
+                await stw.slash_send_embed(ctx, embed)
                 return
 
             if int(limit) > 100:
@@ -59,7 +59,7 @@ class BBReward(ext.Cog):
                                       description="```You attempted to retrieve too many days after! Try a lower value```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, slash, embed)
+                await stw.slash_send_embed(ctx, embed)
                 return
 
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "Shared2"),
@@ -75,7 +75,7 @@ class BBReward(ext.Cog):
                                       description="```Please retry with a valid integer.```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, slash, embed)
+                await stw.slash_send_embed(ctx, embed)
                 return
 
             embed.add_field(name=f'**{reward[2]} Item: **', value=f'```{reward[4]} {reward[1]}```\u200b')
@@ -114,14 +114,14 @@ class BBReward(ext.Cog):
             embed = await stw.add_requested_footer(ctx, embed)
 
             try:
-                await stw.slash_send_embed(ctx, slash, embed)
+                await stw.slash_send_embed(ctx, embed)
             except discord.errors.HTTPException:
                 embed = discord.Embed(colour=err_colour,
                                       title=await stw.add_emoji_title(self.client, "Too Long", "error"),
                                       description="```You attempted to retrieve too many days after! Try a lower value```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, slash, embed)
+                await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='bbreward',
                  aliases=['bbr', 'bbrwrd', 'battlebreakersreward', 'breward', 'bbeward', 'bbrward', 'bbreard',
@@ -175,7 +175,7 @@ class BBReward(ext.Cog):
                             day: Option(int,
                                         "The day to get the rewards of. Not required if you are authenticated") = 'hi readers of the bot',
                             limit: Option(int, "The number of upcoming days to see") = 7):
-        await self.bbreward_command(ctx, day, limit, True)
+        await self.bbreward_command(ctx, day, limit)
 
 
 def setup(client):

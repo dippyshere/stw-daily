@@ -1,15 +1,15 @@
-# BATTLE BREAKERS!
-#
-# WOAH-OH-OH, OOH-WOAH-OH OOH-WOAH-OH, OOH-WOAH-OH
-# Monsters from the sky, Want us all to die. Hiding underground, now they all must be found.
-# Break the crystals, set them free. Battle your way to victory.
-#
-# BATTLE BREAKERS!
-#
-# OH-WOAH-OH, OH-WOAH-OH
-# ctrl + shift + o what does that do :o
-# BATTLE BREAKERS!
-# :D
+"""BATTLE BREAKERS!
+
+WOAH-OH-OH, OOH-WOAH-OH OOH-WOAH-OH, OOH-WOAH-OH
+Monsters from the sky, Want us all to die. Hiding underground, now they all must be found.
+Break the crystals, set them free. Battle your way to victory.
+
+BATTLE BREAKERS!
+
+OH-WOAH-OH, OH-WOAH-OH
+ctrl + shift + o what does that do :o
+BATTLE BREAKERS!
+:D"""
 
 import asyncio
 
@@ -30,11 +30,10 @@ class BattleBreakersDaily(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def bbdaily_command(self, ctx, slash, authcode, auth_opt_out):
+    async def bbdaily_command(self, ctx, authcode, auth_opt_out):
         succ_colour = self.client.colours["success_green"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "bbdaily", authcode, slash, auth_opt_out,
-                                                         True, game="bb")
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "bbdaily", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 
@@ -63,13 +62,13 @@ class BattleBreakersDaily(ext.Cog):
             embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url,
                                                        response=json_response)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
-        except:
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+        except KeyError:
             day = await asyncio.gather(asyncio.to_thread(stw.bb_day_query_check, json_response))
 
             try:
                 self.client.temp_auth[ctx.author.id]["bb_day"] = day[0]
-            except:
+            except KeyError:
                 pass
 
             dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client,
@@ -105,7 +104,7 @@ class BattleBreakersDaily(ext.Cog):
 
             embed = await stw.add_requested_footer(ctx, embed)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
     @ext.slash_command(name='bbdaily',
@@ -115,7 +114,7 @@ class BattleBreakersDaily(ext.Cog):
                            token: Option(str,
                                          "Your Epic Games authcode. Required unless you have an active session.") = "",
                            auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
-        await self.bbdaily_command(ctx, True, token, not auth_opt_out)
+        await self.bbdaily_command(ctx, token, not auth_opt_out)
 
     # Battle Breakers is a new tactical role-playing game developed by Epic Games for mobile and PC.
     @ext.command(name='bbdaily',
@@ -159,7 +158,7 @@ class BattleBreakersDaily(ext.Cog):
         else:
             optout = False
 
-        await self.bbdaily_command(ctx, False, authcode, not optout)
+        await self.bbdaily_command(ctx, authcode, not optout)
 
 
 def setup(client):

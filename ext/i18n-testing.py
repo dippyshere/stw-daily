@@ -11,7 +11,7 @@ class Internationalisation(ext.Cog):
     def __init__(self, client):
         self.client = client
 
-    async def i18n_command(self, ctx, slash=False):
+    async def i18n_command(self, ctx):
 
         user_profile = await get_user_document(self.client, ctx.author.id)
         localisation = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"]["localisation"]
@@ -42,13 +42,13 @@ class Internationalisation(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed)
 
-        await stw.slash_send_embed(ctx, slash, embed)
+        await stw.slash_send_embed(ctx, embed)
 
     @ext.slash_command(name='i18n',
                        description='Test internationalisation',
                        guild_ids=stw.guild_ids)
     async def slashi18n(self, ctx: discord.ApplicationContext):
-        await self.i18n_command(ctx, True)
+        await self.i18n_command(ctx)
 
     @ext.command(name='i18n',
                  aliases=[],

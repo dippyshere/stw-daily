@@ -10,12 +10,11 @@ import stwutil as stw
 # view for the invite command.
 class InviteView(discord.ui.View):
 
-    def __init__(self, client, author, ctx, slash):
+    def __init__(self, client, author, ctx):
         super().__init__(timeout=None)
         self.client = client
         self.ctx = ctx
         self.author = author
-        self.slash = slash
 
         self.add_item(discord.ui.Button(label="Invite STW Daily", style=discord.ButtonStyle.link,
                                         url="https://canary.discord.com/api/oauth2/authorize?client_id"
@@ -32,7 +31,7 @@ class Invite(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def invite_command(self, ctx, slash):
+    async def invite_command(self, ctx):
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Invite", "placeholder"),
                               description=f'\u200b\nPress the buttons below to:\n[Invite STW Daily]('
@@ -46,8 +45,8 @@ class Invite(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "placeholder")
         embed = await stw.add_requested_footer(ctx, embed)
 
-        invite_view = InviteView(self.client, ctx.author, ctx, slash)
-        await stw.slash_send_embed(ctx, slash, embed, invite_view)
+        invite_view = InviteView(self.client, ctx.author, ctx)
+        await stw.slash_send_embed(ctx, embed, invite_view)
         return
 
     @ext.command(name='invite',
@@ -114,13 +113,13 @@ class Invite(ext.Cog):
                  description="This command will provide you with links to invite STW Daily to your server, or join "
                              "the support server")
     async def invite(self, ctx):
-        await self.invite_command(ctx, False)
+        await self.invite_command(ctx)
 
     @slash_command(name='invite',
                    description="Invite STW Daily to your server, or join the support server",
                    guild_ids=stw.guild_ids)
     async def slashinvite(self, ctx):
-        await self.invite_command(ctx, True)
+        await self.invite_command(ctx)
 
 
 def setup(client):

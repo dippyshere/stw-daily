@@ -14,7 +14,7 @@ class Vbucks(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, slash):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
         try:
             # general error
             error_code = public_json_response["errorCode"]
@@ -22,17 +22,16 @@ class Vbucks(ext.Cog):
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "vbucks", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True
         except KeyError:
             # no error
             return False
 
-    async def vbuck_command(self, ctx, slash, authcode, auth_opt_out):
+    async def vbuck_command(self, ctx, authcode, auth_opt_out):
         vbucc_colour = self.client.colours["vbuck_blue"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, slash, auth_opt_out,
-                                                         True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 
@@ -55,7 +54,7 @@ class Vbucks(ext.Cog):
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # check for le error code
-        if await self.check_errors(ctx, core_json_response, auth_info, final_embeds, slash):
+        if await self.check_errors(ctx, core_json_response, auth_info, final_embeds):
             return
 
         vbucks = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await core_request.json(),
@@ -66,7 +65,7 @@ class Vbucks(ext.Cog):
         stw_json_response = await stw_request.json()
 
         # check for le error code
-        error_check = await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, slash)
+        error_check = await self.check_errors(ctx, stw_json_response, auth_info, final_embeds)
         if error_check:
             return
 
@@ -104,7 +103,7 @@ class Vbucks(ext.Cog):
             embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
     @ext.slash_command(name='vbucks',
@@ -114,7 +113,7 @@ class Vbucks(ext.Cog):
                           token: Option(str,
                                         "Your Epic Games authcode. Required unless you have an active session.") = "",
                           auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
-        await self.vbuck_command(ctx, True, token, not auth_opt_out)
+        await self.vbuck_command(ctx, token, not auth_opt_out)
 
     @ext.command(name='vbucks',
                  aliases=['v', 'vb', 'vbuck', 'vbucc', 'v-bucks', 'balance', 'bucks', 'vucks', 'vbcks', 'vbuks',
@@ -184,7 +183,7 @@ class Vbucks(ext.Cog):
         else:
             optout = False
 
-        await self.vbuck_command(ctx, False, authcode, not optout)
+        await self.vbuck_command(ctx, authcode, not optout)
 
 
 def setup(client):

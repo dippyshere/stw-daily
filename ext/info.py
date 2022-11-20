@@ -20,7 +20,7 @@ class Information(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def info_command(self, ctx, slash=False):
+    async def info_command(self, ctx):
         try:
             osgetlogin = os.getlogin()
         except:
@@ -78,14 +78,14 @@ class Information(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "info")
 
         before = time.monotonic()
-        msg = await stw.slash_send_embed(ctx, slash, embed)
+        msg = await stw.slash_send_embed(ctx, embed)
         ping = (time.monotonic() - before) * 1000
         embed.set_field_at(-2, name='Latency Information:', value=f'```Websocket: {websocket_ping}\n'
                                                                   f'Shard: {shard_ping}\n'
                                                                   f'Actual: {int(ping)}ms```\u200b', inline=True)
 
         await asyncio.sleep(4)
-        await stw.slash_edit_original(msg, slash, embed)
+        await stw.slash_edit_original(ctx, msg, embed)
 
     @ext.command(name='info',
                  aliases=['inffo',
@@ -127,7 +127,7 @@ class Information(ext.Cog):
                    description="View information about STW Daily! Also verify authenticity of the bot.",
                    guild_ids=stw.guild_ids)
     async def slashinfo(self, ctx):
-        await self.info_command(ctx, True)
+        await self.info_command(ctx)
 
 
 def setup(client):

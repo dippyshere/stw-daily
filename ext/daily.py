@@ -12,11 +12,11 @@ class Daily(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def daily_command(self, ctx, slash, authcode, auth_opt_out):
+    async def daily_command(self, ctx, authcode, auth_opt_out):
         succ_colour = self.client.colours["success_green"]
         yellow = self.client.colours["warning_yellow"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, slash, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 
@@ -45,7 +45,7 @@ class Daily(ext.Cog):
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "daily", acc_name, error_code, support_url)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         except:
             daily_feedback = json_response["notifications"]
 
@@ -79,7 +79,7 @@ class Daily(ext.Cog):
                 embed = await stw.set_thumbnail(self.client, embed, "warn")
                 embed = await stw.add_requested_footer(ctx, embed)
                 final_embeds.append(embed)
-                await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+                await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
 
             # Initialise the claimed embed
@@ -139,7 +139,7 @@ class Daily(ext.Cog):
 
             embed = await stw.add_requested_footer(ctx, embed)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
     @ext.slash_command(name='daily',
@@ -149,7 +149,7 @@ class Daily(ext.Cog):
                          token: Option(str,
                                        "Your Epic Games authcode. Required unless you have an active session.") = "",
                          auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
-        await self.daily_command(ctx, True, token, not auth_opt_out)
+        await self.daily_command(ctx, token, not auth_opt_out)
 
     @ext.command(name='daily',
                  aliases=['daxily', 'clllect', 'deaily', 'clailm', 'c9llect', 'claimm', 'dai9ly', 'claiom', 'collfct',
@@ -204,7 +204,7 @@ class Daily(ext.Cog):
         else:
             optout = False
 
-        await self.daily_command(ctx, False, authcode, not optout)
+        await self.daily_command(ctx, authcode, not optout)
 
 
 def setup(client):
