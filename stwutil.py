@@ -1,4 +1,6 @@
-# Utility library for STW daily.
+"""
+Utility library for STW daily discord bot.
+"""
 import asyncio
 import datetime
 import random
@@ -6,14 +8,18 @@ import re
 import time
 import math
 import json
+import blendmodes.blend
+from PIL import Image
+import asyncio
+import io
 
 import discord
 
 import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 
-with open("ext/battlebreakers/LoginRewards.json", "r") as LoginRewards:
-    LoginRewards = json.load(LoginRewards)
+with open("ext/battlebreakers/LoginRewards.json", "r") as f:
+    LoginRewards = json.load(f)
 with open('ext/DataTables/SurvivorItemRating.json') as f:
     SurvivorItemRating = json.load(f)
 with open('ext/DataTables/HomebaseRatingMapping.json') as f:
@@ -22,21 +28,48 @@ with open('ext/DataTables/ResearchSystem.json') as f:
     ResearchSystem = json.load(f)
 with open('ext/DataTables/AccountLevels.json') as f:
     AccountLevels = json.load(f)
+banner_d = Image.open("ext/homebase/banner_texture_div.png").convert("RGB")
+banner_m = Image.open("ext/homebase/banner_shape_standard.png").convert("RGBA")
 
+# TODO: translation loading
+
+
+# TODO: make this None
 guild_ids = [757765475823517851]
 
 
 def reverse_dict_with_list_keys(dict):
+    """
+    Reverses a dictionary with list keys
+
+    Args:
+        dict: the dictionary to reverse
+
+    Returns:
+        A dictionary with the keys and values reversed
+    """
     new_dict = {}
 
-    for key in dict:
-        for subkey in dict[key]:
-            new_dict[subkey.lower()] = key
+    for key, value in dict.items():
+        for item in value:
+            new_dict[item] = key
 
     return new_dict
 
 
 async def view_interaction_check(view, interaction, command):
+    """
+    Checks if the interaction is created by the view author
+
+    Args:
+        view: the view
+        interaction: the interaction
+        command: the command
+
+    Returns:
+        True if the interaction is created by the view author, False if notifying the user
+
+    """
     if view.ctx.author == interaction.user:
         return True
     else:
@@ -60,11 +93,30 @@ async def view_interaction_check(view, interaction, command):
 
 
 def edit_emoji_button(client, button):
+    """
+    Adds an emoji to a button
+
+    Args:
+        client: the client
+        button: the button to add the emoji to
+
+    Returns:
+        The button with the emoji edited
+    """
     button.emoji = client.config["emojis"][button.emoji.name]
     return button
 
 
 def process_quotes_in_message(message):
+    """
+    Handles quotes in a message's content by replacing them with the appropriate unicode character
+
+    Args:
+        message: the message to process
+
+    Returns:
+        The processed message
+    """
     # do not question the ways of the regex
     re_iter = re.finditer(r'((?:^|\s)\"|\"(?:\s|$))', message.content)
 
@@ -103,8 +155,19 @@ def process_quotes_in_message(message):
     return message
 
 
-# a """small""" bridge helper function between slash commands and normal commands
-async def slash_send_embed(ctx, slash, embeds, view=None, interaction=False):
+async def slash_send_embed(ctx, embeds, view=None, interaction=False):
+    """
+    A small bridging function to send embeds to a slash, view, normal command, or interaction
+
+    Args:
+        ctx: the context
+        embeds: the embeds to send
+        view: the view to send the embeds with
+        interaction: whether or not the embeds are being sent to an interaction
+
+    Returns:
+        The message sent
+    """
     try:
         embeds[0]
     except:
@@ -133,14 +196,30 @@ async def slash_send_embed(ctx, slash, embeds, view=None, interaction=False):
 
 
 async def retrieve_shard(client, shard_id):
+    """
+    Retrieves the current shard name. Fallback to current shard id if no name is available
+
+    Args:
+        client: the client
+        shard_id: the shard id
+
+    Returns:
+        The shard name if available, else the shard id
+    """
     if shard_id > len(client.config["shard_names"]):
         return shard_id
 
     return client.config["shard_names"][shard_id]
 
 
-# returns the time until the end of the day
 def time_until_end_of_day():
+    """
+    a string representing the time until the end of the day for the bot's status.
+    this is one of the oldest surviving functions from the old bot.
+
+    Returns:
+        The time until the end of the day in hours, minutes
+    """
     tomorrow = datetime.datetime.utcnow() + datetime.timedelta(days=1)
     a = datetime.datetime.combine(tomorrow, datetime.time.min) - datetime.datetime.utcnow()
     hours, remainder = divmod(int(a.total_seconds()), 3600)
@@ -159,15 +238,36 @@ def time_until_end_of_day():
 
 
 async def mention_string(client, prompt):
+    """
+    A function to compile a mention string for the bot
+
+    Args:
+        client: the client
+        prompt: the prompt to use
+
+    Returns:
+        The mention string (@STW Daily prompt)
+    """
     me = client.user
     try:
         return f"{me.mention} {prompt}"
     except AttributeError:
+        # this is a fallback for when the bot is not ready, i guess
+        # could probably make this an f string /shrug
         return "Mention me and then type {prompt} after!"
 
 
-# adds the requested by person thing to the footer
 async def add_requested_footer(ctx, embed):
+    """
+    Adds the requested by user to the footer of the embed
+
+    Args:
+        ctx: the context
+        embed: the embed to add the footer to
+
+    Returns:
+        The embed with the footer added
+    """
     try:
         embed.set_footer(text=
                          f"\nRequested by: {ctx.author.name}"
@@ -182,25 +282,74 @@ async def add_requested_footer(ctx, embed):
     return embed
 
 
-# adds emojis to either side of the title
 async def add_emoji_title(client, title, emoji):
-    emoji = client.config["emojis"][emoji]
+    """
+    Adds emojis surrounding the title of an embed
+
+    Args:
+        client: the client
+        title: the title to add the emojis to
+        emoji: the emoji to add
+
+    Returns:
+        The title with the emojis added
+    """
+    try:
+        emoji = client.config["emojis"][emoji]
+    except KeyError:
+        emoji = client.config["emojis"]["placeholder"]
     return f"{emoji}  {title}  {emoji}"
 
 
 async def split_emoji_title(client, title, emoji_1, emoji_2):
+    """
+    Adds two separate emojis surrounding the title of an embed
+
+    Args:
+        client: the client
+        title: the title to add the emojis to
+        emoji_1: the first emoji to add
+        emoji_2: the last emoji to add
+
+    Returns:
+        The title with the emojis added
+    """
     emoji_1 = client.config["emojis"][emoji_1]
     emoji_2 = client.config["emojis"][emoji_2]
     return f"{emoji_1}  {title}  {emoji_2}"
 
 
-# shortens setting thumbnails for embeds
 async def set_thumbnail(client, embed, thumb_type):
-    embed.set_thumbnail(url=client.config["thumbnails"][thumb_type])
+    """
+    sets the thunbnail of an embed from the config key
+
+    Args:
+        client: the client
+        embed: the embed
+        thumb_type: the key of the thumbnail to set
+
+    Returns:
+        the embed with the thumbnail set
+    """
+    try:
+        embed.set_thumbnail(url=client.config["thumbnails"][thumb_type])
+    except KeyError:
+        embed.set_thumbnail(url=client.config["thumbnails"]["placeholder"])
     return embed
 
 
 def get_reward(client, day, vbucks=True):
+    """
+    gets the reward for the given day, accounting for non founders
+
+    Args:
+        client: the client
+        day: the day to get the reward for
+        vbucks: whether to get vbucks or not
+
+    Returns:
+        the reward for the given day and emoji key
+    """
     day_mod = int(day) % 336
     if day_mod == 0:
         day_mod = 336
@@ -223,6 +372,18 @@ def get_reward(client, day, vbucks=True):
 
 
 def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
+    """
+    gets the reward data for battle breakers rewards
+
+    Args:
+        client: the client
+        response: the epic api response to get the data from
+        error: whether there was an error or not
+        pre_calc_day: the day to calculate the reward for
+
+    Returns:
+        the reward day, name, emoji key, description, quantity
+    """
     if error:
         day = int(response['messageVars'][0]) - 1  # hello world explorer hi
     elif pre_calc_day > 0:  # do u see me minimizing it no
@@ -247,6 +408,14 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
 
 
 def get_game_headers(game):
+    """
+    gets the http auth headers for the given game/context
+    Args:
+        game: bb, ios, fn pc client
+
+    Returns:
+        the headers
+    """
     if game == "bb":
         h = {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -266,6 +435,16 @@ def get_game_headers(game):
 
 
 async def get_token(client, auth_code: str, game="fn"):
+    """
+    gets an access token for the given game/context
+    Args:
+        client: the client
+        auth_code: the auth code to get the token for
+        game: bb, ios, fn pc client
+
+    Returns:
+        the access token response
+    """
     h = get_game_headers(game)
     d = {
         "grant_type": "authorization_code",
@@ -278,6 +457,17 @@ async def get_token(client, auth_code: str, game="fn"):
 
 # hi
 async def exchange_games(client, auth_token, game="fn"):
+    """
+    exchanges the given auth token for the given game
+
+    Args:
+        client: the client
+        auth_token: the auth token to exchange
+        game: the game to exchange for
+
+    Returns:
+        the new auth token response
+    """
     h = {
         "Content-Type": "application/json",
         "Authorization": f"bearer {auth_token}"
@@ -299,6 +489,16 @@ async def exchange_games(client, auth_token, game="fn"):
 
 
 async def processing_embed(client, ctx):
+    """
+    Constructs the processing embed
+
+    Args:
+        client: the client
+        ctx: the context
+
+    Returns:
+        the processing embed
+    """
     colour = client.colours["success_green"]
 
     embed = discord.Embed(title=await add_emoji_title(client, "Logging In And Processing", "processing"),
@@ -308,10 +508,36 @@ async def processing_embed(client, ctx):
 
 
 def ranerror(client):
+    """
+    Gets a random error message
+
+    Args:
+        client: the client
+
+    Returns:
+        the randomly chosen error message
+    """
     return random.choice(client.config["error_messages"])
 
 
-async def check_for_auth_errors(client, request, ctx, message, command, auth_code, slash, invite_link):
+async def check_for_auth_errors(client, request, ctx, message, command, auth_code, invite_link,
+                                send_error_message=True):
+    """
+    Checks for auth errors and sends the appropriate message
+
+    Args:
+        client: the client
+        request: the request to check
+        ctx: the context
+        message: the message to edit
+        command: the command that was run
+        auth_code: the auth code used
+        invite_link: the support server invite link
+
+    Returns:
+        If there was no error, returns True, access token, account id
+        If there was an error, returns False, None, None
+    """
     try:
         return True, request["access_token"], request["account_id"]
     except:
@@ -320,7 +546,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     error_colour = client.colours["error_red"]
 
     print(f'[ERROR]: {error_code}')
-    # TODO: change links client id's
+    # TODO: refactor text
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
         # login error
         embed = discord.Embed(
@@ -398,29 +624,70 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
 
     embed = await set_thumbnail(client, embed, "error")
     embed = await add_requested_footer(ctx, embed)
-    await slash_edit_original(message, slash, embed)
+
+    if send_error_message == True:
+        await slash_edit_original(ctx, message, embed)
+    else:
+        return embed
+
     return False, None, None
 
 
-async def slash_edit_original(msg, slash, embeds, view=None):
+async def slash_edit_original(ctx, msg, embeds, view=None, file=None):
+    """
+    Edits the original message sent by the bot
+
+    Args:
+        ctx: The context of the command
+        msg: The message to edit
+        embeds: The embeds to edit the message with
+        view: The view to edit the message with
+        file: The file to add to the message
+
+    Returns:
+        The edited message
+    """
     try:
         embeds[0]
     except:
         embeds = [embeds]
 
-    if not slash:
-        if view is not None:
-            return await msg.edit(embeds=embeds, view=view)
-        else:
-            return await msg.edit(embeds=embeds)
-    else:
+    if isinstance(ctx, discord.ApplicationContext):
+        if view is not None and file is not None:
+            return await msg.edit_original_response(embeds=embeds, view=view, file=file)
         if view is not None:
             return await msg.edit_original_response(embeds=embeds, view=view)
+        if file is not None:
+            return await msg.edit_original_response(embeds=embeds, file=file)
         else:
             return await msg.edit_original_response(embeds=embeds)
+    else:
+        if view is not None and file is not None:
+            return await msg.edit(embeds=embeds, view=view, file=file)
+        if view is not None:
+            return await msg.edit(embeds=embeds, view=view)
+        if file is not None:
+            return await msg.edit(embeds=embeds, file=file)
+        else:
+            return await msg.edit(embeds=embeds)
 
 
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn"):
+    """
+    Request a profile from epic api
+
+    Args:
+        client: The client
+        req_type: The type of profile related request to make
+        auth_entry: The auth entry to use
+        data: The data to send with the request
+        json: The json to send with the request
+        profile_id: The profile id to use in the request
+        game: The game to use in the request
+
+    Returns:
+        The response from the request
+    """
     if game == "bb":
         token = auth_entry["bb_token"]
         url = client.config["endpoints"]["bb_profile"].format(auth_entry["account_id"],
@@ -441,12 +708,32 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None, pr
 
 
 def vbucks_query_check(profile_text):
+    """
+    Checks if the profile can claim vbucks or not
+
+    Args:
+        profile_text: text of the target profile json
+
+    Returns:
+        True if the profile can claim vbucks, False if not
+    """
     if 'Token:receivemtxcurrency' in profile_text:
         return True
     return False
 
 
 async def auto_stab_stab_session(client, author_id, expiry_time):
+    """
+    Automatically logs out the user and clears data after a set amount of time
+
+    Args:
+        client: the client
+        author_id: the id of the user
+        expiry_time: the time to wait before logging out
+
+    Returns:
+        None
+    """
     patience_is_a_virtue = expiry_time - time.time()
     await asyncio.sleep(patience_is_a_virtue)
     await manslaughter_session(client, author_id, expiry_time)
@@ -454,6 +741,17 @@ async def auto_stab_stab_session(client, author_id, expiry_time):
 
 
 async def manslaughter_session(client, account_id, kill_stamp):
+    """
+    Logs out the user and clears data
+
+    Args:
+        client: the client
+        account_id: the id of the user to clear
+        kill_stamp: the time the user was logged out
+
+    Returns:
+        True if the user was logged out, False if not
+    """
     try:
         info = client.temp_auth[account_id]
         if kill_stamp == "override" or info['expiry'] == kill_stamp:
@@ -465,12 +763,24 @@ async def manslaughter_session(client, account_id, kill_stamp):
             }
             endpoint = client.config["endpoints"]["kill_token"].format(info['token'])
             await client.stw_session.delete(endpoint, headers=header, data="{}")
+            return True
     except:
-        pass
-        # 😳 they'll never know 😳
+        return False
+        # 😳 they will know 😳
 
 
 async def entry_profile_req(client, entry, game):
+    """
+    Gets the profile of the user for an auth session entry
+
+    Args:
+        client: The client
+        entry: The auth session entry
+        game: The game to get the profile for
+
+    Returns:
+        The entry of the user
+    """
     profile = await profile_request(client, "query", entry, game=game)
 
     if game == "fn":
@@ -490,6 +800,16 @@ async def entry_profile_req(client, entry, game):
 
 
 async def add_other_game_entry(client, user_id, entry, game, other_games):
+    """
+    Adds an entry for another game to the user's auth session
+    
+    Args:
+        client: The client
+        user_id: The id of the user
+        entry: The entry to add to
+        game: The game to add the entry for
+        other_games: The other games to add an entry for
+    """
     token = entry[client.config["entry_token_key_for_game"][game]]
 
     for other_game in other_games:
@@ -501,10 +821,28 @@ async def add_other_game_entry(client, user_id, entry, game, other_games):
 
         entry["games"].append(other_game)
         entry = await entry_profile_req(client, entry, other_game)
-        client.temp_auth[user_id] = entry
+        # This should definitely return the entry so we can allow opt-out
+        # forget above comment ig
+    return entry
 
 
 async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None, game="fn"):
+    """
+    Adds a temporary authentication session entry for the user
+
+    Args:
+        client: The client
+        ctx: The context
+        auth_token: The fortnite access token to store
+        account_id: The epic account id
+        response: The response (to grab displayname)
+        add_entry: Whether to start or opt out of an auth session
+        bb_token: The battlebreakers access token to store
+        game: The game to add the entry for
+
+    Returns:
+        The authentication session entry of the user
+    """
     display_name = response["displayName"]
 
     entry = {
@@ -534,6 +872,15 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
 
 
 def json_query_check(profile_text):
+    """
+    Checks if the profile has a days logged in value
+
+    Args:
+        profile_text: The profile json object
+
+    Returns:
+        The days logged in value if it exists, None if not
+    """
     try:
         return profile_text["profileChanges"][0]["profile"]["stats"]["attributes"]["daily_rewards"]["totalDaysLoggedIn"]
     except:
@@ -541,6 +888,15 @@ def json_query_check(profile_text):
 
 
 def bb_day_query_check(profile_text):
+    """
+    Checks if the profile has a next login reward level value
+
+    Args:
+        profile_text: The profile json object
+
+    Returns:
+        The day for tomorrows reward if it exists, None if not
+    """
     try:
         # ROOT.profileChanges[0].profile.stats.attributes.login_reward.next_level
         return profile_text["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"]
@@ -548,8 +904,17 @@ def bb_day_query_check(profile_text):
         return None
 
 
-# method to extract desired item from items
 def extract_item(profile_json, item_string="Currency:Mtx"):
+    """
+    Extracts an item from the profile json
+
+    Args:
+        profile_json: The profile json object
+        item_string: The item to extract
+
+    Returns:
+        A dictionary of found items
+    """
     found_items = {}
     num = 0
     try:
@@ -562,20 +927,49 @@ def extract_item(profile_json, item_string="Currency:Mtx"):
     return found_items
 
 
-# method to get stw news from epic
 async def get_stw_news(client):
+    """
+    Gets the news for stw from epic games
+
+    Args:
+        client: The client
+
+    Returns:
+        The news for stw from epic games
+    """
     endpoint = client.config["endpoints"]["stw_news"]
     return await client.stw_session.get(endpoint)
 
 
-# method to get br news from fortnite-api
 async def get_br_news(client):
+    """
+    Gets the news for br from fortnite-api as its personalised from epic games
+
+    Args:
+        client: The client
+
+    Returns:
+        The news for br from fortnite-api
+    """
+    # TODO: This should be changed to use the epic games api
     endpoint = client.config["endpoints"]["br_news"]
     return await client.stw_session.get(endpoint)
 
 
-# news page embed
 async def create_news_page(self, ctx, news_json, current, total):
+    """
+    Creates a news page embed
+
+    Args:
+        self: The client
+        ctx: The context
+        news_json: The news json
+        current: The current page
+        total: The total pages
+
+    Returns:
+        the constructed news embed
+    """
     generic = self.client.colours["generic_blue"]
     embed = discord.Embed(title=await add_emoji_title(self.client, "News", "bang"),
                           description=f"\u200b\n**News page {current} of {total}:**\u200b\n"
@@ -593,19 +987,36 @@ async def create_news_page(self, ctx, news_json, current, total):
 
 
 async def set_embed_image(embed, image_url):
+    """
+    Sets the embed image
+
+    Args:
+        embed: The embed to set the image for
+        image_url: The image url to set
+
+    Returns:
+        The embed with the image set
+    """
     return embed.set_image(url=image_url)
 
 
-# method to resolve internal name -> user-friendly name + emoji
 async def resolve_vbuck_source(vbuck_source):
+    """
+    Resolves the vbuck source to a user friendly name and emoji
+
+    Args:
+        vbuck_source: The vbuck source
+
+    Returns:
+        The user friendly name, and emoji
+    """
     if vbuck_source == "Currency:MtxGiveaway":
         return "Battle Pass", "bp_icon2"
     elif vbuck_source == "Currency:MtxComplimentary":
         return "Save the World", "library_cal"
     elif vbuck_source == "Currency:MtxPurchased":
         return "Purchased", "vbuck_icon"
-    # idk the casing for this
-    elif vbuck_source.lower() == "currency:mtxpurchasebonus":
+    elif vbuck_source.lower() == "currency:mtxpurchasebonus":  # idk the casing for this
         return "Purchase Bonus", "vbuck_icon"
     elif vbuck_source == "Currency:MtxDebt":
         return "Debt", "LMAO"
@@ -613,8 +1024,16 @@ async def resolve_vbuck_source(vbuck_source):
         return vbuck_source, "placeholder"
 
 
-# method to calculate total vbucks from a list of items
 async def calculate_vbucks(items):
+    """
+    Calculates the total vbucks from a dict of items
+
+    Args:
+        items: The dict of items
+
+    Returns:
+        The total vbucks quantity
+    """
     vbucks = 0
     if items:
         for item in items:
@@ -627,14 +1046,42 @@ async def calculate_vbucks(items):
 
 
 def truncate(string, length=100, end="..."):
+    """
+    Truncates a string to a certain length
+
+    Args:
+        string: The string to truncate
+        length: The length to truncate to
+        end: The end of the string to use when truncated
+
+    Returns:
+
+    """
     return (string[:length - 3] + end) if len(string) > length else string
 
 
 def get_tomorrow_midnight_epoch():
+    """
+    Gets the epoch for tomorrow UTC midnight, independent of timezone
+
+    Returns:
+        The epoch for tomorrow UTC midnight in seconds
+    """
     return int(time.time() + 86400 - time.time() % 86400)
 
 
 def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0):
+    """
+    Calculates the power level of an item in stw
+
+    Args:
+        data_table: The data table to use
+        row: The row to use
+        time_input: The time input
+
+    Returns:
+        The power level of the item
+    """
     row_data = data_table[0]['Rows'][row]
     # ROOT[0].Rows.Default_C_T01.Keys[0].Time
     # clamp to lower bound.
@@ -654,12 +1101,22 @@ def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0)
                            row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])
 
 
-# Worker:managerexplorer_sr_eagle_t05 ; Worker:workerbasic_sr_t05;
-# Worker:worker_halloween_smasher_sr_t05; Worker:worker_joel_ur_t05
 def parse_survivor_template_id(template_id):
-    # STWSurvivorType = 'special' | 'manager' | 'basic'
-    # STWItemRarity = 'c' | 'uc' | 'r' | 'vr' | 'sr' | 'ur'
-    # STWItemTier = 1 | 2 | 3 | 4 | 5 | 6
+    """
+    Parses the template id of a survivor
+
+    Examples of template id's that may be passed:
+    Worker:managerexplorer_sr_eagle_t05
+    Worker:workerbasic_sr_t05;
+    Worker:worker_halloween_smasher_sr_t05
+    Worker:worker_joel_ur_t05
+
+    Args:
+        template_id: The template id to parse
+
+    Returns:
+        The type of survivor (e.g. worker, manager, basic), The tier of survivor (e.g. t01, t02, t03, t04, t05), The rarity of survivor (e.g. c, uc, r, vr, sr, ur), The name of the survivor if available (e.g. eagle, smasher, joel)
+    """
     tid = template_id.split(":")[1]
     fields = tid.split("_")
 
@@ -736,6 +1193,35 @@ def parse_survivor_template_id(template_id):
 
 
 def get_survivor_rating(survivor):
+    """
+    Gets the power level of a survivor from a profile's survivor entry dict
+
+    An example of a survivor dict:
+
+    worker = {
+        'templateId': 'Worker:workerbasic_sr_t05',
+
+        'attributes': {
+            'personality': 'Homebase.Worker.Personality.IsAnalytical',
+            'gender': '1',
+            'squad_id': 'squad_attribute_scavenging_gadgeteers',
+            'level': 50,
+            'squad_slot_idx': 5,
+            'item_seen': True,
+            'portrait': 'WorkerPortrait:IconDef-WorkerPortrait-Analytical-M03',
+            'building_slot_used': -1,
+            'set_bonus': 'Homebase.Worker.SetBonus.IsAbilityDamageLow'
+        },
+
+        'quantity': 1
+        }
+
+    Args:
+        survivor: The survivor dict. This must have: templateId, attributes.level
+
+    Returns:
+        Tuple: (The power level of the survivor, (The type of survivor (e.g. worker, manager, basic), The tier of survivor (e.g. t01, t02, t03, t04, t05), The rarity of survivor (e.g. c, uc, r, vr, sr, ur), The name of the survivor if available (e.g. eagle, smasher, joel)))
+    """
     survivor_info = parse_survivor_template_id(survivor["templateId"])
     if survivor_info[0] == "manager":
         survivor_type = "Manager"
@@ -750,6 +1236,18 @@ def get_survivor_rating(survivor):
 # print(get_survivor_rating(worker))
 
 def get_survivor_bonus(leader_personality, survivor_personality, leader_rarity, survivor_rating):
+    """
+    Gets the bonus to the powerlevel of a survivor based on the leader's personality and rarity, and the survivor's personality and rating
+    
+    Args:
+        leader_personality: The personality of the leader (e.g. Homebase.Worker.Personality.IsAnalytical)
+        survivor_personality: The personality of the survivor (e.g. Homebase.Worker.Personality.IsAnalytical)
+        leader_rarity: The rarity of the leader (e.g. c, uc, r, vr, sr, ur)
+        survivor_rating: The power level of the survivor (e.g. 50)
+
+    Returns:
+        The bonus delta to the power level of the survivor (e.g. 8)
+    """
     if leader_personality == survivor_personality:
         if leader_rarity == 'sr' or leader_rarity == 'ur':
             return 8
@@ -771,8 +1269,19 @@ def get_survivor_bonus(leader_personality, survivor_personality, leader_rarity, 
 
 
 def get_lead_bonus(lead_synergy, squad_name, rating):
+    """
+    Gets the bonus to the power level of a lead survivor based on the leader's synergy, squad and rating
+    
+    Args:
+        lead_synergy: The synergy of the leader (e.g. Homebase.Manager.IsGadgeteer)
+        squad_name: The name of the squad (e.g. squad_attribute_scavenging_gadgeteers)
+        rating: The power level of the leader (e.g. 50)
+
+    Returns:
+        The lead's rating (to effectively double it) if applicable, otherwise 0, (to effectively do nothing)
+    """
     # TODO: move this to a better location
-    STWLeadSynergy = {
+    stw_lead_synergy = {
         "trainingteam": 'IsTrainer',
         "fireteamalpha": 'IsSoldier',
         "closeassaultsquad": 'IsMartialArtist',
@@ -782,12 +1291,52 @@ def get_lead_bonus(lead_synergy, squad_name, rating):
         "scoutingparty": 'IsExplorer',
         "gadgeteers": 'IsGadgeteer'
     }
-    if STWLeadSynergy[squad_name] == lead_synergy:
+    if stw_lead_synergy[squad_name] == lead_synergy:
         return rating
     return 0
 
 
 def calculate_homebase_rating(profile):
+    """
+    Calculates the power level of a profile's homebase by calculating FORT stats
+
+    Formula to calculate should be something like:
+
+    1. FORT stat calculation
+    - query (public) profile campaign
+        - loop through items
+            - templateId Worker:workerx_xx_xxx
+                x - usually 'basic'; Halloween survivors are '_halloween_type'
+                xx - rarity; vr - epic, sr - legendary, etc
+                xxx - tier; t01-t05, evolution
+            - templateId Worker:managerx_xx_xxx_xxxx
+                x - leader synergy, doctor, martialartist, trainer etc
+                xx - rarity; vr, sr
+                xxx - portrait; treky, dragon, yoglattes etc
+                xxxx - tier; t01-t05, evolution
+        - get rarity, tier, level to calculate power level of survivor (use SurvivorItemRating.json)
+            - row 	- Default_C_T01 -> Default_UR_T06
+                    - Manager_C_T01 -> Manager_SR_T06
+            - mapping appears to be a keys list with the input (time) being level, and output (value) being power level
+                - ROOT[0].Rows.{type_rarity_tier}.Keys[point0].Time/Value //linear curve
+        - leader job match bonus for each squad
+            - (value doubled on correct squad)
+        - follower personality match bonus
+            - (increased/decreased with leader personality (amount depends on leader rarity))
+        - fort stat bonus from research stats
+            There are separate items for individual and team stats
+    - add up and multiply by 4
+    - use HomebaseRatingMapping.json to map value
+
+    # TODO: Ventures stats
+    ventures - same mapping, fort stats from phoenix stats
+
+    Args:
+        profile: The profile json to calculate the power level of
+
+    Returns:
+        The power level of the profile's homebase, total FORT stats, and dict of FORT stats by type
+    """
     # ROOT.profileChanges[0].profile.items
     workers = extract_item(profile, "Worker:")
     survivors = {}
@@ -903,8 +1452,8 @@ def calculate_homebase_rating(profile):
 
 
 # alexanda  now who is she
-async def get_or_create_auth_session(client, ctx, command, original_auth_code, slash, add_entry=False, processing=True,
-                                     epic_auth_client="PC", game="fn"):  # hi bye
+async def get_or_create_auth_session(client, ctx, command, original_auth_code, add_entry=False, processing=True,
+                                     dont_send_embeds=False):  # hi bye
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 
@@ -934,6 +1483,17 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
     That hopefully covers everything,
     if you're reading this then say hello in the STW-Daily discord server general channel. ;D
+
+    Args:
+        client (discord.Client): The discord client object
+        ctx (discord.ext.commands.Context): The context of the command
+        command (str): The command that is being executed
+        original_auth_code (str): The authcode that was provided by the user
+        add_entry (bool, optional): Whether or not to add an entry to the database. Defaults to False.
+        processing (bool, optional): Whether or not to create a processing embed. Defaults to True.
+
+    Returns:
+        If successfully created auth session list: [processing embed, auth info, success embed]; return list: [processing embed, existing auth entry, embed] if auth exists
     """
 
     # extract auth code from auth_code
@@ -952,7 +1512,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         # Send the logging in & processing if given
         if processing and not dont_send_embeds:
             proc_embed = await processing_embed(client, ctx)
-            return [await slash_send_embed(ctx, slash, proc_embed),
+            return [await slash_send_embed(ctx, proc_embed),
                     existing_auth,
                     embeds]
 
@@ -963,16 +1523,13 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     error_embed = None
     support_url = client.config["support_url"]
 
-    if game == "bb":
-        clientId = "3cf78cd3b00b439a8755a878b160c7ad"
-    else:
-        clientId = "ec684b8c687f479fadea3cb2ad83f5c6"
+    auth_client_id = "ec684b8c687f479fadea3cb2ad83f5c6"
 
     # Basic checks so that we don't stab stab epic games so much
     if extracted_auth_code == "":
         error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=f"""\u200b\n**You need an auth code, you can get one from:**
-          [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D{clientId}%2526responseType%253Dcode)
-          [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)\n
+          [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D{auth_client_id}%2526responseType%253Dcode)
+          [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n
             **Need Help? Run**
             {await mention_string(client, f"help {command}")}
             Or [Join the support server]({support_url})
@@ -988,7 +1545,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
             ⦾ The authcode you need is the one from the pages body, not the one from the url.
             \u200b
             If you need a new authcode you can get one by:
-            [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)
+            [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)
             \u200b
             **If you need any help try:**
             {await mention_string(client, f"help {command}")}
@@ -1005,7 +1562,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
-        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)
+        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)
         \u200b
         **If you need any help try:**
         {await mention_string(client, f"help {command}")}
@@ -1021,7 +1578,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
         **An Example:**
         ```a51c1f4d35b1457c8e34a1f6026faa35```
         If you need a new authcode you can get one by:
-        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={clientId}&responseType=code)
+        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)
         \u200b
         **If you need any help try:**
         {await mention_string(client, f"help {command}")}
@@ -1032,51 +1589,62 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
     if error_embed is not None:
         embed = await set_thumbnail(client, error_embed, "error")
         embed = await add_requested_footer(ctx, embed)
-        await slash_send_embed(ctx, slash, embed)
+        await slash_send_embed(ctx, embed)
         return [False]
 
-    proc_embed = await processing_embed(client, ctx)
-    message = await slash_send_embed(ctx, slash, proc_embed)
+    if not dont_send_embeds:
+        proc_embed = await processing_embed(client, ctx)
+        message = await slash_send_embed(ctx, proc_embed)
+    else:
+        message = None
 
-    token_req = await get_token(client, extracted_auth_code, game)
+    token_req = await get_token(client, extracted_auth_code)  # we auth for fn regardless of the game because exchange
     response = await token_req.json()
     success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command,
-                                                                  extracted_auth_code,
-                                                                  slash, support_url)
+                                                                  extracted_auth_code, support_url)
 
     if not success:
         return [success]
 
-    # if authing for battle breakers
-    if game == "bb":
-        # if session already exists
-        try:
-            # if existing fn session exists
-            if client.temp_auth[ctx.author.id]["token"] is not None:
-                entry = await add_temp_entry(client, ctx, client.temp_auth[ctx.author.id]["token"],
-                                             account_id, response, add_entry, bb_token=auth_token, game=game)
-            # no fn session, set fn token to none
-            else:
-                entry = await add_temp_entry(client, ctx, None, account_id, response, add_entry, bb_token=auth_token,
-                                             game=game)
-        # no session at all
-        except:
-            entry = await add_temp_entry(client, ctx, None, account_id, response, add_entry, bb_token=auth_token,
-                                         game=game)
-    # if authing for fn
-    else:
-        # if session already exists
-        try:
-            # if existing bb session exists
-            if client.temp_auth[ctx.author.id]["bb_token"] is not None:
-                entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry,
-                                             bb_token=client.temp_auth[ctx.author.id]["bb_token"], game=game)
-            # no bb session, set bb token to None
-            else:
-                entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, game=game)
-        # no session at all (most common outcome of all this junk 🫠)
-        except:
-            entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, game=game)
+    # # if authing for battle breakers
+    # if game == "bb":
+    #     # if session already exists
+    #     try:
+    #         # if existing fn session exists
+    #         if client.temp_auth[ctx.author.id]["token"] is not None:
+    #             entry = await add_temp_entry(client, ctx, client.temp_auth[ctx.author.id]["token"],
+    #                                          account_id, response, add_entry, bb_token=auth_token, game=game)
+    #         # no fn session, set fn token to none
+    #         else:
+    #             entry = await add_temp_entry(client, ctx, None, account_id, response, add_entry, bb_token=auth_token,
+    #                                          game=game)
+    #     # no session at all
+    #     except:
+    #         entry = await add_temp_entry(client, ctx, None, account_id, response, add_entry, bb_token=auth_token,
+    #                                      game=game)
+    # # if authing for fn
+    # else:
+    #     # if session already exists
+    #     try:
+    #         # if existing bb session exists
+    #         if client.temp_auth[ctx.author.id]["bb_token"] is not None:
+    #             entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry,
+    #                                          bb_token=client.temp_auth[ctx.author.id]["bb_token"], game=game)
+    #         # no bb session, set bb token to None
+    #         else:
+    #             entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, game=game)
+    #     # no session at all (most common outcome of all this junk 🫠)
+    #     except:
+    #         entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, game=game)
+
+    entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry)  # authing for fn first
+    # print(entry)
+    # print(game)
+    # if game != "fn":
+    #     print("bb")
+    #     entry = await add_temp_entry(client, ctx, entry["token"], account_id, response, add_entry,
+    #                                  bb_token=auth_token, game=game)  # now auth for desired game
+    #     print(entry)
 
     embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
                           description=f"""```Welcome, {entry['account_name']}```
@@ -1099,6 +1667,22 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, s
 
 async def post_error_possibilities(ctx, client, command, acc_name, error_code, support_url, error_level="error",
                                    response=None):
+    """
+    Handle errors that could occur when posting to the api, and present an embed with possible solutions
+
+    Args:
+        ctx: The context of the command
+        client: The client
+        command: The command that was run
+        acc_name: The account name of the user
+        error_code: The error code that was returned
+        support_url: The support server url
+        error_level: The level of error, either error or warning
+        response: The response from the api
+
+    Returns:
+        an error embed
+    """
     error_colour = client.colours["error_red"]
     yellow = client.colours["warning_yellow"]
 
@@ -1341,10 +1925,28 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
 
 async def strip_string(string):
+    """
+    Strips a string of all non-alphanumeric characters
+
+    Args:
+        string: string to be stripped
+
+    Returns:
+        regex stripped string
+    """
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
 
 def create_command_dict(client):
+    """
+    Creates a dictionary of all commands and their aliases
+
+    Args:
+        client: discord client
+
+    Returns:
+        a dictionary of command names, dictionary of commands, and list of command names
+    """
     command_name_dict = {}
     command_dict = {}
 
@@ -1360,8 +1962,17 @@ def create_command_dict(client):
     return command_name_dict, command_dict, list(command_name_dict)
 
 
-# regex for 32 character hex
 def extract_auth_code(string):
+    """
+    Extracts the auth code from a string
+
+    Args:
+        string: string to extract from
+
+    Returns:
+        The extracted auth code if possible, else an error code if the string is the correct length, finally just returns the string
+    """
+    print(string)
     try:
         return re.search(r"[0-9a-f]{32}", string)[0]  # hi
 
@@ -1372,7 +1983,17 @@ def extract_auth_code(string):
         return string
 
 
-# regex for under 16 character alphanumeric with extra allowed chars
 async def is_legal_homebase_name(string):
+    """
+    Checks if a string is a legal homebase name
+
+    Homebase names must be alphanumeric, with limited support for extra characters.
+
+    Args:
+        string: string to check
+
+    Returns:
+        True if legal, else False
+    """
     # TODO: add obfuscated filter for protected homebase names
     return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string)
