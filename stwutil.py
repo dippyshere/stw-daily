@@ -1997,3 +1997,35 @@ async def is_legal_homebase_name(string):
     """
     # TODO: add obfuscated filter for protected homebase names
     return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string)
+
+
+async def generate_banner(client, embed, homebase_icon, homebase_colour, author_id):
+    """
+    Generates a banner thumbnail for the embed
+
+    Args:
+        client: discord client
+        embed: embed to add the banner to
+        homebase_icon: homebase icon to use (e.g. ot7banner)
+        homebase_colour: homebase colour to use (e.g. defaultcolor15)
+        author_id: author id to use for the banner
+
+    Returns:
+        Embed with thumbnail set to the banner, discord attachment of file generated
+    """
+    banner_url = f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png"
+    colour = client.config["banner_colours"][homebase_colour]
+    async with client.stw_session.get(banner_url) as resp:
+        data = io.BytesIO(await resp.read())
+        banner_screen = blendmodes.blend.blendLayers(Image.open(data).convert("RGB"),
+                                                     Image.new("RGB", (256, 256),
+                                                               tuple(int(colour[i:i + 2], 16) for i in (1, 3, 5))),
+                                                     blendmodes.blend.BlendType.SCREEN)
+        banner_texture = blendmodes.blend.blendLayers(banner_screen, banner_d, blendmodes.blend.BlendType.DIVIDE)
+        banner_masked = blendmodes.blend.blendLayers(banner_texture, banner_m, blendmodes.blend.BlendType.DESTIN)
+        att_img = io.BytesIO()
+        banner_masked.save(att_img, format='PNG')
+        att_img.seek(0)
+        file = discord.File(att_img, filename=f"{author_id}banner.png")
+    embed.set_thumbnail(url=f"attachment://{author_id}banner.png")
+    return embed, file
