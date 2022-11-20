@@ -69,11 +69,13 @@ class Homebase(ext.Cog):
         public_json_response = await public_request.json()
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
+        file = None
         # check for le error code
         error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, name)
         if error_check[0] == "errors.stwdaily.no_stw":
             current = " "
             homebase_icon = "placeholder"
+            homebase_colour = "defaultcolor1"
         elif error_check[1]:
             return
         else:
@@ -82,9 +84,13 @@ class Homebase(ext.Cog):
             try:
                 homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
                     "banner_icon"]
-            except:
+            except KeyError:
                 homebase_icon = "placeholder"
-            # homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
+            try:
+                homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
+                    "banner_color"]
+            except KeyError:
+                homebase_colour = "defaultcolor1"
 
         # Empty name should fetch current name
         if name == "":
@@ -94,16 +100,20 @@ class Homebase(ext.Cog):
                 **Your current Homebase name is:**
             ```{current}```
             """, colour=white)
-            # embed = await stw.set_thumbnail(self.client, embed, "warn")
-            # set thumbnail to user's banner
-            # TODO: screen filter banner and change to user's colour
             if homebase_icon != "placeholder":
-                embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
+                embed, file = await stw.generate_banner(self.client, embed, homebase_icon, homebase_colour,
+                                                        ctx.author.id)
+                colour = tuple(
+                    int(self.client.config["banner_colours"][homebase_colour][i:i + 2], 16) for i in (1, 3, 5))
+                embed.colour = discord.Colour.from_rgb(colour[0], colour[1], colour[2])
             else:
                 embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])
             embed = await stw.add_requested_footer(ctx, embed)
             final_embeds.append(embed)
-            await stw.slash_edit_original(auth_info[0], slash, final_embeds)
+            if file is not None:
+                await stw.slash_edit_original(ctx, auth_info[0], final_embeds, file=file)
+                return
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
         # failing this check means the name has problems thus we cannot accept it
