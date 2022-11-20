@@ -1,3 +1,10 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+"""
+
+
 print("Starting STW Daily")
 
 import os
