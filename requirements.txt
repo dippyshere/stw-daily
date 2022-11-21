@@ -2,10 +2,17 @@ aiohttp<3.9.0,>=3.8.3
 # py-cord>=2.2.2
 # for python 3.11
 git+https://github.com/Pycord-Development/pycord
+# info command
 psutil>=5.9.4
+# python <3.10 compatibility
 tomli>=2.0.1
+# py-cord speedup
 aiodns>=3.0.0
-brotlipy>=0.7.0
 Cython>=3.0.0a11
+brotlipy>=0.7.0
 cchardet>=2.1.7
+# database
 motor>=3.1.1
+# for banner rendering
+blendmodes>=2022
+Pillow>=9.3.0
