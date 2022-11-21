@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the power level command. currently for testing only :3
+"""
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -5,14 +13,28 @@ from discord import Option
 import stwutil as stw
 
 
-# cog for the daily command.
 class Power(ext.Cog):
+    """
+    Cog for the power level command idk
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
+        """
+        Checks for errors in the public_json_response and returns True if there is an error
+
+        Args:
+            ctx: The context of the command
+            public_json_response: The json response from the public API
+            auth_info: The auth_info from the auth session
+            final_embeds: The list of embeds to be sent
+
+        Returns:
+            True if there is an error, False if there is not
+        """
         try:
             # general error
             error_code = public_json_response["errorCode"]
@@ -27,6 +49,17 @@ class Power(ext.Cog):
             return False
 
     async def power_command(self, ctx, authcode, auth_opt_out):
+        """
+        The power command
+
+        Args:
+            ctx: The context of the command
+            authcode: The authcode of the user
+            auth_opt_out: Whether the user has opted out of auth
+
+        Returns:
+            None
+        """
         vbucc_colour = self.client.colours["vbuck_blue"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True)
@@ -88,6 +121,14 @@ class Power(ext.Cog):
                          token: Option(str,
                                        "Your Epic Games authcode. Required unless you have an active session.") = "",
                          auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+        """
+        This function is the entry point for the power command when called via slash
+
+        Args:
+            ctx: The context of the command
+            token: The authcode of the user
+            auth_opt_out: Whether the user has opted out of auth
+        """
         await self.power_command(ctx, token, not auth_opt_out)
 
     @ext.command(name='power',
@@ -101,7 +142,14 @@ class Power(ext.Cog):
                 \u200b
                 """)
     async def power(self, ctx, authcode='', optout=None):
+        """
+        This function is the entry point for the power command when called traditionally
 
+        Args:
+            ctx: The context of the command
+            authcode: The authcode of the user
+            optout: Whether the user has opted out of auth
+        """
         if optout is not None:
             optout = True
         else:
@@ -111,4 +159,10 @@ class Power(ext.Cog):
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Power(client))

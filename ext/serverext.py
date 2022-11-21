@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the server extensions. Currently: reminder + trading nag
+"""
+
 import datetime
 
 import discord
@@ -7,21 +15,37 @@ from discord.ext import tasks
 import stwutil as stw
 
 
-# cog for the reminder task
 class Reminder(ext.Cog):
+    """
+    Cog for the Reminder task
+    """
 
     def __init__(self, client):
         self.client = client
         self.dailyreminder.start()
 
-    # simple task to send reminder to stw dailies reminder channel everyday
     @tasks.loop(time=datetime.time(0, 0, tzinfo=datetime.timezone.utc))
     async def dailyreminder(self):
+        """
+        Sends a reminder to the stw dailies reminder channel
+
+        Returns:
+            None
+        """
         await self.client.wait_until_ready()
         # TODO: change channel back to 956006055282896976
         channel = self.client.get_channel(956006055282896976)
 
         def is_me(m):
+            """
+            Checks if the message is from the bot
+
+            Args:
+                m: the message to check
+
+            Returns:
+                bool: True if from bot, False if not
+            """
             return m.author == self.client.user
 
         await channel.purge(limit=2, check=is_me)
@@ -49,23 +73,39 @@ class Reminder(ext.Cog):
         # skuby left here
 
 
-# cog for the trading channel nag thing (goodbye sticky bot)
 class TradingNag(ext.Cog):
+    """
+    Cog for the trading nag task
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
         self.tradingnag.start()
 
-    # simple task to send trading nag to stw dailies trading channel everyday
     @tasks.loop(time=datetime.time(7, 0, tzinfo=datetime.timezone.utc))
     async def tradingnag(self):
+        """
+        Sends a trading nag to the stw dailies trading channel everyday at 7am UTC (6pm aest)
+
+        Returns:
+            None
+        """
         await self.client.wait_until_ready()
         # TODO: change channel back to 997924614548226078
         channel = self.client.get_channel(997924614548226078)
         succ_colour = self.client.colours["success_green"]
 
         def is_me(m):
+            """
+            Checks if the message is from the bot
+
+            Args:
+                m: the message to check
+
+            Returns:
+                bool: True if from bot, False if not
+            """
             return m.author == self.client.user
 
         await channel.purge(limit=50, check=is_me)
@@ -83,5 +123,11 @@ class TradingNag(ext.Cog):
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Reminder(client))
     client.add_cog(TradingNag(client))

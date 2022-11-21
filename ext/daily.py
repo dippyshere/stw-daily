@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the daily command. claims fortnite stw daily reward
+"""
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -5,14 +13,27 @@ from discord import Option
 import stwutil as stw
 
 
-# cog for the daily command.
 class Daily(ext.Cog):
+    """
+    Cog for the daily command
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def daily_command(self, ctx, authcode, auth_opt_out):
+        """
+        The main function of the daily command
+
+        Args:
+            ctx: The context of the command
+            authcode: The authcode of the user
+            auth_opt_out: Whether the user wants to opt out of auth
+
+        Returns:
+            None
+        """
         succ_colour = self.client.colours["success_green"]
         yellow = self.client.colours["warning_yellow"]
 
@@ -143,12 +164,20 @@ class Daily(ext.Cog):
             return
 
     @ext.slash_command(name='daily',
-                       description='Claim your Save The World daily reward (authentication requried)',
+                       description='Claim your Save The World daily reward (authentication required)',
                        guild_ids=stw.guild_ids)
     async def slashdaily(self, ctx: discord.ApplicationContext,
                          token: Option(str,
                                        "Your Epic Games authcode. Required unless you have an active session.") = "",
                          auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+        """
+        This function is the entry point for the daily command when called via slash
+
+        Args:
+            ctx: The context of the slash command
+            token: The authcode of the user
+            auth_opt_out: Whether the user wants to opt out of starting an authentication session
+        """
         await self.daily_command(ctx, token, not auth_opt_out)
 
     @ext.command(name='daily',
@@ -198,7 +227,14 @@ class Daily(ext.Cog):
                 ⦾ Looking for help on authcodes? Check out help for the `auth` command.
                 """)
     async def daily(self, ctx, authcode='', optout=None):
+        """
+        This function is the entry point for the daily command when called traditionally
 
+        Args:
+            ctx (discord.ext.commands.Context): The context of the command
+            authcode: The authcode to use for authentication
+            optout: Any text given will opt out of starting an authentication session
+        """
         if optout is not None:
             optout = True
         else:
@@ -208,4 +244,10 @@ class Daily(ext.Cog):
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Daily(client))

@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is a datatable for battle breakers rewards. Compiled by dippyshere
+"""
+
 BBLootTable = {
     "/Game/Loot/Currencies/MtxGiveaway.MtxGiveaway": ["T_MTX_Gem_Icon", "Gems", "Used to purchase valuable goods."],
     "/Game/Characters/Classes/Cleric/Multi_TerraRifle/CD_Cleric_VR2_Dark_TerraRifle_T04.CD_Cleric_VR2_Dark_TerraRifle_T04": ["Cleric_VR2_Dark_TerrRifle_T04_Icon", "Sergeant Albeck", "Provides tactical support for the team."],

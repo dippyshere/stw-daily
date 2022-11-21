@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the invite command. Displays invite to server and bot with buttons
+"""
+
 import discord
 import discord.ext.commands as ext
 from discord.commands import (  # Importing the decorator that makes slash commands.
@@ -9,6 +17,9 @@ import stwutil as stw
 
 # view for the invite command.
 class InviteView(discord.ui.View):
+    """
+    discord UI View for the invite command.
+    """
 
     def __init__(self, client, author, ctx):
         super().__init__(timeout=None)
@@ -24,14 +35,25 @@ class InviteView(discord.ui.View):
                                         url="https://discord.gg/stw-dailies-757765475823517851", emoji="📨"))
 
 
-# cog for the invite command.
 class Invite(ext.Cog):
+    """
+    The invite command.
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def invite_command(self, ctx):
+        """
+        The main function for the invite command.
+
+        Args:
+            ctx: The context of the command.
+
+        Returns:
+            None
+        """
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Invite", "placeholder"),
                               description=f'\u200b\nPress the buttons below to:\n[Invite STW Daily]('
@@ -113,14 +135,32 @@ class Invite(ext.Cog):
                  description="This command will provide you with links to invite STW Daily to your server, or join "
                              "the support server")
     async def invite(self, ctx):
+        """
+        This function is the entry point for the invite command when called traditionally
+
+        Args:
+            ctx (discord.ext.commands.Context): The context of the command call
+        """
         await self.invite_command(ctx)
 
     @slash_command(name='invite',
                    description="Invite STW Daily to your server, or join the support server",
                    guild_ids=stw.guild_ids)
     async def slashinvite(self, ctx):
+        """
+        This function is the entry point for the invite command when called via slash commands
+
+        Args:
+            ctx: The context of the slash command
+        """
         await self.invite_command(ctx)
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Invite(client))

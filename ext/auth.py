@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the auth and kill command. handles auth sessions.
+"""
+
 import math
 
 import discord
@@ -10,14 +18,26 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 import stwutil as stw
 
 
-# cog for the auth command.
 class Auth(ext.Cog):
+    """
+    Cog for the auth command
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def auth_command(self, ctx, token=''):
+        """
+        The main function of the auth command
+
+        Args:
+            ctx (discord.ext.commands.Context): The context of the command
+            token: The token to authenticate with
+
+        Returns:
+            None
+        """
         white = self.client.colours["auth_white"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, True, True)
@@ -54,6 +74,12 @@ class Auth(ext.Cog):
             await stw.slash_edit_original(ctx, auth_info[0], embed)
 
     async def kill_command(self, ctx):
+        """
+        The main function of the kill command
+
+        Args:
+            ctx (discord.ext.commands.Context): The context of the command
+        """
         white = self.client.colours["auth_white"]
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Killed Auth Session", "whitekey"),
                               description=f"""```Successfully ended authentication session.```
@@ -118,6 +144,13 @@ class Auth(ext.Cog):
                 AFAIK, your auth code can be used maliciously, if you are sceptical, [check out the source code here](https://github.com/dippyshere/stw-daily), or check out #transparency in [STW Dailies]({self.client.config['support_url']})
                 """)
     async def auth(self, ctx, token=''):
+        """
+        This function is the entry point for the auth command when called traditionally
+
+        Args:
+            ctx: The context of the command
+            token: The authcode to use for authentication
+        """
         await self.auth_command(ctx, token)
 
     @ext.command(name='kill',
@@ -154,6 +187,12 @@ class Auth(ext.Cog):
                  brief="End your active authentication session",
                  description="This command will end your active authentication session and delete any temporarily stored data.")
     async def kill(self, ctx):
+        """
+        This function is the entry point for the kill command when called traditionally
+
+        Args:
+            ctx: The context of the command
+        """
         await self.kill_command(ctx)
 
     @slash_command(name='auth',
@@ -162,15 +201,32 @@ class Auth(ext.Cog):
     async def slashauth(self, ctx: discord.ApplicationContext,
                         authcode: Option(str,
                                          "Your Epic Games authcode. Leave this blank to get one") = ''):
-
+        """
+        This function is the entry point for the auth command when called via slash commands
+        Args:
+            ctx: The context of the command
+            authcode: The authcode to use for authentication
+        """
         await self.auth_command(ctx, authcode)
 
     @slash_command(name='kill',
                    description='End your active authentication session',
                    guild_ids=stw.guild_ids)
     async def slashkill(self, ctx):
+        """
+        This function is the entry point for the kill command when called via slash commands
+
+        Args:
+            ctx: The context of the command
+        """
         await self.kill_command(ctx)
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Auth(client))

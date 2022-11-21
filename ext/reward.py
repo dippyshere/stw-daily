@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the reward command. Displays specified reward + upcoming rewards.
+"""
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -9,14 +17,26 @@ import items
 import stwutil as stw
 
 
-# cog for the reward command.
 class Reward(ext.Cog):
+    """
+    Cog for the vbucks command.
+    """
 
     def __init__(self, client):
         self.client = client
 
     async def reward_command(self, ctx, day, limit=7):
+        """
+        The main function for the reward command.
 
+        Args:
+            ctx: The context of the command.
+            day: The day to get the reward for.
+            limit: The number of rewards to get.
+
+        Returns:
+            None
+        """
         # quick check to see if ctx author can get vbucks
         vbucks = True
         try:
@@ -194,6 +214,14 @@ class Reward(ext.Cog):
                  description="This command lets you view the rewards of any specific day, and any number of rewards "
                              "that follow")
     async def reward(self, ctx, day='hi readers of the bot', limit='7'):
+        """
+        This function is the entry point for the vbucks command when called traditionally
+
+        Args:
+            ctx: The context of the command
+            day: The day to get the rewards of. Not required if you are authenticated
+            limit: The number of upcoming days to see (Optional)
+        """
         await self.reward_command(ctx, day, int(limit))
 
     @slash_command(name='reward',
@@ -203,8 +231,22 @@ class Reward(ext.Cog):
                           day: Option(int,
                                       "The day to get the rewards of. Not required if you are authenticated") = 'hi readers of the bot',
                           limit: Option(int, "The number of upcoming days to see") = 7):
+        """
+        This function is the entry point for the reward command when called via slash
+
+        Args:
+            ctx: The context of the slash command
+            day: The day to get the rewards of. Not required if you are authenticated
+            limit: The number of upcoming days to see
+        """
         await self.reward_command(ctx, day, limit)
 
 
 def setup(client):
+    """
+        This function is called when the cog is loaded via load_extension
+
+        Args:
+            client: The bot client
+        """
     client.add_cog(Reward(client))

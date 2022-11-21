@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the profile command. under development.
+"""
+
 import json
 import os
 import discord
@@ -15,18 +23,26 @@ from ext.profile.devauth import handle_dev_auth
 from ext.profile.bongodb import *
 from ext.profile.sunday import settings_command
 
+"""
+create dictionary with user snowflake as keys and a list of all documents in that collection asi summon thee
+how should we make mongodb thingy ;w;
+um we should like gram their snowflake = 123456789012345678 post it on the gram? brb sending it to hayk yes ofc
+ yes yes :3 then um we make the collection or something and store some cool ggdpr whatever complaint info in it ;o
+idk what do you think we should do
+i was more asking if the function should request certain portions of the data or the entire thing per user
+so like either u grab the entire like document for the user or just like whatever u want but i think grab entire thing?
+the tables probably gonna be pretty small per user so just grab the whole thing
+also i got the localhost mongo running on that port localhost:27017
+"""
 
-# create dictionary with user snowflake as keys and a list of all documents in that collection asi summon thee
-# how should we make mongodb thingy ;w;
-# um we should like gram their snowflake = 123456789012345678 post it on the gram? brb sending it to hayk yes ofc
-#  yes yes :3 then um we make the collection or something and store some cool ggdpr whatever complaint info in it ;o
-# idk what do you think we should do
-# i was more asking if the function should request certain portions of the data or the entire thing per user
-# so like either u grab the entire like document for the user or just like whatever u want but i think grab entire thing?
-# the tables probably gonna be pretty small per user so just grab the whole thing
-# also i got the localhost mongo running on that port localhost:27017
 
 def setup(client):
+    """
+    Sets up the cog.
+
+    Args:
+        client (discord.ext.commands.Bot): The bot client.
+    """
     # we can add new variables and stuff to client right through setup
     # can use that with the ext stuff so we can add new functawn
 
@@ -61,6 +77,18 @@ def setup(client):
 
 
 async def create_main_embed(ctx, client, current_selected_profile, user_document):
+    """
+    Creates the main embed for the profile command.
+
+    Args:
+        ctx: The context of the command.
+        client: The bot client.
+        current_selected_profile: The current selected profile.
+        user_document: The user document.
+
+    Returns:
+        discord.Embed: The main embed.
+    """
     embed_colour = client.colours["profile_lavendar"]
 
     if current_selected_profile is None:
@@ -81,6 +109,10 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
 
 
 class ProfileMainView(discord.ui.View):
+    """
+    The main view for the profile command.
+    """
+
     def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None):
         super().__init__()
         self.client = client
@@ -108,7 +140,9 @@ class ProfileMainView(discord.ui.View):
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
 
     async def on_timeout(self):
-
+        """
+        Called when the view times out.
+        """
         for child in self.children:
             child.disabled = True
 
@@ -117,10 +151,28 @@ class ProfileMainView(discord.ui.View):
         await self.message.edit(embed=embed, view=self)
 
     def map_button_emojis(self, button):
+        """
+        Maps the button emojis to the button.
+
+        Args:
+            button: The button to map the emoji to.
+
+        Returns:
+            discord.ui.Button: The button with the emoji mapped.
+        """
         button.emoji = self.button_emojis[button.emoji.name]
         return button
 
     async def interaction_check(self, interaction):
+        """
+        Checks if the interaction is valid.
+
+        Args:
+            interaction: The interaction to check.
+
+        Returns:
+            bool: True if the interaction is created by the view author, False if notifying the user
+        """
         return await stw.view_interaction_check(self, interaction, "profile")
 
     @discord.ui.select(
@@ -130,6 +182,13 @@ class ProfileMainView(discord.ui.View):
         options=[],
     )
     async def selected_option(self, select, interaction):
+        """
+        Called when a profile is selected.
+
+        Args:
+            select: The select menu.
+            interaction: The interaction.
+        """
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
 
         new_profile_selected = int(select.values[0])
@@ -152,17 +211,37 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="library_person", row=1)
     async def name_button(self, _button, interaction):
+        """
+        Called when the name button is pressed.
+
+        Args:
+            _button: The button.
+            interaction: The interaction.
+        """
         await interaction.response.send_modal(
             ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self))
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="library_add_person", row=1)
     async def new_button(self, _button, interaction):
+        """
+        Called when the new button is pressed.
+
+        Args:
+            _button: The button.
+            interaction: The interaction.
+        """
         await interaction.response.send_modal(
             NewProfileModal(self.ctx, self.client, self.user_document, self.message, self))
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="library_trashcan", row=1)
     async def delete_button(self, _button, interaction):
+        """
+        Called when the delete button is pressed.
 
+        Args:
+            _button: The button.
+            interaction: The interaction.
+        """
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
         del self.user_document["profiles"][str(self.current_selected_profile)]
 
@@ -202,6 +281,13 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="library_gear", row=2)
     async def settings_button(self, _button, interaction):
+        """
+        Called when the settings button is pressed.
+
+        Args:
+            _button: The button.
+            interaction: The interaction.
+        """
         await settings_command(self.client, self.ctx)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
@@ -214,6 +300,13 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="link_icon", row=2)
     async def auth_button(self, _button, interaction):
+        """
+        Called when the auth button is pressed.
+
+        Args:
+            _button: The button.
+            interaction: The interaction.
+        """
         await handle_dev_auth(self.client, self.ctx)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
@@ -226,6 +319,13 @@ class ProfileMainView(discord.ui.View):
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Information", emoji="experimental", row=2)
     async def information_button(self, _button, interaction):
+        """
+        Called when the information button is pressed.
+
+        Args:
+            _button: The button.
+            interaction: The interaction.
+        """
         await interaction.response.send_message(
             self.user_document
         )
@@ -239,6 +339,10 @@ class ProfileMainView(discord.ui.View):
 # goodnigh girl
 # i see you tommoro
 class ChangeNameModal(discord.ui.Modal):
+    """
+    The modal for changing the name of a profile.
+    """
+
     def __init__(self, ctx, client, user_document, message, view):
         self.ctx = ctx
         self.client = client
@@ -264,6 +368,12 @@ class ChangeNameModal(discord.ui.Modal):
         self.add_item(input_profile_name)
 
     async def callback(self, interaction: discord.Interaction):
+        """
+        Called when the modal is closed.
+
+        Args:
+            interaction: The interaction.
+        """
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
 
         for child in self.view.children:
@@ -286,6 +396,10 @@ class ChangeNameModal(discord.ui.Modal):
 
 
 class NewProfileModal(discord.ui.Modal):
+    """
+    The modal for creating a new profile.
+    """
+
     def __init__(self, ctx, client, user_document, message, view):
         self.ctx = ctx
         self.client = client
@@ -310,6 +424,12 @@ class NewProfileModal(discord.ui.Modal):
         self.add_item(input_profile_name)
 
     async def callback(self, interaction: discord.Interaction):
+        """
+        Called when the modal is closed.
+
+        Args:
+            interaction: The interaction.
+        """
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
         self.user_document["global"]["selected_profile"] = self.cur_profile_id
 
@@ -336,12 +456,22 @@ class NewProfileModal(discord.ui.Modal):
 
 # cog for the profile related commands
 class Profile(ext.Cog):
+    """
+    The profile related commands.
+    """
 
     def __init__(self, client):
         self.client = client
         # can u not unindent by ctrl shift + [ weird nanny
 
     async def profile_command(self, ctx, new_profile):
+        """
+        The profile command.
+
+        Args:
+            ctx: The context.
+            new_profile: The new profile to switch to.
+        """
         user_document = await self.client.get_user_document(self.client, ctx.author.id)
         current_command = "\n*Waiting for command*\n\u200b"
 
@@ -382,4 +512,11 @@ class Profile(ext.Cog):
     async def slashprofile(self, ctx: discord.ApplicationContext,
                            profile: Option(int,
                                            "Which profile you wish to switch to (Leave empty if you wish to utilise the View)(PENDING)") = -1):
+        """
+        The profile command.
+
+        Args:
+            ctx: The context.
+            profile: The profile to switch to.
+        """
         await self.profile_command(ctx, profile)

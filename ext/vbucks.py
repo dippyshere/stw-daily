@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the vbucks command. Displays total v-bucks count, breakdown + x-ray tickets
+"""
+
 import asyncio
 
 import discord
@@ -7,14 +15,28 @@ from discord import Option
 import stwutil as stw
 
 
-# cog for the daily command.
 class Vbucks(ext.Cog):
+    """
+    Cog for the vbucks command.
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
+        """
+        Checks for errors in the public_json_response and edits the original message if an error is found.
+
+        Args:
+            ctx: The context of the command.
+            public_json_response: The json response from the public API.
+            auth_info: The auth_info tuple from get_or_create_auth_session.
+            final_embeds: The list of embeds to be edited.
+
+        Returns:
+            True if an error is found, False otherwise.
+        """
         try:
             # general error
             error_code = public_json_response["errorCode"]
@@ -29,6 +51,17 @@ class Vbucks(ext.Cog):
             return False
 
     async def vbuck_command(self, ctx, authcode, auth_opt_out):
+        """
+        The main function for the vbucks command.
+
+        Args:
+            ctx: The context of the command.
+            authcode: The authcode of the account.
+            auth_opt_out: Whether the user has opted out of auth.
+
+        Returns:
+            None
+        """
         vbucc_colour = self.client.colours["vbuck_blue"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True)
@@ -113,6 +146,14 @@ class Vbucks(ext.Cog):
                           token: Option(str,
                                         "Your Epic Games authcode. Required unless you have an active session.") = "",
                           auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+        """
+        This function is the entry point for the vbucks command when called via slash
+
+        Args:
+            ctx: The context of the command.
+            token: The authcode to use for authentication.
+            auth_opt_out: Whether to opt out of starting an authentication session.
+        """
         await self.vbuck_command(ctx, token, not auth_opt_out)
 
     @ext.command(name='vbucks',
@@ -177,7 +218,14 @@ class Vbucks(ext.Cog):
                 \u200b
                 """)
     async def vbucks(self, ctx, authcode='', optout=None):
+        """
+        This function is the entry point for the vbucks command when called traditionally
 
+        Args:
+            ctx: The context of the command
+            authcode: The authcode provided by the user
+            optout: Any text provided will opt the user out of starting an authentication session
+        """
         if optout is not None:
             optout = True
         else:
@@ -187,4 +235,10 @@ class Vbucks(ext.Cog):
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Vbucks(client))

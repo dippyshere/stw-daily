@@ -1,16 +1,33 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the reload command. It is used to reload and load cogs for development.
+"""
+
 import discord
 import discord.ext.commands as ext
 
 import stwutil as stw
 
 
-# cog for the reloading related commands.
 class Reload(ext.Cog):
+    """
+    Reloads a cog.
+    """
 
     def __init__(self, client):
         self.client = client
 
     async def reload_command(self, ctx, extension):
+        """
+        The main function for the reload command.
+
+        Args:
+            ctx: The context of the command.
+            extension: The cog to reload.
+        """
         try:
             self.client.reload_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
@@ -35,9 +52,23 @@ class Reload(ext.Cog):
                  brief="Reload STW Daily extensions (cogs)",
                  description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot")
     async def rlcg(self, ctx, extension):
+        """
+        This function is the entry point for the reload command when called traditionally
+
+        Args:
+            ctx: The context of the command.
+            extension: The cog to reload.
+        """
         await self.reload_command(ctx, extension)
 
     async def load_command(self, ctx, extension):
+        """
+        The main function for the load command.
+
+        Args:
+            ctx: The context of the command.
+            extension: The cog to load.
+        """
         try:
             self.client.load_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
@@ -62,8 +93,21 @@ class Reload(ext.Cog):
                  brief="Load STW Daily extensions (cogs)",
                  description="Load STW Daily extensions (cogs) to apply changes without restarting the bot")
     async def lcg(self, ctx, extension):
+        """
+        This function is the entry point for the load command when called traditionally
+
+        Args:
+            ctx: The context of the command.
+            extension: The cog to load.
+        """
         await self.load_command(ctx, extension)
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Reload(client))

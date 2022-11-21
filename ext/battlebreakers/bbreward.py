@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the battle breakers version of the reward command
+"""
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -8,14 +16,26 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 import stwutil as stw
 
 
-# cog for the reward command.
 class BBReward(ext.Cog):
+    """
+    Cog for the battle breakers reward command
+    """
 
     def __init__(self, client):
         self.client = client
 
     async def bbreward_command(self, ctx, day, limit=7):
+        """
+        The main function of the battle breakers reward command
 
+        Args:
+            ctx: The context of the command
+            day: The day of the week to get the rewards for
+            limit: The number of days to get rewards for
+
+        Returns:
+            None
+        """
         try:
             temp_auth = self.client.temp_auth[ctx.author.id]
             if day == 'hi readers of the bot':
@@ -166,6 +186,14 @@ class BBReward(ext.Cog):
                  description="This command lets you view the rewards of any specific day, and any number of rewards "
                              "that follow. This command is for Battle Breakers rewards.")
     async def bbreward(self, ctx, day='hi readers of the bot', limit='7'):
+        """
+        This command lets you view the rewards of any specific day, and any number of rewards that follow.
+
+        Args:
+            ctx: The context of the command
+            day: The day to get the rewards of. Not required if you are authenticated
+            limit: The number of upcoming days to see (Optional)
+        """
         await self.bbreward_command(ctx, day, int(limit))
 
     @slash_command(name='bbreward',
@@ -175,8 +203,22 @@ class BBReward(ext.Cog):
                             day: Option(int,
                                         "The day to get the rewards of. Not required if you are authenticated") = 'hi readers of the bot',
                             limit: Option(int, "The number of upcoming days to see") = 7):
+        """
+        This command lets you view the rewards of any specific day, and any number of rewards that follow.
+
+        Args:
+            ctx: The context of the command
+            day: The day to get the rewards of. Not required if you are authenticated
+            limit: The number of upcoming days to see (Optional)
+        """
         await self.bbreward_command(ctx, day, limit)
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded.
+
+    Args:
+        client: The client that is loading the cog
+    """
     client.add_cog(BBReward(client))

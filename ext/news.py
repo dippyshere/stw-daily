@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the news command. It is used to get the latest news from fortnite
+"""
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -6,6 +14,9 @@ import stwutil as stw
 
 
 class NewsView(discord.ui.View):
+    """
+    The UI View for the news command
+    """
 
     def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode):
         super().__init__()
@@ -30,10 +41,25 @@ class NewsView(discord.ui.View):
         self.children = list(map(self.map_button_emojis, self.children))
 
     def map_button_emojis(self, button):
+        """
+        Maps the button emojis to the buttons
+
+        Args:
+            button: The button to map the emoji to
+
+        Returns:
+            The button with the emoji mapped
+        """
         button.emoji = self.button_emojis[button.emoji.name]
         return button
 
     async def on_timeout(self):
+        """
+        Called when the view times out
+
+        Returns:
+            None
+        """
         if self.mode == "stw":
             embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
@@ -48,6 +74,16 @@ class NewsView(discord.ui.View):
         return
 
     async def change_page(self, interaction, action):
+        """
+        Pagination. Changes the page of the news when requested.
+
+        Args:
+            interaction: The interaction that called the function
+            action: The action to take. Either "prev" or "next" page
+
+        Returns:
+            None
+        """
         if action == "next":
             self.page += 1
         elif action == "prev":
@@ -66,6 +102,16 @@ class NewsView(discord.ui.View):
         return
 
     async def change_mode(self, interaction, mode):
+        """
+        Changes the game mode mode of the news command
+
+        Args:
+            interaction: The interaction that called the function
+            mode: The mode to change to. Either "stw" or "br"
+
+        Returns:
+            None
+        """
         if mode == "stw":
             self.mode = "stw"
             self.page = 1
@@ -86,33 +132,83 @@ class NewsView(discord.ui.View):
         return
 
     async def interaction_check(self, interaction):
+        """
+        Checks if the interaction is from the author of the command
+
+        Args:
+            interaction: The interaction to check
+
+        Returns:
+            True if the interaction is from the author of the command, False otherwise
+        """
         return await stw.view_interaction_check(self, interaction, "news")
 
     @discord.ui.button(style=discord.ButtonStyle.primary, emoji="prev", row=0, label="Previous Page")
     async def prev_button(self, _button, interaction):
+        """
+        The previous page button
+
+        Args:
+            _button: The button that was pressed
+            interaction: The interaction that called the function
+        """
         await self.change_page(interaction, "prev")
 
     @discord.ui.button(style=discord.ButtonStyle.primary, emoji="next", row=0, label="Next Page")
     async def next_button(self, _button, interaction):
+        """
+        The next page button
+
+        Args:
+            _button: The button that was pressed
+            interaction: The interaction that called the function
+        """
         await self.change_page(interaction, "next")
 
     @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="stw", disabled=True, row=1, label="Switch to STW")
     async def stw_button(self, _button, interaction):
+        """
+        The STW button
+
+        Args:
+            _button: The button that was pressed
+            interaction: The interaction that called the function
+        """
         await self.change_mode(interaction, "stw")
 
     @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="br", row=1, label="Switch to BR")  # hi >:3 ?
     async def br_button(self, _button, interaction):
+        """
+        The BR button
+
+        Args:
+            _button: The button that was pressed
+            interaction: The interaction that called the function
+        """
         await self.change_mode(interaction, "br")
 
 
-# cog for the daily command.
 class News(ext.Cog):
+    """
+    Cog for the news command
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def news_command(self, ctx, page, mode):
+        """
+        The main function for the news command
+
+        Args:
+            ctx: The context of the command
+            page: The page to start on
+            mode: The mode to start on
+
+        Returns:
+            None
+        """
         stw_news_req = await stw.get_stw_news(self.client)
         stw_news_json = await stw_news_req.json(content_type=None)
         stw_news = stw_news_json["news"]["messages"]
@@ -142,6 +238,14 @@ class News(ext.Cog):
                                      "The page number to view") = 1,
                         mode: Option(str, description="Choose a game mode to see news from",
                                      choices=["stw", "br"]) = "stw"):
+        """
+        This function is the entry point for the news command when called via slash
+
+        Args:
+            ctx: The context of the command
+            page: The page to start on
+            mode: The mode to start on
+        """
         await self.news_command(ctx, page, mode)
 
     @ext.command(name='news',
@@ -165,8 +269,22 @@ class News(ext.Cog):
                 \u200b
                 """)
     async def news(self, ctx, page=1, mode="stw"):
+        """
+        This function is the entry point for the news command when called traditionally
+
+        Args:
+            ctx: The context of the command
+            page: The page to start on
+            mode: The mode to start on
+        """
         await self.news_command(ctx, page, mode)
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(News(client))

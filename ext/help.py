@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the help command. Displays available commands / command info.
+"""
+
 import stwutil as stw
 
 import discord
@@ -9,6 +17,10 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 
 
 class HelpView(discord.ui.View):
+    """
+    discord UI View for the help command
+    """
+
     def __init__(self, ctx, help_options, client):
         super().__init__()
         self.ctx = ctx
@@ -18,6 +30,15 @@ class HelpView(discord.ui.View):
         self.interaction_check_done = {}
 
     async def interaction_check(self, interaction):
+        """
+        Checks if the interaction is from the author of the command.
+
+        Args:
+            interaction: The interaction to check.
+
+        Returns:
+            True if the interaction is from the author of the command, False otherwise.
+        """
         return await stw.view_interaction_check(self, interaction, "help")
 
     @discord.ui.select(
@@ -27,18 +48,37 @@ class HelpView(discord.ui.View):
         options=[],
     )
     async def selected_option(self, select, interaction):
+        """
+        Called when a help page is selected.
+
+        Args:
+            select: The select menu that was used.
+            interaction: The interaction that was used.
+        """
         embed = await self.help.help_embed(self.ctx, select.values[0])
         await interaction.response.edit_message(embed=embed, view=self)
 
 
-# cog for the help & hello command.
 class Help(ext.Cog):
+    """
+    The cog for the help and hello command
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def add_brief_command_info(self, embed, command):
+        """
+        Adds a brief description of a command to an embed.
+
+        Args:
+            embed: The embed to add the command to.
+            command: The command to add to the embed.
+
+        Returns:
+            The embed with the command added.
+        """
         name_string = f"{self.emojis[command.extras['emoji']]}  {command.name}"
         for argument in command.extras["args"].keys():
             name_string += f" <{argument}>"
@@ -47,7 +87,17 @@ class Help(ext.Cog):
         return embed
 
     async def add_big_command_info(self, ctx, embed, command):
+        """
+        Adds a detailed description of a command to an embed.
 
+        Args:
+            ctx: The context of the command.
+            embed: The embed to add the command to.
+            command: The command to add to the embed.
+
+        Returns:
+            The embed with the detailed command added.
+        """
         me = self.client.user
         mention = "/"
         cmd = f"/{command.name}"
@@ -80,6 +130,16 @@ class Help(ext.Cog):
         return embed
 
     async def add_default_page(self, ctx, embed_colour):
+        """
+        Adds the default help page to an embed.
+
+        Args:
+            ctx: The context of the command.
+            embed_colour: The colour of the embed.
+
+        Returns:
+            The embed with the default help page added.
+        """
         embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
                               description=f"\u200b\n**To use a command mention the bot, then type the name and arguments after e.g:** {await stw.mention_string(self.client, 'reward 7')}\n\u200b\n\u200b")
 
@@ -97,6 +157,16 @@ class Help(ext.Cog):
         return embed
 
     async def help_embed(self, ctx, inputted_command):
+        """
+        Creates an embed with the help page for a command.
+
+        Args:
+            ctx: The context of the command.
+            inputted_command: The command to get the help page for.
+
+        Returns:
+            The embed with the help page for the command.
+        """
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
                               description="\u200b")
@@ -110,6 +180,15 @@ class Help(ext.Cog):
         return embed
 
     async def select_options_commands(self, ctx):
+        """
+        Creates the options for the select menu for the help command.
+
+        Args:
+            ctx: The context of the command.
+
+        Returns:
+            The options for the select menu.
+        """
         options = []
 
         for command in self.client.commands:
@@ -137,6 +216,13 @@ class Help(ext.Cog):
         return options
 
     async def help_command(self, ctx, command):
+        """
+        The main function of the help command
+
+        Args:
+            ctx: The context of the command.
+            command: The command to get the help page for.
+        """
         embed = await self.help_embed(ctx, command)
         help_options = [discord.SelectOption(label="all", value="main_menu",
                                              description="Return to viewing all available commands",
@@ -175,10 +261,24 @@ class Help(ext.Cog):
                  brief="An interactive view of all available commands",
                  description="This command provides an interactive interface to view all available commands, and help for how to use each command. The select menu is only available to the author of the command, and will display more detailed information of the selected command. If no command is selected, brief info about all available command will be displayed.")
     async def help(self, ctx, command=None):
+        """
+        This function is the entry point for the help command when called traditionally
+        Args:
+            ctx:
+            command:
+        """
         await self.help_command(ctx, str(command).lower())
 
     async def get_bot_commands(self, actx: discord.AutocompleteContext):
+        """
+        Gets the list of commands for the autocomplete function of the help command.
 
+        Args:
+            actx: The context of the autocomplete.
+
+        Returns:
+            The list of commands for autocomplete.
+        """
         # how to get id pro tutorial ft jean1398reborn
         # first thing we must get ze interaction
         le_fishe_interaction = actx.interaction
@@ -208,12 +308,24 @@ class Help(ext.Cog):
             ctx: discord.ApplicationContext,
             command: Option(str, "Choose a command to display detailed information on",
                             autocomplete=get_bot_commands) = None):
+        """
+        This function is the entry point for the help command when called via slash command.
 
+        Args:
+            ctx: The context of the slash command.
+            command: The command to get the help page for.
+        """
         await self.help_command(ctx, str(command).lower())
 
     # hello command
 
     async def hello_command(self, ctx):
+        """
+        The main function of the hello command
+
+        Args:
+            ctx: The context of the command.
+        """
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour,
                               title=await stw.add_emoji_title(self.client, "STW Daily", "calendar"),
@@ -232,6 +344,16 @@ class Help(ext.Cog):
     # the harder you climb the harder you fall
     @ext.Cog.listener()
     async def on_message(self, message):
+        """
+        This function is called when a message is sent in a channel the bot can see.
+        Determines whether to send hello message.
+
+        Args:
+            message: The message sent.
+
+        Returns:
+            None
+        """
         self_id = self.client.user.id
 
         # simple checker to see if the hello command should be triggered or not
@@ -244,4 +366,10 @@ class Help(ext.Cog):
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Help(client))

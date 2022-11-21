@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for mongodb database interaction.
+"""
+
 # mongo interaction
 
 import asyncio
@@ -16,6 +24,16 @@ import motor.motor_asyncio
 
 
 async def insert_default_document(client, user_snowflake):
+    """
+    Inserts a default document into the database.
+
+    Args:
+        client (discord.ext.commands.Bot): The bot client.
+        user_snowflake: The user snowflake to insert the document for.
+
+    Returns:
+        dict: The default document.
+    """
     default_document = client.user_default
     default_document['user_snowflake'] = user_snowflake
     await client.stw_database.insert_one(default_document)
@@ -24,10 +42,27 @@ async def insert_default_document(client, user_snowflake):
 
 
 async def replace_user_document(client, document):
+    """
+    Replaces a user document in the database.
+
+    Args:
+        client: The bot client.
+        document: The document to replace.
+    """
     await client.stw_database.replace_one({"user_snowflake": document["user_snowflake"]}, document)
 
 
 async def check_profile_ver_document(client, document):
+    """
+    Checks the profile version of a document and updates it if necessary.
+
+    Args:
+        client: The bot client.
+        document: The document to check.
+
+    Returns:
+        dict: The updated document.
+    """
     current_profile_ver = client.user_default["global"]["profiles_ver"]
     force_overwrite = client.user_default["global"]["rewrite_older"]
     user_id = document["user_snowflake"]
@@ -57,6 +92,17 @@ async def check_profile_ver_document(client, document):
 
 
 def generate_profile_select_options(client, current_selected_profile, user_document):
+    """
+    Generates a list of profile select options for a user.
+
+    Args:
+        client: The bot client.
+        current_selected_profile: The currently selected profile.
+        user_document: The user document.
+
+    Returns:
+        list: A list of profile select options.
+    """
     select_options = []
 
     if current_selected_profile is None:
@@ -89,6 +135,17 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
 
 # you are zoommin :(((   ong ok bye have fun i am having the fun PLEASE WAIT HOST IS WORKING WITH A SETTINGS DIALOG
 def deep_merge(dict1, dict2):
+    """
+    Deep merges two dictionaries.
+
+    Args:
+        dict1: The first dictionary.
+        dict2: The second dictionary.
+
+    Returns:
+        dict: The merged dictionary.
+    """
+
     def _val(value_1, value_2):
         if isinstance(value_1, dict) and isinstance(value_2, dict):
             return deep_merge(value_1, value_2)
@@ -99,6 +156,16 @@ def deep_merge(dict1, dict2):
 
 # define function to read mongodb database and return a list of all the collections in the database
 async def get_user_document(client, user_snowflake):
+    """
+    Gets a user document from the database.
+
+    Args:
+        client: The bot client.
+        user_snowflake: The user snowflake to get the document for.
+
+    Returns:
+        dict: The user document.
+    """
     # which one lol
     # what do u want to call the database and collection? actually we can just slap this into config too :) sure
     document = await client.stw_database.find_one({'user_snowflake': user_snowflake})

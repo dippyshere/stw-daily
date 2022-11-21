@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the info command. displays bot / host info + verification status.
+"""
+
 import asyncio
 import os
 import platform
@@ -15,12 +23,21 @@ import stwutil as stw
 
 # cog for the info related commands.
 class Information(ext.Cog):
+    """
+    The info command. displays bot / host info + verification status.
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def info_command(self, ctx):
+        """
+        The main function for the info command.
+
+        Args:
+            ctx: The context of the command.
+        """
         try:
             osgetlogin = os.getlogin()
         except:
@@ -121,14 +138,32 @@ class Information(ext.Cog):
                  brief="View information about STW Daily's host, the bot, and the bot's developer. Also verify authenticity.",
                  description="This command will return various bits of information about the bot, which you may find interesting as a developer. It will also verify the authenticity of the bot.")
     async def info(self, ctx):
+        """
+        This function is the entry point for the info command when called traditionally
+
+        Args:
+            ctx: The context of the command
+        """
         await self.info_command(ctx)
 
     @slash_command(name='info',
                    description="View information about STW Daily! Also verify authenticity of the bot.",
                    guild_ids=stw.guild_ids)
     async def slashinfo(self, ctx):
+        """
+        This function is the entry point for the info command when called via slash command
+
+        Args:
+            ctx: The context of the command
+        """
         await self.info_command(ctx)
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Information(client))

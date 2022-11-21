@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the homebase command. renames homebase / displays current name + renders banner
+"""
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -6,14 +14,29 @@ import json
 import stwutil as stw
 
 
-# cog for the daily command.
 class Homebase(ext.Cog):
+    """
+    Cog for the homebase command
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, name=""):
+        """
+        Checks for errors in the public_json_response and edits the original message if an error is found.
+
+        Args:
+            ctx: The context of the command.
+            public_json_response: The json response from the public API.
+            auth_info: The auth_info tuple from get_or_create_auth_session.
+            final_embeds: The list of embeds to be edited.
+            name: The attempted name of the homebase. Used to check if empty (for no stw)
+
+        Returns:
+            True if an error is found, False otherwise.
+        """
         try:
             # general error
             error_code = public_json_response["errorCode"]
@@ -43,6 +66,18 @@ class Homebase(ext.Cog):
                 return "errors.stwdaily.no_stw", False
 
     async def hbrename_command(self, ctx, name, authcode, auth_opt_out):
+        """
+        The main function for the homebase command.
+
+        Args:
+            ctx: The context of the command.
+            name: The name to change the homebase to.
+            authcode: The authcode to use for the command.
+            auth_opt_out: Whether or not to opt out of authcode usage.
+
+        Returns:
+            None
+        """
         succ_colour = self.client.colours["success_green"]
         white = self.client.colours["auth_white"]
 
@@ -171,6 +206,15 @@ class Homebase(ext.Cog):
                             token: Option(str,
                                           "Your Epic Games authcode. Required unless you have an active session.") = "",
                             auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+        """
+        This function is the entry point for the homebase command when called via slash
+
+        Args:
+            ctx (discord.ApplicationContext): The context of the slash command
+            name: The new name for your Homebase. Leave blank to view your current name + banner
+            token: Your Epic Games authcode. Required unless you have an active session.
+            auth_opt_out: Opt out of starting an authentication session
+        """
         await self.hbrename_command(ctx, name, token, not auth_opt_out)
 
     @ext.command(name='homebase',
@@ -242,7 +286,15 @@ class Homebase(ext.Cog):
                 ⦾ Please note that this command is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>
                 """)
     async def hbrename(self, ctx, name='', authcode='', optout=None):
+        """
+        This is the entry point for the homebase command when called traditionally
 
+        Args:
+            ctx: The context of the command
+            name: The new name for the homebase
+            authcode: The authcode for the account
+            optout: Any text given will opt out of starting an auth session
+        """
         if optout is not None:
             optout = True
         else:
@@ -252,4 +304,10 @@ class Homebase(ext.Cog):
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(Homebase(client))

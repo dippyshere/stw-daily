@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the device auth command.
+"""
+
 import asyncio
 import time
 
@@ -12,6 +20,18 @@ TOS_VERSION = 1
 
 
 async def tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx):
+    """
+    This is the embed that is sent when the user has not accepted the TOS
+
+    Args:
+        user_document: The user document
+        client: The client
+        currently_selected_profile_id: The currently selected profile id
+        ctx: The context
+
+    Returns:
+        The embed
+    """
     # TODO: Create proper TOS, Privacy Policy & EULA for this command
     embed_colour = client.colours["profile_lavendar"]
     selected_profile_data = user_document["profiles"][str(currently_selected_profile_id)]
@@ -34,6 +54,13 @@ async def tos_acceptance_embed(user_document, client, currently_selected_profile
 
 
 async def add_enslaved_user_accepted_license(view, interaction):
+    """
+    This is the function that is called when the user accepts the TOS
+
+    Args:
+        view: The view
+        interaction: The interaction
+    """
     view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"]["tos_accepted"] = True
     view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"][
         "tos_accepted_date"] = time.time_ns()  # how to get unix timestamp i forgor time.time is unix
@@ -48,7 +75,22 @@ async def add_enslaved_user_accepted_license(view, interaction):
     await replace_user_document(view.client, view.user_document)
 
 
-async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction=None, exchange_auth_session=None):
+async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction=None,
+                                  exchange_auth_session=None):
+    """
+    This is the function that is called when the user has not device authed yet
+
+    Args:
+        user_document: The user document
+        client: The client
+        currently_selected_profile_id: The currently selected profile id
+        ctx: The context
+        interaction: The interaction
+        exchange_auth_session: The exchange auth session
+
+    Returns:
+        The embed
+    """
     embed_colour = client.colours["profile_lavendar"]
     selected_profile_data = user_document["profiles"][str(currently_selected_profile_id)]
 
@@ -60,11 +102,11 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
     page_embed = await stw.set_thumbnail(client, page_embed, "pink_link")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
-    if selected_profile_data["authentication"]["accountId"] == None:
+    if selected_profile_data["authentication"]["accountId"] is None:
         # Not authenticated yet data stuffy ;p
 
         auth_session = False
-        if exchange_auth_session == None:
+        if exchange_auth_session is None:
             try:
                 temp_auth = client.temp_auth[ctx.author.id]
                 auth_session = temp_auth
@@ -77,15 +119,16 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
                 else:
                     await interaction.edit_original_response(embed=embed)
 
-                asyncio.get_event_loop().create_task(attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction, message))
+                asyncio.get_event_loop().create_task(
+                    attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction, message))
                 return False
             except:
                 pass
-        elif exchange_auth_session != False:
+        elif exchange_auth_session:
             auth_session = True
 
         auth_session_found_message = f"[**To begin click here**](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode)\nThen copy your authentication code and enter it into the modal which appears from pressing the **{client.config['emojis']['locked']} Authenticate** Button below."
-        if auth_session != False:
+        if auth_session:
             auth_session_found_message = f"Found an existing authentication session, you can proceed utilising the account associated with this authentication session by pressing the **{client.config['emojis']['library_input']} Auth With Session** Button below\n\u200b\nYou can use a different account by copying the authentication code from [this link](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode) and then type your authentication code into the modal that appears from pressing the the **{client.config['emojis']['locked']} Authenticate** Button"
 
         page_embed.add_field(name=f"No device authentication found for current profile",
@@ -100,7 +143,19 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
 
     return page_embed
 
+
 async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction=None, message=None):
+    """
+    This function attemps to exchange the auth to an ios token
+
+    Args:
+        temp_auth: The temp auth
+        user_document: The user document
+        client: The client
+        ctx: The context
+        interaction: The interaction
+        message: The message
+    """
     get_ios_auth = await stw.exchange_games(client, temp_auth["token"], "ios")
     try:
         response_json = await get_ios_auth.json()
@@ -108,7 +163,22 @@ async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, int
     except:
         await handle_dev_auth(client, ctx, interaction, user_document, False, message)
 
+
 async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exchange_auth_session=None, message=None):
+    """
+    This function handles the device auth
+
+    Args:
+        client: The client
+        ctx: The context
+        interaction: The interaction
+        user_document: The user document
+        exchange_auth_session: The exchange auth session
+        message: The message
+
+    Returns:
+        The embed
+    """
     current_author_id = ctx.author.id
 
     if user_document is None:
@@ -130,15 +200,16 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
 
     elif current_profile["authentication"]["accountId"] is None:
 
-        embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction, exchange_auth_session)
+        embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction,
+                                              exchange_auth_session)
 
-
-        if embed == False:
+        if not embed:
             return
 
-        account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id, exchange_auth_session)
+        account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id,
+                                                           exchange_auth_session)
 
-        if message != None:
+        if message is not None:
             await stw.slash_edit_original(ctx, message, embeds=embed, view=account_stealing_view)
             return
 
@@ -149,6 +220,10 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
 
 
 class EnslaveAndStealUserAccount(discord.ui.View):
+    """
+    This class is the view for authing the user
+    """
+
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, ios_token):
         super().__init__()
 
@@ -163,7 +238,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
                                                                    user_document)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
 
-        if self.ios_token == None:
+        if self.ios_token is None:
             del self.children[2]
 
     @discord.ui.select(
@@ -173,24 +248,59 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         options=[],
     )
     async def profile_select(self, select, interaction):
+        """
+        This function handles the profile select
+
+        Args:
+            select: The select
+            interaction: The interaction
+        """
         await select_change_profile(self, select, interaction)
 
     async def interaction_check(self, interaction):
+        """
+        This function checks the interaction
+
+        Args:
+            interaction: The interaction
+
+        Returns:
+            bool: True if the interaction is created by the view author, False if notifying the user
+        """
         return await stw.view_interaction_check(self, interaction, "devauth")
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authenticate", emoji="locked")
     async def enter_your_account_to_be_stolen_button(self, button, interaction):
+        """
+        This function handles authentication button
+
+        Args:
+            button:
+            interaction:
+        """
         modal = StealAccountLoginDetailsModal(self, self.user_document, self.client, self.ctx,
                                               self.currently_selected_profile_id, self.ios_token)
         await interaction.response.send_modal(modal)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Auth With Session", emoji="library_input")
     async def existing_account_that_we_already_stole_button(self, button, interaction):
+        """
+        This function handles the existing auth button
+
+        Args:
+            button: The button
+            interaction: The interaction
+        """
         modal = StealAccountLoginDetailsModal(self, self.user_document, self.client, self.ctx,
                                               self.currently_selected_profile_id, self.ios_token)
         await interaction.response.send_modal(modal)
 
+
 class EnslaveUserLicenseAgreementButton(discord.ui.View):
+    """
+    This class is the view for the EULA
+    """
+
     def __init__(self, user_document, client, ctx, currently_selected_profile_id):
         super().__init__()
 
@@ -211,30 +321,67 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         options=[],
     )
     async def profile_select(self, select, interaction):
+        """
+        This function handles the profile select
+
+        Args:
+            select: The select
+            interaction: The interaction
+        """
         await select_change_profile(self, select, interaction)
 
     async def interaction_check(self, interaction):
+        """
+        This function checks the interaction
+
+        Args:
+            interaction: The interaction
+
+        Returns:
+            bool: True if the interaction is created by the view author, False if notifying the user
+        """
         return await stw.view_interaction_check(self, interaction, "devauth")
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Accept Agreement", emoji="library_handshake")
     async def soul_selling_button(self, button, interaction):
+        """
+        This function handles the accept button
+
+        Args:
+            button: The button
+            interaction: The interaction
+        """
         await add_enslaved_user_accepted_license(self, interaction)
         await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
 
 
 # cog for the device auth login command.
 class ProfileAuth(ext.Cog):
-
+    """
+    This class is the cog for the device auth login command
+    """
     def __init__(self, client):
         self.client = client
 
     async def devauth_command(self, ctx):
+        """
+        This function handles the device auth login command
+
+        Args:
+            ctx: The context
+        """
         await handle_dev_auth(self.client, ctx)
 
     @ext.slash_command(name='device',
                        description='Add permanent authentication to the currently selected or another profile(PENDING)',
                        guild_ids=stw.guild_ids)
     async def slash_device(self, ctx: discord.ApplicationContext):
+        """
+        This function handles the device auth login slash command
+
+        Args:
+            ctx: The context
+        """
         await self.devauth_command(ctx)
 
     @ext.command(name='device',
@@ -245,10 +392,24 @@ class ProfileAuth(ext.Cog):
                 \u200b
                 """)
     async def device(self, ctx):
+        """
+        This function handles the device auth login command
+
+        Args:
+            ctx: The context
+        """
         await self.devauth_command(ctx)
 
 
 async def select_change_profile(view, select, interaction):
+    """
+    This function handles the profile select
+
+    Args:
+        view: The view
+        select: The select
+        interaction: The interaction
+    """
     view.client.processing_queue[view.user_document["user_snowflake"]] = True
 
     new_profile_selected = int(select.values[0])
@@ -266,6 +427,10 @@ async def select_change_profile(view, select, interaction):
 
 
 class StealAccountLoginDetailsModal(discord.ui.Modal):
+    """
+    This class is the modal for the login details
+    """
+
     def __init__(self, view, user_document, client, ctx, currently_selected_profile_id, ios_token):
         self.client = client
         self.view = view
@@ -288,6 +453,12 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         self.add_item(setting_input)
 
     async def callback(self, interaction: discord.Interaction):
+        """
+        This function handles the modal
+
+        Args:
+            interaction: The interaction
+        """
         for child in self.view.children:
             child.disabled = True
         self.view.stop()
@@ -296,7 +467,8 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         value = self.children[0].value
         print(value, self.children)
 
-        auth_session_result = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", value, False, False, True)
+        auth_session_result = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", value, False,
+                                                                   False, True)
         try:
             auth_session_result[1]
         except:
@@ -304,6 +476,12 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
 
 
 def setup(client):
+    """
+    This function adds the cog to the client
+
+    Args:
+        client: The client
+    """
     client.add_cog(ProfileAuth(client))
 
     # why do we have auto_trial thing hm i guess i mean it makes sense but seems kinda redundant why not just have one flag thats like auto_trial claimed and grant them auto_claim days

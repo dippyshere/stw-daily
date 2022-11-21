@@ -1,3 +1,11 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the settings command. currently under development.
+"""
+
 # it doesnt matter if its sunday
 
 import asyncio
@@ -20,6 +28,14 @@ from ext.profile.settings_checks import *
 
 
 async def settings_profile_setting_select(view, select, interaction):
+    """
+    This is the function that is called when the user selects a setting to change.
+
+    Args:
+        view: The view that the user is currently on.
+        select: The select menu that the user selected.
+        interaction: The interaction that the user did.
+    """
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
@@ -34,6 +50,13 @@ async def settings_profile_setting_select(view, select, interaction):
 
 
 async def back_to_main_page(view, interaction):
+    """
+    This is the function that is called when the user selects the back button on the sub page.
+
+    Args:
+        view: The view that the user is currently on.
+        interaction: The interaction that the user did.
+    """
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
@@ -46,6 +69,14 @@ async def back_to_main_page(view, interaction):
 
 
 async def shift_page(view, interaction, amount):
+    """
+    This is the function that is called when the user selects the back or forward button on the main page.
+
+    Args:
+        view: The view that the user is currently on.
+        interaction: The interaction that the user did.
+        amount: The amount of pages to shift by.
+    """
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
@@ -69,6 +100,14 @@ async def shift_page(view, interaction, amount):
 
 
 async def shift_page_on_sub_page(view, interaction, amount):
+    """
+    This is the function that is called when the user selects the back or forward button on the sub page.
+
+    Args:
+        view: The view that the user is currently on.
+        interaction: The interaction that the user did.
+        amount: The amount of pages to shift by.
+    """
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
@@ -95,6 +134,14 @@ async def shift_page_on_sub_page(view, interaction, amount):
 
 
 async def sub_settings_profile_select_change(view, select, interaction):
+    """
+    This is the function that is called when the user selects a setting to change on the sub page.
+
+    Args:
+        view: The view that the user is currently on.
+        select: The select menu that the user selected.
+        interaction: The interaction that the user did.
+    """
     view.client.processing_queue[view.user_document["user_snowflake"]] = True
 
     new_profile_selected = int(select.values[0])
@@ -117,6 +164,14 @@ async def sub_settings_profile_select_change(view, select, interaction):
 
 
 async def settings_profile_select_change(view, select, interaction):
+    """
+    This is the function that is called when the user selects a setting to change on the main page.
+
+    Args:
+        view: The view that the user is currently on.
+        select: The select menu that the user selected.
+        interaction: The interaction that the user did.
+    """
     view.client.processing_queue[view.user_document["user_snowflake"]] = True
 
     new_profile_selected = int(select.values[0])
@@ -138,6 +193,13 @@ async def settings_profile_select_change(view, select, interaction):
 
 
 async def edit_current_setting(view, interaction):
+    """
+    This is the function that is called when the user selects the edit button on the sub page.
+
+    Args:
+        view: The view that the user is currently on.
+        interaction: The interaction that the user did.
+    """
     selected_setting = view.selected_setting
     setting_information = view.client.default_settings[selected_setting]
     modal = RetrieveSettingChangeModal(setting_information, view.client, view, view.user_document, view.ctx,
@@ -146,6 +208,14 @@ async def edit_current_setting(view, interaction):
 
 
 async def edit_current_setting_bool(view, interaction, set_value):
+    """
+    This is the function that is called when the user selects the edit button on the sub page.
+
+    Args:
+        view: The view that the user is currently on.
+        interaction: The interaction that the user did.
+        set_value: The value to set the setting to.
+    """
     selected_setting = view.selected_setting
     setting_information = view.client.default_settings[selected_setting]
 
@@ -172,13 +242,18 @@ async def edit_current_setting_bool(view, interaction, set_value):
 
 
 class RetrieveSettingChangeModal(discord.ui.Modal):
+    """
+    This is the modal that is used to retrieve the value that the user wants to change the setting to.
+    """
+
     def __init__(self, setting_information, client, view, user_document, ctx, current_setting):
 
         self.client = client
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
-        self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        self.current_setting_value = \
+            user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
 
         title = setting_information["modal_title"].format(self.current_setting_value)
         super().__init__(title=title)
@@ -199,6 +274,12 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.add_item(setting_input)
 
     async def callback(self, interaction: discord.Interaction):
+        """
+        This is the function that is called when the user submits the modal.
+
+        Args:
+            interaction: The interaction that the user did.
+        """
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
 
         for child in self.view.children:
@@ -231,6 +312,12 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
 
 
 async def settings_view_timeout(view):
+    """
+    This is the function that is called when the view times out.
+
+    Args:
+        view: The view that timed out.
+    """
     for child in view.children:
         child.disabled = True
 
@@ -239,12 +326,16 @@ async def settings_view_timeout(view):
     await view.message.edit(embed=embed, view=view)
 
 
-class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
+class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # what the hell
+    """
+    This is the view that is used to display the settings of a setting.
+    """
+
     def __init__(self, selected_setting, user_document, client, page, ctx, settings, selected_setting_index,
                  pass_message=None):
         super().__init__()
 
-        if pass_message != None:
+        if pass_message is not None:
             self.message = pass_message
 
         settings_per_page = client.config["profile_settings"]["settings_per_page"]
@@ -278,9 +369,21 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
             self.children = self.children[:-2]
 
     async def on_timeout(self):
+        """
+        This is the function that is called when the view times out.
+        """
         await settings_view_timeout(self)
 
     async def interaction_check(self, interaction):
+        """
+        This is the function that is called when the user interacts with the view.
+
+        Args:
+            interaction: The interaction that the user did.
+
+        Returns:
+            bool: True if the interaction is created by the view author, False if notifying the user
+        """
         return await stw.view_interaction_check(self, interaction, "settings")
 
     @discord.ui.select(
@@ -290,6 +393,13 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
         options=[],
     )
     async def profile_select(self, select, interaction):
+        """
+        This is the function that is called when the user selects a profile.
+
+        Args:
+            select: The select that the user selected.
+            interaction: The interaction that the user did.
+        """
         await sub_settings_profile_select_change(self, select, interaction)
 
     @discord.ui.select(
@@ -299,38 +409,91 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):
         options=[],
     )
     async def settings_select(self, select, interaction):
+        """
+        This is the function that is called when the user selects a setting.
+
+        Args:
+            select: The select that the user selected.
+            interaction: The interaction that the user did.
+        """
         await settings_profile_setting_select(self, select, interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2, label="Previous Page")
     async def previous_page(self, button, interaction):
+        """
+        This is the function that is called when the user presses the previous page button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await shift_page_on_sub_page(self, interaction, -1)  # hio :3 hyanson
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2, label="Next Page")
     async def next_page(self, button, interaction):
+        """
+        This is the function that is called when the user presses the next page button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await shift_page_on_sub_page(self, interaction, 1)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_arrow", row=3, label="Main Menu")
     async def exit_back(self, button, interaction):
+        """
+        This is the function that is called when the user presses the exit button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await back_to_main_page(self, interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.blurple, emoji="library_cogs", row=3, label="Change Value")
     async def edit_setting_non_bool(self, button, interaction):
+        """
+        This is the function that is called when the user presses the edit setting button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await edit_current_setting(self, interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.green, emoji="check_checked", row=3, label="True")
     async def edit_setting_bool_true(self, button, interaction):
+        """
+        This is the function that is called when the user presses the edit setting button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await edit_current_setting_bool(self, interaction, True)
 
     @discord.ui.button(style=discord.ButtonStyle.red, emoji="check_empty", row=3, label="False")
     async def edit_setting_bool_false(self, button, interaction):
+        """
+        This is the function that is called when the user presses the edit setting button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await edit_current_setting_bool(self, interaction, False)
 
 
 class MainPageProfileSettingsView(discord.ui.View):
+    """
+    This is the view for the profile settings page.
+    """
+
     def __init__(self, user_document, client, page, ctx, settings, pass_message=None):
         super().__init__()
 
-        if pass_message != None:
+        if pass_message is not None:
             self.message = pass_message
 
         settings_per_page = client.config["profile_settings"]["settings_per_page"]
@@ -353,9 +516,21 @@ class MainPageProfileSettingsView(discord.ui.View):
         self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
 
     async def on_timeout(self):
+        """
+        This is the function that is called when the view times out.
+        """
         await settings_view_timeout(self)
 
     async def interaction_check(self, interaction):
+        """
+        This is the function that is called when the user interacts with the view.
+        
+        Args:
+            interaction: The interaction that the user did.
+
+        Returns:
+            bool: True if the interaction is created by the view author, False if notifying the user
+        """
         return await stw.view_interaction_check(self, interaction, "settings")
 
     @discord.ui.select(
@@ -365,6 +540,13 @@ class MainPageProfileSettingsView(discord.ui.View):
         options=[],
     )
     async def profile_select(self, select, interaction):
+        """
+        This is the function that is called when the user selects a profile.
+
+        Args:
+            select: The select that the user selected.
+            interaction: The interaction that the user did.
+        """
         await settings_profile_select_change(self, select, interaction)
 
     @discord.ui.select(
@@ -374,18 +556,51 @@ class MainPageProfileSettingsView(discord.ui.View):
         options=[],  # :3
     )
     async def settings_select(self, select, interaction):
+        """
+        This is the function that is called when the user selects a setting.
+
+        Args:
+            select: The select that the user selected.
+            interaction: The interaction that the user did.
+        """
         await settings_profile_setting_select(self, select, interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2, label="Previous Page")
     async def previous_page(self, button, interaction):
+        """
+        This is the function that is called when the user presses the previous page button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await shift_page(self, interaction, -1)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2, label="Next Page")
     async def next_page(self, button, interaction):
+        """
+        This is the function that is called when the user presses the next page button.
+
+        Args:
+            button: The button that the user pressed.
+            interaction: The interaction that the user did.
+        """
         await shift_page(self, interaction, 1)
 
 
 async def add_field_to_page_embed(page_embed, setting, client, profile):
+    """
+    This function adds a field to the page embed.
+
+    Args:
+        page_embed: The embed to add the field to.
+        setting: The setting to add to the embed.
+        client: The client.
+        profile: The profile.
+
+    Returns:
+        discord.Embed: The embed with the field added.
+    """
     setting_info = client.default_settings[setting]
     setting_type = str(type(setting_info["default"]).__name__)
     page_embed.fields[
@@ -394,6 +609,16 @@ async def add_field_to_page_embed(page_embed, setting, client, profile):
 
 
 def generate_settings_view_options(client, current_slice):
+    """
+    This function generates the options for the settings select.
+
+    Args:
+        client: The client.
+        current_slice: The current slice of settings.
+
+    Returns:
+        list: The list of options.
+    """
     select_options = []
 
     for index, setting_option in enumerate(current_slice):
@@ -405,12 +630,36 @@ def generate_settings_view_options(client, current_slice):
 
 
 def get_current_settings_slice(page_number, settings_per_page, settings):
+    """
+    This function gets the current settings slice.
+
+    Args:
+        page_number: The page number.
+        settings_per_page: The settings per page.
+        settings: The settings.
+
+    Returns:
+        list: The current settings slice.
+    """
     shift = settings_per_page * (page_number - 1)
     return settings[(0 + shift):(settings_per_page + shift)]
 
 
 async def main_page(page_number, client, ctx, user_profile,
                     settings):
+    """
+    This function generates the main page.
+
+    Args:
+        page_number: The page number.
+        client: The client.
+        ctx: The context.
+        user_profile: The user profile.
+        settings: The settings.
+
+    Returns:
+        discord.Embed: The embed.
+    """
     embed_colour = client.colours["profile_lavendar"]
 
     selected_profile = user_profile["global"]["selected_profile"]
@@ -438,6 +687,18 @@ async def main_page(page_number, client, ctx, user_profile,
 
 
 async def sub_setting_page(setting, client, ctx, user_profile):
+    """
+    This function generates the sub setting page.
+
+    Args:
+        setting: The setting.
+        client: The client.
+        ctx: The context.
+        user_profile: The user profile.
+
+    Returns:
+        discord.Embed: The embed.
+    """
     setting_info = client.default_settings[setting]
 
     embed_colour = client.colours["profile_lavendar"]
@@ -467,6 +728,15 @@ async def sub_setting_page(setting, client, ctx, user_profile):
 
 
 async def map_settings_aliases(client):
+    """
+    This function maps the settings aliases.
+
+    Args:
+        client: The client.
+
+    Returns:
+        dict: The settings aliases.
+    """
     default_settings = client.default_settings
     setting_map = {}
 
@@ -481,6 +751,16 @@ async def map_settings_aliases(client):
 
 
 async def default_page_profile_settings(client, ctx, user_profile, settings, message):
+    """
+    This function generates the default page for the profile settings.
+
+    Args:
+        client: The client.
+        ctx: The context.
+        user_profile: The user profile.
+        settings: The settings.
+        message: The message.
+    """
     page = client.config["profile_settings"]["default_settings_page"]
     main_page_embed = await main_page(page, client, ctx, user_profile, settings)
     main_page_embed.fields[0].value += message
@@ -490,6 +770,19 @@ async def default_page_profile_settings(client, ctx, user_profile, settings, mes
 
 
 async def settings_command(client, ctx, setting=None, profile=None, value=None):
+    """
+    This function is the settings command.
+
+    Args:
+        client: The client.
+        ctx: The context.
+        setting: The setting.
+        profile: The profile.
+        value: The value.
+
+    Returns:
+        discord.Embed: The embed.
+    """
     settings = client.settings_choices
 
     user_profile = await get_user_document(client, ctx.author.id)
@@ -603,11 +896,23 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
 
 # cog for the profile related settings & Disclosure - You & Me (Flume Remix)
 class ProfileSettings(ext.Cog):
+    """
+    This class is the profile settings cog.
+    """
 
     def __init__(self, client):
         self.client = client
 
     async def autocomplete_settings(self, actx: discord.AutocompleteContext):
+        """
+        This function is the autocomplete for the settings command.
+
+        Args:
+            actx: The autocomplete context.
+
+        Returns:
+            list: The list of settings.
+        """
         return self.client.settings_choices
 
     @ext.slash_command(name='settings',
@@ -622,6 +927,15 @@ class ProfileSettings(ext.Cog):
                              value: Option(str,
                                            "The value you wish to set this setting to") = None
                              ):
+        """
+        This function is the slash command for the settings command.
+
+        Args:
+            ctx: The context of the slash command.
+            setting: The setting to change.
+            profile: The profile to change the setting on.
+            value: The value to change the setting to.
+        """
         await settings_command(self.client, ctx, setting, profile, value)
 
     @ext.command(name='settings',
@@ -637,17 +951,35 @@ class ProfileSettings(ext.Cog):
                 \u200b
                 """)
     async def settings(self, ctx, setting=None, profile=None, value=None):
+        """
+        This function is the command for the settings command.
+
+        Args:
+            ctx: The context of the command.
+            setting: The setting to change.
+            profile: The profile to change the setting on.
+            value: The value to change the setting to.
+        """
         await settings_command(self.client, ctx, setting, profile, value)
 
 
 def setup(client):
+    """
+    This function is the setup function for the profile settings cog.
+
+    Args:
+        client: The client of the bot.
+    """
     client.add_cog(ProfileSettings(client))
 
-# le guide for ze epic function for le check for le non bool type of le setting
-# must be synchronous no async around here
-# ok so the name of the function must be unique and must be in this file, the parameters passed to the function are
-# bot client, context, value
-# where bot client is well the same fucking client as everywhere
-# context is either the context from a slash command or a normal command
-# value is the inputted value from the user which the function should check if it meets the requirements for this setting
-# the return type must be the value that the setting will become, or False if the value inputted is not allowed
+
+"""
+le guide for ze epic function for le check for le non bool type of le setting
+must be synchronous no async around here
+ok so the name of the function must be unique and must be in this file, the parameters passed to the function are
+bot client, context, value
+where bot client is well the same fucking client as everywhere
+context is either the context from a slash command or a normal command
+value is the inputted value from the user which the function should check if it meets the requirements for this setting
+the return type must be the value that the setting will become, or False if the value inputted is not allowed
+"""

@@ -1,3 +1,12 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is whatever github wants it to be.
+"""
+
+
 # stw daily settings pages and menu
 
 async def main_page(page_number, client, ctx, pages, settings_per_page, selected_profile, selected_profile_data,

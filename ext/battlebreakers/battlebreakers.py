@@ -1,4 +1,11 @@
-"""BATTLE BREAKERS!
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the cog for the battle breakers daily reward command. claims battle breakers dailies
+
+BATTLE BREAKERS!
 
 WOAH-OH-OH, OOH-WOAH-OH OOH-WOAH-OH, OOH-WOAH-OH
 Monsters from the sky, Want us all to die. Hiding underground, now they all must be found.
@@ -23,14 +30,27 @@ import stwutil as stw
 # auth session for bb should we bother?
 # eh ill try it later
 
-# cog for the daily command.
 class BattleBreakersDaily(ext.Cog):
+    """
+    Cog for the battle breaker daily command
+    """
 
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
 
     async def bbdaily_command(self, ctx, authcode, auth_opt_out):
+        """
+        The main function of the Battle Breakers Daily command
+
+        Args:
+            ctx: the context of the command
+            authcode: the authcode to use for authentication
+            auth_opt_out: whether to opt out of starting an authentication session
+
+        Returns:
+            None
+        """
         succ_colour = self.client.colours["success_green"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "bbdaily", authcode, auth_opt_out, True)
@@ -114,6 +134,14 @@ class BattleBreakersDaily(ext.Cog):
                            token: Option(str,
                                          "Your Epic Games authcode. Required unless you have an active session.") = "",
                            auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+        """
+        This function is the entry point for the bbdaily command when called via slash
+
+        Args:
+            ctx: the context of the command
+            token: the authcode to use for authentication
+            auth_opt_out: whether to opt out of starting an authentication session
+        """
         await self.bbdaily_command(ctx, token, not auth_opt_out)
 
     # Battle Breakers is a new tactical role-playing game developed by Epic Games for mobile and PC.
@@ -152,7 +180,14 @@ class BattleBreakersDaily(ext.Cog):
                 ⦾ Looking for Fortnite daily rewards? Check out the `daily` command.
                 """)
     async def bbdaily(self, ctx, authcode='', optout=None):
+        """
+        This function is the entry point for the bbdaily command when called traditionally
 
+        Args:
+            ctx: the context of the command
+            authcode: the authcode to use for authentication
+            optout: whether to opt out of starting an authentication session
+        """
         if optout is not None:
             optout = True
         else:
@@ -162,4 +197,10 @@ class BattleBreakersDaily(ext.Cog):
 
 
 def setup(client):
+    """
+    This function is called when the cog is loaded via load_extension
+
+    Args:
+        client: The bot client
+    """
     client.add_cog(BattleBreakersDaily(client))
