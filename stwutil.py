@@ -33,8 +33,8 @@ with open('ext/DataTables/ResearchSystem.json') as f:
     ResearchSystem = json.load(f)
 with open('ext/DataTables/AccountLevels.json') as f:
     AccountLevels = json.load(f)
-banner_d = Image.open("ext/homebase/banner_texture_div.png").convert("RGB")
-banner_m = Image.open("ext/homebase/banner_shape_standard.png").convert("RGBA")
+banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
+banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
 # TODO: translation loading
 
