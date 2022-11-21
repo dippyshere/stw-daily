@@ -1,17 +1,25 @@
-# Security Policy
+# STW Daily Security Policy
+
+This document outlines security procedures and general policies for the STW Daily projects as found
+on https://github.com/dippyshere/stw-daily.
+
+  * [Supported versions](#supported-versions)
+  * [Reporting a Vulnerability](#reporting-a-vulnerability)
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+If a security issue is raised for a supported version of the project, the issue will be addressed as soon as possible.
 
-|    Version    |     Supported      |
-|:-------------:|:------------------:|
-|    Latest     | :white_check_mark: |
-| Anything Else |        :x:         |
+| Version (GitHub Branch) | Supported |
+|:-----------------------:|:---------:|
+|         master          |     ✅     |
+|          mango          |     ✅     |
+|         patch-1         |     ❌     |
+|         patch-2         |     ❌     |
+|      stw-daily-old      |     ❌     |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security issue, please do not open an issue on GitHub.
 
-If you find a security issue, please open an issue.
+Instead, please DM dippy is not here#1332 on Discord (you can reach out via our [support server](https://discord.gg/stw-dailies-757765475823517851)). 
