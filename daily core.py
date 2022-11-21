@@ -4,7 +4,6 @@ Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
 
-
 print("Starting STW Daily")
 
 import os

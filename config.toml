@@ -1,5 +1,8 @@
-# This document allows you to configure Save The World Daily
+# STW Daily Discord bot Copyright 2022 by the STW Daily team.
+# Please do not skid our hard work.
 # https://github.com/dippyshere/stw-daily
+
+# This document is used to configure many things about the bot.
 
 # A list of error messages the bot can pick from for the error embeds.
 error_messages = [
@@ -396,24 +399,24 @@ defaultcolor42 		= "#9f9fff"
 defaultcolor43 		= "#dba4ff"
 defaultcolor44 		= "#ff97ff"
 
-[mango] # you have a UTI (urinary tract infection) you suffer from P.M.S (what) (postmenstural something)
+[mango]
 uri_env_var = "STW_MONGO_URI" # added the env var mongodb://localhost:27017
 database 	= "stw_dailies"
 collection 	= "user_info"
 
-[valid_locales]
+[valid_locales] # You can contribute additional values to a list to add locale aliases. For contributing text, see /lang
 da		= ["Danish", "Dansk", "da", "da-DK", "da_DK", "daDK"]
 de		= ["German", "Deutsch", "de", "germany", "de-DE", "de_DE", "deDE", "deutschland"]
-en-GB	= ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en"]
-en-US	= ["English US", "en-US", "US", "usa"]
-es-ES	= ["Spanish", "Español", "Espanol", "es-ES", "spain", "es_ES", "esES", "españa", "espana"]
+en-GB	= ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en", "en-au", "English US", "en-US", "US", "usa", "enUS", "en_AU", "enAU", "en_GB", "enGB", "en_US"]
+# no american localisation >:(
+es-ES	= ["Spanish", "Español", "Espanol", "es-ES", "spain", "es_ES", "esES", "españa", "espana", "es", "es-419", "es419", "es_419"]
 fr		= ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francais", "francaise", "francais"]
 hr		= ["Croatian", "Hrvatski", "hr", "croatia", "hr-HR", "hr_HR", "hrHR", "hrvatski", "hrvatska"]
 it		= ["Itallian", "Italian", "Italiano", "it", "italy", "it-IT", "it_IT", "itIT", "italiano", "italia"]
 lt		= ["Lithuanian", "Lietuviškai", "lt", "lithuania", "lt-LT", "lt_LT", "ltLT", "lietuviškai", "lietuva", "lietuviškai", "skubby"]
 hu		= ["Hungarian", "Magyar", "hu", "hungary", "hu-HU", "hu_HU", "huHU", "magyarorszag", "magyarország"]
 nl		= ["Dutch", "Nederlands", "nl", "netherlands", "nl-NL", "nl_NL", "nlNL", "nederland", "nederlandse"]
-no		= ["Norwegian", "Norsk", "Nork", "Norway", "no", "Nor", "Nynorsk", "Nordic", "Norse"]
+no		= ["Norwegian", "Norsk", "Nork", "Norway", "no", "Nor", "Nynorsk", "Nordic", "Norse", "no-NO", "no_NO", "noNO", "norge"]
 pl		= ["Polish", "Polski", "pl", "poland", "pl-PL", "pl_PL", "plPL", "polski", "polska", "Pol"]
 pt-BR	= ["Portuguese", "Português", "Portugues", "pt-BR", "brazil", "pt_BR", "ptBR", "portugues", "portuguese", "portugues"]
 ro		= ["Romanian", "Română", "Roman", "ro", "romania", "ro-RO", "ro_RO", "roRO", "romana", "romania", "thief"] # the only reason i kept making new files was cos dumbass github kept stopping

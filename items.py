@@ -1,3 +1,12 @@
+"""
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is used as a datatable for Fortnite's daily rewards.
+Initially compiled by dippyshere, later revised by PRO100KatYT, eventually updated for rewrite by jean1398reborn
+"""
+
 # this is misspelt, but I am not bothered to fix it
 # i am
 ItemDictionary = {

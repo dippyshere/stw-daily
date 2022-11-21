@@ -1,6 +1,11 @@
 """
-Utility library for STW daily discord bot.
+STW Daily Discord bot Copyright 2022 by the STW Daily team.
+Please do not skid our hard work.
+https://github.com/dippyshere/stw-daily
+
+This file is the main utility library for stw daily. It contains a lot of functions that are used throughout the bot.
 """
+
 import asyncio
 import datetime
 import random
