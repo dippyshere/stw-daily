@@ -410,7 +410,7 @@ de		= ["German", "Deutsch", "de", "germany", "de-DE", "de_DE", "deDE", "deutschl
 en-GB	= ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en", "en-au", "English US", "en-US", "US", "usa", "enUS", "en_AU", "enAU", "en_GB", "enGB", "en_US"]
 # no american localisation >:(
 es-ES	= ["Spanish", "Español", "Espanol", "es-ES", "spain", "es_ES", "esES", "españa", "espana", "es", "es-419", "es419", "es_419"]
-fr		= ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francais", "francaise", "francais"]
+fr		= ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francaise", "francais"]
 hr		= ["Croatian", "Hrvatski", "hr", "croatia", "hr-HR", "hr_HR", "hrHR", "hrvatski", "hrvatska"]
 it		= ["Itallian", "Italian", "Italiano", "it", "italy", "it-IT", "it_IT", "itIT", "italiano", "italia"]
 lt		= ["Lithuanian", "Lietuviškai", "lt", "lithuania", "lt-LT", "lt_LT", "ltLT", "lietuviškai", "lietuva", "lietuviškai", "skubby"]
