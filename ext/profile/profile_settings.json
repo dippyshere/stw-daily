@@ -78,7 +78,7 @@
         ],
         "default": false,
         "description": "Should STW Daily make any embeds sent through the utilisation of slash commands ephemeral? (Only visible to you)",
-        "emoji": "look_disabled_normal"
+        "emoji": "hidden"
     },
     "language": {
         "aliases": [
@@ -101,7 +101,7 @@
             "internationalize",
             "international"
         ],
-        "default": "en-GB",
+        "default": "auto",
         "description": "Changes STW Dailies commands to localise command information into the language provided",
         "modal_title": "Enter a valid locale",
         "input_placeholder": "Enter value here",
