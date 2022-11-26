@@ -91,35 +91,42 @@ class BattleBreakersDaily(ext.Cog):
             except KeyError:
                 pass
 
-            dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client,
-                                                                                              json_response,
-                                                                                              pre_calc_day=day[0])
+            if ctx.channel.id != 762864224334381077:
+                dumb_useless_crap, name, emoji_text, description, amount = stw.get_bb_reward_data(self.client,
+                                                                                                  json_response,
+                                                                                                  pre_calc_day=day[0])
+                # already claimed is handled in error since wex does that
 
-            # already claimed is handled in error since wex does that
+                # Initialise the claimed embed
+                embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
+                                      description="\u200b",
+                                      colour=succ_colour)
 
-            # Initialise the claimed embed
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
-                                  description="\u200b",
-                                  colour=succ_colour)
+                embed.add_field(name=f'{emoji_text} On day **{day[0]}**, you received:', value=f"```{amount} {name}```",
+                                inline=True)
+                print('Successfully claimed battle breaker daily:')
+                print(name)
+            else:
+                embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
+                                      description=f"\u200b\n<:Check:812201301843902474> "
+                                                  f"Successfully claimed daily reward"
+                                                  f"\n\u200b\n{self.emojis['check_mark']} **Please claim in "
+                                                  f"<#757768833946877992> for more detail** "
+                                                  f"\n\u200b",
+                                      colour=succ_colour)
+            if ctx.channel.id != 762864224334381077:
+                rewards = ''
+                for i in range(1, 8):
+                    data = stw.get_bb_reward_data(self.client, pre_calc_day=day[0] + i)
+                    rewards += str(data[4]) + " " + str(data[1])
+                    if not (i + 1 == 8):
+                        rewards += ', '
+                    else:
+                        rewards += '.'
 
-            embed.add_field(name=f'{emoji_text} On day **{day[0]}**, you received:', value=f"```{amount} {name}```",
-                            inline=True)
-
-            print('Successfully claimed battle breaker daily:')
-            print(name)
-
-            rewards = ''
-            for i in range(1, 8):
-                data = stw.get_bb_reward_data(self.client, pre_calc_day=day[0] + i)
-                rewards += str(data[4]) + " " + str(data[1])
-                if not (i + 1 == 8):
-                    rewards += ', '
-                else:
-                    rewards += '.'
-
-            calendar = self.client.config["emojis"]["calendar"]
-            embed.add_field(name=f'\u200b\n{calendar} Rewards for the next 7 days:', value=f'```{rewards}```\u200b',
-                            inline=False)
+                calendar = self.client.config["emojis"]["calendar"]
+                embed.add_field(name=f'\u200b\n{calendar} Rewards for the next 7 days:', value=f'```{rewards}```\u200b',
+                                inline=False)
             embed = await stw.set_thumbnail(self.client, embed, "check")
 
             embed = await stw.add_requested_footer(ctx, embed)
