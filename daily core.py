@@ -24,6 +24,15 @@ client = ext.AutoShardedBot(command_prefix=ext.when_mentioned, case_insensitive=
 
 
 def load_config(config_path):
+    """
+    Loads the config file
+
+    Args:
+        config_path: The path to the config file
+
+    Returns:
+        dict: The config file as a dict
+    """
     with open(config_path, "rb") as config_file:
         config = toml.load(config_file)
         config_file.close()
@@ -32,6 +41,9 @@ def load_config(config_path):
 
 
 def main():
+    """
+    Main function
+    """
     # Loading config file
     config_path = "config.toml"
     client.config = load_config(config_path)
@@ -76,12 +88,21 @@ def main():
 
 
 async def create_http_session():
+    """
+    Creates an aiohttp session
+
+    Returns:
+        aiohttp.ClientSession: The aiohttp session
+    """
     return aiohttp.ClientSession()
 
 
 # basic information for you <33
 @client.event
 async def on_ready():
+    """
+    Event for when the bot is ready
+    """
     client.stw_session = await create_http_session()
     for command in client.commands:
         if command.name == "auth":
@@ -95,6 +116,16 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    """
+    Event for when a message is sent.
+    This works without message.content, and is currently used to: handle quote marks, auth by default
+
+    Args:
+        message: The message that was sent
+
+    Returns:
+        None
+    """
     if '"' in message.content:
         message = stw.process_quotes_in_message(message)
 
@@ -113,6 +144,9 @@ async def on_message(message):
 # simple task which updates the status every 60 seconds to display time until next day/reset
 @tasks.loop(seconds=60)
 async def update_status():
+    """
+    Task to update the status of the bot
+    """
     await client.wait_until_ready()
     await client.change_presence(
         activity=discord.Activity(type=discord.ActivityType.listening,
