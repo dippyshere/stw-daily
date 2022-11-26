@@ -797,6 +797,7 @@ async def manslaughter_session(client, account_id, kill_stamp):
     except:
         return False
         # 😳 they will know 😳
+        # now they know :D
 
 
 async def entry_profile_req(client, entry, game):

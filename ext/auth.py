@@ -102,10 +102,14 @@ class Auth(ext.Cog):
             ctx (discord.ext.commands.Context): The context of the command
         """
         white = self.client.colours["auth_white"]
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Killed Auth Session", "whitekey"),
-                              description=f"""```Successfully ended authentication session.```
-        """, colour=white)
-        await stw.manslaughter_session(self.client, ctx.author.id, "override")
+        if await stw.manslaughter_session(self.client, ctx.author.id, "override"):
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Killed Auth Session", "whitekey"),
+                                  description=f"""```Successfully ended authentication session```
+            """, colour=white)
+        else:
+            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Kill Auth Session", "whitekey"),
+                                  description=f"""```You have no sessions to kill```
+                        """, colour=white)
 
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
         embed = await stw.add_requested_footer(ctx, embed)
