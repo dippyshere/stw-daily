@@ -772,6 +772,30 @@ async def default_page_profile_settings(client, ctx, user_profile, settings, mes
     await stw.slash_send_embed(ctx, embeds=main_page_embed, view=settings_view)
 
 
+async def no_profiles_page(client, ctx):
+    """
+    This is the function that is called when the user has no profiles
+
+    Args:
+        client: The client
+        ctx: The context
+
+    Returns:
+        The embed
+    """
+    embed_colour = client.colours["profile_lavendar"]
+
+    no_profiles_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
+                                      description=f"""\u200b
+                              **No available profiles**
+                              ```To create one use the profile command```\u200b\n""",
+                                      color=embed_colour)
+    no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "settings_cog")
+    no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed)
+
+    return no_profiles_embed
+
+
 async def settings_command(client, ctx, setting=None, profile=None, value=None):
     """
     This function is the settings command.
@@ -874,9 +898,9 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
 
         for index, missing_or_error in enumerate(list_of_potential_nones):
 
-            if missing_or_error == False:
+            if missing_or_error is False:
                 base_error_message += f" {associated_error[index]}"
-            elif missing_or_error == None:
+            elif missing_or_error is None:
                 base_error_message += f" {associated_missing[index]}"
             if not missing_or_error or not missing_or_error:
                 if index < len(list_of_potential_nones) - 1:
