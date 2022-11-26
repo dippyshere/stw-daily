@@ -30,9 +30,9 @@ class InviteView(discord.ui.View):
         self.add_item(discord.ui.Button(label="Invite STW Daily", style=discord.ButtonStyle.link,
                                         url="https://canary.discord.com/api/oauth2/authorize?client_id"
                                             "=757776996418715651&permissions=2147798080&scope=applications.commands"
-                                            "%20bot", emoji="📨"))
+                                            "%20bot", emoji=self.client.config["emojis"]["incoming_envelope"]))
         self.add_item(discord.ui.Button(label="Join Support Server", style=discord.ButtonStyle.link,
-                                        url="https://discord.gg/stw-dailies-757765475823517851", emoji="📨"))
+                                        url="https://discord.gg/stw-dailies-757765475823517851", emoji=self.client.config["emojis"]["incoming_envelope"]))
 
 
 class Invite(ext.Cog):
@@ -55,8 +55,8 @@ class Invite(ext.Cog):
             None
         """
         embed_colour = self.client.colours["generic_blue"]
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Invite", "placeholder"),
-                              description=f'\u200b\nPress the buttons below to:\n[Invite STW Daily]('
+        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Invite", "incoming_envelope"),
+                              description=f'\u200b\n**Press the buttons below to:**\n[Invite STW Daily]('
                                           f'https://canary.discord.com/api/oauth2/authorize?client_id'
                                           f'=757776996418715651&permissions=2147798080&scope=applications.commands'
                                           f'%20bot) to your server, '
@@ -64,7 +64,7 @@ class Invite(ext.Cog):
                                           f'https://discord.gg/stw-dailies-757765475823517851)\n\u200b',
                               color=embed_colour)
 
-        embed = await stw.set_thumbnail(self.client, embed, "placeholder")
+        embed = await stw.set_thumbnail(self.client, embed, "incoming_envelope")
         embed = await stw.add_requested_footer(ctx, embed)
 
         invite_view = InviteView(self.client, ctx.author, ctx)
