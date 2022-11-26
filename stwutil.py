@@ -1522,9 +1522,10 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
         original_auth_code (str): The authcode that was provided by the user
         add_entry (bool, optional): Whether or not to add an entry to the database. Defaults to False.
         processing (bool, optional): Whether or not to create a processing embed. Defaults to True.
+        dont_send_embeds: if this is true then it will not send the embeds, this is used for the device auth command
 
     Returns:
-        If successfully created auth session list: [processing embed, auth info, success embed]; return list: [processing embed, existing auth entry, embed] if auth exists
+        If successfully created auth session, a list - [processing embed, auth info, success embed] <br></br> returns a list - [processing embed, existing auth entry, embed] if auth exists <br></br> returns a list - [False] if an error occurs
     """
 
     # extract auth code from auth_code
@@ -1566,7 +1567,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
             Or [Join the support server]({support_url})
             Note: You need a new code __every time you authenticate__\n\u200b""", colour=error_colour)
 
-    elif extracted_auth_code in client.config["known_auth_codes"]:
+    elif extracted_auth_code in client.config["known_client_ids"]:
         error_embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
             description=f"""\u200b

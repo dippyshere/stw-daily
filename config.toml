@@ -6,57 +6,57 @@
 
 # A list of error messages the bot can pick from for the error embeds.
 error_messages = [
-	"That wasn't supposed to happen",
-	"Whoops!",
-	"We hit a roadblock",
-	"Not the llama you're looking for",
-	"Uh-oh! Something goofed"
-	]
+    "That wasn't supposed to happen",
+    "Whoops!",
+    "We hit a roadblock",
+    "Not the llama you're looking for",
+    "Uh-oh! Something goofed"
+]
 
 
 support_url = "https://discord.gg/QYgABPDqzH"
 
-# list of known auth codes which are automatically invalidated
-known_auth_codes = [
-	"ec684b8c687f479fadea3cb2ad83f5c6","3446cd72694c4a4485d81b77adbb2141","3f69e56c7649492c8cc29f1af08a8a12","efe3cbb938804c74b20e109d0efc1548",
-	"cfaa14c4bf8744e3a5ef9a5d6c34558d","3e13c5c57f594a578abe516eecb673fe","5b685653b9904c1d92495ee8859dcb00","61d2f70175e84a6bba80a5089e597e1c",
-	"FbiZv3wbiKpvVKrAeMxiR6WhxZWVbrvA","0716a69cb8b2422fbb2a8b0879501471","xyza7891343Fr4ZSPkQZ3kaL3I2sX8B5","34a02cf8f4414e29b15921876da36f9a",
-	"38dbfc3196024d5980386a37b7c792bb","f3e80378aed4462498774a7951cd263f","1252412dc7704a9690f6ea4611bc81ee","ec813099a59f48d4a338f1901c1609db",
-	"ad8def9ae6b84360b6c9b358aba06262","e0aca23dfb7348d6bad648bbe175a6e6","fa39ae1203b5438280f515f38a50f08e","9427129c087d4049886d3b47349d1aad",
-	"b31a9e178ab84b21ad7435a53e4da4af","bc742d26f8314469aa997373f39c876e","875a3b57d3a640a6b7f9b4e883463ab4","cd2b7c19c9734a2ab98dc251868d7724",
-	"4d9a4e9e568a40faa77b9757b4fac210","a472abd3e5ad4d90a0549213906dcf3f","7de9f4b799d3470984093b218287dc72","3cf78cd3b00b439a8755a878b160c7ad",
-	"b070f20729f84693b5d621c904fc5bc2","f2f868d1259e4b128e5b7e8a3732cb1a","8f50327ba00d4ebeb81991ee04a42fc1","4b6c700c72c44e178b12070f2719af1a",
-	"8df415b848c74affb682907405f7a52b","c4c02c7c99e94ed9870a9dbeafab2c3f","8e873617d81d4caf89bae28a4b74bbfe","43e2dea89b054198a703f6199bee6d5b",
-	"24a1bff3f90749efbfcbc576c626a282","5a6fcd3b82e04f8fa0065253835c5221","f0b883ba7d3646bba4aa11bf1d71c071","1e2da690d4914a72a26be4d09862c559",
-	"932e595bedb643d9ba56d3e1089a5c4b","8522af44af194836a532884e84d2b6e2","d7c956d5f1de46088dc2f5b8fccae940","8e889dadbfaf4145b3a806f51d1e3fee",
-	"319e1527d0be4457a1067829fc0ad86e","0a4056c60cfd4e1f9f28795e529cd0c3","02612880aa774fb28e3741d3e01501fd","ba517836005c460eb18d368fa35eb002",
-	"c1b81c9ba24e4b6ab3e99ad00320ffd2","9a06a69c0c8a458caab330d48badb877","0fa561666d6e41cb95b2a357a8b4a6f3","e7d1a3ee19ac4173b80a53006dc53be3",
-	"189f729a313e415db0876a2091fecd8f","17ce2d2864834898ab71847859286c81","3adb22b897e24666971f9a273b1c15e8","f65082b48b504eb88f73961b0131cda7",
-	"1412c33087cc452283d371665a8e5fbc","82f0e5faa90c4c209136870c50ae5642","1483ba7d6c0247828c26cc8a74a9a183","9fe4a9e4584c43a0bca6bd22a52f2f40",
-	"a510a43d1fcc4636bc9c99a46a7cd50c","63f198487c8646f192a59be02ce0d14c","7f7b1f9ac72440408d65115cd49d0184","6ff43e743edc4d1dbac3594877b4bed9",
-	"26c2c1eeeb9141a08d2e52afdda30fde","876dbf395577470794c0a43ca63abde4","d978d5ac4e1545d59e4e93a05ce77e26","8a438c1717d340429d5be1d6ce01f415",
-	"74554a19f3674cb094a467237d174c16","xyza7891qtrmoYLr86we6DlfCA1RRsp8","72f83226ab664739b635b1e318a635bc"
-	]
+# list of known codes, like client id's that appear in the URL which are automatically invalidated
+known_client_ids = [
+    "ec684b8c687f479fadea3cb2ad83f5c6", "3446cd72694c4a4485d81b77adbb2141", "3f69e56c7649492c8cc29f1af08a8a12", "efe3cbb938804c74b20e109d0efc1548",
+    "cfaa14c4bf8744e3a5ef9a5d6c34558d", "3e13c5c57f594a578abe516eecb673fe", "5b685653b9904c1d92495ee8859dcb00", "61d2f70175e84a6bba80a5089e597e1c",
+    "FbiZv3wbiKpvVKrAeMxiR6WhxZWVbrvA", "0716a69cb8b2422fbb2a8b0879501471", "xyza7891343Fr4ZSPkQZ3kaL3I2sX8B5", "34a02cf8f4414e29b15921876da36f9a",
+    "38dbfc3196024d5980386a37b7c792bb", "f3e80378aed4462498774a7951cd263f", "1252412dc7704a9690f6ea4611bc81ee", "ec813099a59f48d4a338f1901c1609db",
+    "ad8def9ae6b84360b6c9b358aba06262", "e0aca23dfb7348d6bad648bbe175a6e6", "fa39ae1203b5438280f515f38a50f08e", "9427129c087d4049886d3b47349d1aad",
+    "b31a9e178ab84b21ad7435a53e4da4af", "bc742d26f8314469aa997373f39c876e", "875a3b57d3a640a6b7f9b4e883463ab4", "cd2b7c19c9734a2ab98dc251868d7724",
+    "4d9a4e9e568a40faa77b9757b4fac210", "a472abd3e5ad4d90a0549213906dcf3f", "7de9f4b799d3470984093b218287dc72", "3cf78cd3b00b439a8755a878b160c7ad",
+    "b070f20729f84693b5d621c904fc5bc2", "f2f868d1259e4b128e5b7e8a3732cb1a", "8f50327ba00d4ebeb81991ee04a42fc1", "4b6c700c72c44e178b12070f2719af1a",
+    "8df415b848c74affb682907405f7a52b", "c4c02c7c99e94ed9870a9dbeafab2c3f", "8e873617d81d4caf89bae28a4b74bbfe", "43e2dea89b054198a703f6199bee6d5b",
+    "24a1bff3f90749efbfcbc576c626a282", "5a6fcd3b82e04f8fa0065253835c5221", "f0b883ba7d3646bba4aa11bf1d71c071", "1e2da690d4914a72a26be4d09862c559",
+    "932e595bedb643d9ba56d3e1089a5c4b", "8522af44af194836a532884e84d2b6e2", "d7c956d5f1de46088dc2f5b8fccae940", "8e889dadbfaf4145b3a806f51d1e3fee",
+    "319e1527d0be4457a1067829fc0ad86e", "0a4056c60cfd4e1f9f28795e529cd0c3", "02612880aa774fb28e3741d3e01501fd", "ba517836005c460eb18d368fa35eb002",
+    "c1b81c9ba24e4b6ab3e99ad00320ffd2", "9a06a69c0c8a458caab330d48badb877", "0fa561666d6e41cb95b2a357a8b4a6f3", "e7d1a3ee19ac4173b80a53006dc53be3",
+    "189f729a313e415db0876a2091fecd8f", "17ce2d2864834898ab71847859286c81", "3adb22b897e24666971f9a273b1c15e8", "f65082b48b504eb88f73961b0131cda7",
+    "1412c33087cc452283d371665a8e5fbc", "82f0e5faa90c4c209136870c50ae5642", "1483ba7d6c0247828c26cc8a74a9a183", "9fe4a9e4584c43a0bca6bd22a52f2f40",
+    "a510a43d1fcc4636bc9c99a46a7cd50c", "63f198487c8646f192a59be02ce0d14c", "7f7b1f9ac72440408d65115cd49d0184", "6ff43e743edc4d1dbac3594877b4bed9",
+    "26c2c1eeeb9141a08d2e52afdda30fde", "876dbf395577470794c0a43ca63abde4", "d978d5ac4e1545d59e4e93a05ce77e26", "8a438c1717d340429d5be1d6ce01f415",
+    "74554a19f3674cb094a467237d174c16", "xyza7891qtrmoYLr86we6DlfCA1RRsp8", "72f83226ab664739b635b1e318a635bc"
+]
 
-# permitted time for an auth session to run for (keep it below 5 hours)
+# permitted time for an auth session to run for (keep it below ~8 hours)
 auth_expire_time 	= 28800
 
 # Names for the different shards
 shard_names = [
-	"Athena", "Apollo", "Artemis",
-   "Demeter", "Zeus", "Hera",
-   "Poseidon", "Ares", "Hephaestus",
-   "Aphrodite", "Hermes", "Hestia",
-   "Dionysus", "Hades", "Cronus",
-   "Themis", "Rhea", "Hyperion",
-   "Ouranos", "Helios", "Eos",
-   "Prometheus", "Styx", "Atlas"
-   ]
+    "Athena", "Apollo", "Artemis",
+    "Demeter", "Zeus", "Hera",
+    "Poseidon", "Ares", "Hephaestus",
+    "Aphrodite", "Hermes", "Hestia",
+    "Dionysus", "Hades", "Cronus",
+    "Themis", "Rhea", "Hyperion",
+    "Ouranos", "Helios", "Eos",
+    "Prometheus", "Styx", "Atlas"
+]
 
 
 devs = [
-	349076896266452994, 237465974545055744, 563988053962653696, 260047769228541952
-	]
+    349076896266452994, 237465974545055744, 563988053962653696, 260047769228541952
+]
 
 # a list of emojis the bot utilises throughout (please do not change the keys.)
 [emojis]
@@ -210,6 +210,9 @@ library_alarm_clock = "<:T_UI_IconLibrary_AlarmClock_128:1042721308380774460>"
 shield_normal		= "<:GunnerShield_Normal:1042721306715631677>"
 look_disabled_normal= "<:Look_Disabled_Normal:1042721270493626398>"
 look_normal 		= "<:Look_Normal:1042721268778147850>"
+hidden				= "<:THLTHidden:1046072772113215590>"
+incoming_envelope	= "<:incomingenvelope_1f4e8:1046073568900939838>"
+check_mark			= "<:Check:812201301843902474>"
 
 # battle breakers emojis :sob:
 Cleric_VR2_Dark_TerrRifle_T04_Icon = "<:Cleric_VR2_Dark_TerrRifle_T04_Ic:1033295042086973450>"
@@ -286,6 +289,7 @@ expedition			= "https://cdn.discordapp.com/attachments/767607876348018689/103400
 pink_link			= "https://cdn.discordapp.com/attachments/859237140043137047/1035116393802252328/soryy.png"
 settings_cog		= "https://cdn.discordapp.com/attachments/767607876348018689/1041654545928953887/settingsstwdaily.png"
 Shared2 			= "https://cdn.discordapp.com/attachments/767607876348018689/1043844388498976829/Shared2.png"
+incoming_envelope 	= "https://cdn.discordapp.com/attachments/767607876348018689/1046074223690522716/incoming-envelope_1f4e8.png"
 
 # Different colours for commands
 [colours]
@@ -309,6 +313,7 @@ account 			= "https://account-public-service-prod.ol.epicgames.com/account/api/p
 kill_token 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/sessions/kill/{}"
 exchange 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
 device_auth 		= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
+verify 				= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/verify"
 store				= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
 news				= "https://prm-dialogue-public-api-prod.edea.live.use1a.on.epicgames.com/api/v1/fortnite-br/surfaces/motd/target"
 stw_news			= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews"
@@ -407,7 +412,7 @@ collection 	= "user_info"
 [valid_locales] # You can contribute additional values to a list to add locale aliases. For contributing text, see /lang
 da		= ["Danish", "Dansk", "da", "da-DK", "da_DK", "daDK"]
 de		= ["German", "Deutsch", "de", "germany", "de-DE", "de_DE", "deDE", "deutschland"]
-en-GB	= ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en", "en-au", "English US", "en-US", "US", "usa", "enUS", "en_AU", "enAU", "en_GB", "enGB", "en_US"]
+en		= ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en", "en-au", "English US", "en-US", "US", "usa", "enUS", "en_AU", "enAU", "en_GB", "enGB", "en_US"]
 # no american localisation >:(
 es-ES	= ["Spanish", "Español", "Espanol", "es-ES", "spain", "es_ES", "esES", "españa", "espana", "es", "es-419", "es419", "es_419"]
 fr		= ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francaise", "francais"]
@@ -440,3 +445,11 @@ ko 		= ["Korean", "한국어", "ko", "ko-KR", "ko_KR", "koKR", "ko-KP", "ko_KP",
 [entry_token_key_for_game]
 fn = "token"
 bb = "bb_token"
+
+[login_links]
+login_fortntite_pc 			= "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode"
+login_fortnite_ios 			= "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3D3446cd72694c4a4485d81b77adbb2141%26responseType%3Dcode"
+logout_login_fortnite_pc 	= "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode"
+logout_login_fortnite_ios 	= "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D3446cd72694c4a4485d81b77adbb2141%2526responseType%253Dcode"
+logged_in_fortnite_pc 		= "https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code"
+logged_in_fortnite_ios 		= "https://www.epicgames.com/id/api/redirect?clientId=3446cd72694c4a4485d81b77adbb2141&responseType=code"
