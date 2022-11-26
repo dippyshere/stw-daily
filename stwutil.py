@@ -22,6 +22,8 @@ import discord
 
 import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
+from lang.stwi18n import I18n
+
 
 with open("ext/battlebreakers/LoginRewards.json", "r") as f:
     LoginRewards = json.load(f)
@@ -37,7 +39,7 @@ banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("R
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
 # TODO: translation loading
-
+I18n = I18n()
 
 # TODO: make this None
 guild_ids = [757765475823517851]

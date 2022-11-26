@@ -64,6 +64,8 @@ class Vbucks(ext.Cog):
         """
         vbucc_colour = self.client.colours["vbuck_blue"]
 
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
@@ -109,9 +111,11 @@ class Vbucks(ext.Cog):
         vbucks_total = await stw.calculate_vbucks(vbucks)
 
         # With all info extracted, create the output
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "V-Bucks", "vbuck_book"),
-                              description=f"\u200b\n**Total V-Bucks: {vbucks_total}**\u200b\n",
-                              colour=vbucc_colour)
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.embed.title", desired_lang),
+                                            "vbuck_book"),
+            description=f"\u200b\n{stw.I18n.get('vbucks.embed.description.total', desired_lang, vbucks_total)}\u200b\n",
+            colour=vbucc_colour)
 
         # add entry for each platform detected
         if vbucks_total != 0:
@@ -120,13 +124,13 @@ class Vbucks(ext.Cog):
                     name, emoji = await stw.resolve_vbuck_source(val["templateId"])
                     embed.description += f"""{self.emojis[emoji]} {name}: {val["quantity"]}\n"""
         else:
-            embed.description += f"""{self.emojis["spongebob"]} No V-Bucks? {self.emojis["megamind"]}\n"""
+            embed.description += f"""{stw.I18n.get("vbucks.embed.description.zerovbucks", desired_lang, self.emojis["spongebob"], self.emojis["megamind"])}\n"""
 
         # add entry for x-ray if detected
         if xray:
             for item in xray:
                 for attr, val in item.items():
-                    embed.description += f"""\u200b\n{self.emojis["xray"]} X-Ray Tickets: {val["quantity"]}\n"""
+                    embed.description += f"""\u200b\n{stw.I18n.get("vbucks.embed.description.xray", desired_lang, self.emojis["xray"], val["quantity"])}\n"""
 
         embed.description += "\u200b"
 
@@ -139,13 +143,18 @@ class Vbucks(ext.Cog):
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
-    @ext.slash_command(name='vbucks',
+    @ext.slash_command(name='vbucks', name_localizations=stw.I18n.construct_slash_dict("vbucks.slash.name"),
                        description='View your V-Bucks and X-Ray Tickets balance (authentication required)',
+                       description_localizations=stw.I18n.construct_slash_dict("vbucks.slash.description"),
                        guild_ids=stw.guild_ids)
     async def slashvbucks(self, ctx: discord.ApplicationContext,
                           token: Option(str,
-                                        "Your Epic Games authcode. Required unless you have an active session.") = "",
-                          auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+                                        description="Your Epic Games authcode. Required unless you have an active "
+                                                    "session.",
+                                        description_localizations=stw.I18n.construct_slash_dict("generic.slash.token")) = "",
+                          auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+                                               description_localizations=stw.I18n.construct_slash_dict(
+                                                   "generic.slash.optout")) = False):
         """
         This function is the entry point for the vbucks command when called via slash
 
