@@ -39,6 +39,7 @@ class Auth(ext.Cog):
             None
         """
         white = self.client.colours["auth_white"]
+        error_colour = self.client.colours["error_red"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, True, True)
         if not auth_info[0]:
@@ -54,7 +55,7 @@ class Auth(ext.Cog):
         # what is this black magic???????? I totally forgot what any of this is
         if auth_info[0] is not None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
             await stw.slash_edit_original(ctx, auth_info[0], auth_info[2])
-        else:
+        elif await stw.validate_existing_session(self.client, auth_info[1]["token"]):
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Currently Authenticated", "whitekey"),
                                   description=f"""\u200b
             Existing Auth Session Found For:
@@ -70,6 +71,26 @@ class Auth(ext.Cog):
             Note: You need a new code __each time you authenticate__\n\u200b
             """, colour=white)
             embed = await stw.set_thumbnail(self.client, embed, "keycard")
+            embed = await stw.add_requested_footer(ctx, embed)
+            await stw.slash_edit_original(ctx, auth_info[0], embed)
+        else:
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(self.client, stw.ranerror(self.client), "error"),
+                description=f"""\u200b
+            Your auth session has expired prematurely for:
+            ```{auth_info[1]['account_name']}```
+            ⦾ This can happen if you launch the game after authenticating.
+            \u200b
+            You'll need to reauthenticate with a new code, you can get one from:
+            [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)
+            [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n
+            **Need Help? Run**
+            {await stw.mention_string(self.client, 'help auth')}
+            Or [Join the support server]({self.client.config['support_url']})
+            Note: You need a new code __each time you authenticate__\n\u200b
+            """
+                , colour=error_colour)
+            embed = await stw.set_thumbnail(self.client, embed, "error")
             embed = await stw.add_requested_footer(ctx, embed)
             await stw.slash_edit_original(ctx, auth_info[0], embed)
 

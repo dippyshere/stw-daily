@@ -712,6 +712,29 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None, pr
         return await client.stw_session.post(url, headers=header, json=json)
 
 
+async def validate_existing_session(client, token):
+    """
+    Validates an existing session
+
+    Args:
+        client: The client
+        token: The token to validate
+
+    Returns:
+        The response from the request
+    """
+    header = {
+        "Content-Type": "application/json",
+        "Authorization": f"bearer {token}"
+    }
+    endpoint = client.config["endpoints"]["verify"]
+    valid = await client.stw_session.get(endpoint, headers=header, data="{}")
+    # returns code 200 if valid, 401 if invalid
+    if valid.status == 200:
+        return True
+    return False
+
+
 def vbucks_query_check(profile_text):
     """
     Checks if the profile can claim vbucks or not
@@ -1982,7 +2005,6 @@ def extract_auth_code(string):
     Returns:
         The extracted auth code if possible, else an error code if the string is the correct length, finally just returns the string
     """
-    print(string)
     try:
         return re.search(r"[0-9a-f]{32}", string)[0]  # hi
 
