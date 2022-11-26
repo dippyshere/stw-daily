@@ -3,7 +3,8 @@ STW Daily Discord bot Copyright 2022 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
-This file checks something? i really dont know
+This file checks ~~something~~ EVERYTHING! you really should know :3
+This file validates inputs for the settings command
 """
 
 # ---- CHECK FUNCTIONS ----

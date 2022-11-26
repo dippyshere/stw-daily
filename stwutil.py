@@ -1605,8 +1605,13 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
 
     token_req = await get_token(client, extracted_auth_code)  # we auth for fn regardless of the game because exchange
     response = await token_req.json()
-    success, auth_token, account_id = await check_for_auth_errors(client, response, ctx, message, command,
-                                                                  extracted_auth_code, support_url)
+    check_auth_error_result = await check_for_auth_errors(client, response, ctx, message, command,
+                                                          extracted_auth_code, support_url, send_error_message=False)
+
+    try:
+        success, auth_token, account_id = check_auth_error_result
+    except:
+        return check_auth_error_result
 
     if not success:
         return [success]

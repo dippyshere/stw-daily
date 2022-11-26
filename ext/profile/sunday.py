@@ -3,10 +3,10 @@ STW Daily Discord bot Copyright 2022 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
-This file is the cog for the settings command. currently under development.
+This file is the cog for the settings command. not currently under development.
 """
 
-# it doesnt matter if its sunday
+# it does matter if its sunday
 
 import asyncio
 import json
@@ -663,7 +663,9 @@ async def main_page(page_number, client, ctx, user_profile,
     embed_colour = client.colours["profile_lavendar"]
 
     selected_profile = user_profile["global"]["selected_profile"]
-    # TODO: This raises a KeyError with no available profile
+
+    # https://en.wikipedia.org/wiki/Tim_Sweeney_(game_developer)
+
     selected_profile_data = user_profile["profiles"][str(selected_profile)]
     settings_per_page = client.config["profile_settings"]["settings_per_page"]
 
@@ -788,6 +790,14 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
 
     user_profile = await get_user_document(client, ctx.author.id)
     user_snowflake = user_profile["user_snowflake"]
+
+    # Check if user actually has a profile we can get the settings of :)
+    try:
+        user_profile["profiles"]["0"]
+    except:
+        embed = await no_profiles_page(client, ctx)
+        await stw.slash_send_embed(ctx, embeds=embed)
+        return
 
     if setting is not None or profile is not None or value is not None:
         setting_map = await map_settings_aliases(client)

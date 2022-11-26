@@ -20,7 +20,7 @@ class I18n:
         with open(f"lang/i18n.json") as f:
             self.i18n_json = json.load(f)
 
-    def get(self, key, lang, *args):
+    def get(self, key, lang, *args):  # hiiiiiiiiiiiiiiiii
         """
         Gets a string from the i18n json file
 
