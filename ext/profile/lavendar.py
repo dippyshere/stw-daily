@@ -6,7 +6,7 @@ https://github.com/dippyshere/stw-daily
 This file is the cog for the profile command. under development.
 """
 
-import json
+import orjson
 import os
 import discord
 import discord.ext.commands as ext
@@ -62,11 +62,11 @@ def setup(client):
     client.processing_queue = {}  # dictionaries are alot faster than lists :thumbs_up:
 
     with open("ext/profile/profile_default.json", "r") as user_default:
-        client.user_default = json.load(user_default)
+        client.user_default = orjson.loads(user_default.read())
 
     client.settings_choices = []
     with open("ext/profile/profile_settings.json") as settings_default:
-        client.default_settings = json.load(settings_default)
+        client.default_settings = orjson.loads(settings_default.read())
         for setting in client.default_settings:
             client.user_default["profiles"]["0"]["settings"][setting] = client.default_settings[setting]["default"]
             client.settings_choices.append(setting)

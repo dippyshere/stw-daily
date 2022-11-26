@@ -118,18 +118,10 @@ async def settings_menu(client, ctx, page_number, pages, settings_per_page, sele
 # Compare this snippet from ext\profile\settings.py:
 #
 import asyncio
-import json
-import os
-import discord
 import discord.ext.commands as ext
 from discord import Option, slash_command
 
 import stwutil as stw
-
-# did u install motor no :) :( :c oh lmao sorry racism
-# access monogodb async
-
-import motor.motor_asyncio
 
 
 async def insert_default_document(client, user_snowflake):

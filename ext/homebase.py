@@ -10,6 +10,7 @@ import discord
 import discord.ext.commands as ext
 from discord import Option
 import json
+import orjson
 
 import stwutil as stw
 
@@ -101,7 +102,7 @@ class Homebase(ext.Cog):
         # get public info about current Homebase name
         public_request = await stw.profile_request(self.client, "query_public", auth_info[1],
                                                    profile_id="common_public")
-        public_json_response = await public_request.json()
+        public_json_response = orjson.loads(await public_request.read())
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         file = None
@@ -170,7 +171,7 @@ class Homebase(ext.Cog):
         # wih all checks passed, we may now attempt to change name
         request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public",
                                             data=json.dumps({"homebaseName": f"{name}"}))
-        request_json_response = await request.json()
+        request_json_response = orjson.loads(await request.read())
 
         # check for le error code
         error_check = await self.check_errors(ctx, request_json_response, auth_info, final_embeds, name)

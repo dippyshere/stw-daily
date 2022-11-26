@@ -6,17 +6,16 @@ https://github.com/dippyshere/stw-daily
 This file is the main utility library for stw daily. It contains a lot of functions that are used throughout the bot.
 """
 
-import asyncio
 import datetime
 import random
 import re
 import time
 import math
-import json
 import blendmodes.blend
 from PIL import Image
 import asyncio
 import io
+import orjson
 
 import discord
 
@@ -26,15 +25,15 @@ from lang.stwi18n import I18n
 
 
 with open("ext/battlebreakers/LoginRewards.json", "r") as f:
-    LoginRewards = json.load(f)
+    LoginRewards = orjson.loads(f.read())
 with open('ext/DataTables/SurvivorItemRating.json') as f:
-    SurvivorItemRating = json.load(f)
+    SurvivorItemRating = orjson.loads(f.read())
 with open('ext/DataTables/HomebaseRatingMapping.json') as f:
-    HomebaseRatingMapping = json.load(f)
+    HomebaseRatingMapping = orjson.loads(f.read())
 with open('ext/DataTables/ResearchSystem.json') as f:
-    ResearchSystem = json.load(f)
+    ResearchSystem = orjson.loads(f.read())
 with open('ext/DataTables/AccountLevels.json') as f:
-    AccountLevels = json.load(f)
+    AccountLevels = orjson.loads(f.read())
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
@@ -482,7 +481,7 @@ async def exchange_games(client, auth_token, game="fn"):
     url = client.config["endpoints"]["exchange"]
     response = await client.stw_session.get(url, headers=h)
 
-    exchange_json = await response.json()
+    exchange_json = orjson.loads(await response.read())
     exchange_code = exchange_json["code"]
 
     h = get_game_headers(game)
@@ -813,17 +812,18 @@ async def entry_profile_req(client, entry, game):
         The entry of the user
     """
     profile = await profile_request(client, "query", entry, game=game)
+    profile_json = orjson.loads(await profile.read())
 
     if game == "fn":
         vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
-        others = await asyncio.gather(asyncio.to_thread(json_query_check, await profile.json()))
+        others = await asyncio.gather(asyncio.to_thread(json_query_check, profile_json))
         if others[0] is not None:
             entry["day"] = others[0]
         if not vbucks[0]:
             entry["vbucks"] = False
 
     if game == "bb":
-        others = await asyncio.gather(asyncio.to_thread(bb_day_query_check, await profile.json()))
+        others = await asyncio.gather(asyncio.to_thread(bb_day_query_check, profile_json))
         if others[0] is not None:
             entry["bb_day"] = others[0] - 1
 
@@ -845,7 +845,7 @@ async def add_other_game_entry(client, user_id, entry, game, other_games):
 
     for other_game in other_games:
         exchange = await exchange_games(client, token, other_game)
-        exchange_json = await exchange.json()
+        exchange_json = orjson.loads(await exchange.read())
         new_token = exchange_json["access_token"]
 
         entry[client.config["entry_token_key_for_game"][other_game]] = new_token
@@ -1631,7 +1631,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
         message = None
 
     token_req = await get_token(client, extracted_auth_code)  # we auth for fn regardless of the game because exchange
-    response = await token_req.json()
+    response = orjson.loads(await token_req.read())
     check_auth_error_result = await check_for_auth_errors(client, response, ctx, message, command,
                                                           extracted_auth_code, support_url, send_error_message=False)
 

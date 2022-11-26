@@ -56,6 +56,7 @@ class Auth(ext.Cog):
         if auth_info[0] is not None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
             await stw.slash_edit_original(ctx, auth_info[0], auth_info[2])
         elif await stw.validate_existing_session(self.client, auth_info[1]["token"]):
+            # TODO: update this to a view + use config["login_links"["logout_login_fortnite_pc"]
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Currently Authenticated", "whitekey"),
                                   description=f"""\u200b
             Existing Auth Session Found For:

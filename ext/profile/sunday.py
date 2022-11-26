@@ -8,20 +8,12 @@ This file is the cog for the settings command. not currently under development.
 
 # it does matter if its sunday
 
-import asyncio
-import json
 import math
-import os
 import discord
 import discord.ext.commands as ext
 from discord import Option, slash_command
 
 import stwutil as stw
-
-# did u install motor no :) :( :c oh lmao sorry racism
-# access monogodb async
-
-import motor.motor_asyncio
 
 from ext.profile.bongodb import *
 from ext.profile.settings_checks import *
