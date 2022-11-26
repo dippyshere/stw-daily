@@ -184,6 +184,7 @@ async def no_profiles_page(client, ctx):
 
     return no_profiles_embed
 
+
 async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exchange_auth_session=None, message=None):
     """
     This function handles the device auth
@@ -560,6 +561,7 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
     # my brain has turned into mushy mushh  :3
     pass
 
+
 class StealAccountLoginDetailsModal(discord.ui.Modal):
     """
     This class is the modal for the login details
@@ -609,7 +611,6 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         response_json = await get_ios_auth.json()
 
         await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document, self.currently_selected_profile_id, self.ctx, response_json["access_token"])
-
 
 
 def setup(client):
