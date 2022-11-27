@@ -1085,7 +1085,7 @@ def truncate(string, length=100, end="..."):
         end: The end of the string to use when truncated
 
     Returns:
-
+        The truncated string
     """
     return (string[:length - 3] + end) if len(string) > length else string
 
@@ -1904,12 +1904,11 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
         )
 
     elif error_code == "errors.stwdaily.homebase_long":
-        # TODO: limit size
         embed = discord.Embed(
             title=await add_emoji_title(client, ranerror(client), "error"),
             description=f"""\u200b
                 Attempted to change Homebase name to:
-                ```{acc_name}```
+                ```{truncate(acc_name)}```
                 **This name is too long.**
                 ⦾ Homebase names must be under 16 characters
                 ⦾ Homebase names also have additional criteria, to check them, try running {await mention_string(client, f"help {command}")}
