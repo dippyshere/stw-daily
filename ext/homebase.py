@@ -9,7 +9,6 @@ This file is the cog for the homebase command. renames homebase / displays curre
 import discord
 import discord.ext.commands as ext
 from discord import Option
-import json
 import orjson
 
 import stwutil as stw
@@ -170,7 +169,7 @@ class Homebase(ext.Cog):
 
         # wih all checks passed, we may now attempt to change name
         request = await stw.profile_request(self.client, "set_homebase", auth_info[1], profile_id="common_public",
-                                            data=json.dumps({"homebaseName": f"{name}"}))
+                                            data=orjson.dumps({"homebaseName": f"{name}"}))
         request_json_response = orjson.loads(await request.read())
 
         # check for le error code

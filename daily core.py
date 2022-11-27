@@ -3,6 +3,7 @@ STW Daily Discord bot Copyright 2022 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
+import orjson
 
 print("Starting STW Daily")
 
@@ -94,7 +95,7 @@ async def create_http_session():
     Returns:
         aiohttp.ClientSession: The aiohttp session
     """
-    return aiohttp.ClientSession()
+    return aiohttp.ClientSession(json_serialize=lambda x: orjson.dumps(x).decode())
 
 
 # basic information for you <33
