@@ -37,7 +37,6 @@ with open('ext/DataTables/AccountLevels.json') as f:
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
-# TODO: translation loading
 I18n = I18n()
 
 # TODO: make this None
@@ -366,7 +365,7 @@ def get_reward(client, day, vbucks=True):
     if not vbucks:
         try:
             item = [item[0].replace('V-Bucks & ', '')]
-            emojis.remove('vbucks')
+            emojis[emojis.index('mtxswap_combined')] = 'xray'
         except:
             pass
 
@@ -815,7 +814,7 @@ async def entry_profile_req(client, entry, game):
     profile_json = orjson.loads(await profile.read())
 
     if game == "fn":
-        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
+        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))  # TODO: optimise idk
         others = await asyncio.gather(asyncio.to_thread(json_query_check, profile_json))
         if others[0] is not None:
             entry["day"] = others[0]
