@@ -2063,3 +2063,34 @@ async def generate_banner(client, embed, homebase_icon, homebase_colour, author_
         file = discord.File(att_img, filename=f"{author_id}banner.png")
     embed.set_thumbnail(url=f"attachment://{author_id}banner.png")
     return embed, file
+
+
+async def research_stat_rating(stat, level):
+    """
+    Calculates the % stat buff given to player + team from a research level
+
+    Args:
+        stat: string of the stat (e.g. fortitude, offense, resistance, technology)
+        level: level of the stat
+
+    Returns:
+        tuple: The combined rating of the stat, the personal rating, the team rating
+    """
+    personal_rating = get_rating(data_table=ResearchSystem, row=f"{stat}_personal_cumulative", time_input=level)
+    team_rating = get_rating(data_table=ResearchSystem, row=f"{stat}_team_cumulative", time_input=level)
+    return personal_rating + team_rating, personal_rating, team_rating
+
+
+async def research_stat_cost(stat, level):
+    """
+    Calculates the cost to upgrade a research stat
+    I'm not sure if the level given is the current level, or the next level, assume the next level
+
+    Args:
+        stat: string of the stat (e.g. fortitude, offense, resistance, technology)
+        level: current level of the stat
+
+    Returns:
+        tuple: The cost to upgrade the stat
+    """
+    return get_rating(data_table=ResearchSystem, row=f"{stat}_cost", time_input=sorted((0, level + 1, 120))[1])

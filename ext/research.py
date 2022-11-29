@@ -58,6 +58,32 @@ class ResearchView(discord.ui.View):
     The UI View for the research command
     """
 
+    async def disable_button_when_poor(self, button):
+        """
+        Disable the button if the user cannot afford the stat.
+
+        Args:
+            button: The button to disable.
+
+        Returns:
+            The button with the disabled attribute set.
+        """
+        if not await self.check_stat_affordability(button.emoji.name):
+            button.disabled = True
+        return button
+
+    async def check_stat_affordability(self, stat):
+        """
+        Check if the stat can be afforded.
+
+        Args:
+            stat: The stat to check.
+
+        Returns:
+            bool: True if the stat can be afforded, False if not.
+        """
+        return self.total_points['quantity'] >= stw.research_stat_cost(stat, self.current_levels[stat])
+
     def map_button_emojis(self, button):
         """
         Map the button emojis to the buttons.
@@ -185,6 +211,9 @@ class ResearchView(discord.ui.View):
         embed = await stw.set_thumbnail(self.client, embed, "research")
         embed = await stw.add_requested_footer(interaction, embed)
         self.total_points = research_points_item
+
+        for child in self.children:
+            await self.disable_button_when_poor(self.total_points, child)
 
         await interaction.edit_original_response(embed=embed, view=self)
 
