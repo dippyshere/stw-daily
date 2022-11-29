@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_PeopleRun_Medium_T00",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T01",
+            "ExpeditionDuration_Minutes": 960.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 25,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "PeopleRun_Medium_T00"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "745C60E44B011066BFE6A184A3060144",
+                "SourceString": "Temp Help"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "386183954529E98D01641D936C1B8820",
+                "SourceString": "Dispatch a team to recruit some temporary help!"
+            }
+        }
+    }
+]

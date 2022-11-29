@@ -1,0 +1,1746 @@
+[
+  {
+    "Type": "DataTable",
+    "Name": "GameplayTagTable",
+    "Properties": {
+      "RowStruct": {
+        "ObjectName": "Class GameplayTagTableRow",
+        "ObjectPath": "/Script/GameplayTags"
+      }
+    },
+    "Rows": {
+      "0": {
+        "tag": "AISkill.Flinger.Artillery.RecentlyUsed",
+        "DevComment": "Applied after artillery has been used. If a move is completed and this is true there will be no tell animation."
+      },
+      "1": {
+        "tag": "AISkill.Flinger.Flee.Cooldown",
+        "DevComment": "When the tag is applied the Flee cannot happen."
+      },
+      "2": {
+        "tag": "AISkill.Flinger.Flee.Fleeing",
+        "DevComment": "When the FlingerFlee tag is applied the Flinger Flee behavior in the tree will be allowed."
+      },
+      "3": {
+        "tag": "AISkill.Flinger.Flee.TakeHeadshotDamage",
+        "DevComment": "When Players attack Flinger with headshots this tag stacks and overflows into the FlingerFlee tag."
+      },
+      "4": {
+        "tag": "AISkill.Flinger.Flee.TakeMeleeDamage",
+        "DevComment": "When Players attack Flinger with melee this tag stacks and overflows into the FlingerFlee tag."
+      },
+      "5": {
+        "tag": "AISkill.Flinger.Jump.Cooldown",
+        "DevComment": "Used for Flinger cooldown on his jump melee attack"
+      },
+      "6": {
+        "tag": "AISkill.Husk.Beehive.HiveOnHead",
+        "DevComment": "Beehive Husk still has his beehive hat. Removes his AOE attack when not there."
+      },
+      "7": {
+        "tag": "AISkill.Husk.Beehive.StandingInBees",
+        "DevComment": "Beehive Husk is standing in an area filled with Bees."
+      },
+      "8": {
+        "tag": "AISkill.Husk.Lunge.Cooldown",
+        "DevComment": "Generic cooldown for Husk Lunge so groups of Husks don't attack Players too often."
+      },
+      "9": {
+        "tag": "AISkill.Melee.Ceiling",
+        "DevComment": "AI Ceiling Attack."
+      },
+      "10": {
+        "tag": "AISkill.Melee.Charge",
+        "DevComment": "AI Melee Charge Attack."
+      },
+      "11": {
+        "tag": "AISkill.Melee.Explosive",
+        "DevComment": "AI Explosive Melee Attack."
+      },
+      "12": {
+        "tag": "AISKill.Melee.Failed",
+        "DevComment": "Tag applied when AI is failing his attacks. Stack limit will push the Frustration tag and remove this tag."
+      },
+      "13": {
+        "tag": "AISkill.Melee.Floor",
+        "DevComment": "AI Floor Attack."
+      },
+      "14": {
+        "tag": "AISkill.Melee.Frustration",
+        "DevComment": "Tag applied after many missed hits in order to make the Behavior Tree choose a different type of attack."
+      },
+      "15": {
+        "tag": "AISkill.Melee.Heavy",
+        "DevComment": "Heavy AI Melee Attack."
+      },
+      "16": {
+        "tag": "AISkill.Melee.Lunge",
+        "DevComment": "AI Melee Lunge Attack."
+      },
+      "17": {
+        "tag": "AISkill.Melee.Primary",
+        "DevComment": "Base AI Melee Attack."
+      },
+      "18": {
+        "tag": "AISkill.Melee.Radial",
+        "DevComment": "Radial Melee attack (such as Smasher's Ground-Pound)"
+      },
+      "19": {
+        "tag": "AISkill.Melee.Wall",
+        "DevComment": "AI Wall Attack."
+      },
+      "20": {
+        "tag": "AISkill.Ranged.AOE",
+        "DevComment": "AI Ranged area of effect. Intended to be fairly short range."
+      },
+      "21": {
+        "tag": "AISkill.Ranged.CanReposition.BetweenVolleys",
+        "DevComment": "When ranged attack is on cooldown this AI should move around."
+      },
+      "22": {
+        "tag": "AISkill.Ranged.CanReposition.ToIncreaseRange",
+        "DevComment": "When the GoalActor is too close this AI can move to increase range to an appropriate distance."
+      },
+      "23": {
+        "tag": "AISkill.Ranged.Cooldown",
+        "DevComment": "Generic cooldown for ranged attacks."
+      },
+      "24": {
+        "tag": "AISkill.Ranged.InstantHit",
+        "DevComment": "Instant hit attack."
+      },
+      "25": {
+        "tag": "AISkill.Ranged.Primary",
+        "DevComment": "Base AI Ranged Attack."
+      },
+      "26": {
+        "tag": "AISkill.Smasher.Charge.Cooldown",
+        "DevComment": "Cooldown between Smasher charges."
+      },
+      "27": {
+        "tag": "AISkill.Smasher.Charge.Melee",
+        "DevComment": "Smasher Charge Melee"
+      },
+      "28": {
+        "tag": "AISkill.Smasher.Charge.Roar",
+        "DevComment": "Smasher Charge Roar"
+      },
+      "29": {
+        "tag": "AISkill.Taker.GenericCooldown",
+        "DevComment": "Generic Cooldown to pace out special attacks and moves."
+      },
+      "30": {
+        "tag": "AISkill.Taker.MarkForDeath",
+        "DevComment": "DEPRECATED-SeeNPCTags"
+      },
+      "31": {
+        "tag": "AISkill.Taker.Paralyze.CanCast",
+        "DevComment": "DEPRECATED-SeeNPCTags"
+      },
+      "32": {
+        "tag": "AISkill.Taker.Paralyze.IsParalyzed",
+        "DevComment": "DEPRECATED-SeeNPCTags"
+      },
+      "33": {
+        "tag": "AISkill.Taker.Paralyze.WasHit",
+        "DevComment": "DEPRECATED-SeeNPCTags"
+      },
+      "34": {
+        "tag": "AISkill.Taker.Portal.Cooldown",
+        "DevComment": "Taker Portal Cooldown."
+      },
+      "35": {
+        "tag": "AISkill.Taker.SoulSuck.Cooldown",
+        "DevComment": "Taker Soul Suck Cooldown."
+      },
+      "36": {
+        "tag": "AISkill.Taker.SoulSuck.Vulnerability",
+        "DevComment": "Taker is still vulnerable to attacks for a large hit react for a short while after the Soul Suck technically ends."
+      },
+      "37": {
+        "tag": "AISkill.Taker.Swoop.Cooldown",
+        "DevComment": "Taker Swoop Attack Cooldown."
+      },
+      "38": {
+        "tag": "AISkill.Werewolf.BloodFrenzy.Active",
+        "DevComment": "Blood Frenzy active."
+      },
+      "39": {
+        "tag": "AISkill.Werewolf.BloodFrenzy.Cooldown",
+        "DevComment": "Cooldown between Blood Frenzy Attacks."
+      },
+      "40": {
+        "tag": "AISkill.Werewolf.BloodFrenzy.Howl",
+        "DevComment": "Werewolf wants to initiate Blood Frenzy with a Howl."
+      },
+      "41": {
+        "tag": "AISkill.Werewolf.BloodFrenzy.Tired",
+        "DevComment": "Vulnerable after Blood Frenzy"
+      },
+      "42": {
+        "tag": "Assignment.Type.Encounter",
+        "DevComment": "Encounter Assignment"
+      },
+      "43": {
+        "tag": "Assignment.Type.Enemy",
+        "DevComment": "Enemy Assignment"
+      },
+      "44": {
+        "tag": "Assignment.Type.Object",
+        "DevComment": "Object Assignment - non-Enemy Assignment implies non-Pawn"
+      },
+      "45": {
+        "tag": "Class.IsCommando",
+        "DevComment": "Is Commando"
+      },
+      "46": {
+        "tag": "Class.IsConstructor",
+        "DevComment": "Is Constructor"
+      },
+      "47": {
+        "tag": "Class.IsNinja",
+        "DevComment": "Is Ninja"
+      },
+      "48": {
+        "tag": "Class.IsOutlander",
+        "DevComment": "Is Outlander"
+      },
+      "49": {
+        "tag": "class.testmodal.offense",
+        "DevComment": ""
+      },
+      "50": {
+        "tag": "class.testmodal.support",
+        "DevComment": ""
+      },
+      "51": {
+        "tag": "Domination.Point.A",
+        "DevComment": ""
+      },
+      "52": {
+        "tag": "Domination.Point.B",
+        "DevComment": ""
+      },
+      "53": {
+        "tag": "Domination.Point.C",
+        "DevComment": ""
+      },
+      "54": {
+        "tag": "effect.status.burning",
+        "DevComment": "Burning"
+      },
+      "55": {
+        "tag": "effect.status.frozen",
+        "DevComment": "Frozen"
+      },
+      "56": {
+        "tag": "effect.status.poison",
+        "DevComment": "Poison"
+      },
+      "57": {
+        "tag": "effect.status.slow",
+        "DevComment": "Reduced Attack Speed"
+      },
+      "58": {
+        "tag": "effect.status.snare",
+        "DevComment": "Reduced Movement Speed"
+      },
+      "59": {
+        "tag": "effect.status.stun",
+        "DevComment": "Stunned"
+      },
+      "60": {
+        "tag": "effect.status.vulnerable",
+        "DevComment": "Vulnerable"
+      },
+      "61": {
+        "tag": "Gameplay.Act.Hit1",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "62": {
+        "tag": "Gameplay.Act.Hit10",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "63": {
+        "tag": "Gameplay.Act.Hit2",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "64": {
+        "tag": "Gameplay.Act.Hit3",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "65": {
+        "tag": "Gameplay.Act.Hit4",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "66": {
+        "tag": "Gameplay.Act.Hit5",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "67": {
+        "tag": "Gameplay.Act.Hit6",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "68": {
+        "tag": "Gameplay.Act.Hit7",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "69": {
+        "tag": "Gameplay.Act.Hit8",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "70": {
+        "tag": "Gameplay.Act.Hit9",
+        "DevComment": "Which hit of a combo we are on"
+      },
+      "71": {
+        "tag": "Gameplay.AOE.Close",
+        "DevComment": "Area of effect centered on the instigator (PBAOE/Cleave)."
+      },
+      "72": {
+        "tag": "Gameplay.AOE.Conditional",
+        "DevComment": "Area of effect based on criteria (Chain Lightning Bounce)."
+      },
+      "73": {
+        "tag": "Gameplay.AOE.Line",
+        "DevComment": "Area of effect described by a line (Piercing Arrow)."
+      },
+      "74": {
+        "tag": "Gameplay.AOE.Shape",
+        "DevComment": "Area of effect described by a shape (Cone/ Box/ Sphere)."
+      },
+      "75": {
+        "tag": "Gameplay.Asset.Ability",
+        "DevComment": "Asset is an Ability"
+      },
+      "76": {
+        "tag": "Gameplay.Asset.CombatEffect",
+        "DevComment": "Asset is a Combat Effect"
+      },
+      "77": {
+        "tag": "Gameplay.Asset.Gadget",
+        "DevComment": "Asset is a Gadget"
+      },
+      "78": {
+        "tag": "Gameplay.Damage.LootOnDestroy",
+        "DevComment": "Loot on Destroy"
+      },
+      "79": {
+        "tag": "Gameplay.Effect.Damage",
+        "DevComment": "This action causes damage."
+      },
+      "80": {
+        "tag": "Gameplay.Effect.Duration",
+        "DevComment": "This action has a non-zero duration."
+      },
+      "81": {
+        "tag": "Gameplay.Effect.Enervate",
+        "DevComment": "This action drains Energy."
+      },
+      "82": {
+        "tag": "Gameplay.Effect.Heal",
+        "DevComment": "This action restores health to players."
+      },
+      "83": {
+        "tag": "Gameplay.Effect.Instant",
+        "DevComment": "This action has a zero duration."
+      },
+      "84": {
+        "tag": "Gameplay.Effect.Invigorate",
+        "DevComment": "This action restores Energy."
+      },
+      "85": {
+        "tag": "Gameplay.Effect.Negative",
+        "DevComment": "This action is hostile and should generate aggro."
+      },
+      "86": {
+        "tag": "Gameplay.Effect.OffGCD",
+        "DevComment": "This action does not trigger nor respect the GCD."
+      },
+      "87": {
+        "tag": "Gameplay.Effect.Passive",
+        "DevComment": "This action is persistantly active."
+      },
+      "88": {
+        "tag": "Gameplay.Effect.Periodic",
+        "DevComment": "This action triggers its effect on a set period."
+      },
+      "89": {
+        "tag": "Gameplay.Effect.Physics",
+        "DevComment": "This action moves an actor in the world with physics."
+      },
+      "90": {
+        "tag": "Gameplay.Effect.Positive",
+        "DevComment": "This action is helpful and should not generate aggro."
+      },
+      "91": {
+        "tag": "Gameplay.Effect.Repair",
+        "DevComment": "This action restores health to buildings."
+      },
+      "92": {
+        "tag": "Gameplay.Effect.Status",
+        "DevComment": "This action causes a duration effect."
+      },
+      "93": {
+        "tag": "Gameplay.Effect.Structure",
+        "DevComment": "This action can affect structures."
+      },
+      "94": {
+        "tag": "Gameplay.Effect.Teleport",
+        "DevComment": "This action moves an actor in the world directly."
+      },
+      "95": {
+        "tag": "Gameplay.Effect.IncreaseMeleeDamageStackingTargets",
+        "DevComment": "Icreases melee damage when applied"
+      },
+      "96": {
+        "tag": "Gameplay.Explorer.Fragment.Defensive",
+        "DevComment": "Defensive Fragment"
+      },
+      "97": {
+        "tag": "Gameplay.Explorer.Fragment.HasFragment",
+        "DevComment": "Found Dimensional Fragment"
+      },
+      "98": {
+        "tag": "Gameplay.Explorer.Fragment.Offensive",
+        "DevComment": "Offensive Fragment"
+      },
+      "99": {
+        "tag": "Gameplay.Explorer.Fragment.Specialty",
+        "DevComment": "Class Specific Fragment"
+      },
+      "100": {
+        "tag": "Gameplay.Explorer.Fragment.VisualDefensive",
+        "DevComment": "Visuals Hack for Defense"
+      },
+      "101": {
+        "tag": "Gameplay.Explorer.Fragment.VisualOffensive",
+        "DevComment": "Visuals Hack for Offense"
+      },
+      "102": {
+        "tag": "Gameplay.Explorer.Fragment.VisualSpecialty",
+        "DevComment": "Visuals Hack for Speciality"
+      },
+      "103": {
+        "tag": "Gameplay.Immunity.Immovable",
+        "DevComment": "Immune to hostile physics events."
+      },
+      "104": {
+        "tag": "Gameplay.Immunity.Juggernaut",
+        "DevComment": "Immune to damage."
+      },
+      "105": {
+        "tag": "Gameplay.Immunity.Unstoppable",
+        "DevComment": "Immune to events which prevent movement or action."
+      },
+      "106": {
+        "tag": "Gameplay.Status.Adreneline",
+        "DevComment": "Movement speed increased."
+      },
+      "107": {
+        "tag": "Gameplay.Status.Bulletstorm",
+        "DevComment": "Ranged weapon rare of fire increased."
+      },
+      "108": {
+        "tag": "Gameplay.Status.Charmed",
+        "DevComment": "Temporarily friendly to caster."
+      },
+      "109": {
+        "tag": "Gameplay.Status.Disabled",
+        "DevComment": "Unable to activate gadgets."
+      },
+      "110": {
+        "tag": "Gameplay.Status.Disarmed",
+        "DevComment": "Unable to attack with melee or ranged weapons."
+      },
+      "111": {
+        "tag": "Gameplay.Status.Frenzy",
+        "DevComment": "Melee attack speed increased."
+      },
+      "112": {
+        "tag": "Gameplay.Status.Immobilize",
+        "DevComment": "Unable to move. Unable to turn."
+      },
+      "113": {
+        "tag": "Gameplay.Status.Incapacitated",
+        "DevComment": "Unable to move or act. Breaks on damage."
+      },
+      "114": {
+        "tag": "Gameplay.Status.Infected",
+        "DevComment": "Incoming healing is reduced."
+      },
+      "115": {
+        "tag": "Gameplay.Status.Jammed",
+        "DevComment": "Ranged weapon rate of fire reduced."
+      },
+      "116": {
+        "tag": "Gameplay.Status.Lethargic",
+        "DevComment": "Melee attack speed reduced."
+      },
+      "117": {
+        "tag": "Gameplay.Status.Off Balance",
+        "DevComment": "Recoil of ranged weapons increased."
+      },
+      "118": {
+        "tag": "Gameplay.Status.Snare",
+        "DevComment": "Movement speed reduced."
+      },
+      "119": {
+        "tag": "Gameplay.Status.Steady",
+        "DevComment": "Recoil of ranged weapons reduced."
+      },
+      "120": {
+        "tag": "Gameplay.Status.Stun",
+        "DevComment": "Unable to move or act."
+      },
+      "121": {
+        "tag": "Gameplay.Status.Toughened",
+        "DevComment": "Damage resistence increased."
+      },
+      "122": {
+        "tag": "Gameplay.Status.Vulnerable",
+        "DevComment": "Damage resistence decreased."
+      },
+      "123": {
+        "tag": "HackOutlander1.Skill.InTheZone.HitStack",
+        "DevComment": "Hit Stacking Test"
+      },
+      "124": {
+        "tag": "HackOutlander2.Skill.InTheZone.Applied",
+        "DevComment": "During In The Zone"
+      },
+      "125": {
+        "tag": "HackOutlander3.Skill.LaserFocus.Applied",
+        "DevComment": "During Laser Focus"
+      },
+      "126": {
+        "tag": "Hacks.Cost.IsCost",
+        "DevComment": "Temporary Hack for cost."
+      },
+      "127": {
+        "tag": "Hacks.Gadget.ConstructionWorker.C4.T00",
+        "DevComment": "C4 T00"
+      },
+      "128": {
+        "tag": "Hacks.Gadget.ConstructionWorker.C4.T01",
+        "DevComment": "C4 T01"
+      },
+      "129": {
+        "tag": "Hacks.Gadget.ConstructionWorker.C4.T02",
+        "DevComment": "C4 T02"
+      },
+      "130": {
+        "tag": "Hacks.Gadget.ConstructionWorker.C4.T03",
+        "DevComment": "C4 T03"
+      },
+      "131": {
+        "tag": "Hacks.Gadget.ConstructionWorker.C4.T04",
+        "DevComment": "C4 T04"
+      },
+      "132": {
+        "tag": "Hacks.Gadget.Ninja.ShadowStance.ShadowStanceActive",
+        "DevComment": "during Shadow Stance"
+      },
+      "133": {
+        "tag": "Hacks.Gadget.Ninja.SmokeBomb.FireSmokeActive",
+        "DevComment": "Hack to know not to overwrite."
+      },
+      "134": {
+        "tag": "Hacks.Gadget.Ninja.ThrowingStars.T00",
+        "DevComment": "ThrowingStars T00"
+      },
+      "135": {
+        "tag": "Hacks.Gadget.Ninja.ThrowingStars.T01",
+        "DevComment": "ThrowingStars T01"
+      },
+      "136": {
+        "tag": "Hacks.Gadget.Ninja.ThrowingStars.T02",
+        "DevComment": "ThrowingStars T02"
+      },
+      "137": {
+        "tag": "Hacks.Gadget.Ninja.ThrowingStars.T03",
+        "DevComment": "ThrowingStars T03"
+      },
+      "138": {
+        "tag": "Hacks.Gadget.Ninja.ThrowingStars.T04",
+        "DevComment": "ThrowingStars T04"
+      },
+      "139": {
+        "tag": "Hacks.Gadget.Scavenger.Firecracker.T00",
+        "DevComment": "Firecracker T00"
+      },
+      "140": {
+        "tag": "Hacks.Gadget.Scavenger.Firecracker.T01",
+        "DevComment": "Firecracker T01"
+      },
+      "141": {
+        "tag": "Hacks.Gadget.Scavenger.Firecracker.T02",
+        "DevComment": "Firecracker T02"
+      },
+      "142": {
+        "tag": "Hacks.Gadget.Scavenger.Firecracker.T03",
+        "DevComment": "Firecracker T03"
+      },
+      "143": {
+        "tag": "Hacks.Gadget.Scavenger.Firecracker.T04",
+        "DevComment": "Firecracker T04"
+      },
+      "144": {
+        "tag": "Hacks.Gadget.Soldier.Grenade.T00",
+        "DevComment": "Grenade T00"
+      },
+      "145": {
+        "tag": "Hacks.Gadget.Soldier.Grenade.T01",
+        "DevComment": "Grenade T01"
+      },
+      "146": {
+        "tag": "Hacks.Gadget.Soldier.Grenade.T02",
+        "DevComment": "Grenade T02"
+      },
+      "147": {
+        "tag": "Hacks.Gadget.Soldier.Grenade.T03",
+        "DevComment": "Grenade T03"
+      },
+      "148": {
+        "tag": "Hacks.Gadget.Soldier.Grenade.T04",
+        "DevComment": "Grenade T04"
+      },
+      "149": {
+        "tag": "Hacks.Gadget.Soldier.ProximityMine.T00",
+        "DevComment": "ProximityMine T00"
+      },
+      "150": {
+        "tag": "Hacks.Gadget.Soldier.ProximityMine.T01",
+        "DevComment": "ProximityMine T01"
+      },
+      "151": {
+        "tag": "Hacks.Gadget.Soldier.ProximityMine.T02",
+        "DevComment": "ProximityMine T02"
+      },
+      "152": {
+        "tag": "Hacks.Gadget.Soldier.ProximityMine.T03",
+        "DevComment": "ProximityMine T03"
+      },
+      "153": {
+        "tag": "Hacks.Gadget.Soldier.ProximityMine.T04",
+        "DevComment": "ProximityMine T04"
+      },
+      "154": {
+        "tag": "Hacks.GI.ATLAS",
+        "DevComment": "Hack for GI build to label Power Collector as an \"ATLAS\""
+      },
+      "155": {
+        "tag": "Hacks.Ninja.Ability.ThrowingStars.Homing",
+        "DevComment": "Homing EC"
+      },
+      "156": {
+        "tag": "Hacks.Skill.Ninja.Assassination_VFX",
+        "DevComment": "Hack to know you have VFX"
+      },
+      "157": {
+        "tag": "Hacks.Skill.Ninja.MantisLeap.Can_Execute",
+        "DevComment": "Hack to allow Mantis Leap"
+      },
+      "158": {
+        "tag": "Hacks.Skill.Technician.Ability.Base.HasBaseUp",
+        "DevComment": "Has already cast a base"
+      },
+      "159": {
+        "tag": "Hacks.Skill.Technician.Ability.IFFCoding.Shield0",
+        "DevComment": "Is Shield 0"
+      },
+      "160": {
+        "tag": "Hacks.Skill.Technician.Ability.IFFCoding.Shield1",
+        "DevComment": "Is Shield 1"
+      },
+      "161": {
+        "tag": "Hacks.Skill.Technician.Ability.IFFCoding.Shield2",
+        "DevComment": "Is Shield 2"
+      },
+      "162": {
+        "tag": "Hacks.Skill.Technician.Ability.IFFCoding.Shield3",
+        "DevComment": "Is Shield 3"
+      },
+      "163": {
+        "tag": "Hacks.Skill.Technician.Ability.IFFCoding.Shield4",
+        "DevComment": "Delete This Tag Later"
+      },
+      "164": {
+        "tag": "Hacks.Skill.Technician.Ability.IFFCoding.ShieldUp",
+        "DevComment": "Has Active Shield"
+      },
+      "165": {
+        "tag": "HitReaction.AdditiveLoop",
+        "DevComment": "rapid fire weapons"
+      },
+      "166": {
+        "tag": "HitReaction.AdditiveSingleOneShot",
+        "DevComment": "semi auto weapons"
+      },
+      "167": {
+        "tag": "HitReaction.Block.All",
+        "DevComment": "Pawns tagged with this will not interrupt."
+      },
+      "168": {
+        "tag": "HitReaction.Block.Melee",
+        "DevComment": "Pawns tagged with this will ignore interrupting hit reactions from Melee attacks."
+      },
+      "169": {
+        "tag": "HitReaction.Block.Ranged",
+        "DevComment": "Pawns tagged with this will ignore interrupting hit reactions from Ranged attacks."
+      },
+      "170": {
+        "tag": "HitReaction.FullBody",
+        "DevComment": "powerful full body root motion"
+      },
+      "171": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Constructor1",
+        "DevComment": ""
+      },
+      "172": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Constructor2",
+        "DevComment": ""
+      },
+      "173": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Constructor3",
+        "DevComment": ""
+      },
+      "174": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Indestructible1",
+        "DevComment": ""
+      },
+      "175": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Indestructible2",
+        "DevComment": ""
+      },
+      "176": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Ninja1",
+        "DevComment": ""
+      },
+      "177": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Ninja2",
+        "DevComment": ""
+      },
+      "178": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Ninja3",
+        "DevComment": ""
+      },
+      "179": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Outlander1",
+        "DevComment": ""
+      },
+      "180": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Outlander2",
+        "DevComment": ""
+      },
+      "181": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Outlander3",
+        "DevComment": ""
+      },
+      "182": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Soldier1",
+        "DevComment": ""
+      },
+      "183": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Soldier2",
+        "DevComment": ""
+      },
+      "184": {
+        "tag": "HomeBaseProperties.Inventory.StartingWeapon.Soldier3",
+        "DevComment": ""
+      },
+      "185": {
+        "tag": "Missions.Items.MissionItem",
+        "DevComment": "Tag attached to Mission Items"
+      },
+      "186": {
+        "tag": "Outpost",
+        "DevComment": "Outpost related"
+      },
+      "187": {
+        "tag": "Outpost.CraftingTable",
+        "DevComment": "Outpost crafting table related"
+      },
+      "188": {
+        "tag": "Outpost.CraftingTable.Active1",
+        "DevComment": "Outpost crafting table effect lev 1 active"
+      },
+      "189": {
+        "tag": "Outpost.CraftingTable.Active2",
+        "DevComment": "Outpost crafting table effect lev 2 active"
+      },
+      "190": {
+        "tag": "Outpost.CraftingTable.Active3",
+        "DevComment": "Outpost crafting table effect lev 3 active"
+      },
+      "191": {
+        "tag": "Outpost.CraftingTable.Active4",
+        "DevComment": "Outpost crafting table effect lev 4 active"
+      },
+      "192": {
+        "tag": "Outpost.CraftingTable.Active5",
+        "DevComment": "Outpost crafting table effect lev 5 active"
+      },
+      "193": {
+        "tag": "Outpost.CraftingTable.Available",
+        "DevComment": "Outpost crafting table available, limit not reached yet."
+      },
+      "194": {
+        "tag": "Outpost.CraftingTable.Cooldown",
+        "DevComment": "Outpost crafting table is on cooldown"
+      },
+      "195": {
+        "tag": "PlacementActor.Barn",
+        "DevComment": ""
+      },
+      "196": {
+        "tag": "PlacementActor.Biome.Transylvania",
+        "DevComment": "Transylvania Only"
+      },
+      "197": {
+        "tag": "PlacementActor.BUILD",
+        "DevComment": "Floating BUILD letter locations"
+      },
+      "198": {
+        "tag": "PlacementActor.CrateReturn",
+        "DevComment": ""
+      },
+      "199": {
+        "tag": "PlacementActor.CrateStart",
+        "DevComment": ""
+      },
+      "200": {
+        "tag": "PlacementActor.EnemySpawner",
+        "DevComment": ""
+      },
+      "201": {
+        "tag": "PlacementActor.DeployableBasePlot",
+        "DevComment": ""
+      },
+      "202": {
+        "tag": "PlacementActor.Gate",
+        "DevComment": ""
+      },
+      "203": {
+        "tag": "PlacementActor.Generic",
+        "DevComment": "Used by all placement actors"
+      },
+      "204": {
+        "tag": "PlacementActor.PlayerSpawn",
+        "DevComment": "Player Spawn"
+      },
+      "205": {
+        "tag": "PlacementActor.PlayerSpawn.Initial",
+        "DevComment": "The player spawning system will *prefer* this (not mandatory to have) spawn point over the others ONLY if spawning before the match has started."
+      },
+      "206": {
+        "tag": "PlacementActor.Powersource",
+        "DevComment": ""
+      },
+      "207": {
+        "tag": "PlacementActor.PvP",
+        "DevComment": ""
+      },
+      "208": {
+        "tag": "PlacementActor.PvP.AIEncounter",
+        "DevComment": ""
+      },
+      "209": {
+        "tag": "PlacementActor.PvP.Mission.BluGloCamp.Easy",
+        "DevComment": ""
+      },
+      "210": {
+        "tag": "PlacementActor.PvP.Mission.BluGloCamp.Hard",
+        "DevComment": ""
+      },
+      "211": {
+        "tag": "PlacementActor.PvP.Mission.BluGloCamp.Medium",
+        "DevComment": ""
+      },
+      "212": {
+        "tag": "PlacementActor.PvP.Mission.LootCamp",
+        "DevComment": ""
+      },
+      "213": {
+        "tag": "PlacementActor.PvP.Mission.WeatherTower",
+        "DevComment": ""
+      },
+      "214": {
+        "tag": "PlacementActor.PvP.Team",
+        "DevComment": ""
+      },
+      "215": {
+        "tag": "PlacementActor.PvP.Team.One",
+        "DevComment": ""
+      },
+      "216": {
+        "tag": "PlacementActor.PvP.Team.Two",
+        "DevComment": ""
+      },
+      "217": {
+        "tag": "PlacementActor.RadarTower",
+        "DevComment": "Radar Tower Build Locations"
+      },
+      "218": {
+        "tag": "PlacementActor.Recover",
+        "DevComment": "For MyFort Asset Recover Mission"
+      },
+      "219": {
+        "tag": "PlacementActor.Relic",
+        "DevComment": ""
+      },
+      "220": {
+        "tag": "PlacementActor.Spawning.MidAir",
+        "DevComment": "Spawn Mid-Air"
+      },
+      "221": {
+        "tag": "PlacementActor.Spawning.Underground",
+        "DevComment": "Underground Spawn"
+      },
+      "222": {
+        "tag": "PlacementActor.Spawning.Zlimited",
+        "DevComment": "Cannot Spawn Z"
+      },
+      "223": {
+        "tag": "PlacementActor.Supply",
+        "DevComment": "For the Supply Drop mission"
+      },
+      "224": {
+        "tag": "PlacementActor.SurvivorSpawn",
+        "DevComment": "Survivor Spawn"
+      },
+      "225": {
+        "tag": "PlacementActor.TrappedHuman",
+        "DevComment": ""
+      },
+      "226": {
+        "tag": "skill.constructionworker.resource_bench.upgrade1",
+        "DevComment": ""
+      },
+      "227": {
+        "tag": "skill.inventor.slowfield.upgrade1",
+        "DevComment": ""
+      },
+      "228": {
+        "tag": "skill.inventor.slowfield.upgrade2",
+        "DevComment": ""
+      },
+      "229": {
+        "tag": "skill.inventor.transistor.upgrade1",
+        "DevComment": ""
+      },
+      "230": {
+        "tag": "skill.inventor.transistor.upgrade2",
+        "DevComment": ""
+      },
+      "231": {
+        "tag": "skill.inventor.transistor.upgrade3",
+        "DevComment": ""
+      },
+      "232": {
+        "tag": "skill.mech.charge.enable_aura",
+        "DevComment": ""
+      },
+      "233": {
+        "tag": "Skill.Ninja.Ability.Assassination",
+        "DevComment": "Is Assassination"
+      },
+      "234": {
+        "tag": "Skill.Ninja.Ability.Assassination.IsNonSword",
+        "DevComment": ""
+      },
+      "235": {
+        "tag": "Skill.Ninja.Ability.Assassination.IsSword",
+        "DevComment": ""
+      },
+      "236": {
+        "tag": "Skill.Ninja.Ability.MoveLikeShadow",
+        "DevComment": "Has Move Like Shadow"
+      },
+      "237": {
+        "tag": "Skill.Ninja.Ability.PainMastery",
+        "DevComment": "Has Pain Mastery"
+      },
+      "238": {
+        "tag": "Skill.Ninja.Ability.PrayingMantis",
+        "DevComment": "Has Praying Mantis"
+      },
+      "239": {
+        "tag": "Skill.Ninja.Ability.WindAndStorm",
+        "DevComment": "Has WindAndStorm"
+      },
+      "240": {
+        "tag": "skill.ninja.doublejump.upgrade1",
+        "DevComment": ""
+      },
+      "241": {
+        "tag": "Skill.Ninja.DragonSlash.IncreasedDamage",
+        "DevComment": "Enter the Dragon : Increased Damage"
+      },
+      "242": {
+        "tag": "Skill.Ninja.DragonSlash.IncreasedRange1",
+        "DevComment": "Enter the Dragon : Increased Range"
+      },
+      "243": {
+        "tag": "Skill.Ninja.DragonSlash.ReducedCost1",
+        "DevComment": "Return of the Dragon : Reduced Cost"
+      },
+      "244": {
+        "tag": "Skill.Ninja.Myfort.GunpowderFoundry1",
+        "DevComment": "Increases Smoke Bomb Damage by 30%."
+      },
+      "245": {
+        "tag": "Skill.Ninja.Myfort.GunpowderFoundry2",
+        "DevComment": "Increases starting Smoke Bombs to 5."
+      },
+      "246": {
+        "tag": "Skill.Ninja.Myfort.GunpowderFoundry3",
+        "DevComment": "Smoke Bomb now leaves a persistent cloud, damaging enemies. Lasts 10s."
+      },
+      "247": {
+        "tag": "Skill.Ninja.Myfort.GunpowderFoundry4",
+        "DevComment": "Increases duration of Smoke Bomb Cloud by 50%."
+      },
+      "248": {
+        "tag": "Skill.Ninja.Myfort.GunpowderFoundry5",
+        "DevComment": "Smoke Bomb Cloud now applies a 50% snare."
+      },
+      "249": {
+        "tag": "Skill.Ninja.Myfort.NinjaForge1",
+        "DevComment": "Has Built Ninja Forge - Rank 1"
+      },
+      "250": {
+        "tag": "Skill.Ninja.Myfort.NinjaForge2",
+        "DevComment": "Has Built Ninja Forge - Rank 2"
+      },
+      "251": {
+        "tag": "Skill.Ninja.Myfort.NinjaForge3",
+        "DevComment": "Has Built Ninja Forge - Rank 3"
+      },
+      "252": {
+        "tag": "Skill.Ninja.Myfort.NinjaForge4",
+        "DevComment": "Has Built Ninja Forge - Rank 4"
+      },
+      "253": {
+        "tag": "Skill.Ninja.Myfort.NinjaForge5",
+        "DevComment": "Has Built Ninja Forge - Rank 5"
+      },
+      "254": {
+        "tag": "Skill.Ninja.Myfort.TargetDummies1",
+        "DevComment": "Increases Throwing Star damage by 25 per star."
+      },
+      "255": {
+        "tag": "Skill.Ninja.Myfort.TargetDummies2",
+        "DevComment": "Increases starting Throwing Stars to 35."
+      },
+      "256": {
+        "tag": "Skill.Ninja.Myfort.TargetDummies3",
+        "DevComment": "Ninja now throws five stars at a time."
+      },
+      "257": {
+        "tag": "Skill.Ninja.Myfort.TargetDummies4",
+        "DevComment": "Throwing Stars have homing properties."
+      },
+      "258": {
+        "tag": "Skill.Ninja.Myfort.TargetDummies5",
+        "DevComment": "Ninja now throws seven stars at a time."
+      },
+      "259": {
+        "tag": "Skill.Ninja.Myfort.ZenGardens1",
+        "DevComment": ""
+      },
+      "260": {
+        "tag": "Skill.Ninja.Myfort.ZenGardens2",
+        "DevComment": ""
+      },
+      "261": {
+        "tag": "Skill.Ninja.Myfort.ZenGardens3",
+        "DevComment": ""
+      },
+      "262": {
+        "tag": "Skill.Ninja.Myfort.ZenGardens4",
+        "DevComment": ""
+      },
+      "263": {
+        "tag": "Skill.Ninja.Myfort.ZenGardens5",
+        "DevComment": "Activating Dragon Slash puts the Ninja into Shadow Stance."
+      },
+      "264": {
+        "tag": "Skill.Ninja.ShadowStance.Active",
+        "DevComment": "during Shadow Stance"
+      },
+      "265": {
+        "tag": "Skill.Ninja.SmokeBomb.FireAndSmoke",
+        "DevComment": "Smoke Bomb : Grants Shadow Stance"
+      },
+      "266": {
+        "tag": "Skill.Ninja.SmokeBomb.SkillActivation",
+        "DevComment": "SmokeBomb Activation Tag"
+      },
+      "267": {
+        "tag": "skill.ninja.smokebomb.upgrade1",
+        "DevComment": ""
+      },
+      "268": {
+        "tag": "skill.ninja.smokebomb.upgrade2",
+        "DevComment": ""
+      },
+      "269": {
+        "tag": "Skill.Ninja.SmokeBomb.UpInSmoke",
+        "DevComment": "Smoke Bomb : Extrends Move Speed"
+      },
+      "270": {
+        "tag": "Skill.Ninja.ThrowingStars.SkillActivation",
+        "DevComment": "ThrowingStars Activation Tag"
+      },
+      "271": {
+        "tag": "skill.ninja.throwingstars.upgrade1",
+        "DevComment": ""
+      },
+      "272": {
+        "tag": "skill.ninja.throwingstars.upgrade2",
+        "DevComment": ""
+      },
+      "273": {
+        "tag": "Skill.Ninja.ThrowingStars.VitalStrikes",
+        "DevComment": "Vital Strikes : Increased Damage to low HP targets."
+      },
+      "274": {
+        "tag": "Skill.Ninja.Trait.ShadowStance",
+        "DevComment": "Is ShadowStance"
+      },
+      "275": {
+        "tag": "Skill.Outlander.Ability.Conservation",
+        "DevComment": "Has Conservation"
+      },
+      "276": {
+        "tag": "Skill.Outlander.Ability.DiamondsInTheRough",
+        "DevComment": ""
+      },
+      "277": {
+        "tag": "Skill.Outlander.Ability.EagleEye",
+        "DevComment": ""
+      },
+      "278": {
+        "tag": "Skill.Outlander.Ability.FindersKeepers",
+        "DevComment": ""
+      },
+      "279": {
+        "tag": "Skill.Outlander.Ability.FocusedExplosion",
+        "DevComment": "Has Focused Explosion"
+      },
+      "280": {
+        "tag": "Skill.Outlander.Ability.HowInTheWorld",
+        "DevComment": "Has How in the World"
+      },
+      "281": {
+        "tag": "Skill.Outlander.Ability.LaserFocus",
+        "DevComment": "Has Laser Focus"
+      },
+      "282": {
+        "tag": "Skill.Outlander.Ability.QuickRecharge",
+        "DevComment": "Has Quick Recharge"
+      },
+      "283": {
+        "tag": "Skill.Outlander.Ability.ReadyForAnything",
+        "DevComment": "Has Ready for Anything"
+      },
+      "284": {
+        "tag": "Skill.Outlander.Ability.ShortFuse",
+        "DevComment": "Has Short Fuse"
+      },
+      "285": {
+        "tag": "Skill.Outlander.Ability.WhereWereGoing",
+        "DevComment": ""
+      },
+      "286": {
+        "tag": "Skill.Outlander.Ability.WhereWereGoing.OnRoad",
+        "DevComment": "While standing on a player built floor"
+      },
+      "287": {
+        "tag": "Skill.Outlander.Ability.PartingGiftExplosion",
+        "DevComment": "Target selection for Parting Gift"
+      },
+      "288": {
+        "tag": "Skill.Outlander.Ability.WhereWeregoing.Throttle",
+        "DevComment": ""
+      },
+      "289": {
+        "tag": "Skill.Outlander.AntiMaterialCharge.Activation",
+        "DevComment": "Anti Material Charge"
+      },
+      "290": {
+        "tag": "Skill.Outlander.MatterCollector.Activation",
+        "DevComment": "Matter Collector"
+      },
+      "291": {
+        "tag": "skill.scientist.chainlightning.upgrade1",
+        "DevComment": ""
+      },
+      "292": {
+        "tag": "skill.scientist.chainlightning.upgrade2",
+        "DevComment": ""
+      },
+      "293": {
+        "tag": "skill.scientist.chainlightning.upgrade3",
+        "DevComment": ""
+      },
+      "294": {
+        "tag": "skill.scientist.chainlightning.upgrade4",
+        "DevComment": ""
+      },
+      "295": {
+        "tag": "skill.scientist.chainlightning.upgrade5",
+        "DevComment": ""
+      },
+      "296": {
+        "tag": "skill.scientist.coldblast.upgrade1",
+        "DevComment": ""
+      },
+      "297": {
+        "tag": "skill.scientist.coldblast.upgrade2",
+        "DevComment": ""
+      },
+      "298": {
+        "tag": "skill.scientist.coldblast.upgrade3",
+        "DevComment": ""
+      },
+      "299": {
+        "tag": "skill.scientist.coldblast.upgrade4",
+        "DevComment": ""
+      },
+      "300": {
+        "tag": "skill.scientist.coldblast.upgrade5",
+        "DevComment": ""
+      },
+      "301": {
+        "tag": "skill.scientist.laserbot.upgrade1",
+        "DevComment": ""
+      },
+      "302": {
+        "tag": "skill.scientist.laserbot.upgrade2",
+        "DevComment": ""
+      },
+      "303": {
+        "tag": "skill.scientist.laserbot.upgrade3",
+        "DevComment": ""
+      },
+      "304": {
+        "tag": "skill.scientist.laserbot.upgrade4",
+        "DevComment": ""
+      },
+      "305": {
+        "tag": "skill.scientist.laserbot.upgrade5",
+        "DevComment": ""
+      },
+      "306": {
+        "tag": "skill.sniper.headshotbuff",
+        "DevComment": "Sniper Rifles and Pistols"
+      },
+      "307": {
+        "tag": "Skill.Soldier.BiggerIsBetter",
+        "DevComment": "Has BiggerIsBetter"
+      },
+      "308": {
+        "tag": "Skill.Soldier.Bulletstorm",
+        "DevComment": "You have Bulletstorm"
+      },
+      "309": {
+        "tag": "Skill.Soldier.Cooldown.GadgetCooldown",
+        "DevComment": "Shared Cooldown for Soldier"
+      },
+      "310": {
+        "tag": "Skill.Soldier.DebilitatingShotsTarget",
+        "DevComment": "Affected by DebilitatingShots"
+      },
+      "311": {
+        "tag": "Skill.Soldier.FragGrenade.ClusterBomb",
+        "DevComment": "Has ClusterBomb"
+      },
+      "312": {
+        "tag": "Skill.Soldier.FragGrenade.GrapeShot",
+        "DevComment": "Has Grapeshot"
+      },
+      "313": {
+        "tag": "skill.soldier.grenade.ClusterUpgrade",
+        "DevComment": ""
+      },
+      "314": {
+        "tag": "skill.soldier.grenade.DamageUpgrade",
+        "DevComment": ""
+      },
+      "315": {
+        "tag": "skill.soldier.grenade.RadiusUpgrade",
+        "DevComment": ""
+      },
+      "316": {
+        "tag": "Skill.Soldier.IncendiaryRounds.Active",
+        "DevComment": "Incendiary Rounds is Active"
+      },
+      "317": {
+        "tag": "Skill.Soldier.IncendiaryRounds.Damage",
+        "DevComment": "Damage from Incendiary Rounds"
+      },
+      "318": {
+        "tag": "Skill.Soldier.Kneecapper",
+        "DevComment": "Has Kneecapper"
+      },
+      "319": {
+        "tag": "Skill.Soldier.LightErUp",
+        "DevComment": "Has Light 'Er Up"
+      },
+      "320": {
+        "tag": "Skill.Soldier.LingeringPain",
+        "DevComment": "Has Lingering Pain"
+      },
+      "321": {
+        "tag": "Skill.Soldier.PerfectEngineering",
+        "DevComment": "Has Perfect Engineering"
+      },
+      "322": {
+        "tag": "Skill.Technician.Ability.AutomatedDefenses",
+        "DevComment": "Has Automated Defenses"
+      },
+      "323": {
+        "tag": "Skill.Technician.Ability.BigBrother",
+        "DevComment": "Has Big Brother"
+      },
+      "324": {
+        "tag": "Skill.Technician.Ability.ContainmentUnit",
+        "DevComment": "Has Containment Unit"
+      },
+      "325": {
+        "tag": "Skill.Technician.Ability.DefensiveIntegration",
+        "DevComment": "Has Defensive Integration"
+      },
+      "326": {
+        "tag": "Skill.Technician.Ability.ExitPlan",
+        "DevComment": "Has Exit Plan"
+      },
+      "327": {
+        "tag": "Skill.Technician.Ability.Firewall",
+        "DevComment": "Has Firewall"
+      },
+      "328": {
+        "tag": "Skill.Technician.Ability.FullyContained",
+        "DevComment": "Has Fully Contained"
+      },
+      "329": {
+        "tag": "Skill.Technician.Ability.Hyperthreading",
+        "DevComment": "Has Hyperthreading"
+      },
+      "330": {
+        "tag": "Skill.Technician.Ability.IFFCoding",
+        "DevComment": "Has IFF Coding"
+      },
+      "331": {
+        "tag": "Skill.Technician.Ability.InBase",
+        "DevComment": ""
+      },
+      "332": {
+        "tag": "Skill.Technician.Ability.KineticOverload",
+        "DevComment": "Has Kinetic Overload"
+      },
+      "333": {
+        "tag": "Skill.Technician.Ability.PlasmaOverdrive",
+        "DevComment": "Has Plasma Overdrive"
+      },
+      "334": {
+        "tag": "Skill.Technician.Ability.PowerModulation",
+        "DevComment": "Has Power Modulation"
+      },
+      "335": {
+        "tag": "Skill.Technician.Ability.Recycling",
+        "DevComment": "Has Recycling"
+      },
+      "336": {
+        "tag": "Skill.Technician.Ability.SubroutineOptimization",
+        "DevComment": "Has Subroutine Optimization"
+      },
+      "337": {
+        "tag": "Skill.Technician.Ability.TotalIntegration",
+        "DevComment": "Has Total Integration"
+      },
+      "338": {
+        "tag": "supplies.ammo",
+        "DevComment": "Ammo"
+      },
+      "339": {
+        "tag": "supplies.ammo.assault",
+        "DevComment": "Delete This Tag Later"
+      },
+      "340": {
+        "tag": "supplies.ammo.bulletheavy",
+        "DevComment": "Heavy Bullets"
+      },
+      "341": {
+        "tag": "supplies.ammo.bulletlight",
+        "DevComment": "Light Bullets"
+      },
+      "342": {
+        "tag": "supplies.ammo.bulletmedium",
+        "DevComment": "Medium Bullets"
+      },
+      "343": {
+        "tag": "supplies.ammo.energycell",
+        "DevComment": "Energy Cell Ammo"
+      },
+      "344": {
+        "tag": "Supplies.Ammo.Ninja.SmokeBomb",
+        "DevComment": "Smokebomb Ammo for Ninja"
+      },
+      "345": {
+        "tag": "Supplies.Ammo.Ninja.ThrowingStars",
+        "DevComment": "Throwing Star Ammo for Ninja"
+      },
+      "346": {
+        "tag": "supplies.ammo.shell",
+        "DevComment": "Shells"
+      },
+      "347": {
+        "tag": "Supplies.Ammo.Soldier.ExplosiveMaterials",
+        "DevComment": "Frag Grenades"
+      },
+      "348": {
+        "tag": "supplies.consumable.buff",
+        "DevComment": "Consumable Buffs"
+      },
+      "349": {
+        "tag": "supplies.consumable.Gadget",
+        "DevComment": "Delete This Tag Later"
+      },
+      "350": {
+        "tag": "supplies.consumable.healing",
+        "DevComment": "Consumable Recovery Items"
+      },
+      "351": {
+        "tag": "supplies.crafting.ingredient",
+        "DevComment": "Crafting Ingredients"
+      },
+      "352": {
+        "tag": "supplies.genericgadgets.offense",
+        "DevComment": "Consumable Offensive Gadgets"
+      },
+      "353": {
+        "tag": "supplies.homebase.food",
+        "DevComment": "Food Resource"
+      },
+      "354": {
+        "tag": "supplies.homebase.gold",
+        "DevComment": "Gold Resource"
+      },
+      "355": {
+        "tag": "supplies.homebase.manufacturing",
+        "DevComment": "Manufacturing Parts Resource"
+      },
+      "356": {
+        "tag": "supplies.homebase.power",
+        "DevComment": "Power Resource"
+      },
+      "357": {
+        "tag": "supplies.homebase.supplies",
+        "DevComment": "Supplies Resource"
+      },
+      "358": {
+        "tag": "SurfaceType.Slippery",
+        "DevComment": "Slippery Surface"
+      },
+      "359": {
+        "tag": "Test.Test.Asset",
+        "DevComment": "Asset is a test asset only."
+      },
+      "360": {
+        "tag": "weapon",
+        "DevComment": "All Weapons"
+      },
+      "361": {
+        "tag": "weapon.melee",
+        "DevComment": "Melee Weapons"
+      },
+      "362": {
+        "tag": "weapon.melee.blunt",
+        "DevComment": "Blunt Melee Weapons"
+      },
+      "363": {
+        "tag": "Weapon.Melee.Blunt.Hammer",
+        "DevComment": "Hammer Blunt Weapons"
+      },
+      "364": {
+        "tag": "Weapon.Melee.Blunt.Improvised",
+        "DevComment": "Improvised Blunt Weapons"
+      },
+      "365": {
+        "tag": "Weapon.Melee.Blunt.Staff",
+        "DevComment": "Staff Blunt Weapons"
+      },
+      "366": {
+        "tag": "weapon.melee.edged",
+        "DevComment": "Edged Melee Weapons"
+      },
+      "367": {
+        "tag": "Weapon.Melee.Edged.Axe",
+        "DevComment": "Axe Edged Weapons"
+      },
+      "368": {
+        "tag": "Weapon.Melee.Edged.Scythe",
+        "DevComment": "Scythe Edged Weapons"
+      },
+      "369": {
+        "tag": "Weapon.Melee.Edged.Sword",
+        "DevComment": "Sword Edged Weapons"
+      },
+      "370": {
+        "tag": "Weapon.melee.harvest",
+        "DevComment": "Delete This Tag Later"
+      },
+      "371": {
+        "tag": "Weapon.Melee.Impact",
+        "DevComment": "Harvesting Weapons"
+      },
+      "372": {
+        "tag": "Weapon.Melee.Impact.Pickaxe",
+        "DevComment": "Pickaxe Harvesting Weapons"
+      },
+      "373": {
+        "tag": "Weapon.Melee.Impact.Stick",
+        "DevComment": "Stick Harvesting Weapons"
+      },
+      "374": {
+        "tag": "Weapon.Melee.Piercing",
+        "DevComment": "Piercing Weapons"
+      },
+      "375": {
+        "tag": "Weapon.Melee.Piercing.Lance",
+        "DevComment": "Lance Piercing Weapons"
+      },
+      "376": {
+        "tag": "Weapon.Melee.Piercing.PoleArm",
+        "DevComment": "PoleArm Piercing Weapons"
+      },
+      "377": {
+        "tag": "Weapon.Melee.Piercing.Spear",
+        "DevComment": "Spear Piercing Weapons"
+      },
+      "378": {
+        "tag": "weapon.ranged",
+        "DevComment": "Ranged Weapons"
+      },
+      "379": {
+        "tag": "weapon.ranged.assault",
+        "DevComment": "Assault Weapons"
+      },
+      "380": {
+        "tag": "Weapon.ranged.assault.semiauto",
+        "DevComment": "Delete This Tag Later"
+      },
+      "381": {
+        "tag": "weapon.ranged.heavy",
+        "DevComment": "Heavy Ranged Weapons"
+      },
+      "382": {
+        "tag": "Weapon.ranged.heavy.grenade",
+        "DevComment": "Delete This Tag Later"
+      },
+      "383": {
+        "tag": "weapon.ranged.heavy.grenade_launcher",
+        "DevComment": "Grenade Launchers"
+      },
+      "384": {
+        "tag": "weapon.ranged.heavy.rocket_launcher",
+        "DevComment": "Rocket Launchers"
+      },
+      "385": {
+        "tag": "weapon.ranged.pistol",
+        "DevComment": "Pistols"
+      },
+      "386": {
+        "tag": "weapon.ranged.shotgun",
+        "DevComment": "Shotguns"
+      },
+      "387": {
+        "tag": "Weapon.ranged.Shotgun.Break",
+        "DevComment": "Delete This Tag Later"
+      },
+      "388": {
+        "tag": "weapon.ranged.sniper",
+        "DevComment": "Sniper Rifles"
+      },
+      "389": {
+        "tag": "Bacchus.Harvest.Pickaxe",
+        "DevComment": "Harvesting Tools (Pickaxes)"
+      },
+      "390": {
+        "tag": "Bacchus.Shoot.Pistol.Auto",
+        "DevComment": "Pistols, Automatic"
+      },
+      "391": {
+        "tag": "Bacchus.Shoot.Pistol.Semi",
+        "DevComment": "Pistols, Semiautomatic"
+      },
+      "392": {
+        "tag": "Bacchus.Shoot.Pistol.Revolver",
+        "DevComment": "Pistols, Revolvers"
+      },
+      "393": {
+        "tag": "Bacchus.Shoot.Pistol.Supressed",
+        "DevComment": "Pistols, Supressed"
+      },
+      "394": {
+        "tag": "Bacchus.Shoot.Shotgun.Tactical",
+        "DevComment": "Shotguns, Tactical"
+      },
+      "395": {
+        "tag": "Bacchus.Shoot.Shotgun.PumpAction",
+        "DevComment": "Shotguns, Pump Action"
+      },
+      "396": {
+        "tag": "Bacchus.Shoot.SMG.Auto",
+        "DevComment": "SMGs, Automatic"
+      },
+      "397": {
+        "tag": "Bacchus.Shoot.SMG.Supressed",
+        "DevComment": "SMGs, Supressed"
+      },
+      "398": {
+        "tag": "Bacchus.Shoot.AR.Auto",
+        "DevComment": "ARs, Automatic"
+      },
+      "399": {
+        "tag": "Bacchus.Shoot.AR.Semi",
+        "DevComment": "ARs, Semiautomatic"
+      },
+      "400": {
+        "tag": "Bacchus.Shoot.AR.Precision",
+        "DevComment": "ARs, Precision Fire"
+      },
+      "401": {
+        "tag": "Bacchus.Shoot.AR.Scoped",
+        "DevComment": "ARs, Scoped"
+      },
+      "402": {
+        "tag": "Bacchus.Shoot.Sniper.Semi",
+        "DevComment": "Sniper Rifles, Semiautomatic"
+      },
+      "403": {
+        "tag": "Bacchus.Shoot.Sniper.Bolt",
+        "DevComment": "Sniper Rifles, Bolt Action"
+      },
+      "404": {
+        "tag": "Bacchus.Shoot.Launcher.Rocket",
+        "DevComment": "Launcher Weapons, RPG"
+      },
+      "405": {
+        "tag": "Bacchus.Shoot.Launcher.Grenade",
+        "DevComment": "Launcher Weapons, Grenade Launcher"
+      },
+      "406": {
+        "tag": "Bacchus.Shoot.Machinegun.SAW",
+        "DevComment": "Machineguns, SAW"
+      },
+      "407": {
+        "tag": "Bacchus.Shoot.Machinegun.Minigun",
+        "DevComment": "Machineguns, Minigun"
+      },
+      "408": {
+        "tag": "Bacchus.Shoot.Crossbow.Bolt",
+        "DevComment": "Crossbows, Bolt"
+      },
+      "409": {
+        "tag": "Bacchus.Throw.Grenade.Explosive",
+        "DevComment": "Grenades, Explosive"
+      },
+      "410": {
+        "tag": "Bacchus.Throw.Grenade.Dance",
+        "DevComment": "Grenades, Dance"
+      },
+      "411": {
+        "tag": "Bacchus.Throw.Grenade.Smoke",
+        "DevComment": "Grenades, Smoke"
+      },
+      "412": {
+        "tag": "Bacchus.Throw.Grenade.Teleport",
+        "DevComment": "Grenades, Teleporting"
+      },
+      "413": {
+        "tag": "Bacchus.Throw.Grenade.Electric",
+        "DevComment": "Grenades, Electric"
+      },
+      "414": {
+        "tag": "Bacchus.Throw.Grenade.M80",
+        "DevComment": "Grenades, M80"
+      },
+      "415": {
+        "tag": "Bacchus.Throw.Grenade.BottleRocket",
+        "DevComment": "Grenades, Bottle Rocket"
+      },
+      "416": {
+        "tag": "Bacchus.Throw.Utility.Mimic",
+        "DevComment": "Thrown, Mimic"
+      },
+      "417": {
+        "tag": "Bacchus.Throw.Utility.Balloon",
+        "DevComment": "Thrown, Big Poppy"
+      },
+      "418": {
+        "tag": "Bacchus.Consume.Health.HealthPack",
+        "DevComment": "Health, Health Pack"
+      },
+      "419": {
+        "tag": "Bacchus.Consume.Health.Bandage",
+        "DevComment": "Health, Bandages"
+      },
+      "420": {
+        "tag": "Bacchus.Consume.Health.Burger",
+        "DevComment": "Health, Durr Burger"
+      },
+      "421": {
+        "tag": "Bacchus.Consume.Health.Shake",
+        "DevComment": "Health, Durr Burger Shake"
+      },
+      "422": {
+        "tag": "Bacchus.Consume.Shield.ShieldSM",
+        "DevComment": "Shield, Small"
+      },
+      "423": {
+        "tag": "Bacchus.Consume.Shield.SieldLG",
+        "DevComment": "Shield, Large"
+      },
+      "424": {
+        "tag": "Bacchus.Consume.Boost.ChugJug",
+        "DevComment": "Boosts, Chug Jug"
+      },
+      "425": {
+        "tag": "Bacchus.Consume.Boost.Slurp",
+        "DevComment": "Boosts, Slurp Juice"
+      },
+      "426": {
+        "tag": "Bacchus.Consume.Boost.Crystal",
+        "DevComment": "Boosts, Energy Crystals"
+      },
+      "427": {
+        "tag": "Bacchus.Use.Wear.Backpack",
+        "DevComment": "Wearable, Backpack"
+      },
+      "428": {
+        "tag": "Bacchus.Use.Wear.Bush",
+        "DevComment": "Wearable, Bush"
+      },
+      "429": {
+        "tag": "Bacchus.Place.Trap.Damage",
+        "DevComment": "Trap, Damage"
+      },
+      "430": {
+        "tag": "Bacchus.Place.Trap.Launchpad",
+        "DevComment": "Trap, Glider Launchpad"
+      },
+      "431": {
+        "tag": "Bacchus.Place.Trap.Campfire",
+        "DevComment": "Trap, Campfire"
+      },
+      "432": {
+        "tag": "Bacchus.Throw.Utility.Light",
+        "DevComment": "Thrown, Light"
+      }
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_MiningOre_T00",
+        "Properties": {
+            "ExpeditionDuration_Minutes": 240.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 10,
+            "TierFactor": 100,
+            "MaxTargetPowerClamp": 50,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "MiningOre_T00"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "18A2AFCC43162333B40A4DBE51726037",
+                "SourceString": "Mining Ore"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "50AC020241843583D09ED092351C5547",
+                "SourceString": "Send someone to mine some stone."
+            }
+        }
+    }
+]

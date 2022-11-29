@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_SurvivorScouting_Medium_T02",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
+            "ExpeditionDuration_Minutes": 960.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 175,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "SurvivorScouting_Medium_T02"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "D5FEF2BF4B5D37773083A7927FE020BB",
+                "SourceString": "Training Day"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "EA3FDD8249C199C8925716AFA2F123E6",
+                "SourceString": "Train some survivors. A couple may find their talent as workers!"
+            }
+        }
+    }
+]

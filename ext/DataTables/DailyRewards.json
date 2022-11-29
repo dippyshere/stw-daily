@@ -1,0 +1,3710 @@
+[
+  {
+    "Type": "DataTable",
+    "Name": "DailyRewards",
+    "Properties": {
+      "RowStruct": {
+        "ObjectName": "Class FortLoginReward",
+        "ObjectPath": "/Script/FortniteGame"
+      }
+    },
+    "Rows": {
+      "0": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/HeroXP.HeroXP",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "1": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "2": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "3": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "4": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "5": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "6": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/Schematics/Ranged/Pistol/FireCracker/SID_Pistol_FireCracker_R_Ore_T01.SID_Pistol_FireCracker_R_Ore_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "7": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "8": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Defender_R.CardPack_Defender_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "9": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_VR.CardPack_Hero_VR",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "10": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 50,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "11": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Manager_R.CardPack_Manager_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "12": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "13": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Worker_VR.CardPack_Worker_VR",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "14": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "15": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "16": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "17": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "18": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "19": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "20": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_SR.CardPack_Hero_SR",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "21": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "22": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "23": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "24": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "25": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "26": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "27": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "28": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "29": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "30": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "31": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "32": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "33": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "34": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "35": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "36": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "37": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "38": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "39": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "40": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "41": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Manager_R.CardPack_Manager_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "42": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "43": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "44": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "45": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "46": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "47": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "48": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "49": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "50": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "51": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "52": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "53": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "54": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "55": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "56": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "57": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "58": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "59": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "60": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "61": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "62": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Worker_SR.CardPack_Worker_SR",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "63": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "64": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "65": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "66": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "67": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "68": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "69": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "70": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "71": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "72": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "73": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "74": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "75": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "76": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "77": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "78": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "79": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "80": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Worker_SR.CardPack_Worker_SR",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "81": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "82": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "83": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "84": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "85": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "86": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "87": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "88": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "89": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "90": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "91": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "92": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "93": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "94": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "95": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "96": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "97": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "98": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "99": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_SR.CardPack_Hero_SR",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "100": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "101": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "102": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "103": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "104": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "105": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "106": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "107": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "108": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "109": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "110": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "111": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 800,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "112": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "113": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "114": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "115": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "116": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "117": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "118": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "119": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "120": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "121": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "122": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "123": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "124": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "125": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "126": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "127": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "128": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "129": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "130": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "131": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "132": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "133": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "134": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "135": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "136": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "137": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "138": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "139": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "140": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "141": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "142": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "143": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "144": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "145": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "146": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "147": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "148": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "149": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "150": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "151": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "152": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "153": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "154": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "155": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "156": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "157": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "158": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "159": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "160": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "161": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "162": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "163": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "164": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "165": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "166": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "167": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "168": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "169": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "170": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "171": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "172": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "173": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "174": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "175": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "176": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "177": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "178": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "179": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "180": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "181": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "182": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "183": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "184": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "185": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "186": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "187": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "188": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "189": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "190": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "191": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "192": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "193": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "194": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "195": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "196": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "197": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "198": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "199": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "200": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "201": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "202": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "203": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "204": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "205": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "206": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "207": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "208": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "209": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "210": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "211": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "212": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "213": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "214": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "215": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "216": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "217": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "218": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "219": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "220": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "221": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "222": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "223": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 800,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "224": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "225": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "226": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "227": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "228": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "229": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "230": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "231": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "232": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "233": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "234": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "235": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "236": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "237": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "238": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "239": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "240": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "241": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "242": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "243": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "244": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "245": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "246": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "247": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "248": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "249": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "250": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "251": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "252": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "253": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "254": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "255": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "256": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "257": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "258": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "259": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "260": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "261": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "262": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "263": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "264": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "265": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "266": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "267": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "268": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "269": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "270": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "271": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "272": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "273": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "274": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "275": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "276": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "277": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "278": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "279": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "280": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "281": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "282": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "283": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "284": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "285": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "286": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "287": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "288": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "289": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "290": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "291": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "292": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "293": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "294": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "295": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "296": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "297": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "298": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "299": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "300": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "301": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "302": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "303": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "304": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "305": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "306": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "307": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 300,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "308": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "309": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "310": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Hero_R.CardPack_Hero_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "311": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "312": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "313": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost.SmallXpBoost",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "314": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "315": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "316": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 10,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "317": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Ranged_R.CardPack_Ranged_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "318": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "319": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "320": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/AccountConsumables/SmallXpBoost_Gift.SmallXpBoost_Gift",
+          "SubPathString": ""
+        },
+        "ItemCount": 3,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "321": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "322": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "323": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "324": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "325": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "326": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Trap_R.CardPack_Trap_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "327": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T02.Reagent_C_T02",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "328": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 150,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      },
+      "329": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T01.Reagent_C_T01",
+          "SubPathString": ""
+        },
+        "ItemCount": 15,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "330": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/EventCurrency_Scaling.EventCurrency_Scaling",
+          "SubPathString": ""
+        },
+        "ItemCount": 20,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "331": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Voucher_BasicPack.Voucher_BasicPack",
+          "SubPathString": ""
+        },
+        "ItemCount": 2,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "332": {
+        "ItemDefinition": {
+          "AssetPathName": "/SaveTheWorld/Items/CardPacks/GenericRewards/CardPack_Melee_R.CardPack_Melee_R",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "333": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/CardPacks/CardPack_Bronze.CardPack_Bronze",
+          "SubPathString": ""
+        },
+        "ItemCount": 1,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "334": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Reagent_C_T03.Reagent_C_T03",
+          "SubPathString": ""
+        },
+        "ItemCount": 5,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": false
+      },
+      "335": {
+        "ItemDefinition": {
+          "AssetPathName": "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap",
+          "SubPathString": ""
+        },
+        "ItemCount": 1000,
+        "Description": {
+          "CultureInvariantString": null
+        },
+        "bIsMajorReward": true
+      }
+    }
+  }
+]

@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Sea_SurvivorScouting_Long_T04",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T04",
+            "ExpeditionDuration_Minutes": 1320.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 790,
+            "TierFactor": 40,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Sea_SurvivorScouting_Long_T04"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "7793A46F4F0D07F546D75291A58F9A18",
+                "SourceString": "Don't Stop Kicking"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "EDC7447442344281A670F79ED035E7C6",
+                "SourceString": "Send a survivor off on a ship to train!"
+            }
+        }
+    }
+]

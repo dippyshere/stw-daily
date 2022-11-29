@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Air_SupplyRun_Long_T03",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T03",
+            "ExpeditionDuration_Minutes": 1200.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 445,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Air_SupplyRun_Long_T03"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "8148704A44DB594BA763DA82DE6DF596",
+                "SourceString": "Cache Grab"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "051017664E98D5BBA8D6B19D9CC1566A",
+                "SourceString": "Send a team to explore Boulder Hill supply caches. "
+            }
+        }
+    }
+]

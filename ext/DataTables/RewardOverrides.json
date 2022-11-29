@@ -1,0 +1,62 @@
+[
+  {
+    "Type": "DataTable",
+    "Name": "RewardOverrides",
+    "Properties": {
+      "RowStruct": {
+        "ObjectName": "Class GameRewardOverridesInfo",
+        "ObjectPath": "/Script/FortniteAI"
+      }
+    },
+    "Rows": {
+      "Theater_Start_Outpost1_Override_1": {
+        "MissionName": "Theater_Start_Outpost1",
+        "OverrideRewardsTag": "Wargames",
+        "LootLevel": 0,
+        "LootTierGroup": "WarGames_Select_Theater1"
+      },
+      "Theater_Start_Outpost1_Override_2": {
+        "MissionName": "Theater_Start_Outpost1",
+        "OverrideRewardsTag": "Endurance",
+        "LootLevel": 0,
+        "LootTierGroup": "Endurance_Select_Theater1"
+      },
+      "Theater_Normal_Outpost1_Override_1": {
+        "MissionName": "Theater_Normal_Outpost1",
+        "OverrideRewardsTag": "Wargames",
+        "LootLevel": 0,
+        "LootTierGroup": "WarGames_Select_Theater2"
+      },
+      "Theater_Normal_Outpost1_Override_2": {
+        "MissionName": "Theater_Normal_Outpost1",
+        "OverrideRewardsTag": "Endurance",
+        "LootLevel": 0,
+        "LootTierGroup": "Endurance_Select_Theater2"
+      },
+      "Theater_Hard_Outpost1_Override_1": {
+        "MissionName": "Theater_Hard_Outpost1",
+        "OverrideRewardsTag": "Wargames",
+        "LootLevel": 0,
+        "LootTierGroup": "WarGames_Select_Theater3"
+      },
+      "Theater_Hard_Outpost1_Override_2": {
+        "MissionName": "Theater_Hard_Outpost1",
+        "OverrideRewardsTag": "Endurance",
+        "LootLevel": 0,
+        "LootTierGroup": "Endurance_Select_Theater3"
+      },
+      "Theater_Nightmare_Outpost1_Override_1": {
+        "MissionName": "Theater_Nightmare_Outpost1",
+        "OverrideRewardsTag": "Wargames",
+        "LootLevel": 0,
+        "LootTierGroup": "WarGames_Select_Theater4"
+      },
+      "Theater_Nightmare_Outpost1_Override_2": {
+        "MissionName": "Theater_Nightmare_Outpost1",
+        "OverrideRewardsTag": "Endurance",
+        "LootLevel": 0,
+        "LootTierGroup": "Endurance_Select_Theater4"
+      }
+    }
+  }
+]

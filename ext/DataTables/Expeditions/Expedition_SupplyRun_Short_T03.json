@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_SupplyRun_Short_T03",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T03",
+            "ExpeditionDuration_Minutes": 480.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 150,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "SupplyRun_Short_T03"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "129A6F8C4703B0216FD59AA9489A2312",
+                "SourceString": "The Finest Wares"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "071D0C684D012F273A2EE1A59AD1D1BF",
+                "SourceString": "Send a team to explore a nearby Warehouse."
+            }
+        }
+    }
+]

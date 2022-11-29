@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_SupplyRun_Medium_T03",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T03",
+            "ExpeditionDuration_Minutes": 960.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 200,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "SupplyRun_Medium_T03"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "57682ECF479DF0BC95B8C9A1C8162B57",
+                "SourceString": "Stock Up"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "09CA6B2943BA49D73E0747A19581EFCF",
+                "SourceString": "Deploy a team of skilled scavengers to collect critical resources. "
+            }
+        }
+    }
+]

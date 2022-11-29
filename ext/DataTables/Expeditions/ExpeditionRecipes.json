@@ -1,0 +1,2749 @@
+[
+    {
+        "Type": "DataTable",
+        "Name": "ExpeditionRecipes",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class Recipe",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "Air_SupplyRun_Long_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_air_supplyrun_long_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Air_SupplyRun_Long_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_air_supplyrun_long_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Air_SupplyRun_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_air_supplyrun_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Air_SupplyRun_Medium_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_air_supplyrun_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Air_SurvivorScouting_Long_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_air_survivorscouting_long_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Air_SurvivorScouting_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Air_SurvivorScouting_Medium_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "ChoppingWood_T00": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_choppingwood"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Long_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_long_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Medium_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_medium_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Medium_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Medium_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_medium_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Short_T00": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_short_t00"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Short_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_short_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Short_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_short_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "CraftingRun_Short_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_craftingrun_short_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "MiningOre_T00": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_miningore"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "PeopleRun_Medium_T00": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_peoplerun_medium_t00"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "PeopleRun_Short_T00": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_peoplerun_short_t00"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Heroes_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_heroes_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Heroes_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_heroes_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Managers_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_managers_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Managers_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_managers_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Traps_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_traps_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Traps_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_traps_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Weapons_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Air_Weapons_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "Rare_Heroes_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_heroes_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 175
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Heroes_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_heroes_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Managers_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_managers_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 175
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Managers_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_managers_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Heroes_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_heroes_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Heroes_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_heroes_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Managers_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_managers_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Managers_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_managers_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Traps_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_traps_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Traps_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_traps_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Weapons_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Sea_Weapons_T05": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t05"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 400
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Rare_Traps_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_traps_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Traps_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_traps_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 175
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Traps_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_traps_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Weapons_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Weapons_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Weapons_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 175
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Rare_Weapons_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_rareexpedition_weapons_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 250
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_All_Medium": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_all_medium"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_All_Short": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_all_short"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_Metal_Medium": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_metal_medium"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_Metal_Short": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_metal_short"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_Stone_Medium": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_stone_medium"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_Stone_Short": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_stone_short"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_Wood_Medium": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_wood_medium"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_Wood_Short": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_wood_short"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_WoodStone_Medium": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_woodstone_medium"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "ResourceRun_WoodStone_Short": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_resourcerun_woodstone_short"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "Sea_SupplyRun_Long_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_sea_supplyrun_long_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Sea_SupplyRun_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_sea_supplyrun_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Sea_SupplyRun_Medium_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_sea_supplyrun_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Sea_SupplyRun_Short_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_sea_supplyrun_short_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Sea_SurvivorScouting_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Sea_SurvivorScouting_Medium_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_sea_survivorscouting_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Sea_SurvivorScouting_Medium_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "Sea_SurvivorScouting_Short_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_sea_survivorscouting_short_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Long_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_long_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Long_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_long_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 100
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Medium_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_medium_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Medium_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Medium_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_medium_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Short_T00": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_short_t00"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Short_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_short_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Short_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_short_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SupplyRun_Short_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_supplyrun_short_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SurvivorScouting_Long_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_long_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SurvivorScouting_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 100
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SurvivorScouting_Medium_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "SurvivorScouting_Short_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_survivorscouting_short_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Air_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Air_Medium_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Air_Medium_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Air"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Long_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_long_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Medium_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Medium_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Medium_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Medium_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Sea_Long_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_long_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 125
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Sea_Medium_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Sea_Medium_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_medium_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Sea"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Short_T01": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_short_t01"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 15
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Short_T02": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_short_t02"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 25
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Short_T03": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_short_t03"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 50
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            },
+            "TrapRun_Short_T04": {
+                "RecipeResults": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "CardPack"
+                            },
+                            "PrimaryAssetName": "zcp_expedition_traprun_short_t04"
+                        },
+                        "Quantity": 1
+                    }
+                ],
+                "bIsConsumed": false,
+                "RecipeCosts": [
+                    {
+                        "ItemPrimaryAssetId": {
+                            "PrimaryAssetType": {
+                                "Name": "Token"
+                            },
+                            "PrimaryAssetName": "collectionresource_nodegatetoken01"
+                        },
+                        "Quantity": 75
+                    }
+                ],
+                "RequiredCatalysts": [
+                    "Expedition.Land"
+                ],
+                "Score": 0
+            }
+        }
+    }
+]

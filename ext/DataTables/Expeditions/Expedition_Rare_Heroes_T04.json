@@ -1,0 +1,32 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Rare_Heroes_T04",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T04",
+            "ExpeditionDuration_Minutes": 1320.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 1400,
+            "TierFactor": 35,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Rare_Heroes_T04"
+            },
+            "Rarity": "EFortRarity::Rare",
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "FA33D5204052502030612EA16C6067AE",
+                "SourceString": "A Hero's Hero  - RARE"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "DAA56EAF4138B53C131CF8ACE8BE46B0",
+                "SourceString": "Deploy your bravest recruits for a grueling training mission. "
+            }
+        }
+    }
+]

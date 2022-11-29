@@ -1,515 +1,515 @@
 [
-    {
-        "Type": "DataTable",
-        "Name": "PostMaxPhoenixLevelRewardsTable",
-        "Properties": {
-            "RowStruct": {
-                "ObjectName": "Class FortPostMaxPhoenixLevelRewardData",
-                "ObjectPath": "/Script/FortniteGame"
-            },
-            "bIgnoreExtraFields": true
-        },
-        "Rows": {
-            "EventFlag.Phoenix.RoadTrip1": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip2": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t01",
-                        "Quantity": 140
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip3": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip4": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t02",
-                        "Quantity": 100
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip5": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
-                        "Quantity": 750
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip6": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t03",
-                        "Quantity": 80
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip7": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip8": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t04",
-                        "Quantity": 50
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip9": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.RoadTrip10": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
-                        "Quantity": 600
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.RoadTrip"
-            },
-            "EventFlag.Phoenix.Fortnitemares1": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares2": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t01",
-                        "Quantity": 140
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares3": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares4": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t02",
-                        "Quantity": 100
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares5": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
-                        "Quantity": 750
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares6": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t03",
-                        "Quantity": 80
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares7": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares8": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t04",
-                        "Quantity": 50
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares9": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Fortnitemares10": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
-                        "Quantity": 600
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Fortnitemares"
-            },
-            "EventFlag.Phoenix.Winterfest1": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest2": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t01",
-                        "Quantity": 140
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest3": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest4": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t02",
-                        "Quantity": 100
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest5": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
-                        "Quantity": 750
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest6": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t03",
-                        "Quantity": 80
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest7": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest8": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t04",
-                        "Quantity": 50
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest9": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.Winterfest10": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
-                        "Quantity": 600
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Winterfest"
-            },
-            "EventFlag.Phoenix.NewBeginnings1": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings2": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t01",
-                        "Quantity": 140
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings3": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings4": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t02",
-                        "Quantity": 100
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings5": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
-                        "Quantity": 750
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings6": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t03",
-                        "Quantity": 80
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings7": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings8": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t04",
-                        "Quantity": 50
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings9": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.NewBeginnings10": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
-                        "Quantity": 600
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.NewBeginnings"
-            },
-            "EventFlag.Phoenix.Adventure1": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure2": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t01",
-                        "Quantity": 140
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure3": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure4": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t02",
-                        "Quantity": 100
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure5": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
-                        "Quantity": 750
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure6": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t03",
-                        "Quantity": 80
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure7": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_generic",
-                        "Quantity": 1200
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure8": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_c_t04",
-                        "Quantity": 50
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure9": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:eventcurrency_scaling",
-                        "Quantity": 650
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            },
-            "EventFlag.Phoenix.Adventure10": {
-                "bIsMajorReward": false,
-                "VisibleReward": [
-                    {
-                        "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
-                        "Quantity": 600
-                    }
-                ],
-                "EventTag": "EventFlag.Phoenix.Adventure"
-            }
-        }
+  {
+    "Type": "DataTable",
+    "Name": "PostMaxPhoenixLevelRewardsTable",
+    "Properties": {
+      "RowStruct": {
+        "ObjectName": "Class FortPostMaxPhoenixLevelRewardData",
+        "ObjectPath": "/Script/FortniteGame"
+      },
+      "bIgnoreExtraFields": true
+    },
+    "Rows": {
+      "EventFlag.Phoenix.RoadTrip1": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip2": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 140
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip3": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip4": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 100
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip5": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
+            "Quantity": 750
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip6": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 80
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip7": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip8": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t04",
+            "Quantity": 50
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip9": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.RoadTrip10": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
+            "Quantity": 600
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.RoadTrip"
+      },
+      "EventFlag.Phoenix.Fortnitemares1": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares2": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 140
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares3": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares4": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 100
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares5": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
+            "Quantity": 750
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares6": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 80
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares7": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares8": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t04",
+            "Quantity": 50
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares9": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Fortnitemares10": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
+            "Quantity": 600
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Fortnitemares"
+      },
+      "EventFlag.Phoenix.Winterfest1": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest2": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 140
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest3": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest4": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 100
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest5": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
+            "Quantity": 750
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest6": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 80
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest7": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest8": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t04",
+            "Quantity": 50
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest9": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.Winterfest10": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
+            "Quantity": 600
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Winterfest"
+      },
+      "EventFlag.Phoenix.NewBeginnings1": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings2": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 140
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings3": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings4": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 100
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings5": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
+            "Quantity": 750
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings6": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 80
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings7": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings8": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t04",
+            "Quantity": 50
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings9": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.NewBeginnings10": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
+            "Quantity": 600
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.NewBeginnings"
+      },
+      "EventFlag.Phoenix.Adventure1": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure2": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t01",
+            "Quantity": 140
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure3": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure4": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t02",
+            "Quantity": 100
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure5": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_vr",
+            "Quantity": 750
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure6": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t03",
+            "Quantity": 80
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure7": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_generic",
+            "Quantity": 1200
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure8": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_c_t04",
+            "Quantity": 50
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure9": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:eventcurrency_scaling",
+            "Quantity": 650
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      },
+      "EventFlag.Phoenix.Adventure10": {
+        "bIsMajorReward": false,
+        "VisibleReward": [
+          {
+            "TemplateId": "AccountResource:reagent_alteration_upgrade_sr",
+            "Quantity": 600
+          }
+        ],
+        "EventTag": "EventFlag.Phoenix.Adventure"
+      }
     }
+  }
 ]

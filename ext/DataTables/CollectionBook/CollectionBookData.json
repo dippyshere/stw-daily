@@ -1,0 +1,51 @@
+[
+  {
+    "Type": "FortCollectionBookData",
+    "Name": "CollectionBookData",
+    "Properties": {
+      "PageCategoryData": {
+        "ObjectName": "DataTable CollectionCategoryTable",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionCategoryTable.0"
+      },
+      "PageData": {
+        "ObjectName": "DataTable CollectionBookPages",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionBookPages.0"
+      },
+      "SectionData": {
+        "ObjectName": "DataTable CollectionBookSections",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionBookSections.0"
+      },
+      "SlotData": {
+        "ObjectName": "DataTable CollectionBookSlots",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionBookSlots.0"
+      },
+      "SlotSourceData": {
+        "ObjectName": "DataTable CollectionBookSlotSources",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionBookSlotSources.0"
+      },
+      "XPWeightData": {
+        "ObjectName": "DataTable CollectionSlotWeightTable",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionSlotWeightTable.0"
+      },
+      "SlotRarityFactorData": {
+        "ObjectName": "CurveFloat CollectionBookSlotRarityFactorCurve",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionBookSlotRarityFactorCurve.0"
+      },
+      "BookXPData": {
+        "ObjectName": "DataTable CollectionBookXpLevelData",
+        "ObjectPath": "/SaveTheWorld/CollectionBook/Data/CollectionBookXpLevelData.0"
+      },
+      "UnslotCost": [
+        {
+          "ItemPrimaryAssetId": {
+            "PrimaryAssetType": {
+              "Name": "AccountResource"
+            },
+            "PrimaryAssetName": "Reagent_EvolveRarity_SR"
+          },
+          "Quantity": 50
+        }
+      ]
+    }
+  }
+]

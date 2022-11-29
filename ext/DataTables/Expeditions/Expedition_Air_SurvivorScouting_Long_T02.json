@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Air_SurvivorScouting_Long_T02",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
+            "ExpeditionDuration_Minutes": 1200.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 310,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Air_SurvivorScouting_Long_T02"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "8385F75A43E607B1C87FA6871EDB3506",
+                "SourceString": "Don't Do That!"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "FBBBA979485C04E3F85C6C8B0BE78149",
+                "SourceString": "A survivor has stowed away aboard a weather balloon. Deploy an aerial rescue team to bring the survivor back down to earth.   "
+            }
+        }
+    }
+]

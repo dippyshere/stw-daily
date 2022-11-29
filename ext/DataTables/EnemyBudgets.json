@@ -1,0 +1,176 @@
+[
+  {
+    "Type": "DataTable",
+    "Name": "EnemyBudgets",
+    "Properties": {
+      "RowStruct": {
+        "ObjectName": "Class FortVariantSpawnPoints",
+        "ObjectPath": "/Script/FortniteAI"
+      }
+    },
+    "Rows": {
+      "Husk": {
+        "BudgetPoints": 16
+      },
+      "Husky": {
+        "BudgetPoints": 49
+      },
+      "Blaster": {
+        "BudgetPoints": 118
+      },
+      "Lobber": {
+        "BudgetPoints": 74
+      },
+      "PoisonLobber": {
+        "BudgetPoints": 77
+      },
+      "Pitcher": {
+        "BudgetPoints": 22
+      },
+      "RiotShieldHusky": {
+        "BudgetPoints": 75
+      },
+      "Smasher": {
+        "BudgetPoints": 225
+      },
+      "SmasherOnboarding": {
+        "BudgetPoints": 225
+      },
+      "SmasherBoss": {
+        "BudgetPoints": 653
+      },
+      "Taker": {
+        "BudgetPoints": 141
+      },
+      "Flinger": {
+        "BudgetPoints": 139
+      },
+      "Dwarf": {
+        "BudgetPoints": 27
+      },
+      "Beehive": {
+        "BudgetPoints": 40
+      },
+      "Propane": {
+        "BudgetPoints": 58
+      },
+      "Cart": {
+        "BudgetPoints": 183
+      },
+      "Mimic": {
+        "BudgetPoints": 162
+      },
+      "Werewolf": {
+        "BudgetPoints": 186
+      },
+      "GhostlyLady": {
+        "BudgetPoints": 70
+      },
+      "PATroll": {
+        "BudgetPoints": 13
+      },
+      "RoboCrate": {
+        "BudgetPoints": 80
+      },
+      "Troll": {
+        "BudgetPoints": 20
+      },
+      "Troll_CrateCarrier": {
+        "BudgetPoints": 14
+      },
+      "HuskNoLunge": {
+        "BudgetPoints": 16
+      },
+      "HuskGeneric_Weak": {
+        "BudgetPoints": 12
+      },
+      "Husk_Big": {
+        "BudgetPoints": 106
+      },
+      "Husk_TinyHead": {
+        "BudgetPoints": 31
+      },
+      "Husk_Armored": {
+        "BudgetPoints": 58
+      },
+      "HuskBlasterBig": {
+        "BudgetPoints": 103
+      },
+      "Husk_Ninja": {
+        "BudgetPoints": 45
+      },
+      "SmasherPlayer": {
+        "BudgetPoints": 323
+      },
+      "Shielder": {
+        "BudgetPoints": 15
+      },
+      "SuperShielder": {
+        "BudgetPoints": 53
+      },
+      "Taker_TRV": {
+        "BudgetPoints": 197
+      },
+      "BotPlayer_Athena": {
+        "BudgetPoints": 2158
+      },
+      "HuskZapper": {
+        "BudgetPoints": 29
+      },
+      "HuskDigger": {
+        "BudgetPoints": 21
+      },
+      "HuskyHuskBlockbuster": {
+        "BudgetPoints": 198
+      },
+      "HuskZapperDarkGunslinger": {
+        "BudgetPoints": 842
+      },
+      "Deimos_Crawly": {
+        "BudgetPoints": 25
+      },
+      "Deimos_Fiend": {
+        "BudgetPoints": 22
+      },
+      "Deimos_Brute": {
+        "BudgetPoints": 69
+      },
+      "Deimos_Mega_Brute": {
+        "BudgetPoints": 488
+      },
+      "DUDEBRO": {
+        "BudgetPoints": 1336
+      },
+      "Deimos_Fiend_Major": {
+        "BudgetPoints": 38
+      },
+      "Deimos_Brute_Major": {
+        "BudgetPoints": 91
+      },
+      "Taker_TRV_Vlad": {
+        "BudgetPoints": 668
+      },
+      "Bot_TargetDummy": {
+        "BudgetPoints": 13
+      },
+      "Fiend": {
+        "BudgetPoints": 41
+      },
+      "Brute": {
+        "BudgetPoints": 127
+      },
+      "MistBlaster": {
+        "BudgetPoints": 118
+      },
+      "Demeter_A": {
+        "BudgetPoints": 299
+      },
+      "HuskNurse": {
+        "BudgetPoints": 60
+      },
+      "StarlightSciBoss": {
+        "BudgetPoints": 342
+      }
+    }
+  }
+]
