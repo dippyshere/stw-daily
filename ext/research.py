@@ -7,6 +7,7 @@ This file is the cog for the research command. collect and spend research points
 """
 
 import asyncio
+import orjson
 
 import discord
 import discord.ext.commands as ext
@@ -77,7 +78,7 @@ class ResearchView(discord.ui.View):
         Returns:
             None
         """
-        gren = self.client.colours["research_green"]
+        green = self.client.colours["research_green"]
 
         for child in self.children:
             child.disabled = True
@@ -87,7 +88,7 @@ class ResearchView(discord.ui.View):
             title=await stw.add_emoji_title(self.client, "Research", "research_point"),
             description=f"""\u200b
             You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b""",
-            colour=gren
+            colour=green
         )
 
         embed = await stw.set_thumbnail(self.client, embed, "research")
@@ -116,7 +117,7 @@ class ResearchView(discord.ui.View):
 
         stat_purchase = await stw.profile_request(self.client, "purchase_research", self.auth_info[1],
                                                   json={'statId': stat})
-        purchased_json = await stat_purchase.json()
+        purchased_json = orjson.loads(await stat_purchase.read())
 
         total_points = self.total_points
         current_levels = self.current_levels
@@ -143,7 +144,7 @@ class ResearchView(discord.ui.View):
             pass
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", self.auth_info[1])
-        json_response = await current_research_statistics_request.json()
+        json_response = orjson.loads(await current_research_statistics_request.read())
         current_levels = await research_query(interaction, self.client, self.auth_info, [], json_response)
         if current_levels is None:
             return
@@ -300,7 +301,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         try:
             # check if account has daily reward stats, if not, then account doesn't have stw
             check_stw = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
-            print(e, "assuming max research level im not sure??", json_response)
+            print(e, "no research stat, but daily reward; must have zero research stats", json_response)
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
             current_levels = {'fortitude': 0, 'offense': 0, 'resistance': 0, 'technology': 0}
             pass
@@ -315,7 +316,8 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
     # I'm not too sure what happens here but if current_levels doesn't exist im assuming its at maximum.
     proc_max = False
     try:
-        if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
+        if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels[
+            "technology"] == 480:
             proc_max = True
     except:
         for stat in ["offense", "fortitude", "resistance", "technology"]:
@@ -428,7 +430,7 @@ class Research(ext.Cog):
             final_embeds = auth_info[2]
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
-        json_response = await current_research_statistics_request.json()
+        json_response = orjson.loads(await current_research_statistics_request.read())
         current_levels = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
         if current_levels is None:
             return
@@ -453,7 +455,7 @@ class Research(ext.Cog):
 
         current_research_statistics_request = await stw.profile_request(self.client, "resources", auth_info[1],
                                                                         json={"collectorsToClaim": [research_guid]})
-        json_response = await current_research_statistics_request.json()
+        json_response = orjson.loads(await current_research_statistics_request.read())
 
         try:
             error_code = json_response["errorCode"]
@@ -478,6 +480,7 @@ class Research(ext.Cog):
         # I do believe that after some testing if you are at le maximum research points
         # you do not receive notifications so this must be wrapped in a try statement
         # assume that research points generated is none since it is at max!
+        # TODO: the above statement is false
         research_points_claimed = None
         try:
             research_feedback, check = json_response["notifications"], False

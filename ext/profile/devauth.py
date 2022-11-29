@@ -8,6 +8,7 @@ This file is the cog for the device auth command.
 
 import asyncio
 import time
+import orjson
 
 import discord
 import discord.ext.commands as ext
@@ -155,7 +156,7 @@ async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, int
     """
     get_ios_auth = await stw.exchange_games(client, temp_auth["token"], "ios")
     try:
-        response_json = await get_ios_auth.json()
+        response_json = orjson.loads(await get_ios_auth.read())
         await handle_dev_auth(client, ctx, interaction, user_document, response_json["access_token"], message)
     except:
         await handle_dev_auth(client, ctx, interaction, user_document, False, message)
@@ -608,7 +609,7 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
             return
 
         get_ios_auth = await stw.exchange_games(self.client, token, "ios")
-        response_json = await get_ios_auth.json()
+        response_json = await orjson.loads(get_ios_auth.read())
 
         await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document, self.currently_selected_profile_id, self.ctx, response_json["access_token"])
 

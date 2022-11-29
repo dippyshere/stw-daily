@@ -6,6 +6,8 @@ https://github.com/dippyshere/stw-daily
 This file is the cog for the daily command. claims fortnite stw daily reward
 """
 
+import orjson
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -56,7 +58,7 @@ class Daily(ext.Cog):
 
         # ok now we have the authcode information stuff, so it's time to attempt to claim daily
         request = await stw.profile_request(self.client, "daily", auth_info[1])
-        json_response = await request.json()
+        json_response = orjson.loads(await request.read())
         vbucks = auth_info[1]["vbucks"]
 
         # check for le error code

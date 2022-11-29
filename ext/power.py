@@ -6,6 +6,8 @@ https://github.com/dippyshere/stw-daily
 This file is the cog for the power level command. currently for testing only :3
 """
 
+import orjson
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -81,15 +83,15 @@ class Power(ext.Cog):
 
         # get common core profile
         stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
-        stw_json_response = await stw_request.json()
+        stw_json_response = orjson.loads(await stw_request.read())
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # stw2_request = await stw.profile_request(self.client, "llamas", auth_info[1], profile_id="stw")
-        # stw2_json_response = await stw2_request.json()
+        # stw2_json_response = orjson.loads(await stw2_request.read())
         # print(stw2_json_response)
 
         # stw3_request = await stw.profile_request(self.client, "refresh_expeditions", auth_info[1], profile_id="stw")
-        # stw3_json_response = await stw3_request.json()
+        # stw3_json_response = orjson.loads(await stw3_request.read())
         # print(stw3_json_response)
 
         # check for le error code

@@ -19,6 +19,7 @@ BATTLE BREAKERS!
 :D"""
 
 import asyncio
+import orjson
 
 import discord
 import discord.ext.commands as ext
@@ -72,7 +73,7 @@ class BattleBreakersDaily(ext.Cog):
 
         # ok now we have the authcode information stuff, so it's time to attempt to claim daily on the road
         request = await stw.profile_request(self.client, "daily", auth_info[1], game="bb")
-        json_response = await request.json()
+        json_response = orjson.loads(await request.read())
 
         # check for le error code
         try:

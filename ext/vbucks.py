@@ -7,6 +7,7 @@ This file is the cog for the vbucks command. Displays total v-bucks count, break
 """
 
 import asyncio
+import orjson
 
 import discord
 import discord.ext.commands as ext
@@ -85,27 +86,29 @@ class Vbucks(ext.Cog):
 
         # get common core profile
         core_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="common_core")
-        core_json_response = await core_request.json()
+        core_json_response = orjson.loads(await core_request.read())
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # check for le error code
         if await self.check_errors(ctx, core_json_response, auth_info, final_embeds):
             return
 
-        vbucks = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await core_request.json(),
-                                                        item_string="Currency:Mtx"))
+        vbucks = await asyncio.gather(
+            asyncio.to_thread(stw.extract_item, profile_json=orjson.loads(await core_request.read()),
+                              item_string="Currency:Mtx"))
 
         # fetch x-ray ticket count
         stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
-        stw_json_response = await stw_request.json()
+        stw_json_response = orjson.loads(await stw_request.read())
 
         # check for le error code
         error_check = await self.check_errors(ctx, stw_json_response, auth_info, final_embeds)
         if error_check:
             return
 
-        xray = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=await stw_request.json(),
-                                                      item_string="AccountResource:currency_xrayllama"))
+        xray = await asyncio.gather(
+            asyncio.to_thread(stw.extract_item, profile_json=orjson.loads(await stw_request.read()),
+                              item_string="AccountResource:currency_xrayllama"))
 
         # fetch vbucks total
         vbucks_total = await stw.calculate_vbucks(vbucks)
