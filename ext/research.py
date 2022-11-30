@@ -58,18 +58,19 @@ class ResearchView(discord.ui.View):
     The UI View for the research command
     """
 
-    async def disable_button_when_poor(self, button):
+    async def disable_button_when_poor(self, button, index):
         """
         Disable the button if the user cannot afford the stat.
 
         Args:
             button: The button to disable.
+            index: The index of the button.
 
         Returns:
             The button with the disabled attribute set.
         """
-        if not await self.check_stat_affordability(button.emoji.name):
-            button.disabled = True
+        button_map = ['fortitude', 'offense', 'resistance', 'technology']
+        button.disabled = await self.check_stat_affordability(button_map[index])
         return button
 
     async def check_stat_affordability(self, stat):
@@ -118,7 +119,7 @@ class ResearchView(discord.ui.View):
         )
 
         embed = await stw.set_thumbnail(self.client, embed, "research")
-        embed = await stw.add_requested_footer(self.context, embed)
+        embed = await stw.add_requested_footer(self.ctx, embed)
         embed = await add_fort_fields(self.client, embed, current_levels)
         embed.add_field(name=f"\u200b", value=f"*Timed out, please reuse command to continue*\n\u200b")
         await self.message.edit(embed=embed, view=self)
@@ -212,16 +213,16 @@ class ResearchView(discord.ui.View):
         embed = await stw.add_requested_footer(interaction, embed)
         self.total_points = research_points_item
 
-        for child in self.children:
-            await self.disable_button_when_poor(self.total_points, child)
+        for i, child in enumerate(self.children):
+            await self.disable_button_when_poor(child, i)
 
         await interaction.edit_original_response(embed=embed, view=self)
 
     # creo kinda fire though ngl
-    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, context):
+    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, ctx):
         super().__init__()
         self.client = client
-        self.context = context
+        self.ctx = ctx
         self.auth_info = auth_info
         self.author = author
         self.interaction_check_done = {}
