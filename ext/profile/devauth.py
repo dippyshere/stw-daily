@@ -8,11 +8,10 @@ This file is the cog for the device auth command.
 
 import asyncio
 import time
-import orjson
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+import orjson
 
 import stwutil as stw
 from ext.profile.bongodb import get_user_document, replace_user_document, generate_profile_select_options
@@ -559,6 +558,17 @@ async def select_change_profile(view, select, interaction):
 
 
 async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_document, currently_selected_profile_id, ctx, ios_token):
+    """
+    This function handles the device auth login command at least according to github
+
+    Args:
+        client: The client
+        interaction: The interaction
+        user_document: The user document
+        currently_selected_profile_id: The currently selected profile id
+        ctx: The context
+        ios_token: The ios token
+    """
     # my brain has turned into mushy mushh  :3
     pass
 

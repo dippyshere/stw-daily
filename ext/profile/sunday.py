@@ -9,12 +9,12 @@ This file is the cog for the settings command. not currently under development.
 # it does matter if its sunday
 
 import math
+
 import discord
 import discord.ext.commands as ext
-from discord import Option, slash_command
+from discord import Option
 
 import stwutil as stw
-
 from ext.profile.bongodb import *
 from ext.profile.settings_checks import *
 
@@ -244,8 +244,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
-        self.current_setting_value = \
-            user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
 
         title = setting_information["modal_title"].format(self.current_setting_value)
         super().__init__(title=title)
@@ -868,6 +867,7 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
             if value is not False:
                 embed = await sub_setting_page(setting, client, ctx, user_profile)
 
+                # may be referenced before assignment
                 selected_setting_index = (settings.index(setting) % settings_per_page) - 1
                 page = math.ceil(settings.index(setting) / settings_per_page)
 
@@ -902,6 +902,7 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
 
         if setting is not None and setting is not False:
             embed = await sub_setting_page(setting, client, ctx, user_profile)
+            # may be referenced before assignment
             selected_setting_index = (settings.index(setting) % settings_per_page) - 1
             page = math.floor(settings.index(setting) / settings_per_page) + 1
 

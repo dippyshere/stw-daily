@@ -1,1754 +1,1754 @@
 [
-  {
-    "Type": "DataTable",
-    "Name": "BadgeScoring",
-    "Properties": {
-      "RowStruct": {
-        "ObjectName": "Class FortBadgeScoringData",
-        "ObjectPath": "/Script/FortniteGame"
-      }
-    },
-    "Rows": {
-      "GateBadge_BuildLimitedQty": {
-        "ScoreAwarded": 0,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_Closed1stTry": {
-        "ScoreAwarded": 378000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_Closed2Gates": {
-        "ScoreAwarded": 1603000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_Closed3Gates": {
-        "ScoreAwarded": 1688000,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_Closed4Gates": {
-        "ScoreAwarded": 1933000,
-        "MissionPoints": 17,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_ClosedGate": {
-        "ScoreAwarded": 1518000,
-        "MissionPoints": 10,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_ClosedMultipleGates": {
-        "ScoreAwarded": 950000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_HalfHealthLeft": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_Participation": {
-        "ScoreAwarded": 152000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GateBadge_PlacedQuick": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "GeneralBadge": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_AreaDiscovery": {
-        "ScoreAwarded": 303000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Bronze": {
-        "ScoreAwarded": 615000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_CriticalMission": {
-        "ScoreAwarded": 0,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Gold": {
-        "ScoreAwarded": 1090000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_LTR_Participation": {
-        "ScoreAwarded": 193000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_LTR_Stage1": {
-        "ScoreAwarded": 120000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_LTR_Stage2": {
-        "ScoreAwarded": 198000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_LTR_Stage3": {
-        "ScoreAwarded": 275000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_LTR_Victory": {
-        "ScoreAwarded": 1933000,
-        "MissionPoints": 13,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTL_Participation": {
-        "ScoreAwarded": 152000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTL_Stage1": {
-        "ScoreAwarded": 215000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTL_Stage2": {
-        "ScoreAwarded": 275000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTL_Victory": {
-        "ScoreAwarded": 1518000,
-        "MissionPoints": 10,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Par": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Par2": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Par3": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Par4": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Par5": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Participation": {
-        "ScoreAwarded": 152000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Platinum": {
-        "ScoreAwarded": 1328000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PTR_Participation": {
-        "ScoreAwarded": 180000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PTR_Victory": {
-        "ScoreAwarded": 1798000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTD_Bronze": {
-        "ScoreAwarded": 953000,
-        "MissionPoints": 7,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTD_Gold": {
-        "ScoreAwarded": 1190000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTD_Participation": {
-        "ScoreAwarded": 95000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTD_Platinum": {
-        "ScoreAwarded": 1238000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RTD_Silver": {
-        "ScoreAwarded": 1143000,
-        "MissionPoints": 9,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_SatelliteRecovered": {
-        "ScoreAwarded": 913000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Silver": {
-        "ScoreAwarded": 543000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Survive_ProtectedTarget": {
-        "ScoreAwarded": 1018000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Survive_SurvivedTheStorm": {
-        "ScoreAwarded": 1018000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OBBadge_1stMissionComplete": {
-        "ScoreAwarded": 0,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OBBadge_RetrievedPart": {
-        "ScoreAwarded": 0,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Outpost": {
-        "ScoreAwarded": 1300000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Bonus": {
-        "ScoreAwarded": 10000,
-        "MissionPoints": 3,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense1": {
-        "ScoreAwarded": 1350000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense2": {
-        "ScoreAwarded": 1400000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense3": {
-        "ScoreAwarded": 1410000,
-        "MissionPoints": 13,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense4": {
-        "ScoreAwarded": 1420000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense5": {
-        "ScoreAwarded": 1430000,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense6": {
-        "ScoreAwarded": 1440000,
-        "MissionPoints": 16,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense7": {
-        "ScoreAwarded": 1450000,
-        "MissionPoints": 17,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense8": {
-        "ScoreAwarded": 1460000,
-        "MissionPoints": 18,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense9": {
-        "ScoreAwarded": 1470000,
-        "MissionPoints": 18,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "OutpostBadge_Defense10": {
-        "ScoreAwarded": 1480000,
-        "MissionPoints": 18,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTB_Participation_BombLost": {
-        "ScoreAwarded": 125000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTB_Participation_FinalDefense": {
-        "ScoreAwarded": 225000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTB_Victory": {
-        "ScoreAwarded": 1603000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTB_Bonus_FindObjective": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTB_Bonus_HalfHealthLeft": {
-        "ScoreAwarded": 583000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTG_ParticipationFailure1": {
-        "ScoreAwarded": 123000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTG_ParticipationFailure2": {
-        "ScoreAwarded": 123000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTG_Bronze": {
-        "ScoreAwarded": 1233000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTG_Silver": {
-        "ScoreAwarded": 1423000,
-        "MissionPoints": 10,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTG_Gold": {
-        "ScoreAwarded": 1470000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTG_Platinum": {
-        "ScoreAwarded": 1518000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "RescueBadge_Bronze": {
-        "ScoreAwarded": 23000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "RescueBadge_Silver": {
-        "ScoreAwarded": 33000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "RescueBadge_Gold": {
-        "ScoreAwarded": 40000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTE_Victory": {
-        "ScoreAwarded": 815000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTE_Participation": {
-        "ScoreAwarded": 82000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTE_Bronze": {
-        "ScoreAwarded": 648000,
-        "MissionPoints": 3,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTE_Silver": {
-        "ScoreAwarded": 838000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTE_Gold": {
-        "ScoreAwarded": 885000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_DTE_Platinum": {
-        "ScoreAwarded": 933000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETS_Victory": {
-        "ScoreAwarded": 933000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETS_Participation": {
-        "ScoreAwarded": 93000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETS_Bronze": {
-        "ScoreAwarded": 648000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETS_Silver": {
-        "ScoreAwarded": 838000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETS_Gold": {
-        "ScoreAwarded": 885000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETS_Platinum": {
-        "ScoreAwarded": 933000,
-        "MissionPoints": 7,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETShelter_Victory": {
-        "ScoreAwarded": 1798000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETShelter_Participation": {
-        "ScoreAwarded": 93000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ETShelter_HalfHealthLeft": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_CTR_Victory": {
-        "ScoreAwarded": 933000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_CTR_Participation": {
-        "ScoreAwarded": 93000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_CTR_Bronze": {
-        "ScoreAwarded": 648000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_CTR_Silver": {
-        "ScoreAwarded": 838000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_CTR_Gold": {
-        "ScoreAwarded": 885000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_CTR_Platinum": {
-        "ScoreAwarded": 933000,
-        "MissionPoints": 7,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_BTRT_Victory": {
-        "ScoreAwarded": 1243000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_BTRT_Participation": {
-        "ScoreAwarded": 124000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_BTRT_Bronze": {
-        "ScoreAwarded": 958000,
-        "MissionPoints": 3,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_BTRT_Silver": {
-        "ScoreAwarded": 1148000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_BTRT_Gold": {
-        "ScoreAwarded": 1195000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_BTRT_Platinum": {
-        "ScoreAwarded": 1243000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "CategoricalTeamScoringBadge_CombatScore_Bronze": {
-        "ScoreAwarded": 85000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 25000
-      },
-      "CategoricalTeamScoringBadge_CombatScore_Silver": {
-        "ScoreAwarded": 140000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 77500
-      },
-      "CategoricalTeamScoringBadge_CombatScore_Gold": {
-        "ScoreAwarded": 155000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 162500
-      },
-      "CategoricalTeamScoringBadge_CombatScore_Platinum": {
-        "ScoreAwarded": 175000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 207500
-      },
-      "CategoricalTeamScoringBadge_UtilityScore_Bronze": {
-        "ScoreAwarded": 100000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 30000
-      },
-      "CategoricalTeamScoringBadge_UtilityScore_Silver": {
-        "ScoreAwarded": 160000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 90000
-      },
-      "CategoricalTeamScoringBadge_UtilityScore_Gold": {
-        "ScoreAwarded": 180000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 190000
-      },
-      "CategoricalTeamScoringBadge_UtilityScore_Platinum": {
-        "ScoreAwarded": 200000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 240000
-      },
-      "CategoricalTeamScoringBadge_BuildingScore_Bronze": {
-        "ScoreAwarded": 75000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 22500
-      },
-      "CategoricalTeamScoringBadge_BuildingScore_Silver": {
-        "ScoreAwarded": 115000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 65000
-      },
-      "CategoricalTeamScoringBadge_BuildingScore_Gold": {
-        "ScoreAwarded": 130000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 137500
-      },
-      "CategoricalTeamScoringBadge_BuildingScore_Platinum": {
-        "ScoreAwarded": 145000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 172500
-      },
-      "CategoricalTeamScoringBadge_HordeCombatScore_Bronze": {
-        "ScoreAwarded": 130000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 85000
-      },
-      "CategoricalTeamScoringBadge_HordeCombatScore_Silver": {
-        "ScoreAwarded": 210000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 255000
-      },
-      "CategoricalTeamScoringBadge_HordeCombatScore_Gold": {
-        "ScoreAwarded": 235000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 540000
-      },
-      "CategoricalTeamScoringBadge_HordeCombatScore_Platinum": {
-        "ScoreAwarded": 295000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 775000
-      },
-      "CategoricalTeamScoringBadge_HordeUtilityScore_Bronze": {
-        "ScoreAwarded": 150000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 100000
-      },
-      "CategoricalTeamScoringBadge_HordeUtilityScore_Silver": {
-        "ScoreAwarded": 240000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 297500
-      },
-      "CategoricalTeamScoringBadge_HordeUtilityScore_Gold": {
-        "ScoreAwarded": 270000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 627500
-      },
-      "CategoricalTeamScoringBadge_HordeUtilityScore_Platinum": {
-        "ScoreAwarded": 340000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 900000
-      },
-      "CategoricalTeamScoringBadge_HordeBuildingScore_Bronze": {
-        "ScoreAwarded": 110000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 72500
-      },
-      "CategoricalTeamScoringBadge_HordeBuildingScore_Silver": {
-        "ScoreAwarded": 175000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 215000
-      },
-      "CategoricalTeamScoringBadge_HordeBuildingScore_Gold": {
-        "ScoreAwarded": 195000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 452500
-      },
-      "CategoricalTeamScoringBadge_HordeBuildingScore_Platinum": {
-        "ScoreAwarded": 245000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 647500
-      },
-      "CategoricalTeamScoringBadge_EndlessCombatScore_Bronze": {
-        "ScoreAwarded": 130000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 85000
-      },
-      "CategoricalTeamScoringBadge_EndlessCombatScore_Silver": {
-        "ScoreAwarded": 210000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 255000
-      },
-      "CategoricalTeamScoringBadge_EndlessCombatScore_Gold": {
-        "ScoreAwarded": 235000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 540000
-      },
-      "CategoricalTeamScoringBadge_EndlessCombatScore_Platinum": {
-        "ScoreAwarded": 295000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Combat",
-        "ScoreThreshold": 775000
-      },
-      "CategoricalTeamScoringBadge_EndlessUtilityScore_Bronze": {
-        "ScoreAwarded": 150000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 100000
-      },
-      "CategoricalTeamScoringBadge_EndlessUtilityScore_Silver": {
-        "ScoreAwarded": 240000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 297500
-      },
-      "CategoricalTeamScoringBadge_EndlessUtilityScore_Gold": {
-        "ScoreAwarded": 270000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 627500
-      },
-      "CategoricalTeamScoringBadge_EndlessUtilityScore_Platinum": {
-        "ScoreAwarded": 340000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Utility",
-        "ScoreThreshold": 900000
-      },
-      "CategoricalTeamScoringBadge_EndlessBuildingScore_Bronze": {
-        "ScoreAwarded": 110000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 72500
-      },
-      "CategoricalTeamScoringBadge_EndlessBuildingScore_Silver": {
-        "ScoreAwarded": 175000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 215000
-      },
-      "CategoricalTeamScoringBadge_EndlessBuildingScore_Gold": {
-        "ScoreAwarded": 195000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 452500
-      },
-      "CategoricalTeamScoringBadge_EndlessBuildingScore_Platinum": {
-        "ScoreAwarded": 245000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Building",
-        "ScoreThreshold": 647500
-      },
-      "MissionBadge_NeighborhoodSuccess_T01": {
-        "ScoreAwarded": 793000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_NeighborhoodSuccess_T02": {
-        "ScoreAwarded": 793000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_NeighborhoodSuccess_T03": {
-        "ScoreAwarded": 793000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_NeighborhoodSuccess_T04": {
-        "ScoreAwarded": 793000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "TertiaryBadge_Exploration": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "TertiaryBadge_Exploration_No_MP": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay1": {
-        "ScoreAwarded": 700000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay2": {
-        "ScoreAwarded": 1100000,
-        "MissionPoints": 9,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay3": {
-        "ScoreAwarded": 1600000,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay4": {
-        "ScoreAwarded": 2250000,
-        "MissionPoints": 17,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay5": {
-        "ScoreAwarded": 2835000,
-        "MissionPoints": 19,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay6": {
-        "ScoreAwarded": 3245000,
-        "MissionPoints": 21,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay7": {
-        "ScoreAwarded": 3500000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay8": {
-        "ScoreAwarded": 4088000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay9": {
-        "ScoreAwarded": 4570000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay10": {
-        "ScoreAwarded": 5110000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay11": {
-        "ScoreAwarded": 5653000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay12": {
-        "ScoreAwarded": 6193000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay13": {
-        "ScoreAwarded": 6735000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode3Day_Badge_ParticipationDay14": {
-        "ScoreAwarded": 7645000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay1": {
-        "ScoreAwarded": 700000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay2": {
-        "ScoreAwarded": 1100000,
-        "MissionPoints": 9,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay3": {
-        "ScoreAwarded": 1600000,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay4": {
-        "ScoreAwarded": 2250000,
-        "MissionPoints": 17,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay5": {
-        "ScoreAwarded": 2835000,
-        "MissionPoints": 19,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay6": {
-        "ScoreAwarded": 3245000,
-        "MissionPoints": 21,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay7": {
-        "ScoreAwarded": 3500000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay8": {
-        "ScoreAwarded": 4088000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay9": {
-        "ScoreAwarded": 4570000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay10": {
-        "ScoreAwarded": 5110000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay11": {
-        "ScoreAwarded": 5653000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay12": {
-        "ScoreAwarded": 6193000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay13": {
-        "ScoreAwarded": 6735000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode7Day_Badge_ParticipationDay14": {
-        "ScoreAwarded": 7645000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay1": {
-        "ScoreAwarded": 700000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay2": {
-        "ScoreAwarded": 1100000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay3": {
-        "ScoreAwarded": 1600000,
-        "MissionPoints": 13,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay4": {
-        "ScoreAwarded": 2250000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay5": {
-        "ScoreAwarded": 2835000,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay6": {
-        "ScoreAwarded": 3245000,
-        "MissionPoints": 16,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay7": {
-        "ScoreAwarded": 3500000,
-        "MissionPoints": 17,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay8": {
-        "ScoreAwarded": 4088000,
-        "MissionPoints": 18,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay9": {
-        "ScoreAwarded": 4570000,
-        "MissionPoints": 19,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay10": {
-        "ScoreAwarded": 5110000,
-        "MissionPoints": 20,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay11": {
-        "ScoreAwarded": 5653000,
-        "MissionPoints": 21,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay12": {
-        "ScoreAwarded": 6193000,
-        "MissionPoints": 22,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay13": {
-        "ScoreAwarded": 6735000,
-        "MissionPoints": 23,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "SurvivorMode14Day_Badge_ParticipationDay14": {
-        "ScoreAwarded": 2408000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_TierComplete": {
-        "ScoreAwarded": 1425000,
-        "MissionPoints": 20,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave1": {
-        "ScoreAwarded": 380000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave2": {
-        "ScoreAwarded": 505000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave3": {
-        "ScoreAwarded": 635000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave4": {
-        "ScoreAwarded": 760000,
-        "MissionPoints": 10,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave5": {
-        "ScoreAwarded": 885000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave6": {
-        "ScoreAwarded": 1015000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave7": {
-        "ScoreAwarded": 1140000,
-        "MissionPoints": 16,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave8": {
-        "ScoreAwarded": 0,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "HordeMode_PartialCompletion_Wave9": {
-        "ScoreAwarded": 0,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PtS_Victory": {
-        "ScoreAwarded": 1798000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PtS_Participation": {
-        "ScoreAwarded": 180000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PtS_Bonus": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 3,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_EtM_Victory": {
-        "ScoreAwarded": 1798000,
-        "MissionPoints": 13,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_EtM_Participation": {
-        "ScoreAwarded": 180000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_EtM_Bonus": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_TtS_Victory": {
-        "ScoreAwarded": 1773000,
-        "MissionPoints": 19,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_TtS_Participation": {
-        "ScoreAwarded": 177000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Starlight_UpperFloorsCompleted": {
-        "ScoreAwarded": 390000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Starlight_MiddleFloorsCompleted": {
-        "ScoreAwarded": 390000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Starlight_LowerFloorsCompleted": {
-        "ScoreAwarded": 575000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Starlight_Keymaster": {
-        "ScoreAwarded": 220000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Starlight_DungeonBossDead": {
-        "ScoreAwarded": 785000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Starlight_SpeedRun": {
-        "ScoreAwarded": 220000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave1": {
-        "ScoreAwarded": 70000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave2": {
-        "ScoreAwarded": 145000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave3": {
-        "ScoreAwarded": 220000,
-        "MissionPoints": 3,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave4": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave5": {
-        "ScoreAwarded": 390000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave6": {
-        "ScoreAwarded": 480000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave7": {
-        "ScoreAwarded": 575000,
-        "MissionPoints": 7,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave8": {
-        "ScoreAwarded": 680000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave9": {
-        "ScoreAwarded": 785000,
-        "MissionPoints": 9,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave10": {
-        "ScoreAwarded": 900000,
-        "MissionPoints": 10,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave11": {
-        "ScoreAwarded": 1020000,
-        "MissionPoints": 11,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave12": {
-        "ScoreAwarded": 1145000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave13": {
-        "ScoreAwarded": 1280000,
-        "MissionPoints": 13,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave14": {
-        "ScoreAwarded": 1420000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave15": {
-        "ScoreAwarded": 1570000,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave16": {
-        "ScoreAwarded": 1725000,
-        "MissionPoints": 16,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave17": {
-        "ScoreAwarded": 1890000,
-        "MissionPoints": 17,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave18": {
-        "ScoreAwarded": 2065000,
-        "MissionPoints": 18,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave19": {
-        "ScoreAwarded": 2245000,
-        "MissionPoints": 19,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave20": {
-        "ScoreAwarded": 2440000,
-        "MissionPoints": 20,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave21": {
-        "ScoreAwarded": 2645000,
-        "MissionPoints": 21,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave22": {
-        "ScoreAwarded": 2860000,
-        "MissionPoints": 22,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave23": {
-        "ScoreAwarded": 3090000,
-        "MissionPoints": 23,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave24": {
-        "ScoreAwarded": 3330000,
-        "MissionPoints": 24,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave25": {
-        "ScoreAwarded": 3580000,
-        "MissionPoints": 25,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave26": {
-        "ScoreAwarded": 3850000,
-        "MissionPoints": 26,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave27": {
-        "ScoreAwarded": 4130000,
-        "MissionPoints": 27,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave28": {
-        "ScoreAwarded": 4430000,
-        "MissionPoints": 28,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave29": {
-        "ScoreAwarded": 4745000,
-        "MissionPoints": 29,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "EndlessMode_PartialCompletion_Wave30": {
-        "ScoreAwarded": 5065000,
-        "MissionPoints": 30,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Dudebro_Victory": {
-        "ScoreAwarded": 1350000,
-        "MissionPoints": 11,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Dudebro_Participation": {
-        "ScoreAwarded": 135000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Resupply_Victory": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Resupply_Participation": {
-        "ScoreAwarded": 65000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ElimCollect_Bronze": {
-        "ScoreAwarded": 383000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ElimCollect_Silver": {
-        "ScoreAwarded": 478000,
-        "MissionPoints": 3,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ElimCollect_Gold": {
-        "ScoreAwarded": 763000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ElimCollect_Platinum": {
-        "ScoreAwarded": 858000,
-        "MissionPoints": 5,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_ElimCollect_Participation": {
-        "ScoreAwarded": 38000,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "BonusBadge_CollectBluGlo": {
-        "ScoreAwarded": 298000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "BonusBadge_CompleteAnomalies": {
-        "ScoreAwarded": 298000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "BonusBadge_CompleteEncampments": {
-        "ScoreAwarded": 298000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "BonusBadge_CompleteBuildRadar": {
-        "ScoreAwarded": 298000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "BonusBadge_HarvestRocks": {
-        "ScoreAwarded": 298000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "BonusBadge_HarvestShrooms": {
-        "ScoreAwarded": 298000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "BonusBadge_EliminateHusks": {
-        "ScoreAwarded": 298000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "WarGames_MissionCompletion": {
-        "ScoreAwarded": 730000,
-        "MissionPoints": 15,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "WarGames_ChallengeCompletion": {
-        "ScoreAwarded": 270000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_BridgeOutCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_MinorDelayCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_FeelinBluCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_PitStopCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_OverheatCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_SignalBoostCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_PartyPlannerCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_BugHuntCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_StrangelandsCompletion": {
-        "ScoreAwarded": 645000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "Mayday_RadioStationCompletion": {
-        "ScoreAwarded": 2545000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_STN_Victory": {
-        "ScoreAwarded": 815000,
-        "MissionPoints": 7,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_STN_Participation": {
-        "ScoreAwarded": 82000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_STN_EliminateHusk1": {
-        "ScoreAwarded": 648000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_STN_EliminateHusk2": {
-        "ScoreAwarded": 838000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_STN_HuntTakers": {
-        "ScoreAwarded": 933000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_STN_NoTeammatesDowned": {
-        "ScoreAwarded": 648000,
-        "MissionPoints": 2,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Coin_Bronze": {
-        "ScoreAwarded": 25000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Coin_Silver": {
-        "ScoreAwarded": 45000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Coin_Gold": {
-        "ScoreAwarded": 70000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_Coin_Platinum": {
-        "ScoreAwarded": 100000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PTP_Victory_Bronze": {
-        "ScoreAwarded": 493000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PTP_Victory_Silver": {
-        "ScoreAwarded": 283000,
-        "MissionPoints": 6,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PTP_Victory_Gold": {
-        "ScoreAwarded": 280000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PTP_Victory_Platinum": {
-        "ScoreAwarded": 280000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_PTP_Participation": {
-        "ScoreAwarded": 38000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RFTB_Victory_Bronze": {
-        "ScoreAwarded": 953000,
-        "MissionPoints": 7,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RFTB_Victory_Gold": {
-        "ScoreAwarded": 1190000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RFTB_Participation": {
-        "ScoreAwarded": 95000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RFTB_Victory_Platinum": {
-        "ScoreAwarded": 1238000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RFTB_Victory_Silver": {
-        "ScoreAwarded": 1143000,
-        "MissionPoints": 9,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_RFTB_BonusCollectTanksQuickly": {
-        "ScoreAwarded": 0,
-        "MissionPoints": 0,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_HuskEscape_Bronze": {
-        "ScoreAwarded": 693000,
-        "MissionPoints": 8,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_HuskEscape_Silver": {
-        "ScoreAwarded": 788000,
-        "MissionPoints": 10,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_HuskEscape_Gold": {
-        "ScoreAwarded": 1073000,
-        "MissionPoints": 12,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_HuskEscape_Platinum": {
-        "ScoreAwarded": 1168000,
-        "MissionPoints": 14,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_HuskEscape_Participation": {
-        "ScoreAwarded": 69000,
-        "MissionPoints": 1,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      },
-      "MissionBadge_HuskEscape_Bonus": {
-        "ScoreAwarded": 305000,
-        "MissionPoints": 4,
-        "ScoreCategory": "EStatCategory::Max_None",
-        "ScoreThreshold": -1
-      }
+    {
+        "Type": "DataTable",
+        "Name": "BadgeScoring",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class FortBadgeScoringData",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "GateBadge_BuildLimitedQty": {
+                "ScoreAwarded": 0,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_Closed1stTry": {
+                "ScoreAwarded": 378000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_Closed2Gates": {
+                "ScoreAwarded": 1603000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_Closed3Gates": {
+                "ScoreAwarded": 1688000,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_Closed4Gates": {
+                "ScoreAwarded": 1933000,
+                "MissionPoints": 17,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_ClosedGate": {
+                "ScoreAwarded": 1518000,
+                "MissionPoints": 10,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_ClosedMultipleGates": {
+                "ScoreAwarded": 950000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_HalfHealthLeft": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_Participation": {
+                "ScoreAwarded": 152000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GateBadge_PlacedQuick": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "GeneralBadge": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_AreaDiscovery": {
+                "ScoreAwarded": 303000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Bronze": {
+                "ScoreAwarded": 615000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_CriticalMission": {
+                "ScoreAwarded": 0,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Gold": {
+                "ScoreAwarded": 1090000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_LTR_Participation": {
+                "ScoreAwarded": 193000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_LTR_Stage1": {
+                "ScoreAwarded": 120000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_LTR_Stage2": {
+                "ScoreAwarded": 198000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_LTR_Stage3": {
+                "ScoreAwarded": 275000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_LTR_Victory": {
+                "ScoreAwarded": 1933000,
+                "MissionPoints": 13,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTL_Participation": {
+                "ScoreAwarded": 152000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTL_Stage1": {
+                "ScoreAwarded": 215000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTL_Stage2": {
+                "ScoreAwarded": 275000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTL_Victory": {
+                "ScoreAwarded": 1518000,
+                "MissionPoints": 10,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Par": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Par2": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Par3": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Par4": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Par5": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Participation": {
+                "ScoreAwarded": 152000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Platinum": {
+                "ScoreAwarded": 1328000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PTR_Participation": {
+                "ScoreAwarded": 180000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PTR_Victory": {
+                "ScoreAwarded": 1798000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTD_Bronze": {
+                "ScoreAwarded": 953000,
+                "MissionPoints": 7,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTD_Gold": {
+                "ScoreAwarded": 1190000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTD_Participation": {
+                "ScoreAwarded": 95000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTD_Platinum": {
+                "ScoreAwarded": 1238000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RTD_Silver": {
+                "ScoreAwarded": 1143000,
+                "MissionPoints": 9,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_SatelliteRecovered": {
+                "ScoreAwarded": 913000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Silver": {
+                "ScoreAwarded": 543000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Survive_ProtectedTarget": {
+                "ScoreAwarded": 1018000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Survive_SurvivedTheStorm": {
+                "ScoreAwarded": 1018000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OBBadge_1stMissionComplete": {
+                "ScoreAwarded": 0,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OBBadge_RetrievedPart": {
+                "ScoreAwarded": 0,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Outpost": {
+                "ScoreAwarded": 1300000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Bonus": {
+                "ScoreAwarded": 10000,
+                "MissionPoints": 3,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense1": {
+                "ScoreAwarded": 1350000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense2": {
+                "ScoreAwarded": 1400000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense3": {
+                "ScoreAwarded": 1410000,
+                "MissionPoints": 13,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense4": {
+                "ScoreAwarded": 1420000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense5": {
+                "ScoreAwarded": 1430000,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense6": {
+                "ScoreAwarded": 1440000,
+                "MissionPoints": 16,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense7": {
+                "ScoreAwarded": 1450000,
+                "MissionPoints": 17,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense8": {
+                "ScoreAwarded": 1460000,
+                "MissionPoints": 18,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense9": {
+                "ScoreAwarded": 1470000,
+                "MissionPoints": 18,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "OutpostBadge_Defense10": {
+                "ScoreAwarded": 1480000,
+                "MissionPoints": 18,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTB_Participation_BombLost": {
+                "ScoreAwarded": 125000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTB_Participation_FinalDefense": {
+                "ScoreAwarded": 225000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTB_Victory": {
+                "ScoreAwarded": 1603000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTB_Bonus_FindObjective": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTB_Bonus_HalfHealthLeft": {
+                "ScoreAwarded": 583000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTG_ParticipationFailure1": {
+                "ScoreAwarded": 123000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTG_ParticipationFailure2": {
+                "ScoreAwarded": 123000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTG_Bronze": {
+                "ScoreAwarded": 1233000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTG_Silver": {
+                "ScoreAwarded": 1423000,
+                "MissionPoints": 10,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTG_Gold": {
+                "ScoreAwarded": 1470000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTG_Platinum": {
+                "ScoreAwarded": 1518000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "RescueBadge_Bronze": {
+                "ScoreAwarded": 23000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "RescueBadge_Silver": {
+                "ScoreAwarded": 33000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "RescueBadge_Gold": {
+                "ScoreAwarded": 40000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTE_Victory": {
+                "ScoreAwarded": 815000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTE_Participation": {
+                "ScoreAwarded": 82000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTE_Bronze": {
+                "ScoreAwarded": 648000,
+                "MissionPoints": 3,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTE_Silver": {
+                "ScoreAwarded": 838000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTE_Gold": {
+                "ScoreAwarded": 885000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_DTE_Platinum": {
+                "ScoreAwarded": 933000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETS_Victory": {
+                "ScoreAwarded": 933000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETS_Participation": {
+                "ScoreAwarded": 93000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETS_Bronze": {
+                "ScoreAwarded": 648000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETS_Silver": {
+                "ScoreAwarded": 838000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETS_Gold": {
+                "ScoreAwarded": 885000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETS_Platinum": {
+                "ScoreAwarded": 933000,
+                "MissionPoints": 7,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETShelter_Victory": {
+                "ScoreAwarded": 1798000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETShelter_Participation": {
+                "ScoreAwarded": 93000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ETShelter_HalfHealthLeft": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_CTR_Victory": {
+                "ScoreAwarded": 933000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_CTR_Participation": {
+                "ScoreAwarded": 93000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_CTR_Bronze": {
+                "ScoreAwarded": 648000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_CTR_Silver": {
+                "ScoreAwarded": 838000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_CTR_Gold": {
+                "ScoreAwarded": 885000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_CTR_Platinum": {
+                "ScoreAwarded": 933000,
+                "MissionPoints": 7,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_BTRT_Victory": {
+                "ScoreAwarded": 1243000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_BTRT_Participation": {
+                "ScoreAwarded": 124000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_BTRT_Bronze": {
+                "ScoreAwarded": 958000,
+                "MissionPoints": 3,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_BTRT_Silver": {
+                "ScoreAwarded": 1148000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_BTRT_Gold": {
+                "ScoreAwarded": 1195000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_BTRT_Platinum": {
+                "ScoreAwarded": 1243000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "CategoricalTeamScoringBadge_CombatScore_Bronze": {
+                "ScoreAwarded": 85000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 25000
+            },
+            "CategoricalTeamScoringBadge_CombatScore_Silver": {
+                "ScoreAwarded": 140000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 77500
+            },
+            "CategoricalTeamScoringBadge_CombatScore_Gold": {
+                "ScoreAwarded": 155000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 162500
+            },
+            "CategoricalTeamScoringBadge_CombatScore_Platinum": {
+                "ScoreAwarded": 175000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 207500
+            },
+            "CategoricalTeamScoringBadge_UtilityScore_Bronze": {
+                "ScoreAwarded": 100000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 30000
+            },
+            "CategoricalTeamScoringBadge_UtilityScore_Silver": {
+                "ScoreAwarded": 160000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 90000
+            },
+            "CategoricalTeamScoringBadge_UtilityScore_Gold": {
+                "ScoreAwarded": 180000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 190000
+            },
+            "CategoricalTeamScoringBadge_UtilityScore_Platinum": {
+                "ScoreAwarded": 200000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 240000
+            },
+            "CategoricalTeamScoringBadge_BuildingScore_Bronze": {
+                "ScoreAwarded": 75000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 22500
+            },
+            "CategoricalTeamScoringBadge_BuildingScore_Silver": {
+                "ScoreAwarded": 115000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 65000
+            },
+            "CategoricalTeamScoringBadge_BuildingScore_Gold": {
+                "ScoreAwarded": 130000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 137500
+            },
+            "CategoricalTeamScoringBadge_BuildingScore_Platinum": {
+                "ScoreAwarded": 145000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 172500
+            },
+            "CategoricalTeamScoringBadge_HordeCombatScore_Bronze": {
+                "ScoreAwarded": 130000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 85000
+            },
+            "CategoricalTeamScoringBadge_HordeCombatScore_Silver": {
+                "ScoreAwarded": 210000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 255000
+            },
+            "CategoricalTeamScoringBadge_HordeCombatScore_Gold": {
+                "ScoreAwarded": 235000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 540000
+            },
+            "CategoricalTeamScoringBadge_HordeCombatScore_Platinum": {
+                "ScoreAwarded": 295000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 775000
+            },
+            "CategoricalTeamScoringBadge_HordeUtilityScore_Bronze": {
+                "ScoreAwarded": 150000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 100000
+            },
+            "CategoricalTeamScoringBadge_HordeUtilityScore_Silver": {
+                "ScoreAwarded": 240000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 297500
+            },
+            "CategoricalTeamScoringBadge_HordeUtilityScore_Gold": {
+                "ScoreAwarded": 270000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 627500
+            },
+            "CategoricalTeamScoringBadge_HordeUtilityScore_Platinum": {
+                "ScoreAwarded": 340000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 900000
+            },
+            "CategoricalTeamScoringBadge_HordeBuildingScore_Bronze": {
+                "ScoreAwarded": 110000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 72500
+            },
+            "CategoricalTeamScoringBadge_HordeBuildingScore_Silver": {
+                "ScoreAwarded": 175000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 215000
+            },
+            "CategoricalTeamScoringBadge_HordeBuildingScore_Gold": {
+                "ScoreAwarded": 195000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 452500
+            },
+            "CategoricalTeamScoringBadge_HordeBuildingScore_Platinum": {
+                "ScoreAwarded": 245000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 647500
+            },
+            "CategoricalTeamScoringBadge_EndlessCombatScore_Bronze": {
+                "ScoreAwarded": 130000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 85000
+            },
+            "CategoricalTeamScoringBadge_EndlessCombatScore_Silver": {
+                "ScoreAwarded": 210000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 255000
+            },
+            "CategoricalTeamScoringBadge_EndlessCombatScore_Gold": {
+                "ScoreAwarded": 235000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 540000
+            },
+            "CategoricalTeamScoringBadge_EndlessCombatScore_Platinum": {
+                "ScoreAwarded": 295000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Combat",
+                "ScoreThreshold": 775000
+            },
+            "CategoricalTeamScoringBadge_EndlessUtilityScore_Bronze": {
+                "ScoreAwarded": 150000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 100000
+            },
+            "CategoricalTeamScoringBadge_EndlessUtilityScore_Silver": {
+                "ScoreAwarded": 240000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 297500
+            },
+            "CategoricalTeamScoringBadge_EndlessUtilityScore_Gold": {
+                "ScoreAwarded": 270000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 627500
+            },
+            "CategoricalTeamScoringBadge_EndlessUtilityScore_Platinum": {
+                "ScoreAwarded": 340000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Utility",
+                "ScoreThreshold": 900000
+            },
+            "CategoricalTeamScoringBadge_EndlessBuildingScore_Bronze": {
+                "ScoreAwarded": 110000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 72500
+            },
+            "CategoricalTeamScoringBadge_EndlessBuildingScore_Silver": {
+                "ScoreAwarded": 175000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 215000
+            },
+            "CategoricalTeamScoringBadge_EndlessBuildingScore_Gold": {
+                "ScoreAwarded": 195000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 452500
+            },
+            "CategoricalTeamScoringBadge_EndlessBuildingScore_Platinum": {
+                "ScoreAwarded": 245000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Building",
+                "ScoreThreshold": 647500
+            },
+            "MissionBadge_NeighborhoodSuccess_T01": {
+                "ScoreAwarded": 793000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_NeighborhoodSuccess_T02": {
+                "ScoreAwarded": 793000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_NeighborhoodSuccess_T03": {
+                "ScoreAwarded": 793000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_NeighborhoodSuccess_T04": {
+                "ScoreAwarded": 793000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "TertiaryBadge_Exploration": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "TertiaryBadge_Exploration_No_MP": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay1": {
+                "ScoreAwarded": 700000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay2": {
+                "ScoreAwarded": 1100000,
+                "MissionPoints": 9,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay3": {
+                "ScoreAwarded": 1600000,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay4": {
+                "ScoreAwarded": 2250000,
+                "MissionPoints": 17,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay5": {
+                "ScoreAwarded": 2835000,
+                "MissionPoints": 19,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay6": {
+                "ScoreAwarded": 3245000,
+                "MissionPoints": 21,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay7": {
+                "ScoreAwarded": 3500000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay8": {
+                "ScoreAwarded": 4088000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay9": {
+                "ScoreAwarded": 4570000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay10": {
+                "ScoreAwarded": 5110000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay11": {
+                "ScoreAwarded": 5653000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay12": {
+                "ScoreAwarded": 6193000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay13": {
+                "ScoreAwarded": 6735000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode3Day_Badge_ParticipationDay14": {
+                "ScoreAwarded": 7645000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay1": {
+                "ScoreAwarded": 700000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay2": {
+                "ScoreAwarded": 1100000,
+                "MissionPoints": 9,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay3": {
+                "ScoreAwarded": 1600000,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay4": {
+                "ScoreAwarded": 2250000,
+                "MissionPoints": 17,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay5": {
+                "ScoreAwarded": 2835000,
+                "MissionPoints": 19,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay6": {
+                "ScoreAwarded": 3245000,
+                "MissionPoints": 21,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay7": {
+                "ScoreAwarded": 3500000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay8": {
+                "ScoreAwarded": 4088000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay9": {
+                "ScoreAwarded": 4570000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay10": {
+                "ScoreAwarded": 5110000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay11": {
+                "ScoreAwarded": 5653000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay12": {
+                "ScoreAwarded": 6193000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay13": {
+                "ScoreAwarded": 6735000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode7Day_Badge_ParticipationDay14": {
+                "ScoreAwarded": 7645000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay1": {
+                "ScoreAwarded": 700000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay2": {
+                "ScoreAwarded": 1100000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay3": {
+                "ScoreAwarded": 1600000,
+                "MissionPoints": 13,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay4": {
+                "ScoreAwarded": 2250000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay5": {
+                "ScoreAwarded": 2835000,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay6": {
+                "ScoreAwarded": 3245000,
+                "MissionPoints": 16,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay7": {
+                "ScoreAwarded": 3500000,
+                "MissionPoints": 17,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay8": {
+                "ScoreAwarded": 4088000,
+                "MissionPoints": 18,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay9": {
+                "ScoreAwarded": 4570000,
+                "MissionPoints": 19,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay10": {
+                "ScoreAwarded": 5110000,
+                "MissionPoints": 20,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay11": {
+                "ScoreAwarded": 5653000,
+                "MissionPoints": 21,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay12": {
+                "ScoreAwarded": 6193000,
+                "MissionPoints": 22,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay13": {
+                "ScoreAwarded": 6735000,
+                "MissionPoints": 23,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "SurvivorMode14Day_Badge_ParticipationDay14": {
+                "ScoreAwarded": 2408000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_TierComplete": {
+                "ScoreAwarded": 1425000,
+                "MissionPoints": 20,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave1": {
+                "ScoreAwarded": 380000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave2": {
+                "ScoreAwarded": 505000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave3": {
+                "ScoreAwarded": 635000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave4": {
+                "ScoreAwarded": 760000,
+                "MissionPoints": 10,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave5": {
+                "ScoreAwarded": 885000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave6": {
+                "ScoreAwarded": 1015000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave7": {
+                "ScoreAwarded": 1140000,
+                "MissionPoints": 16,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave8": {
+                "ScoreAwarded": 0,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "HordeMode_PartialCompletion_Wave9": {
+                "ScoreAwarded": 0,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PtS_Victory": {
+                "ScoreAwarded": 1798000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PtS_Participation": {
+                "ScoreAwarded": 180000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PtS_Bonus": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 3,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_EtM_Victory": {
+                "ScoreAwarded": 1798000,
+                "MissionPoints": 13,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_EtM_Participation": {
+                "ScoreAwarded": 180000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_EtM_Bonus": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_TtS_Victory": {
+                "ScoreAwarded": 1773000,
+                "MissionPoints": 19,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_TtS_Participation": {
+                "ScoreAwarded": 177000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Starlight_UpperFloorsCompleted": {
+                "ScoreAwarded": 390000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Starlight_MiddleFloorsCompleted": {
+                "ScoreAwarded": 390000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Starlight_LowerFloorsCompleted": {
+                "ScoreAwarded": 575000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Starlight_Keymaster": {
+                "ScoreAwarded": 220000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Starlight_DungeonBossDead": {
+                "ScoreAwarded": 785000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Starlight_SpeedRun": {
+                "ScoreAwarded": 220000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave1": {
+                "ScoreAwarded": 70000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave2": {
+                "ScoreAwarded": 145000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave3": {
+                "ScoreAwarded": 220000,
+                "MissionPoints": 3,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave4": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave5": {
+                "ScoreAwarded": 390000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave6": {
+                "ScoreAwarded": 480000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave7": {
+                "ScoreAwarded": 575000,
+                "MissionPoints": 7,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave8": {
+                "ScoreAwarded": 680000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave9": {
+                "ScoreAwarded": 785000,
+                "MissionPoints": 9,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave10": {
+                "ScoreAwarded": 900000,
+                "MissionPoints": 10,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave11": {
+                "ScoreAwarded": 1020000,
+                "MissionPoints": 11,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave12": {
+                "ScoreAwarded": 1145000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave13": {
+                "ScoreAwarded": 1280000,
+                "MissionPoints": 13,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave14": {
+                "ScoreAwarded": 1420000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave15": {
+                "ScoreAwarded": 1570000,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave16": {
+                "ScoreAwarded": 1725000,
+                "MissionPoints": 16,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave17": {
+                "ScoreAwarded": 1890000,
+                "MissionPoints": 17,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave18": {
+                "ScoreAwarded": 2065000,
+                "MissionPoints": 18,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave19": {
+                "ScoreAwarded": 2245000,
+                "MissionPoints": 19,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave20": {
+                "ScoreAwarded": 2440000,
+                "MissionPoints": 20,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave21": {
+                "ScoreAwarded": 2645000,
+                "MissionPoints": 21,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave22": {
+                "ScoreAwarded": 2860000,
+                "MissionPoints": 22,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave23": {
+                "ScoreAwarded": 3090000,
+                "MissionPoints": 23,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave24": {
+                "ScoreAwarded": 3330000,
+                "MissionPoints": 24,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave25": {
+                "ScoreAwarded": 3580000,
+                "MissionPoints": 25,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave26": {
+                "ScoreAwarded": 3850000,
+                "MissionPoints": 26,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave27": {
+                "ScoreAwarded": 4130000,
+                "MissionPoints": 27,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave28": {
+                "ScoreAwarded": 4430000,
+                "MissionPoints": 28,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave29": {
+                "ScoreAwarded": 4745000,
+                "MissionPoints": 29,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "EndlessMode_PartialCompletion_Wave30": {
+                "ScoreAwarded": 5065000,
+                "MissionPoints": 30,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Dudebro_Victory": {
+                "ScoreAwarded": 1350000,
+                "MissionPoints": 11,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Dudebro_Participation": {
+                "ScoreAwarded": 135000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Resupply_Victory": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Resupply_Participation": {
+                "ScoreAwarded": 65000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ElimCollect_Bronze": {
+                "ScoreAwarded": 383000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ElimCollect_Silver": {
+                "ScoreAwarded": 478000,
+                "MissionPoints": 3,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ElimCollect_Gold": {
+                "ScoreAwarded": 763000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ElimCollect_Platinum": {
+                "ScoreAwarded": 858000,
+                "MissionPoints": 5,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_ElimCollect_Participation": {
+                "ScoreAwarded": 38000,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "BonusBadge_CollectBluGlo": {
+                "ScoreAwarded": 298000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "BonusBadge_CompleteAnomalies": {
+                "ScoreAwarded": 298000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "BonusBadge_CompleteEncampments": {
+                "ScoreAwarded": 298000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "BonusBadge_CompleteBuildRadar": {
+                "ScoreAwarded": 298000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "BonusBadge_HarvestRocks": {
+                "ScoreAwarded": 298000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "BonusBadge_HarvestShrooms": {
+                "ScoreAwarded": 298000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "BonusBadge_EliminateHusks": {
+                "ScoreAwarded": 298000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "WarGames_MissionCompletion": {
+                "ScoreAwarded": 730000,
+                "MissionPoints": 15,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "WarGames_ChallengeCompletion": {
+                "ScoreAwarded": 270000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_BridgeOutCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_MinorDelayCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_FeelinBluCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_PitStopCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_OverheatCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_SignalBoostCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_PartyPlannerCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_BugHuntCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_StrangelandsCompletion": {
+                "ScoreAwarded": 645000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "Mayday_RadioStationCompletion": {
+                "ScoreAwarded": 2545000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_STN_Victory": {
+                "ScoreAwarded": 815000,
+                "MissionPoints": 7,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_STN_Participation": {
+                "ScoreAwarded": 82000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_STN_EliminateHusk1": {
+                "ScoreAwarded": 648000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_STN_EliminateHusk2": {
+                "ScoreAwarded": 838000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_STN_HuntTakers": {
+                "ScoreAwarded": 933000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_STN_NoTeammatesDowned": {
+                "ScoreAwarded": 648000,
+                "MissionPoints": 2,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Coin_Bronze": {
+                "ScoreAwarded": 25000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Coin_Silver": {
+                "ScoreAwarded": 45000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Coin_Gold": {
+                "ScoreAwarded": 70000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_Coin_Platinum": {
+                "ScoreAwarded": 100000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PTP_Victory_Bronze": {
+                "ScoreAwarded": 493000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PTP_Victory_Silver": {
+                "ScoreAwarded": 283000,
+                "MissionPoints": 6,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PTP_Victory_Gold": {
+                "ScoreAwarded": 280000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PTP_Victory_Platinum": {
+                "ScoreAwarded": 280000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_PTP_Participation": {
+                "ScoreAwarded": 38000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RFTB_Victory_Bronze": {
+                "ScoreAwarded": 953000,
+                "MissionPoints": 7,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RFTB_Victory_Gold": {
+                "ScoreAwarded": 1190000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RFTB_Participation": {
+                "ScoreAwarded": 95000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RFTB_Victory_Platinum": {
+                "ScoreAwarded": 1238000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RFTB_Victory_Silver": {
+                "ScoreAwarded": 1143000,
+                "MissionPoints": 9,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_RFTB_BonusCollectTanksQuickly": {
+                "ScoreAwarded": 0,
+                "MissionPoints": 0,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_HuskEscape_Bronze": {
+                "ScoreAwarded": 693000,
+                "MissionPoints": 8,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_HuskEscape_Silver": {
+                "ScoreAwarded": 788000,
+                "MissionPoints": 10,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_HuskEscape_Gold": {
+                "ScoreAwarded": 1073000,
+                "MissionPoints": 12,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_HuskEscape_Platinum": {
+                "ScoreAwarded": 1168000,
+                "MissionPoints": 14,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_HuskEscape_Participation": {
+                "ScoreAwarded": 69000,
+                "MissionPoints": 1,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            },
+            "MissionBadge_HuskEscape_Bonus": {
+                "ScoreAwarded": 305000,
+                "MissionPoints": 4,
+                "ScoreCategory": "EStatCategory::Max_None",
+                "ScoreThreshold": -1
+            }
+        }
     }
-  }
 ]

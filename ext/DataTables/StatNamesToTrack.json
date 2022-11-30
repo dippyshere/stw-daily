@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "DataTable",
-    "Name": "StatNamesToTrack",
-    "Properties": {
-      "RowStruct": {
-        "ObjectName": "Class StatNamesToTrack",
-        "ObjectPath": "/Script/FortniteGame"
-      }
-    },
-    "Rows": {
-      "StatTrack.HopRocks": {
-        "StatName": "GravityStonesConsumed",
-        "Period": "EStatRecordingPeriod::Map"
-      },
-      "StatTrack.Apples": {
-        "StatName": "ApplesConsumed",
-        "Period": "EStatRecordingPeriod::Map"
-      },
-      "StatTrack.Mushrooms": {
-        "StatName": "MushroomsConsumed",
-        "Period": "EStatRecordingPeriod::Map"
-      },
-      "StatTrack.Rift": {
-        "StatName": "RiftConsumed",
-        "Period": "EStatRecordingPeriod::Map"
-      },
-      "StatTrack.ShadowStone": {
-        "StatName": "ShadowStoneConsumed",
-        "Period": "EStatRecordingPeriod::Map"
-      },
-      "StatTrack.OpenChests": {
-        "StatName": "OpenChests",
-        "Period": "EStatRecordingPeriod::Map"
-      },
-      "StatTrack.GainedShieldTimes": {
-        "StatName": "GainedShieldTimes",
-        "Period": "EStatRecordingPeriod::Map"
-      },
-      "StatTrack.GainedHealthTimes": {
-        "StatName": "GainedHealthTimes",
-        "Period": "EStatRecordingPeriod::Map"
-      }
+    {
+        "Type": "DataTable",
+        "Name": "StatNamesToTrack",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class StatNamesToTrack",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "StatTrack.HopRocks": {
+                "StatName": "GravityStonesConsumed",
+                "Period": "EStatRecordingPeriod::Map"
+            },
+            "StatTrack.Apples": {
+                "StatName": "ApplesConsumed",
+                "Period": "EStatRecordingPeriod::Map"
+            },
+            "StatTrack.Mushrooms": {
+                "StatName": "MushroomsConsumed",
+                "Period": "EStatRecordingPeriod::Map"
+            },
+            "StatTrack.Rift": {
+                "StatName": "RiftConsumed",
+                "Period": "EStatRecordingPeriod::Map"
+            },
+            "StatTrack.ShadowStone": {
+                "StatName": "ShadowStoneConsumed",
+                "Period": "EStatRecordingPeriod::Map"
+            },
+            "StatTrack.OpenChests": {
+                "StatName": "OpenChests",
+                "Period": "EStatRecordingPeriod::Map"
+            },
+            "StatTrack.GainedShieldTimes": {
+                "StatName": "GainedShieldTimes",
+                "Period": "EStatRecordingPeriod::Map"
+            },
+            "StatTrack.GainedHealthTimes": {
+                "StatName": "GainedHealthTimes",
+                "Period": "EStatRecordingPeriod::Map"
+            }
+        }
     }
-  }
 ]

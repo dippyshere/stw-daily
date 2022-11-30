@@ -1,304 +1,304 @@
 [
-  {
-    "Type": "DataTable",
-    "Name": "WeaponDurabilityRarity",
-    "Properties": {
-      "RowStruct": {
-        "ObjectName": "Class FortWeaponDurabilityByRarityStats",
-        "ObjectPath": "/Script/FortniteGame"
-      }
-    },
-    "Rows": {
-      "Crystal_Melee": {
-        "Common": 100,
-        "Uncommon": 100,
-        "Rare": 150,
-        "Epic": 225,
-        "Legendary": 300,
-        "Mythic": 300,
-        "Transcendent": 300,
-        "Unattainable": 300
-      },
-      "Crystal_Ranged": {
-        "Common": 100,
-        "Uncommon": 100,
-        "Rare": 150,
-        "Epic": 225,
-        "Legendary": 300,
-        "Mythic": 300,
-        "Transcendent": 300,
-        "Unattainable": 300
-      },
-      "Default": {
-        "Common": 100,
-        "Uncommon": 100,
-        "Rare": 150,
-        "Epic": 225,
-        "Legendary": 300,
-        "Mythic": 300,
-        "Transcendent": 300,
-        "Unattainable": 300
-      },
-      "Default_Harvest": {
-        "Common": 125,
-        "Uncommon": 165,
-        "Rare": 220,
-        "Epic": 250,
-        "Legendary": 275,
-        "Mythic": 275,
-        "Transcendent": 275,
-        "Unattainable": 275
-      },
-      "Default_Melee": {
-        "Common": 125,
-        "Uncommon": 125,
-        "Rare": 190,
-        "Epic": 280,
-        "Legendary": 375,
-        "Mythic": 375,
-        "Transcendent": 375,
-        "Unattainable": 375
-      },
-      "Default_Ranged": {
-        "Common": 125,
-        "Uncommon": 125,
-        "Rare": 190,
-        "Epic": 280,
-        "Legendary": 375,
-        "Mythic": 375,
-        "Transcendent": 375,
-        "Unattainable": 375
-      },
-      "Default_Explosive": {
-        "Common": 50,
-        "Uncommon": 50,
-        "Rare": 75,
-        "Epic": 115,
-        "Legendary": 150,
-        "Mythic": 150,
-        "Transcendent": 150,
-        "Unattainable": 150
-      },
-      "Ranged_NoAmmo_Explosive": {
-        "Common": 2,
-        "Uncommon": 4,
-        "Rare": 6,
-        "Epic": 8,
-        "Legendary": 10,
-        "Mythic": 10,
-        "Transcendent": 10,
-        "Unattainable": 10
-      },
-      "Ranged_NoAmmo_Explosive_Medium": {
-        "Common": 3,
-        "Uncommon": 6,
-        "Rare": 9,
-        "Epic": 12,
-        "Legendary": 15,
-        "Mythic": 15,
-        "Transcendent": 15,
-        "Unattainable": 15
-      },
-      "Ranged_NoAmmo_Explosive_Pumpkin": {
-        "Common": 4,
-        "Uncommon": 8,
-        "Rare": 12,
-        "Epic": 16,
-        "Legendary": 20,
-        "Mythic": 20,
-        "Transcendent": 20,
-        "Unattainable": 20
-      },
-      "Ranged_NoAmmo_Explosive_High": {
-        "Common": 6,
-        "Uncommon": 12,
-        "Rare": 18,
-        "Epic": 24,
-        "Legendary": 30,
-        "Mythic": 30,
-        "Transcendent": 30,
-        "Unattainable": 30
-      },
-      "Ranged_NoAmmo_Explosive_VeryHigh": {
-        "Common": 9,
-        "Uncommon": 18,
-        "Rare": 27,
-        "Epic": 36,
-        "Legendary": 45,
-        "Mythic": 45,
-        "Transcendent": 45,
-        "Unattainable": 45
-      },
-      "TrapDurability_VeryLow": {
-        "Common": 2,
-        "Uncommon": 2,
-        "Rare": 2,
-        "Epic": 3,
-        "Legendary": 3,
-        "Mythic": 3,
-        "Transcendent": 3,
-        "Unattainable": 3
-      },
-      "TrapDurability_Low": {
-        "Common": 16,
-        "Uncommon": 18,
-        "Rare": 20,
-        "Epic": 22,
-        "Legendary": 24,
-        "Mythic": 24,
-        "Transcendent": 24,
-        "Unattainable": 24
-      },
-      "TrapDurability_Medium": {
-        "Common": 24,
-        "Uncommon": 27,
-        "Rare": 30,
-        "Epic": 33,
-        "Legendary": 36,
-        "Mythic": 36,
-        "Transcendent": 36,
-        "Unattainable": 36
-      },
-      "TrapDurability_High": {
-        "Common": 30,
-        "Uncommon": 34,
-        "Rare": 37,
-        "Epic": 41,
-        "Legendary": 45,
-        "Mythic": 45,
-        "Transcendent": 45,
-        "Unattainable": 45
-      },
-      "TrapDurability_VeryHigh": {
-        "Common": 40,
-        "Uncommon": 45,
-        "Rare": 50,
-        "Epic": 54,
-        "Legendary": 60,
-        "Mythic": 60,
-        "Transcendent": 60,
-        "Unattainable": 60
-      },
-      "TrapDurability_VeryExtraHigh": {
-        "Common": 180,
-        "Uncommon": 202,
-        "Rare": 223,
-        "Epic": 245,
-        "Legendary": 270,
-        "Mythic": 270,
-        "Transcendent": 270,
-        "Unattainable": 270
-      },
-      "TrapDurability_Infinite": {
-        "Common": 99999,
-        "Uncommon": 99999,
-        "Rare": 99999,
-        "Epic": 99999,
-        "Legendary": 99999,
-        "Mythic": 99999,
-        "Transcendent": 99999,
-        "Unattainable": 99999
-      },
-      "TrapDurability_UltraHigh": {
-        "Common": 500,
-        "Uncommon": 560,
-        "Rare": 620,
-        "Epic": 680,
-        "Legendary": 750,
-        "Mythic": 750,
-        "Transcendent": 750,
-        "Unattainable": 750
-      },
-      "TrapDurability_Health": {
-        "Common": 5,
-        "Uncommon": 5,
-        "Rare": 6,
-        "Epic": 7,
-        "Legendary": 8,
-        "Mythic": 8,
-        "Transcendent": 8,
-        "Unattainable": 8
-      },
-      "TrapDurability_AntiAir": {
-        "Common": 13,
-        "Uncommon": 15,
-        "Rare": 16,
-        "Epic": 18,
-        "Legendary": 20,
-        "Mythic": 20,
-        "Transcendent": 20,
-        "Unattainable": 20
-      },
-      "Apocalyptic_Ranged": {
-        "Common": 100,
-        "Uncommon": 100,
-        "Rare": 150,
-        "Epic": 225,
-        "Legendary": 300,
-        "Mythic": 300,
-        "Transcendent": 300,
-        "Unattainable": 300
-      },
-      "Apocalyptic_Ranged_Crystal": {
-        "Common": 80,
-        "Uncommon": 80,
-        "Rare": 120,
-        "Epic": 180,
-        "Legendary": 240,
-        "Mythic": 240,
-        "Transcendent": 240,
-        "Unattainable": 240
-      },
-      "Apocalyptic_Melee": {
-        "Common": 100,
-        "Uncommon": 100,
-        "Rare": 150,
-        "Epic": 225,
-        "Legendary": 300,
-        "Mythic": 300,
-        "Transcendent": 300,
-        "Unattainable": 300
-      },
-      "Apocalyptic_Melee_Crystal": {
-        "Common": 80,
-        "Uncommon": 80,
-        "Rare": 120,
-        "Epic": 180,
-        "Legendary": 240,
-        "Mythic": 240,
-        "Transcendent": 240,
-        "Unattainable": 240
-      },
-      "Apocalyptic_Explosive": {
-        "Common": 40,
-        "Uncommon": 40,
-        "Rare": 60,
-        "Epic": 90,
-        "Legendary": 120,
-        "Mythic": 120,
-        "Transcendent": 120,
-        "Unattainable": 120
-      },
-      "Ranged_NoAmmo_Explosive_Apocalyptic": {
-        "Common": 2,
-        "Uncommon": 5,
-        "Rare": 7,
-        "Epic": 10,
-        "Legendary": 12,
-        "Mythic": 12,
-        "Transcendent": 12,
-        "Unattainable": 12
-      },
-      "Default_Ranged_Athena": {
-        "Common": 125,
-        "Uncommon": 125,
-        "Rare": 190,
-        "Epic": 280,
-        "Legendary": 375,
-        "Mythic": 375,
-        "Transcendent": 375,
-        "Unattainable": 375
-      }
+    {
+        "Type": "DataTable",
+        "Name": "WeaponDurabilityRarity",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class FortWeaponDurabilityByRarityStats",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "Crystal_Melee": {
+                "Common": 100,
+                "Uncommon": 100,
+                "Rare": 150,
+                "Epic": 225,
+                "Legendary": 300,
+                "Mythic": 300,
+                "Transcendent": 300,
+                "Unattainable": 300
+            },
+            "Crystal_Ranged": {
+                "Common": 100,
+                "Uncommon": 100,
+                "Rare": 150,
+                "Epic": 225,
+                "Legendary": 300,
+                "Mythic": 300,
+                "Transcendent": 300,
+                "Unattainable": 300
+            },
+            "Default": {
+                "Common": 100,
+                "Uncommon": 100,
+                "Rare": 150,
+                "Epic": 225,
+                "Legendary": 300,
+                "Mythic": 300,
+                "Transcendent": 300,
+                "Unattainable": 300
+            },
+            "Default_Harvest": {
+                "Common": 125,
+                "Uncommon": 165,
+                "Rare": 220,
+                "Epic": 250,
+                "Legendary": 275,
+                "Mythic": 275,
+                "Transcendent": 275,
+                "Unattainable": 275
+            },
+            "Default_Melee": {
+                "Common": 125,
+                "Uncommon": 125,
+                "Rare": 190,
+                "Epic": 280,
+                "Legendary": 375,
+                "Mythic": 375,
+                "Transcendent": 375,
+                "Unattainable": 375
+            },
+            "Default_Ranged": {
+                "Common": 125,
+                "Uncommon": 125,
+                "Rare": 190,
+                "Epic": 280,
+                "Legendary": 375,
+                "Mythic": 375,
+                "Transcendent": 375,
+                "Unattainable": 375
+            },
+            "Default_Explosive": {
+                "Common": 50,
+                "Uncommon": 50,
+                "Rare": 75,
+                "Epic": 115,
+                "Legendary": 150,
+                "Mythic": 150,
+                "Transcendent": 150,
+                "Unattainable": 150
+            },
+            "Ranged_NoAmmo_Explosive": {
+                "Common": 2,
+                "Uncommon": 4,
+                "Rare": 6,
+                "Epic": 8,
+                "Legendary": 10,
+                "Mythic": 10,
+                "Transcendent": 10,
+                "Unattainable": 10
+            },
+            "Ranged_NoAmmo_Explosive_Medium": {
+                "Common": 3,
+                "Uncommon": 6,
+                "Rare": 9,
+                "Epic": 12,
+                "Legendary": 15,
+                "Mythic": 15,
+                "Transcendent": 15,
+                "Unattainable": 15
+            },
+            "Ranged_NoAmmo_Explosive_Pumpkin": {
+                "Common": 4,
+                "Uncommon": 8,
+                "Rare": 12,
+                "Epic": 16,
+                "Legendary": 20,
+                "Mythic": 20,
+                "Transcendent": 20,
+                "Unattainable": 20
+            },
+            "Ranged_NoAmmo_Explosive_High": {
+                "Common": 6,
+                "Uncommon": 12,
+                "Rare": 18,
+                "Epic": 24,
+                "Legendary": 30,
+                "Mythic": 30,
+                "Transcendent": 30,
+                "Unattainable": 30
+            },
+            "Ranged_NoAmmo_Explosive_VeryHigh": {
+                "Common": 9,
+                "Uncommon": 18,
+                "Rare": 27,
+                "Epic": 36,
+                "Legendary": 45,
+                "Mythic": 45,
+                "Transcendent": 45,
+                "Unattainable": 45
+            },
+            "TrapDurability_VeryLow": {
+                "Common": 2,
+                "Uncommon": 2,
+                "Rare": 2,
+                "Epic": 3,
+                "Legendary": 3,
+                "Mythic": 3,
+                "Transcendent": 3,
+                "Unattainable": 3
+            },
+            "TrapDurability_Low": {
+                "Common": 16,
+                "Uncommon": 18,
+                "Rare": 20,
+                "Epic": 22,
+                "Legendary": 24,
+                "Mythic": 24,
+                "Transcendent": 24,
+                "Unattainable": 24
+            },
+            "TrapDurability_Medium": {
+                "Common": 24,
+                "Uncommon": 27,
+                "Rare": 30,
+                "Epic": 33,
+                "Legendary": 36,
+                "Mythic": 36,
+                "Transcendent": 36,
+                "Unattainable": 36
+            },
+            "TrapDurability_High": {
+                "Common": 30,
+                "Uncommon": 34,
+                "Rare": 37,
+                "Epic": 41,
+                "Legendary": 45,
+                "Mythic": 45,
+                "Transcendent": 45,
+                "Unattainable": 45
+            },
+            "TrapDurability_VeryHigh": {
+                "Common": 40,
+                "Uncommon": 45,
+                "Rare": 50,
+                "Epic": 54,
+                "Legendary": 60,
+                "Mythic": 60,
+                "Transcendent": 60,
+                "Unattainable": 60
+            },
+            "TrapDurability_VeryExtraHigh": {
+                "Common": 180,
+                "Uncommon": 202,
+                "Rare": 223,
+                "Epic": 245,
+                "Legendary": 270,
+                "Mythic": 270,
+                "Transcendent": 270,
+                "Unattainable": 270
+            },
+            "TrapDurability_Infinite": {
+                "Common": 99999,
+                "Uncommon": 99999,
+                "Rare": 99999,
+                "Epic": 99999,
+                "Legendary": 99999,
+                "Mythic": 99999,
+                "Transcendent": 99999,
+                "Unattainable": 99999
+            },
+            "TrapDurability_UltraHigh": {
+                "Common": 500,
+                "Uncommon": 560,
+                "Rare": 620,
+                "Epic": 680,
+                "Legendary": 750,
+                "Mythic": 750,
+                "Transcendent": 750,
+                "Unattainable": 750
+            },
+            "TrapDurability_Health": {
+                "Common": 5,
+                "Uncommon": 5,
+                "Rare": 6,
+                "Epic": 7,
+                "Legendary": 8,
+                "Mythic": 8,
+                "Transcendent": 8,
+                "Unattainable": 8
+            },
+            "TrapDurability_AntiAir": {
+                "Common": 13,
+                "Uncommon": 15,
+                "Rare": 16,
+                "Epic": 18,
+                "Legendary": 20,
+                "Mythic": 20,
+                "Transcendent": 20,
+                "Unattainable": 20
+            },
+            "Apocalyptic_Ranged": {
+                "Common": 100,
+                "Uncommon": 100,
+                "Rare": 150,
+                "Epic": 225,
+                "Legendary": 300,
+                "Mythic": 300,
+                "Transcendent": 300,
+                "Unattainable": 300
+            },
+            "Apocalyptic_Ranged_Crystal": {
+                "Common": 80,
+                "Uncommon": 80,
+                "Rare": 120,
+                "Epic": 180,
+                "Legendary": 240,
+                "Mythic": 240,
+                "Transcendent": 240,
+                "Unattainable": 240
+            },
+            "Apocalyptic_Melee": {
+                "Common": 100,
+                "Uncommon": 100,
+                "Rare": 150,
+                "Epic": 225,
+                "Legendary": 300,
+                "Mythic": 300,
+                "Transcendent": 300,
+                "Unattainable": 300
+            },
+            "Apocalyptic_Melee_Crystal": {
+                "Common": 80,
+                "Uncommon": 80,
+                "Rare": 120,
+                "Epic": 180,
+                "Legendary": 240,
+                "Mythic": 240,
+                "Transcendent": 240,
+                "Unattainable": 240
+            },
+            "Apocalyptic_Explosive": {
+                "Common": 40,
+                "Uncommon": 40,
+                "Rare": 60,
+                "Epic": 90,
+                "Legendary": 120,
+                "Mythic": 120,
+                "Transcendent": 120,
+                "Unattainable": 120
+            },
+            "Ranged_NoAmmo_Explosive_Apocalyptic": {
+                "Common": 2,
+                "Uncommon": 5,
+                "Rare": 7,
+                "Epic": 10,
+                "Legendary": 12,
+                "Mythic": 12,
+                "Transcendent": 12,
+                "Unattainable": 12
+            },
+            "Default_Ranged_Athena": {
+                "Common": 125,
+                "Uncommon": 125,
+                "Rare": 190,
+                "Epic": 280,
+                "Legendary": 375,
+                "Mythic": 375,
+                "Transcendent": 375,
+                "Unattainable": 375
+            }
+        }
     }
-  }
 ]

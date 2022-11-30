@@ -1,139 +1,139 @@
 [
-  {
-    "Type": "DataTable",
-    "Name": "SurfaceDamageTeams",
-    "Properties": {
-      "RowStruct": {
-        "ObjectName": "Class FortSurfaceDamageRatioByAffiliationStats",
-        "ObjectPath": "/Script/FortniteGame"
-      }
-    },
-    "Rows": {
-      "Default": {
-        "Friendly": 0.0,
-        "Neutral": 1.0,
-        "Hostile": 1.0
-      },
-      "All": {
-        "Friendly": 1.0,
-        "Neutral": 1.0,
-        "Hostile": 1.0
-      },
-      "HostileOnly": {
-        "Friendly": 0.0,
-        "Neutral": 0.0,
-        "Hostile": 1.0
-      },
-      "NoDamage": {
-        "Friendly": 0.0,
-        "Neutral": 0.0,
-        "Hostile": 0.0
-      },
-      "ReducedNoTeam": {
-        "Friendly": 0.0,
-        "Neutral": 0.7,
-        "Hostile": 0.7
-      },
-      "HalfNoTeam": {
-        "Friendly": 0.0,
-        "Neutral": 0.5,
-        "Hostile": 0.5
-      },
-      "GlancingNoTeam": {
-        "Friendly": 0.0,
-        "Neutral": 0.2,
-        "Hostile": 0.2
-      },
-      "Glancing": {
-        "Friendly": 0.2,
-        "Neutral": 0.2,
-        "Hostile": 0.2
-      },
-      "IncreasedNoTeam": {
-        "Friendly": 0.0,
-        "Neutral": 1.5,
-        "Hostile": 1.5
-      },
-      "DoubleDefault": {
-        "Friendly": 0.0,
-        "Neutral": 2.0,
-        "Hostile": 2.0
-      },
-      "FiveTimesDefault": {
-        "Friendly": 0.0,
-        "Neutral": 5.0,
-        "Hostile": 5.0
-      },
-      "TenTimesDefault": {
-        "Friendly": 0.0,
-        "Neutral": 10.0,
-        "Hostile": 10.0
-      },
-      "HarvestBiasHigh": {
-        "Friendly": 0.5,
-        "Neutral": 1.0,
-        "Hostile": 1.0
-      },
-      "HarvestBiasNormal": {
-        "Friendly": 0.35,
-        "Neutral": 0.7,
-        "Hostile": 0.7
-      },
-      "HarvestBiasVeryHigh": {
-        "Friendly": 0.75,
-        "Neutral": 1.5,
-        "Hostile": 1.5
-      },
-      "HarvestBiasLow": {
-        "Friendly": 0.25,
-        "Neutral": 0.5,
-        "Hostile": 0.5
-      },
-      "HarvestBiasVeryLow": {
-        "Friendly": 0.1,
-        "Neutral": 0.2,
-        "Hostile": 0.2
-      },
-      "WeakSpotNormal": {
-        "Friendly": 0.7,
-        "Neutral": 1.4,
-        "Hostile": 1.4
-      },
-      "WeakSpotLow": {
-        "Friendly": 0.5,
-        "Neutral": 1.0,
-        "Hostile": 1.0
-      },
-      "WeakSpotVeryLow": {
-        "Friendly": 0.2,
-        "Neutral": 0.4,
-        "Hostile": 0.4
-      },
-      "WeakSpotHigh": {
-        "Friendly": 1.0,
-        "Neutral": 2.0,
-        "Hostile": 2.0
-      },
-      "WeakSpotVeryHigh": {
-        "Friendly": 1.5,
-        "Neutral": 3.0,
-        "Hostile": 3.0
-      },
-      "AthenaHarvestBias": {
-        "Friendly": 1.5,
-        "Neutral": 1.0,
-        "Hostile": 1.5
-      },
-      "AthenaMeleeModifier": {
-        "Friendly": 1.0,
-        "Neutral": 1.0,
-        "Hostile": 1.0
-      },
-      "AthenaWeakSpot": {
-        "Friendly": 3.0,
-        "Neutral": 2.0,
-        "Hostile": 3.0
-      }
+    {
+        "Type": "DataTable",
+        "Name": "SurfaceDamageTeams",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class FortSurfaceDamageRatioByAffiliationStats",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "Default": {
+                "Friendly": 0.0,
+                "Neutral": 1.0,
+                "Hostile": 1.0
+            },
+            "All": {
+                "Friendly": 1.0,
+                "Neutral": 1.0,
+                "Hostile": 1.0
+            },
+            "HostileOnly": {
+                "Friendly": 0.0,
+                "Neutral": 0.0,
+                "Hostile": 1.0
+            },
+            "NoDamage": {
+                "Friendly": 0.0,
+                "Neutral": 0.0,
+                "Hostile": 0.0
+            },
+            "ReducedNoTeam": {
+                "Friendly": 0.0,
+                "Neutral": 0.7,
+                "Hostile": 0.7
+            },
+            "HalfNoTeam": {
+                "Friendly": 0.0,
+                "Neutral": 0.5,
+                "Hostile": 0.5
+            },
+            "GlancingNoTeam": {
+                "Friendly": 0.0,
+                "Neutral": 0.2,
+                "Hostile": 0.2
+            },
+            "Glancing": {
+                "Friendly": 0.2,
+                "Neutral": 0.2,
+                "Hostile": 0.2
+            },
+            "IncreasedNoTeam": {
+                "Friendly": 0.0,
+                "Neutral": 1.5,
+                "Hostile": 1.5
+            },
+            "DoubleDefault": {
+                "Friendly": 0.0,
+                "Neutral": 2.0,
+                "Hostile": 2.0
+            },
+            "FiveTimesDefault": {
+                "Friendly": 0.0,
+                "Neutral": 5.0,
+                "Hostile": 5.0
+            },
+            "TenTimesDefault": {
+                "Friendly": 0.0,
+                "Neutral": 10.0,
+                "Hostile": 10.0
+            },
+            "HarvestBiasHigh": {
+                "Friendly": 0.5,
+                "Neutral": 1.0,
+                "Hostile": 1.0
+            },
+            "HarvestBiasNormal": {
+                "Friendly": 0.35,
+                "Neutral": 0.7,
+                "Hostile": 0.7
+            },
+            "HarvestBiasVeryHigh": {
+                "Friendly": 0.75,
+                "Neutral": 1.5,
+                "Hostile": 1.5
+            },
+            "HarvestBiasLow": {
+                "Friendly": 0.25,
+                "Neutral": 0.5,
+                "Hostile": 0.5
+            },
+            "HarvestBiasVeryLow": {
+                "Friendly": 0.1,
+                "Neutral": 0.2,
+                "Hostile": 0.2
+            },
+            "WeakSpotNormal": {
+                "Friendly": 0.7,
+                "Neutral": 1.4,
+                "Hostile": 1.4
+            },
+            "WeakSpotLow": {
+                "Friendly": 0.5,
+                "Neutral": 1.0,
+                "Hostile": 1.0
+            },
+            "WeakSpotVeryLow": {
+                "Friendly": 0.2,
+                "Neutral": 0.4,
+                "Hostile": 0.4
+            },
+            "WeakSpotHigh": {
+                "Friendly": 1.0,
+                "Neutral": 2.0,
+                "Hostile": 2.0
+            },
+            "WeakSpotVeryHigh": {
+                "Friendly": 1.5,
+                "Neutral": 3.0,
+                "Hostile": 3.0
+            },
+            "AthenaHarvestBias": {
+                "Friendly": 1.5,
+                "Neutral": 1.0,
+                "Hostile": 1.5
+            },
+            "AthenaMeleeModifier": {
+                "Friendly": 1.0,
+                "Neutral": 1.0,
+                "Hostile": 1.0
+            },
+            "AthenaWeakSpot": {
+                "Friendly": 3.0,
+                "Neutral": 2.0,
+                "Hostile": 3.0
+            }
+        }
     }
-  }
 ]

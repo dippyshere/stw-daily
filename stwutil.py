@@ -23,7 +23,6 @@ import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 from lang.stwi18n import I18n
 
-
 with open("ext/battlebreakers/LoginRewards.json", "r") as f:
     LoginRewards = orjson.loads(f.read())
 with open('ext/DataTables/SurvivorItemRating.json') as f:
@@ -43,19 +42,19 @@ I18n = I18n()
 guild_ids = [757765475823517851]
 
 
-def reverse_dict_with_list_keys(dict):
+def reverse_dict_with_list_keys(dictionary):
     """
     Reverses a dictionary with list keys
 
     Args:
-        dict: the dictionary to reverse
+        dictionary: the dictionary to reverse
 
     Returns:
         A dictionary with the keys and values reversed
     """
     new_dict = {}
 
-    for key, value in dict.items():
+    for key, value in dictionary.items():
         for item in value:
             new_dict[item] = key
 
@@ -538,6 +537,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         command: the command that was run
         auth_code: the auth code used
         invite_link: the support server invite link
+        send_error_message: whether to send the error message or not
 
     Returns:
         If there was no error, returns True, access token, account id
@@ -630,7 +630,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     embed = await set_thumbnail(client, embed, "error")
     embed = await add_requested_footer(ctx, embed)
 
-    if send_error_message == True:
+    if send_error_message:
         await slash_edit_original(ctx, message, embed)
     else:
         return embed
@@ -1054,19 +1054,19 @@ async def resolve_vbuck_source(vbuck_source):
         return vbuck_source, "placeholder"
 
 
-async def calculate_vbucks(items):
+async def calculate_vbucks(item):
     """
     Calculates the total vbucks from a dict of items
 
     Args:
-        items: The dict of items
+        item: The dict of items
 
     Returns:
         The total vbucks quantity
     """
     vbucks = 0
-    if items:
-        for item in items:
+    if item:
+        for item in item:
             for attr, val in item.items():
                 if "debt" in val["templateId"].lower():
                     vbucks -= val["quantity"]
@@ -1374,7 +1374,7 @@ def calculate_homebase_rating(profile):
                    "offense": 0,
                    "resistance": 0,
                    "technology": 0}
-    STWRoleMap = {
+    stw_role_map = {
         "IsTrainer": 'fortitude',
         "IsSoldier": 'offense',
         "IsMartialArtist": 'offense',
@@ -1446,12 +1446,12 @@ def calculate_homebase_rating(profile):
     #     total_stats += val
     for attr, val in survivors.items():
         try:
-            total_stats[STWRoleMap[val["Leader"][-1].split(".")[-1]]] += val["Leader"][0]
+            total_stats[stw_role_map[val["Leader"][-1].split(".")[-1]]] += val["Leader"][0]
         except:
             continue
         for follower, stats in val["Followers"].items():
             try:
-                total_stats[STWRoleMap[val["Leader"][-1].split(".")[-1]]] += stats[0]
+                total_stats[stw_role_map[val["Leader"][-1].split(".")[-1]]] += stats[0]
             except:
                 continue
 

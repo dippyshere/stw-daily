@@ -602,6 +602,13 @@ class Profile(ext.Cog):
                  brief="Allows you to create, change the name of, select, & delete profiles(PENDING)",
                  description="A command which allows you to interact with a view to switch between profiles, create new profiles utilising a modal, delete existing profiles and edit the name of existing profiles(PENDING)")
     async def profile(self, ctx, profile=None):
+        """
+        entry point for profile command when called traditionally
+
+        Args:
+            ctx: the context of the command
+            profile: the profile to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)(PENDING)
+        """
         await self.profile_command(ctx, profile)
 
     @slash_command(name='profile',

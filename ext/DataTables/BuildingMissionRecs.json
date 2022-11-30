@@ -1,568 +1,568 @@
 [
-  {
-    "Type": "CurveTable",
-    "Name": "BuildingMissionRecs",
-    "Rows": {
-      "FightTheStorm_Cat1_Stonewood_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 45.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 45.0
-          },
-          {
-            "Time": 3.0,
-            "Value": 55.0
-          },
-          {
-            "Time": 5.0,
-            "Value": 75.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 90.0
-          },
-          {
-            "Time": 10.0,
-            "Value": 115.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 115.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "FightTheStorm_Cat1_Plankerton_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 20.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 20.0
-          },
-          {
-            "Time": 2.0,
-            "Value": 25.0
-          },
-          {
-            "Time": 3.0,
-            "Value": 25.0
-          },
-          {
-            "Time": 5.0,
-            "Value": 30.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 40.0
-          },
-          {
-            "Time": 10.0,
-            "Value": 50.0
-          },
-          {
-            "Time": 12.0,
-            "Value": 55.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 65.0
-          },
-          {
-            "Time": 16.0,
-            "Value": 70.0
-          },
-          {
-            "Time": 18.0,
-            "Value": 70.0
-          },
-          {
-            "Time": 22.0,
-            "Value": 80.0
-          },
-          {
-            "Time": 24.0,
-            "Value": 80.0
-          },
-          {
-            "Time": 26.0,
-            "Value": 85.0
-          },
-          {
-            "Time": 30.0,
-            "Value": 85.0
-          },
-          {
-            "Time": 32.0,
-            "Value": 90.0
-          },
-          {
-            "Time": 34.0,
-            "Value": 90.0
-          },
-          {
-            "Time": 36.0,
-            "Value": 95.0
-          },
-          {
-            "Time": 40.0,
-            "Value": 95.0
-          },
-          {
-            "Time": 42.0,
-            "Value": 100.0
-          },
-          {
-            "Time": 44.0,
-            "Value": 100.0
-          },
-          {
-            "Time": 46.0,
-            "Value": 105.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 105.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "FightTheStorm_Cat2_Plankerton_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 30.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 30.0
-          },
-          {
-            "Time": 12.0,
-            "Value": 85.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 100.0
-          },
-          {
-            "Time": 26.0,
-            "Value": 130.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 130.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "FightTheStorm_Cat3_Plankerton_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 45.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 45.0
-          },
-          {
-            "Time": 2.0,
-            "Value": 55.0
-          },
-          {
-            "Time": 3.0,
-            "Value": 60.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 90.0
-          },
-          {
-            "Time": 10.0,
-            "Value": 120.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 150.0
-          },
-          {
-            "Time": 20.0,
-            "Value": 180.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 180.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "FightTheStorm_Cat4_Canny_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 60.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 60.0
-          },
-          {
-            "Time": 2.0,
-            "Value": 65.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 115.0
-          },
-          {
-            "Time": 10.0,
-            "Value": 150.0
-          },
-          {
-            "Time": 12.0,
-            "Value": 170.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 195.0
-          },
-          {
-            "Time": 16.0,
-            "Value": 205.0
-          },
-          {
-            "Time": 18.0,
-            "Value": 220.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 220.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "RetrieveTheData_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 40.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 40.0
-          },
-          {
-            "Time": 5.0,
-            "Value": 60.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 75.0
-          },
-          {
-            "Time": 10.0,
-            "Value": 95.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 125.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 125.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "RideTheLightning_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 60.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 60.0
-          },
-          {
-            "Time": 2.0,
-            "Value": 70.0
-          },
-          {
-            "Time": 3.0,
-            "Value": 75.0
-          },
-          {
-            "Time": 5.0,
-            "Value": 95.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 120.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 120.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "LaunchTheRocket_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 70.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 70.0
-          },
-          {
-            "Time": 3.0,
-            "Value": 90.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 140.0
-          },
-          {
-            "Time": 10.0,
-            "Value": 185.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 185.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "DeliverTheBomb_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 25.0
-          },
-          {
-            "Time": 2.0,
-            "Value": 25.0
-          },
-          {
-            "Time": 5.0,
-            "Value": 40.0
-          },
-          {
-            "Time": 7.0,
-            "Value": 45.0
-          },
-          {
-            "Time": 10.0,
-            "Value": 60.0
-          },
-          {
-            "Time": 12.0,
-            "Value": 65.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 75.0
-          },
-          {
-            "Time": 22.0,
-            "Value": 95.0
-          },
-          {
-            "Time": 24.0,
-            "Value": 95.0
-          },
-          {
-            "Time": 26.0,
-            "Value": 100.0
-          },
-          {
-            "Time": 28.0,
-            "Value": 100.0
-          },
-          {
-            "Time": 30.0,
-            "Value": 105.0
-          },
-          {
-            "Time": 32.0,
-            "Value": 105.0
-          },
-          {
-            "Time": 34.0,
-            "Value": 110.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 110.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "RepairTheShelter_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 30.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 30.0
-          },
-          {
-            "Time": 12.0,
-            "Value": 85.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 100.0
-          },
-          {
-            "Time": 26.0,
-            "Value": 130.0
-          },
-          {
-            "Time": 28.0,
-            "Value": 130.0
-          },
-          {
-            "Time": 30.0,
-            "Value": 135.0
-          },
-          {
-            "Time": 32.0,
-            "Value": 135.0
-          },
-          {
-            "Time": 36.0,
-            "Value": 145.0
-          },
-          {
-            "Time": 38.0,
-            "Value": 145.0
-          },
-          {
-            "Time": 42.0,
-            "Value": 155.0
-          },
-          {
-            "Time": 44.0,
-            "Value": 155.0
-          },
-          {
-            "Time": 48.0,
-            "Value": 165.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 165.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      },
-      "EvacTheShelter_Solo": {
-        "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
-        "Keys": [
-          {
-            "Time": 0.0,
-            "Value": 30.0
-          },
-          {
-            "Time": 1.0,
-            "Value": 30.0
-          },
-          {
-            "Time": 12.0,
-            "Value": 85.0
-          },
-          {
-            "Time": 14.0,
-            "Value": 100.0
-          },
-          {
-            "Time": 26.0,
-            "Value": 130.0
-          },
-          {
-            "Time": 28.0,
-            "Value": 130.0
-          },
-          {
-            "Time": 30.0,
-            "Value": 135.0
-          },
-          {
-            "Time": 32.0,
-            "Value": 135.0
-          },
-          {
-            "Time": 36.0,
-            "Value": 145.0
-          },
-          {
-            "Time": 38.0,
-            "Value": 145.0
-          },
-          {
-            "Time": 42.0,
-            "Value": 155.0
-          },
-          {
-            "Time": 44.0,
-            "Value": 155.0
-          },
-          {
-            "Time": 48.0,
-            "Value": 165.0
-          },
-          {
-            "Time": 50.0,
-            "Value": 165.0
-          }
-        ],
-        "DefaultValue": 3.4028235E+38,
-        "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
-        "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
-      }
+    {
+        "Type": "CurveTable",
+        "Name": "BuildingMissionRecs",
+        "Rows": {
+            "FightTheStorm_Cat1_Stonewood_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 45.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 45.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 55.0
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 75.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 90.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 115.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 115.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "FightTheStorm_Cat1_Plankerton_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 25.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 25.0
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 40.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 50.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 55.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 65.0
+                    },
+                    {
+                        "Time": 16.0,
+                        "Value": 70.0
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 70.0
+                    },
+                    {
+                        "Time": 22.0,
+                        "Value": 80.0
+                    },
+                    {
+                        "Time": 24.0,
+                        "Value": 80.0
+                    },
+                    {
+                        "Time": 26.0,
+                        "Value": 85.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 85.0
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 90.0
+                    },
+                    {
+                        "Time": 34.0,
+                        "Value": 90.0
+                    },
+                    {
+                        "Time": 36.0,
+                        "Value": 95.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 95.0
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 44.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 46.0,
+                        "Value": 105.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 105.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "FightTheStorm_Cat2_Plankerton_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 85.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 26.0,
+                        "Value": 130.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 130.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "FightTheStorm_Cat3_Plankerton_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 45.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 45.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 55.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 90.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 120.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 150.0
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 180.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 180.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "FightTheStorm_Cat4_Canny_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 65.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 115.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 150.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 170.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 195.0
+                    },
+                    {
+                        "Time": 16.0,
+                        "Value": 205.0
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 220.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 220.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "RetrieveTheData_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 40.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 40.0
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 75.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 95.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 125.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 125.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "RideTheLightning_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 70.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 75.0
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 95.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 120.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 120.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "LaunchTheRocket_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 70.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 70.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 90.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 140.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 185.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 185.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DeliverTheBomb_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 25.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 25.0
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 40.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 45.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 65.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 75.0
+                    },
+                    {
+                        "Time": 22.0,
+                        "Value": 95.0
+                    },
+                    {
+                        "Time": 24.0,
+                        "Value": 95.0
+                    },
+                    {
+                        "Time": 26.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 105.0
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 105.0
+                    },
+                    {
+                        "Time": 34.0,
+                        "Value": 110.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 110.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "RepairTheShelter_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 85.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 26.0,
+                        "Value": 130.0
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 130.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 135.0
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 135.0
+                    },
+                    {
+                        "Time": 36.0,
+                        "Value": 145.0
+                    },
+                    {
+                        "Time": 38.0,
+                        "Value": 145.0
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 155.0
+                    },
+                    {
+                        "Time": 44.0,
+                        "Value": 155.0
+                    },
+                    {
+                        "Time": 48.0,
+                        "Value": 165.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 165.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "EvacTheShelter_Solo": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 85.0
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 26.0,
+                        "Value": 130.0
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 130.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 135.0
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 135.0
+                    },
+                    {
+                        "Time": 36.0,
+                        "Value": 145.0
+                    },
+                    {
+                        "Time": 38.0,
+                        "Value": 145.0
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 155.0
+                    },
+                    {
+                        "Time": 44.0,
+                        "Value": 155.0
+                    },
+                    {
+                        "Time": 48.0,
+                        "Value": 165.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 165.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
     }
-  }
 ]

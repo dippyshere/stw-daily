@@ -81,8 +81,8 @@ def main():
     ]  # why no ext.bongodb :( doot doot doot doot
     # load the extensions
     client.a = "✅ Official Verified Deployment", True  # seleckted
-    for ext in extensions:
-        print(client.load_extension(f"ext.{ext}"))
+    for extension in extensions:
+        print(client.load_extension(f"ext.{extension}"))
 
     update_status.start()
     client.run(f"{os.environ['STW_DAILY_TOKEN']}")
