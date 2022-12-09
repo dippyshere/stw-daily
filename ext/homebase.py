@@ -136,11 +136,13 @@ class Homebase(ext.Cog):
             ```{current}```
             """, colour=white)
             if homebase_icon != "placeholder":
-                embed, file = await stw.generate_banner(self.client, embed, homebase_icon, homebase_colour,
-                                                        ctx.author.id)
-                colour = tuple(
-                    int(self.client.config["banner_colours"][homebase_colour][i:i + 2], 16) for i in (1, 3, 5))
-                embed.colour = discord.Colour.from_rgb(colour[0], colour[1], colour[2])
+                try:
+                    embed, file = await stw.generate_banner(self.client, embed, homebase_icon, homebase_colour,
+                                                            ctx.author.id)
+                    colour = await stw.get_banner_colour(homebase_colour, "rgb")
+                    embed.colour = discord.Colour.from_rgb(colour[0], colour[1], colour[2])
+                except:
+                    embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])
             else:
                 embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])
             embed = await stw.add_requested_footer(ctx, embed)
@@ -190,8 +192,6 @@ class Homebase(ext.Cog):
                         inline=False)
 
         embed = await stw.set_thumbnail(self.client, embed, "check")
-        # set embed thumbnail
-        # embed.set_thumbnail(url=f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)

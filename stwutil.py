@@ -33,6 +33,10 @@ with open('ext/DataTables/ResearchSystem.json') as f:
     ResearchSystem = orjson.loads(f.read())
 with open('ext/DataTables/AccountLevels.json') as f:
     AccountLevels = orjson.loads(f.read())
+with open('ext/DataTables/BannerColorMap.json') as f:
+    BannerColorMap = orjson.loads(f.read())
+with open('ext/DataTables/BannerColors.json') as f:
+    BannerColors = orjson.loads(f.read())
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
@@ -241,7 +245,7 @@ def time_until_end_of_day():
     return fmt.format(h=hours, m=minutes)
 
 
-async def mention_string(client, prompt):
+async def mention_string(client, prompt=""):
     """
     A function to compile a mention string for the bot
 
@@ -492,26 +496,28 @@ async def exchange_games(client, auth_token, game="fn"):
     return await client.stw_session.post(url, headers=h, data=d)
 
 
-async def processing_embed(client, ctx):
+async def processing_embed(client, ctx, title="Logging in and Processing", description="This won\'t be long..."):
     """
     Constructs the processing embed
 
     Args:
         client: the client
         ctx: the context
+        title: the title of the embed
+        description: the description of the embed
 
     Returns:
         the processing embed
     """
     colour = client.colours["success_green"]
 
-    embed = discord.Embed(title=await add_emoji_title(client, "Logging In And Processing", "processing"),
-                          description='```This shouldn\'t take long...```', colour=colour)
+    embed = discord.Embed(title=await add_emoji_title(client, f"{title}", "processing"),
+                          description=f"```{description}```", colour=colour)
     embed = await add_requested_footer(ctx, embed)
     return embed
 
 
-def ranerror(client):
+def random_error(client):
     """
     Gets a random error message
 
@@ -555,7 +561,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
         # login error
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to authenticate with authcode:
             ```{auth_code}```
@@ -579,7 +585,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     elif error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_for_your_client':
         # invalid grant error
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to authenticate with authcode:
             ```{auth_code}```
@@ -595,7 +601,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     elif len(error_code) == 32:
         # login error
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to authenticate with authcode:
             ```{auth_code}```
@@ -613,7 +619,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
 
     else:
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to authenticate with:
             ```{auth_code}```
@@ -1075,6 +1081,29 @@ async def calculate_vbucks(item):
     return vbucks
 
 
+async def get_banner_colour(colour, colour_format="hex", colour_type="Primary"):
+    """
+    Gets the banner colour from the banner name
+
+    Args:
+        colour: The colour of the banner (e.g. DefaultColor1)
+        colour_format: The format to return the colour in (hex, rgb)
+        colour_type: The colour to fetch (Primary, Secondary)
+
+    Returns:
+        The banner colour in the specified format (default hex)
+    """
+    colour_key = BannerColors[0]["Rows"][colour]["ColorKeyName"]
+    colour_map = BannerColorMap[0]["Properties"]["ColorMap"][colour_key][f"{colour_type}Color"]
+    colour_hex = f'#{colour_map["Hex"][2:]}'
+    if colour_format == "hex":
+        return colour_hex
+    elif colour_format == "rgb":
+        return tuple(int(colour_hex[i:i + 2], 16) for i in (1, 3, 5))
+    else:
+        return None
+
+
 def truncate(string, length=100, end="..."):
     """
     Truncates a string to a certain length
@@ -1128,7 +1157,7 @@ def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0)
             # interpolate between the two keys.
             return row_data['Keys'][i]['Value'] + (time_input - row_data['Keys'][i]['Time']) / (
                     row_data['Keys'][i + 1]['Time'] - row_data['Keys'][i]['Time']) * (
-                           row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])
+                    row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])
 
 
 def parse_survivor_template_id(template_id):
@@ -1568,7 +1597,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
 
     elif extracted_auth_code in client.config["known_client_ids"]:
         error_embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to authenticate with authcode:
             ```{extracted_auth_code}```
@@ -1586,7 +1615,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
         )
 
     elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
-        error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
+        error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
         ```{original_auth_code}```
         Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
@@ -1602,7 +1631,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
                                     colour=error_colour)
 
     elif len(extracted_auth_code) != 32:
-        error_embed = discord.Embed(title=await add_emoji_title(client, ranerror(client), "error"), description=f"""\u200b
+        error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"), description=f"""\u200b
         Attempted to authenticate with authcode:
         ```{extracted_auth_code}```
         Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
@@ -1725,7 +1754,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
     # Epic Games Error Codes
     if error_code == "errors.com.epicgames.common.missing_action":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1743,7 +1772,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
         )
     elif error_code == "errors.com.epicgames.fortnite.check_access_failed":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1760,7 +1789,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
         )
     elif error_code == "errors.com.epicgames.common.authentication.token_verification_failed":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1779,7 +1808,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
         )
     elif error_code == "errors.com.epicgames.validation.validation_failed":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1799,7 +1828,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
     elif error_code == "errors.com.epicgames.world_explorers.login_reward_not_available":
         reward = get_bb_reward_data(client, response, True)
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "warning"), description=
+            title=await add_emoji_title(client, random_error(client), "warning"), description=
             f"""\u200b
                         You have already claimed your reward for day **{reward[0]}**.
                         \u200b
@@ -1813,7 +1842,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
     # STW Daily Error Codes
     elif error_code == "errors.stwdaily.failed_guid_research":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1831,7 +1860,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
     elif error_code == "errors.stwdaily.failed_get_collected_resource_item":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1850,7 +1879,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
     elif error_code == "errors.stwdaily.failed_get_collected_resource_type":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1869,7 +1898,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
     elif error_code == "errors.stwdaily.failed_total_points":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -1889,7 +1918,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
     elif error_code == "errors.stwdaily.not_author_interaction_response":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Not the author:```You need to be the author to utilise the {command} view!```
             **If you want to utilise this view, please use the command yourself.**
@@ -1905,7 +1934,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
     elif error_code == "errors.stwdaily.homebase_long":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
                 Attempted to change Homebase name to:
                 ```{truncate(acc_name)}```
@@ -1922,7 +1951,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
     elif error_code == "errors.stwdaily.homebase_illegal":
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
                 Attempted to change Homebase name to:
                 ```{acc_name}```
@@ -1939,7 +1968,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
 
     else:
         embed = discord.Embed(
-            title=await add_emoji_title(client, ranerror(client), "error"),
+            title=await add_emoji_title(client, random_error(client), "error"),
             description=f"""\u200b
             Attempted to claim daily for account:
             ```{acc_name}```
@@ -2048,12 +2077,11 @@ async def generate_banner(client, embed, homebase_icon, homebase_colour, author_
         Embed with thumbnail set to the banner, discord attachment of file generated
     """
     banner_url = f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png"
-    colour = client.config["banner_colours"][homebase_colour]
     async with client.stw_session.get(banner_url) as resp:
         data = io.BytesIO(await resp.read())
         banner_screen = blendmodes.blend.blendLayers(Image.open(data).convert("RGB"),
                                                      Image.new("RGB", (256, 256),
-                                                               tuple(int(colour[i:i + 2], 16) for i in (1, 3, 5))),
+                                                               await get_banner_colour(homebase_colour, "rgb")),
                                                      blendmodes.blend.BlendType.SCREEN)
         banner_texture = blendmodes.blend.blendLayers(banner_screen, banner_d, blendmodes.blend.BlendType.DIVIDE)
         banner_masked = blendmodes.blend.blendLayers(banner_texture, banner_m, blendmodes.blend.BlendType.DESTIN)

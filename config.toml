@@ -60,7 +60,7 @@ devs = [
 
 # a list of emojis the bot utilises throughout (please do not change the keys.)
 [emojis]
-info = "<:helpstwdaily:925648230488883230>"
+info = "<:helpstwdaily:925648230488883230>"  # who named this????? 🤦
 hard_drive = "<:TIconHardDriveL:812201309591175168>"
 electric_plug = "<:electricplug_teams:1030710464776245268>"
 research_point = "<:TIconResearchPoint128:812201303781408828>"
@@ -274,6 +274,8 @@ research = "https://cdn.discordapp.com/attachments/767607876348018689/9478122607
 processing = "https://cdn.discordapp.com/attachments/767607876348018689/947999234169397248/stwloading.gif"
 calendar = "https://cdn.discordapp.com/attachments/767607876348018689/947752089549946930/Layer_4.png"
 urlauthcode = "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png"
+auth_tutorial = "https://cdn.discordapp.com/attachments/757768060810559541/1050461779991474266/stw_daily_noob_tutorial_render_2_hd.gif"
+meme = "https://cdn.discordapp.com/attachments/917697167102206022/1039460868976541707/20221108_182205.jpg"
 keycard = "https://media.discordapp.net/attachments/643743040372080653/956798526149509120/Ghost_Keycard.PNG"
 stormbottle = "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png"
 crown = "https://cdn.discordapp.com/attachments/767607876348018689/1030709275384881172/unknown.png"
@@ -357,52 +359,6 @@ theater0 = "theater0" # stw backpack
 theater1 = "theater1" # stw event backpack
 theater2 = "theater2" # stw ventures data
 recycle_bin = "recycle_bin" # stw recycle bin
-
-[banner_colours]
-defaultcolor1 = "#545454"
-defaultcolor2 = "#c10000"
-defaultcolor3 = "#e44b00"
-defaultcolor4 = "#df7500"
-defaultcolor5 = "#ffbd00"
-defaultcolor6 = "#f7ce00"
-defaultcolor7 = "#f1df00"
-defaultcolor8 = "#bbe000"
-defaultcolor9 = "#91ed00"
-defaultcolor10 = "#00e28a"
-defaultcolor11 = "#00d6b3"
-defaultcolor12 = "#00f0f0"
-defaultcolor13 = "#00e8e8"
-defaultcolor14 = "#00bfe5"
-defaultcolor15 = "#00a3ff"
-defaultcolor16 = "#0000f8"
-defaultcolor17 = "#9300f0"
-defaultcolor18 = "#c800f0"
-defaultcolor19 = "#ed00ed"
-defaultcolor20 = "#f80098"
-defaultcolor21 = "#df0088"
-defaultcolor22 = "#191919"
-defaultcolor23 = "#4c0000"
-defaultcolor24 = "#5b2b00"
-defaultcolor25 = "#5c4400"
-defaultcolor26 = "#505d00"
-defaultcolor27 = "#395f00"
-defaultcolor28 = "#005b00"
-defaultcolor29 = "#005c4f"
-defaultcolor30 = "#003559"
-defaultcolor31 = "#000059"
-defaultcolor32 = "#3b0060"
-defaultcolor33 = "#50005d"
-defaultcolor34 = "#5f003a"
-defaultcolor35 = "#e0e0e0"
-defaultcolor36 = "#ff7f7f"
-defaultcolor37 = "#ffc766"
-defaultcolor38 = "#fff8a2"
-defaultcolor39 = "#cdff6e"
-defaultcolor40 = "#96ff96"
-defaultcolor41 = "#814bff"
-defaultcolor42 = "#9f9fff"
-defaultcolor43 = "#dba4ff"
-defaultcolor44 = "#ff97ff"
 
 [mango]
 uri_env_var = "STW_MONGO_URI" # added the env var mongodb://localhost:27017
