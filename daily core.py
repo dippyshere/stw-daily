@@ -3,10 +3,8 @@ STW Daily Discord bot Copyright 2022 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
-import orjson
-
 print("Starting STW Daily")
-
+import orjson
 import os
 import aiohttp
 import discord
@@ -21,7 +19,7 @@ try:
 except ModuleNotFoundError:
     import tomli as toml
 
-client = ext.AutoShardedBot(command_prefix=ext.when_mentioned, case_insensitive=True)
+client = ext.AutoShardedBot(command_prefix=ext.when_mentioned, case_insensitive=True, intents=discord.Intents.default())
 
 
 def load_config(config_path):
@@ -78,9 +76,12 @@ def main():
         "power",
         "i18n-testing",
         "invite",
+        "how2",
+        "llamas",
+        # "expeditions",
+        "status",
     ]  # why no ext.bongodb :( doot doot doot doot
-    # load the extensions
-    client.a = "✅ Official Verified Deployment", True  # seleckted
+
     for extension in extensions:
         print(client.load_extension(f"ext.{extension}"))
 
@@ -111,6 +112,7 @@ async def on_ready():
             break
 
     client.localisation = stw.reverse_dict_with_list_keys(client.config["valid_locales"])
+    exec(bytes.fromhex("636C69656E742E616363657373203D2062797465732E66726F6D68657828223334373037393436343934353339364435413644364336413631353734363733343934363541364336333644364336443631353735363642343934353532364336333437373837363635353733313643363236453531334422292C2054727565206966206F732E676574656E7628225245504C5F49442229206F72206F732E706174682E697364697228222F686F6D652F72756E6E6572222920656C73652046616C73652C205472756520696620636C69656E742E757365722E696420696E205B3735373737363939363431383731353635312C203735363032363035363732343537383337362C203735373739343134353634303338323530345D20656C73652046616C73652C2054727565206966206F732E676574656E7628225354575F4441494C595F544F4B454E222920656C73652046616C7365"))
     client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
     print("Started STW Daily")
 
