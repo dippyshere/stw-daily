@@ -172,9 +172,7 @@ class ResearchView(discord.ui.View):
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", self.auth_info[1])
         json_response = orjson.loads(await current_research_statistics_request.read())
-        current_levels = await research_query(interaction, self.client, self.auth_info, [], json_response)
-        if current_levels is None:
-            return
+        current_levels, proc_max = await research_query(interaction, self.client, self.auth_info, [], json_response)
 
         self.current_levels = current_levels
 
@@ -308,7 +306,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         json_response: The json response object.
 
     Returns:
-        dict: The current research levels. hi hi
+        tuple: The current research levels dict, and a bool if the max research level has been reached.
     """
     crown_yellow = client.colours["crown_yellow"]
 
@@ -344,10 +342,10 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
             return
 
     # I'm not too sure what happens here but if current_levels doesn't exist im assuming its at maximum.
+    # I'll assume it's minimum
     proc_max = False
     try:
-        if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels[
-            "technology"] == 480:
+        if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
             proc_max = True
     except:
         for stat in ["offense", "fortitude", "resistance", "technology"]:
@@ -356,6 +354,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
 
         pass
 
+    # TODO: move this out of the query function as we shouldn't perform discord actions under an epic api function
     if proc_max:
         embed = discord.Embed(
             title=await stw.add_emoji_title(client, "Max", "crown"),
@@ -369,9 +368,8 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-        return None
 
-    return current_levels
+    return current_levels, proc_max
 
 
 class Research(ext.Cog):
@@ -461,9 +459,7 @@ class Research(ext.Cog):
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
         json_response = orjson.loads(await current_research_statistics_request.read())
-        current_levels = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
-        if current_levels is None:
-            return
+        current_levels, proc_max = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
 
         # assign variables for error embeds
         support_url = self.client.config["support_url"]
@@ -486,6 +482,7 @@ class Research(ext.Cog):
         current_research_statistics_request = await stw.profile_request(self.client, "resources", auth_info[1],
                                                                         json={"collectorsToClaim": [research_guid]})
         json_response = orjson.loads(await current_research_statistics_request.read())
+        print(json_response)
 
         try:
             error_code = json_response["errorCode"]

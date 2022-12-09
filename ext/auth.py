@@ -76,7 +76,7 @@ class Auth(ext.Cog):
             await stw.slash_edit_original(ctx, auth_info[0], embed)
         else:
             embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, stw.ranerror(self.client), "error"),
+                title=await stw.add_emoji_title(self.client, stw.random_error(self.client), "error"),
                 description=f"""\u200b
             Your auth session has expired prematurely for:
             ```{auth_info[1]['account_name']}```
