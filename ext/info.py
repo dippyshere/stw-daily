@@ -10,6 +10,9 @@ import asyncio
 import os
 import platform
 import time
+import base64
+import cpuinfo
+import re
 
 import discord
 import discord.ext.commands as ext
@@ -21,7 +24,6 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 import stwutil as stw
 
 
-# cog for the info related commands.
 class Information(ext.Cog):
     """
     The info command. displays bot / host info + verification status.
@@ -38,29 +40,12 @@ class Information(ext.Cog):
         Args:
             ctx: The context of the command.
         """
-        try:
-            osgetlogin = os.getlogin()
-        except:
-            osgetlogin = 'Not Available'
+
+        load_msg = await stw.slash_send_embed(ctx,
+                                              await stw.processing_embed(self.client, ctx, title="Crunching the numbers"))
 
         embed_colour = self.client.colours["generic_blue"]
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Information", "blueinfo"),
-                              description="\u200b", colour=embed_colour)
-        embed.add_field(name='Host statistics:', value=f'```OS name: {os.name}\nCPU count: {os.cpu_count()}\n'
-                                                       f'Working dir: {os.getcwd()}\nLogin: {osgetlogin}\n'
-                                                       f'CPU usage: {psutil.cpu_percent()}%\n'
-                                                       f'CPU Freq: {int(psutil.cpu_freq().current)}mhz\nRAM Usage:\nTotal: '
-                                                       f'{psutil.virtual_memory().total // 1000000}mb\nUsed: '
-                                                       f'{psutil.virtual_memory().used // 1000000}mb\nFree: '
-                                                       f'{psutil.virtual_memory().free // 1000000}mb\nUtilisation: '
-                                                       f'{psutil.virtual_memory().percent}%\nDisk Usage:\nTotal: '
-                                                       f'{round(psutil.disk_usage("/")[0] / 1000000000, 1)}GB\nUsed: '
-                                                       f'{round(psutil.disk_usage("/")[1] / 1000000000, 1)}GB\nFree: '
-                                                       f'{round(psutil.disk_usage("/")[2] / 1000000000, 1)}GB\nUtilisation: '
-                                                       f'{psutil.disk_usage("/")[3]}%\nPython Version: '
-                                                       f'{platform.python_version()}\nPy-cord Version: '
-                                                       f'{discord.__version__}```\u200b', inline=False)
-
+        cpu_model_filtered = re.sub(r"\(.\)|\(..\)| CPU |@ ....GHz", "", cpuinfo.get_cpu_info()["brand_raw"])
         shard_ping = "Not Available"
         shard_name = "Not Available"
         shard_id = "Not Available"
@@ -74,6 +59,25 @@ class Information(ext.Cog):
             shard_id = str(shard_info.id + 1)
         except:
             pass
+        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Information", "blueinfo"),
+                              description="\u200b", colour=embed_colour)
+        embed.add_field(name='Host statistics:', value=f'```OS: {re.sub(r"-", " ", platform.platform(aliased=True))}\n'
+                                                       f'Working dir: {os.getcwd()}\n'
+                                                       f'Python Version: {platform.python_version()}\n'
+                                                       f'Py-cord Version: {discord.__version__}```\u200b', inline=False)
+
+        embed.add_field(name='CPU:', value=f'```{cpu_model_filtered}\n'
+                                           f'Usage: {psutil.cpu_percent()}%\n'
+                                           f'Freq: {round(cpuinfo.get_cpu_info()["hz_actual"][0] // 1000000000, 2)}GHz\n'
+                                           f'Cores: {os.cpu_count()}```\u200b')
+        embed.add_field(name='RAM:', value=f'```Free: {round(psutil.virtual_memory().free // 1000000000, 1)}GB\n'
+                                           f'Used: {round(psutil.virtual_memory().used // 1000000000, 1)}GB\n'
+                                           f'Total: {round(psutil.virtual_memory().total // 1000000000, 1)}GB\n'
+                                           f'Usage: {psutil.virtual_memory().percent}%```\u200b')
+        embed.add_field(name='Disk:', value=f'```Free: {round(psutil.disk_usage("/")[2] / 1000000000, 1)}GB\n'
+                                            f'Used: {round(psutil.disk_usage("/")[1] / 1000000000, 1)}GB\n'
+                                            f'Total: {round(psutil.disk_usage("/")[0] / 1000000000, 1)}GB\n'
+                                            f'Usage: {psutil.disk_usage("/")[3]}%```\u200b')
 
         embed.add_field(name='Bot statistics:', value=f'```'
                                                       f'Shard: {shard_name}\n'
@@ -86,22 +90,18 @@ class Information(ext.Cog):
                                                            f'Shard: {shard_ping}\n'
                                                            f'Actual: ...\n'
                                                            f'```\u200b', inline=True)
-
-        # TODO: encode this dumb thing into a dumbass bytes object for this stupid standard library why the f does EVERTYTHING NEED TO BE A BYTES OBJECT BUT THERES NO WAY TO MAKE IT A BYTES OBJECT WITHOUT COPYING TEXT TO AN NTFS DRIVE ON MACOS TO USE A BOOP APP ON MACOS OMG I HATE THIS RAAAAAAAAAAA HO HE HA
-        # embed.add_field(name='Made with ❤ by:', value=f'```\nDippyshere\nJean1398reborn\nhttps://github.com/dippyshere/stw-daily\n{self.client.a[0]}```\u200b', inline=False)
-        eval(bytes.fromhex(
-            "656D6265642E6164645F6669656C64286E616D653D274D6164652077697468203A68656172743A2062793A272C2076616C75653D66276060605C6E446970707973686572655C6E4A65616E313339387265626F726E5C6E68747470733A2F2F6769746875622E636F6D2F646970707973686572652F7374772D6461696C795C6E7B73656C662E636C69656E742E615B305D7D6060605C7532303062272C20696E6C696E653D46616C736529"))
+        eval(bytes.fromhex("656D6265642E6164645F6669656C64286E616D653D274D616465207769746820E29DA42062793A272C2076616C75653D66276060605C6E446970707973686572655C6E4A65616E313339387265626F726E5C6E68747470733A2F2F6769746875622E636F6D2F646970707973686572652F7374772D6461696C795C6E7B6261736536342E6236346465636F64652873656C662E636C69656E742E6163636573735B305D292E6465636F646528227574662D3822297D6060605C7532303062272C20696E6C696E653D46616C736529"))
         embed = await stw.add_requested_footer(ctx, embed)  # there are two of you ? ;o  ;o yay
         embed = await stw.set_thumbnail(self.client, embed, "info")
-
+        await asyncio.sleep(0.25)
         before = time.monotonic()
-        msg = await stw.slash_send_embed(ctx, embed)
+        msg = await stw.slash_edit_original(ctx, load_msg, embed)
         ping = (time.monotonic() - before) * 1000
         embed.set_field_at(-2, name='Latency Information:', value=f'```Websocket: {websocket_ping}\n'
                                                                   f'Shard: {shard_ping}\n'
                                                                   f'Actual: {int(ping)}ms```\u200b', inline=True)
 
-        await asyncio.sleep(4)
+        await asyncio.sleep(2)
         await stw.slash_edit_original(ctx, msg, embed)
 
     @ext.command(name='info',
