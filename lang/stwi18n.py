@@ -64,7 +64,7 @@ class I18n:
         try:
             # format the string with arguments
             return string.format(*args)
-        except IndexError as e:
+        except IndexError:
             # if the string has no arguments but arguments were given, just return the string
             return string
 
