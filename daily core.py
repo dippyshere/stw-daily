@@ -80,6 +80,8 @@ def main():
         "llamas",
         # "expeditions",
         "status",
+        "profile_dumper",
+        "daily_xp",
     ]  # why no ext.bongodb :( doot doot doot doot
 
     for extension in extensions:

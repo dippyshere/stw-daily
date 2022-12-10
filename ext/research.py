@@ -331,6 +331,9 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
             check_stw = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
             print(e, "no research stat, but daily reward; must have zero research stats", json_response)
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
+            # dippy note here - after some investigation, this condition is entered when the stats are missing (due to being level 0 / not unlocked yet)
+            # it should be when all stats are missing, but this is entered when 1 stat is missing, we should check which stats are missing and assign to level 0
+            # TODO: check which stats are missing and assign to level 0
             current_levels = {'fortitude': 0, 'offense': 0, 'resistance': 0, 'technology': 0}
             pass
         except:

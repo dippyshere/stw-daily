@@ -37,6 +37,8 @@ with open('ext/DataTables/BannerColorMap.json') as f:
     BannerColorMap = orjson.loads(f.read())
 with open('ext/DataTables/BannerColors.json') as f:
     BannerColors = orjson.loads(f.read())
+with open('ext/DataTables/STW_Accolade_Tracker.json') as f:
+    max_daily_stw_accolade_xp = orjson.loads(f.read())[0]["Properties"]["MaxDailyXP"]
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
@@ -496,7 +498,7 @@ async def exchange_games(client, auth_token, game="fn"):
     return await client.stw_session.post(url, headers=h, data=d)
 
 
-async def processing_embed(client, ctx, title="Logging in and Processing", description="This won\'t be long..."):
+async def processing_embed(client, ctx, title="Logging in and Processing", description="This won\'t take long..."):
     """
     Constructs the processing embed
 
