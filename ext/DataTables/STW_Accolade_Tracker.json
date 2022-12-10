@@ -1,0 +1,12 @@
+[
+    {
+        "Type": "FortTrackingTokenType",
+        "Name": "STW_Accolade_Tracker",
+        "Properties": {
+            "MaxDailyXP": 280000,
+            "MaxStackSize": {
+                "Value": 32767.0
+            }
+        }
+    }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "Type": "StWFortAccoladeItemDefinition",
+    "Name": "Accoladeid_STW_Quest_HitTheRoad_Daily",
+    "Properties": {
+      "AccoladeType": "EFortAccoladeType::Accolade",
+      "Priority": "EXPEventPriorityType::Feed",
+      "XpRewardAmount": {
+        "Value": 1.0,
+        "Curve": {
+          "CurveTable": {
+            "ObjectName": "CurveTable STWAccoladeQuestXP",
+            "ObjectPath": "/SaveTheWorld/Items/STWAccolades/Datatables/STWAccoladeQuestXP.0"
+          },
+          "RowName": "Quest_HitTheRoad_Daily"
+        }
+      },
+      "AwardedSoundCue": {
+        "ObjectName": "SoundCue Fort_XP_Popup_Cue",
+        "ObjectPath": "/Game/Sounds/Fort_UI_Sounds/Gameplay/XP/Fort_XP_Popup_Cue.0"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "A9BE9D004522BB814E86738159012A44",
+        "SourceString": "Battle Pass XP"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "F9F13B444DFABC98106F61808B22FA79",
+        "SourceString": "Battle Pass XP Earned"
+      },
+      "FrontendPreviewScale": 1.4,
+      "GameplayTags": [
+        "Accolade.Metadata.Survival",
+        "Accolade.Metadata.NoRestedXPContribution"
+      ],
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_S.T_UI_FNBR_XPeverywhere_S",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_L.T_UI_FNBR_XPeverywhere_L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Common",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]
