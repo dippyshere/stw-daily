@@ -138,6 +138,7 @@ async def on_ready():
 
     await client.watch_module.watch_stw_extensions()
 
+
 @client.event
 async def on_message(message):
     """
