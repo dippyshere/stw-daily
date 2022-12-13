@@ -6,11 +6,14 @@
 
 # A list of error messages the bot can pick from for the error embeds.
 error_messages = [
-    "That wasn't supposed to happen",
     "Whoops!",
-    "We hit a roadblock",
     "Not the llama you're looking for",
-    "Uh-oh! Something goofed"
+    "Drat! We're Sorry",
+    "Uh-oh! Something goofed",
+    "That wasn't supposed to happen",
+    "There was a problem",
+    "We hit a roadblock",
+    "There was an error"
 ]
 
 
