@@ -9,6 +9,7 @@ This file is the cog for the news command. It is used to get the latest news fro
 import discord
 import discord.ext.commands as ext
 from discord import Option
+import asyncio
 
 import stwutil as stw
 
@@ -18,7 +19,7 @@ class NewsView(discord.ui.View):
     The UI View for the news command
     """
 
-    def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode):
+    def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode, og_msg):
         super().__init__()
         self.client = client
         self.ctx = ctx
@@ -30,6 +31,7 @@ class NewsView(discord.ui.View):
         self.stw_pages_length = stw_pages_length
         self.br_news = br_news
         self.br_pages_length = br_pages_length
+        self.message = og_msg
 
         self.button_emojis = {
             'prev': self.client.config["emojis"]["left_icon"],
@@ -70,8 +72,7 @@ class NewsView(discord.ui.View):
             embed = await stw.add_requested_footer(self.ctx, embed)
         for button in self.children:
             button.disabled = True
-        await self.message.edit(embed=embed, view=self)
-        return
+        return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
     async def change_page(self, interaction, action):
         """
@@ -209,6 +210,9 @@ class News(ext.Cog):
         Returns:
             None
         """
+
+        load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx,
+                                                                              title="Fetching the latest news"))
         stw_news_req = await stw.get_stw_news(self.client)
         stw_news_json = await stw_news_req.json(content_type=None)
         stw_news = stw_news_json["news"]["messages"]
@@ -224,10 +228,10 @@ class News(ext.Cog):
             embed = await stw.create_news_page(self, ctx, stw_news, page, stw_pages_length)
         embed = await stw.set_thumbnail(self.client, embed, "newspaper")
         embed = await stw.add_requested_footer(ctx, embed)
-
         news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
-                             mode)
-        await stw.slash_send_embed(ctx, embed, news_view)
+                             mode, load_msg)
+        await asyncio.sleep(0.25)
+        await stw.slash_edit_original(ctx, load_msg, embed, news_view)
         return
 
     @ext.slash_command(name='news',
