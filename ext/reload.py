@@ -49,7 +49,7 @@ class Reload(ext.Cog):
     @ext.command(name='rlcg',
                  aliases=['rl', 'reload', '/rlcg'],
                  extras={'emoji': "experimental", "args": {'ext': 'The cog to reload'}, "dev": True},
-                 brief="Reload STW Daily extensions (cogs)",
+                 brief="Reloads STW Daily extensions (cogs)",
                  description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot")
     async def rlcg(self, ctx, extension):
         """
@@ -90,7 +90,7 @@ class Reload(ext.Cog):
     @ext.command(name='lcg',
                  aliases=['lc', 'load', '/lcg'],
                  extras={'emoji': "experimental", "args": {'ext': 'The cog to load'}, "dev": True},
-                 brief="Load STW Daily extensions (cogs)",
+                 brief="Loads STW Daily extensions (cogs)",
                  description="Load STW Daily extensions (cogs) to apply changes without restarting the bot")
     async def lcg(self, ctx, extension):
         """
