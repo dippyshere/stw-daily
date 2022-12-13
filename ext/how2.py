@@ -15,7 +15,7 @@ import stwutil as stw
 # view for the invite command.
 class HowToUseView(discord.ui.View):
     """
-    discord UI View for the invite command.
+    discord UI View for the how to use command.
     """
 
     def __init__(self, client, author, ctx):
@@ -34,7 +34,7 @@ class HowToUseView(discord.ui.View):
 
 class HowTo(ext.Cog):
     """
-    The invite command.
+    The how to command.
     """
 
     def __init__(self, client):
@@ -76,6 +76,14 @@ class HowTo(ext.Cog):
         # message = await channel.fetch_message(813715483928559656)
         # # edit message
         # await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
+        # # get channel from id
+        # channel = self.client.get_channel(757768833946877992)
+        # # get message from id
+        # message = await channel.fetch_message(1050835103179341960)
+        # # edit message
+        # await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
+        # await ctx.channel.send(
+        #     f"{ctx.author.mention} I've updated the how to use embed in <#758561253156847629> and <#757768833946877992>.")
 
         invite_view = HowToUseView(self.client, ctx.author, ctx)
         await stw.slash_send_embed(ctx, embed, invite_view)
@@ -90,7 +98,7 @@ class HowTo(ext.Cog):
                  description="This command will send a compact how to instruction embed for use in the support server")
     async def how2(self, ctx):
         """
-        This function is the entry point for the invite command when called traditionally
+        This function is the entry point for the how to use command when called traditionally
 
         Args:
             ctx (discord.ext.commands.Context): The context of the command call
