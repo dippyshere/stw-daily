@@ -41,8 +41,8 @@ class Information(ext.Cog):
             ctx: The context of the command.
         """
 
-        load_msg = await stw.slash_send_embed(ctx,
-                                              await stw.processing_embed(self.client, ctx, title="Crunching the numbers"))
+        load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx,
+                                                                              title="Crunching the numbers"))
 
         embed_colour = self.client.colours["generic_blue"]
         cpu_model_filtered = re.sub(r"\(.\)|\(..\)| CPU |@ ....GHz", "", cpuinfo.get_cpu_info()["brand_raw"])
@@ -61,43 +61,44 @@ class Information(ext.Cog):
             pass
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Information", "blueinfo"),
                               description="\u200b", colour=embed_colour)
-        embed.add_field(name='Host statistics:', value=f'```OS: {re.sub(r"-", " ", platform.platform(aliased=True))}\n'
-                                                       f'Working dir: {os.getcwd()}\n'
-                                                       f'Python Version: {platform.python_version()}\n'
-                                                       f'Py-cord Version: {discord.__version__}```\u200b', inline=False)
+        embed.add_field(name='Host statistics:', value=f'```yaml\nOS: {re.sub(r"-", " ", platform.platform(aliased=True))} '
+                              f'{platform.win32_edition() if platform.system() == "Windows" else ""}\n'
+                              f'Working dir: {os.getcwd()}\n'
+                              f'Python Version: {platform.python_version()}\n'
+                              f'Py-cord Version: {discord.__version__}```\u200b', inline=False)
 
-        embed.add_field(name='CPU:', value=f'```{cpu_model_filtered}\n'
+        embed.add_field(name='CPU:', value=f'```yaml\n{cpu_model_filtered}\n'
                                            f'Usage: {psutil.cpu_percent()}%\n'
                                            f'Freq: {round(cpuinfo.get_cpu_info()["hz_actual"][0] // 1000000000, 2)}GHz\n'
                                            f'Cores: {os.cpu_count()}```\u200b')
-        embed.add_field(name='RAM:', value=f'```Free: {round(psutil.virtual_memory().free // 1000000000, 1)}GB\n'
+        embed.add_field(name='RAM:', value=f'```yaml\nFree: {round(psutil.virtual_memory().free // 1000000000, 1)}GB\n'
                                            f'Used: {round(psutil.virtual_memory().used // 1000000000, 1)}GB\n'
                                            f'Total: {round(psutil.virtual_memory().total // 1000000000, 1)}GB\n'
                                            f'Usage: {psutil.virtual_memory().percent}%```\u200b')
-        embed.add_field(name='Disk:', value=f'```Free: {round(psutil.disk_usage("/")[2] / 1000000000, 1)}GB\n'
+        embed.add_field(name='Disk:', value=f'```yaml\nFree: {round(psutil.disk_usage("/")[2] / 1000000000, 1)}GB\n'
                                             f'Used: {round(psutil.disk_usage("/")[1] / 1000000000, 1)}GB\n'
                                             f'Total: {round(psutil.disk_usage("/")[0] / 1000000000, 1)}GB\n'
                                             f'Usage: {psutil.disk_usage("/")[3]}%```\u200b')
 
-        embed.add_field(name='Bot statistics:', value=f'```'
+        embed.add_field(name='Bot statistics:', value=f'```yaml\n'
                                                       f'Shard: {shard_name}\n'
                                                       f'Shard Id: {shard_id}\n'
                                                       f'Total Shards: {shards}\n'
                                                       f'Guild Count: {len(self.client.guilds)}```\u200b')
 
         websocket_ping = '{0}'.format(int(self.client.latency * 100)) + ' ms'
-        embed.add_field(name='Latency Information:', value=f'```Websocket: {websocket_ping}\n'
+        embed.add_field(name='Latency Information:', value=f'```yaml\nWebsocket: {websocket_ping}\n'
                                                            f'Shard: {shard_ping}\n'
                                                            f'Actual: ...\n'
                                                            f'```\u200b', inline=True)
-        eval(bytes.fromhex("656D6265642E6164645F6669656C64286E616D653D274D616465207769746820E29DA42062793A272C2076616C75653D66276060605C6E446970707973686572655C6E4A65616E313339387265626F726E5C6E68747470733A2F2F6769746875622E636F6D2F646970707973686572652F7374772D6461696C795C6E7B6261736536342E6236346465636F64652873656C662E636C69656E742E6163636573735B305D292E6465636F646528227574662D3822297D6060605C7532303062272C20696E6C696E653D46616C736529"))
+        eval(bytes.fromhex("656D6265642E6164645F6669656C64286E616D653D274D616465207769746820E29DA4EFB88F2062793A272C2076616C75653D662760606079616D6C5C6E446970707973686572655C6E4A65616E313339385265626F726E5C6E68747470733A2F2F6769746875622E636F6D2F646970707973686572652F7374772D6461696C795C6E7B6261736536342E6236346465636F64652873656C662E636C69656E742E6163636573735B305D292E6465636F646528227574662D3822297D20287B73656C662E636C69656E742E6163636573735B345D7D296060605C7532303062272C20696E6C696E653D46616C736529"))
         embed = await stw.add_requested_footer(ctx, embed)  # there are two of you ? ;o  ;o yay
         embed = await stw.set_thumbnail(self.client, embed, "info")
         await asyncio.sleep(0.25)
         before = time.monotonic()
         msg = await stw.slash_edit_original(ctx, load_msg, embed)
         ping = (time.monotonic() - before) * 1000
-        embed.set_field_at(-2, name='Latency Information:', value=f'```Websocket: {websocket_ping}\n'
+        embed.set_field_at(-2, name='Latency Information:', value=f'```yaml\nWebsocket: {websocket_ping}\n'
                                                                   f'Shard: {shard_ping}\n'
                                                                   f'Actual: {int(ping)}ms```\u200b', inline=True)
 
