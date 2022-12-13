@@ -687,6 +687,7 @@ async def device_auth_request(client, account_id, token):
     url = client.config["endpoints"]["device_auth"].format(account_id)
     print(url, token)
 
+
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn"):
     """
     Request a profile from epic api
@@ -720,6 +721,235 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None, pr
         return await client.stw_session.post(url, headers=header, data=data)
     else:
         return await client.stw_session.post(url, headers=header, json=json)
+
+
+async def shop_request(client, token):
+    """
+    Makes a request to the shop endpoint
+
+    Args:
+        client: discord client
+        token: The auth token to use
+
+    Returns:
+        json response from the endpoint
+    """
+
+    h = {
+        "Content-Type": "application/json",
+        "Authorization": f"bearer {token}"
+    }
+
+    async with client.stw_session.get(client.config["endpoints"]["store"], headers=h) as resp:
+        return orjson.loads(await resp.read())
+
+
+async def get_llama_store(shop):
+    """
+    Gets the llama store from the shop request
+
+    Args:
+        shop: The shop request
+
+    Returns:
+        The llama store
+    """
+    for store in shop["storefronts"]:
+        if store["name"] == "CardPackStorePreroll":
+            return store
+    return None
+
+
+async def free_llama_count(store):
+    """
+    Gets the amount of free llamas in the store, and any related info if available
+
+    Args:
+        store: The llama store from the shop query
+
+    Returns:
+        The amount of free llamas
+    """
+    free_llamas = []
+    for entry in store["catalogEntries"]:
+        if "Always" not in entry["devName"] and entry["prices"][0]["finalPrice"] == 0:
+            free_llamas.append(entry)
+    return len(free_llamas), free_llamas
+
+
+async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
+    """
+    Claims the free llamas in the store
+
+    Args:
+        client: The client
+        auth_entry: The auth entry to use
+        store: The llama store from the shop query
+        prerolled_offers: The response to the populate prerolled offers request
+
+    Returns:
+        The response from the request
+    """
+    already_opened_free_llamas = 0
+    free_llamas_count, free_llamas_list = await free_llama_count(store)
+    if not free_llamas_count:
+        return None
+    else:
+        items_from_llamas = []
+        opened_llamas = 0
+        for llama in free_llamas_list:
+            llama_to_claim_offer_id = llama['offerId']
+            try:
+                llama_to_claim_title = llama['title']
+            except:
+                llama_to_claim_title = []
+            llama_to_claim_template_id = llama['itemGrants'][0]['templateId']
+            while True:
+                req_populate_llamas = prerolled_offers  # llamas
+                llama_tier = []
+                for key in req_populate_llamas['profileChanges'][0]['profile']['items']:
+                    if req_populate_llamas['profileChanges'][0]['profile']['items'][key]['templateId'].lower().startswith("prerolldata") and req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes']['offerId'] == llama_to_claim_offer_id:
+                        try:
+                            llama_tier = req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes']['highest_rarity']
+                        except:
+                            llama_tier = 0
+                json = {"offerId": llama_to_claim_offer_id,
+                        "purchaseQuantity": 1,
+                        "currency": "GameItem",
+                        "currencySubType": "AccountResource:currency_xrayllama",
+                        "expectedTotalPrice": 0,
+                        "gameContext": "Frontend.None"}
+                req_buy_free_llama = await profile_request(client, "purchase", auth_entry, json=json,
+                                                           profile_id="common_core")
+                req_buy_free_llama_json = orjson.loads(await req_buy_free_llama.read())
+                if "errorMessage" in req_buy_free_llama_json:
+                    if "limit of" in req_buy_free_llama_json['errorMessage']:
+                        if opened_llamas == 0:
+                            already_opened_free_llamas += 1
+                    if "because fulfillment" in req_buy_free_llama_json['errorMessage']:
+                        "account is unable to claim free llama"
+                    break
+                else:
+                    "opening llama_to_claim_name tier llama_tier"
+                    llama_loot = req_buy_free_llama_json['notifications'][0]['lootResult']['items']
+                    llama_loot_count = 0
+                    opened_llamas += 1
+                    for key in llama_loot:
+                        template_id = key['itemType']
+                        item_guid = key['itemGuid']
+                        item_quantity = key['quantity']
+                        item_name = template_id
+                        try:
+                            item_rarity = 'rarity'
+                            item_type = 'type'
+                        except:
+                            item_rarity = "Unknown rarity"
+                            item_type = "Unknown type"
+                        llama_loot_count += 1
+                        if item_rarity in ("common", "uncommon", "rare", "epic"):
+                            items_from_llamas.append(
+                                {"itemName": item_name, "itemType": item_type, "templateId": template_id,
+                                 "itemGuid": item_guid, "itemRarity": item_rarity, "itemQuantity": item_quantity})
+                        print(f"{llama_loot_count}: {item_rarity} | {item_type}: {item_quantity}x {item_name}")
+        if int(already_opened_free_llamas) == free_llamas_count:
+            "alreadyclaimed"
+        else:
+            if opened_llamas > 0:
+                "successfully opened opened_llamas"
+
+
+async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already_opened_free_llamas, free_llamas_count,
+                                  recycle_config=None):
+    """
+    Recycles the free llama loot
+
+    Args:
+        client: The client
+        auth_entry: The auth entry to use
+        items_from_llamas: The items from the free llama loot
+        already_opened_free_llamas: The amount of free llamas already opened
+        free_llamas_count: The amount of free llamas
+        recycle_config: The config for what to recycle
+
+    Returns:
+        The response from the request
+    """
+
+    if recycle_config is None:
+        recycle_config = {'weapon': [''], 'trap': [''], 'survivor': [''], 'defender': [''], 'hero': ['']}
+    rarities = {"off": "",
+                "common": "common",
+                "uncommon": "common, uncommon",
+                "rare": "common, uncommon, rare",
+                "epic": "common, uncommon, rare, epic"
+                }
+    item_rarities = {
+        "weapon": rarities["off".lower()].split(", "),
+        "trap": rarities["off".lower()].split(", "),
+        "survivor": rarities["off".lower()].split(", "),
+        "defender": rarities["off".lower()].split(", "),
+        "hero": rarities["off".lower()].split(", ")
+    }
+    resources_message = ""
+
+    tracked_resources = ["AccountResource:heroxp", "AccountResource:personnelxp", "AccountResource:phoenixxp",
+                         "AccountResource:phoenixxp_reward", "AccountResource:reagent_alteration_ele_fire",
+                         "AccountResource:reagent_alteration_ele_nature", "AccountResource:reagent_alteration_ele_water",
+                         "AccountResource:reagent_alteration_gameplay_generic",
+                         "AccountResource:reagent_alteration_generic", "AccountResource:reagent_alteration_upgrade_r",
+                         "AccountResource:reagent_alteration_upgrade_sr",
+                         "AccountResource:reagent_alteration_upgrade_uc",
+                         "AccountResource:reagent_alteration_upgrade_vr", "AccountResource:reagent_c_t01",
+                         "AccountResource:reagent_c_t02", "AccountResource:reagent_c_t03",
+                         "AccountResource:reagent_c_t04", "AccountResource:reagent_evolverarity_r",
+                         "AccountResource:reagent_evolverarity_sr", "AccountResource:reagent_evolverarity_vr",
+                         "AccountResource:reagent_people", "AccountResource:reagent_promotion_heroes",
+                         "AccountResource:reagent_promotion_survivors", "AccountResource:reagent_promotion_traps",
+                         "AccountResource:reagent_promotion_weapons", "AccountResource:reagent_traps",
+                         "AccountResource:reagent_weapons", "AccountResource:schematicxp"]
+
+    if int(already_opened_free_llamas) != free_llamas_count:
+        items_to_recycle = []
+        item_guids_to_recycle = []
+        recycle_resources = []
+        recycled_items_count = 0
+        recycle_resources_count = 0
+        for item in items_from_llamas:
+            item_type = item['itemType']
+            item_rarity = item['itemRarity']
+            item_guid = item['itemGuid']
+            try:
+                if item_rarity in item_rarities[item_type]:
+                    item_guids_to_recycle.append(item_guid)
+                    items_to_recycle.append(item)
+            except:
+                pass
+        if len(item_guids_to_recycle) != 0:
+            # free llamas
+            # Recycling and retiring selected items from opened_llamas free llamas...
+            req_get_resources = await profile_request(client, "query", auth_entry)
+            req_get_resources_json = orjson.loads(await req_get_resources.read())
+            for resource in tracked_resources:
+                for item in req_get_resources_json['profileChanges'][0]['profile']['items']:
+                    if req_get_resources_json['profileChanges'][0]['profile']['items'][item]['templateId'] == resource:
+                        recycle_resources.append({"itemGuid": item,
+                                                  "templateId": resource,
+                                                  "quantity": req_get_resources_json['profileChanges'][0]['profile']['items'][item]['quantity']
+                                                  })
+            json = {"targetItemIds": item_guids_to_recycle}
+            recycle_request = await profile_request(client, "batch_recycle", auth_entry, json=json)
+            recycle_request_json = orjson.loads(await recycle_request.read())
+            req_get_resources2 = await profile_request(client, "query", auth_entry)
+            req_get_resources2_json = orjson.loads(await req_get_resources2.read())
+            # resources receive
+            for resource in recycle_resources:
+                resource_quantity = int(
+                    req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']]['quantity']) - int(resource['quantity'])
+                if resource_quantity > 0:
+                    recycle_resources_count += 1
+                    resources_message += f"{recycle_resources_count}: {resource_quantity}x {resource['itemName']}. " \
+                                        f"Total ammount: {req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']]['quantity']}\n"
+            print(resources_message)
 
 
 async def validate_existing_session(client, token):
@@ -2079,7 +2309,7 @@ async def generate_banner(client, embed, homebase_icon, homebase_colour, author_
     banner_url = f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png"
     async with client.stw_session.get(banner_url) as resp:
         data = io.BytesIO(await resp.read())
-        banner_screen = blendmodes.blend.blendLayers(Image.open(data).convert("RGB"),
+        banner_screen = blendmodes.blend.blendLayers(Image.open(data).convert("RGB").resize((256, 256)),
                                                      Image.new("RGB", (256, 256),
                                                                await get_banner_colour(homebase_colour, "rgb")),
                                                      blendmodes.blend.BlendType.SCREEN)
@@ -2122,3 +2352,31 @@ async def research_stat_cost(stat, level):
         tuple: The cost to upgrade the stat
     """
     return get_rating(data_table=ResearchSystem, row=f"{stat}_cost", time_input=sorted((0, level + 1, 120))[1])
+
+
+def convert_iso_to_unix(iso_timestamp):
+    """
+    Converts an ISO timestamp to a unix timestamp rounded to the nearest second
+
+    Args:
+        iso_timestamp: ISO timestamp to convert
+
+    Returns:
+        unix timestamp rounded to the nearest second
+    """
+    return round(datetime.datetime.fromisoformat(iso_timestamp).timestamp())
+
+
+def get_progress_bar(start, end, length):
+    """
+    Generates a progress bar
+
+    Args:
+        start: start of the progress bar
+        end: end of the progress bar
+        length: length of the progress bar
+
+    Returns:
+        progress bar string
+    """
+    return f"[{'=' * round((start / end) * length)}{'-' * (length - round((start / end) * length))}]"
