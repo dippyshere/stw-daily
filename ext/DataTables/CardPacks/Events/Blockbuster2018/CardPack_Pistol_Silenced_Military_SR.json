@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Pistol_Silenced_Military_SR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Pistol_Silenced_Military_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_BlockbusterEvent_IconMask.T_CardPack_BlockbusterEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "40F1CF014979F0CB544416A39047FFC4",
+        "SourceString": "Whisper .45 Schematic"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "D55ED17F40FF8A8FF642F982276E61E7",
+        "SourceString": "Whisper .45 Schematic"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/MilitaryCore/T-Icon-Weapons-SK-45-Silenced.T-Icon-Weapons-SK-45-Silenced",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/MilitaryCore/T-Icon-Weapons-SK-45-Silenced-L.T-Icon-Weapons-SK-45-Silenced-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

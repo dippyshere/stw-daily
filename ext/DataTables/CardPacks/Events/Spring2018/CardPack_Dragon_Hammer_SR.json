@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Dragon_Hammer_SR",
+    "Properties": {
+      "LootTierGroup": "Cardpack_Dragon_Blunt_Hammer_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "2ADD434D4EBB24569B67FC9171BF2F78",
+        "SourceString": "Dragon's Fist"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "1D952D294FDD95A57F19D49164FAC614",
+        "SourceString": "Hardware: Heavy. A slow-swinging hammer that deals fire damage with powerful knockback. Overhead Smash: Heavy attack that does increased damage and knockback. Fire damage is effective against nature enemies, but weak against water enemies."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Dragon-Hammer.T-Icon-Weapons-SK-Dragon-Hammer",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Dragon-Hammer-L.T-Icon-Weapons-SK-Dragon-Hammer-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

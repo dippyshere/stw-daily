@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Sniper_Standard_Winter_SR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Sniper_Standard_Winter_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "365BF46C4E70447905EF37805316DBA9",
+        "SourceString": "Frostbite"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "024E311345EC368F9BB74DA78A985747",
+        "SourceString": "Sniper Rifle: Semi-Automatic. A mid to long range rifle that deals good damage and can be fired quickly. Scoped for additional down sights accuracy."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Winter/T-Icon-Weapons-Arctic-Sniper.T-Icon-Weapons-Arctic-Sniper",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Winter/T-Icon-Weapons-Arctic-Sniper-L.T-Icon-Weapons-Arctic-Sniper-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

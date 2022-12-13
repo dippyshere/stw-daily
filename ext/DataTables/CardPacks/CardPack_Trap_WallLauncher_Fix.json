@@ -1,0 +1,49 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Trap_WallLauncher_Fix",
+    "Properties": {
+      "LootTierGroup": "CardPack_Trap_WallLauncher_Fix",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Trap_IconMask.T_CardPack_Trap_IconMask",
+        "SubPathString": ""
+      },
+      "PackPersonality": {
+        "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "EC7FE74D45850A0D9E4308AC4D68214C",
+        "SourceString": "Uncommon Trap Schematic"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "7867C1A9483133188B234FA02C50ADAF",
+        "SourceString": "One random trap schematic."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/ItemCategories/T-Icon-Traps-128.T-Icon-Traps-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/ItemCategories/T-Icon-Traps-CARD.T-Icon-Traps-CARD",
+        "SubPathString": ""
+      },
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

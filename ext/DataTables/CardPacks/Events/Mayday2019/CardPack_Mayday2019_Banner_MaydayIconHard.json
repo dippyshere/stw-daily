@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Mayday2019_Banner_MaydayIconHard",
+    "Properties": {
+      "LootTierGroup": "CardPack_Mayday2019_Banner_MaydayIconHard",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "E8A04C68442D4E96367957A058124BC7",
+        "SourceString": "Hit the Road Event Banner"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
+        "SourceString": "An exclusive homebase banner!"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season10/Mayday/T-Banners-Icons-MaydayIconHard.T-Banners-Icons-MaydayIconHard",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season10/Mayday/T-Banners-Icons-MaydayIconHard-L.T-Banners-Icons-MaydayIconHard-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

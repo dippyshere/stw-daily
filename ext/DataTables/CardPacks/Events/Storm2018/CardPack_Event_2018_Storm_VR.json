@@ -1,0 +1,42 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Event_2018_Storm_VR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Event_2018_Storm_Inner",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "4CD9A392427791513A9695ABCDE661A1",
+        "SourceString": "Epic Item"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "0FA153984105BCD6F144DF98B8DD77B3",
+        "SourceString": "Choose one random item."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Epic",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

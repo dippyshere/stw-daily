@@ -1,0 +1,43 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Event_2018_Storm_SR",
+    "Properties": {
+      "LootTier": 1,
+      "LootTierGroup": "CardPack_Event_2018_Storm_Inner",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "58BF50F24BD6CD24618952BB1357DE69",
+        "SourceString": "Legendary Item"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "45165E87408479A22CE37D8AE2F3A005",
+        "SourceString": "Choose one random item."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

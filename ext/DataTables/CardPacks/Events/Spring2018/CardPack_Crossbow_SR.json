@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Crossbow_SR",
+    "Properties": {
+      "LootTierGroup": "Cardpack_Valentines_Sniper_Crossbow_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "A78BCB57498675B872B7028FE722D422",
+        "SourceString": "Heartbreaker"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "63DEA5B049D3EE91ABF9EAAB3BC90719",
+        "SourceString": "Sniper Rifle: Crossbow. Fires an arrow that drops over time and pierces through enemies."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Crossbow-Valentines.T-Icon-Weapons-SK-Crossbow-Valentines",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Crossbow-Valentines-L.T-Icon-Weapons-SK-Crossbow-Valentines-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

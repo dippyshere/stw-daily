@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Vindertech_Sniper_Standard_Scope_VR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Vindertech_Sniper_Standard_Scope_VR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "272576B04965021A4189D5BC55306B10",
+        "SourceString": "Vindertech Sniper Rifle Schematic"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "FFCEB68143CD274B8B8F6DAFDEE4B599",
+        "SourceString": "Sniper Rifle: Semi-Automatic. A mid to long range rifle that deals good damage and can be fired quickly. Scoped for additional down sights accuracy."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Sniper.T-Icon-Weapons-SK-VinderTech-Sniper",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Sniper-L.T-Icon-Weapons-SK-VinderTech-Sniper-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Epic",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

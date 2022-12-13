@@ -1,0 +1,50 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_HalloweenWorker_VeryRare",
+    "Properties": {
+      "LootTierGroup": "CardPack_CB_Halloween_2017_Worker_VeryRare",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Crew_IconMask.T_CardPack_Crew_IconMask",
+        "SubPathString": ""
+      },
+      "PackPersonality": {
+        "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "02EBFD5C4046AB7FC00B70A698CF72D0",
+        "SourceString": "Epic Monster 'Cosplayer'"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "0CD3053F4A2F83230CE3ABB5D06B140B",
+        "SourceString": "A random Epic Monster 'Cosplayer'."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Workers/Generic/GenericWorker_128.GenericWorker_128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Workers/Generic/GenericWorker.GenericWorker",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Epic",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

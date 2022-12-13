@@ -1,0 +1,58 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Bronze_Personnel",
+    "Properties": {
+      "bIsLlama": true,
+      "LootTierGroup": "CardPack_Bronze_Personnel",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Crew_IconMask.T_CardPack_Crew_IconMask",
+        "SubPathString": ""
+      },
+      "PackColor": {
+        "R": 0.38282,
+        "G": 0.68,
+        "B": 0.0,
+        "A": 1.0,
+        "Hex": "FFA6D700"
+      },
+      "PackPersonality": {
+        "AssetPathName": "/Game/Characters/Feedback/Llama_OlTimey_PersonalityPack.Llama_OlTimey_PersonalityPack",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "1BB1F666400A660A3D376390EE018938",
+        "SourceString": "People Llama"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "67D15CFE44F1F1276E735CB07C925EF8",
+        "SourceString": "Yes, it's a people delivery llama. Just make your purchase and move along. Contains at least 7 people. Somehow."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Rare",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

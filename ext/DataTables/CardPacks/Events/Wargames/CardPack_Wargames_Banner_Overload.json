@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Wargames_Banner_Overload",
+    "Properties": {
+      "LootTierGroup": "CardPack_Wargames_Banner_Overload",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "8474ADAD49432E376D4A629F949D0C0B",
+        "SourceString": "Wargames Banner"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
+        "SourceString": "An exclusive homebase banner!"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season9/Wargames/T-Banners-Icons-Overload.T-Banners-Icons-Overload",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season9/Wargames/T-Banners-Icons-Overload-L.T-Banners-Icons-Overload-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

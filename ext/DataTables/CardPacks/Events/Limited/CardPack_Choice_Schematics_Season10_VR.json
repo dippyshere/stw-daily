@@ -1,0 +1,43 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Choice_Schematics_Season10_VR",
+    "Properties": {
+      "bIsChoicePack": true,
+      "LootTierGroup": "CardPack_Choice_Schematics_Season10_VR",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "7BC7FC04442DE99EAAD2E2A1FD02D52C",
+        "SourceString": "Epic Item"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "1FC1346C4C25731ADCC18FA6275C2616",
+        "SourceString": "Choose one of two random items."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Epic",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

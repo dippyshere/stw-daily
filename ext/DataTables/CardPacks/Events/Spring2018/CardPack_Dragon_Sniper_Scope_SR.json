@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Dragon_Sniper_Scope_SR",
+    "Properties": {
+      "LootTierGroup": "Cardpack_Dragon_Sniper_Scope_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "F7EF9AA74A856AED25B41B9F1F150CA9",
+        "SourceString": "Dragon's Claw Schematic"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "E043F1994BCDF4A24AAA1CB8DB8F256B",
+        "SourceString": "Sniper Rifle: Bolt-Action. Powerful and accurate rifle that fires small fireworks that embed in targets and explode shortly after. Fire damage is effective against nature enemies, but weak against water enemies."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Dragon-Sniper.T-Icon-Weapons-SK-Dragon-Sniper",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Dragon-Sniper-L.T-Icon-Weapons-SK-Dragon-Sniper-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

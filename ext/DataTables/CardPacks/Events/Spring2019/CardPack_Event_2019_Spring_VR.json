@@ -1,0 +1,42 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Event_2019_Spring_VR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Event_2019_Spring_Inner",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "C2EBE93B4CBF7B0038D0C1844227E102",
+        "SourceString": "Epic Item"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "0896273741A692CB6C5610AA19AD54B5",
+        "SourceString": "Choose one random item."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Epic",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

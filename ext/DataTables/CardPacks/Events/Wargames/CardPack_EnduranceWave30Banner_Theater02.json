@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_EnduranceWave30Banner_Theater02",
+    "Properties": {
+      "LootTierGroup": "CardPack_EnduranceWave30_BannerT02",
+      "PackImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance02.T-Banners-Icons-Endurance02",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "2205E7994D3C3A179757BC8DA2B91B0A",
+        "SourceString": "Plankerton Endurance Banner"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
+        "SourceString": "An exclusive homebase banner!"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance02.T-Banners-Icons-Endurance02",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance02-L.T-Banners-Icons-Endurance02-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

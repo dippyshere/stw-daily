@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Storm2018_Banner_Hard",
+    "Properties": {
+      "LootTierGroup": "CardPack_Storm2018_Banner_Hard",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_NeonCyberpunkEvent_IconMask.T_CardPack_NeonCyberpunkEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "F255721B4C5983D11A9107B0EED089FC",
+        "SourceString": "Into the Storm Survival Event Banner"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "6F265409432979898699A0857998275F",
+        "SourceString": "An exclusive homebase banner!"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Scorpion.T-Banners-Icons-Scorpion",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Scorpion-L.T-Banners-Icons-Scorpion-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

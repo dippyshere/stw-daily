@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Vindertech_Shotgun_Standard_VR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Vindertech_Shotgun_Standard_VR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "F90D96564B9B2750B8BB2797DB828D01",
+        "SourceString": "Vindertech Scattergun Schematic"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "22D81BE047AA9801177F389BD942616D",
+        "SourceString": "Shotgun: Pump-Action. Deals high damage and knockback at a moderate fire rate. Short range and limited magazine size."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Shotgun.T-Icon-Weapons-SK-VinderTech-Shotgun",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Shotgun-L.T-Icon-Weapons-SK-VinderTech-Shotgun-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Epic",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

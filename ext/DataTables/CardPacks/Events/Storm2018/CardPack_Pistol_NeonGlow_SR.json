@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Pistol_NeonGlow_SR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Pistol_NeonGlow_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_NeonCyberpunkEvent_IconMask.T_CardPack_NeonCyberpunkEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "3F4E395644038FFE8468FF81DC0DB934",
+        "SourceString": "Krypton Pistol Schematic"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "B914D30A4D74EB15571833B285D3DDE7",
+        "SourceString": "Kypton Pistol Schematic."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Pistol.T-Icon-Weapons-SK-Neon-Glow-Pistol",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Pistol-L.T-Icon-Weapons-SK-Neon-Glow-Pistol-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

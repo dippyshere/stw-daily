@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Assault_NeonGlow_SR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Assault_NeonGlow_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_NeonCyberpunkEvent_IconMask.T_CardPack_NeonCyberpunkEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "ACED876849EF1A37DB4B279CE00B8C66",
+        "SourceString": "Argon Assault Schematic"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "CA3E24D64CE451CF24B810A2888D12B3",
+        "SourceString": "Argon Assault Schematic."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Assault.T-Icon-Weapons-SK-Neon-Glow-Assault",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Assault-L.T-Icon-Weapons-SK-Neon-Glow-Assault-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

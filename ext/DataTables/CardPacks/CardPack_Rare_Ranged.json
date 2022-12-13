@@ -1,0 +1,59 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Rare_Ranged",
+    "Properties": {
+      "bIsLlama": true,
+      "LootTierGroup": "CardPack_Rare_Ranged",
+      "DisplayRarityLevel": 2,
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Ranged_IconMask.T_CardPack_Ranged_IconMask",
+        "SubPathString": ""
+      },
+      "PackColor": {
+        "R": 1.0,
+        "G": 0.968628,
+        "B": 0.039216,
+        "A": 1.0,
+        "Hex": "FFFFFC37"
+      },
+      "PackPersonality": {
+        "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "4E5C64B24B337DD4C2F3F2B839243A10",
+        "SourceString": "Super Ranged Llama"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "34502F444305D5205C91FAA4800C255A",
+        "SourceString": "A special llama containing rare ranged schematics, including at least one Legendary! Contains 9 items. Not responsible for damage to shirt caused by drool."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Horde_Banner_2018_Plankerton",
+    "Properties": {
+      "LootTierGroup": "CardPack_Horde_Banner_2018_Plankerton",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_DesertHorde_IconMask.T_CardPack_DesertHorde_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "0DEA29CE433794B31259A8BD64779573",
+        "SourceString": "Road Trip Event Banner"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "09EB3D4F492F453BDB3387B4931570FD",
+        "SourceString": "An exclusive homebase banner!"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-HordeDesert-02.T-Banners-Icons-HordeDesert-02",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-HordeDesert-02-L.T-Banners-Icons-HordeDesert-02-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

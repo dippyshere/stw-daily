@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Launcher_Grenade_Winter_SR",
+    "Properties": {
+      "LootTierGroup": "CardPack_Launcher_Grenade_Winter_SR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "0F67ED744589FC98856DDB9C2CE95880",
+        "SourceString": "Snowball Launcher"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "EB78F97C4D307A29DE17C78BC2531126",
+        "SourceString": "Explosive Weapon: Lobs grenades that damage and knockback groups of enemies in a moderate radius. Does not consume ammo, but has low durability."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Winter/T-Icon-Weapons-Snowballer.T-Icon-Weapons-Snowballer",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Winter/T-Icon-Weapons-Snowballer-L.T-Icon-Weapons-Snowballer-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

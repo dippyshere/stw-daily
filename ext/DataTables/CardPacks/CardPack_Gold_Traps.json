@@ -1,0 +1,48 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Gold_Traps",
+    "Properties": {
+      "bIsLlama": true,
+      "LootTierGroup": "CardPack_Gold_Traps",
+      "DisplayRarityLevel": 2,
+      "PackPersonality": {
+        "AssetPathName": "/Game/Characters/Feedback/Llama_Mob_PersonalityPack.Llama_Mob_PersonalityPack",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "B51B5E924FDB1920E1B558BA60D10538",
+        "SourceString": "Gold Trap Pack"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "7A86EBF54DA9D4427CCA5BB57883771C",
+        "SourceString": "Full of the best stuff."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Wargames_Banner_Tornado",
+    "Properties": {
+      "LootTierGroup": "CardPack_Wargames_Banner_Tornado",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "E01CA22B48B18A2C7FA6DF9097F40C03",
+        "SourceString": "Wargames Banner"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
+        "SourceString": "An exclusive homebase banner!"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season9/Wargames/T-Banners-Icons-Tornado.T-Banners-Icons-Tornado",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/2dAssets/Banners/Season9/Wargames/T-Banners-Icons-Tornado-L.T-Banners-Icons-Tornado-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

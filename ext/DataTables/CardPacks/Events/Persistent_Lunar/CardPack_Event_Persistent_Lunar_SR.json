@@ -1,0 +1,43 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Event_Persistent_Lunar_SR",
+    "Properties": {
+      "LootTier": 1,
+      "LootTierGroup": "CardPack_Event_Persistent_Lunar_Inner",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "00AEFFD4422023819C5EFF9EF9FC357A",
+        "SourceString": "Legendary Item"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "BA989E764E2BADF598CE74A8C52F25F8",
+        "SourceString": "Choose one random item."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

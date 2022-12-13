@@ -1,0 +1,46 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Winter_Banner_Med",
+    "Properties": {
+      "LootTierGroup": "CardPack_Winter_Banner_Med",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "72C92633454F8489DB70EEAF8AA790DA",
+        "SourceString": "Holiday Survival Event Banner"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "2E48B7E14A55AEF010CBC4901150C5CB",
+        "SourceString": "A set of exclusive homebase banners!"
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Survival-Holiday-Med.T-Banners-Icons-Survival-Holiday-Med",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Survival-Holiday-Med-L.T-Banners-Icons-Survival-Holiday-Med-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

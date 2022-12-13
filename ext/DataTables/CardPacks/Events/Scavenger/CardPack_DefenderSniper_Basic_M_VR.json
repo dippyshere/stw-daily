@@ -1,0 +1,50 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_DefenderSniper_Basic_M_VR",
+    "Properties": {
+      "LootTierGroup": "CardPack_DefenderSniper_Basic_M_VR",
+      "PackImage": {
+        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Crew_IconMask.T_CardPack_Crew_IconMask",
+        "SubPathString": ""
+      },
+      "PackPersonality": {
+        "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
+        "SubPathString": ""
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "AEB400324A0DBDED73FE4896BE3F3B48",
+        "SourceString": "Epic Sniper"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "CCC44E9D44B991D60A322081A23B8CA2",
+        "SourceString": "A defender trained to fight with sniper rifles."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Icons/Defenders/T-Defenders-Defender-Sniper2-M.T-Defenders-Defender-Sniper2-M",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Icons/Defenders/T-Defenders-Defender-Sniper2-M-L.T-Defenders-Defender-Sniper2-M-L",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Epic",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]

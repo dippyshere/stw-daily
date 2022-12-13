@@ -1,0 +1,43 @@
+[
+  {
+    "Type": "FortCardPackItemDefinition",
+    "Name": "CardPack_Event_Persistent_Holiday_SR",
+    "Properties": {
+      "LootTier": 1,
+      "LootTierGroup": "CardPack_Event_Persistent_Holiday_Inner",
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "24B072AE43C49BEB57B5F9A99C7F3CB9",
+        "SourceString": "Legendary Item"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "6350DC1B47C6AC42E17D23A7473CB9C2",
+        "SourceString": "Choose one random item."
+      },
+      "SmallPreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+        "SubPathString": ""
+      },
+      "Rarity": "EFortRarity::Legendary",
+      "FrontendPreviewPivotOffset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -14.0
+      },
+      "FrontendPreviewInitialRotation": {
+        "Pitch": 0.0,
+        "Yaw": 83.20067,
+        "Roll": 0.0
+      },
+      "FrontendPreviewMeshOverride": {
+        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+        "SubPathString": ""
+      }
+    }
+  }
+]
