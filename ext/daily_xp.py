@@ -92,7 +92,7 @@ class DailyXP(ext.Cog):
 
         try:
             # get daily xp token info
-            daily_xp = await asyncio.gather(asyncio.to_thread(stw.extract_item, profile_json=profile_json_response, item_string='Token:stw_accolade_tracker'))
+            daily_xp = await asyncio.gather(asyncio.to_thread(stw.extract_profile_item, profile_json=profile_json_response, item_string='Token:stw_accolade_tracker'))
             daily_xp = daily_xp[0][0]
             print(daily_xp)
         except Exception as e:
@@ -103,13 +103,18 @@ class DailyXP(ext.Cog):
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
+        last_reset = stw.convert_iso_to_unix(daily_xp["attributes"]["last_reset"])
+
+        progress_bar = stw.get_progress_bar(daily_xp['attributes']['daily_xp'], stw.max_daily_stw_accolade_xp, 20)
+
         # With all info extracted, create the output
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Daily XP", "xp_everywhere"),
             description=f"\u200b\nDaily XP used: {daily_xp['attributes']['daily_xp']:,}\u200b\n"
                         f"Daily XP total: {stw.max_daily_stw_accolade_xp:,}\u200b\n"
-                        f"Daily XP remaining: {(stw.max_daily_stw_accolade_xp - daily_xp['attributes']['daily_xp']):,}"
-                        f""
+                        f"Daily XP remaining: {(stw.max_daily_stw_accolade_xp - daily_xp['attributes']['daily_xp']):,}\u200b\n"
+                        f"{progress_bar}\u200b\n"
+                        f"Last reset was: <t:{last_reset}:R>"
                         f"\n\u200b",
             colour=generic_colour)
 
@@ -143,9 +148,7 @@ class DailyXP(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="View your daily STW XP cap (authentication required for personalised info)",
-                 description="""This command allows you to view the current XP cap, or your remaining shared XP from STW. You must be authenticated to view your remaining cap.
-                \u200b
-                """)
+                 description="This command allows you to view the current XP cap, or your remaining shared XP from STW. You must be authenticated to view your remaining cap.")
     async def dailyxp(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the dailyxp command when called traditionally
