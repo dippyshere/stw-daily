@@ -8,6 +8,7 @@ This file is the cog for the reload command. It is used to reload and load cogs 
 
 import discord
 import discord.ext.commands as ext
+import importlib
 
 import stwutil as stw
 
@@ -101,6 +102,45 @@ class Reload(ext.Cog):
             extension: The cog to load.
         """
         await self.load_command(ctx, extension)
+
+    async def nhen(self, ctx):
+        description = "\u200b\n**Reloaded:**```asciidoc\n"
+
+        if len(self.client.watch_module.changed) == 0:
+            description = "\u200b\n```No files were marked by STW Watch"
+
+        for changed_item in self.client.watch_module.changed:
+            try:
+                self.client.reload_extension(changed_item)
+                description += f"""== {changed_item}\n// Success\n\n"""
+            except Exception as e:
+                description += f"""Failed:: {changed_item}\n// {e}\n\n"""
+
+        description += "```\u200b"
+        embed_colour = self.client.colours["auth_white"]
+        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "STW WATCH", "look_normal"),
+                              description=description,
+                              color=embed_colour)
+
+        embed = await stw.set_thumbnail(self.client, embed, "keycard")
+        embed = await stw.add_requested_footer(ctx, embed)
+
+        await stw.slash_send_embed(ctx, embed)
+        self.client.watch_module.changed = set(())
+
+    @ext.command(name='rlstwwatch',
+                 aliases=["rlsw"],
+                 extras={'emoji': "experimental", "args": {}, "dev": True},
+                 brief="Reloads extensions marked by STW Watch",
+                 description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot. RLSW uses STW Watch to automatically determine which files to reload.")
+    async def rlsw(self, ctx):
+        """
+        This function is the entry point for the reload command when called traditionally
+
+        Args:
+            ctx: The context of the command.
+        """
+        await self.nhen(ctx)
 
 
 def setup(client):

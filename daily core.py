@@ -4,6 +4,7 @@ Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
 print("Starting STW Daily")
+
 import orjson
 import os
 import aiohttp
@@ -11,7 +12,9 @@ import discord
 import discord.ext.commands as ext
 from discord.ext import tasks
 
+import stwwatch as watch
 import stwutil as stw
+import importlib
 
 # Compatability layer for future versions of python 3.11+ 
 try:
@@ -87,8 +90,20 @@ def main():
     for extension in extensions:
         print(client.load_extension(f"ext.{extension}"))
 
+    set_client_modules(client)
+
     update_status.start()
     client.run(f"{os.environ['STW_DAILY_TOKEN']}")
+
+
+def set_client_modules(client):
+    """
+    Sets the client modules
+
+    Args:
+        client: The client
+    """
+    client.watch_module = watch
 
 
 async def create_http_session():
@@ -107,6 +122,7 @@ async def on_ready():
     """
     Event for when the bot is ready
     """
+
     client.stw_session = await create_http_session()
     for command in client.commands:
         if command.name == "auth":
@@ -118,6 +134,7 @@ async def on_ready():
     client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
     print("Started STW Daily")
 
+    await client.watch_module.watch_stw_extensions()
 
 @client.event
 async def on_message(message):
