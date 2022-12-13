@@ -6,8 +6,6 @@ https://github.com/dippyshere/stw-daily
 This file is the cog for mongodb database interaction.
 """
 
-# mongo interaction
-
 import asyncio
 import discord
 

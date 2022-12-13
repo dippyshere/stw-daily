@@ -5,7 +5,6 @@ https://github.com/dippyshere/stw-daily
 
 This file is the cog for the daily xp command. Returns info about the stw accolade daily xp system for the authenticated player.
 """
-
 import orjson
 import asyncio
 

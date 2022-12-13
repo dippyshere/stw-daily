@@ -675,6 +675,18 @@ async def slash_edit_original(ctx, msg, embeds, view=None, file=None):
             return await msg.edit(embeds=embeds)
 
 
+async def device_auth_request(client, account_id, token):
+    """
+    Sends a device auth request to epic
+
+    Args:
+        client: The client to use
+        account_id: The account id to use
+        token: The token to use
+    """
+    url = client.config["endpoints"]["device_auth"].format(account_id)
+    print(url, token)
+
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn"):
     """
     Request a profile from epic api
@@ -1646,8 +1658,12 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     if error_embed is not None:
         embed = await set_thumbnail(client, error_embed, "error")
         embed = await add_requested_footer(ctx, embed)
-        await slash_send_embed(ctx, embed)
-        return [False]
+
+        if not dont_send_embeds:
+            await slash_send_embed(ctx, embed)
+            return [False]
+        else:
+            return embed
 
     if not dont_send_embeds:
         proc_embed = await processing_embed(client, ctx)
@@ -1658,7 +1674,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     token_req = await get_token(client, extracted_auth_code)  # we auth for fn regardless of the game because exchange
     response = orjson.loads(await token_req.read())
     check_auth_error_result = await check_for_auth_errors(client, response, ctx, message, command,
-                                                          extracted_auth_code, support_url, send_error_message=False)
+                                                          extracted_auth_code, support_url, not dont_send_embeds)
 
     try:
         success, auth_token, account_id = check_auth_error_result

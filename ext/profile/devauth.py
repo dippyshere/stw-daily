@@ -155,7 +155,7 @@ async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, int
     get_ios_auth = await stw.exchange_games(client, temp_auth["token"], "ios")
     try:
         response_json = orjson.loads(await get_ios_auth.read())
-        await handle_dev_auth(client, ctx, interaction, user_document, response_json["access_token"], message)
+        await handle_dev_auth(client, ctx, interaction, user_document, response_json, message)
     except:
         await handle_dev_auth(client, ctx, interaction, user_document, False, message)
 
@@ -212,7 +212,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     try:
         current_profile = user_document["profiles"][str(currently_selected_profile_id)]
     except:
-        embed = no_profiles_page(client, ctx)
+        embed = await no_profiles_page(client, ctx)
         await stw.slash_send_embed(ctx, embeds=embed)
         return False
 
@@ -252,7 +252,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
     This class is the view for authing the user
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id, ios_token):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, response_json):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -260,7 +260,12 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         self.user_document = user_document
         self.ctx = ctx
         self.interaction_check_done = {}
-        self.ios_token = ios_token
+
+        if response_json == None:
+            self.ios_token, self.account_id = None, None
+        else:
+            self.ios_token = response_json["access_token"]
+            self.account_id = response_json["account_id"]
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
@@ -325,7 +330,10 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         await interaction.response.send_modal(modal)
         """
 
-        await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document, self.currently_selected_profile_id, self.ctx, self.ios_token)
+        processing_embed = await stw.processing_embed(self.client, self.ctx)
+        await interaction.response.edit_message(embed=processing_embed, view=None)
+
+        await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document, self.currently_selected_profile_id, self.ctx, self.ios_token, self.account_id    )
 
 
 class EnslaveUserLicenseAgreementButton(discord.ui.View):
@@ -555,7 +563,7 @@ async def select_change_profile(view, select, interaction):
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
 
-async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_document, currently_selected_profile_id, ctx, ios_token):
+async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_document, currently_selected_profile_id, ctx, ios_token, account_id):
     """
     This function handles the device auth login command at least according to github
 
@@ -567,8 +575,9 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
         ctx: The context
         ios_token: The ios token
     """
-    # my brain has turned into mushy mushh  :3
-    pass
+
+    await stw.device_auth_request(client, account_id, ios_token)
+
 
 
 class StealAccountLoginDetailsModal(discord.ui.Modal):
@@ -607,19 +616,23 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         value = self.children[0].value
         print(value, self.children)
 
+        processing_embed = await stw.processing_embed(self.client, self.ctx)
+        await interaction.response.edit_message(embed=processing_embed, view=None)
+
         auth_session_result = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", value, False,
                                                                    False, True)
 
+        print(auth_session_result)
         try:
             token = auth_session_result[1]['token']
         except:
-            await interaction.response.edit_message(embed=auth_session_result, view=None)
+            await interaction.edit_original_response(embed=auth_session_result, view=None)
             return
 
         get_ios_auth = await stw.exchange_games(self.client, token, "ios")
         response_json = orjson.loads(await get_ios_auth.read())
 
-        await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document, self.currently_selected_profile_id, self.ctx, response_json["access_token"])
+        await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document, self.currently_selected_profile_id, self.ctx, response_json["access_token"], response_json["account_id"])
 
 
 def setup(client):
