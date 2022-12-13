@@ -180,13 +180,13 @@ class BattleBreakersDaily(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="Claim your Battle Breakers daily reward (authentication required)",
-                 description=f"""This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.
-                \u200b
-                ⦾ This command only runs once, be sure to come back <t:{stw.get_tomorrow_midnight_epoch()}:R>
-                ⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!
-                ⦾ Looking for help on authcodes? Check out help for the `auth` command.
-                ⦾ Looking for Fortnite daily rewards? Check out the `daily` command.
-                """)
+                 description=(
+                         f"This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.\n"
+                         f"\u200b\n"
+                         f"⦾ This command only runs once, be sure to come back <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
+                         f"⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!\n"
+                         f"⦾ Looking for help on authcodes? Check out help for the `auth` command.\n"
+                         f"⦾ Looking for Fortnite daily rewards? Check out the `daily` command.\n"))
     async def bbdaily(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the bbdaily command when called traditionally

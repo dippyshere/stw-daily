@@ -564,23 +564,16 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         # login error
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to authenticate with authcode:
-            ```{auth_code}```
-            **This authcode is invalid, there are a few reasons why this can happen such as:**
-            ⦾ Your authcode has expired, you need to enter your authcode into the auth command within about a minute after getting it.
-            ⦾ You got the wrong type of authcode, such as the one from the url instead of the one from the body of the page
-            \u200b
-            You'll need to get a new auth code, you can get one by:
-            [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)
-            \u200b
-            An example of what your auth code should look like is:
-            ```a51c1f4d35b1457c8e34a1f6026faa35```
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({invite_link})
-            Note: You need a new code __every time you authenticate__\n\u200b
-            """,
+            description=(f"\u200b\n"
+                         f"Attempted to authenticate with authcode:\n"
+                         f"```{auth_code}```\n"
+                         f"**This authcode is invalid, there are a few reasons why this can happen such as:**\n"
+                         f"⦾ Your authcode has expired, you need to enter your authcode into the auth command within about a minute after getting it.\n"
+                         f"⦾ You got the wrong type of authcode, such as the one from the url instead of the one from the body of the page\n"
+                         f"\u200b\n"
+                         f"You'll need to get a new auth code, you can get one by:\n"
+                         f"[Refreshing the page to get a new code or by clicking here]({client.config['login_links']['login_fortntite_pc']})\n"
+                         f"\u200b\n"),
             colour=error_colour
         )
 
@@ -588,50 +581,47 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         # invalid grant error
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to authenticate with authcode:
-            ```{auth_code}```
-            This authorisation code is invalid because it was created with the wrong link.
-            [You'll need to get a new authcode using this link](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({invite_link})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to authenticate with authcode:\n"
+                         f"```{auth_code}```\n"
+                         f"This authorisation code is invalid because it was created with the wrong link.\n"
+                         f"[You'll need to get a new authcode using this link](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({invite_link})\n"),
             colour=error_colour)
 
     elif len(error_code) == 32:
         # login error
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to authenticate with authcode:
-            ```{auth_code}```
-            **This authcode is invalid because this account does not own Fortnite: Save The World**
-            ⦾ You need STW to claim your any rewards, Note: you can only get V-Bucks if you own a __Founders Pack__ which is no longer available.
-            
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({invite_link})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to authenticate with authcode:\n"
+                         f"```{auth_code}```\n"
+                         f"**This authcode is invalid because this account does not own Fortnite: Save The World**\n"
+                         f"⦾ You need STW to claim your any rewards, Note: you can only get V-Bucks if you own a __Founders Pack__ which is no longer available.\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({invite_link})\n"),
             colour=error_colour
         )
 
     else:
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to authenticate with:
-            ```{auth_code}```
-            Unknown reason for not being able to authenticate please try again, error received from epic:
-            ```{error_code}```
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({invite_link})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to authenticate with:\n"
+                         f"```{auth_code}```\n"
+                         f"Unknown reason for not being able to authenticate please try again, error received from epic:\n"
+                         f"```{error_code}```\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({invite_link})\n"),
             colour=error_colour
         )
 
@@ -747,6 +737,8 @@ def vbucks_query_check(profile_text):
     """
     Checks if the profile can claim vbucks or not
 
+    This takes approximately 0.00016141ms to execute on a 1mb profile
+
     Args:
         profile_text: text of the target profile json
 
@@ -822,7 +814,7 @@ async def entry_profile_req(client, entry, game):
     profile_json = orjson.loads(await profile.read())
 
     if game == "fn":
-        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))  # TODO: optimise idk
+        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
         others = await asyncio.gather(asyncio.to_thread(json_query_check, profile_json))
         if others[0] is not None:
             entry["day"] = others[0]
@@ -893,7 +885,6 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         "bb_token": bb_token,
         "bb_day": None,
         "games": [game],
-
     }
     if add_entry:
         asyncio.get_event_loop().create_task(auto_stab_stab_session(client, ctx.author.id, entry['expiry']))
@@ -912,6 +903,8 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
 def json_query_check(profile_text):
     """
     Checks if the profile has a days logged in value
+
+    This takes approximately 0.0002796ms to execute on a 1mb profile
 
     Args:
         profile_text: The profile json object
@@ -942,9 +935,11 @@ def bb_day_query_check(profile_text):
         return None
 
 
-def extract_item(profile_json, item_string="Currency:Mtx"):
+def extract_profile_item(profile_json, item_string="Currency:Mtx"):
     """
     Extracts an item from the profile json
+
+    This takes approximately 0.13383596ms to execute on a 1mb profile
 
     Args:
         profile_json: The profile json object
@@ -990,6 +985,7 @@ async def get_br_news(client):
         The news for br from fortnite-api
     """
     # TODO: This should be changed to use the epic games api
+    # We can't use the epic games api as it requires a personalised request
     endpoint = client.config["endpoints"]["br_news"]
     return await client.stw_session.get(endpoint)
 
@@ -1399,7 +1395,7 @@ def calculate_homebase_rating(profile):
         The power level of the profile's homebase, total FORT stats, and dict of FORT stats by type
     """
     # ROOT.profileChanges[0].profile.items
-    workers = extract_item(profile, "Worker:")
+    workers = extract_profile_item(profile, "Worker:")
     survivors = {}
     total_stats = {"fortitude": 0,
                    "offense": 0,
@@ -1458,7 +1454,7 @@ def calculate_homebase_rating(profile):
 
     # research stats
     # ROOT.profileChanges[0].profile.stats.attributes.research_levels
-    research_levels = extract_item(profile, "Stat:")
+    research_levels = extract_profile_item(profile, "Stat:")
     for attr, val in research_levels.items():
         if "_team" in val["templateId"]:
             if "phoenix" in val['templateId'].lower():
@@ -1589,63 +1585,62 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
 
     # Basic checks so that we don't stab stab epic games so much
     if extracted_auth_code == "":
-        error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=f"""\u200b\n**You need an auth code, you can get one from:**
-          [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D{auth_client_id}%2526responseType%253Dcode)
-          [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n
-            **Need Help? Run**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""", colour=error_colour)
+        error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=(
+            f"\u200b\n**You need an auth code, you can get one from:**\n"
+            f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D{auth_client_id}%2526responseType%253Dcode)\n"
+            f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n\n"
+            f"**Need Help? Run**\n"
+            f"{await mention_string(client, 'help {0}'.format(command))}\n"
+            f"Or [Join the support server]({support_url})\n"), colour=error_colour)
 
     elif extracted_auth_code in client.config["known_client_ids"]:
         error_embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to authenticate with authcode:
-            ```{extracted_auth_code}```
-            **This authcode is from the URL & not from the body of the page:**
-            ⦾ The authcode you need is the one from the pages body, not the one from the url.
-            \u200b
-            If you need a new authcode you can get one by:
-            [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to authenticate with authcode:\n"
+                         f"```{extracted_auth_code}```\n"
+                         f"**This authcode is from the URL & not from the body of the page:**\n"
+                         f"⦾ The authcode you need is the one from the pages body, not the one from the url.\n"
+                         f"\u200b\n"
+                         f"If you need a new authcode you can get one by:\n"
+                         f"[Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
 
     elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
-        error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"), description=f"""\u200b
-        Attempted to authenticate with authcode:
-        ```{original_auth_code}```
-        Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n
-        **An Example:**
-        ```a51c1f4d35b1457c8e34a1f6026faa35```
-        If you need a new authcode you can get one by:
-        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)
-        \u200b
-        **If you need any help try:**
-        {await mention_string(client, f"help {command}")}
-        Or [Join the support server]({support_url})
-        Note: You need a new code __every time you authenticate__\n\u200b""",
+        error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"), description=(
+            f"\u200b\n"
+            f"Attempted to authenticate with authcode:\n"
+            f"```{original_auth_code}```\n"
+            f"Your auth code contains characters not present in auth codes. Please try copying your code again, or getting a new one\n\n"
+            f"**An Example:**\n"
+            f"```a51c1f4d35b1457c8e34a1f6026faa35```\n"
+            f"If you need a new authcode you can get one by:\n"
+            f"[Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n"
+            f"\u200b\n"
+            f"**If you need any help try:**\n"
+            f"{await mention_string(client, 'help {0}'.format(command))}\n"
+            f"Or [Join the support server]({support_url})\n"),
                                     colour=error_colour)
 
     elif len(extracted_auth_code) != 32:
-        error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"), description=f"""\u200b
-        Attempted to authenticate with authcode:
-        ```{extracted_auth_code}```
-        Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n
-        **An Example:**
-        ```a51c1f4d35b1457c8e34a1f6026faa35```
-        If you need a new authcode you can get one by:
-        [Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)
-        \u200b
-        **If you need any help try:**
-        {await mention_string(client, f"help {command}")}
-        Or [Join the support server]({support_url})
-        Note: You need a new code __every time you authenticate__\n\u200b""",
+        error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"), description=(
+            f"\u200b\n"
+            f"Attempted to authenticate with authcode:\n"
+            f"```{extracted_auth_code}```\n"
+            f"Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n\n"
+            f"**An Example:**\n"
+            f"```a51c1f4d35b1457c8e34a1f6026faa35```\n"
+            f"If you need a new authcode you can get one by:\n"
+            f"[Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n"
+            f"\u200b\n"
+            f"**If you need any help try:**\n"
+            f"{await mention_string(client, 'help {0}'.format(command))}\n"
+            f"Or [Join the support server]({support_url})\n"),
                                     colour=error_colour)
 
     if error_embed is not None:
@@ -1714,8 +1709,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     #     print(entry)
 
     embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
-                          description=f"""```Welcome, {entry['account_name']}```
-    """, colour=white_colour)
+                          description=f"```Welcome, {entry['account_name']}```\n", colour=white_colour)
 
     if add_entry:
         embed.description += f"{client.config['emojis']['stopwatch_anim']} Your session will expire <t:{math.floor(client.config['auth_expire_time'] + time.time())}:R>\n\u200b\n"
@@ -1723,7 +1717,11 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
         embed.description += f"{client.config['emojis']['cross']} Did not start an auth session\n\u200b\n"
 
     if not entry['vbucks']:
-        embed.description += f"""⦾ You cannot receive {client.config['emojis']['vbucks']} V-Bucks from claiming daily rewards only {client.config['emojis']['xray']} X-Ray tickets.\n\u200b"""
+        embed.description += f"• You'll receive {client.config['emojis']['xray']} X-Ray tickets instead of {client.config['emojis']['vbucks']} V-Bucks. [Learn more](https://github.com/dippyshere/stw-daily/wiki)\n\u200b"
+    if not entry['vbucks'] and not entry['day']:
+        embed.description += "\n"
+    if not entry['day']:
+        embed.description += f"• You don't have Save the World. [Learn more](https://github.com/dippyshere/stw-daily/wiki)\n\u200b"
 
     embed = await set_thumbnail(client, embed, "keycard")
     embed = await add_requested_footer(ctx, embed)
@@ -1757,73 +1755,69 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
     if error_code == "errors.com.epicgames.common.missing_action":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Failed to claim daily because:**
-            ⦾ Your account has not yet opened Fortnite before
-            ⦾ Your account has been banned and therefore you cannot claim your daily rewards.
-            
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to claim daily because:**\n"
+                         f"⦾ Your account has not yet opened Fortnite before\n"
+                         f"⦾ Your account has been banned and therefore you cannot claim your daily rewards.\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
     elif error_code == "errors.com.epicgames.fortnite.check_access_failed":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Failed to claim daily because this account does not own Fortnite: Save The World:**
-            ⦾ You need STW to claim your any rewards, Note: you can only get V-Bucks if you own a __Founders Pack__ which is no longer available.
-            
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to claim daily because this account does not own Fortnite: Save The World:**\n"
+                         f"⦾ You need STW to claim your any rewards, Note: you can only get V-Bucks if you own a __Founders Pack__ which is no longer available.\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
     elif error_code == "errors.com.epicgames.common.authentication.token_verification_failed":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Failed to claim daily because your token has expired**
-            ⦾ Please reauthenticate your account, you can get an auth code from:
-
-            [Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)
-            [Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to claim daily because your token has expired**\n"
+                         f"⦾ Please reauthenticate your account, you can get an auth code from:\n"
+                         f"\n"
+                         f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)\n"
+                         f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
     elif error_code == "errors.com.epicgames.validation.validation_failed":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Uh oh! Ran into an error with STW Daily or Epic Games**
-            ⦾ Validation for a request has failed
-            ⦾ Please ask for support in the support server about this.
-            
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Uh oh! Ran into an error with STW Daily or Epic Games**\n"
+                         f"⦾ Validation for a request has failed\n"
+                         f"⦾ Please ask for support in the support server about this.\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
     # battle breakers error codes
@@ -1831,157 +1825,145 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
         reward = get_bb_reward_data(client, response, True)
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "warning"), description=
-            f"""\u200b
-                        You have already claimed your reward for day **{reward[0]}**.
-                        \u200b
-                        **{reward[2]} Todays reward was:**
-                        ```{reward[4]} {reward[1]}```
-                        You can claim tomorrow's reward <t:{get_tomorrow_midnight_epoch()}:R>
-                        \u200b
-                        """, colour=yellow)
+            (f"\u200b\n"
+             f"You have already claimed your reward for day **{reward[0]}**.\n"
+             f"\u200b\n"
+             f"**{reward[2]} Todays reward was:**\n"
+             f"```{reward[4]} {reward[1]}```\n"
+             f"You can claim tomorrow's reward <t:{get_tomorrow_midnight_epoch()}:R>\n"
+             f"\u200b\n"), colour=yellow)
         error_level = "warn"
 
     # STW Daily Error Codes
     elif error_code == "errors.stwdaily.failed_guid_research":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Failed to find GUID for research item**
-            ⦾ Please ensure you have claimed research points at least once in-game
-
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to find GUID for research item**\n"
+                         f"⦾ Please ensure you have claimed research points at least once in-game\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
 
     elif error_code == "errors.stwdaily.failed_get_collected_resource_item":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Failed to get item from notifications using token_guid_research**
-            ⦾ Please ensure you have claimed research points at least once in-game
-            ⦾ If this continues please ask for support in the support server.
-            
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to get item from notifications using token_guid_research**\n"
+                         f"⦾ Please ensure you have claimed research points at least once in-game\n"
+                         f"⦾ If this continues please ask for support in the support server.\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
 
     elif error_code == "errors.stwdaily.failed_get_collected_resource_type":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Failed to get collectedResourceResult type from notifications**
-            ⦾ Please ensure you have claimed research points at least once in-game
-            ⦾ If this continues please ask for support in the support server.
-            
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to get collectedResourceResult type from notifications**\n"
+                         f"⦾ Please ensure you have claimed research points at least once in-game\n"
+                         f"⦾ If this continues please ask for support in the support server.\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
 
     elif error_code == "errors.stwdaily.failed_total_points":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Failed to find total research points item from query profile**
-            ⦾ You could be out of research points, please just wait a few seconds and re run the command.
-            ⦾ Please ensure you have claimed research points at least once in-game
-            ⦾ If this continues please ask for support in the support server.
-            
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to find total research points item from query profile**\n"
+                         f"⦾ You could be out of research points, please just wait a few seconds and re run the command.\n"
+                         f"⦾ Please ensure you have claimed research points at least once in-game\n"
+                         f"⦾ If this continues please ask for support in the support server.\n"
+                         f"\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
 
     elif error_code == "errors.stwdaily.not_author_interaction_response":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Not the author:```You need to be the author to utilise the {command} view!```
-            **If you want to utilise this view, please use the command yourself.**
-
-            NOTE: *This message is only sent one time, attempting to use buttons after receiving this will return with `` interaction failed ``*
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Not the author:```You need to be the author to utilise the {command} view!```\n"
+                         f"**If you want to utilise this view, please use the command yourself.**\n"
+                         f"\n"
+                         f"NOTE: *This message is only sent one time, attempting to use buttons after receiving this will return with `` interaction failed ``*\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
             colour=error_colour
         )
 
     elif error_code == "errors.stwdaily.homebase_long":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-                Attempted to change Homebase name to:
-                ```{truncate(acc_name)}```
-                **This name is too long.**
-                ⦾ Homebase names must be under 16 characters
-                ⦾ Homebase names also have additional criteria, to check them, try running {await mention_string(client, f"help {command}")}
-                \u200b
-                **If you need any help try:**
-                {await mention_string(client, f"help {command}")}
-                Or [Join the support server]({support_url})
-                Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to change Homebase name to:\n"
+                         f"```{truncate(acc_name)}```\n"
+                         f"**This name is too long.**\n"
+                         f"⦾ Homebase names must be under 16 characters\n"
+                         f"⦾ Homebase names also have additional criteria, to check them, try running "
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"\u200b\n"),
             colour=error_colour
         )
 
     elif error_code == "errors.stwdaily.homebase_illegal":
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-                Attempted to change Homebase name to:
-                ```{acc_name}```
-                **This name contains unacceptable characters.**
-                ⦾ Homebase names must be alphanumeric, with limited support for extra characters.
-                ⦾ Homebase names also have additional criteria, to check them, try running {await mention_string(client, f"help {command}")}
-                \u200b
-                **If you need any help try:**
-                {await mention_string(client, f"help {command}")}
-                Or [Join the support server]({support_url})
-                Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to change Homebase name to:\n"
+                         f"```{acc_name}```\n"
+                         f"**This name contains unacceptable characters.**\n"
+                         f"⦾ Homebase names must be alphanumeric, with limited support for extra characters.\n"
+                         f"⦾ Homebase names also have additional criteria, to check them, try running "
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"\u200b\n"),
             colour=error_colour
         )
 
     else:
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
-            description=f"""\u200b
-            Attempted to claim daily for account:
-            ```{acc_name}```
-            **Unknown error received from epic games:**
-            ```{error_code}```
-            You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)
-            \u200b
-            **If you need any help try:**
-            {await mention_string(client, f"help {command}")}
-            Or [Join the support server]({support_url})
-            Note: You need a new code __every time you authenticate__\n\u200b""",
+            description=(f"\u200b\n"
+                         f"Attempted to claim daily for account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Unknown error received from epic games:**\n"
+                         f"```{error_code}```\n"
+                         f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"
+                         f"Note: You need a new code __every time you authenticate__\n\u200b"),
             colour=error_colour
         )
 

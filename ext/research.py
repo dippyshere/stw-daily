@@ -113,8 +113,8 @@ class ResearchView(discord.ui.View):
         current_levels = self.current_levels
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-            description=f"""\u200b
-            You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b""",
+            description=(f"\u200b\n"
+                         f"You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
             colour=green
         )
 
@@ -122,8 +122,7 @@ class ResearchView(discord.ui.View):
         embed = await stw.add_requested_footer(self.ctx, embed)
         embed = await add_fort_fields(self.client, embed, current_levels)
         embed.add_field(name=f"\u200b", value=f"*Timed out, please reuse command to continue*\n\u200b")
-        await self.message.edit(embed=embed, view=self)
-        return
+        return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
     async def universal_stat_process(self, interaction, stat):
         """
@@ -156,8 +155,8 @@ class ResearchView(discord.ui.View):
             if purchased_json['errorCode'] == 'errors.com.epicgames.fortnite.item_consumption_failed':
                 embed = discord.Embed(
                     title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-                    description=f"""\u200b
-                    You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b""",
+                    description=(f"\u200b\n"
+                                 f"You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
                     colour=gren
                 )
 
@@ -183,8 +182,8 @@ class ResearchView(discord.ui.View):
             print(purchased_json)
             embed = discord.Embed(
                 title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-                description=f"""\u200b
-                You currently have **0** research points available.\n\u200b\n\u200b""",
+                description=(f"\u200b\n"
+                             f"You currently have **0** research points available.\n\u200b\n\u200b"),
                 colour=gren
             )
 
@@ -200,8 +199,8 @@ class ResearchView(discord.ui.View):
         spent_points = self.total_points['quantity'] - research_points_item['quantity']
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-            description=f"""\u200b
-            You currently have **{research_points_item['quantity']}** research point{'s' if research_points_item['quantity'] > 1 else ''} available.\n\u200b\n\u200b""",
+            description=(f"\u200b\n"
+                         f"You currently have **{research_points_item['quantity']}** research point{'s' if research_points_item['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
             colour=gren
         )
 
@@ -217,7 +216,7 @@ class ResearchView(discord.ui.View):
         await interaction.edit_original_response(embed=embed, view=self)
 
     # creo kinda fire though ngl
-    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, ctx):
+    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, ctx, og_msg):
         super().__init__()
         self.client = client
         self.ctx = ctx
@@ -227,6 +226,7 @@ class ResearchView(discord.ui.View):
         self.total_points = total_points
         self.current_levels = current_levels
         self.research_token_guid = research_token_guid
+        self.message = og_msg
 
         self.button_emojis = {
             'fortitude': self.client.config["emojis"]["fortitude"],
@@ -361,8 +361,8 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
     if proc_max:
         embed = discord.Embed(
             title=await stw.add_emoji_title(client, "Max", "crown"),
-            description="""\u200b
-                Congratulations, you have **maximum** FORT stats.\n\u200b\n\u200b""",
+            description=("\u200b\n"
+                         "Congratulations, you have **maximum** FORT stats.\n\u200b\n\u200b"),
             colour=crown_yellow
         )
 
@@ -560,8 +560,8 @@ class Research(ext.Cog):
             claimed_text = f"*Did not claim any research points*\n\u200b"
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-            description=f"""\u200b
-            You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available. \n\u200b\n\u200b""",
+            description=(f"\u200b\n"
+                         f"You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available. \n\u200b\n\u200b"),
             colour=gren
         )
 
@@ -572,7 +572,7 @@ class Research(ext.Cog):
 
         final_embeds.append(embed)
         research_view = ResearchView(self.client, auth_info, ctx.author, total_points, current_levels, rp_token_guid,
-                                     ctx)
+                                     ctx, embed)
         research_view.message = await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=research_view)
 
     @ext.command(name='research',
@@ -618,8 +618,7 @@ class Research(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="Claim and spend your research points (authentication required)",
-                 description="""This command lets you claim your available research points, view your FORT research levels, and upgrade those levels. Press the button corresponding with the stat you want to upgrade.
-                 """)
+                 description="This command lets you claim your available research points, view your FORT research levels, and upgrade those levels. Press the button corresponding with the stat you want to upgrade.\n")
     async def research(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the research command when called traditionally

@@ -94,10 +94,10 @@ class Vbucks(ext.Cog):
             return
 
         vbucks = await asyncio.gather(
-            asyncio.to_thread(stw.extract_item, profile_json=orjson.loads(await core_request.read()),
+            asyncio.to_thread(stw.extract_profile_item, profile_json=orjson.loads(await core_request.read()),
                               item_string="Currency:Mtx"))
 
-        # fetch x-ray ticket count
+        # fetch x-ray ticket count TODO: can this be done in the same request as the vbucks?
         stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
         stw_json_response = orjson.loads(await stw_request.read())
 
@@ -107,7 +107,7 @@ class Vbucks(ext.Cog):
             return
 
         xray = await asyncio.gather(
-            asyncio.to_thread(stw.extract_item, profile_json=orjson.loads(await stw_request.read()),
+            asyncio.to_thread(stw.extract_profile_item, profile_json=orjson.loads(await stw_request.read()),
                               item_string="AccountResource:currency_xrayllama"))
 
         # fetch vbucks total
@@ -226,9 +226,8 @@ class Vbucks(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="View your V-Bucks and X-Ray Tickets balance (authentication required)",
-                 description="""This command displays your total V-Bucks, provide a breakdown on the source(s) of those V-Bucks, and additionally display how many X-Ray tickets you have. You must be authenticated to use this command.
-                \u200b
-                """)
+                 description=(
+                 "This command displays your total V-Bucks, provide a breakdown on the source(s) of those V-Bucks, and additionally display how many X-Ray tickets you have. You must be authenticated to use this command.\n\u200b"))
     async def vbucks(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the vbucks command when called traditionally

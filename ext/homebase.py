@@ -130,11 +130,10 @@ class Homebase(ext.Cog):
         # Empty name should fetch current name
         if name == "":
             embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, "Homebase Name", "storm_shield"), description=
-                f"""\u200b
-                **Your current Homebase name is:**
-            ```{current}```
-            """, colour=white)
+                title=await stw.add_emoji_title(self.client, "Homebase Name", "storm_shield"),
+                description=f"\u200b\n"
+                            f"**Your current Homebase name is:**\n"
+                            f"```{current}```\u200b", colour=white)
             if homebase_icon != "placeholder":
                 try:
                     embed, file = await stw.generate_banner(self.client, embed, homebase_icon, homebase_colour,
@@ -275,16 +274,15 @@ class Homebase(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          'dev': False},
                  brief="View / change the name of your Homebase in STW (authentication required)",
-                 description="""This command allows you to view / change the name of your Homebase in STW. You must be authenticated to use this command.
-                \u200b
-                **Please note there are limitations on what your Homebase name can be:**
-                ⦾ It must be between 1-16 characters
-                ⦾ It may only contain alphanumerics (0-9, a-z) + additional characters ('-._~) + spaces
-                ⦾ When entering a name with spaces while not using slash commands, please put "quote marks" around the new name
-                ⦾ Support for other languages will be available in the future
-                ⦾ STW isn't required but what's the point?
-                ⦾ Please note that this command is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>
-                """)
+                 description=(
+                         "This command allows you to view / change the name of your Homebase in STW. You must be authenticated to use this command.\n"
+                         "\u200b\n"
+                         "**Please note there are limitations on what your Homebase name can be:**\n"
+                         "⦾ It must be between 1-16 characters\n"
+                         "⦾ It may only contain alphanumerics (0-9, a-z) + additional characters ('-._~) + spaces\n"
+                         "⦾ When entering a name with spaces while not using slash commands, please put \"quote marks\" around the new name\n"
+                         "⦾ Support for other languages will be available in the future\n"
+                         "⦾ STW isn't required but what's the point?\n"))
     async def hbrename(self, ctx, name='', authcode='', optout=None):
         """
         This is the entry point for the homebase command when called traditionally

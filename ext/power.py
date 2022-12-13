@@ -140,9 +140,9 @@ class Power(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="View your Power level (authentication required)",
-                 description="""This command allows you to view the power level of your STW homebase, you must be authenticated to use this command for now.
-                \u200b
-                """)
+                 description=(
+                         "This command allows you to view the power level of your STW homebase, you must be "
+                         "authenticated to use this command for now.\n\u200b"))
     async def power(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the power command when called traditionally

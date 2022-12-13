@@ -664,9 +664,9 @@ async def main_page(page_number, client, ctx, user_profile,
     current_slice = get_current_settings_slice(page_number, settings_per_page, settings)
 
     page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
-                               description=f"""\u200b
-                              **Currently Selected Profile {selected_profile}:**
-                              ```{selected_profile_data["friendly_name"]}```\u200b""",
+                               description=(f"\u200b\n"
+                                            f"**Currently Selected Profile {selected_profile}:**\n"
+                                            f"```{selected_profile_data['friendly_name']}```\u200b"),
                                color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
@@ -701,9 +701,9 @@ async def sub_setting_page(setting, client, ctx, user_profile):
     selected_profile_data = user_profile["profiles"][str(selected_profile)]
 
     page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
-                               description=f"""\u200b
-                              **Currently Selected Profile {selected_profile}:**
-                              ```{selected_profile_data["friendly_name"]}```\u200b""",
+                               description=(f"\u200b\n"
+                                            f"**Currently Selected Profile {selected_profile}:**\n"
+                                            f"```{selected_profile_data['friendly_name']}```\u200b"),
                                color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
@@ -715,7 +715,7 @@ async def sub_setting_page(setting, client, ctx, user_profile):
         requirement_string = setting_info['req_string']
 
     page_embed.add_field(name=f"{client.config['emojis'][setting_info['emoji']]} Selected Setting: {setting}",
-                         value=f"""```asciidoc\n== {setting.replace("_", " ").capitalize()}\n// {setting}\n\nCurrent Value:: {selected_profile_data["settings"][setting]}\n\n{setting_info["description"]}\n\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```""",
+                         value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\nCurrent Value:: {selected_profile_data['settings'][setting]}\n\n{setting_info['description']}\n\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```",
                          inline=False)
 
     return page_embed
@@ -777,9 +777,9 @@ async def no_profiles_page(client, ctx):
     embed_colour = client.colours["profile_lavendar"]
 
     no_profiles_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
-                                      description=f"""\u200b
-                              **No available profiles**
-                              ```To create one use the profile command```\u200b\n""",
+                                      description=(f"\u200b\n"
+                                                   f"**No available profiles**\n"
+                                                   f"```To create one use the profile command```\u200b\n"),
                                       color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "settings_cog")
     no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed)
@@ -1110,10 +1110,7 @@ class ProfileSettings(ext.Cog):
                      'value': 'The new value for the setting you wish to change(PENDING)',
                  }, "dev": False},
                  brief="Change or view the settings associated with your currently selected profile(PENDING)",
-                 description="""
-                 This command allows you to change the settings of your profiles, you can either utilise the built in navigation of settings to change them, or change your settings through the utilisation of the commands arguments.(PENDING)
-                \u200b
-                """)
+                 description=("This command allows you to change the settings of your profiles, you can either utilise the built in navigation of settings to change them, or change your settings through the utilisation of the commands arguments.(PENDING)\n\u200b"))
     async def settings(self, ctx, setting=None, profile=None, value=None):
         """
         This function is the command for the settings command.

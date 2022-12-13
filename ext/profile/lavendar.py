@@ -93,15 +93,15 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
 
     if current_selected_profile is None:
         embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
-                              description=f"""\u200b
-                              **No Available Profiles**
-                              ```Create a new profile using the "New Profile" Button!```""",
+                              description=(f"\u200b\n"
+                                           f"**No Available Profiles**\n"
+                                           f"```Create a new profile using the \"New Profile\" Button!```"),
                               color=embed_colour)
     else:
         embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
-                              description=f"""\u200b
-                              **Currently Selected Profile {current_selected_profile}**
-                              ```{user_document["profiles"][str(current_selected_profile)]["friendly_name"]}```""",
+                              description=(f"\u200b\n"
+                                           f"**Currently Selected Profile {current_selected_profile}**\n"
+                                           f"```{user_document['profiles'][str(current_selected_profile)]['friendly_name']}```"),
                               color=embed_colour)
     embed = await stw.set_thumbnail(client, embed, "storm_shard")
     embed = await stw.add_requested_footer(ctx, embed)
@@ -150,7 +150,7 @@ class ProfileMainView(discord.ui.View):
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
         embed.description += "\n*Timed out, please reuse command to continue*\n\u200b"
-        await self.message.edit(embed=embed, view=self)
+        return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
     def map_button_emojis(self, button):
         """

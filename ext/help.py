@@ -121,7 +121,7 @@ class Help(ext.Cog):
             else:
                 info += "**"
 
-            name_string += f"\n**{arg} : {info}\n"
+            name_string += f"\n**{arg}: {info}\n"
 
         embed_desc = f"\n\u200b\n{name_string}\n\u200b\n{command.description}\n\u200b".replace("<@mention_me>",
                                                                                                f"{mention}")
@@ -329,7 +329,7 @@ class Help(ext.Cog):
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour,
                               title=await stw.add_emoji_title(self.client, "STW Daily", "calendar"),
-                              description=f"""\u200b\nHello! I'm Save The World Daily, A bot which collects your Fortnite: Save The World daily rewards via Discord. [If you have any questions or issues join us here]({self.client.config["support_url"]}), [If you want to invite the bot press here!](https://tinyurl.com/stwdailyinvite)\n\u200b""")
+                              description=f"\u200b\nHello! I'm Save The World Daily, A bot which collects your Fortnite: Save The World daily rewards via Discord. [If you have any questions or issues join us here]({self.client.config['support_url']}), [If you want to invite the bot press here!](https://tinyurl.com/stwdailyinvite)\n\u200b")
 
         embed = await stw.add_requested_footer(ctx, embed)
 
