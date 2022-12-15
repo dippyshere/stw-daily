@@ -700,7 +700,12 @@ async def device_auth_request(client, account_id, token):
         token: The token to use
     """
     url = client.config["endpoints"]["device_auth"].format(account_id)
-    print(url, token)
+    header = {
+        "Content-Type": "application/json",
+        "Authorization": f"bearer {token}"
+    }
+
+    return await client.stw_session.post(url, headers=header, json="")
 
 
 async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn"):
