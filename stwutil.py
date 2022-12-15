@@ -45,7 +45,7 @@ banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert
 I18n = I18n()
 
 # TODO: make this None
-guild_ids = [757765475823517851]
+guild_ids = [None]
 
 
 def reverse_dict_with_list_keys(dictionary):
@@ -586,6 +586,21 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
                          f"```{auth_code}```\n"
                          f"This authorisation code is invalid because it was created with the wrong link.\n"
                          f"[You'll need to get a new authcode using this link](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({invite_link})\n"),
+            colour=error_colour)
+
+    elif error_code == 'errors.com.epicgames.accountportal.date_of_birth_verification_required':
+        # invalid grant error
+        embed = discord.Embed(
+            title=await add_emoji_title(client, random_error(client), "error"),
+            description=(f"\u200b\n"
+                         f"Attempted to authenticate with authcode:\n"
+                         f"```{auth_code}```\n"
+                         f"Your account date of birth needs to be verified.\n"
+                         f"Please launch Fortnite or login to [Epic Games](https://www.epicgames.com/fortnite) and try again.\n"
                          f"\u200b\n"
                          f"**If you need any help try:**\n"
                          f"{await mention_string(client, 'help {0}'.format(command))}\n"
@@ -2060,6 +2075,20 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
                          f"⦾ Please ask for support in the support server about this.\n"
                          f"\n"
                          f"You may have signed into the wrong account, try to use incognito and [use this page to get a new code](https://tinyurl.com/epicauthcode)\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
+            colour=error_colour
+        )
+    elif error_code == "errors.com.epicgames.accountportal.date_of_birth_verification_required":
+        embed = discord.Embed(
+            title=await add_emoji_title(client, random_error(client), "error"),
+            description=(f"\u200b\n"
+                         f"Attempted to login with account:\n"
+                         f"```{acc_name}```\n"
+                         f"**Failed to login because your account needs to verify it's date of birth.**\n"
+                         f"⦾ Please login on [Epic Games](https://www.epicgames.com/fortnite) to set your DOB and try again.\n"
                          f"\u200b\n"
                          f"**If you need any help try:**\n"
                          f"{await mention_string(client, 'help {0}'.format(command))}\n"
