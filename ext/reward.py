@@ -59,8 +59,8 @@ class Reward(ext.Cog):
         if day == 'hi readers of the bot':
 
             embed = discord.Embed(colour=err_colour,
-                                  title=await stw.add_emoji_title(self.client, "Missing Day(PENDING)", "error"),
-                                  description="```Please specify the day (number) of which you would like to see(PENDING)```")
+                                  title=await stw.add_emoji_title(self.client, "Missing Day", "error"),
+                                  description="```Please specify the day (number) of which you would like to see```")
             embed = await stw.add_requested_footer(ctx, embed)
             embed = await stw.set_thumbnail(self.client, embed, "error")
             await stw.slash_send_embed(ctx, embed)
@@ -75,8 +75,8 @@ class Reward(ext.Cog):
 
             except ValueError:
                 embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Non Numeric Day or Limit(PENDING)", "error"),
-                                      description="```The inputted day or limit must be a valid integer, please try again(PENDING)```")
+                                      title=await stw.add_emoji_title(self.client, "Non Numeric Day or Limit", "error"),
+                                      description="```The inputted day or limit must be a valid integer, please try again```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
                 await stw.slash_send_embed(ctx, embed)
@@ -84,8 +84,8 @@ class Reward(ext.Cog):
 
             if int(limit) > 100:
                 embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Too Long(PENDING)", "error"),
-                                      description="```You attempted to retrieve too many days after! Try a lower value(PENDING)```")
+                                      title=await stw.add_emoji_title(self.client, "Too Long", "error"),
+                                      description="```You attempted to retrieve too many days after! Try a lower value```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
                 await stw.slash_send_embed(ctx, embed)
@@ -99,8 +99,8 @@ class Reward(ext.Cog):
                 reward = stw.get_reward(self.client, day, vbucks)
             except:
                 embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Invalid Day(PENDING)", "error"),
-                                      description="```Please retry with a valid integer.(PENDING)```")
+                                      title=await stw.add_emoji_title(self.client, "Invalid Day", "error"),
+                                      description="```Please retry with a valid integer.```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
                 await stw.slash_send_embed(ctx, embed)
@@ -149,8 +149,8 @@ class Reward(ext.Cog):
                 await stw.slash_send_embed(ctx, embed)
             except discord.errors.HTTPException:
                 embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Too Long(PENDING)", "error"),
-                                      description="```You attempted to retrieve too many days after! Try a lower value(PENDING)```")
+                                      title=await stw.add_emoji_title(self.client, "Too Long", "error"),
+                                      description="```You attempted to retrieve too many days after! Try a lower value```")
                 embed = await stw.add_requested_footer(ctx, embed)
                 embed = await stw.set_thumbnail(self.client, embed, "error")
                 await stw.slash_send_embed(ctx, embed)

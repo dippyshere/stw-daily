@@ -125,15 +125,15 @@ class Vbucks(ext.Cog):
             for item in vbucks:
                 for attr, val in item.items():
                     name, emoji = await stw.resolve_vbuck_source(val["templateId"])
-                    embed.description += f"""{self.emojis[emoji]} {name}: {val["quantity"]}\n"""
+                    embed.description += f"{self.emojis[emoji]} {name}: {val['quantity']}\n"
         else:
-            embed.description += f"""{stw.I18n.get("vbucks.embed.description.zerovbucks", desired_lang, self.emojis["spongebob"], self.emojis["megamind"])}\n"""
+            embed.description += f"{stw.I18n.get('vbucks.embed.description.zerovbucks', desired_lang, self.emojis['spongebob'], self.emojis['megamind'])}\n"
 
         # add entry for x-ray if detected
         if xray:
             for item in xray:
                 for attr, val in item.items():
-                    embed.description += f"""\u200b\n{stw.I18n.get("vbucks.embed.description.xray", desired_lang, self.emojis["xray"], val["quantity"])}\n"""
+                    embed.description += f"\u200b\n{stw.I18n.get('vbucks.embed.description.xray', desired_lang, self.emojis['xray'], val['quantity'])}\n"
 
         embed.description += "\u200b"
 

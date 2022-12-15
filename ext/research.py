@@ -179,6 +179,8 @@ class ResearchView(discord.ui.View):
         try:
             research_points_item = purchased_json['profileChanges'][0]['profile']['items'][self.research_token_guid]
         except:
+            # this can be entered if there is an error during purchase
+            # TODO: handle purchase errors
             print(purchased_json)
             embed = discord.Embed(
                 title=await stw.add_emoji_title(self.client, "Research", "research_point"),
@@ -371,6 +373,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+        return None, True
 
     return current_levels, proc_max
 
@@ -463,6 +466,8 @@ class Research(ext.Cog):
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
         json_response = orjson.loads(await current_research_statistics_request.read())
         current_levels, proc_max = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
+        if current_levels is None:
+            return
 
         # assign variables for error embeds
         support_url = self.client.config["support_url"]

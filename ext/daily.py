@@ -85,20 +85,19 @@ class Daily(ext.Cog):
                 pass
 
             items = daily_feedback["items"]
-            if ctx.channel.id != 762864224334381077:
+            if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
                 # Empty items means that daily was already claimed
                 if len(items) == 0:
                     reward = stw.get_reward(self.client, day, vbucks)
                     embed = discord.Embed(
                         title=await stw.add_emoji_title(self.client, stw.random_error(self.client), "warning"), description=
-                        f"""\u200b
-You have already claimed your reward for day **{day}**.
-\u200b
-**{reward[1]} Todays reward was:**
-```{reward[0]}```
-You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>
-\u200b
-""", colour=yellow)
+                        (f"\u200b\n"
+                         f"You have already claimed your reward for day **{day}**.\n"
+                         f"\u200b\n"
+                         f"**{reward[1]} Todays reward was:**\n"
+                         f"```{reward[0]}```\n"
+                         f"You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
+                         f"\u200b\n"), colour=yellow)
                     embed = await stw.set_thumbnail(self.client, embed, "warn")
                     embed = await stw.add_requested_footer(ctx, embed)
                     final_embeds.append(embed)
@@ -159,7 +158,7 @@ You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>
                                                   f"\n\u200b",
                                       colour=succ_colour)
 
-            if ctx.channel.id != 762864224334381077:
+            if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
                 rewards = ''
                 for i in range(1, 8):
                     rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
