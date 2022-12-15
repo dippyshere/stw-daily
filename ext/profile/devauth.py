@@ -267,6 +267,15 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         else:
             await interaction.edit_original_response(embed=embed, view=account_stealing_view)
 
+    elif current_profile["authentication"]["accountId"] is not None:
+        embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id)
+        stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id)
+
+        if interaction is None:
+            await stw.slash_send_embed(ctx, embeds=embed, view=stolen_account_view)
+        else:
+            await interaction.edit_original_response(embed=embed, view=stolen_account_view)
+
 
 class EnslaveAndStealUserAccount(discord.ui.View):
     """
@@ -680,6 +689,13 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
     current_authentication["secret"] = stolen_information["secret"]
     current_authentication["epic_name"] = response_json["displayName"]
 
+    # idk about referencing in python so i do this just to make sure nya~
+    print(user_document)
+    user_document["profiles"][str(currently_selected_profile_id)]["authentication"] = current_authentication
+    await replace_user_document(client, user_document)
+
+    client.processing_queue[user_document["user_snowflake"]] = False
+    await handle_dev_auth(client, ctx, interaction, user_document)
 
 class StealAccountLoginDetailsModal(discord.ui.Modal):
     """
