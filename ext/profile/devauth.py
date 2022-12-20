@@ -7,14 +7,18 @@ This file is the cog for the device auth command.
 """
 
 import asyncio
+import base64
+import os
 import time
 
 import discord
 import discord.ext.commands as ext
 import orjson
+from Crypto.Cipher import AES
 
 import stwutil as stw
-from ext.profile.bongodb import get_user_document, replace_user_document, generate_profile_select_options
+from ext.profile.bongodb import get_user_document, replace_user_document, generate_profile_select_options, \
+    timeout_check_processing
 
 TOS_VERSION = 31
 
@@ -80,19 +84,21 @@ async def add_enslaved_user_accepted_license(view, interaction):
         view: The view
         interaction: The interaction
     """
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+
     view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"]["tos_accepted"] = True
     view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"][
         "tos_accepted_date"] = time.time_ns()  # how to get unix timestamp i forgor time.time is unix
     view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"][
         "tos_accepted_version"] = TOS_VERSION
-    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
     view.stop()
 
     await replace_user_document(view.client, view.user_document)
-
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
 
 
 async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction=None,
@@ -122,7 +128,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
     page_embed = await stw.set_thumbnail(client, page_embed, "pink_link")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
-    if selected_profile_data["authentication"]["accountId"] is None:
+    if selected_profile_data["authentication"] is None:
         # Not authenticated yet data stuffy ;p
 
         auth_session = False
@@ -151,12 +157,11 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         if auth_session:
             auth_session_found_message = f"Found an existing authentication session, you can proceed utilising the account associated with this authentication session by pressing the **{client.config['emojis']['library_input']} Auth With Session** Button below\n\u200b\nYou can use a different account by copying the authentication code from [this link](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode) and then type your authentication code into the modal that appears from pressing the the **{client.config['emojis']['locked']} Authenticate** Button"
 
-        page_embed.add_field(name=f"No device authentication found for current profile",
-                             value=(f"\n"
-                                    f"\u200b\n"
-                                    f"{auth_session_found_message}\n"
-                                    f"\u200b\n"),
-                             inline=False)
+        page_embed.description += f"\n**No device authentication found for current profile**" \
+                                  f"\n" \
+                                  f"\u200b\n" \
+                                  f"{auth_session_found_message}\n" \
+                                  f"\u200b\n"
 
     return page_embed
 
@@ -227,7 +232,7 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
                                              f"Whenever you attempt to authenticate without an authcode, you will automatically authenticated with the account associated with this profile.\n\u200b\n"
                                              f"If you wish to remove this auth-link, press the {client.config['emojis']['library_trashcan']} **Remove Link** button\n\u200b\n"
                                              f"**Auth-Linked to:**\n"
-                                             f"```{current_profile['authentication']['epic_name']}```\u200b"
+                                             f"```{current_profile['authentication']['displayName']}```\u200b"
                                              ),
                                 color=embed_colour)
     sad_embed = await stw.set_thumbnail(client, happy_embed, "pink_link")
@@ -253,8 +258,6 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     """
     current_author_id = ctx.author.id
 
-    print(user_document)
-
     if user_document is None:
         user_document = await get_user_document(ctx, client, current_author_id)
 
@@ -269,17 +272,17 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         await stw.slash_send_embed(ctx, embeds=embed)
         return False
 
-    if current_profile["statistics"]["tos_accepted"] is False:
+    if current_profile["statistics"]["tos_accepted_version"] != TOS_VERSION:
         embed = await tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx)
         button_accept_view = EnslaveUserLicenseAgreementButton(user_document, client, ctx,
-                                                               currently_selected_profile_id)
+                                                               currently_selected_profile_id, interaction)
 
         if interaction is None:
             await stw.slash_send_embed(ctx, embeds=embed, view=button_accept_view)
         else:
             await interaction.edit_original_response(embed=embed, view=button_accept_view)
 
-    elif current_profile["authentication"]["accountId"] is None:
+    elif current_profile["authentication"] is None:
 
         embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction,
                                               exchange_auth_session)
@@ -288,7 +291,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
             return
 
         account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id,
-                                                           exchange_auth_session)
+                                                           exchange_auth_session, interaction, message)
 
         if message is not None:
             await stw.slash_edit_original(ctx, message, embeds=embed, view=account_stealing_view)
@@ -299,9 +302,9 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         else:
             await interaction.edit_original_response(embed=embed, view=account_stealing_view)
 
-    elif current_profile["authentication"]["accountId"] is not None:
+    elif current_profile["authentication"] is not None:
         embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id)
-        stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id)
+        stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction)
 
         if interaction is None:
             await stw.slash_send_embed(ctx, embeds=embed, view=stolen_account_view)
@@ -314,7 +317,8 @@ class EnslaveAndStealUserAccount(discord.ui.View):
     This class is the view for authing the user
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id, response_json):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, response_json, interaction=None,
+                 extra_message=None):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -322,7 +326,12 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         self.user_document = user_document
         self.ctx = ctx
         self.interaction_check_done = {}
+
+        if extra_message is not None:
+            self.message = extra_message
+
         self.response_json = response_json
+        self.interaction = interaction
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
@@ -330,6 +339,32 @@ class EnslaveAndStealUserAccount(discord.ui.View):
 
         if self.response_json is None:
             del self.children[2]
+
+    async def on_timeout(self, processing_timeout=False):
+        """
+        This function handles the timeout
+
+        Args:
+            processing_timeout: If the timeout is processing
+
+        Returns:
+            None
+        """
+
+        timeout_embed = await pre_authentication_time(self.user_document, self.client,
+                                                      self.currently_selected_profile_id, self.ctx, self.interaction,
+                                                      None)
+
+        timeout_embed.description += "*Timed out, please use command again to continue.*\n\u200b"
+
+        for child in self.children:
+            child.disabled = True
+        self.stop()
+
+        if self.interaction is None:
+            await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
+        else:
+            await self.interaction.edit_original_response(embed=timeout_embed, view=self)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -357,7 +392,9 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "devauth")
+        return await stw.view_interaction_check(self, interaction, "devauth") & await timeout_check_processing(self,
+                                                                                                               self.client,
+                                                                                                               interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authenticate", emoji="locked")
     async def enter_your_account_to_be_stolen_button(self, button, interaction):
@@ -399,7 +436,7 @@ class StolenAccountView(discord.ui.View):
     This class is the view for the EULA
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -407,11 +444,33 @@ class StolenAccountView(discord.ui.View):
         self.user_document = user_document
         self.ctx = ctx
         self.interaction_check_done = {}
+        self.interaction = interaction
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
 
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
+
+    async def on_timeout(self):
+        """
+        This function handles the timeout
+
+        Returns:
+            None
+        """
+        timeout_embed = await existing_dev_auth_embed(self.client, self.ctx, self.user_document["profiles"][
+            str(self.currently_selected_profile_id)], self.currently_selected_profile_id)
+
+        timeout_embed.description += "\u200b\n*Timed out, please use command again to continue.*\n\u200b"
+
+        for child in self.children:
+            child.disabled = True
+        self.stop()
+
+        if self.interaction is None:
+            await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
+        else:
+            await self.interaction.edit_original_response(embed=timeout_embed, view=self)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -427,6 +486,7 @@ class StolenAccountView(discord.ui.View):
             select: The select
             interaction: The interaction
         """
+
         await select_change_profile(self, select, interaction)
 
     async def interaction_check(self, interaction):
@@ -439,10 +499,12 @@ class StolenAccountView(discord.ui.View):
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "devauth")
+        return await stw.view_interaction_check(self, interaction, "devauth") & await timeout_check_processing(self,
+                                                                                                               self.client,
+                                                                                                               interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Remove Link", emoji="library_trashcan")
-    async def soul_selling_button(self, button, interaction):
+    async def regain_soul_button(self, button, interaction):
         """
         This function handles the accept button
 
@@ -453,13 +515,16 @@ class StolenAccountView(discord.ui.View):
 
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
 
-        self.currently_selected_profile_id = str(self.currently_selected_profile_id)
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(view=self)
+        self.stop()
 
-        for key in self.user_document["profiles"][self.currently_selected_profile_id]["authentication"]:
-            self.user_document["profiles"][self.currently_selected_profile_id]["authentication"][key] = None
+        self.currently_selected_profile_id = str(self.currently_selected_profile_id)
+        self.user_document["profiles"][self.currently_selected_profile_id]["authentication"] = None
 
         await replace_user_document(self.client, self.user_document)
-        self.client.processing_queue[self.user_document["user_snowflake"]] = False
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
 
         await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
 
@@ -469,7 +534,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
     This class is the view for the EULA
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -477,6 +542,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         self.user_document = user_document
         self.ctx = ctx
         self.interaction_check_done = {}
+        self.interaction = interaction
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
@@ -496,7 +562,28 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
             select: The select
             interaction: The interaction
         """
+
         await select_change_profile(self, select, interaction)
+
+    async def on_timeout(self):
+        """
+        This function handles the timeout
+
+        Returns:
+            None
+        """
+        timeout_embed = await tos_acceptance_embed(self.user_document, self.client, self.currently_selected_profile_id,
+                                                   self.ctx)
+        timeout_embed.description += "*Timed out, please use command again to continue.*\n\u200b"
+
+        for child in self.children:
+            child.disabled = True
+        self.stop()
+
+        if self.interaction is None:
+            await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
+        else:
+            await self.interaction.edit_original_response(embed=timeout_embed, view=self)
 
     async def interaction_check(self, interaction):
         """
@@ -508,7 +595,9 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "devauth")
+        return await stw.view_interaction_check(self, interaction, "devauth") & await timeout_check_processing(self,
+                                                                                                               self.client,
+                                                                                                               interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Accept Agreement", emoji="library_handshake")
     async def soul_selling_button(self, button, interaction):
@@ -686,10 +775,30 @@ async def select_change_profile(view, select, interaction):
     view.stop()
 
     await replace_user_document(view.client, view.user_document)
-    await handle_dev_auth(view.client, view.ctx, interaction, view.user_document)
-
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
+    await handle_dev_auth(view.client, view.ctx, interaction, view.user_document)
+
+
+def encrypt_user_data(current_authentication, user_information, user_document):
+    """
+    This function encrypts the user data
+
+    Args:
+        current_authentication: The current authentication
+        user_information: The user information
+        user_document: The user document
+
+    Returns:
+        The encrypted user data
+    """
+    aes_cipher = AES.new(bytes(os.environ["STW_DAILY_KEY"], "ascii"),
+                         AES.MODE_GCM)  # Yes, i know this isnt secure, but it is better than storing stuff in plaintext
+    aes_cipher.update(bytes(str(user_document["user_snowflake"]), "ascii"))
+    user_information["authentication"], tag = aes_cipher.encrypt_and_digest(orjson.dumps(current_authentication))
+    user_information["battleBreakersId"] = base64.b64encode(aes_cipher.nonce).decode('utf-8')
+    user_information["battleBreakersAuthToken"] = tag
+    return user_information
 
 
 async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_document, currently_selected_profile_id, ctx,
@@ -706,28 +815,22 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
         response_json: The response json
     """
 
-    # Redundancy be upon thee
-    user_document = await get_user_document(client, interaction.user.id)
-
     client.processing_queue[user_document["user_snowflake"]] = True
     currently_selected_profile_id = user_document["global"]["selected_profile"]
 
-    # stolen_account = await stw.device_auth_request(client, response_json["account_id"], response_json["access_token"])
-    # stolen_information = await stolen_account.json()
-    stolen_information = orjson.loads(
-        """{"deviceId": "nyanya3adebenyanyafdfnyanyac4eeaf8", "accountId": "nya2nyad49d19enyanya78nyanya", "secret": "nyaInyaVnya7nyanyanyaRnyan", "userAgent": "Python/3.11 aiohttp/3.8.3", "created": {"location": "Sydney, Australia", "ipAddress": "139.218.37.15", "dateTime": "2022-12-15T10:59:55.293Z"}}""")
-    current_authentication = user_document["profiles"][str(currently_selected_profile_id)]["authentication"]
-    current_authentication["accountId"] = stolen_information["accountId"]
-    current_authentication["deviceId"] = stolen_information["deviceId"]
-    current_authentication["secret"] = stolen_information["secret"]
-    current_authentication["epic_name"] = response_json["displayName"]
+    stolen_account = await stw.device_auth_request(client, response_json["account_id"], response_json["access_token"])
+    stolen_information = await stolen_account.json()
 
-    # idk about referencing in python so i do this just to make sure nya~
-    print(user_document)
-    user_document["profiles"][str(currently_selected_profile_id)]["authentication"] = current_authentication
+    current_authentication = {"accountId": stolen_information["accountId"], "deviceId": stolen_information["deviceId"],
+                              "secret": stolen_information["secret"]}
+    user_information = {'displayName': response_json["displayName"]}
+    user_information = await asyncio.gather(
+        asyncio.to_thread(encrypt_user_data, current_authentication, user_information, user_document))
+
+    user_document["profiles"][str(currently_selected_profile_id)]["authentication"] = user_information[0]
     await replace_user_document(client, user_document)
 
-    client.processing_queue[user_document["user_snowflake"]] = False
+    del client.processing_queue[user_document["user_snowflake"]]
     await handle_dev_auth(client, ctx, interaction, user_document)
 
 
@@ -765,15 +868,12 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         """
 
         value = self.children[0].value
-        print(value, self.children)
 
         processing_embed = await stw.processing_embed(self.client, self.ctx)
         await interaction.response.edit_message(embed=processing_embed, view=None)
 
         auth_session_result = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", value, False,
                                                                    False, True)
-
-        print(auth_session_result)
         try:
             token = auth_session_result[1]['token']
         except:

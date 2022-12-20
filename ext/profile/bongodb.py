@@ -8,7 +8,7 @@ This file is the cog for mongodb database interaction.
 
 import asyncio
 import discord
-
+import stwutil as stw
 
 
 async def insert_default_document(client, user_snowflake):
@@ -156,6 +156,16 @@ async def get_user_document(ctx, client, user_snowflake):
     Returns:
         dict: The user document.
     """
+
+    error_check = await stw.processing_queue_error_check(client, user_snowflake)
+
+    if error_check is not True:
+        error_check = await stw.set_thumbnail(client, error_check, "error")
+        error_check = await stw.add_requested_footer(ctx, error_check)
+        await stw.slash_send_embed(ctx, embeds=error_check)
+        print(f"{user_snowflake} STUCK IN PROCESSING USER DOCUMENT?")
+        return
+
     # which one lol
     # what do u want to call the database and collection? actually we can just slap this into config too :) sure
     document = await client.stw_database.find_one({'user_snowflake': user_snowflake})
@@ -165,3 +175,23 @@ async def get_user_document(ctx, client, user_snowflake):
 
     document = await check_profile_ver_document(client, document)
     return document
+
+
+async def timeout_check_processing(view, client, interaction):
+    """
+    Checks if a user is stuck in the processing queue.
+
+    Args:
+        view: The view.
+        client: The bot client.
+        interaction: The interaction.
+
+    Returns:
+        bool: True if the user is stuck in the processing queue, False if not.
+    """
+    if view.ctx.author.id == interaction.user.id:
+        if interaction.user.id in client.processing_queue:
+            view.ctx = interaction
+            await view.on_timeout()
+            return False
+    return True

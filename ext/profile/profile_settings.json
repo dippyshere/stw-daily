@@ -112,23 +112,5 @@
         "min_length": 0,
         "max_length": 100,
         "req_string": "Must be a valid locale as given by https://discord.com/developers/docs/reference#locales"
-    },
-    "sex": {
-        "aliases": [
-            "sek",
-            "x",
-            "secks"
-        ],
-        "default": "sex yes yes i love the sekx",
-        "description": "many sex",
-        "modal_title": "sex???",
-        "input_placeholder": "sekcx",
-        "input_label": "pls sex",
-        "check_function": "sex_check",
-        "emoji": "spongebob",
-        "input_type": "long",
-        "min_length": 0,
-        "max_length": 4000,
-        "req_string": "much sex"
     }
 }

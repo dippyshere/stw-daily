@@ -73,21 +73,3 @@ def check_localisation(client, ctx, value):
         return client.localisation[value.lower()]
     else:
         return False
-
-
-def sex_check(client, ctx, value):
-    """
-    Checks sex i guess
-
-    Args:
-        client: The bot client. (unused)
-        ctx: The context of the command. (unused)
-        value: The value to check.
-
-    Returns:
-        bool: True if the value is valid, False otherwise.
-    """
-    try:
-        return str(value)
-    except:
-        return False

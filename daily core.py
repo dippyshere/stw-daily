@@ -11,10 +11,10 @@ import aiohttp
 import discord
 import discord.ext.commands as ext
 from discord.ext import tasks
+from Crypto.Cipher import AES
 
 import stwwatch as watch
 import stwutil as stw
-import importlib
 
 # Compatability layer for future versions of python 3.11+
 try:

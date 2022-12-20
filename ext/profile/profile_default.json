@@ -1,6 +1,7 @@
 {
+    "auto_claim": null,
     "global": {
-        "profiles_ver": 945,
+        "profiles_ver": 951,
         "rewrite_older": true,
         "selected_profile": 0,
         "banned": false,
@@ -15,11 +16,6 @@
         "isServerMemberSince": null,
         "donation_source": null,
         "donation_tier": 0,
-        "auto_claim": {
-            "days_remaining": 0,
-            "start_time": 0,
-            "end_time": 0
-        },
         "auto_trial_claimed": false
     },
     "profiles": {
@@ -37,13 +33,7 @@
             },
             "settings": {
             },
-            "authentication": {
-                "accountId": null,
-                "epic_name": null,
-                "deviceId": null,
-                "secret": null,
-                "expires": null
-            }
+            "authentication": null
         }
     }
 }

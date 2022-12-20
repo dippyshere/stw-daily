@@ -302,7 +302,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def settings_view_timeout(view):
+async def settings_view_timeout(view, sub=False):
     """
     This is the function that is called when the view times out.
 
@@ -313,7 +313,11 @@ async def settings_view_timeout(view):
     for child in view.children:
         child.disabled = True
 
-    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+    if not sub:
+        embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+    else:
+        embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+
     embed.fields[0].value += f"\u200b\n*Timed out, please reuse command to continue*\n\u200b"
     await view.message.edit(embed=embed, view=view)
 
@@ -364,7 +368,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         """
         This is the function that is called when the view times out.
         """
-        await settings_view_timeout(self)
+        await settings_view_timeout(self, True)
 
     async def interaction_check(self, interaction):
         """
@@ -376,7 +380,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "settings")
+        return await stw.view_interaction_check(self, interaction, "settings") & await timeout_check_processing(self, self.client, interaction)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -523,7 +527,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "settings")
+        return await stw.view_interaction_check(self, interaction, "settings") & await timeout_check_processing(self, self.client, interaction)
 
     @discord.ui.select(
         placeholder="Select another profile here",

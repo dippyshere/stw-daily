@@ -175,7 +175,9 @@ class ProfileMainView(discord.ui.View):
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "profile")
+        return await stw.view_interaction_check(self, interaction, "profile") & await timeout_check_processing(self,
+                                                                                                               self.client,
+                                                                                                               interaction)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -488,7 +490,6 @@ class Profile(ext.Cog):
                 current_command = f"\n*Selected profile **{new_profile}***\n\u200b"
                 del self.client.processing_queue[user_document["user_snowflake"]]
 
-        user_document = await self.client.get_user_document(self.client, ctx.author.id)
         current_selected_profile = user_document["global"]["selected_profile"]
 
         embed = await create_main_embed(ctx, self.client, current_selected_profile, user_document)
