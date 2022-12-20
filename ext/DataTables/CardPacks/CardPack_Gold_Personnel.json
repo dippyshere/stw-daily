@@ -1,48 +1,48 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Gold_Personnel",
-    "Properties": {
-      "bIsLlama": true,
-      "LootTierGroup": "CardPack_Gold_Personnel",
-      "DisplayRarityLevel": 2,
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_OlTimey_PersonalityPack.Llama_OlTimey_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "DA29774A47DA10FCD535F0943CAEA337",
-        "SourceString": "Gold People Llama"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "7A86EBF54DA9D4427CCA5BB57883771C",
-        "SourceString": "Full of the best stuff."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Gold_Personnel",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Gold_Personnel",
+            "DisplayRarityLevel": 2,
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_OlTimey_PersonalityPack.Llama_OlTimey_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "DA29774A47DA10FCD535F0943CAEA337",
+                "SourceString": "Gold People Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "7A86EBF54DA9D4427CCA5BB57883771C",
+                "SourceString": "Full of the best stuff."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

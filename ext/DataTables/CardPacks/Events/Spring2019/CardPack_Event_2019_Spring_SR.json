@@ -1,43 +1,43 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Event_2019_Spring_SR",
-    "Properties": {
-      "LootTier": 1,
-      "LootTierGroup": "CardPack_Event_2019_Spring_Inner",
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "A723846A4E20AD10AD2501BE06E9C37A",
-        "SourceString": "Legendary Item"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "0AF5B3AD454F7C28143C43858835CFA7",
-        "SourceString": "Choose one random item."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_2019_Spring_SR",
+        "Properties": {
+            "LootTier": 1,
+            "LootTierGroup": "CardPack_Event_2019_Spring_Inner",
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "A723846A4E20AD10AD2501BE06E9C37A",
+                "SourceString": "Legendary Item"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "0AF5B3AD454F7C28143C43858835CFA7",
+                "SourceString": "Choose one random item."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

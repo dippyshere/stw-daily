@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Vindertech_Edged_Axe_SR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Vindertech_Edged_Axe_SR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "533A072C4ABEE45318F631A2C464AF0C",
-        "SourceString": "Vindertech Sever Schematic"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "5E9F01D54C5B586B8F8A70A2D2470481",
-        "SourceString": "Axe: Heavy. Slow-swinging axe that deals high damage and knockback. Reduced durability, but much cheaper to craft. Up and Over: A two strike heavy attack that deals significant damage and knockback."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech--Laser-Axe.T-Icon-Weapons-SK-VinderTech--Laser-Axe",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech--Laser-Axe-L.T-Icon-Weapons-SK-VinderTech--Laser-Axe-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Vindertech_Edged_Axe_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Vindertech_Edged_Axe_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "533A072C4ABEE45318F631A2C464AF0C",
+                "SourceString": "Vindertech Sever Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "5E9F01D54C5B586B8F8A70A2D2470481",
+                "SourceString": "Axe: Heavy. Slow-swinging axe that deals high damage and knockback. Reduced durability, but much cheaper to craft. Up and Over: A two strike heavy attack that deals significant damage and knockback."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech--Laser-Axe.T-Icon-Weapons-SK-VinderTech--Laser-Axe",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech--Laser-Axe-L.T-Icon-Weapons-SK-VinderTech--Laser-Axe-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

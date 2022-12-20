@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Sniper_Military_SR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Sniper_Military_SR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_BlockbusterEvent_IconMask.T_CardPack_BlockbusterEvent_IconMask",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "3058306744DA42FFAAA7329C08DE71A1",
-        "SourceString": "Obliterator Schematic"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "5A3525004E18AA76B92EC6AE89D42BBF",
-        "SourceString": "Obliterator Schematic"
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-50cal-Barret-Sniper.T-Icon-Weapons-SK-50cal-Barret-Sniper",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-50cal-Barret-Sniper-L.T-Icon-Weapons-SK-50cal-Barret-Sniper-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Sniper_Military_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Sniper_Military_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_BlockbusterEvent_IconMask.T_CardPack_BlockbusterEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "3058306744DA42FFAAA7329C08DE71A1",
+                "SourceString": "Obliterator Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "5A3525004E18AA76B92EC6AE89D42BBF",
+                "SourceString": "Obliterator Schematic"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-50cal-Barret-Sniper.T-Icon-Weapons-SK-50cal-Barret-Sniper",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-50cal-Barret-Sniper-L.T-Icon-Weapons-SK-50cal-Barret-Sniper-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

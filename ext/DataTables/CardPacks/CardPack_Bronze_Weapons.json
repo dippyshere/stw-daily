@@ -1,58 +1,58 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Bronze_Weapons",
-    "Properties": {
-      "bIsLlama": true,
-      "LootTierGroup": "CardPack_Bronze_Weapons",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Weapon_IconMask.T_CardPack_Weapon_IconMask",
-        "SubPathString": ""
-      },
-      "PackColor": {
-        "R": 0.07421,
-        "G": 0.44,
-        "B": 0.028066,
-        "A": 1.0,
-        "Hex": "FF4DB12E"
-      },
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "462FD8A14F8F98319371648E99FD3D02",
-        "SourceString": "Weapon Llama"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "EF5608C84DE94C3815DF71BC8872C021",
-        "SourceString": "What comes out is as heavy as a sack of broken glass and just as much fun to play with. Contains at least 6 safety-guaranteed items."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Rare",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Bronze_Weapons",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Bronze_Weapons",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Weapon_IconMask.T_CardPack_Weapon_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 0.07421,
+                "G": 0.44,
+                "B": 0.028066,
+                "A": 1.0,
+                "Hex": "FF4DB12E"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "462FD8A14F8F98319371648E99FD3D02",
+                "SourceString": "Weapon Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "EF5608C84DE94C3815DF71BC8872C021",
+                "SourceString": "What comes out is as heavy as a sack of broken glass and just as much fun to play with. Contains at least 6 safety-guaranteed items."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Rare",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

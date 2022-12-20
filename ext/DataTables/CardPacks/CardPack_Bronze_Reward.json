@@ -1,59 +1,59 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Bronze_Reward",
-    "Properties": {
-      "bIsLlama": true,
-      "bAutoOpenAsReward": false,
-      "LootTierGroup": "CardPack_Bronze",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Upgrade_IconMask.T_CardPack_Upgrade_IconMask",
-        "SubPathString": ""
-      },
-      "PackColor": {
-        "R": 0.214,
-        "G": 0.093,
-        "B": 1.0,
-        "A": 1.0,
-        "Hex": "FF7F56FF"
-      },
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "EFE32B7A4E864C68B009C79C251B837F",
-        "SourceString": "Upgrade Llama"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "BD4453B8416CE5E8F339C9BD0237A039",
-        "SourceString": "The old faithful llama, packed with a variety of goodies and upgrade materials. Contains at least 4 items, including a rare item or a hero! Has a high chance to upgrade."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Rare",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Bronze_Reward",
+        "Properties": {
+            "bIsLlama": true,
+            "bAutoOpenAsReward": false,
+            "LootTierGroup": "CardPack_Bronze",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Upgrade_IconMask.T_CardPack_Upgrade_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 0.214,
+                "G": 0.093,
+                "B": 1.0,
+                "A": 1.0,
+                "Hex": "FF7F56FF"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "EFE32B7A4E864C68B009C79C251B837F",
+                "SourceString": "Upgrade Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "BD4453B8416CE5E8F339C9BD0237A039",
+                "SourceString": "The old faithful llama, packed with a variety of goodies and upgrade materials. Contains at least 4 items, including a rare item or a hero! Has a high chance to upgrade."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Rare",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

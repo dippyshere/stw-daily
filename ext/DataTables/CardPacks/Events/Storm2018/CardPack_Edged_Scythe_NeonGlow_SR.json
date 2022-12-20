@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Edged_Scythe_NeonGlow_SR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Edged_Scythe_NeonGlow_SR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_NeonCyberpunkEvent_IconMask.T_CardPack_NeonCyberpunkEvent_IconMask",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "EE5FA1FE40AE8589CC10F08C78F6EC74",
-        "SourceString": "Neon Scythe Schematic"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "17C608D8407EE41604CB03B7736A9D90",
-        "SourceString": "Neon Scythe Schematic."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Scythe.T-Icon-Weapons-SK-Neon-Glow-Scythe",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Scythe-L.T-Icon-Weapons-SK-Neon-Glow-Scythe-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Edged_Scythe_NeonGlow_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Edged_Scythe_NeonGlow_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_NeonCyberpunkEvent_IconMask.T_CardPack_NeonCyberpunkEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "EE5FA1FE40AE8589CC10F08C78F6EC74",
+                "SourceString": "Neon Scythe Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "17C608D8407EE41604CB03B7736A9D90",
+                "SourceString": "Neon Scythe Schematic."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Scythe.T-Icon-Weapons-SK-Neon-Glow-Scythe",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Scythe-L.T-Icon-Weapons-SK-Neon-Glow-Scythe-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

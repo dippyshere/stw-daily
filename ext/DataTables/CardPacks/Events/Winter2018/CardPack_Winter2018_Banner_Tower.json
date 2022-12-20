@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Winter2018_Banner_Tower",
-    "Properties": {
-      "LootTierGroup": "CardPack_Winter2018_Banner_Tower",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "AA60C5854F144298F0CB4EB2A503CE86",
-        "SourceString": "Frostnite Event Banner"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
-        "SourceString": "An exclusive homebase banner!"
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/2dAssets/Banners/Season7/T-Banners-Icons-Tower.T-Banners-Icons-Tower",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/2dAssets/Banners/Season7/T-Banners-Icons-Tower-L.T-Banners-Icons-Tower-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Winter2018_Banner_Tower",
+        "Properties": {
+            "LootTierGroup": "CardPack_Winter2018_Banner_Tower",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "AA60C5854F144298F0CB4EB2A503CE86",
+                "SourceString": "Frostnite Event Banner"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
+                "SourceString": "An exclusive homebase banner!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/2dAssets/Banners/Season7/T-Banners-Icons-Tower.T-Banners-Icons-Tower",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/2dAssets/Banners/Season7/T-Banners-Icons-Tower-L.T-Banners-Icons-Tower-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

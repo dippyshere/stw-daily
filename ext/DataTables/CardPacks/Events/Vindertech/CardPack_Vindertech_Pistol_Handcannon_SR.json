@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Vindertech_Pistol_Handcannon_SR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Vindertech_Pistol_Handcannon_SR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "F4E691BC4A5C9DDAA7ED76BA37E3C164",
-        "SourceString": "Vindertech Blaster Schematic"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "6C4C026D4FA5D2AF6D0298B1859ED04C",
-        "SourceString": "Pistol: Handcannon. Slow-firing revolver that fires powerful rounds that deal heavy damage and knock back targets. Accurate out to mid range."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Revolver.T-Icon-Weapons-SK-VinderTech-Revolver",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Revolver-L.T-Icon-Weapons-SK-VinderTech-Revolver-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Vindertech_Pistol_Handcannon_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Vindertech_Pistol_Handcannon_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "F4E691BC4A5C9DDAA7ED76BA37E3C164",
+                "SourceString": "Vindertech Blaster Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "6C4C026D4FA5D2AF6D0298B1859ED04C",
+                "SourceString": "Pistol: Handcannon. Slow-firing revolver that fires powerful rounds that deal heavy damage and knock back targets. Accurate out to mid range."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Revolver.T-Icon-Weapons-SK-VinderTech-Revolver",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Revolver-L.T-Icon-Weapons-SK-VinderTech-Revolver-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

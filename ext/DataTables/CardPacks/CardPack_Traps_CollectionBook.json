@@ -1,58 +1,58 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Traps_CollectionBook",
-    "Properties": {
-      "bIsLlama": true,
-      "LootTierGroup": "CardPack_Bronze_Traps",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Trap_IconMask.T_CardPack_Trap_IconMask",
-        "SubPathString": ""
-      },
-      "PackColor": {
-        "R": 1.0,
-        "G": 0.026519,
-        "B": 0.0,
-        "A": 1.0,
-        "Hex": "FFFF2D00"
-      },
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Mob_PersonalityPack.Llama_Mob_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "580065F041B9680EB1E40D8AA0E20F82",
-        "SourceString": "Trap Pack"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "9B35132343D3E4E3F5FE4CB92590E0A7",
-        "SourceString": "Full of useful stuff."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Epic",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Traps_CollectionBook",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Bronze_Traps",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Trap_IconMask.T_CardPack_Trap_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.026519,
+                "B": 0.0,
+                "A": 1.0,
+                "Hex": "FFFF2D00"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Mob_PersonalityPack.Llama_Mob_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "580065F041B9680EB1E40D8AA0E20F82",
+                "SourceString": "Trap Pack"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "9B35132343D3E4E3F5FE4CB92590E0A7",
+                "SourceString": "Full of useful stuff."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

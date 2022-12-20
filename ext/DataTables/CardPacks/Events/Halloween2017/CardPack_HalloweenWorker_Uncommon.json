@@ -1,49 +1,49 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_HalloweenWorker_Uncommon",
-    "Properties": {
-      "LootTierGroup": "CardPack_CB_Halloween_2017_Worker_Uncommon",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Crew_IconMask.T_CardPack_Crew_IconMask",
-        "SubPathString": ""
-      },
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "8917A4034B19177F628C3CB440A45807",
-        "SourceString": "Uncommon Monster 'Cosplayer'"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "F6BF6EBC468130043FE971AD7EE3DF71",
-        "SourceString": "A random Uncommon Monster 'Cosplayer'."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Workers/Generic/GenericWorker_128.GenericWorker_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Workers/Generic/GenericWorker.GenericWorker",
-        "SubPathString": ""
-      },
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_HalloweenWorker_Uncommon",
+        "Properties": {
+            "LootTierGroup": "CardPack_CB_Halloween_2017_Worker_Uncommon",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Crew_IconMask.T_CardPack_Crew_IconMask",
+                "SubPathString": ""
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "8917A4034B19177F628C3CB440A45807",
+                "SourceString": "Uncommon Monster 'Cosplayer'"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "F6BF6EBC468130043FE971AD7EE3DF71",
+                "SourceString": "A random Uncommon Monster 'Cosplayer'."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Workers/Generic/GenericWorker_128.GenericWorker_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Workers/Generic/GenericWorker.GenericWorker",
+                "SubPathString": ""
+            },
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

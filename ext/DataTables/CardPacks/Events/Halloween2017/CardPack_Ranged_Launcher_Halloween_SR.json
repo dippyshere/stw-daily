@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Ranged_Launcher_Halloween_SR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Ranged_Launcher_Halloween_SR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Halloween.T_CardPack_Event_Halloween",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "1DF46B084F1F8803E736A994C084179D",
-        "SourceString": "Jack-O-Launcher"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "57B525714BD4F0C72EB4D28C071A9699",
-        "SourceString": "Explosive Weapon: Fires explosive pumpkins that damage and knockback groups of enemies in a moderate radius. Does not consume ammo, but has low durability."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-PumpkinLauncher.T-Icon-Weapons-SK-PumpkinLauncher",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-PumpkinLauncher-L.T-Icon-Weapons-SK-PumpkinLauncher-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Ranged_Launcher_Halloween_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Ranged_Launcher_Halloween_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Halloween.T_CardPack_Event_Halloween",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "1DF46B084F1F8803E736A994C084179D",
+                "SourceString": "Jack-O-Launcher"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "57B525714BD4F0C72EB4D28C071A9699",
+                "SourceString": "Explosive Weapon: Fires explosive pumpkins that damage and knockback groups of enemies in a moderate radius. Does not consume ammo, but has low durability."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-PumpkinLauncher.T-Icon-Weapons-SK-PumpkinLauncher",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-PumpkinLauncher-L.T-Icon-Weapons-SK-PumpkinLauncher-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Winter_Banner_Hard",
-    "Properties": {
-      "LootTierGroup": "CardPack_Winter_Banner_Hard",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "2FC4300B436296A8ADA1C181580748F2",
-        "SourceString": "Holiday Survival Event Banner"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "52DF0A454FE947FC77E24DAACA1F72BD",
-        "SourceString": "A set of exclusive homebase banners!"
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Survival-Holiday-Hard.T-Banners-Icons-Survival-Holiday-Hard",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Survival-Holiday-Hard-L.T-Banners-Icons-Survival-Holiday-Hard-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Winter_Banner_Hard",
+        "Properties": {
+            "LootTierGroup": "CardPack_Winter_Banner_Hard",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "2FC4300B436296A8ADA1C181580748F2",
+                "SourceString": "Holiday Survival Event Banner"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "52DF0A454FE947FC77E24DAACA1F72BD",
+                "SourceString": "A set of exclusive homebase banners!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Survival-Holiday-Hard.T-Banners-Icons-Survival-Holiday-Hard",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Banner/Event_Special/T-Banners-Icons-Survival-Holiday-Hard-L.T-Banners-Icons-Survival-Holiday-Hard-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

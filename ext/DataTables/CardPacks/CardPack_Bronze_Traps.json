@@ -1,58 +1,58 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Bronze_Traps",
-    "Properties": {
-      "bIsLlama": true,
-      "LootTierGroup": "CardPack_Bronze_Traps",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Trap_IconMask.T_CardPack_Trap_IconMask",
-        "SubPathString": ""
-      },
-      "PackColor": {
-        "R": 1.0,
-        "G": 0.026519,
-        "B": 0.0,
-        "A": 1.0,
-        "Hex": "FFFF2D00"
-      },
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Mob_PersonalityPack.Llama_Mob_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "6975E7C64F621287CA72BEAC7B0B2E88",
-        "SourceString": "It's a Trap! Llama"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "F3262B674B5B04C9828D53A0AE8319EA",
-        "SourceString": "Hit the llama! How could this possibly go wrong? Contains at least 6 probably-spikey items."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Rare",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Bronze_Traps",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Bronze_Traps",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Trap_IconMask.T_CardPack_Trap_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.026519,
+                "B": 0.0,
+                "A": 1.0,
+                "Hex": "FFFF2D00"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Mob_PersonalityPack.Llama_Mob_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "6975E7C64F621287CA72BEAC7B0B2E88",
+                "SourceString": "It's a Trap! Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "F3262B674B5B04C9828D53A0AE8319EA",
+                "SourceString": "Hit the llama! How could this possibly go wrong? Contains at least 6 probably-spikey items."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Rare",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

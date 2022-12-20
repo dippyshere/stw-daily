@@ -1,42 +1,42 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Event_2020_ArtDeco_VR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Event_2020_ArtDeco_Inner",
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "9105E8354DEA59DDE03D029A68204F1A",
-        "SourceString": "Epic Item"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "F9B0B172487CE696FFFC6791EE3E6FAB",
-        "SourceString": "Choose one random item."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Epic",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_2020_ArtDeco_VR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Event_2020_ArtDeco_Inner",
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "9105E8354DEA59DDE03D029A68204F1A",
+                "SourceString": "Epic Item"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "F9B0B172487CE696FFFC6791EE3E6FAB",
+                "SourceString": "Choose one random item."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-128.T-Icon-Manage-All-128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Manage/T-Icon-Manage-All-512.T-Icon-Manage-All-512",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

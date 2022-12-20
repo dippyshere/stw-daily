@@ -1,48 +1,48 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Gold_Weapons",
-    "Properties": {
-      "bIsLlama": true,
-      "LootTierGroup": "CardPack_Gold_Weapons",
-      "DisplayRarityLevel": 2,
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "50ECBAE545697ABD251D59B97E1423CB",
-        "SourceString": "Gold Weapons Pack"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "7A86EBF54DA9D4427CCA5BB57883771C",
-        "SourceString": "Full of the best stuff."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Gold_Weapons",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Gold_Weapons",
+            "DisplayRarityLevel": 2,
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "50ECBAE545697ABD251D59B97E1423CB",
+                "SourceString": "Gold Weapons Pack"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "7A86EBF54DA9D4427CCA5BB57883771C",
+                "SourceString": "Full of the best stuff."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

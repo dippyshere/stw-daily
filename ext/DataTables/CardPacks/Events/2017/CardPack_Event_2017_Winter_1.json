@@ -1,51 +1,51 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Event_2017_Winter_1",
-    "Properties": {
-      "bIsLlama": true,
-      "LootTierGroup": "CardPack_Bronze",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
-        "SubPathString": ""
-      },
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Holiday_2017_PersonalityPack.Llama_Holiday_2017_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "0E7C6FC24E37D396BF5052AE8B68CAAF",
-        "SourceString": "Winter Llama #1/12"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "3B6CC171432DF1DFE14F84ADC78AF2F6",
-        "SourceString": "Full of useful stuff."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataWinterEventPack_128.PinataWinterEventPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataWinterEventPack.PinataWinterEventPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Rare",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_2017_Winter_1",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Bronze",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
+                "SubPathString": ""
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Holiday_2017_PersonalityPack.Llama_Holiday_2017_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "0E7C6FC24E37D396BF5052AE8B68CAAF",
+                "SourceString": "Winter Llama #1/12"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "3B6CC171432DF1DFE14F84ADC78AF2F6",
+                "SourceString": "Full of useful stuff."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataWinterEventPack_128.PinataWinterEventPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataWinterEventPack.PinataWinterEventPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Rare",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

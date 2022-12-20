@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Vindertech_Shotgun_Standard_SR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Vindertech_Shotgun_Standard_SR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "C70F634646722072B66C77AA81A8F48E",
-        "SourceString": "Vindertech Disintegrator Schematic"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "5A51837645BA8916ED730DAE8BF48F67",
-        "SourceString": "Shotgun: Pump-Action. Deals high damage and knockback at a moderate fire rate. Short range and limited magazine size."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Shotgun.T-Icon-Weapons-SK-VinderTech-Shotgun",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Shotgun-L.T-Icon-Weapons-SK-VinderTech-Shotgun-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Vindertech_Shotgun_Standard_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Vindertech_Shotgun_Standard_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "C70F634646722072B66C77AA81A8F48E",
+                "SourceString": "Vindertech Disintegrator Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "5A51837645BA8916ED730DAE8BF48F67",
+                "SourceString": "Shotgun: Pump-Action. Deals high damage and knockback at a moderate fire rate. Short range and limited magazine size."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Shotgun.T-Icon-Weapons-SK-VinderTech-Shotgun",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Shotgun-L.T-Icon-Weapons-SK-VinderTech-Shotgun-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

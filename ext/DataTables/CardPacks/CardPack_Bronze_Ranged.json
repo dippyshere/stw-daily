@@ -1,58 +1,58 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Bronze_Ranged",
-    "Properties": {
-      "bIsLlama": true,
-      "LootTierGroup": "CardPack_Bronze_Ranged",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Ranged_IconMask.T_CardPack_Ranged_IconMask",
-        "SubPathString": ""
-      },
-      "PackColor": {
-        "R": 0.525,
-        "G": 0.036637,
-        "B": 0.046664,
-        "A": 1.0,
-        "Hex": "FFC0363D"
-      },
-      "PackPersonality": {
-        "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "CC66D5E64F7BCED42ABBBFB0E1894FC4",
-        "SourceString": "Ranged Weapon Llama"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "BC6CA72946999DB158248D939A6CA01B",
-        "SourceString": "A llama filled entirely with ranged weapons! Also known as guns. So you can shoot husks. Contains at least 6 schematics."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Rare",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Bronze_Ranged",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Bronze_Ranged",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Ranged_IconMask.T_CardPack_Ranged_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 0.525,
+                "G": 0.036637,
+                "B": 0.046664,
+                "A": 1.0,
+                "Hex": "FFC0363D"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "CC66D5E64F7BCED42ABBBFB0E1894FC4",
+                "SourceString": "Ranged Weapon Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "BC6CA72946999DB158248D939A6CA01B",
+                "SourceString": "A llama filled entirely with ranged weapons! Also known as guns. So you can shoot husks. Contains at least 6 schematics."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Rare",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_FlameGrill_SR",
-    "Properties": {
-      "LootTierGroup": "Cardpack_Spring_Trap_Flame_SR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "4830D08B4DFA5ACE22D6389AB5127A9B",
-        "SourceString": "Flame Grill Floor Trap"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "9A93EF36435F07CBE7BD86864E959BD7",
-        "SourceString": "Instantly burns enemies with fire damage followed by fire damage affliction. Duration and damage is increased against Nature enemies, but reduced against Water enemies."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SM-Flame-Grill-Trap.T-Icon-Weapons-SM-Flame-Grill-Trap",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SM-Flame-Grill-Trap-L.T-Icon-Weapons-SM-Flame-Grill-Trap-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_FlameGrill_SR",
+        "Properties": {
+            "LootTierGroup": "Cardpack_Spring_Trap_Flame_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_SpringEvent_IconMask.T_CardPack_SpringEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "4830D08B4DFA5ACE22D6389AB5127A9B",
+                "SourceString": "Flame Grill Floor Trap"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "9A93EF36435F07CBE7BD86864E959BD7",
+                "SourceString": "Instantly burns enemies with fire damage followed by fire damage affliction. Duration and damage is increased against Nature enemies, but reduced against Water enemies."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SM-Flame-Grill-Trap.T-Icon-Weapons-SM-Flame-Grill-Trap",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SM-Flame-Grill-Trap-L.T-Icon-Weapons-SM-Flame-Grill-Trap-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_EnduranceWave30Banner_Theater03",
-    "Properties": {
-      "LootTierGroup": "CardPack_EnduranceWave30_BannerT03",
-      "PackImage": {
-        "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance03.T-Banners-Icons-Endurance03",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "628E2FDB47C180AF0BF01CA5F2DA7729",
-        "SourceString": "Canny Valley Endurance Banner"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
-        "SourceString": "An exclusive homebase banner!"
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance03.T-Banners-Icons-Endurance03",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance03-L.T-Banners-Icons-Endurance03-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Legendary",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_EnduranceWave30Banner_Theater03",
+        "Properties": {
+            "LootTierGroup": "CardPack_EnduranceWave30_BannerT03",
+            "PackImage": {
+                "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance03.T-Banners-Icons-Endurance03",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "628E2FDB47C180AF0BF01CA5F2DA7729",
+                "SourceString": "Canny Valley Endurance Banner"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
+                "SourceString": "An exclusive homebase banner!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance03.T-Banners-Icons-Endurance03",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/2dAssets/Banners/Season9/Endurance/T-Banners-Icons-Endurance03-L.T-Banners-Icons-Endurance03-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]

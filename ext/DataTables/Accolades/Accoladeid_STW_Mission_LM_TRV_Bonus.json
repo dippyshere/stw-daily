@@ -1,61 +1,61 @@
 [
-  {
-    "Type": "StWFortAccoladeItemDefinition",
-    "Name": "Accoladeid_STW_Mission_LM_TRV_Bonus",
-    "Properties": {
-      "AccoladeType": "EFortAccoladeType::Accolade",
-      "Priority": "EXPEventPriorityType::Feed",
-      "XpRewardAmount": {
-        "Value": 1.0,
-        "Curve": {
-          "CurveTable": {
-            "ObjectName": "CurveTable STWAccoladeXP",
-            "ObjectPath": "/SaveTheWorld/Items/STWAccolades/Datatables/STWAccoladeXP.0"
-          },
-          "RowName": "Mission_LM_TRV_Bonus"
+    {
+        "Type": "StWFortAccoladeItemDefinition",
+        "Name": "Accoladeid_STW_Mission_LM_TRV_Bonus",
+        "Properties": {
+            "AccoladeType": "EFortAccoladeType::Accolade",
+            "Priority": "EXPEventPriorityType::Feed",
+            "XpRewardAmount": {
+                "Value": 1.0,
+                "Curve": {
+                    "CurveTable": {
+                        "ObjectName": "CurveTable STWAccoladeXP",
+                        "ObjectPath": "/SaveTheWorld/Items/STWAccolades/Datatables/STWAccoladeXP.0"
+                    },
+                    "RowName": "Mission_LM_TRV_Bonus"
+                }
+            },
+            "AwardedSoundCue": {
+                "ObjectName": "SoundCue Fort_XP_Popup_Cue",
+                "ObjectPath": "/Game/Sounds/Fort_UI_Sounds/Gameplay/XP/Fort_XP_Popup_Cue.0"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "EDFCE7E84BCF2F1233BCA9B2005FD14D",
+                "SourceString": "Explore the Mist: Perfect Data"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "2FA4F41B4FCDC5DDE51A1FAFE4C7D51C",
+                "SourceString": "Battle Pass XP Earned"
+            },
+            "FrontendPreviewScale": 1.4,
+            "GameplayTags": [
+                "Accolade.Metadata.Survival"
+            ],
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_S.T_UI_FNBR_XPeverywhere_S",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_L.T_UI_FNBR_XPeverywhere_L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Common",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
         }
-      },
-      "AwardedSoundCue": {
-        "ObjectName": "SoundCue Fort_XP_Popup_Cue",
-        "ObjectPath": "/Game/Sounds/Fort_UI_Sounds/Gameplay/XP/Fort_XP_Popup_Cue.0"
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "EDFCE7E84BCF2F1233BCA9B2005FD14D",
-        "SourceString": "Explore the Mist: Perfect Data"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "2FA4F41B4FCDC5DDE51A1FAFE4C7D51C",
-        "SourceString": "Battle Pass XP Earned"
-      },
-      "FrontendPreviewScale": 1.4,
-      "GameplayTags": [
-        "Accolade.Metadata.Survival"
-      ],
-      "SmallPreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_S.T_UI_FNBR_XPeverywhere_S",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_L.T_UI_FNBR_XPeverywhere_L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Common",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
     }
-  }
 ]

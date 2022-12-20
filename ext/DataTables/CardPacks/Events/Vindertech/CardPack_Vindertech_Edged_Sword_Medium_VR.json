@@ -1,46 +1,46 @@
 [
-  {
-    "Type": "FortCardPackItemDefinition",
-    "Name": "CardPack_Vindertech_Edged_Sword_Medium_VR",
-    "Properties": {
-      "LootTierGroup": "CardPack_Vindertech_Edged_Sword_Medium_VR",
-      "PackImage": {
-        "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
-        "SubPathString": ""
-      },
-      "DisplayName": {
-        "Namespace": "",
-        "Key": "CF619D1E4CD1F26A4310C2859BF620CF",
-        "SourceString": "Vindertech Sword Schematic"
-      },
-      "Description": {
-        "Namespace": "",
-        "Key": "DAF55C504E0C5800AD179199CBB530D9",
-        "SourceString": "Sword: Medium. Uses a fast attack speed to deal high sustained damage, with low knockback. Quad Chop: A series of heavy attacks that deal increased damage and knockback."
-      },
-      "SmallPreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Sword.T-Icon-Weapons-SK-VinderTech-Sword",
-        "SubPathString": ""
-      },
-      "LargePreviewImage": {
-        "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Sword-L.T-Icon-Weapons-SK-VinderTech-Sword-L",
-        "SubPathString": ""
-      },
-      "Rarity": "EFortRarity::Epic",
-      "FrontendPreviewPivotOffset": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": -14.0
-      },
-      "FrontendPreviewInitialRotation": {
-        "Pitch": 0.0,
-        "Yaw": 83.20067,
-        "Roll": 0.0
-      },
-      "FrontendPreviewMeshOverride": {
-        "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
-        "SubPathString": ""
-      }
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Vindertech_Edged_Sword_Medium_VR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Vindertech_Edged_Sword_Medium_VR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_VindertechEvent_IconMask.T_CardPack_VindertechEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "CF619D1E4CD1F26A4310C2859BF620CF",
+                "SourceString": "Vindertech Sword Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "DAF55C504E0C5800AD179199CBB530D9",
+                "SourceString": "Sword: Medium. Uses a fast attack speed to deal high sustained damage, with low knockback. Quad Chop: A series of heavy attacks that deal increased damage and knockback."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Sword.T-Icon-Weapons-SK-VinderTech-Sword",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-VinderTech-Sword-L.T-Icon-Weapons-SK-VinderTech-Sword-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
     }
-  }
 ]
