@@ -16,7 +16,7 @@ import stwwatch as watch
 import stwutil as stw
 import importlib
 
-# Compatability layer for future versions of python 3.11+ 
+# Compatability layer for future versions of python 3.11+
 try:
     import tomllib as toml
 except ModuleNotFoundError:
@@ -70,7 +70,7 @@ def main():
         "homebase",
         "vbucks",
         "reload",
-        "profile.lavendar",
+        "profile.lavendar",  # hehe hiii
         "profile.devauth",
         "profile.sunday",
         "news",
@@ -85,6 +85,7 @@ def main():
         "status",
         "profile_dumper",
         "daily_xp",
+        "battlebreakers.bbdump"
     ]  # why no ext.bongodb :( doot doot doot doot
 
     for extension in extensions:
@@ -113,6 +114,7 @@ async def create_http_session():
     Returns:
         aiohttp.ClientSession: The aiohttp session
     """
+    # headers={"User-Agent": "Fortnite/++Fortnite+Release-23.10-CL-23443094 Windows/10.0.25267.1.256.64bit"} idk
     return aiohttp.ClientSession(json_serialize=lambda x: orjson.dumps(x).decode())
 
 
@@ -136,7 +138,10 @@ async def on_ready():
     client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
     print("Started STW Daily")
 
-    await client.watch_module.watch_stw_extensions()
+    try:
+        await client.watch_module.watch_stw_extensions()
+    except RuntimeError:
+        pass
 
 
 @client.event

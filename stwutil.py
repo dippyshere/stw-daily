@@ -49,8 +49,8 @@ banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert
 
 I18n = I18n()
 
-# TODO: make this None
-guild_ids = [None]
+# TODO: make this None (not a list)
+guild_ids = [757765475823517851]
 
 
 def reverse_dict_with_list_keys(dictionary):
@@ -474,12 +474,10 @@ async def get_token(client, auth_code: str, game="fn"):
 async def exchange_games(client, auth_token, game="fn"):
     """
     exchanges the given auth token for the given game
-
     Args:
         client: the client
         auth_token: the auth token to exchange
         game: the game to exchange for
-
     Returns:
         the new auth token response
     """
@@ -713,10 +711,10 @@ async def device_auth_request(client, account_id, token):
     return await client.stw_session.post(url, headers=header, json="")
 
 
-async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn"):
+async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn",
+                          profile_type="profile0"):
     """
     Request a profile from epic api
-
     Args:
         client: The client
         req_type: The type of profile related request to make
@@ -725,6 +723,7 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None, pr
         json: The json to send with the request
         profile_id: The profile id to use in the request
         game: The game to use in the request
+        profile_type: The profile type to use in the request
 
     Returns:
         The response from the request
@@ -732,7 +731,7 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None, pr
     if game == "bb":
         token = auth_entry["bb_token"]
         url = client.config["endpoints"]["bb_profile"].format(auth_entry["account_id"],
-                                                              client.config["profile"][req_type])
+                                                              client.config["profile"][req_type], profile_type)
     else:
         token = auth_entry["token"]
         url = client.config["endpoints"]["profile"].format(auth_entry["account_id"], client.config["profile"][req_type],
@@ -843,7 +842,7 @@ async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
                         "currency": "GameItem",
                         "currencySubType": "AccountResource:currency_xrayllama",
                         "expectedTotalPrice": 0,
-                        "gameContext": "Frontend.None"}
+                        "gameContext": ""}
                 req_buy_free_llama = await profile_request(client, "purchase", auth_entry, json=json,
                                                            profile_id="common_core")
                 req_buy_free_llama_json = orjson.loads(await req_buy_free_llama.read())
@@ -919,7 +918,8 @@ async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already
 
     tracked_resources = ["AccountResource:heroxp", "AccountResource:personnelxp", "AccountResource:phoenixxp",
                          "AccountResource:phoenixxp_reward", "AccountResource:reagent_alteration_ele_fire",
-                         "AccountResource:reagent_alteration_ele_nature", "AccountResource:reagent_alteration_ele_water",
+                         "AccountResource:reagent_alteration_ele_nature",
+                         "AccountResource:reagent_alteration_ele_water",
                          "AccountResource:reagent_alteration_gameplay_generic",
                          "AccountResource:reagent_alteration_generic", "AccountResource:reagent_alteration_upgrade_r",
                          "AccountResource:reagent_alteration_upgrade_sr",
