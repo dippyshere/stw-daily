@@ -654,7 +654,8 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     return False, None, None
 
 
-async def slash_edit_original(ctx, msg, embeds, view=None, file=None):
+# hi?
+async def slash_edit_original(ctx, msg, embeds, view=None, file=None, files=None):
     """
     Edits the original message sent by the bot
 
@@ -664,6 +665,7 @@ async def slash_edit_original(ctx, msg, embeds, view=None, file=None):
         embeds: The embeds to edit the message with
         view: The view to edit the message with
         file: The file to add to the message
+        files: The files to add to the message
 
     Returns:
         The edited message
@@ -676,19 +678,27 @@ async def slash_edit_original(ctx, msg, embeds, view=None, file=None):
     if isinstance(ctx, discord.ApplicationContext):
         if view is not None and file is not None:
             return await msg.edit_original_response(embeds=embeds, view=view, file=file)
+        if view is not None and files is not None:
+            return await msg.edit_original_response(embeds=embeds, view=view, files=files)
         if view is not None:
             return await msg.edit_original_response(embeds=embeds, view=view)
         if file is not None:
             return await msg.edit_original_response(embeds=embeds, file=file)
+        if files is not None:
+            return await msg.edit_original_response(embeds=embeds, files=files)
         else:
             return await msg.edit_original_response(embeds=embeds)
     else:
         if view is not None and file is not None:
             return await msg.edit(embeds=embeds, view=view, file=file)
+        if view is not None and files is not None:
+            return await msg.edit(embeds=embeds, view=view, files=files)
         if view is not None:
             return await msg.edit(embeds=embeds, view=view)
         if file is not None:
             return await msg.edit(embeds=embeds, file=file)
+        if files is not None:
+            return await msg.edit(embeds=embeds, files=files)
         else:
             return await msg.edit(embeds=embeds)
 
