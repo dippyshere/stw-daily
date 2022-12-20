@@ -406,10 +406,17 @@ def get_reward(client, day, vbucks=True):
 
     item = items.ItemDictionary[str(day_mod)]
     emojis = item[1:]
+    # add comma separators to the number
+    try:
+        item = item[0].split(" ")
+        item[0] = "{:,}".format(int(item[0]))
+        item = " ".join(item)
+    except ValueError:
+        item = items.ItemDictionary[str(day_mod)][0]
 
     if not vbucks:
         try:
-            item = [item[0].replace('V-Bucks & ', '')]
+            item = [item.replace('V-Bucks & ', '')]
             emojis[emojis.index('mtxswap_combined')] = 'xray'
         except:
             pass
@@ -418,7 +425,7 @@ def get_reward(client, day, vbucks=True):
     for emoji in emojis:
         emoji_text += client.config["emojis"][emoji]
 
-    return [item[0], emoji_text]
+    return [item, emoji_text]
 
 
 def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
@@ -448,7 +455,7 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
 
     # done FORTIFICAITION OF THE NIGHT hmm i see folders
     asset_path_name = LoginRewards[0]["Rows"][str(day_mod)]["ItemDefinition"]["AssetPathName"]
-    quantity = LoginRewards[0]['Rows'][str(day_mod)]['ItemCount']
+    quantity = f"{LoginRewards[0]['Rows'][str(day_mod)]['ItemCount']:,}"
 
     emoji, name, description = ext.battlebreakers.BBLootTable.BBLootTable[asset_path_name]
 
@@ -1522,6 +1529,7 @@ def get_item_icon_emoji(client, template_id):
                 pass
             else:
                 outcome = 'placeholder'
+        # print(f"Chose emoji: {outcome} for item: {filtered} (Similarity: {similarity})\n")
         return client.config['emojis'][outcome]
     except:
         return client.config['emojis']['placeholder']
@@ -1540,7 +1548,7 @@ def llama_contents_render(client, llama_items):
     """
     string = ""
     for item in llama_items:
-        string += f" {get_item_icon_emoji(client, item['itemType'])} {'x' + str(item['quantity']) if item['quantity'] > 1 else ''}  "
+        string += f"{get_item_icon_emoji(client, item['itemType'])}{' x' + str(item['quantity']) if item['quantity'] > 1 else ''} "
     return string
 
 
