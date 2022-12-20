@@ -32,7 +32,7 @@ async def add_fort_fields(client, embed, current_levels, extra_white_space=False
     Returns:
         The embed with the fields added.
     """
-    print(current_levels)
+    print("current levels: ", current_levels)
     fortitude = current_levels["fortitude"]
     offense = current_levels["offense"]
     resistance = current_levels["resistance"]
@@ -40,16 +40,20 @@ async def add_fort_fields(client, embed, current_levels, extra_white_space=False
 
     embed.add_field(name="\u200B", value="\u200B", inline=True)
     embed.add_field(name=f'**{client.config["emojis"]["fortitude"]} Fortitude: **',
-                    value=f'```{fortitude}```\u200b', inline=True)
+                    value=f'```{fortitude} (+{int((await stw.research_stat_rating("fortitude", fortitude))[0])}%)```\u200b',
+                    inline=True)
     embed.add_field(name=f'**{client.config["emojis"]["offense"]} Offense: **',
-                    value=f'```{offense}```\u200b', inline=True)
+                    value=f'```{offense} (+{int((await stw.research_stat_rating("offense", offense))[0])}%)```\u200b',
+                    inline=True)
     embed.add_field(name="\u200B", value="\u200B", inline=True)
     embed.add_field(name=f'**{client.config["emojis"]["resistance"]} Resistance: **',
-                    value=f'```{resistance}```\u200b', inline=True)
+                    value=f'```{resistance} (+{int((await stw.research_stat_rating("resistance", resistance))[0])}%)```\u200b',
+                    inline=True)
 
     extra_white_space = "\u200b\n\u200b\n\u200b" if extra_white_space is True else ""
     embed.add_field(name=f'**{client.config["emojis"]["technology"]} Technology: **',
-                    value=f'```{technology}```{extra_white_space}', inline=True)
+                    value=f'```{technology} (+{int((await stw.research_stat_rating("technology", technology))[0])}%)```{extra_white_space}',
+                    inline=True)
     return embed
 
 
@@ -58,7 +62,7 @@ class ResearchView(discord.ui.View):
     The UI View for the research command
     """
 
-    async def disable_button_when_poor(self, button, index):
+    def disable_button_when_poor(self, button, index):
         """
         Disable the button if the user cannot afford the stat.
 
@@ -73,7 +77,7 @@ class ResearchView(discord.ui.View):
         button.disabled = await self.check_stat_affordability(button_map[index])
         return button
 
-    async def check_stat_affordability(self, stat):
+    def check_stat_affordability(self, stat):
         """
         Check if the stat can be afforded.
 
@@ -83,6 +87,8 @@ class ResearchView(discord.ui.View):
         Returns:
             bool: True if the stat can be afforded, False if not.
         """
+        if self.current_levels[stat] >= 120:
+            return False
         return self.total_points['quantity'] >= stw.research_stat_cost(stat, self.current_levels[stat])
 
     def map_button_emojis(self, button):
@@ -105,20 +111,28 @@ class ResearchView(discord.ui.View):
         Returns:
             None
         """
-        green = self.client.colours["research_green"]
+        res_green = self.client.colours["research_green"]
+        crown_yellow = self.client.colours["crown_yellow"]
 
         for child in self.children:
             child.disabled = True
         total_points = self.total_points
         current_levels = self.current_levels
+        proc_max = False
+        try:
+            if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
+                proc_max = True
+        except:
+            pass
+        max_fort_string = "Congratulations, you have **maximum** FORT stats.\n"
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-            description=(f"\u200b\n"
-                         f"You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
-            colour=green
+            title=await stw.add_emoji_title(self.client, "Research", "crown" if proc_max else "research_point"),
+            description=(f"\u200b\n{max_fort_string if proc_max else ''}"
+                         f"You currently have **{total_points['quantity']:,}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
+            colour=crown_yellow if proc_max else res_green
         )
 
-        embed = await stw.set_thumbnail(self.client, embed, "research")
+        embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(self.ctx, embed)
         embed = await add_fort_fields(self.client, embed, current_levels)
         embed.add_field(name=f"\u200b", value=f"*Timed out, please reuse command to continue*\n\u200b")
@@ -135,7 +149,8 @@ class ResearchView(discord.ui.View):
         Returns:
             None
         """
-        gren = self.client.colours["research_green"]
+        res_green = self.client.colours["research_green"]
+        crown_yellow = self.client.colours["crown_yellow"]
 
         for child in self.children:
             child.disabled = True
@@ -156,8 +171,8 @@ class ResearchView(discord.ui.View):
                 embed = discord.Embed(
                     title=await stw.add_emoji_title(self.client, "Research", "research_point"),
                     description=(f"\u200b\n"
-                                 f"You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
-                    colour=gren
+                                 f"You currently have **{total_points['quantity']:,}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
+                    colour=res_green
                 )
 
                 embed = await stw.set_thumbnail(self.client, embed, "research")
@@ -178,42 +193,52 @@ class ResearchView(discord.ui.View):
         # What I believe happens is that epic games removes the research points item if you use it all... not to sure if they change the research token guid
         try:
             research_points_item = purchased_json['profileChanges'][0]['profile']['items'][self.research_token_guid]
-        except:
+        except Exception as e:
             # this can be entered if there is an error during purchase
-            # TODO: handle purchase errors
-            print(purchased_json)
-            embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-                description=(f"\u200b\n"
-                             f"You currently have **0** research points available.\n\u200b\n\u200b"),
-                colour=gren
-            )
+            print(e, "\nError during purchase:\n", purchased_json)
+            try:
+                error_code = json_response["errorCode"]
+                support_url = self.client.config["support_url"]
+                acc_name = self.auth_info[1]["account_name"]
+                embed = await stw.post_error_possibilities(self.ctx, self.client, "research", acc_name, error_code,
+                                                           support_url)
+                await interaction.edit_original_response(embed=embed, view=self)
+                return
+            except:
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, "Research", "research_point"),
+                    description=(f"\u200b\n"
+                                 f"You currently have **0** research points available.\n\u200b\n\u200b"),
+                    colour=res_green
+                )
 
-            embed = await add_fort_fields(self.client, embed, current_levels)
-            embed.add_field(name=f"\u200b", value=f"*No more research points!*\n\u200b")
-            embed = await stw.set_thumbnail(self.client, embed, "research")
-            embed = await stw.add_requested_footer(interaction, embed)
-            for child in self.children:
-                child.disabled = True
-            await interaction.edit_original_response(embed=embed, view=self)
-            return
+                embed = await add_fort_fields(self.client, embed, current_levels)
+                embed.add_field(name=f"\u200b", value=f"*No more research points!*\n\u200b")
+                embed = await stw.set_thumbnail(self.client, embed, "research")
+                embed = await stw.add_requested_footer(interaction, embed)
+                for child in self.children:
+                    child.disabled = True
+                await interaction.edit_original_response(embed=embed, view=self)
+                return
 
         spent_points = self.total_points['quantity'] - research_points_item['quantity']
+        max_fort_string = "Congratulations, you have **maximum** FORT stats.\n"
+
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-            description=(f"\u200b\n"
-                         f"You currently have **{research_points_item['quantity']}** research point{'s' if research_points_item['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
-            colour=gren
+            title=await stw.add_emoji_title(self.client, "Research", "crown" if proc_max else "research_point"),
+            description=(f"\u200b\n{max_fort_string if proc_max else ''}"
+                         f"You currently have **{research_points_item['quantity']:,}** research point{'s' if research_points_item['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
+            colour=crown_yellow if proc_max else res_green
         )
 
         embed = await add_fort_fields(self.client, embed, current_levels)
-        embed.add_field(name=f"\u200b", value=f"*Spent **{spent_points}** to level up **{stat}***\n\u200b")
-        embed = await stw.set_thumbnail(self.client, embed, "research")
+        embed.add_field(name=f"\u200b", value=f"*Spent **{spent_points:,}** to level up **{stat}***\n\u200b")
+        embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(interaction, embed)
         self.total_points = research_points_item
 
         for i, child in enumerate(self.children):
-            await self.disable_button_when_poor(child, i)
+            self.disable_button_when_poor(child, i)
 
         await interaction.edit_original_response(embed=embed, view=self)
 
@@ -238,6 +263,10 @@ class ResearchView(discord.ui.View):
         }
 
         self.children = list(map(self.map_button_emojis, self.children))
+
+        for i, child in enumerate(
+            self.children):  # hmm github copilot ;o maybe i should use it instead of writing everything :( it DOESNT work on the remote client :p it doesnt work well on the remote clientif it works
+            self.disable_button_when_poor(child, i)
 
     async def interaction_check(self, interaction):
         """
@@ -310,8 +339,6 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
     Returns:
         tuple: The current research levels dict, and a bool if the max research level has been reached.
     """
-    crown_yellow = client.colours["crown_yellow"]
-
     support_url = client.config["support_url"]
     acc_name = auth_info[1]["account_name"]
 
@@ -331,11 +358,11 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         try:
             # check if account has daily reward stats, if not, then account doesn't have stw
             check_stw = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
-            print(e, "no research stat, but daily reward; must have zero research stats", json_response)
+            print(e, "\nno research stat, but daily reward; must have zero research stats.\n", json_response)
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
             # dippy note here - after some investigation, this condition is entered when the stats are missing (due to being level 0 / not unlocked yet)
             # it should be when all stats are missing, but this is entered when 1 stat is missing, we should check which stats are missing and assign to level 0
-            # TODO: check which stats are missing and assign to level 0
+            # TODO: This condition may be entered when research is not unlocked yet
             current_levels = {'fortitude': 0, 'offense': 0, 'resistance': 0, 'technology': 0}
             pass
         except:
@@ -350,30 +377,15 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
     # I'll assume it's minimum
     proc_max = False
     try:
-        if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
+        if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels[
+            "technology"] == 480:
             proc_max = True
     except:
         for stat in ["offense", "fortitude", "resistance", "technology"]:
             if stat not in current_levels:
                 current_levels[stat] = 0
 
-        pass
-
-    # TODO: move this out of the query function as we shouldn't perform discord actions under an epic api function
-    if proc_max:
-        embed = discord.Embed(
-            title=await stw.add_emoji_title(client, "Max", "crown"),
-            description=("\u200b\n"
-                         "Congratulations, you have **maximum** FORT stats.\n\u200b\n\u200b"),
-            colour=crown_yellow
-        )
-
-        await add_fort_fields(client, embed, current_levels, True)
-        embed = await stw.set_thumbnail(client, embed, "crown")
-        embed = await stw.add_requested_footer(ctx, embed)
-        final_embeds.append(embed)
-        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-        return None, True
+        pass  # yeah same i pass
 
     return current_levels, proc_max
 
@@ -444,7 +456,8 @@ class Research(ext.Cog):
         Returns:
             None
         """
-        gren = self.client.colours["research_green"]
+        res_green = self.client.colours["research_green"]
+        crown_yellow = self.client.colours["crown_yellow"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True)
         if not auth_info[0]:
@@ -466,8 +479,21 @@ class Research(ext.Cog):
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
         json_response = orjson.loads(await current_research_statistics_request.read())
         current_levels, proc_max = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
-        if current_levels is None:
-            return
+        # if proc_max:
+        #     crown_yellow = self.client.colours["crown_yellow"]
+        #     embed = discord.Embed(
+        #         title=await stw.add_emoji_title(self.client, "Max", "crown"),
+        #         description=("\u200b\n"
+        #                      "Congratulations, you have **maximum** FORT stats.\n\u200b\n\u200b"),
+        #         colour=crown_yellow
+        #     )
+        #
+        #     await add_fort_fields(self.client, embed, current_levels, True)
+        #     embed = await stw.set_thumbnail(self.client, embed, "crown")
+        #     embed = await stw.add_requested_footer(ctx, embed)
+        #     final_embeds.append(embed)
+        #     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+        #     return
 
         # assign variables for error embeds
         support_url = self.client.config["support_url"]
@@ -475,7 +501,7 @@ class Research(ext.Cog):
 
         # Find research guid to post to required for ClaimCollectedResources json
         research_guid_check = await asyncio.gather(asyncio.to_thread(self.check_for_research_guid_key, json_response))
-        print(research_guid_check)
+        print("research guid: ", research_guid_check)
         if research_guid_check[0] is None:
             print("errors.stwdaily.failed_guid_research encountered:", json_response)
             error_code = "errors.stwdaily.failed_guid_research"
@@ -490,7 +516,7 @@ class Research(ext.Cog):
         current_research_statistics_request = await stw.profile_request(self.client, "resources", auth_info[1],
                                                                         json={"collectorsToClaim": [research_guid]})
         json_response = orjson.loads(await current_research_statistics_request.read())
-        print(json_response)
+        print("current research stats: ", json_response)
 
         try:
             error_code = json_response["errorCode"]
@@ -515,7 +541,7 @@ class Research(ext.Cog):
         # I do believe that after some testing if you are at le maximum research points
         # you do not receive notifications so this must be wrapped in a try statement
         # assume that research points generated is none since it is at max!
-        # TODO: the above statement is false
+        # the above statement is false, this has now been fixed :)
         research_points_claimed = None
         try:
             research_feedback, check = json_response["notifications"], False
@@ -558,21 +584,23 @@ class Research(ext.Cog):
 
         if research_points_claimed is not None:
             if research_points_claimed == 1:
-                claimed_text = f"*Claimed **{research_points_claimed}** research point*\n\u200b"
+                claimed_text = f"*Claimed **{research_points_claimed:,}** research point*\n\u200b"
             else:
-                claimed_text = f"*Claimed **{research_points_claimed}** research points*\n\u200b"
+                claimed_text = f"*Claimed **{research_points_claimed:,}** research points*\n\u200b"
         else:
+            # TODO: add info about player's research storage limit / regen time (wallet)
             claimed_text = f"*Did not claim any research points*\n\u200b"
+        max_fort_string = "Congratulations, you have **maximum** FORT stats.\n"
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-            description=(f"\u200b\n"
-                         f"You currently have **{total_points['quantity']}** research point{'s' if total_points['quantity'] > 1 else ''} available. \n\u200b\n\u200b"),
-            colour=gren
+            title=await stw.add_emoji_title(self.client, "Research", "crown" if proc_max else "research_point"),
+            description=(f"\u200b\n{max_fort_string if proc_max else ''}"
+                         f"You currently have **{total_points['quantity']:,}** research point{'s' if total_points['quantity'] > 1 else ''} available. \n\u200b\n\u200b"),
+            colour=crown_yellow if proc_max else res_green
         )
 
         embed = await add_fort_fields(self.client, embed, current_levels)
         embed.add_field(name=f"\u200b", value=claimed_text)
-        embed = await stw.set_thumbnail(self.client, embed, "research")
+        embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(ctx, embed)
 
         final_embeds.append(embed)
