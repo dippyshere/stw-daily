@@ -19,6 +19,7 @@ import stwutil as stw
 
 import motor.motor_asyncio
 
+from ext.profile.automatedfunctions import get_auto_claim
 from ext.profile.devauth import handle_dev_auth
 from ext.profile.bongodb import *
 from ext.profile.sunday import settings_command
@@ -115,6 +116,7 @@ class ProfileMainView(discord.ui.View):
 
     def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None):
         super().__init__()
+
         self.client = client
         self.children[0].options = profile_options
 
@@ -209,6 +211,7 @@ class ProfileMainView(discord.ui.View):
         select_options = generate_profile_select_options(self.client, new_profile_selected, self.user_document)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document,
                                        self.message)
+        await active_view(self.client, self.ctx.author.id, profile_view)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
@@ -280,6 +283,7 @@ class ProfileMainView(discord.ui.View):
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document,
                                        self.message)
 
+        await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
@@ -394,6 +398,7 @@ class ChangeNameModal(discord.ui.Modal):
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
                                        self.message)
 
+        await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
@@ -453,6 +458,7 @@ class NewProfileModal(discord.ui.Modal):
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
                                        self.message)
 
+        await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
@@ -497,6 +503,7 @@ class Profile(ext.Cog):
         select_options = generate_profile_select_options(self.client, current_selected_profile, user_document)
         profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document)
         # brb back gtg soonish
+        await active_view(self.client, ctx.author.id, profile_view)
         await stw.slash_send_embed(ctx, embed, profile_view)
 
     @ext.command(name='profile',
@@ -609,6 +616,7 @@ class Profile(ext.Cog):
             ctx: the context of the command
             profile: the profile to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)(PENDING)
         """
+        await command_counter(self.client, ctx.author.id)
         await self.profile_command(ctx, profile)
 
     @slash_command(name='profile',
@@ -624,4 +632,5 @@ class Profile(ext.Cog):
             ctx: The context.
             profile: The profile to switch to.
         """
+        await command_counter(self.client, ctx.author.id)
         await self.profile_command(ctx, profile)

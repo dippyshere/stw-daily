@@ -18,7 +18,7 @@ from Crypto.Cipher import AES
 
 import stwutil as stw
 from ext.profile.bongodb import get_user_document, replace_user_document, generate_profile_select_options, \
-    timeout_check_processing
+    timeout_check_processing, active_view, command_counter
 
 TOS_VERSION = 31
 
@@ -276,6 +276,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         embed = await tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx)
         button_accept_view = EnslaveUserLicenseAgreementButton(user_document, client, ctx,
                                                                currently_selected_profile_id, interaction)
+        await active_view(client, ctx.author.id, button_accept_view)
 
         if interaction is None:
             await stw.slash_send_embed(ctx, embeds=embed, view=button_accept_view)
@@ -292,6 +293,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
 
         account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id,
                                                            exchange_auth_session, interaction, message)
+        await active_view(client, ctx.author.id, account_stealing_view)
 
         if message is not None:
             await stw.slash_edit_original(ctx, message, embeds=embed, view=account_stealing_view)
@@ -305,6 +307,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     elif current_profile["authentication"] is not None:
         embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id)
         stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction)
+        await active_view(client, ctx.author.id, stolen_account_view)
 
         if interaction is None:
             await stw.slash_send_embed(ctx, embeds=embed, view=stolen_account_view)
@@ -319,8 +322,8 @@ class EnslaveAndStealUserAccount(discord.ui.View):
 
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, response_json, interaction=None,
                  extra_message=None):
-        super().__init__()
 
+        super().__init__()
         self.currently_selected_profile_id = currently_selected_profile_id
         self.client = client
         self.user_document = user_document
@@ -640,6 +643,7 @@ class ProfileAuth(ext.Cog):
         Args:
             ctx: The context
         """
+        await command_counter(self.client, ctx.author.id)
         await self.devauth_command(ctx)
 
     @ext.command(name='device',
@@ -752,6 +756,7 @@ class ProfileAuth(ext.Cog):
         Args:
             ctx: The context
         """
+        await command_counter(self.client, ctx.author.id)
         await self.devauth_command(ctx)
 
 

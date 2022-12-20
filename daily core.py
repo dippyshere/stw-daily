@@ -55,6 +55,7 @@ def main():
     for name, colour in client.config["colours"].items():
         client.colours[name] = discord.Colour.from_rgb(colour[0], colour[1], colour[2])
 
+    client.active_profile_command = {}
     client.temp_auth = {}
     client.remove_command('help')
 
@@ -181,7 +182,6 @@ async def update_status():
     await client.change_presence(
         activity=discord.Activity(type=discord.ActivityType.listening,
                                   name=f"@{client.user.name}  |  Reset in: \n{stw.time_until_end_of_day()}\n  |  In {len(client.guilds)} guilds"))
-
 
 if __name__ == "__main__":
     main()

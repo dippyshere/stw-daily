@@ -9,7 +9,7 @@ This file is the cog for mongodb database interaction.
 import asyncio
 import discord
 import stwutil as stw
-
+import inspect
 
 async def insert_default_document(client, user_snowflake):
     """
@@ -39,6 +39,9 @@ async def replace_user_document(client, document):
     """
     await client.stw_database.replace_one({"user_snowflake": document["user_snowflake"]}, document)
 
+async def get_autoclaim_user_cursor(client):
+
+    return client.stw_database.find({"auto_claim": {"$ne": None}})
 
 async def check_profile_ver_document(client, document):
     """
@@ -195,3 +198,16 @@ async def timeout_check_processing(view, client, interaction):
             await view.on_timeout()
             return False
     return True
+
+async def active_view(client, user_snowflake, view):
+    client.active_profile_command[user_snowflake] = view
+
+async def command_counter(client, user_snowflake):
+
+    try:
+        old_view = client.active_profile_command[user_snowflake]
+        await old_view.on_timeout()
+        del client.active_profile_command[user_snowflake]
+    except:
+        pass
+

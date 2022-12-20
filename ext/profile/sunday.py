@@ -38,6 +38,7 @@ async def settings_profile_setting_select(view, select, interaction):
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(select.values[0][:-1], view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   int(select.values[0][-1]), view.message)
+    await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
@@ -55,6 +56,7 @@ async def back_to_main_page(view, interaction):
     view.stop()
     main_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
                                             view.message)
+    await active_view(view.client, view.ctx.author.id, main_view)
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
     embed.fields[0].value += f"\u200b\n*Returned to main menu*\n\u200b\n"
     await interaction.edit_original_response(embed=embed, view=main_view)
@@ -88,6 +90,7 @@ async def shift_page(view, interaction, amount):
 
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
                                            view.message)
+    await active_view(view.client, view.ctx.author.id, new_view)
     await interaction.edit_original_response(embed=embed, view=new_view)
 
 
@@ -122,6 +125,7 @@ async def shift_page_on_sub_page(view, interaction, amount):
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message)
+    await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
@@ -150,6 +154,7 @@ async def sub_settings_profile_select_change(view, select, interaction):
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message)
+    await active_view(view.client, view.ctx.author.id, sub_view)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=sub_view)
@@ -179,7 +184,7 @@ async def settings_profile_select_change(view, select, interaction):
     embed.fields[0].value += f"\u200b\n*Selected profile **{new_profile_selected}***\n\u200b"
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
                                            view.message)
-
+    await active_view(view.client, view.ctx.author.id, new_view)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=new_view)
 
@@ -196,6 +201,7 @@ async def edit_current_setting(view, interaction):
     setting_information = view.client.default_settings[selected_setting]
     modal = RetrieveSettingChangeModal(setting_information, view.client, view, view.user_document, view.ctx,
                                        view.selected_setting)
+
     await interaction.response.send_modal(modal)
 
 
@@ -228,6 +234,7 @@ async def edit_current_setting_bool(view, interaction, set_value):
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message)
+    await active_view(view.client, view.ctx.author.id, sub_view)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=sub_view)
@@ -293,6 +300,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                       view.client, view.page, view.ctx, view.settings,
                                                                       view.selected_setting_index, view.message)
+        await active_view(view.client, view.ctx.author.id, sub_view)
+
         if check_result:
             embed.fields[0].value += f"\u200b\n*Changed Setting Value to **{value}***\n\u200b"
         else:
@@ -764,6 +773,7 @@ async def default_page_profile_settings(client, ctx, user_profile, settings, mes
     main_page_embed.fields[0].value += message
 
     settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings)
+    await active_view(client, ctx.author.id, settings_view)
     await stw.slash_send_embed(ctx, embeds=main_page_embed, view=settings_view)
 
 
@@ -879,6 +889,8 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
                                                                               client, page, ctx,
                                                                               settings,
                                                                               selected_setting_index)
+                await active_view(client, ctx.author.id, sub_view)
+
                 embed.fields[0].value += happy_message + "*\n\u200b\n"
                 await stw.slash_send_embed(ctx, embeds=embed, view=sub_view)
                 return
@@ -914,6 +926,8 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
                                                                           client, page, ctx,
                                                                           settings,
                                                                           selected_setting_index)
+            await active_view(client, ctx.author.id, sub_view)
+
             embed.fields[0].value += base_error_message
             await stw.slash_send_embed(ctx, embeds=embed, view=sub_view)
             return
@@ -968,6 +982,7 @@ class ProfileSettings(ext.Cog):
             profile: The profile to change the setting on.
             value: The value to change the setting to.
         """
+        await command_counter(self.client, ctx.author.id)
         await settings_command(self.client, ctx, setting, profile, value)
 
     @ext.command(name='settings',
@@ -1125,6 +1140,7 @@ class ProfileSettings(ext.Cog):
             profile: The profile to change the setting on.
             value: The value to change the setting to.
         """
+        await command_counter(self.client, ctx.author.id)
         await settings_command(self.client, ctx, setting, profile, value)
 
 
