@@ -16,7 +16,7 @@ import orjson
 import stwutil as stw
 from ext.profile.bongodb import get_user_document, replace_user_document, generate_profile_select_options
 
-TOS_VERSION = 1
+TOS_VERSION = 31
 
 
 async def tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx):
@@ -41,9 +41,29 @@ async def tos_acceptance_embed(user_document, client, currently_selected_profile
                                        f"**Currently Selected Profile {currently_selected_profile_id}:**\n"
                                        f"```{selected_profile_data['friendly_name']}```\u200b\n"),
                           color=embed_colour)
-    # TODO: eula
     embed.description += (f"**You have not accepted the user agreement on profile {currently_selected_profile_id}**\n"
-                          f"```Agreement:\n\u200b\nUsage of these STW Daily features is governed by the following additional set of terms:\n\u200b\Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus in mollis nunc sed id semper risus. Quis enim lobortis scelerisque fermentum dui faucibus in. Et sollicitudin ac orci phasellus. Orci dapibus ultrices in iaculis nunc. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum. Sapien faucibus et molestie ac feugiat sed. Ut ornare lectus sit amet est placerat in egestas. Non quam lacus suspendisse faucibus interdum posuere lorem. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Neque ornare aenean euismod elementum. Ultricies leo integer malesuada nunc vel risus commodo viverra maecenas. Donec massa sapien faucibus et molestie ac feugiat sed lectus. In fermentum et sollicitudin ac orci. Ut ornare lectus sit amet est placerat in egestas. Viverra adipiscing at in tellus. Eget velit aliquet sagittis id consectetur purus ut faucibus.\n\u200b\nEst ultricies integer quis auctor. Pulvinar elementum integer enim neque volutpat. At in tellus integer feugiat scelerisque varius morbi enim. Ipsum dolor sit amet consectetur adipiscing elit pellentesque. Proin sed libero enim sed faucibus turpis in eu mi. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Volutpat sed cras ornare arcu dui vivamus arcu felis. Suspendisse interdum consectetur libero id. Molestie nunc non blandit massa enim nec dui. Aliquam eleifend mi in nulla posuere sollicitudin. A condimentum vitae sapien pellentesque habitant morbi tristique. Suspendisse sed nisi lacus sed viverra tellus in hac. Vitae congue eu consequat ac felis donec et.\n\u200b\nA erat nam at lectus urna. Mi tempus imperdiet nulla malesuada pellentesque. Laoreet id donec ultrices tincidunt arcu. Enim praesent elementum facilisis leo vel. Nibh cras pulvinar mattis nunc sed blandit libero. Pretium fusce id velit ut tortor. Sociis natoque penatibus et magnis dis. Commodo odio aenean sed adipiscing. Tincidunt id aliquet risus feugiat in ante metus dictum at. Morbi tincidunt ornare massa eget egestas purus viverra accumsan. Phasellus egestas tellus rutrum tellus. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum. Iaculis nunc sed augue lacus viverra vitae congue. Commodo sed egestas egestas fringilla. Consequat semper viverra nam libero justo. In mollis nunc sed id semper risus in. Sollicitudin aliquam ultrices sagittis orci. Pretium aenean pharetra magna ac placerat vestibulum lectus.\n"
+                          f"```Agreement:\n\nUsage of these STW Daily features (Device Auth, Settings, Profile, "
+                          f"etc) is governed by the following additional set of terms:\n\n1. Usage agreement\nBy "
+                          f"making use of these features, you hereby imply agreement to the base set of agreements "
+                          f"for STW Daily, available at: https://www.stwdaily.tk/legal-info/terms-of-service. You "
+                          f"also agree to these terms outlined within this agreement.\n\n2. Licence\nYour access to "
+                          f"these features exists as a licence which may be revoked at any time for any reason. The "
+                          f"STW Daily Dev Team reserves the right to revoke your access at any time for any "
+                          f"reason.\n\n3. Responsibility / Liability\nYou are responsible for all account(s) "
+                          f"connected to this service, and anything that may occur to them. You are responsible for "
+                          f"doing your part to keep your account(s) secure, and safe; DO NOT USE ACCOUNT(S) THAT YOU "
+                          f"DO NOT HAVE EMAIL ACCESS TO (unless you understand what you are doing), as a \"password "
+                          f"rest\" may be triggered on connected account(s).\nYou assume all liabilty in your use of "
+                          f"STW Daily. The STW Daily Team may not be held accountable for any adverse outcome.\n\n4. "
+                          f"Security\nThe STW Daily Team strives to keep your account as secure as possible, "
+                          f"while also being transparent and open source. We store some limited information that is "
+                          f"linked to your Discord account on a MongoDB Atlas database hosted in America. STW Daily "
+                          f"itself is hosted on AWS servers in America. Your account data is securely stored as "
+                          f"ciphered AES encrypted data that only part of the STW Daily Team has access to.\n\n"
+                          f"5. Privacy\nSTW Daily will collect and store very limited data linked to your Discord "
+                          f"account, in order to securely store account authentication data for relatively long periods"
+                          f" of time, as well as provide you with a great experience both now, and in the future. You "
+                          f"may view our Privacy Policy here: https://www.stwdaily.tk/legal-info/privacy-policy "
                           f"```\n"
                           f"\u200b\n")
 
@@ -72,6 +92,7 @@ async def add_enslaved_user_accepted_license(view, interaction):
     view.stop()
 
     await replace_user_document(view.client, view.user_document)
+
 
 
 async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction=None,
@@ -185,6 +206,18 @@ async def no_profiles_page(client, ctx):
 
 
 async def existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id):
+    """
+    This is the function that is called when the user has device authed
+
+    Args:
+        client: The client
+        ctx: The context
+        current_profile: The current profile
+        currently_selected_profile_id: The currently selected profile id
+
+    Returns:
+        The embed
+    """
     embed_colour = client.colours["profile_lavendar"]
 
     happy_embed = discord.Embed(title=await stw.add_emoji_title(client, "Device Authentication", "pink_link"),
@@ -223,13 +256,12 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     print(user_document)
 
     if user_document is None:
-        user_document = await get_user_document(client, current_author_id)
+        user_document = await get_user_document(ctx, client, current_author_id)
 
     # Get the currently selected profile
 
     currently_selected_profile_id = user_document["global"]["selected_profile"]
 
-    # TODO: This raises a KeyError when there is no available profile
     try:
         current_profile = user_document["profiles"][str(currently_selected_profile_id)]
     except:
@@ -362,7 +394,6 @@ class EnslaveAndStealUserAccount(discord.ui.View):
                                                      self.currently_selected_profile_id, self.ctx, self.response_json)
 
 
-
 class StolenAccountView(discord.ui.View):
     """
     This class is the view for the EULA
@@ -431,6 +462,7 @@ class StolenAccountView(discord.ui.View):
         self.client.processing_queue[self.user_document["user_snowflake"]] = False
 
         await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
+
 
 class EnslaveUserLicenseAgreementButton(discord.ui.View):
     """
@@ -659,6 +691,7 @@ async def select_change_profile(view, select, interaction):
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
 
+
 async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_document, currently_selected_profile_id, ctx,
                                                  response_json):
     """
@@ -670,7 +703,7 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
         user_document: The user document
         currently_selected_profile_id: The currently selected profile id
         ctx: The context
-        ios_token: The ios token
+        response_json: The response json
     """
 
     # Redundancy be upon thee
@@ -696,6 +729,7 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
 
     client.processing_queue[user_document["user_snowflake"]] = False
     await handle_dev_auth(client, ctx, interaction, user_document)
+
 
 class StealAccountLoginDetailsModal(discord.ui.Modal):
     """
