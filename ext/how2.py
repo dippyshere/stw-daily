@@ -58,7 +58,7 @@ class HowTo(ext.Cog):
                                           f'Go to [this link]({self.client.config["login_links"]["login_fortntite_pc"]}) and copy your auth code.\n'
                                           f'\n**Claiming your daily**\n'
                                           f'There are two ways to claim your daily:\n'
-                                          f'  • Use </daily:848848703597969414> `<token>`\n'
+                                          f'  • Use </daily:1053017052031496196> `<token>`\n'
                                           f'  • Use {await stw.mention_string(self.client, "daily <token>")}\n'
                                           f'\n*For example:*\n'
                                           f'*{await stw.mention_string(self.client, "")}`d a51c1f4d35b1457c8e34a1f6026faa35`*'
@@ -70,23 +70,23 @@ class HowTo(ext.Cog):
         embed = await stw.set_embed_image(embed, "https://cdn.discordapp.com/attachments/757768060810559541"
                                                  "/1050461779991474266/stw_daily_noob_tutorial_render_2_hd.gif")
 
-        # # get channel from id
-        # channel = self.client.get_channel(758561253156847629)
-        # # get message from id
-        # message = await channel.fetch_message(813715483928559656)
-        # # edit message
-        # await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
-        # # get channel from id
-        # channel = self.client.get_channel(757768833946877992)
-        # # get message from id
-        # message = await channel.fetch_message(1050835103179341960)
-        # # edit message
-        # await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
-        # await ctx.channel.send(
-        #     f"{ctx.author.mention} I've updated the how to use embed in <#758561253156847629> and <#757768833946877992>.")
+        # get channel from id
+        channel = self.client.get_channel(758561253156847629)
+        # get message from id
+        message = await channel.fetch_message(813715483928559656)
+        # edit message
+        await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
+        # get channel from id
+        channel = self.client.get_channel(757768833946877992)
+        # get message from id
+        message = await channel.fetch_message(1050835103179341960)
+        # edit message
+        await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
+        await ctx.channel.send(
+            f"{ctx.author.mention} I've updated the how to use embed in <#758561253156847629> and <#757768833946877992>.")
 
-        invite_view = HowToUseView(self.client, ctx.author, ctx)
-        await stw.slash_send_embed(ctx, embed, invite_view)
+        # invite_view = HowToUseView(self.client, ctx.author, ctx)
+        # await stw.slash_send_embed(ctx, embed, invite_view)
         return
 
     @ext.command(name='how2',
