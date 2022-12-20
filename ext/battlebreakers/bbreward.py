@@ -61,8 +61,10 @@ class BBReward(ext.Cog):
                 day = int(day)
                 limit = int(limit)
 
-                if limit < 1:
+                if limit < 0:
                     limit = 7
+                if day <= 0:
+                    day = 1
 
             except:
                 embed = discord.Embed(colour=err_colour,
@@ -73,17 +75,9 @@ class BBReward(ext.Cog):
                 await stw.slash_send_embed(ctx, embed)
                 return
 
-            if int(limit) > 100:
-                embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Too Long", "error"),
-                                      description="```You attempted to retrieve too many days after! Try a lower value```")
-                embed = await stw.add_requested_footer(ctx, embed)
-                embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, embed)
-                return
-
+            limit_str = f" and **{limit:,}** days after" if limit >= 1 else ""
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "Shared2"),
-                                  description=f'\u200b\nDisplaying rewards for day **{day}** and **{limit}** days after\n\u200b',
+                                  description=f'\u200b\nDisplaying rewards for day **{day:,}**{limit_str}\n\u200b',
                                   color=embed_colour)
 
             try:
@@ -103,45 +97,53 @@ class BBReward(ext.Cog):
                 if 'MtxGiveaway' in stw.LoginRewards[0]['Rows'][row]['ItemDefinition']['AssetPathName']:
                     if int(day) % 1800 < int(row):
                         if int(row) - int(day) % 1800 == 1:
-                            day_string = "day."
+                            day_string = "day"
                         else:
-                            day_string = "days."
+                            day_string = "days"
                         embed.add_field(
-                            name=f'**{self.client.config["emojis"]["T_MTX_Gem_Icon"]} Next Gem reward in: **',
-                            value=f'```{int(row) - int(day) % 1800} {day_string}```\u200b', inline=False)
+                            name=f'**{self.client.config["emojis"]["T_MTX_Gem_Icon"]} Next Gem reward:**',  # hello
+                            value=f'```{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[-1]} '
+                                  f'{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[1]} in '
+                                  f'{int(row) - int(day) % 1800} {day_string}```\u200b', inline=False)
+                        break  # hello alexander hanson
+            if limit >= 1:
+                rewards = ''
+                max_rewards_reached = False
+                if limit > 100:
+                    limit = 100
+                for i in range(1, limit + 1):
+                    if len(rewards) > 1000:
+                        rewards = stw.truncate(rewards, 1000)
+                        limit = i
+                        max_rewards_reached = True
                         break
+                    data = stw.get_bb_reward_data(self.client, pre_calc_day=day + i)
+                    rewards += str(data[4]) + " " + str(data[1])
+                    if not (i + 1 == limit + 1):
+                        rewards += ', '
+                    else:
+                        rewards += '.'
+                    if i % 7 == 0:
+                        rewards += '\n\n'
+                if limit == 1:
+                    reward = stw.get_bb_reward_data(self.client, pre_calc_day=day + 1)
 
-            rewards = ''
-            for i in range(1, limit + 1):
-                data = stw.get_bb_reward_data(self.client, pre_calc_day=day + i)
-                rewards += str(data[4]) + " " + str(data[1])
-                if not (i + 1 == limit + 1):
-                    rewards += ', '
+                    embed.add_field(name=f'**{reward[2]} Tomorrows reward:**',
+                                    value=f'```{reward[4]} {reward[1]}```\u200b',
+                                    inline=False)
                 else:
-                    rewards += '.'
-            if limit == 1:
-                reward = stw.get_bb_reward_data(self.client, pre_calc_day=day + 1)
-
-                embed.add_field(name=f'**{reward[2]} Tomorrow\'s reward:**',
-                                value=f'```{reward[4]} {reward[1]}```\u200b',
-                                inline=False)
-            else:
-                embed.add_field(
-                    name=f'{self.client.config["emojis"]["calendar"]} Rewards for the next **{limit}** days:',
-                    value=f'```{rewards}```\u200b', inline=False)
+                    embed.add_field(
+                        name=f'{self.client.config["emojis"]["calendar"]} Rewards for the next '
+                             f'**{"~" if max_rewards_reached else ""}{limit}** days:',
+                        value=f'```{rewards}```\u200b', inline=False)
+                    if max_rewards_reached:
+                        embed.description = f'\u200b\nDisplaying rewards for day **{day:,}** ' \
+                                            f'and **~{limit:,}** days after\n\u200b'
 
             embed = await stw.set_thumbnail(self.client, embed, "Shared2")
             embed = await stw.add_requested_footer(ctx, embed)
 
-            try:
-                await stw.slash_send_embed(ctx, embed)
-            except discord.errors.HTTPException:
-                embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Too Long", "error"),
-                                      description="```You attempted to retrieve too many days after! Try a lower value```")
-                embed = await stw.add_requested_footer(ctx, embed)
-                embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, embed)
+            await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='bbreward',
                  aliases=['bbr', 'bbrwrd', 'battlebreakersreward', 'breward', 'bbeward', 'bbrward', 'bbreard',

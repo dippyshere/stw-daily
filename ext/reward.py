@@ -57,7 +57,6 @@ class Reward(ext.Cog):
         embed_colour = self.client.colours["reward_magenta"]
         err_colour = self.client.colours["error_red"]
         if day == 'hi readers of the bot':
-
             embed = discord.Embed(colour=err_colour,
                                   title=await stw.add_emoji_title(self.client, "Missing Day", "error"),
                                   description="```Please specify the day (number) of which you would like to see```")
@@ -70,9 +69,14 @@ class Reward(ext.Cog):
                 day = int(day)
                 limit = int(limit)
 
-                if limit < 1:
+                if limit < 0:
                     limit = 7
-
+                if day <= 0:
+                    day = 1
+                    # hi?
+                    # hi?
+                    # hi?
+                    # hi?
             except ValueError:
                 embed = discord.Embed(colour=err_colour,
                                       title=await stw.add_emoji_title(self.client, "Non Numeric Day or Limit", "error"),
@@ -81,18 +85,9 @@ class Reward(ext.Cog):
                 embed = await stw.set_thumbnail(self.client, embed, "error")
                 await stw.slash_send_embed(ctx, embed)
                 return
-
-            if int(limit) > 100:
-                embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Too Long", "error"),
-                                      description="```You attempted to retrieve too many days after! Try a lower value```")
-                embed = await stw.add_requested_footer(ctx, embed)
-                embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, embed)
-                return
-
+            limit_str = f" and **{limit:,}** days after" if limit >= 1 else ""
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "stormeye"),
-                                  description=f'\u200b\nDisplaying rewards for day **{day}** and **{limit}** days after\n\u200b',
+                                  description=f'\u200b\nDisplaying rewards for day **{day:,}**{limit_str}\n\u200b',
                                   color=embed_colour)
 
             try:
@@ -111,49 +106,58 @@ class Reward(ext.Cog):
                 if 'V-Bucks & X-Ray Tickets' in items.ItemDictionary[day1][0]:
                     if int(day) % 336 < int(day1):
                         if int(day1) - int(day) % 336 == 1:
-                            day_string = "day."
+                            day_string = "day"
                         else:
-                            day_string = "days."
+                            day_string = "days"
 
                         if vbucks is True:
                             embed.add_field(
-                                name=f'**{self.client.config["emojis"]["vbucks"]}{self.client.config["emojis"]["xray"]} Next V-Bucks & X-Ray Tickets reward in: **',
-                                value=f'```{int(day1) - int(day) % 336} {day_string}```\u200b', inline=False)
+                                name=f'**{self.client.config["emojis"]["vbucks"]}{self.client.config["emojis"]["xray"]}'
+                                     f' Next V-Bucks & X-Ray Tickets reward:**',
+                                value=f'```{stw.get_reward(self.client, day1)[0]} in {int(day1) - int(day) % 336} '
+                                      f'{day_string}```\u200b', inline=False)
                         else:
                             embed.add_field(
-                                name=f'**{self.client.config["emojis"]["xray"]} Next X-Ray Tickets reward in: **',
-                                value=f'```{int(day1) - int(day) % 336} {day_string}```\u200b', inline=False)
+                                name=f'**{self.client.config["emojis"]["xray"]} Next X-Ray Tickets reward:**',
+                                value=f'```{stw.get_reward(self.client, day1, False)[0]} in '
+                                      f'{int(day1) - int(day) % 336} {day_string}```\u200b', inline=False)
                         break
+            if limit >= 1:
+                rewards = ''
+                max_rewards_reached = False
+                if limit > 100:
+                    limit = 100
+                for day2 in range(1, limit + 1):
+                    if len(rewards) > 1000:
+                        rewards = stw.truncate(rewards, 1000)
+                        limit = day2
+                        max_rewards_reached = True
+                        break
+                    rewards += stw.get_reward(self.client, day2 + int(day), vbucks)[0]
+                    if not (day2 + 1 == limit + 1):
+                        rewards += ', '
+                    else:
+                        rewards += '.'
+                    if day2 % 7 == 0:
+                        rewards += '\n\n'
+                if limit == 1:
+                    reward = stw.get_reward(self.client, int(day) + 1, vbucks)
 
-            rewards = ''
-            for day2 in range(1, limit + 1):
-                rewards += stw.get_reward(self.client, day2 + int(day), vbucks)[0]
-                if not (day2 + 1 == limit + 1):
-                    rewards += ', '
+                    embed.add_field(name=f'**{reward[1]} Tomorrows reward:**', value=f'```{reward[0]}```\u200b',
+                                    inline=False)
                 else:
-                    rewards += '.'
-            if limit == 1:
-                reward = stw.get_reward(self.client, int(day) + 1, vbucks)
-
-                embed.add_field(name=f'**{reward[1]} Tomorrow\'s reward:**', value=f'```{reward[0]}```\u200b',
-                                inline=False)
-            else:
-                embed.add_field(
-                    name=f'{self.client.config["emojis"]["calendar"]} Rewards for the next **{limit}** days:',
-                    value=f'```{rewards}```\u200b', inline=False)
+                    embed.add_field(
+                        name=f'{self.client.config["emojis"]["calendar"]} Rewards for the next '
+                             f'**{"~" if max_rewards_reached else ""}{limit}** days:',
+                        value=f'```{rewards}```\u200b', inline=False)
+                    if max_rewards_reached:
+                        embed.description = f'\u200b\nDisplaying rewards for day **{day:,}** ' \
+                                            f'and **~{limit:,}** days after\n\u200b'
 
             embed = await stw.set_thumbnail(self.client, embed, "stormbottle")
             embed = await stw.add_requested_footer(ctx, embed)
 
-            try:
-                await stw.slash_send_embed(ctx, embed)
-            except discord.errors.HTTPException:
-                embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Too Long", "error"),
-                                      description="```You attempted to retrieve too many days after! Try a lower value```")
-                embed = await stw.add_requested_footer(ctx, embed)
-                embed = await stw.set_thumbnail(self.client, embed, "error")
-                await stw.slash_send_embed(ctx, embed)
+            await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='reward',
                  aliases=['reqward',
