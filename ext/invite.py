@@ -32,7 +32,8 @@ class InviteView(discord.ui.View):
                                             "=757776996418715651&permissions=2147798080&scope=applications.commands"
                                             "%20bot", emoji=self.client.config["emojis"]["incoming_envelope"]))
         self.add_item(discord.ui.Button(label="Join Support Server", style=discord.ButtonStyle.link,
-                                        url="https://discord.gg/stw-dailies-757765475823517851", emoji=self.client.config["emojis"]["incoming_envelope"]))
+                                        url="https://discord.gg/stw-dailies-757765475823517851",
+                                        emoji=self.client.config["emojis"]["incoming_envelope"]))
 
 
 class Invite(ext.Cog):

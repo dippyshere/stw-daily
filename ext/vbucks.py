@@ -154,7 +154,8 @@ class Vbucks(ext.Cog):
                           token: Option(str,
                                         description="Your Epic Games authcode. Required unless you have an active "
                                                     "session.",
-                                        description_localizations=stw.I18n.construct_slash_dict("generic.slash.token")) = "",
+                                        description_localizations=stw.I18n.construct_slash_dict(
+                                            "generic.slash.token")) = "",
                           auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
                                                description_localizations=stw.I18n.construct_slash_dict(
                                                    "generic.slash.optout")) = False):
@@ -227,7 +228,7 @@ class Vbucks(ext.Cog):
                          "dev": False},
                  brief="View your V-Bucks and X-Ray Tickets balance (authentication required)",
                  description=(
-                 "This command displays your total V-Bucks, provide a breakdown on the source(s) of those V-Bucks, and additionally display how many X-Ray tickets you have. You must be authenticated to use this command.\n\u200b"))
+                         "This command displays your total V-Bucks, provide a breakdown on the source(s) of those V-Bucks, and additionally display how many X-Ray tickets you have. You must be authenticated to use this command.\n\u200b"))
     async def vbucks(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the vbucks command when called traditionally

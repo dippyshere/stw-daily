@@ -90,7 +90,8 @@ class Daily(ext.Cog):
                 if len(items) == 0:
                     reward = stw.get_reward(self.client, day, vbucks)
                     embed = discord.Embed(
-                        title=await stw.add_emoji_title(self.client, stw.random_error(self.client), "warning"), description=
+                        title=await stw.add_emoji_title(self.client, stw.random_error(self.client), "warning"),
+                        description=
                         (f"\u200b\n"
                          f"You have already claimed your reward for day **{day}**.\n"
                          f"\u200b\n"

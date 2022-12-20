@@ -142,8 +142,9 @@ class I18n:
         """
         # get the user's preferred language
         try:
-            user_profile = await get_user_document(client, ctx.author.id)
-            profile_language = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"]["language"]
+            user_profile = await get_user_document(ctx, client, ctx.author.id)
+            profile_language = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"][
+                "language"]
             if profile_language == "auto" or not self.is_lang(profile_language):
                 profile_language = None
         except:

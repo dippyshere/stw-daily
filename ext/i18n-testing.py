@@ -30,8 +30,9 @@ class Internationalisation(ext.Cog):
             *args: The arguments of the command.
         """
         try:
-            user_profile = await get_user_document(self.client, ctx.author.id)
-            localisation = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"]["language"]
+            user_profile = await get_user_document(ctx, self.client, ctx.author.id)
+            localisation = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"][
+                "language"]
         except KeyError:
             localisation = "auto"
 

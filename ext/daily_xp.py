@@ -92,13 +92,17 @@ class DailyXP(ext.Cog):
 
         try:
             # get daily xp token info
-            daily_xp = await asyncio.gather(asyncio.to_thread(stw.extract_profile_item, profile_json=profile_json_response, item_string='Token:stw_accolade_tracker'))
+            daily_xp = await asyncio.gather(
+                asyncio.to_thread(stw.extract_profile_item, profile_json=profile_json_response,
+                                  item_string='Token:stw_accolade_tracker'))
             daily_xp = daily_xp[0][0]
             print(daily_xp)
         except Exception as e:
             # TODO: debug and fix this case
             print(e)
-            embed = discord.Embed(title="Daily XP", description=f"An error occurred while trying to get your daily xp info: ```{e}```", colour=generic_colour)
+            embed = discord.Embed(title="Daily XP",
+                                  description=f"An error occurred while trying to get your daily xp info: ```{e}```",
+                                  colour=generic_colour)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return

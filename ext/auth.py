@@ -56,7 +56,7 @@ class Auth(ext.Cog):
         if auth_info[0] is not None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
             await stw.slash_edit_original(ctx, auth_info[0], auth_info[2])
         elif await stw.validate_existing_session(self.client, auth_info[1]["token"]):
-            # TODO: update this to a view + use config["login_links"["logout_login_fortnite_pc"]
+            # TODO: update this to a view + use config["login_links"]["logout_login_fortnite_pc"]
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Currently Authenticated", "whitekey"),
                                   description=(f"\u200b\n"
                                                f"Existing Auth Session Found For:\n"
@@ -69,7 +69,8 @@ class Auth(ext.Cog):
                                                f"**Need Help? Run**\n"
                                                f"{await stw.mention_string(self.client, 'help auth')}\n"
                                                f"Or [Join the support server]({self.client.config['support_url']})\n"
-                                               f"Note: You need a new code __each time you authenticate__\n\u200b\n"), colour=white)
+                                               f"Note: You need a new code __each time you authenticate__\n\u200b\n"),
+                                  colour=white)
             embed = await stw.set_thumbnail(self.client, embed, "keycard")
             embed = await stw.add_requested_footer(ctx, embed)
             await stw.slash_edit_original(ctx, auth_info[0], embed)

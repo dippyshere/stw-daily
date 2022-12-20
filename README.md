@@ -12,7 +12,7 @@
 
 ___
 
-<h6 align=center> Auto claim daily rewards, research points, llamas, and more!</h6>
+<h6 align=center> Claim daily rewards, research points, llamas, and more!</h6>
 <div align=center>
 <a href="https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Invite-STW Daily-5865F2.svg?style=for-the-badge&logo=Discord" alt="Invite Bot"></a>
 <a href="https://discord.gg/stw-dailies-757765475823517851"><img src="https://img.shields.io/badge/Join-STW Dailies-5865F2.svg?style=for-the-badge&logo=Discord" alt="Join STW Dailies"></a>
@@ -69,6 +69,7 @@ ___
     </ul>
 </details>
 
+___
 <details>
     <summary><b>Daily</b></summary>
     <ul>
@@ -112,7 +113,7 @@ ___
     <a id="auth"></a>
     <summary><b>Auth</b></summary>
     <ul>
-    <p>This command will </p>
+    <p>This command will log you in with Epic Games and start an <a href="https://github.com/dippyshere/stw-daily/wiki">authentication session</a> with STW Daily. This will keep you logged in for ~8 hours</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -125,24 +126,24 @@ ___
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/cmd token:{token} auth_opt_out:{opt-out}</kbd>
+        <kbd>/auth token:{token}</kbd>
         </div>
         <br>
         </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.</p> 
         <p><b>Examples:</b></p>
         <picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will </span>
+        </picture> <sup>auth</sup>
+        <br><span> This will provide you with links to get an auth code.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>cmd a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will </span>
+        </picture> <sup>auth a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will log you in and authenticate you for ~8 hours.</span>
     </ul>
     <img src="res/auth.png" alt="Auth command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>

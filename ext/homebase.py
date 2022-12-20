@@ -49,7 +49,8 @@ class Homebase(ext.Cog):
         except:
             try:
                 # if there is a homebase name, continue with command
-                check_hbname = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+                check_hbname = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
+                    "homebase_name"]
                 return False, False
             except:
                 # trying to check homebase with no stw or homebase, assume error

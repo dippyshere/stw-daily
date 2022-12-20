@@ -308,6 +308,7 @@ async def settings_view_timeout(view):
 
     Args:
         view: The view that timed out.
+        sub: Whether or not the view is a sub page.
     """
     for child in view.children:
         child.disabled = True
@@ -708,7 +709,6 @@ async def sub_setting_page(setting, client, ctx, user_profile):
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
-    requirement_string = ""
     if isinstance(setting_info['default'], bool):
         requirement_string = "True or False"
     else:
@@ -803,7 +803,7 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
     """
     settings = client.settings_choices
 
-    user_profile = await get_user_document(client, ctx.author.id)
+    user_profile = await get_user_document(ctx, client, ctx.author.id)
     user_snowflake = user_profile["user_snowflake"]
 
     # Check if user actually has a profile we can get the settings of :)
@@ -936,7 +936,7 @@ class ProfileSettings(ext.Cog):
         This function is the autocomplete for the settings command.
 
         Args:
-            actx: The autocomplete context.
+            actx: The autocomplete context. (unused)
 
         Returns:
             list: The list of settings.
@@ -1110,7 +1110,7 @@ class ProfileSettings(ext.Cog):
                      'value': 'The new value for the setting you wish to change(PENDING)',
                  }, "dev": False},
                  brief="Change or view the settings associated with your currently selected profile(PENDING)",
-                 description=("This command allows you to change the settings of your profiles, you can either utilise the built in navigation of settings to change them, or change your settings through the utilisation of the commands arguments.(PENDING)\n\u200b"))
+                 description="This command allows you to change the settings of your profiles, you can either utilise the built in navigation of settings to change them, or change your settings through the utilisation of the commands arguments.(PENDING)\n\u200b")
     async def settings(self, ctx, setting=None, profile=None, value=None):
         """
         This function is the command for the settings command.

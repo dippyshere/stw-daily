@@ -7,6 +7,7 @@ This file checks ~~something~~ EVERYTHING! you really should know :3
 This file validates inputs for the settings command
 """
 
+
 # ---- CHECK FUNCTIONS ----
 
 
