@@ -5,13 +5,17 @@ https://github.com/dippyshere/stw-daily
 
 This file is the main utility library for stw daily. It contains a lot of functions that are used throughout the bot.
 """
-
+import base64
 import datetime
+import os
 import random
 import re
 import time
 import math
+from difflib import SequenceMatcher
+
 import blendmodes.blend
+from Crypto.Cipher import AES
 from PIL import Image
 import asyncio
 import io
@@ -22,6 +26,7 @@ import discord
 import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 from lang.stwi18n import I18n
+from ext.profile.bongodb import get_user_document
 
 with open("ext/battlebreakers/LoginRewards.json", "r") as f:
     LoginRewards = orjson.loads(f.read())
@@ -1389,6 +1394,54 @@ def get_tomorrow_midnight_epoch():
     return int(time.time() + 86400 - time.time() % 86400)
 
 
+def get_item_icon_emoji(client, template_id):
+    """
+    Gets the emoji for the item icon
+
+    Args:
+        client: The client
+        template_id: The template id of the item
+
+    Returns:
+        The emoji for the item icon
+    """
+    try:
+        try:
+            filtered = re.split(r"[/:\s]|_t0", template_id)[1]
+        except:
+            filtered = template_id
+        if 'bow' in filtered:
+            return client.config['emojis']['bow']
+        outcome = max(client.config['emojis'], key=lambda emoji: SequenceMatcher(a=emoji, b=filtered).ratio())
+        similarity = SequenceMatcher(a=outcome, b=filtered).ratio()
+        if similarity < 0.5:
+            # if the first 5 characters match in outcome and filtered, then it's probably a match
+            if outcome[:4] == filtered[:4]:
+                pass
+            else:
+                outcome = 'placeholder'
+        return client.config['emojis'][outcome]
+    except:
+        return client.config['emojis']['placeholder']
+
+
+def llama_contents_render(client, llama_items):
+    """
+    Renders the contents of a llama
+
+    Args:
+        client: The client
+        llama_items: The items in the llama
+
+    Returns:
+        The rendered contents of the llama
+    """
+    string = ""
+    for item in llama_items:
+        string += f" {get_item_icon_emoji(client, item['itemType'])} {'x' + str(item['quantity']) if item['quantity'] > 1 else ''}  "
+    return string
+
+
 def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0):
     """
     Calculates the power level of an item in stw
@@ -2373,7 +2426,7 @@ async def research_stat_rating(stat, level):
     return personal_rating + team_rating, personal_rating, team_rating
 
 
-async def research_stat_cost(stat, level):
+def research_stat_cost(stat, level):
     """
     Calculates the cost to upgrade a research stat
     I'm not sure if the level given is the current level, or the next level, assume the next level

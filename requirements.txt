@@ -12,7 +12,7 @@ tomli>=2.0.1
 Cython>=3.0.0a11
 aiodns>=3.0.0
 brotlipy>=0.7.0
-cchardet>=2.1.7
+faust-cchardet>=2.1.13
 orjson>=3.8.3
 # database
 motor>=3.1.1
@@ -20,4 +20,5 @@ motor>=3.1.1
 blendmodes>=2022
 Pillow>=9.3.0
 # development
-watchfiles
+watchfiles>=0.18.1
+pycryptodome>=3.16.0

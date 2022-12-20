@@ -16,12 +16,13 @@ import datetime
 import stwutil as stw
 
 
-async def llama_entry(catalog_entry):
+async def llama_entry(catalog_entry, client):
     """
     Creates an embed entry string for a single llama catalog entry.
 
     Args:
         catalog_entry: The catalog entry to be processed.
+        client: The bot client.
 
     Returns:
         The embed entry string.
@@ -30,16 +31,13 @@ async def llama_entry(catalog_entry):
         entry_string = f"\u200b\n**{catalog_entry['title']}**\n"
     except:
         entry_string = f"\u200b\n**{catalog_entry['devName']}**\n"
-    entry_string += f"Rarity: {catalog_entry['itemGrants'][0]['templateId'].split('CardPack:cardpack_')[1]}\n"
-    entry_string += f"Cost: {catalog_entry['prices'][0]['currencySubType'].split('AccountResource:')[1]} **{catalog_entry['prices'][0]['finalPrice']}**\n"
-    entry_string += f"OfferID: {catalog_entry['offerId']}\n"
-    entry_string += f"Dev name: {catalog_entry['devName']}\n"
-    entry_string += f"Daily limit: {catalog_entry['dailyLimit']}\n"
-    try:
-        entry_string += f"Event limit: {catalog_entry['meta']['EventLimit']}\n"
-    except:
-        pass
-    entry_string += f"Icon: {catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0]}\n"
+    # entry_string += f"Rarity: {catalog_entry['itemGrants'][0]['templateId'].split('CardPack:cardpack_')[1]}\n"
+    entry_string += f"Price: {'~~' + str(catalog_entry['prices'][0]['regularPrice']) + '~~ ' if catalog_entry['prices'][0]['regularPrice'] != catalog_entry['prices'][0]['finalPrice'] else ''}**{catalog_entry['prices'][0]['finalPrice']}** {stw.get_item_icon_emoji(client, catalog_entry['prices'][0]['currencySubType'])} \n"
+    # entry_string += f"OfferID: {catalog_entry['offerId']}\n"
+    # entry_string += f"Dev name: {catalog_entry['devName']}\n"
+    # entry_string += f"Daily limit: {catalog_entry['dailyLimit']}\n"
+    # entry_string += f"Event limit: {catalog_entry['meta']['EventLimit']}\n"
+    # entry_string += f"Icon: {catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0]}\n"
     return entry_string
 
 
@@ -116,12 +114,12 @@ class Llamas(ext.Cog):
         populate_preroll_json = orjson.loads(await populate_preroll_request.read())
         preroll_data = stw.extract_profile_item(populate_preroll_json, "PrerollData")
 
-        preroll_file = io.BytesIO()
-        preroll_file.write(orjson.dumps(preroll_data, option=orjson.OPT_INDENT_2 | orjson.OPT_NON_STR_KEYS))
-        preroll_file.seek(0)
-
-        json_file = discord.File(preroll_file,
-                                 filename=f"PrerollData-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
+        # preroll_file = io.BytesIO()
+        # preroll_file.write(orjson.dumps(preroll_data, option=orjson.OPT_INDENT_2 | orjson.OPT_NON_STR_KEYS))
+        # preroll_file.seek(0)
+        #
+        # json_file = discord.File(preroll_file,
+        #                          filename=f"PrerollData-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
 
         # check for le error code
         if await self.check_errors(ctx, shop_json_response, auth_info, final_embeds):
@@ -137,13 +135,25 @@ class Llamas(ext.Cog):
             description=f"\u200b\nHere's the current shop:\u200b\n\u200b",
             colour=generic_colour)
 
-        embed.description += f"\u200b\n**There are {free_llama[0]} Free Llama{'s'[:free_llama[0] ^ 1]}:**"
         if free_llama[0] > 0:
-            embed.description += f"\n{free_llama[1]}"
-        embed.description += f"\u200b\n\u200b"
+            embed.description += f"\u200b\n**There is a free llama available!**\n"
+            # for attr, val in preroll_data.items():  # :>
+            #     if free_llama[1][0]["offerId"] == val["attributes"]["offerId"]:
+            #         embed.description += stw.llama_contents_render(self.client, val["attributes"]["items"])
+            #         break
+            # embed.description += f"\n\u200b\n"
 
         for entry in llama_store["catalogEntries"]:
-            embed.add_field(name="\u200b", value=await llama_entry(entry), inline=False)
+            if entry['devName'] == "Always.UpgradePack.03":
+                continue
+            embed.description += await llama_entry(entry, self.client)
+            for attr, val in preroll_data.items():  # :>
+                if entry["offerId"] == val["attributes"]["offerId"]:
+                    embed.description += "Contents: " + stw.llama_contents_render(self.client,
+                                                                                  val["attributes"]["items"])
+                    break
+            embed.description += f"\n"
+        embed.description += f"\u200b\n"
 
         # profile_file = io.BytesIO()
         # profile_file.write(orjson.dumps(llama_store, option=orjson.OPT_INDENT_2))
@@ -155,7 +165,7 @@ class Llamas(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "meme")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        await stw.slash_edit_original(ctx, auth_info[0], final_embeds, file=json_file)
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
     @ext.slash_command(name='llamas',
