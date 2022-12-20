@@ -9,10 +9,11 @@ import datetime
 import io
 
 import orjson
+import asyncio
 
 import discord
 import discord.ext.commands as ext
-from discord import Option #hehe i connected with CLion
+from discord import Option  #hehe i connected with CLion
 
 import stwutil as stw
 
@@ -84,35 +85,72 @@ class BBDump(ext.Cog):
         if ainfo3 != "logged_in_processing" and auth_info[2] != []:
             final_embeds = auth_info[2]
 
-        # get profile
+        # get profiles
         profile_request = await stw.profile_request(self.client, "query", auth_info[1], game="bb")
         profile_json_response = orjson.loads(await profile_request.read())
+        levels_request = await stw.profile_request(self.client, "query", auth_info[1], game="bb",
+                                                   profile_type="levels")
+        levels_json_response = orjson.loads(await levels_request.read())
+        friends_request = await stw.profile_request(self.client, "query", auth_info[1], game="bb",
+                                                    profile_type="friends")
+        friends_json_response = orjson.loads(await friends_request.read())
+        monsterpit_request = await stw.profile_request(self.client, "query", auth_info[1], game="bb",
+                                                       profile_type="monsterpit")
+        monsterpit_json_response = orjson.loads(await monsterpit_request.read())
+        multiplayer_request = await stw.profile_request(self.client, "query", auth_info[1], game="bb",
+                                                        profile_type="multiplayer")
+        multiplayer_json_response = orjson.loads(await multiplayer_request.read())
 
         # check for le error code
         if await self.check_errors(ctx, profile_json_response, auth_info, final_embeds):
             return
 
-        # # get stw profile
-        # stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
-        # stw_json_response = orjson.loads(await stw_request.read())
+        load_msg = await stw.processing_embed(self.client, ctx, "Dumping profiles", "This won't take long...")
+        load_msg = await stw.slash_edit_original(ctx, auth_info[0], load_msg)
 
         # With all info extracted, create the output
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Battle Breakers Profile dump", "library_floppydisc"),
-            description=f"\u200b\nYour Battle Breakers profile is attached above. 🫡\u200b",
+            description=f"\u200b\nYour Battle Breakers profiles are attached above. 🫡\u200b",
             colour=generic_colour)
 
         profile_file = io.BytesIO()
         profile_file.write(orjson.dumps(profile_json_response, option=orjson.OPT_INDENT_2))
         profile_file.seek(0)
 
+        levels_file = io.BytesIO()
+        levels_file.write(orjson.dumps(levels_json_response, option=orjson.OPT_INDENT_2))
+        levels_file.seek(0)
+
+        friends_file = io.BytesIO()
+        friends_file.write(orjson.dumps(friends_json_response, option=orjson.OPT_INDENT_2))
+        friends_file.seek(0)
+
+        monsterpit_file = io.BytesIO()
+        monsterpit_file.write(orjson.dumps(monsterpit_json_response, option=orjson.OPT_INDENT_2))
+        monsterpit_file.seek(0)
+
+        multiplayer_file = io.BytesIO()
+        multiplayer_file.write(orjson.dumps(multiplayer_json_response, option=orjson.OPT_INDENT_2))
+        multiplayer_file.seek(0)
+
         json_file = discord.File(profile_file,
-                                 filename=f"{auth_info[1]['account_name']}-BattleBreakersProfile-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
+                                 filename=f"{auth_info[1]['account_name']}-BattleBreakersProfile-profile0-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
+        json_file1 = discord.File(levels_file,
+                                  filename=f"{auth_info[1]['account_name']}-BattleBreakersProfile-levels-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
+        json_file2 = discord.File(friends_file,
+                                  filename=f"{auth_info[1]['account_name']}-BattleBreakersProfile-friends-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
+        json_file3 = discord.File(monsterpit_file,
+                                  filename=f"{auth_info[1]['account_name']}-BattleBreakersProfile-monsterpit-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
+        json_file4 = discord.File(multiplayer_file,
+                                  filename=f"{auth_info[1]['account_name']}-BattleBreakersProfile-multiplayer-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
 
         embed = await stw.set_thumbnail(self.client, embed, "salute")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        await stw.slash_edit_original(ctx, auth_info[0], final_embeds, file=json_file)
+        await asyncio.sleep(0.25)
+        await stw.slash_edit_original(ctx, load_msg, final_embeds,
+                                      files=[json_file, json_file1, json_file2, json_file3, json_file4])
         return
 
     @ext.slash_command(name='bbdump',
