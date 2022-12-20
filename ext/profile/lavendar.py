@@ -59,7 +59,7 @@ def setup(client):
     client.stw_database = client.database_client[database][collection]
     # i win <3 idk if it works tho lmao i keep forgetting u dont need to switch to the daily core.py file to run
     client.get_user_document = get_user_document
-    client.processing_queue = {}  # dictionaries are alot faster than lists :thumbs_up:
+    client.processing_queue = {}  # dictionaries are a lot faster than lists :thumbs_up:
 
     with open("ext/profile/profile_default.json", "r") as user_default:
         client.user_default = orjson.loads(user_default.read())
@@ -328,9 +328,8 @@ class ProfileMainView(discord.ui.View):
             _button: The button.
             interaction: The interaction.
         """
-        await interaction.response.send_message(
-            self.user_document
-        )
+        self.client.processing_queue[interaction.user.id] = True
+        # await interaction.response.send_message(content=stw.truncate(str(self.user_document), 2000))
 
 
 # How do I explain to my gynecologist that I don't want to get rid of my pubic lice? I am infertile and my sweet little crab babies are the closest thing I have to birthing actual children...
@@ -474,7 +473,7 @@ class Profile(ext.Cog):
             ctx: The context.
             new_profile: The new profile to switch to.
         """
-        user_document = await self.client.get_user_document(self.client, ctx.author.id)
+        user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id)
         current_command = "\n*Waiting for command*\n\u200b"
 
         if new_profile is not None:
