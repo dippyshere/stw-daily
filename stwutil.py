@@ -193,7 +193,13 @@ async def slash_send_embed(ctx, embeds, view=None, interaction=False):
             return await ctx.channel.send(embeds=embeds, view=view)
         else:
             return await ctx.channel.send(embeds=embeds)
-    if isinstance(ctx, discord.ApplicationContext):
+    elif isinstance(ctx, discord.Interaction):
+        ctx = ctx.response
+        if view is not None:
+            return await ctx.send_message(embeds=embeds, view=view)
+        else:
+            return await ctx.send_message(embeds=embeds)
+    elif isinstance(ctx, discord.ApplicationContext):
         if view is not None:
             return await ctx.respond(embeds=embeds, view=view)
         else:
@@ -250,6 +256,35 @@ def time_until_end_of_day():
     else:
         fmt += '{m} minutes'
     return fmt.format(h=hours, m=minutes)
+
+
+async def processing_queue_error_check(client, user_snowflake):
+    """
+    Checks if a user is in the processing queue
+
+    Args:
+        client: the client
+        user_snowflake: the user's snowflake
+
+    Returns:
+        True if the user is in the processing queue, else False
+    """
+    try:
+        if client.processing_queue[user_snowflake]:
+            error_colour = client.colours["error_red"]
+
+            embed = discord.Embed(
+                title=await add_emoji_title(client, random_error(client), "error"),
+                description=(f"\u200b\n"
+                             f"Sorry! Currently processing things related to your profile:\n"
+                             f"```Please wait a bit for it to finish processing, if this takes too long please contact STW Daily devs.```"
+                             f"\u200b\n"),
+                colour=error_colour
+            )
+            # man what the hell is this??????
+            return embed
+    except:
+        return True
 
 
 async def mention_string(client, prompt=""):
@@ -467,6 +502,63 @@ async def get_token(client, auth_code: str, game="fn"):
     }
     url = client.config["endpoints"]["token"]
 
+    return await client.stw_session.post(url, headers=h, data=d)
+
+
+def decrypt_user_data(user_snowflake, authentication_information):
+    """
+    decrypts the user data
+
+    Args:
+        user_snowflake: the user snowflake
+        authentication_information: the authentication information
+
+    Returns:
+        the decrypted user data
+    """
+    battle_breakers_id = base64.b64decode(authentication_information["battleBreakersId"])
+    battle_breakers_token = authentication_information["battleBreakersAuthToken"]
+    authentication = authentication_information["authentication"]
+    aes_cipher = AES.new(bytes(os.environ["STW_DAILY_KEY"], "ascii"), AES.MODE_GCM,
+                         nonce=battle_breakers_id)  # Yes, i know this isnt secure, but it is better than storing stuff in plaintext.
+    aes_cipher.update(bytes(str(user_snowflake), "ascii"))
+    auth_information = aes_cipher.decrypt_and_verify(authentication, battle_breakers_token)
+    return orjson.loads(auth_information)
+
+
+async def get_token_devauth(client, user_document, game="ios"):
+    """
+    gets an access token for the given game/context
+    Args:
+        client: the client
+        user_document: the document of the user to get the access token for
+        game: bb, ios, fn pc client
+
+    Returns:
+        the access token response
+    """
+
+    client.processing_queue[user_document["user_snowflake"]] = True
+    currently_selected_profile_id = user_document["global"]["selected_profile"]
+    snowflake = user_document["user_snowflake"]
+
+    h = get_game_headers(game)
+
+    auth_info_thread = await asyncio.gather(asyncio.to_thread(decrypt_user_data, snowflake,
+                                                              user_document["profiles"][
+                                                                  str(currently_selected_profile_id)][
+                                                                  "authentication"]))
+
+    del client.processing_queue[user_document["user_snowflake"]]
+    dev_auth = auth_info_thread[0]
+    d = {
+        "grant_type": "device_auth",
+        "account_id": dev_auth["accountId"],
+        "device_id": dev_auth["deviceId"],
+        "secret": dev_auth["secret"],
+    }
+
+    url = client.config["endpoints"]["token"]
     return await client.stw_session.post(url, headers=h, data=d)
 
 
@@ -1908,15 +2000,29 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
 
     auth_client_id = "ec684b8c687f479fadea3cb2ad83f5c6"
 
+    auth_with_devauth = False
+    user_document = None
+
     # Basic checks so that we don't stab stab epic games so much
     if extracted_auth_code == "":
-        error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=(
-            f"\u200b\n**You need an auth code, you can get one from:**\n"
-            f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D{auth_client_id}%2526responseType%253Dcode)\n"
-            f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n\n"
-            f"**Need Help? Run**\n"
-            f"{await mention_string(client, 'help {0}'.format(command))}\n"
-            f"Or [Join the support server]({support_url})\n"), colour=error_colour)
+        try:
+            user_document = await get_user_document(ctx, client, ctx.author.id)
+            currently_selected_profile_id = user_document["global"]["selected_profile"]
+
+            current_profile = user_document["profiles"][str(currently_selected_profile_id)]
+
+            if current_profile["authentication"] is None:
+                raise Exception
+
+            auth_with_devauth = True
+        except:
+            error_embed = discord.Embed(title=await add_emoji_title(client, f"No Auth Code", "error"), description=(
+                f"\u200b\n**You need an auth code, you can get one from:**\n"
+                f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D{auth_client_id}%2526responseType%253Dcode)\n"
+                f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n\n"
+                f"**Need Help? Run**\n"
+                f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                f"Or [Join the support server]({support_url})\n"), colour=error_colour)
 
     elif extracted_auth_code in client.config["known_client_ids"]:
         error_embed = discord.Embed(
@@ -1984,7 +2090,12 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     else:
         message = None
 
-    token_req = await get_token(client, extracted_auth_code)  # we auth for fn regardless of the game because exchange
+    if not auth_with_devauth:
+        token_req = await get_token(client,
+                                    extracted_auth_code)  # we auth for fn regardless of the game because exchange
+    else:
+        token_req = await get_token_devauth(client, user_document)
+
     response = orjson.loads(await token_req.read())
     check_auth_error_result = await check_for_auth_errors(client, response, ctx, message, command,
                                                           extracted_auth_code, support_url, not dont_send_embeds)
