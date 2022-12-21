@@ -8,64 +8,10 @@ This file is the cog for the homebase command. renames homebase / displays curre
 
 import discord
 import discord.ext.commands as ext
-from discord import Option, SelectOption, SelectMenu
+from discord import Option, SelectOption
 import orjson
 
 import stwutil as stw
-
-
-async def llama_entry(catalog_entry, client):
-    """
-    Creates an embed entry string for a single llama catalog entry.
-
-    Args:
-        catalog_entry: The catalog entry to be processed.
-        client: The bot client.
-
-    Returns:
-        The embed entry string.
-    """
-    try:
-        entry_string = f"\u200b\n**{catalog_entry['title']}**\n"
-    except:
-        entry_string = f"\u200b\n**{catalog_entry['devName']}**\n"
-    # entry_string += f"Rarity: {catalog_entry['itemGrants'][0]['templateId'].split('CardPack:cardpack_')[1]}\n"
-    entry_string += f"Price: {'~~' + str(catalog_entry['prices'][0]['regularPrice']) + '~~ ' if catalog_entry['prices'][0]['regularPrice'] != catalog_entry['prices'][0]['finalPrice'] else ''}**{catalog_entry['prices'][0]['finalPrice']}** {stw.get_item_icon_emoji(client, catalog_entry['prices'][0]['currencySubType'])} \n"
-    # entry_string += f"OfferID: {catalog_entry['offerId']}\n"
-    # entry_string += f"Dev name: {catalog_entry['devName']}\n"
-    # entry_string += f"Daily limit: {catalog_entry['dailyLimit']}\n"
-    # entry_string += f"Event limit: {catalog_entry['meta']['EventLimit']}\n"
-    # entry_string += f"Icon: {catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0]}\n"
-    return entry_string
-
-
-async def llama_embed(self, embed, free_llama, llama_store, preroll_data):
-    """
-
-    Args:
-        self:
-        embed:
-        free_llama:
-        llama_store:
-        preroll_data:
-
-    Returns:
-        the edited embed
-    """
-    if free_llama[0] > 0:
-        embed.description += f"\u200b\n**There is a free llama available!**\n"
-    for entry in llama_store["catalogEntries"]:
-        if entry['devName'] == "Always.UpgradePack.03":
-            continue
-        embed.description += await llama_entry(entry, self.client)
-        for attr, val in preroll_data.items():  # :>
-            if entry["offerId"] == val["attributes"]["offerId"]:
-                embed.description += "Contents: " + stw.llama_contents_render(self.client,
-                                                                              val["attributes"]["items"])
-                break
-        embed.description += f"\n"
-    embed.description += f"\u200b\n"
-    return stw.truncate(embed.description, 3999)
 
 
 class LlamasView(discord.ui.View):
@@ -73,7 +19,7 @@ class LlamasView(discord.ui.View):
     The view for the llama command.
     """
 
-    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data):
+    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, llama_options):
         super().__init__()
         self.ctx = ctx
         self.client = client
@@ -82,42 +28,72 @@ class LlamasView(discord.ui.View):
         self.llama_store = llama_store
         self.free_llama = free_llama
         self.preroll_data = preroll_data
+        self.children[0].options = llama_options
 
-    @discord.ui.select(placeholder="Select a llama", options=[
-        SelectOption(label="Free Llama", value="free_llama"),
-        SelectOption(label="Daily Llama", value="daily_llama"),
-        SelectOption(label="Event Llama", value="event_llama"),
-        SelectOption(label="Hero Llama", value="hero_llama"),
-        SelectOption(label="Hero Event Llama", value="hero_event_llama")
-    ])
-    async def select_llama(self, select: discord.ui.Select, interaction: discord.Interaction):
+    async def llama_purchase_embed(self, ctx, offer_id):
         """
-        The llama select menu.
-        """
-        if select.values[0] == "free_llama":
-            await interaction.response.edit_message(embed=discord.Embed(title="free_llama"), view=self)
-        elif select.values[0] == "daily_llama":
-            await interaction.response.edit_message(embed=discord.Embed(title="daily_llama"), view=self)
-        elif select.values[0] == "event_llama":
-            await interaction.response.edit_message(embed=discord.Embed(title="event_llama"), view=self)
-        elif select.values[0] == "hero_llama":
-            await interaction.response.edit_message(embed=discord.Embed(title="hero_llama"), view=self)
-        elif select.values[0] == "hero_event_llama":
-            await interaction.response.edit_message(embed=discord.Embed(title="hero_event_llama"), view=self)
+        Creates an embed for the llama purchase command.
 
-    @discord.ui.button(label="Preroll", style=discord.ButtonStyle.green)
-    async def preroll(self, button: discord.ui.Button, interaction: discord.Interaction):
-        """
-        The preroll button.
-        """
-        await interaction.response.edit_message(embed=discord.Embed(title="Preroll"), view=self)
+        Args:
+            ctx: The context of the command.
+            offer_id: The offer id of the llama to be purchased.
 
-    @discord.ui.button(label="Close", style=discord.ButtonStyle.red)
-    async def close(self, button: discord.ui.Button, interaction: discord.Interaction):
+        Returns:
+            The embed with the llama purchase
         """
-        The close button.
+        if offer_id == "back":
+            self.children[0].options = await self.llamas.select_options_llamas(self.llama_store)
+            return await self.llamas.llama_embed(ctx, self.free_llama, self.llama_store, self.preroll_data)
+        else:
+            self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, "Store", "llama"),
+            description=f"\u200b\n",
+            colour=self.client.colours["generic_blue"])
+        for entry in self.llama_store["catalogEntries"]:
+            if entry["offerId"] == offer_id:
+                llama_datatable = await stw.get_llama_datatable(self.client, entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0])
+                embed.description = f"\u200b\n{llama_datatable[2]}{llama_datatable[3]} **{llama_datatable[0]}**\n"
+                embed.description += f"Price: {'~~' + str(entry['prices'][0]['regularPrice']) + '~~ ' if entry['prices'][0]['regularPrice'] != entry['prices'][0]['finalPrice'] else ''}**{entry['prices'][0]['finalPrice']:,}** {stw.get_item_icon_emoji(self.client, entry['prices'][0]['currencySubType'])}\n"  # TODO: make this sale_sticker_store
+                for attr, val in self.preroll_data.items():
+                    if offer_id == val["attributes"]["offerId"]:
+                        embed.description += "Contents: " + stw.llama_contents_render(self.client,
+                                                                                      val["attributes"]["items"])
+                        break
+                embed.description += f"\n*{llama_datatable[1]}*\n"
+                break
+        embed.description += f"\u200b\n"
+        embed.description = stw.truncate(embed.description, 3999)
+        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.add_requested_footer(ctx, embed)
+        return embed
+
+    async def interaction_check(self, interaction):
         """
-        await interaction.response.edit_message(embed=discord.Embed(title="Closed"), view=None)
+        Checks if the interaction is from the author of the command.
+
+        Args:
+            interaction: The interaction to check.
+
+        Returns:
+            True if the interaction is from the author of the command, False otherwise.
+        """
+        return await stw.view_interaction_check(self, interaction, "llamas")
+
+    @discord.ui.select(
+        placeholder="Choose a Llama to purchase",
+        options=[],
+    )
+    async def selected_option(self, select, interaction):
+        """
+        Called when a help page is selected.
+
+        Args:
+            select: The select menu that was used.
+            interaction: The interaction that was used.
+        """
+        embed = await self.llama_purchase_embed(self.ctx, select.values[0])
+        await interaction.response.edit_message(embed=embed, view=self)
 
 
 # ok i have no clue how sets work in python ok now i do prepare for your cpu to explode please explode already smhhh nya hi
@@ -156,6 +132,89 @@ class Llamas(ext.Cog):
             # no error
             return False
 
+    async def select_options_llamas(self, llama_store, return_visible=False):
+        """
+        Creates the options for the select menu for the llamas command.
+
+        Args:
+            llama_store: The llama store data.
+            return_visible: Whether the return value should be the visible options or the hidden options.
+
+        Returns:
+            The options for the select menu.
+        """
+        options = []
+        if return_visible:
+            options.append(SelectOption(label="Return", value="back", emoji=self.emojis["left_arrow"],
+                                        description="Return to the shop"))
+        for entry in llama_store["catalogEntries"]:
+            if entry['devName'] == "Always.UpgradePack.03":
+                continue
+            llama_datatable = await stw.get_llama_datatable(self.client,
+                                                            entry['displayAssetPath'].split('/Game/Items/CardPacks/')[
+                                                                -1].split('.')[0])
+            options.append(discord.SelectOption(label=llama_datatable[0], value=entry['offerId'],
+                                                description=f"Price: {entry['prices'][0]['finalPrice']:,}",
+                                                emoji=llama_datatable[2]))
+        return options
+
+    async def llama_entry(self, catalog_entry, client):
+        """
+        Creates an embed entry string for a single llama catalog entry.
+
+        Args:
+            catalog_entry: The catalog entry to be processed.
+            client: The bot client.
+
+        Returns:
+            The embed entry string.
+        """
+        llama_datatable = await stw.get_llama_datatable(self.client, catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0])
+        entry_string = f"\u200b\n{llama_datatable[2]}{llama_datatable[3]} **{llama_datatable[0]}**\n"
+        # entry_string += f"Rarity: {catalog_entry['itemGrants'][0]['templateId'].split('CardPack:cardpack_')[1]}\n"
+        entry_string += f"Price: {'~~' + str(catalog_entry['prices'][0]['regularPrice']) + '~~ ' if catalog_entry['prices'][0]['regularPrice'] != catalog_entry['prices'][0]['finalPrice'] else ''}**{catalog_entry['prices'][0]['finalPrice']:,}** {stw.get_item_icon_emoji(client, catalog_entry['prices'][0]['currencySubType'])} \n"
+        # entry_string += f"OfferID: {catalog_entry['offerId']}\n"
+        # entry_string += f"Dev name: {catalog_entry['devName']}\n"
+        # entry_string += f"Daily limit: {catalog_entry['dailyLimit']}\n"
+        # entry_string += f"Event limit: {catalog_entry['meta']['EventLimit']}\n"
+        # entry_string += f"Icon: {catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0]}\n"
+        return entry_string
+
+    async def llama_embed(self, ctx, free_llama, llama_store, preroll_data):
+        """
+        Creates the embed for the llama command.
+
+        Args:
+            ctx: The context of the command.
+            free_llama: The free llama data.
+            llama_store: The llama store data.
+            preroll_data: The preroll data.
+
+        Returns:
+            The embed.
+        """
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, "Store", "llama"),
+            description=f"\u200b\nHere's the current shop:\u200b\n\u200b",
+            colour=self.client.colours["generic_blue"])
+        if free_llama[0] > 0:
+            embed.description += f"\u200b\n{self.client.config['emojis']['new_item_store']} **There is a free llama available!** {self.client.config['emojis']['new_item_store']}\n"
+        for entry in llama_store["catalogEntries"]:
+            if entry['devName'] == "Always.UpgradePack.03":
+                continue
+            embed.description += await self.llama_entry(entry, self.client)
+            for attr, val in preroll_data.items():  # :>
+                if entry["offerId"] == val["attributes"]["offerId"]:
+                    embed.description += "Contents: " + stw.llama_contents_render(self.client,
+                                                                                  val["attributes"]["items"])
+                    break
+            embed.description += f"\n"
+        embed.description += f"\u200b\n"
+        embed.description = stw.truncate(embed.description, 3999)
+        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.add_requested_footer(ctx, embed)
+        return embed
+
     async def llamas_command(self, ctx, authcode, auth_opt_out):
         """
         The main function for the llamas command.
@@ -168,8 +227,6 @@ class Llamas(ext.Cog):
         Returns:
             None
         """
-        generic_colour = self.client.colours["generic_blue"]
-
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "llamas", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
@@ -208,19 +265,17 @@ class Llamas(ext.Cog):
 
         free_llama = await stw.free_llama_count(llama_store)
 
+        llama_option = await self.select_options_llamas(llama_store)
+
         # With all info extracted, create the output
-        embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Store", "llama"),
-            description=f"\u200b\nHere's the current shop:\u200b\n\u200b",
-            colour=generic_colour)
 
-        await self.llama_embed(embed, free_llama, llama_store, preroll_data)
+        embed = await self.llama_embed(ctx, free_llama, llama_store, preroll_data)
 
-        embed = await stw.set_thumbnail(self.client, embed, "meme")
-        embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        LlamaView = LlamasView(ctx, self.client, auth_info[0], ctx.author, llama_store, free_llama, preroll_data)
-        await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=LlamaView)
+        llama_view = LlamasView(ctx, self.client, auth_info[0], ctx.author, llama_store, free_llama, preroll_data,
+                                llama_option)
+        llama_view.llamas = self
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=llama_view)
         return
 
     @ext.slash_command(name='llamas',

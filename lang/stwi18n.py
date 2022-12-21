@@ -5,7 +5,6 @@ https://github.com/dippyshere/stw-daily
 
 This file is a custom system for i18n (internationalisation) for STW Daily using a single JSON file
 """
-
 import orjson
 from ext.profile.bongodb import get_user_document
 
@@ -34,7 +33,7 @@ class I18n:
 
     def __init__(self):
         # load the i18n json file
-        with open(f"lang/i18n.json") as f:
+        with open(f"lang/i18n.json", "rb") as f:
             self.i18n_json = orjson.loads(f.read())
 
     def get(self, key, lang, *args):  # hiiiiiiiiiiiiiiiii

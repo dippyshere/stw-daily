@@ -8,12 +8,13 @@ psutil>=5.9.4
 py-cpuinfo>=9.0.0
 # python <3.10 compatibility
 tomli>=2.0.1
-# py-cord speedup
+# speedup
 Cython>=3.0.0a11
 aiodns>=3.0.0
 brotlipy>=0.7.0
 faust-cchardet>=2.1.13
 orjson>=3.8.3
+aiofiles>=22.1.0
 # database
 motor>=3.1.1
 # for banner rendering

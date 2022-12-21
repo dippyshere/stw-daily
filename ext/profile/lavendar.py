@@ -5,7 +5,6 @@ https://github.com/dippyshere/stw-daily
 
 This file is the cog for the profile command. under development.
 """
-
 import orjson
 import os
 import discord
@@ -228,7 +227,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.response.send_modal(
             ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self))
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="New Profile", emoji="library_add_person", row=1)
+    @discord.ui.button(style=discord.ButtonStyle.success, label="New Profile", emoji="library_add_person", row=1)
     async def new_button(self, _button, interaction):
         """
         Called when the new button is pressed.
@@ -240,7 +239,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.response.send_modal(
             NewProfileModal(self.ctx, self.client, self.user_document, self.message, self))
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Delete Profile", emoji="library_trashcan", row=1)
+    @discord.ui.button(style=discord.ButtonStyle.danger, label="Delete Profile", emoji="library_trashcan", row=1)
     async def delete_button(self, _button, interaction):
         """
         Called when the delete button is pressed.
@@ -306,7 +305,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Authentication", emoji="link_icon", row=2)
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Authentication", emoji="link_icon", row=2)
     async def auth_button(self, _button, interaction):
         """
         Called when the auth button is pressed.
@@ -325,8 +324,8 @@ class ProfileMainView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=self)
         self.stop()
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Information", emoji="experimental", row=2)
-    async def information_button(self, _button, interaction):
+    @discord.ui.button(label="Information", emoji="experimental", row=2)
+    async def information_button(self, _button, interaction):  # hi
         """
         Called when the information button is pressed.
 

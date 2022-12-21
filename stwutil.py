@@ -14,6 +14,7 @@ import time
 import math
 from difflib import SequenceMatcher
 
+import aiofiles
 import blendmodes.blend
 from Crypto.Cipher import AES
 from PIL import Image
@@ -26,24 +27,37 @@ import discord
 import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 from lang.stwi18n import I18n
-from ext.profile.bongodb import get_user_document
+from ext.profile.bongodb import get_user_document, replace_user_document
 
-with open("ext/battlebreakers/LoginRewards.json", "r") as f:
-    LoginRewards = orjson.loads(f.read())
-with open('ext/DataTables/SurvivorItemRating.json') as f:
-    SurvivorItemRating = orjson.loads(f.read())
-with open('ext/DataTables/HomebaseRatingMapping.json') as f:
-    HomebaseRatingMapping = orjson.loads(f.read())
-with open('ext/DataTables/ResearchSystem.json') as f:
-    ResearchSystem = orjson.loads(f.read())
-with open('ext/DataTables/AccountLevels.json') as f:
-    AccountLevels = orjson.loads(f.read())
-with open('ext/DataTables/BannerColorMap.json') as f:
-    BannerColorMap = orjson.loads(f.read())
-with open('ext/DataTables/BannerColors.json') as f:
-    BannerColors = orjson.loads(f.read())
-with open('ext/DataTables/STW_Accolade_Tracker.json') as f:
-    max_daily_stw_accolade_xp = orjson.loads(f.read())[0]["Properties"]["MaxDailyXP"]
+
+async def load_item_data():
+    """
+    Loads the item data from the item data file
+
+    Returns:
+        The item data
+    """
+    async with aiofiles.open("ext/battlebreakers/LoginRewards.json", "r") as f:
+        LoginRewards = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/SurvivorItemRating.json') as f:
+        SurvivorItemRating = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/HomebaseRatingMapping.json') as f:
+        HomebaseRatingMapping = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/ResearchSystem.json') as f:
+        ResearchSystem = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/AccountLevels.json') as f:
+        AccountLevels = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/BannerColorMap.json') as f:
+        BannerColorMap = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/BannerColors.json') as f:
+        BannerColors = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/STW_Accolade_Tracker.json') as f:
+        max_daily_stw_accolade_xp = orjson.loads(await f.read())[0]["Properties"]["MaxDailyXP"]
+    return LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
+        BannerColors, max_daily_stw_accolade_xp
+
+
+LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp = asyncio.get_event_loop().run_until_complete(load_item_data())
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
@@ -941,9 +955,14 @@ async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
                 req_populate_llamas = prerolled_offers  # llamas
                 llama_tier = []
                 for key in req_populate_llamas['profileChanges'][0]['profile']['items']:
-                    if req_populate_llamas['profileChanges'][0]['profile']['items'][key]['templateId'].lower().startswith("prerolldata") and req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes']['offerId'] == llama_to_claim_offer_id:
+                    if req_populate_llamas['profileChanges'][0]['profile']['items'][key][
+                        'templateId'].lower().startswith("prerolldata") and \
+                            req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes'][
+                                'offerId'] == llama_to_claim_offer_id:
                         try:
-                            llama_tier = req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes']['highest_rarity']
+                            llama_tier = \
+                                req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes'][
+                                    'highest_rarity']
                         except:
                             llama_tier = 0
                 json = {"offerId": llama_to_claim_offer_id,
@@ -1068,7 +1087,9 @@ async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already
                     if req_get_resources_json['profileChanges'][0]['profile']['items'][item]['templateId'] == resource:
                         recycle_resources.append({"itemGuid": item,
                                                   "templateId": resource,
-                                                  "quantity": req_get_resources_json['profileChanges'][0]['profile']['items'][item]['quantity']
+                                                  "quantity":
+                                                      req_get_resources_json['profileChanges'][0]['profile']['items'][
+                                                          item]['quantity']
                                                   })
             json = {"targetItemIds": item_guids_to_recycle}
             recycle_request = await profile_request(client, "batch_recycle", auth_entry, json=json)
@@ -1078,11 +1099,12 @@ async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already
             # resources receive
             for resource in recycle_resources:
                 resource_quantity = int(
-                    req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']]['quantity']) - int(resource['quantity'])
+                    req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']][
+                        'quantity']) - int(resource['quantity'])
                 if resource_quantity > 0:
                     recycle_resources_count += 1
                     resources_message += f"{recycle_resources_count}: {resource_quantity}x {resource['itemName']}. " \
-                                        f"Total ammount: {req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']]['quantity']}\n"
+                                         f"Total ammount: {req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']]['quantity']}\n"
             print(resources_message)
 
 
@@ -1529,7 +1551,7 @@ def get_item_icon_emoji(client, template_id):
                 pass
             else:
                 outcome = 'placeholder'
-        # print(f"Chose emoji: {outcome} for item: {filtered} (Similarity: {similarity})\n")
+        print(f"Chose emoji: {outcome} for item: {filtered} (Similarity: {similarity})")
         return client.config['emojis'][outcome]
     except:
         return client.config['emojis']['placeholder']

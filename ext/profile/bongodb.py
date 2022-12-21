@@ -11,6 +11,7 @@ import discord
 import stwutil as stw
 import inspect
 
+
 async def insert_default_document(client, user_snowflake):
     """
     Inserts a default document into the database.
@@ -39,9 +40,19 @@ async def replace_user_document(client, document):
     """
     await client.stw_database.replace_one({"user_snowflake": document["user_snowflake"]}, document)
 
-async def get_autoclaim_user_cursor(client):
 
+async def get_autoclaim_user_cursor(client):
+    """
+    Gets the autoclaim user cursor.
+
+    Args:
+        client: The bot client.
+
+    Returns:
+        pymongo.cursor.Cursor: The autoclaim user cursor.
+    """
     return client.stw_database.find({"auto_claim": {"$ne": None}})
+
 
 async def check_profile_ver_document(client, document):
     """
@@ -199,15 +210,30 @@ async def timeout_check_processing(view, client, interaction):
             return False
     return True
 
+
 async def active_view(client, user_snowflake, view):
+    """
+    Checks if a user has an active view.
+
+    Args:
+        client: The bot client.
+        user_snowflake: The user snowflake to check.
+        view: The view to check for.
+    """
     client.active_profile_command[user_snowflake] = view
 
-async def command_counter(client, user_snowflake):
 
+async def command_counter(client, user_snowflake):
+    """
+    Counts the number of commands a user has active.
+
+    Args:
+        client: The bot client.
+        user_snowflake: The user snowflake to check.
+    """
     try:
         old_view = client.active_profile_command[user_snowflake]
         await old_view.on_timeout()
         del client.active_profile_command[user_snowflake]
     except:
         pass
-
