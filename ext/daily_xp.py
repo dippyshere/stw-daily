@@ -107,16 +107,23 @@ class DailyXP(ext.Cog):
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
-        last_reset = stw.convert_iso_to_unix(daily_xp["attributes"]["last_reset"])
+        try:
+            last_reset = stw.convert_iso_to_unix(daily_xp["attributes"]["last_reset"])
+        except KeyError:
+            last_reset = 0
+        try:
+            dailyxp = daily_xp['attributes']['daily_xp']
+        except:
+            dailyxp = 0
 
-        progress_bar = stw.get_progress_bar(daily_xp['attributes']['daily_xp'], stw.max_daily_stw_accolade_xp, 20)
+        progress_bar = stw.get_progress_bar(dailyxp, stw.max_daily_stw_accolade_xp, 20)
 
         # With all info extracted, create the output
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Daily XP", "xp_everywhere"),
-            description=f"\u200b\nDaily XP used: {daily_xp['attributes']['daily_xp']:,}\u200b\n"
+            description=f"\u200b\nDaily XP used: {dailyxp:,}\u200b\n"
                         f"Daily XP total: {stw.max_daily_stw_accolade_xp:,}\u200b\n"
-                        f"Daily XP remaining: {(stw.max_daily_stw_accolade_xp - daily_xp['attributes']['daily_xp']):,}\u200b\n"
+                        f"Daily XP remaining: {(stw.max_daily_stw_accolade_xp - dailyxp):,}\u200b\n"
                         f"{progress_bar}\u200b\n"
                         f"Last reset was: <t:{last_reset}:R>"
                         f"\n\u200b",
