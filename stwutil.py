@@ -547,7 +547,7 @@ def decrypt_user_data(user_snowflake, authentication_information):
     return orjson.loads(auth_information)
 
 
-async def get_token_devauth(client, user_document, game="ios"):
+async def get_token_devauth(client, user_document, game="ios", auth_info_thread=None):
     """
     gets an access token for the given game/context
     Args:
@@ -565,10 +565,11 @@ async def get_token_devauth(client, user_document, game="ios"):
 
     h = get_game_headers(game)
 
-    auth_info_thread = await asyncio.gather(asyncio.to_thread(decrypt_user_data, snowflake,
-                                                              user_document["profiles"][
-                                                                  str(currently_selected_profile_id)][
-                                                                  "authentication"]))
+    if auth_info_thread == None:
+        auth_info_thread = await asyncio.gather(asyncio.to_thread(decrypt_user_data, snowflake,
+                                                                  user_document["profiles"][
+                                                                      str(currently_selected_profile_id)][
+                                                                      "authentication"]))
 
     del client.processing_queue[user_document["user_snowflake"]]
     dev_auth = auth_info_thread[0]
@@ -2020,7 +2021,6 @@ def calculate_homebase_rating(profile):
                       time_input=total * 4), total, total_stats
 
 
-# alexanda  now who is she
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, add_entry=False, processing=True,
                                      dont_send_embeds=False):  # hi bye
     """
@@ -2192,6 +2192,20 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
         token_req = await get_token_devauth(client, user_document)
 
     response = orjson.loads(await token_req.read())
+
+    if auth_with_devauth:
+        try:
+            display_name = response["displayName"]
+            if display_name != user_document["profiles"][str(currently_selected_profile_id)]["authentication"][
+                "displayName"]:
+                client.processing_queue[ctx.author.id] = True
+                user_document["profiles"][str(currently_selected_profile_id)]["authentication"][
+                    "displayName"] = display_name
+                await replace_user_document(client, user_document)
+                del client.processing_queue[ctx.author.id]
+        except:
+            pass
+
     check_auth_error_result = await check_for_auth_errors(client, response, ctx, message, command,
                                                           extracted_auth_code, support_url, not dont_send_embeds)
 

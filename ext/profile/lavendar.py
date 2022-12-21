@@ -286,7 +286,7 @@ class ProfileMainView(discord.ui.View):
         del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Edit Settings", emoji="library_gear", row=2)
+    @discord.ui.button(label="Edit Settings", emoji="library_gear", row=2)
     async def settings_button(self, _button, interaction):
         """
         Called when the settings button is pressed.
@@ -333,7 +333,8 @@ class ProfileMainView(discord.ui.View):
             _button: The button.
             interaction: The interaction.
         """
-        self.client.processing_queue[interaction.user.id] = True
+
+        await get_auto_claim(self.client)
         # await interaction.response.send_message(content=stw.truncate(str(self.user_document), 2000))
 
 
