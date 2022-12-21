@@ -924,6 +924,71 @@ async def free_llama_count(store):
     return len(free_llamas), free_llamas
 
 
+async def purchase_llama(client, auth_entry, offer_id, currency="GameItem", currencySubType="AccountResource:currency_xrayllama", expectedTotalPrice=0):
+    """
+    Purchases a llama from the store
+
+    Args:
+        client: The client
+        auth_entry: The auth entry to use
+        offer_id: The offer id to use
+        currency: The currency to use
+        currencySubType: The currency subtype to use
+        expectedTotalPrice: The expected total price to use
+
+    Returns:
+        The response from the request
+    """
+    json = {"offerId": offer_id,
+            "purchaseQuantity": 1,
+            "currency": currency,
+            "currencySubType": currencySubType,
+            "expectedTotalPrice": expectedTotalPrice,
+            "gameContext": ""}
+    req_buy_free_llama = await profile_request(client, "purchase", auth_entry, json=json,
+                                               profile_id="common_core")
+    return orjson.loads(await req_buy_free_llama.read())
+
+
+async def get_llama_datatable(client, path):
+    """
+    Gets the llama datatable from the game files
+
+    Args:
+        client: The client
+        path: The path to the cardpack
+
+    Returns:
+        Name, Description, image emoji, pack image emoji, and rarity of the llama
+    """
+    try:
+        path = path.split("/")[-1]
+    except:
+        pass
+    try:
+        outcome = max(os.listdir("./ext/DataTables/CardPacks/"),
+                      key=lambda file_name: SequenceMatcher(a=file_name, b=path).ratio())
+        similarity = SequenceMatcher(a=outcome, b=path).ratio()
+        if similarity < 0.4:
+            # if the first 4 characters match in outcome and filtered, then it's probably a match
+            if outcome[:13] == path[:13]:
+                pass
+            else:
+                outcome = 'CardPack_Bronze.json'
+        print(f"Chose DataTable: {outcome} for item: {path} (Similarity: {similarity})")
+        async with aiofiles.open(f"./ext/DataTables/CardPacks/{outcome}", "r") as f:
+            llama_file = orjson.loads(await f.read())[0]["Properties"]
+        return llama_file["DisplayName"]["SourceString"], llama_file["Description"]["SourceString"], \
+            get_item_icon_emoji(client, llama_file["LargePreviewImage"]["AssetPathName"].split(".")[-1]), \
+            get_item_icon_emoji(client, llama_file["PackImage"]["AssetPathName"].split(".")[-1]), \
+            llama_file["Rarity"].split("::")[-1]
+    except:
+        return "Upgrade Llama", "The old faithful llama, packed with a variety of goodies and upgrade materials. " \
+                                "Contains at least 4 items, including a rare item or a hero! Has a high chance to " \
+                                "upgrade.", "<:PinataStandardPack:1055058584808984587>", \
+            "<:T_CardPack_Upgrade_IconMask:1055049365426819092>", "Rare"
+
+
 async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
     """
     Claims the free llamas in the store
