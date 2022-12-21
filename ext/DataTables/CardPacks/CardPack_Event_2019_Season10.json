@@ -1,0 +1,58 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_2019_Season10",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Event_2019_Season10",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Speaker_IconMask.T_CardPack_Speaker_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.464813,
+                "B": 0.063542,
+                "A": 1.0,
+                "Hex": "FFFFB647"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Rad_PersonalityPack.Llama_Rad_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "9ABD78EF4C3A2CCA92DAF09038BAEDD1",
+                "SourceString": "Rad Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "BF7069F140BA644C9E13C3BEF42B1424",
+                "SourceString": "Guarantees at least one Epic or better limited time Boombox weapon or Hero!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataEightiesPack__128.PinataEightiesPack__128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataEightiesPack.PinataEightiesPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

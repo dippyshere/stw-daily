@@ -1,0 +1,58 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_Scavenger",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Event_2017_Scavenger",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_ScavengerEvent_IconMask.T_CardPack_ScavengerEvent_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.464813,
+                "B": 0.063542,
+                "A": 1.0,
+                "Hex": "FFFFB647"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "793AC8804FDDE22F2D3F998D4D775A81",
+                "SourceString": "Scavenger Choice Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "87846F764769FBEEDD391A9D1F48D72F",
+                "SourceString": "Guarantees at least one Epic or better limited time Scavenger weapon or Hero!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataScavengerPack_128.PinataScavengerPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataScavengerPack.PinataScavengerPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

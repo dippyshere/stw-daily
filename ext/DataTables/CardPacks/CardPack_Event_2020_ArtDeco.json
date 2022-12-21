@@ -1,0 +1,58 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_2020_ArtDeco",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Event_2020_ArtDeco",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_ArtDeco.T_CardPack_ArtDeco",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.464813,
+                "B": 0.063542,
+                "A": 1.0,
+                "Hex": "FFFFB647"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_OlTimey_PersonalityPack.Llama_OlTimey_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "940502E743F630E93655E0AAFADA3F9D",
+                "SourceString": "Art Deco Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "0E3DBCCC4949B84F25DC6090B84E1D6E",
+                "SourceString": "Guarantees at least one Epic or better limited time Art Deco weapon or Hero!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataArtDecoPack2020-128.PinataArtDecoPack2020-128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataArtDecoPack2020-512.PinataArtDecoPack2020-512",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

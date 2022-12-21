@@ -1,0 +1,62 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_2018_Storm",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Event_2018_Storm",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_NeonCyberpunkEvent_IconMask.T_CardPack_NeonCyberpunkEvent_IconMask",
+                "SubPathString": ""
+            },
+            "XRayTexture": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/T-PinataNeonCyberpunkXray.T-PinataNeonCyberpunkXray",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.464813,
+                "B": 0.063542,
+                "A": 1.0,
+                "Hex": "FFFFB647"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Happy_PersonalityPack.Llama_Happy_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "8AD61B8B4B9ABE4A93A7D9846684FCEE",
+                "SourceString": "Neon Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "4E3DAFFE4D81114CE03B799443BB91C5",
+                "SourceString": "Guarantees at least one Epic or better Neon weapon or Hero!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataNeonCyberpunkPack_128.PinataNeonCyberpunkPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataNeonCyberpunkPack.PinataNeonCyberpunkPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]
