@@ -5,6 +5,8 @@ https://github.com/dippyshere/stw-daily
 
 This file is the cog for the homebase command. renames homebase / displays current name + renders banner
 """
+import asyncio
+import time
 
 import discord
 import discord.ext.commands as ext
@@ -19,7 +21,7 @@ class LlamasView(discord.ui.View):
     The view for the llama command.
     """
 
-    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, llama_options):
+    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, llama_options, auth_info):
         super().__init__()
         self.ctx = ctx
         self.client = client
@@ -29,23 +31,26 @@ class LlamasView(discord.ui.View):
         self.free_llama = free_llama
         self.preroll_data = preroll_data
         self.children[0].options = llama_options
+        self.auth_info = auth_info
 
-    async def llama_purchase_embed(self, ctx, offer_id):
+    async def llama_purchase_embed(self, ctx, offer_id, select=True):
         """
         Creates an embed for the llama purchase command.
 
         Args:
             ctx: The context of the command.
             offer_id: The offer id of the llama to be purchased.
+            select: Whether the embed is for the select menu.
 
         Returns:
-            The embed with the llama purchase
+            The embed with the llama details
         """
-        if offer_id == "back":
-            self.children[0].options = await self.llamas.select_options_llamas(self.llama_store)
-            return await self.llamas.llama_embed(ctx, self.free_llama, self.llama_store, self.preroll_data)
-        else:
-            self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
+        if select:
+            if offer_id == "back":
+                self.children[0].options = await self.llamas.select_options_llamas(self.llama_store)
+                return await self.llamas.llama_embed(ctx, self.free_llama, self.llama_store, self.preroll_data)
+            else:
+                self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Store", "llama"),
             description=f"\u200b\n",
@@ -60,7 +65,7 @@ class LlamasView(discord.ui.View):
                         embed.description += "Contents: " + stw.llama_contents_render(self.client,
                                                                                       val["attributes"]["items"])
                         break
-                embed.description += f"\n*{llama_datatable[1]}*\n"
+                embed.description += f"\n\n*{llama_datatable[1]}*\n"
                 break
         embed.description += f"\u200b\n"
         embed.description = stw.truncate(embed.description, 3999)
@@ -80,6 +85,14 @@ class LlamasView(discord.ui.View):
         """
         return await stw.view_interaction_check(self, interaction, "llamas")
 
+    async def on_timeout(self) -> None:
+        """
+        Called when the view times out.
+        """
+        for child in self.children:
+            child.disabled = True
+        await self.message.edit(view=self)  # hi hih oi
+
     @discord.ui.select(
         placeholder="Choose a Llama to purchase",
         options=[],
@@ -93,7 +106,161 @@ class LlamasView(discord.ui.View):
             interaction: The interaction that was used.
         """
         embed = await self.llama_purchase_embed(self.ctx, select.values[0])
-        await interaction.response.edit_message(embed=embed, view=self)
+        view = LlamasPurchaseView(self.ctx, self.client, self.message, self.author, self.llama_store, self.free_llama,
+                                  self.preroll_data, select.values[0], self.auth_info)
+        view.llamas = self.llamas
+        view.llamaview = self
+        await interaction.response.edit_message(embed=embed, view=view)
+
+
+class LlamasPurchaseView(discord.ui.View):
+    """
+    The view for the llama purchase command.
+    """
+
+    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, offer_id, auth_info):
+        super().__init__()
+        self.ctx = ctx
+        self.client = client
+        self.message = message
+        self.author = author
+        self.llama_store = llama_store
+        self.free_llama = free_llama
+        self.preroll_data = preroll_data
+        self.offer_id = offer_id
+        self.auth_info = auth_info
+        self.confirm_stage = 0
+        self.price = 0
+        self.currency = ""
+        self.contents = ""
+        # self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
+
+    async def on_timeout(self) -> None:
+        """
+        Called when the view times out.
+        """
+        for child in self.children:
+            child.disabled = True
+        await self.message.edit(view=self)
+
+    async def interaction_check(self, interaction):
+        """
+        Checks if the interaction is from the author of the command.
+
+        Args:
+            interaction: The interaction to check.
+
+        Returns:
+            True if the interaction is from the author of the command, False otherwise.
+        """
+        return await stw.view_interaction_check(self, interaction, "llamas")
+
+    @discord.ui.button(label="Purchase", style=discord.ButtonStyle.success)
+    async def buy_button(self, button, interaction):
+        """
+        Called when the buy button is pressed.
+
+        Args:
+            button: The button that was pressed.
+            interaction: The interaction that was used.
+        """
+        self.confirm_stage += 1
+        if self.confirm_stage == 1:
+            embed = await self.llama_purchase_confirm(self.ctx, self.offer_id)
+            await interaction.response.edit_message(embed=embed, view=self)
+        elif self.confirm_stage >= 2:
+            embed = await self.llama_purchase_buy_embed(self.ctx, self.offer_id)
+            await interaction.response.edit_message(embed=embed, view=None)
+            shop_json_response = await stw.shop_request(self.client, self.auth_info["token"])
+            populate_preroll_request = await stw.profile_request(self.client, "llamas", self.auth_info)
+            populate_preroll_json = orjson.loads(await populate_preroll_request.read())
+            self.preroll_data = stw.extract_profile_item(populate_preroll_json, "PrerollData")
+            self.llama_store = await stw.get_llama_store(shop_json_response)
+            self.free_llama = await stw.free_llama_count(self.llama_store)
+            self.llamaview.preroll_data, self.llamaview.llama_store, self.llamaview.free_llama = self.preroll_data, self.llama_store, self.free_llama
+            await asyncio.sleep(5.8)
+            embed = await self.llamaview.llama_purchase_embed(self.ctx, "back")
+            await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self.llamaview)
+
+    @discord.ui.button(label="Cancel", style=discord.ButtonStyle.danger)
+    async def cancel_button(self, button, interaction):
+        """
+        Called when the cancel button is pressed.
+
+        Args:
+            button: The button that was pressed.
+            interaction: The interaction that was used.
+        """
+        self.confirm_stage -= 1
+        if self.confirm_stage < 0:
+            embed = await self.llamaview.llama_purchase_embed(self.ctx, "back")
+            await interaction.response.edit_message(embed=embed, view=self.llamaview)
+        else:
+            embed = await self.llamaview.llama_purchase_embed(self.ctx, self.offer_id, False)
+            await interaction.response.edit_message(embed=embed, view=self)
+
+    async def llama_purchase_confirm(self, ctx, offer_id):
+        """
+        Creates an embed for the llama purchase confirmation.
+
+        Args:
+            ctx: The context of the command.
+            offer_id: The offer id of the llama to be purchased.
+
+        Returns:
+            The embed with the llama purchase
+        """
+        article = "a"
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, "Store", "llama"),
+            description=f"\u200b\n",
+            colour=self.client.colours["generic_blue"])
+        for entry in self.llama_store["catalogEntries"]:
+            if entry["offerId"] == offer_id:
+                llama_datatable = await stw.get_llama_datatable(self.client, entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0])
+                self.price = entry['prices'][0]['finalPrice']
+                self.currency = entry['prices'][0]['currencySubType']
+                for attr, val in self.preroll_data.items():
+                    if offer_id == val["attributes"]["offerId"]:
+                        self.contents = stw.llama_contents_render(self.client, val["attributes"]["items"])
+                        break
+                if llama_datatable[0][0].lower() in "aeiou":
+                    article = "an"
+                break
+        embed.description += f"**Are you sure you want to purchase {article} {llama_datatable[0]} for {self.price} {stw.get_item_icon_emoji(self.client, self.currency)}?**\n\u200b"
+        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.add_requested_footer(ctx, embed)
+        return embed
+
+    async def llama_purchase_buy_embed(self, ctx, offer_id):
+        """
+        Creates an embed for the llama purchase.
+
+        Args:
+            ctx: The context of the command.
+            offer_id: The offer id of the llama to be purchased.
+
+        Returns:
+            The embed with the llama purchase
+        """
+        purchase = await stw.purchase_llama(self.client, self.auth_info, offer_id, currencySubType=self.currency,
+                                            expectedTotalPrice=self.price)
+        try:
+            error_code = purchase["errorCode"]
+            support_url = self.client.config["support_url"]
+            acc_name = self.auth_info["account_name"]
+            embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code, support_url)
+            print("Error:", purchase)
+        except:
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(self.client, "Store", "llama"),
+                description=f"\u200b\n**Successfully purchased Llama!**\n"
+                            f"{'You got: ' + self.contents if self.contents != '' else ''}\nReturning <t:{int(time.time()) + 6}:R>\n\u200b",
+                colour=self.client.colours["generic_blue"])
+            # print("Success:", purchase)
+        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.add_requested_footer(ctx, embed)
+        return embed
 
 
 # ok i have no clue how sets work in python ok now i do prepare for your cpu to explode please explode already smhhh nya hi
@@ -246,7 +413,7 @@ class Llamas(ext.Cog):
 
         shop_json_response = await stw.shop_request(self.client, auth_info[1]["token"])
 
-        populate_preroll_request = await stw.profile_request(self.client, "llamas", auth_info[1], profile_id="stw")
+        populate_preroll_request = await stw.profile_request(self.client, "llamas", auth_info[1])
         populate_preroll_json = orjson.loads(await populate_preroll_request.read())
         preroll_data = stw.extract_profile_item(populate_preroll_json, "PrerollData")
 
@@ -273,13 +440,13 @@ class Llamas(ext.Cog):
 
         final_embeds.append(embed)
         llama_view = LlamasView(ctx, self.client, auth_info[0], ctx.author, llama_store, free_llama, preroll_data,
-                                llama_option)
+                                llama_option, auth_info[1])
         llama_view.llamas = self
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=llama_view)
         return
 
     @ext.slash_command(name='llamas',
-                       description='Get llamas info from stw',
+                       description='View and purchase Llamas in the Llama shop',
                        guild_ids=stw.guild_ids)
     async def slashllamas(self, ctx: discord.ApplicationContext,
                           token: Option(str,
@@ -300,8 +467,10 @@ class Llamas(ext.Cog):
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          'dev': False},
-                 brief="Get llamas info from stw",
-                 description="Get llamas info from stw")
+                 brief="View and purchase Llamas in the Llama shop",
+                 description="This command allows you to view the available Llamas in the Llama shop, the contents of "
+                             "the available llamas purchase them. As this information is specific to your account, "
+                             "you will need an active session or to provide your authcode.")
     async def llamas(self, ctx, authcode='', optout=None):
         """
         This is the entry point for the llama command when called traditionally
