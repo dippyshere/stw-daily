@@ -412,7 +412,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
                                               self.currently_selected_profile_id)
         await interaction.response.send_modal(modal)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Auth With Session", emoji="library_input")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Auth With Session", emoji="library_input")
     async def existing_account_that_we_already_stole_button(self, button, interaction):
         """
         This function handles the existing auth button
@@ -506,7 +506,7 @@ class StolenAccountView(discord.ui.View):
                                                                                                                self.client,
                                                                                                                interaction)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Remove Link", emoji="library_trashcan")
+    @discord.ui.button(style=discord.ButtonStyle.danger, label="Remove Link", emoji="library_trashcan")
     async def regain_soul_button(self, button, interaction):
         """
         This function handles the accept button
@@ -602,7 +602,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
                                                                                                                self.client,
                                                                                                                interaction)
 
-    @discord.ui.button(style=discord.ButtonStyle.grey, label="Accept Agreement", emoji="library_handshake")
+    @discord.ui.button(style=discord.ButtonStyle.primary, label="Accept Agreement", emoji="library_handshake")
     async def soul_selling_button(self, button, interaction):
         """
         This function handles the accept button

@@ -976,7 +976,7 @@ async def get_llama_datatable(client, path):
                 pass
             else:
                 outcome = 'CardPack_Bronze.json'
-        print(f"Chose DataTable: {outcome} for item: {path} (Similarity: {similarity})")
+        # print(f"Chose DataTable: {outcome} for item: {path} (Similarity: {similarity})")
         async with aiofiles.open(f"./ext/DataTables/CardPacks/{outcome}", "r") as f:
             llama_file = orjson.loads(await f.read())[0]["Properties"]
         return llama_file["DisplayName"]["SourceString"], llama_file["Description"]["SourceString"], \
@@ -1617,7 +1617,7 @@ def get_item_icon_emoji(client, template_id):
                 pass
             else:
                 outcome = 'placeholder'
-        print(f"Chose emoji: {outcome} for item: {filtered} (Similarity: {similarity})")
+        # print(f"Chose emoji: {outcome} for item: {filtered} (Similarity: {similarity})")
         return client.config['emojis'][outcome]
     except:
         return client.config['emojis']['placeholder']
