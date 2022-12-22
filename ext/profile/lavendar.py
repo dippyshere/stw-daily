@@ -334,8 +334,8 @@ class ProfileMainView(discord.ui.View):
             interaction: The interaction.
         """
 
-        await get_auto_claim(self.client)
-        # await interaction.response.send_message(content=stw.truncate(str(self.user_document), 2000))
+        # await get_auto_claim(self.client)
+        await interaction.response.send_message(content=stw.truncate(str(self.user_document), 2000))
 
 
 # How do I explain to my gynecologist that I don't want to get rid of my pubic lice? I am infertile and my sweet little crab babies are the closest thing I have to birthing actual children...

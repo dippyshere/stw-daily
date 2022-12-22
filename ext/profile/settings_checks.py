@@ -51,7 +51,7 @@ def check_bool(client, ctx, value):
     """
     try:
         # what is this??????
-        boolean_string_representation[value]
+        boolean_string_representation[value.lower()]
         return True
     except:
         return False

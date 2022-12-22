@@ -339,6 +339,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
+        self.timed_out = False
 
         if self.response_json is None:
             del self.children[2]
@@ -368,6 +369,8 @@ class EnslaveAndStealUserAccount(discord.ui.View):
             await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
         else:
             await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+
+        self.timed_out = True
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -451,7 +454,7 @@ class StolenAccountView(discord.ui.View):
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
-
+        self.timed_out = False
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
 
     async def on_timeout(self):
@@ -474,6 +477,7 @@ class StolenAccountView(discord.ui.View):
             await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
         else:
             await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+        self.timed_out = True
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -530,6 +534,32 @@ class StolenAccountView(discord.ui.View):
         del self.client.processing_queue[self.user_document["user_snowflake"]]
 
         await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
+
+    @discord.ui.button(style=discord.ButtonStyle.green, label="Device Authenticate", emoji="library_floppydisc")
+    async def sell_your_data_button(self, button, interaction):
+        """
+        This function handles the accept button
+
+        Args:
+            button: The button
+            interaction: The interaction
+        """
+        try:
+            del self.client.temp_auth[self.ctx.author.id]
+        except:
+            pass
+
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(view=self)
+
+        auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "stw dev auth", "", True, False, True)
+        await stw.slash_send_embed(self.ctx, embeds=auth_stuff[2])
+
+        if not self.timed_out:
+            for child in self.children:
+                child.disabled = False
+            await interaction.edit_original_message(view=self)
 
 
 class EnslaveUserLicenseAgreementButton(discord.ui.View):

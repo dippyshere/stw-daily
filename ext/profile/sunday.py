@@ -224,10 +224,10 @@ async def edit_current_setting_bool(view, interaction, set_value):
     await interaction.response.edit_message(view=view)
     view.stop()
 
-    view.user_document["profiles"][view.selected_profile]["settings"][view.selected_setting] = set_value
+    view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting] = set_value
     await replace_user_document(view.client, view.user_document)
 
-    current_value = view.user_document["profiles"][view.selected_profile]["settings"][view.selected_setting]
+    current_value = view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting]
 
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
     embed.fields[0].value += f"\u200b\n*Changed **{view.selected_setting}** to **{current_value}***\n\u200b"
@@ -354,7 +354,9 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         self.selected_setting_index = selected_setting_index
         self.selected_setting = selected_setting
         self.selected_profile = str(user_document["global"]["selected_profile"])
+
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
+        print(current_slice)
         settings_options = generate_settings_view_options(client, current_slice)
 
         self.children[0].options = generate_profile_select_options(client, int(self.selected_profile), user_document)
@@ -365,7 +367,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         if isinstance(self.client.default_settings[selected_setting]["default"], bool):
             self.children.pop(5)
 
-            if user_document["profiles"][self.selected_profile]["settings"][selected_setting]:
+            if user_document["profiles"][str(self.selected_profile)]["settings"][selected_setting]:
                 self.children[5].disabled = True
             else:
                 self.children[6].disabled = True
@@ -646,7 +648,7 @@ def get_current_settings_slice(page_number, settings_per_page, settings):
     Returns:
         list: The current settings slice.
     """
-    shift = settings_per_page * (page_number - 1)
+    shift = settings_per_page * max(0, page_number - 1)
     return settings[(0 + shift):(settings_per_page + shift)]
 
 
@@ -828,6 +830,9 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
         await stw.slash_send_embed(ctx, embeds=embed)
         return
 
+    if profile is None:
+        profile = user_profile["global"]["selected_profile"]
+
     if setting is not None or profile is not None or value is not None:
         setting_map = await map_settings_aliases(client)
 
@@ -865,9 +870,9 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
                 selected_profile = user_profile["global"]["selected_profile"]
 
                 if isinstance(client.default_settings[setting]['default'], bool):
-                    user_profile["profiles"][profile]["settings"][setting] = boolean_string_representation[value]
+                    user_profile["profiles"][str(profile)]["settings"][setting] = boolean_string_representation[value.lower()   ]
                 else:
-                    user_profile["profiles"][profile]["settings"][setting] = check_result
+                    user_profile["profiles"][str(profile)]["settings"][setting] = check_result
 
                 await replace_user_document(client, user_profile)
 
@@ -968,10 +973,10 @@ class ProfileSettings(ext.Cog):
                              setting: Option(str,
                                              "The name of the setting you wish to change(PENDING)",
                                              autocomplete=autocomplete_settings) = None,
-                             profile: Option(str,
-                                             "Which profile you would wish to execute this setting change on(PENDING)") = None,
                              value: Option(str,
-                                           "The value you wish to set this setting to(PENDING)") = None
+                                           "The value you wish to set this setting to(PENDING)") = None,
+                             profile: Option(str,
+                                             "Which profile you would wish to execute this setting change on(PENDING)") = None
                              ):
         """
         This function is the slash command for the settings command.
@@ -1130,7 +1135,7 @@ class ProfileSettings(ext.Cog):
                  }, "dev": False},
                  brief="Change or view the settings associated with your currently selected profile(PENDING)",
                  description="This command allows you to change the settings of your profiles, you can either utilise the built in navigation of settings to change them, or change your settings through the utilisation of the commands arguments.(PENDING)\n\u200b")
-    async def settings(self, ctx, setting=None, profile=None, value=None):
+    async def settings(self, ctx, setting=None, value=None, profile=None):
         """
         This function is the command for the settings command.
 

@@ -8,14 +8,14 @@
         ],
         "default": 7,
         "emoji": "cal_anim",
-        "description": "How many upcoming days should STW Daily display for your upcoming rewards after claiming daily rewards?",
+        "description": "How many upcoming days should STW Daily display for your upcoming rewards by default in the rewards command and when you claim your daily?",
         "modal_title": "Change upcoming display days",
         "input_type": "short",
         "input_placeholder": "Enter value here, Current value: {0}",
         "input_label": "Enter a new value between 1 and 50",
         "check_function": "check_upcoming_display_days",
         "min_length": 1,
-        "max_length": 50,
+        "max_length": 2,
         "req_string": "Must be a value between 1 and 50"
     },
     "display_name_on_auth": {
@@ -27,58 +27,6 @@
         "default": true,
         "description": "Should STW Daily display your epic games on authentication?",
         "emoji": "storm_shield"
-    },
-    "claim_research": {
-        "aliases": [
-            "research_claim",
-            "claim_res"
-        ],
-        "default": false,
-        "description": "Should STW Daily automatically claim your research points?",
-        "emoji": "research_point"
-    },
-    "claim_free_llamas": {
-        "aliases": [
-            "llama_claim",
-            "claim_llamas",
-            "claim_free_llama",
-            "claim_free_llamas"
-        ],
-        "default": false,
-        "description": "Should STW Daily automatically purchase any free llamas available?",
-        "emoji": "minillama"
-    },
-    "claim_daily": {
-        "aliases": [
-            "daily_claim",
-            "claim_daily_rewards",
-            "claim_daily_reward",
-            "claim_daily",
-            "claim_dailies"
-        ],
-        "default": false,
-        "description": "Should STW Daily automatically claim your daily whenever it is available?",
-        "emoji": "mtxswap_combined"
-    },
-    "ephemeral": {
-        "aliases": [
-            "invisible",
-            "ephemeral",
-            "ephemeral_messages",
-            "ephemeral_message",
-            "hide_messages",
-            "hide_message",
-            "hide",
-            "hidden",
-            "invisible_messages",
-            "invisible_message",
-            "invisible_messages",
-            "hidden_messages",
-            "hidden_message"
-        ],
-        "default": false,
-        "description": "Should STW Daily make any embeds sent through the utilisation of slash commands ephemeral? (Only visible to you)",
-        "emoji": "hidden"
     },
     "language": {
         "aliases": [
@@ -102,7 +50,7 @@
             "international"
         ],
         "default": "auto",
-        "description": "Changes STW Dailies commands to localise command information into the language provided",
+        "description": "Changes STW Dailies commands to localise command information into the language provided, Will be used in a future update with translation.",
         "modal_title": "Enter a valid locale",
         "input_placeholder": "Enter value here",
         "input_label": "Enter a new locale here",
