@@ -57,6 +57,8 @@ def main():
         client.colours[name] = discord.Colour.from_rgb(colour[0], colour[1], colour[2])
 
     client.active_profile_command = {}
+    client.profile_cache = {}
+
     client.temp_auth = {}
     client.remove_command('help')
 

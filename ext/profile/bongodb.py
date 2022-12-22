@@ -38,7 +38,11 @@ async def replace_user_document(client, document):
         client: The bot client.
         document: The document to replace.
     """
-    await client.stw_database.replace_one({"user_snowflake": document["user_snowflake"]}, document)
+
+    snowflake = document["user_snowflake"]
+
+    client.profile_cache[snowflake] = document
+    await client.stw_database.replace_one({"user_snowflake": snowflake}, document)
 
 
 async def get_autoclaim_user_cursor(client):
@@ -158,7 +162,7 @@ def deep_merge(dict1, dict2):
 
 
 # define function to read mongodb database and return a list of all the collections in the database
-async def get_user_document(ctx, client, user_snowflake):
+async def get_user_document(ctx, client, user_snowflake, silent_error=False):
     """
     Gets a user document from the database.
 
@@ -174,20 +178,30 @@ async def get_user_document(ctx, client, user_snowflake):
     error_check = await stw.processing_queue_error_check(client, user_snowflake)
 
     if error_check is not True:
-        error_check = await stw.set_thumbnail(client, error_check, "error")
-        error_check = await stw.add_requested_footer(ctx, error_check)
-        await stw.slash_send_embed(ctx, embeds=error_check)
-        print(f"{user_snowflake} STUCK IN PROCESSING USER DOCUMENT?")
-        return
 
-    # which one lol
-    # what do u want to call the database and collection? actually we can just slap this into config too :) sure
-    document = await client.stw_database.find_one({'user_snowflake': user_snowflake})
+        if not silent_error:
+            error_check = await stw.set_thumbnail(client, error_check, "error")
+            error_check = await stw.add_requested_footer(ctx, error_check)
+            await stw.slash_send_embed(ctx, embeds=error_check)
+        print(f"{user_snowflake} STUCK IN PROCESSING USER DOCUMENT?")
+        return False
+
+    update_cache = False
+    try:
+        document = client.profile_cache[user_snowflake]
+    except:
+        document = await client.stw_database.find_one({'user_snowflake': user_snowflake})
+        update_cache = True
 
     if document is None:
         document = await insert_default_document(client, user_snowflake)
+        update_cache = True
 
     document = await check_profile_ver_document(client, document)
+
+    if not update_cache:
+        client.profile_cache[user_snowflake] = document
+
     return document
 
 
