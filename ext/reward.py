@@ -25,7 +25,7 @@ class Reward(ext.Cog):
     def __init__(self, client):
         self.client = client
 
-    async def reward_command(self, ctx, day, limit=7):
+    async def reward_command(self, ctx, day, limit=None):
         """
         The main function for the reward command.
 
@@ -37,6 +37,15 @@ class Reward(ext.Cog):
         Returns:
             None
         """
+
+        if limit is None:
+            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
+            try:
+                currently_selected_profile = str(user_document["global"]["selected_profile"])
+                limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"]
+            except:
+                limit = 7
+
         # quick check to see if ctx author can get vbucks
         vbucks = True
         try:
@@ -217,7 +226,7 @@ class Reward(ext.Cog):
                  brief="View info about a specific day\'s reward, and the rewards that follow",
                  description="This command lets you view the rewards of any specific day, and any number of rewards "
                              "that follow")
-    async def reward(self, ctx, day='hi readers of the bot', limit='7'):
+    async def reward(self, ctx, day='hi readers of the bot', limit=None):
         """
         This function is the entry point for the vbucks command when called traditionally
 
@@ -226,7 +235,7 @@ class Reward(ext.Cog):
             day: The day to get the rewards of. Not required if you are authenticated
             limit: The number of upcoming days to see (Optional)
         """
-        await self.reward_command(ctx, day, int(limit))
+        await self.reward_command(ctx, day, limit)
 
     @slash_command(name='reward',
                    description='View info about a specific day\'s reward, and the rewards that follow',
@@ -234,7 +243,7 @@ class Reward(ext.Cog):
     async def slashreward(self, ctx: discord.ApplicationContext,
                           day: Option(int,
                                       "The day to get the rewards of. Not required if you are authenticated") = 'hi readers of the bot',
-                          limit: Option(int, "The number of upcoming days to see") = 7):
+                          limit: Option(int, "The number of upcoming days to see") = None):
         """
         This function is the entry point for the reward command when called via slash
 

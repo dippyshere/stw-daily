@@ -84,11 +84,29 @@ class Daily(ext.Cog):
             except:
                 pass
 
+            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
+            try:
+                currently_selected_profile = str(user_document["global"]["selected_profile"])
+                limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"] + 1
+            except:
+                limit = 8
+
             items = daily_feedback["items"]
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
                 # Empty items means that daily was already claimed
                 if len(items) == 0:
                     reward = stw.get_reward(self.client, day, vbucks)
+
+                    rewards = ''
+                    for i in range(1, limit):
+                        rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
+                        if not (i + 1 == limit):
+                            rewards += ', '
+                        else:
+                            rewards += '.'
+
+                    calendar = self.client.config["emojis"]["calendar"]
+
                     embed = discord.Embed(
                         title=await stw.add_emoji_title(self.client, stw.random_error(self.client), "warning"),
                         description=
@@ -97,6 +115,8 @@ class Daily(ext.Cog):
                          f"\u200b\n"
                          f"**{reward[1]} Todays reward was:**\n"
                          f"```{reward[0]}```\n"
+                         f"**{calendar} Rewards for the next {limit - 1} days:**\n"
+                         f"```{rewards}```\n"
                          f"You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
                          f"\u200b\n"), colour=yellow)
                     embed = await stw.set_thumbnail(self.client, embed, "warn")
@@ -161,15 +181,16 @@ class Daily(ext.Cog):
 
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
                 rewards = ''
-                for i in range(1, 8):
+                for i in range(1, limit):
                     rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
-                    if not (i + 1 == 8):
+                    if not (i + 1 == limit):
                         rewards += ', '
                     else:
                         rewards += '.'
 
                 calendar = self.client.config["emojis"]["calendar"]
-                embed.add_field(name=f'\u200b\n{calendar} Rewards for the next 7 days:', value=f'```{rewards}```\u200b',
+                embed.add_field(name=f'\u200b\n{calendar} Rewards for the next {limit - 1} days:',
+                                value=f'```{rewards}```\u200b',
                                 inline=False)
             embed = await stw.set_thumbnail(self.client, embed, "check")
 
