@@ -540,6 +540,7 @@ def decrypt_user_data(user_snowflake, authentication_information):
     Returns:
         the decrypted user data
     """
+
     battle_breakers_id = base64.b64decode(authentication_information["battleBreakersId"])
     battle_breakers_token = authentication_information["battleBreakersAuthToken"]
     authentication = authentication_information["authentication"]
@@ -547,7 +548,8 @@ def decrypt_user_data(user_snowflake, authentication_information):
                          nonce=battle_breakers_id)  # Yes, i know this isnt secure, but it is better than storing stuff in plaintext.
     aes_cipher.update(bytes(str(user_snowflake), "ascii"))
     auth_information = aes_cipher.decrypt_and_verify(authentication, battle_breakers_token)
-    return orjson.loads(auth_information)
+    decrypted_json = orjson.loads(auth_information)
+    return decrypted_json
 
 
 async def get_token_devauth(client, user_document, game="ios", auth_info_thread=None):
@@ -2260,8 +2262,18 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     #                                  bb_token=auth_token, game=game)  # now auth for desired game
     #     print(entry)
 
+    try:
+        display_name_on_auth = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["display_name_on_auth"]
+    except:
+        display_name_on_auth = True
+
+    if display_name_on_auth:
+        description = f"```Welcome, {entry['account_name']}```\n"
+    else:
+        description = "\u200b\n"
+
     embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
-                          description=f"```Welcome, {entry['account_name']}```\n", colour=white_colour)
+                          description=description, colour=white_colour)
 
     if add_entry:
         embed.description += f"{client.config['emojis']['stopwatch_anim']} Your session will expire <t:{math.floor(client.config['auth_expire_time'] + time.time())}:R>\n\u200b\n"
