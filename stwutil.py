@@ -263,13 +263,16 @@ def time_until_end_of_day():
     fmt = ''
     if hours == 1:
         fmt += '{h} hour, '
-    else:
+    elif hours > 1:
         fmt += '{h} hours, '
     if minutes == 1:
         fmt += '{m} minute'
     else:
         fmt += '{m} minutes'
-    return fmt.format(h=hours, m=minutes)
+    try:
+        return fmt.format(h=hours, m=minutes)
+    except:
+        return fmt.format(m=minutes)
 
 
 async def processing_queue_error_check(client, user_snowflake):
@@ -2377,6 +2380,35 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
                          f"```{acc_name}```\n"
                          f"**Failed to login because your account needs to verify it's date of birth.**\n"
                          f"⦾ Please login on [Epic Games](https://www.epicgames.com/fortnite) to set your DOB and try again.\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
+            colour=error_colour
+        )
+    elif error_code == "errors.com.epicgames.modules.gamesubcatalog.purchase_not_allowed":
+        embed = discord.Embed(
+            title=await add_emoji_title(client, random_error(client), "error"),
+            description=(f"\u200b\n"
+                         f"Attempted to purchase an item with account:\n"
+                         f"```{acc_name}```\n"
+                         f"**You are not allowed to purchase this item.**\n"
+                         f"⦾ This could be because you have already exceeded the daily limit on this item.\n"
+                         f"⦾ Returning <t:{int(time.time()) + 6}:R>\n"
+                         f"\u200b\n"
+                         f"**If you need any help try:**\n"
+                         f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                         f"Or [Join the support server]({support_url})\n"),
+            colour=error_colour
+        )
+    elif error_code == "errors.com.epicgames.modules.gamesubcatalog.cannot_afford_purchase":
+        embed = discord.Embed(
+            title=await add_emoji_title(client, random_error(client), "error"),
+            description=(f"\u200b\n"
+                         f"Attempted to purchase an item with account:\n"
+                         f"```{acc_name}```\n"
+                         f"**You cannot afford to purchase this item.**\n"
+                         f"⦾ Returning <t:{int(time.time()) + 6}:R>\n"
                          f"\u200b\n"
                          f"**If you need any help try:**\n"
                          f"{await mention_string(client, 'help {0}'.format(command))}\n"
