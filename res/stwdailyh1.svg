@@ -10,14 +10,12 @@
 
                 h1 {
                 font-family: google-sans, sans-serif;
-                background: linear-gradient(125deg, rgba(0,99,255,1) 0%, rgba(0,116,255,1) 20%, rgba(0,211,255,1) 35%,
-                rgba(91,221,249,1) 40%, rgba(0,211,255,1) 45%, rgba(0,211,255,1) 56%, rgba(91,221,249,1) 60%,
-                rgba(0,211,255,1) 65%, rgba(0,99,255,1) 80%, rgba(0,99,255,1) 100%);
+                background: linear-gradient(125deg, rgba(0,146,255,1) 39%, rgba(0,211,255,1) 40%, rgba(0,146,255,1) 41%, rgba(0,146,255,1) 59%, rgba(0,211,255,1) 60%, rgba(0,146,255,1) 61%, rgba(0,146,255,1) 100%);
                 background-size: 1000% 5000%;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
-                animation: gradient 10s ease-in-out infinite;
+                animation: gradient 5s ease-in-out infinite;
                 margin: 0;
                 padding: 10px;
                 position: absolute;
@@ -26,31 +24,12 @@
                 transform: translateY(-50%);
                 }
 
-                @keyframes mymove {
-                from {
-                background: linear-gradient(90deg, rgba(0,116,255,1) 0%, rgba(0,236,255,1) 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                }
-                to {
-                background: linear-gradient(90deg, rgba(0,236,255,1) 0%, rgba(0,116,255,1) 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                }
-                }
-
                 @keyframes gradient {
                 0% {
                 background-position: 0% 50%;
-                filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
-                }
-                50% {
-                background-position: 100% 50%;
-                filter: drop-shadow(0 0 0.5rem rgba(0,211,255,1));
                 }
                 100% {
-                background-position: 0% 50%;
-                filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
+                background-position: 100% 50%;
                 }
                 }
             </style>
