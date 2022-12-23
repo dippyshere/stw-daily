@@ -85,13 +85,19 @@ class LlamasView(discord.ui.View):
         """
         return await stw.view_interaction_check(self, interaction, "llamas")
 
-    async def on_timeout(self) -> None:
+    async def on_timeout(self):
         """
         Called when the view times out.
         """
         for child in self.children:
             child.disabled = True
-        await self.message.edit(view=self)  # hi hih oi
+        if isinstance(self.ctx, discord.ApplicationContext):
+            try:
+                return await self.message.edit_original_response(view=self)
+            except:
+                return await self.ctx.edit(view=self)
+        else:
+            return await self.message.edit(view=self)
 
     @discord.ui.select(
         placeholder="Choose a Llama to purchase",
@@ -135,13 +141,19 @@ class LlamasPurchaseView(discord.ui.View):
         self.contents = ""
         # self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
 
-    async def on_timeout(self) -> None:
+    async def on_timeout(self):
         """
         Called when the view times out.
         """
         for child in self.children:
             child.disabled = True
-        await self.message.edit(view=self)
+        if isinstance(self.ctx, discord.ApplicationContext):
+            try:
+                return await self.message.edit_original_response(view=self)
+            except:
+                return await self.ctx.edit(view=self)
+        else:
+            return await self.message.edit(view=self)
 
     async def interaction_check(self, interaction):
         """

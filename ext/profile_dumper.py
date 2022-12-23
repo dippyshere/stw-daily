@@ -112,7 +112,7 @@ class ProfileDump(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "meme")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
-        await stw.slash_edit_original(ctx, auth_info[0], final_embeds, file=json_file)
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds, files=json_file)
         return
 
     @ext.command(name='profiledump',

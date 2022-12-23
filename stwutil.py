@@ -774,7 +774,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
 
 
 # hi?
-async def slash_edit_original(ctx, msg, embeds, view=None, file=None, files=None):
+async def slash_edit_original(ctx, msg, embeds, view=None, files=None):
     """
     Edits the original message sent by the bot
 
@@ -783,7 +783,6 @@ async def slash_edit_original(ctx, msg, embeds, view=None, file=None, files=None
         msg: The message to edit
         embeds: The embeds to edit the message with
         view: The view to edit the message with
-        file: The file to add to the message
         files: The files to add to the message
 
     Returns:
@@ -793,29 +792,39 @@ async def slash_edit_original(ctx, msg, embeds, view=None, file=None, files=None
         embeds[0]
     except:
         embeds = [embeds]
+    if files is not None:
+        try:
+            files[0]
+        except:
+            files = [files]
 
+    # TODO: This can probably be tidied up and optimised
     if isinstance(ctx, discord.ApplicationContext):
-        if view is not None and file is not None:
-            return await msg.edit_original_response(embeds=embeds, view=view, file=file)
         if view is not None and files is not None:
-            return await msg.edit_original_response(embeds=embeds, view=view, files=files)
+            try:
+                return await msg.edit_original_response(embeds=embeds, view=view, files=files)
+            except:
+                return await ctx.edit(embeds=embeds, view=view, files=files)
         if view is not None:
-            return await msg.edit_original_response(embeds=embeds, view=view)
-        if file is not None:
-            return await msg.edit_original_response(embeds=embeds, file=file)
+            try:
+                return await msg.edit_original_response(embeds=embeds, view=view)
+            except:
+                return await ctx.edit(embeds=embeds, view=view)
         if files is not None:
-            return await msg.edit_original_response(embeds=embeds, files=files)
+            try:
+                return await msg.edit_original_response(embeds=embeds, files=files)
+            except:
+                return await ctx.edit(embeds=embeds, files=files)
         else:
-            return await msg.edit_original_response(embeds=embeds)
+            try:
+                return await msg.edit_original_response(embeds=embeds)
+            except:
+                return await ctx.edit(embeds=embeds)
     else:
-        if view is not None and file is not None:
-            return await msg.edit(embeds=embeds, view=view, file=file)
         if view is not None and files is not None:
             return await msg.edit(embeds=embeds, view=view, files=files)
         if view is not None:
             return await msg.edit(embeds=embeds, view=view)
-        if file is not None:
-            return await msg.edit(embeds=embeds, file=file)
         if files is not None:
             return await msg.edit(embeds=embeds, files=files)
         else:

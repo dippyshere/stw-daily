@@ -148,7 +148,7 @@ class Homebase(ext.Cog):
             embed = await stw.add_requested_footer(ctx, embed)
             final_embeds.append(embed)
             if file is not None:
-                await stw.slash_edit_original(ctx, auth_info[0], final_embeds, file=file)
+                await stw.slash_edit_original(ctx, auth_info[0], final_embeds, files=file)
                 return
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
