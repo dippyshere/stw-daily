@@ -183,7 +183,7 @@ class BattleBreakersDaily(ext.Cog):
                          f"This command allows you to claim your Battle Breakers daily rewards, you must be authenticated to use this command.\n"
                          f"\u200b\n"
                          f"⦾ This command only runs once, be sure to come back <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
-                         f"⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!\n"
+                         f"⦾ Looking for autoclaim? Sorry, that won't be coming to BBDaily anymore :(\n"
                          f"⦾ Looking for help on authcodes? Check out help for the `auth` command.\n"
                          f"⦾ Looking for Fortnite daily rewards? Check out the `daily` command.\n"))
     async def bbdaily(self, ctx, authcode='', optout=None):

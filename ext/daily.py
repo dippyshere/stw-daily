@@ -297,7 +297,8 @@ class Daily(ext.Cog):
                          f"\u200b\n"
                          f"⦾ This command only runs once, be sure to come back"
                          f" <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
-                         f"⦾ Looking for autoclaim? Check out !\n"
+                         f"⦾ Looking for autoclaim? Check out the `deviceauth` command to opt-in to the auto-claim "
+                         f"trial period!\n"
                          f"⦾ Looking for help on authcodes? Check out help for the `auth` command, or try the `how2`"
                          f" command."))
     async def daily(self, ctx, authcode='', optout=None):

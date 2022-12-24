@@ -870,7 +870,9 @@ class ProfileAuth(ext.Cog):
                  description=("This command allows you to save your authentication session to keep you logged in for a "
                               "long time. Once you use this command, you will no longer need to provide your auth code."
                               "\nPlease do not use this command unless you have access to your account's email, as "
-                              "password resets *may* be triggered."))
+                              "password resets *may* be triggered.\n\nAfter you setup device authentication, you can "
+                              "use this command to opt-in to the auto-claim trial period. This will automatically claim"
+                              " your STW Daily rewards every day. You can opt-out of this at any time."))
     async def device(self, ctx):
         """
         This function handles the device auth login command
