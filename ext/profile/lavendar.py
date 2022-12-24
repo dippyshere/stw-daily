@@ -94,8 +94,8 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
     if current_selected_profile is None:
         embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
                               description=(f"\u200b\n"
-                                           f"**No Available Profiles**\n"
-                                           f"```Create a new profile using the \"New Profile\" Button!```"),
+                                           f"**No Profiles :(**\n"
+                                           f"```Create a new profile using the \"New Profile\" Button! :D```"),
                               color=embed_colour)
     else:
         embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
@@ -129,7 +129,7 @@ class ProfileMainView(discord.ui.View):
             self.children[3].disabled = True
             self.children[4].disabled = True
             self.children[5].disabled = True
-            self.children[0].placeholder = "No available profiles"
+            self.children[0].placeholder = "No profiles :("
 
         self.ctx = ctx
         self.author = ctx.author
@@ -150,7 +150,7 @@ class ProfileMainView(discord.ui.View):
             child.disabled = True
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
-        embed.description += "\n*Timed out, please reuse command to continue*\n\u200b"
+        embed.description += "\n*Timed out. Please rerun the command to continue*\n\u200b"
         return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
     def map_button_emojis(self, button):
@@ -299,7 +299,7 @@ class ProfileMainView(discord.ui.View):
         await settings_command(self.client, self.ctx)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
-        embed.description += f"\n*Started settings interface, rerun to continue*\n\u200b"
+        embed.description += f"\n*Started settings command. Please rerun to continue*\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -318,14 +318,14 @@ class ProfileMainView(discord.ui.View):
         await handle_dev_auth(self.client, self.ctx)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
-        embed.description += f"\n*Started authentication interface, rerun to continue*\n\u200b"
+        embed.description += f"\n*Started authentication command. Please rerun to continue*\n\u200b"
 
         for child in self.children:
             child.disabled = True
         await interaction.response.edit_message(embed=embed, view=self)
         self.stop()
 
-    @discord.ui.button(label="Information", emoji="experimental", row=2)
+    @discord.ui.button(label="Information", emoji="experimental", row=2, disabled=True)
     async def information_button(self, _button, interaction):  # hi
         """
         Called when the information button is pressed.
@@ -367,10 +367,10 @@ class ChangeNameModal(discord.ui.Modal):
         # The profile friendly name
         input_profile_name = discord.ui.InputText(
             style=discord.InputTextStyle.short,
-            label="Enter a new name to identify this profile",
+            label="Enter a new name for this profile",
             min_length=profile_settings["min_friendly_name_length"],
             max_length=profile_settings["max_friendly_name_length"],
-            placeholder="Enter new name"
+            placeholder="Enter a new name"
         )
         self.message = message
         self.add_item(input_profile_name)
@@ -394,7 +394,7 @@ class ChangeNameModal(discord.ui.Modal):
 
         await replace_user_document(self.client, self.user_document)
         embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
-        embed.description += f"\n*Changed name of profile **{self.cur_profile_id}***\n\u200b"
+        embed.description += f"\n*Changed the name of profile **{self.cur_profile_id}***\n\u200b"
         select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
                                        self.message)
@@ -424,10 +424,10 @@ class NewProfileModal(discord.ui.Modal):
         # The profile friendly name
         input_profile_name = discord.ui.InputText(
             style=discord.InputTextStyle.short,
-            label="Enter a name to identify this profile",
+            label="Enter a name for this profile",
             min_length=profile_settings["min_friendly_name_length"],
             max_length=profile_settings["max_friendly_name_length"],
-            placeholder="Friendly Name"
+            placeholder="Awesome Profile 123"
         )
         self.message = message
         self.add_item(input_profile_name)
@@ -483,12 +483,12 @@ class Profile(ext.Cog):
             new_profile: The new profile to switch to.
         """
         user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id)
-        current_command = "\n*Waiting for command*\n\u200b"
+        current_command = f"\n*{stw.random_waiting_message(self.client)}*\n\u200b"
 
         if new_profile is not None:
 
             if new_profile not in list(user_document["profiles"].keys()):
-                current_command = "\n*Attempted to switch to non-existent profile*\n\u200b"
+                current_command = "\n*Attempted to switch to a profile that doesn't exist*\n\u200b"
             else:
                 self.client.processing_queue[user_document["user_snowflake"]] = True
 
@@ -618,7 +618,7 @@ class Profile(ext.Cog):
 
         Args:
             ctx: the context of the command
-            profile: the profile to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)(PENDING)
+            profile: the profile to change to
         """
         await command_counter(self.client, ctx.author.id)
         await self.profile_command(ctx, profile)

@@ -7,6 +7,7 @@ This file is the cog for automatic functions :3
 """
 import asyncio
 import datetime
+import random
 
 import discord
 import discord.ext.commands as ext
@@ -50,13 +51,11 @@ async def auto_authenticate(client, auth_entry):
 
                 print(f"DISPLAY NAME: {current_profile['authentication']['displayName']}")
                 token_req = await stw.get_token_devauth(client, auth_entry, game="ios",
-
                                                         auth_info_thread=auth_info_thread)
                 response = orjson.loads(await token_req.read())
 
                 try:
                     access_token = response["access_token"]
-
                     # Simulate temp entry so we can do profile request stuff i guess lol
                     entry = {
                         "token": access_token,
@@ -105,7 +104,7 @@ class AutoFunction(ext.Cog):
         self.client = client
         self.autoclaim_task.start()  # hi
 
-    @tasks.loop(time=datetime.time(0, 0, tzinfo=datetime.timezone.utc))
+    @tasks.loop(time=datetime.time(0, 0, random.randint(11, 39), tzinfo=datetime.timezone.utc))
     async def autoclaim_task(self):
         """
         The autoclaim task

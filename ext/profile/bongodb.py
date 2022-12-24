@@ -113,7 +113,7 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
 
     if current_selected_profile is None:
         select_options.append(discord.SelectOption(
-            label="No Available Profiles!",
+            label="No Profiles :(",
             value="None",
             default=False,
             emoji=client.config["emojis"]["error"]
@@ -170,6 +170,7 @@ async def get_user_document(ctx, client, user_snowflake, silent_error=False):
         ctx: The context.
         client: The bot client.
         user_snowflake: The user snowflake to get the document for.
+        silent_error: Whether to silently error or not.
 
     Returns:
         dict: The user document.

@@ -251,7 +251,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
-        self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        self.current_setting_value = \
+        user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
 
         title = setting_information["modal_title"].format(self.current_setting_value)
         super().__init__(title=title)
@@ -305,7 +306,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         if check_result:
             embed.fields[0].value += f"\u200b\n*Changed Setting Value to **{value}***\n\u200b"
         else:
-            embed.fields[0].value += f"\u200b\n*Invalid value entered! Try again*\n\u200b"
+            embed.fields[0].value += f"\u200b\n*Invalid value entered! Please try again*\n\u200b"
 
         del view.client.processing_queue[view.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=sub_view)
@@ -327,7 +328,7 @@ async def settings_view_timeout(view, sub=False):
     else:
         embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
 
-    embed.fields[0].value += f"\u200b\n*Timed out, please reuse command to continue*\n\u200b"
+    embed.fields[0].value += f"\u200b\n*Timed out. Please rerun the command to continue*\n\u200b"
     await view.message.edit(embed=embed, view=view)
 
 
@@ -364,6 +365,10 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
 
         self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
 
+        if math.ceil(len(client.default_settings) / settings_per_page):
+            self.children[2].disabled = True
+            self.children[3].disabled = True
+
         if isinstance(self.client.default_settings[selected_setting]["default"], bool):
             self.children.pop(5)
 
@@ -391,7 +396,9 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "settings") & await timeout_check_processing(self, self.client, interaction)
+        return await stw.view_interaction_check(self, interaction, "settings") & await timeout_check_processing(self,
+                                                                                                                self.client,
+                                                                                                                interaction)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -410,7 +417,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         await sub_settings_profile_select_change(self, select, interaction)
 
     @discord.ui.select(
-        placeholder="Select setting to view/change here",
+        placeholder="Select a setting to view/change here",
         min_values=1,
         max_values=1,
         options=[],
@@ -522,6 +529,10 @@ class MainPageProfileSettingsView(discord.ui.View):
 
         self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
 
+        if math.ceil(len(client.default_settings) / settings_per_page):
+            self.children[2].disabled = True
+            self.children[3].disabled = True
+
     async def on_timeout(self):
         """
         This is the function that is called when the view times out.
@@ -531,14 +542,16 @@ class MainPageProfileSettingsView(discord.ui.View):
     async def interaction_check(self, interaction):
         """
         This is the function that is called when the user interacts with the view.
-        
+
         Args:
             interaction: The interaction that the user did.
 
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "settings") & await timeout_check_processing(self, self.client, interaction)
+        return await stw.view_interaction_check(self, interaction, "settings") & await timeout_check_processing(self,
+                                                                                                                self.client,
+                                                                                                                interaction)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -557,7 +570,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         await settings_profile_select_change(self, select, interaction)
 
     @discord.ui.select(
-        placeholder="Select setting to view/change here",
+        placeholder="Select a setting to view/change here",
         min_values=1,
         max_values=1,  # i thought you were afk but it was just my theme :3
         options=[],  # :3
@@ -609,7 +622,7 @@ async def add_field_to_page_embed(page_embed, setting, client, profile):
         discord.Embed: The embed with the field added.
     """
     setting_info = client.default_settings[setting]
-    setting_type = str(type(setting_info["default"]).__name__)
+    setting_type = str(type(setting_info["default"]).__name__)  # unused but cool
     page_embed.fields[
         0].value += f"""\n\n# {setting.replace("_", " ").capitalize()}\n> {setting.replace("_", "-")} | {profile["settings"][setting]}\n{setting_info['description']}"""
     return page_embed
@@ -630,7 +643,8 @@ def generate_settings_view_options(client, current_slice):
 
     for index, setting_option in enumerate(current_slice):
         emoji_key = client.default_settings[setting_option]["emoji"]
-        select_options.append(discord.SelectOption(label=setting_option, value=setting_option + str(index),
+        select_options.append(discord.SelectOption(label=setting_option.replace('_', ' ').capitalize(),
+                                                   value=setting_option + str(index),
                                                    emoji=client.config["emojis"][emoji_key]))
 
     return select_options
@@ -652,8 +666,7 @@ def get_current_settings_slice(page_number, settings_per_page, settings):
     return settings[(0 + shift):(settings_per_page + shift)]
 
 
-async def main_page(page_number, client, ctx, user_profile,
-                    settings):
+async def main_page(page_number, client, ctx, user_profile, settings):
     """
     This function generates the main page.
 
@@ -729,8 +742,9 @@ async def sub_setting_page(setting, client, ctx, user_profile):
     else:
         requirement_string = setting_info['req_string']
 
-    page_embed.add_field(name=f"{client.config['emojis'][setting_info['emoji']]} Selected Setting: {setting}",
-                         value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\nCurrent Value:: {selected_profile_data['settings'][setting]}\n\n{setting_info['description']}\n\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```",
+    page_embed.add_field(name=f"{client.config['emojis'][setting_info['emoji']]} "
+                              f"Selected Setting: {setting.replace('_', ' ').capitalize()}",
+                         value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\nCurrent Value:: {selected_profile_data['settings'][setting]}\n\n{setting_info['description']}\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```",
                          inline=False)
 
     return page_embed
@@ -794,8 +808,8 @@ async def no_profiles_page(client, ctx):
 
     no_profiles_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
                                       description=(f"\u200b\n"
-                                                   f"**No available profiles**\n"
-                                                   f"```To create one use the profile command```\u200b\n"),
+                                                   f"**You don't have any profiles yet**\n"
+                                                   f"```To create one, use the profile command```\u200b\n"),
                                       color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "settings_cog")
     no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed)
@@ -803,7 +817,7 @@ async def no_profiles_page(client, ctx):
     return no_profiles_embed
 
 
-async def settings_command(client, ctx, setting=None, profile=None, value=None):
+async def settings_command(client, ctx, setting=None, value=None, profile=None):
     """
     This function is the settings command.
 
@@ -840,7 +854,7 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
         if setting in list(setting_map.keys()):
             settings_per_page = client.config["profile_settings"]["settings_per_page"]
             setting = setting_map[setting]
-            happy_message += f"Set Setting **{setting}**"
+            happy_message += f"Changed Setting **{setting.replace('_', ' ').capitalize()}**"
         else:
             setting = False
 
@@ -870,7 +884,8 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
                 selected_profile = user_profile["global"]["selected_profile"]
 
                 if isinstance(client.default_settings[setting]['default'], bool):
-                    user_profile["profiles"][str(profile)]["settings"][setting] = boolean_string_representation[value.lower()   ]
+                    user_profile["profiles"][str(profile)]["settings"][setting] = boolean_string_representation[
+                        value.lower()]
                 else:
                     user_profile["profiles"][str(profile)]["settings"][setting] = check_result
 
@@ -904,10 +919,10 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
             value = False
 
         list_of_potential_nones = [setting, profile, value]
-        associated_error = ["Invalid setting passed", "Invalid profile passed", "Invalid value passed"]
-        associated_missing = ["Missing setting passed", "Missing profile to apply change to",
+        associated_error = ["Invalid setting entered", "Invalid profile entered", "Invalid value entered"]
+        associated_missing = ["Missing setting to change", "Missing profile to apply change to",
                               "Missing value to change to"]
-        base_error_message = "\u200b\n*Failed to apply setting change:"
+        base_error_message = "\u200b\n*Failed to change setting:"
 
         for index, missing_or_error in enumerate(list_of_potential_nones):
 
@@ -941,7 +956,7 @@ async def settings_command(client, ctx, setting=None, profile=None, value=None):
             return
 
     await default_page_profile_settings(client, ctx, user_profile, settings,
-                                        "\u200b\n*Waiting for an action*\n\u200b\n")
+                                        f"\u200b\n*{stw.random_waiting_message(client)}*\n\u200b\n")
     return
 
 
@@ -967,16 +982,16 @@ class ProfileSettings(ext.Cog):
         return self.client.settings_choices
 
     @ext.slash_command(name='settings',
-                       description='Change or view the settings associated with your currently selected profile(PENDING)',
+                       description='View/Change settings for STW Daily on a per-profile basis',
                        guild_ids=stw.guild_ids)
     async def slash_settings(self, ctx: discord.ApplicationContext,
                              setting: Option(str,
-                                             "The name of the setting you wish to change(PENDING)",
+                                             "The name of the setting to change",
                                              autocomplete=autocomplete_settings) = None,
                              value: Option(str,
-                                           "The value you wish to set this setting to(PENDING)") = None,
+                                           "The value to change this setting to") = None,
                              profile: Option(str,
-                                             "Which profile you would wish to execute this setting change on(PENDING)") = None
+                                             "The profile you want to change this setting on") = None
                              ):
         """
         This function is the slash command for the settings command.
@@ -988,7 +1003,7 @@ class ProfileSettings(ext.Cog):
             value: The value to change the setting to.
         """
         await command_counter(self.client, ctx.author.id)
-        await settings_command(self.client, ctx, setting, profile, value)
+        await settings_command(self.client, ctx, setting, value, profile)
 
     @ext.command(name='settings',
                  aliases=['ettings', 'sttings', 'setings', 'settngs', 'settigs', 'settins', 'setting', 'ssettings',
@@ -1127,7 +1142,8 @@ class ProfileSettings(ext.Cog):
                           'preferencxe', 'preferendce', 'preferencde', 'preferenfce', 'preferencfe', 'preferenvce',
                           'preferencve', 'preferencwe', 'preferenc3e', 'preference3', 'preferenc4e', 'preference4',
                           'preferencre', 'preferencer', 'preferencef', 'preferences', '/settings', '/options',
-                          '/preferences', '/setting', '/option', '/preference'],
+                          '/preferences', '/setting', '/option', '/preference', 'set', '/set', 'opt', '/opt', 'pref'
+                                                                                                              '/pref'],
                  extras={'emoji': "pink_link", "args": {
                      'setting': 'The name of the setting to change(Optional)',
                      'value': 'The value to change this setting to(Optional)',
@@ -1143,11 +1159,11 @@ class ProfileSettings(ext.Cog):
         Args:
             ctx: The context of the command.
             setting: The setting to change.
-            profile: The profile to change the setting on.
             value: The value to change the setting to.
+            profile: The profile to change the setting on.
         """
         await command_counter(self.client, ctx.author.id)
-        await settings_command(self.client, ctx, setting, profile, value)
+        await settings_command(self.client, ctx, setting, value, profile)
 
 
 def setup(client):

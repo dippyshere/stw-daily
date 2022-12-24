@@ -25,7 +25,7 @@ def check_upcoming_display_days(client, ctx, value):
     """
     try:
         integer_value = int(value)
-        if 50 >= integer_value > 0:
+        if 60 >= integer_value >= 0:
             return integer_value
         else:
             return False
@@ -33,8 +33,8 @@ def check_upcoming_display_days(client, ctx, value):
         return False
 
 
-boolean_string_representation = {'true': True, 't': True, '1': True, 'yes': True, 'y': True,
-                                 'false': False, 'f': False, '0': False, 'no': False, 'n': False, 'none': False}
+boolean_string_representation = {'true': True, 't': True, '1': True, 'yes': True, 'y': True, 'on': True, 'enable': True, 'enabled': True, 'o': True, 'active': True, 'all': True, '✅': True, '☑️': True, '✔️': True, 'ye': True, 'yeah': True,
+                                 'false': False, 'f': False, '0': False, 'no': False, 'n': False, 'off': False, 'disable': False, 'disabled': False, 'x': False, 'inactive': False, 'none': False, '✖️': False, '❌': False, '❎': False, 'na': True, 'nah': False}
 
 
 def check_bool(client, ctx, value):

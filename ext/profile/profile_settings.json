@@ -8,15 +8,15 @@
         ],
         "default": 7,
         "emoji": "cal_anim",
-        "description": "How many upcoming days should STW Daily display for your upcoming rewards by default in the rewards command and when you claim your daily?",
-        "modal_title": "Change upcoming display days",
+        "description": "How many upcoming days should STW Daily display in the reward and daily commands? A value of 0 will disable this feature.",
+        "modal_title": "Upcoming rewards limit",
         "input_type": "short",
-        "input_placeholder": "Enter value here, Current value: {0}",
-        "input_label": "Enter a new value between 1 and 50",
+        "input_placeholder": "Enter a new limit here. Current limit: {0}",
+        "input_label": "Enter a new limit between 0 and 60",
         "check_function": "check_upcoming_display_days",
         "min_length": 1,
         "max_length": 2,
-        "req_string": "Must be a value between 1 and 50"
+        "req_string": "Must be a number between 0 and 60"
     },
     "display_name_on_auth": {
         "aliases": [
@@ -25,7 +25,7 @@
             "auth_name"
         ],
         "default": true,
-        "description": "Should STW Daily display your epic games on authentication?",
+        "description": "Should STW Daily display your Epic Games display name when authenticating?",
         "emoji": "storm_shield"
     },
     "language": {
@@ -50,15 +50,15 @@
             "international"
         ],
         "default": "auto",
-        "description": "Changes STW Dailies commands to localise command information into the language provided, Will be used in a future update with translation.",
-        "modal_title": "Enter a valid locale",
-        "input_placeholder": "Enter value here",
-        "input_label": "Enter a new locale here",
+        "description": "What language should STW Daily use? Auto will try to use your Discord language, falling back to the server's language if it can't be determined. This feature is currently NOT AVAILABLE.",
+        "modal_title": "Language",
+        "input_placeholder": "Enter language here. Default: auto",
+        "input_label": "Enter a new language to use here",
         "check_function": "check_localisation",
         "emoji": "world_globe",
         "input_type": "short",
         "min_length": 0,
         "max_length": 100,
-        "req_string": "Must be a valid locale as given by https://discord.com/developers/docs/reference#locales"
+        "req_string": "This language is not supported"
     }
 }
