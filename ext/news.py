@@ -271,7 +271,7 @@ class News(ext.Cog):
                  brief="View the latest in-game news from Fortnite",
                  description="This command will fetch and display the latest news from the game. You can switch "
                              "between viewing Save the World or Battle Royale news by pressing the corresponding "
-                             "buttons. Cycle between pages by pressing the left/right arrow buttons.\u200b")
+                             "buttons. Cycle between pages by pressing the left/right arrow buttons.")
     async def news(self, ctx, page=1, mode="stw"):
         """
         This function is the entry point for the news command when called traditionally

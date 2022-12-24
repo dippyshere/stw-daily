@@ -175,10 +175,11 @@ class BBDump(ext.Cog):
                  extras={'emoji': "library_floppydisc", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": True},
-                 brief="Dumps your Battle Breakers profile as a JSON attatchment (authentication required)",
+                         "dev": False},
+                 brief="Dumps your Battle Breakers profile as a JSON attachment (authentication required)",
                  description=(
-                         "This command Dumps your Battle Breakers profile as a JSON attatchment for archival purpo. You must be authenticated to use this command.\n"
+                         "This command Dumps your Battle Breakers profile as a JSON attachment for archival "
+                         "purposes. You must be authenticated to use this command.\n "
                          "\u200b"))
     async def bbdump(self, ctx, authcode='', optout=None):
         """

@@ -51,7 +51,9 @@ class Reload(ext.Cog):
                  aliases=['rl', 'reload', '/rlcg'],
                  extras={'emoji': "experimental", "args": {'ext': 'The cog to reload'}, "dev": True},
                  brief="Reloads STW Daily extensions (cogs)",
-                 description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot")
+                 description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot\n"
+                             "⦾ Please note that this command is for development purposes only"
+                             " <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
     async def rlcg(self, ctx, extension):
         """
         This function is the entry point for the reload command when called traditionally
@@ -92,7 +94,9 @@ class Reload(ext.Cog):
                  aliases=['lc', 'load', '/lcg'],
                  extras={'emoji': "experimental", "args": {'ext': 'The cog to load'}, "dev": True},
                  brief="Loads STW Daily extensions (cogs)",
-                 description="Load STW Daily extensions (cogs) to apply changes without restarting the bot")
+                 description="Load STW Daily extensions (cogs) to apply changes without restarting the bot.\n"
+                             "⦾ Please note that this command is for development purposes only"
+                             " <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
     async def lcg(self, ctx, extension):
         """
         This function is the entry point for the load command when called traditionally
@@ -132,7 +136,10 @@ class Reload(ext.Cog):
                  aliases=["rlsw"],
                  extras={'emoji': "experimental", "args": {}, "dev": True},
                  brief="Reloads extensions marked by STW Watch",
-                 description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot. RLSW uses STW Watch to automatically determine which files to reload.")
+                 description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot. "
+                             "RLSW uses STW Watch™️ to automatically determine what files need to be reloaded."
+                             "\n⦾ Please note that this command is for development purposes only"
+                             " <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
     async def rlsw(self, ctx):
         """
         This function is the entry point for the reload command when called traditionally

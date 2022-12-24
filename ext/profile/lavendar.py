@@ -604,10 +604,13 @@ class Profile(ext.Cog):
                           'sessionsx', 'sessionzs', 'sessionsz', '/profile', '/profiles', '/session', '/sessions',
                           '/account', '/accounts', '/essions', 'accounts', 'p', '/p'],
                  extras={'emoji': "stormshard", "args": {
-                     'profile': 'Which profile you wish to change to, leave this empty if you dont know about profiles or if you wish to utilise the view (Optional)(PENDING)'},
+                     'profile': 'The ID of the profile to switch to (e.g. 0)(Optional)'},
                          "dev": False},
-                 brief="Allows you to create, change the name of, select, & delete profiles(PENDING)",
-                 description="A command which allows you to interact with a view to switch between profiles, create new profiles utilising a modal, delete existing profiles and edit the name of existing profiles(PENDING)")
+                 brief="Manage your different STW Daily profiles",
+                 description="This command allows you to manage your different STW Daily profiles. Each profile will "
+                             "have it's own settings and authentication information.\nWhen switching profiles, remember"
+                             "to run the `kill` command, so that next time you authenticate, it will use the selected"
+                             "profile's authentication information.")
     async def profile(self, ctx, profile=None):
         """
         entry point for profile command when called traditionally
@@ -620,11 +623,11 @@ class Profile(ext.Cog):
         await self.profile_command(ctx, profile)
 
     @slash_command(name='profile',
-                   description="Allows you to create, change the name of, select, & delete profiles(PENDING)",
+                   description="Manage your different STW Daily profiles",
                    guild_ids=stw.guild_ids)
     async def slashprofile(self, ctx: discord.ApplicationContext,
                            profile: Option(int,
-                                           "Which profile you wish to switch to (Leave empty if you wish to utilise the View)(PENDING)") = -1):
+                                           "The ID of the profile to switch to (e.g. 0)") = -1):
         """
         The profile command.
 

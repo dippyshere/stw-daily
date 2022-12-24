@@ -159,7 +159,9 @@ class DailyXP(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="View your daily STW XP cap (authentication required for personalised info)",
-                 description="This command allows you to view the current XP cap, or your remaining shared XP from STW. You must be authenticated to view your remaining cap.")
+                 description="This command allows you to view the current XP cap, or your remaining shared XP from "
+                             "STW. You must be authenticated to view your remaining cap.⦾ Please note that this command"
+                             " is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
     async def dailyxp(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the dailyxp command when called traditionally

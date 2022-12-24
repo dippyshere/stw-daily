@@ -1129,12 +1129,13 @@ class ProfileSettings(ext.Cog):
                           'preferencre', 'preferencer', 'preferencef', 'preferences', '/settings', '/options',
                           '/preferences', '/setting', '/option', '/preference'],
                  extras={'emoji': "pink_link", "args": {
-                     'setting': 'The setting you wish to change(PENDING)',
-                     'profile': 'The profile which to switch to so these new changes are applied to that profile, else just uses the current selected profile (Optional)(PENDING)',
-                     'value': 'The new value for the setting you wish to change(PENDING)',
+                     'setting': 'The name of the setting to change(Optional)',
+                     'value': 'The value to change this setting to(Optional)',
+                     'profile': 'The profile you want to change this setting on(Optional)',
                  }, "dev": False},
-                 brief="Change or view the settings associated with your currently selected profile(PENDING)",
-                 description="This command allows you to change the settings of your profiles, you can either utilise the built in navigation of settings to change them, or change your settings through the utilisation of the commands arguments.(PENDING)\n\u200b")
+                 brief="View/Change settings for STW Daily on a per-profile basis",
+                 description="This command allows you to change STW Daily settings that are specific to your profile.\n"
+                             "Leave all arguments blank to view/change settings for your default profile. ")
     async def settings(self, ctx, setting=None, value=None, profile=None):
         """
         This function is the command for the settings command.

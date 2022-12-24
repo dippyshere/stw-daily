@@ -95,7 +95,12 @@ class HowTo(ext.Cog):
                           '/instruction', '/inst'],
                  extras={'emoji': "info", "args": {}, "dev": True},
                  brief="Command used to send the how to use embed for STW Dailies",
-                 description="This command will send a compact how to instruction embed for use in the support server")
+                 description="This command will send a compact how to instruction embed for use in the support server\n"
+                             "⦾ Please note that this command is intended for "
+                 # change this and youll be subject to the same fate as golden freddy
+                             "[STW Dailies](https://discord.gg/stw-dailies-757765475823517851) only. <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"
+                             "⦾ You may still find this helpful / useful if you're unsure how to use the bot, however:"
+                             "DON'T SKID AND USE THIS to mirror stw dailies server :( its really not cool. 😢")
     async def how2(self, ctx):
         """
         This function is the entry point for the how to use command when called traditionally

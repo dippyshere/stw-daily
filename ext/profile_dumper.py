@@ -121,10 +121,12 @@ class ProfileDump(ext.Cog):
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": True},
-                 brief="Dumps your Epic Games common_core / campaign profile as a JSON attatchment (authentication required)",
+                 brief="Dumps your Epic Games common_core / campaign profile as a JSON attatchment (authentication "
+                       "required)",
                  description=(
-                         "This command Dumps your Epic Games common_core / campaign profile as a JSON attatchment. You must be authenticated to use this command.\n"
-                         "\u200b"))
+                         "This command Dumps your Fortnite common_core / campaign profile as a JSON attatchment. "
+                         "You must be authenticated to use this command.\n ⦾ Please note that this command is still "
+                         "experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
     async def profiledump(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the profile dump command when called traditionally

@@ -652,7 +652,9 @@ class Research(ext.Cog):
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
                  brief="Claim and spend your research points (authentication required)",
-                 description="This command lets you claim your available research points, view your FORT research levels, and upgrade those levels. Press the button corresponding with the stat you want to upgrade.\n")
+                 description="This command lets you claim your available research points, view your FORT research "
+                             "levels, and upgrade those levels. Press the button corresponding with the stat you want "
+                             "to upgrade.")
     async def research(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the research command when called traditionally

@@ -228,7 +228,9 @@ class Vbucks(ext.Cog):
                          "dev": False},
                  brief="View your V-Bucks and X-Ray Tickets balance (authentication required)",
                  description=(
-                         "This command displays your total V-Bucks, provide a breakdown on the source(s) of those V-Bucks, and additionally display how many X-Ray tickets you have. You must be authenticated to use this command.\n\u200b"))
+                         "This command displays your total V-Bucks, provide a breakdown on the source(s) of those "
+                         "V-Bucks, and additionally display how many X-Ray tickets you have. You must be "
+                         "authenticated to use this command."))
     async def vbucks(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the vbucks command when called traditionally

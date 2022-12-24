@@ -482,7 +482,8 @@ class Llamas(ext.Cog):
                  brief="View and purchase Llamas in the Llama shop",
                  description="This command allows you to view the available Llamas in the Llama shop, the contents of "
                              "the available llamas purchase them. As this information is specific to your account, "
-                             "you will need an active session or to provide your authcode.")
+                             "you will need an active session or to provide your authcode.\n⦾ Please note that this "
+                             "command is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
     async def llamas(self, ctx, authcode='', optout=None):
         """
         This is the entry point for the llama command when called traditionally

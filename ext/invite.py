@@ -122,7 +122,7 @@ class Invite(ext.Cog):
                           'jopin', 'jloin', 'jolin', 'jokin', 'jouin', 'joiun', 'jo8in', 'joi8n', 'joi9n', 'joion',
                           'joiln', 'joikn', 'jojin', 'joijn', 'joibn', 'joinb', 'joihn', 'joinh', 'joinj', 'joimn',
                           'joinm'],
-                 extras={'emoji': "hard_drive", "args": {}, "dev": False},
+                 extras={'emoji': "incoming_envelope", "args": {}, "dev": False},
                  brief="Invite STW Daily to your server, or join the support server",
                  description="This command will provide you with links to invite STW Daily to your server, or join "
                              "the support server")

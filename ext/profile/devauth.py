@@ -664,7 +664,7 @@ class ProfileAuth(ext.Cog):
         await handle_dev_auth(self.client, ctx)
 
     @ext.slash_command(name='device',
-                       description='Add permanent authentication to the currently selected or another profile(PENDING)',
+                       description='Create an authentication session that will keep you logged in for a long time',
                        guild_ids=stw.guild_ids)
     async def slash_device(self, ctx: discord.ApplicationContext):
         """
@@ -774,11 +774,13 @@ class ProfileAuth(ext.Cog):
                           'profileautyh', 'profileaugth', 'profileautgh', 'profileaufth', 'profileautfh',
                           'profileauthg', 'profileauthy', 'profileautuh', 'profileauthu', 'profileautjh',
                           'profileauthj', 'profileautnh', 'profileauthn', 'profileautbh', 'profileauthb', 'savelogin',
-                          '/device', '/deviceauth', '/profileauth', '/savelogin'],
-                 extras={'emoji': "link_acc", "args": {"dev": False}},
-                 brief="Add permanent authentication to the currently selected or another profile(PENDING)",
-                 description=(
-                         "This command allows you to create a device auth session, keeping you logged in.(PENDING)\n\u200b"))
+                          '/device', '/deviceauth', '/profileauth', '/savelogin', 'dauth', '/dauth', 'save', '/save'],
+                 extras={'emoji': "link_acc", "args": {}, "dev": False},
+                 brief="Create an authentication session that will keep you logged in for a long time",
+                 description=("This command allows you to save your authentication session to keep you logged in for a "
+                              "long time. Once you use this command, you will no longer need to provide your auth code."
+                              "\nPlease do not use this command unless you have access to your account's email, as "
+                              "password resets *may* be triggered."))
     async def device(self, ctx):
         """
         This function handles the device auth login command

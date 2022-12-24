@@ -257,11 +257,15 @@ class Daily(ext.Cog):
                          'dev': False},
                  brief="Claim your Save The World daily reward (authentication requried)",
                  description=(
-                         f"This command will instantly claim your daily reward, if available. To use this command, you'll need Fortnite: Save the World on the account you will claim with. You must be authenticated to use this command.\n"
+                         f"This command will instantly claim your daily reward, if available. To use this command, "
+                         f"you'll need Fortnite: Save the World on the account you will claim with. You must be "
+                         f"authenticated to use this command.\n "
                          f"\u200b\n"
-                         f"⦾ This command only runs once, be sure to come back <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
-                         f"⦾ Looking for autoclaim? Come back <t:1671886800:R> for the next update!\n"
-                         f"⦾ Looking for help on authcodes? Check out help for the `auth` command.\n"))
+                         f"⦾ This command only runs once, be sure to come back"
+                         f" <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
+                         f"⦾ Looking for autoclaim? Check out !\n"
+                         f"⦾ Looking for help on authcodes? Check out help for the `auth` command, or try the `how2`"
+                         f" command."))
     async def daily(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the daily command when called traditionally

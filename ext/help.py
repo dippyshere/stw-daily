@@ -260,7 +260,10 @@ class Help(ext.Cog):
                          'args': {'command': "The name of a command to display detailed information on (Optional)"},
                          "dev": False},
                  brief="An interactive view of all available commands",
-                 description="This command provides an interactive interface to view all available commands, and help for how to use each command. The select menu is only available to the author of the command, and will display more detailed information of the selected command. If no command is selected, brief info about all available command will be displayed.")
+                 description="This command provides an interactive interface to view all available commands, and help "
+                             "for how to use each command.\nThe select menu is only available to the author of the "
+                             "command, and will display more detailed information of the selected command.\nIf no "
+                             "command is selected, brief info about all available command will be displayed.")
     async def help(self, ctx, command=None):
         """
         This function is the entry point for the help command when called traditionally
@@ -330,14 +333,27 @@ class Help(ext.Cog):
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour,
                               title=await stw.add_emoji_title(self.client, "STW Daily", "calendar"),
-                              description=f"\u200b\nHello! I'm Save The World Daily, A bot which collects your Fortnite: Save The World daily rewards via Discord. [If you have any questions or issues join us here]({self.client.config['support_url']}), [If you want to invite the bot press here!](https://tinyurl.com/stwdailyinvite)\n\u200b")
+                              description=f"\u200b\nHello! I'm Save The World Daily, A bot that collects your "
+                                          f"Fortnite: Save The World daily rewards via Discord. [If you have any "
+                                          f"questions or issues join us here]({self.client.config['support_url']}), "
+                                          f"[If you want to invite the bot press here!]("
+                                          f"https://tinyurl.com/stwdailyinvite)\n\u200b")
 
         embed = await stw.add_requested_footer(ctx, embed)
 
         embed.add_field(name="To check out my commands use:", value=await stw.mention_string(self.client,
-                                                                                             "help") + "\n\u200b\n[**To view the privacy policy and terms of use click here**](https://sites.google.com/view/stwdaily/legal-info)\n\u200b")
+                                                                                             "help") + "\n\u200b\n["
+                                                                                                       "**To view the "
+                                                                                                       "privacy "
+                                                                                                       "policy and "
+                                                                                                       "terms of use "
+                                                                                                       "click "
+                                                                                                       "here**]("
+                                                                                                       "https://sites.google.com/view/stwdaily/legal-info)\n\u200b")
         embed.add_field(name="Disclaimer:",
-                        value="Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. All rights reserved by Epic. This material is not official and is not endorsed by Epic.\n\u200b",
+                        value="Portions of the materials used are trademarks and/or copyrighted works of Epic Games, "
+                              "Inc. All rights reserved by Epic. This material is not official and is not endorsed by "
+                              "Epic.\n\u200b",
                         inline=False)
         embed = await stw.set_thumbnail(self.client, embed, "calendar")
         await ctx.channel.send(embed=embed)

@@ -138,11 +138,13 @@ class Power(ext.Cog):
                  extras={'emoji': "power_level", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": False},
+                         "dev": True},
                  brief="View your Power level (authentication required)",
                  description=(
                          "This command allows you to view the power level of your STW homebase, you must be "
-                         "authenticated to use this command for now.\n\u200b"))
+                         "authenticated to use this command for now."
+                         "⦾ Please note that this command is still experimental "
+                         "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
     async def power(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the power command when called traditionally

@@ -85,7 +85,9 @@ class Internationalisation(ext.Cog):
                  aliases=[],
                  extras={'emoji': "experimental", "args": {"*args": "arguments to pass"}, "dev": True},
                  brief="Test internationalisation",
-                 description="Test internationalisation (translation) for STW Daily")
+                 description="Test internationalisation (translation) for STW Daily\n⦾ Please note that this command is"
+                             " primarily for development purposes "
+                             "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
     async def i18n(self, ctx, *args):
         """
         This function is the entry point for the i18n command when called traditionally
