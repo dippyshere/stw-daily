@@ -191,6 +191,15 @@ class Homebase(ext.Cog):
         embed.add_field(name=f'{self.emojis["storm_shield"]} To:', value=f"```{name}```\u200b",
                         inline=False)
 
+        if homebase_icon != "placeholder":
+            try:
+                embed, file = await stw.generate_banner(self.client, embed, homebase_icon, homebase_colour,
+                                                        ctx.author.id)
+                colour = await stw.get_banner_colour(homebase_colour, "rgb")
+                embed.colour = discord.Colour.from_rgb(colour[0], colour[1], colour[2])
+            except:
+                pass
+
         embed = await stw.set_thumbnail(self.client, embed, "check")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
