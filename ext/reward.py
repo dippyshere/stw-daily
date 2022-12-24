@@ -155,7 +155,7 @@ class Reward(ext.Cog):
                 if limit == 1:
                     reward = stw.get_reward(self.client, int(day) + 1, vbucks)
 
-                    embed.add_field(name=f'**{reward[1]} Tomorrows reward:**', value=f'```{reward[0]}```\u200b',
+                    embed.add_field(name=f'**{reward[1]} Tomorrow\'s reward:**', value=f'```{reward[0]}```\u200b',
                                     inline=False)
                 else:
                     embed.add_field(

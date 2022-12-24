@@ -96,14 +96,24 @@ class Daily(ext.Cog):
                 # Empty items means that daily was already claimed
                 if len(items) == 0:
                     reward = stw.get_reward(self.client, day, vbucks)
-
                     rewards = ''
-                    for i in range(1, limit):
-                        rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
-                        if not (i + 1 == limit):
-                            rewards += ', '
-                        else:
-                            rewards += '.'
+                    max_rewards_reached = False
+                    if limit >= 2:
+                        if limit > 100:
+                            limit = 100
+                        for i in range(1, limit):
+                            if len(rewards) > 1000:
+                                rewards = stw.truncate(rewards, 1000)
+                                limit = i
+                                max_rewards_reached = True
+                                break
+                            rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
+                            if not (i + 1 == limit):
+                                rewards += ', '
+                            else:
+                                rewards += '.'
+                            if i % 7 == 0:
+                                rewards += '\n\n'
 
                     calendar = self.client.config["emojis"]["calendar"]
 
@@ -114,11 +124,21 @@ class Daily(ext.Cog):
                          f"You have already claimed your reward for day **{day}**.\n"
                          f"\u200b\n"
                          f"**{reward[1]} Todays reward was:**\n"
-                         f"```{reward[0]}```\n"
-                         f"**{calendar} Rewards for the next {limit - 1} days:**\n"
-                         f"```{rewards}```\n"
-                         f"You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
-                         f"\u200b\n"), colour=yellow)
+                         f"```{reward[0]}```\n"), colour=yellow)
+                    if limit == 2:
+                        embed.description += (f"**{calendar} Tomorrow\'s reward:**\n"
+                                              f"```{rewards[:-1]}```\n"
+                                              f"You can claim tomorrow's reward "
+                                              f"<t:{stw.get_tomorrow_midnight_epoch()}:R>\n\u200b\n")
+                    elif limit > 2:
+                        embed.description += (
+                            f"**{calendar} Rewards for the next {'~' if max_rewards_reached else ''}{limit - 1} days"
+                            f":**\n ```{rewards}```\n"
+                            f"You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
+                            f"\u200b\n")
+                    else:
+                        embed.description += (f"You can claim tomorrow's reward "
+                                              f"<t:{stw.get_tomorrow_midnight_epoch()}:R>\n\u200b\n")
                     embed = await stw.set_thumbnail(self.client, embed, "warn")
                     embed = await stw.add_requested_footer(ctx, embed)
                     final_embeds.append(embed)
@@ -154,7 +174,7 @@ class Daily(ext.Cog):
                     if itemtype == 'CardPack:cardpack_event_founders':
                         display_itemtype = "Founder's Llama"
                     elif itemtype == 'CardPack:cardpack_bronze':
-                        display_itemtype = "Regular Upgrade Llama"
+                        display_itemtype = "Upgrade Llama"
                     else:
                         display_itemtype = itemtype
 
@@ -163,9 +183,6 @@ class Daily(ext.Cog):
                                     inline=True)
                 except:
                     pass
-
-                print('Successfully claimed daily:')
-                print(reward[0])
             else:
                 if len(items) > 1:
                     plural = "rewards"
@@ -180,20 +197,37 @@ class Daily(ext.Cog):
                                       colour=succ_colour)
 
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
-                rewards = ''
-                for i in range(1, limit):
-                    rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
-                    if not (i + 1 == limit):
-                        rewards += ', '
-                    else:
-                        rewards += '.'
+                if limit >= 2:
+                    rewards = ''
+                    max_rewards_reached = False
+                    if limit > 100:
+                        limit = 100
+                    for i in range(1, limit):
+                        if len(rewards) > 1000:
+                            rewards = stw.truncate(rewards, 1000)
+                            limit = i
+                            max_rewards_reached = True
+                            break
+                        rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
+                        if not (i + 1 == limit):
+                            rewards += ', '
+                        else:
+                            rewards += '.'
+                        if i % 7 == 0:
+                            rewards += '\n\n'
 
-                calendar = self.client.config["emojis"]["calendar"]
-                embed.add_field(name=f'\u200b\n{calendar} Rewards for the next {limit - 1} days:',
-                                value=f'```{rewards}```\u200b',
-                                inline=False)
+                    calendar = self.client.config["emojis"]["calendar"]
+                    if limit == 2:
+                        embed.add_field(name=f'\u200b\n{calendar} Tomorrow\'s reward:',
+                                        value=f'```{rewards[:-1]}```\u200b',
+                                        inline=False)
+                    elif limit > 2:
+                        embed.add_field(name=f'\u200b\n{calendar} Rewards for the next '
+                                             f'{"~" if max_rewards_reached else ""}'
+                                             f'{limit - 1} days:',
+                                        value=f'```{rewards}```\u200b',
+                                        inline=False)
             embed = await stw.set_thumbnail(self.client, embed, "check")
-
             embed = await stw.add_requested_footer(ctx, embed)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
