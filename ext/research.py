@@ -32,7 +32,7 @@ async def add_fort_fields(client, embed, current_levels, extra_white_space=False
     Returns:
         The embed with the fields added.
     """
-    print("current levels: ", current_levels)
+    # print("current levels: ", current_levels)
     fortitude = current_levels["fortitude"]
     offense = current_levels["offense"]
     resistance = current_levels["resistance"]
@@ -196,7 +196,7 @@ class ResearchView(discord.ui.View):
             research_points_item = purchased_json['profileChanges'][0]['profile']['items'][self.research_token_guid]
         except Exception as e:
             # this can be entered if there is an error during purchase
-            print(e, "\nError during purchase:\n", purchased_json)
+            print(e, "\nError during purchase:\n", stw.truncate(purchased_json))
             try:
                 error_code = json_response["errorCode"]
                 support_url = self.client.config["support_url"]
@@ -348,7 +348,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-        return
+        return None, None
     except:
         pass
 
@@ -359,7 +359,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         try:
             # check if account has daily reward stats, if not, then account doesn't have stw
             check_stw = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
-            print(e, "\nno research stat, but daily reward; must have zero research stats.\n", json_response)
+            print(e, "\nno research stat, but daily reward; must have zero research stats.\n", stw.truncate(json_response))
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
             # dippy note here - after some investigation, this condition is entered when the stats are missing (due to being level 0 / not unlocked yet)
             # it should be when all stats are missing, but this is entered when 1 stat is missing, we should check which stats are missing and assign to level 0
@@ -372,7 +372,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
             embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-            return
+            return None, None
 
     # I'm not too sure what happens here but if current_levels doesn't exist im assuming its at maximum.
     # I'll assume it's minimum
@@ -505,9 +505,9 @@ class Research(ext.Cog):
 
         # Find research guid to post to required for ClaimCollectedResources json
         research_guid_check = await asyncio.gather(asyncio.to_thread(self.check_for_research_guid_key, json_response))
-        print("research guid: ", research_guid_check)
+        # print("research guid: ", research_guid_check)
         if research_guid_check[0] is None:
-            print("errors.stwdaily.failed_guid_research encountered:", json_response)
+            print("errors.stwdaily.failed_guid_research encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_guid_research"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
             final_embeds.append(embed)
@@ -520,7 +520,7 @@ class Research(ext.Cog):
         current_research_statistics_request = await stw.profile_request(self.client, "resources", auth_info[1],
                                                                         json={"collectorsToClaim": [research_guid]})
         json_response = orjson.loads(await current_research_statistics_request.read())
-        print("current research stats: ", json_response)
+        # print("current research stats: ", stw.truncate(json_response))
 
         try:
             error_code = json_response["errorCode"]
@@ -533,7 +533,7 @@ class Research(ext.Cog):
         # Get total points
         total_points_check = await asyncio.gather(asyncio.to_thread(self.check_for_research_points_item, json_response))
         if total_points_check[0] is None:
-            print("errors.stwdaily.failed_total_points encountered:", json_response)
+            print("errors.stwdaily.failed_total_points encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_total_points"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
             final_embeds.append(embed)
