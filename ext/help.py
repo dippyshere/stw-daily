@@ -58,6 +58,20 @@ class HelpView(discord.ui.View):
         embed = await self.help.help_embed(self.ctx, select.values[0])
         await interaction.response.edit_message(embed=embed, view=self)
 
+    async def on_timeout(self):
+        """
+        Called when the view times out.
+        """
+        for child in self.children:
+            child.disabled = True
+        if isinstance(self.ctx, discord.ApplicationContext):
+            try:
+                return await self.message.edit_original_response(view=self)
+            except:
+                return await self.ctx.edit(view=self)
+        else:
+            return await self.message.edit(view=self)
+
 
 class Help(ext.Cog):
     """
@@ -227,7 +241,7 @@ class Help(ext.Cog):
         embed = await self.help_embed(ctx, command)
         help_options = [discord.SelectOption(label="all", value="main_menu",
                                              description="Return to viewing all available commands",
-                                             emoji=self.emojis['blueinfo'], default=False)]
+                                             emoji=self.emojis['left_arrow'], default=False)]
         help_options += await self.select_options_commands(ctx)
 
         help_view = HelpView(ctx, help_options, self.client)
