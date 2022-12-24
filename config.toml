@@ -16,6 +16,30 @@ error_messages = [
     "There was an error"
 ]
 
+wait_on_user_messages = [
+    "Wating for you :D",
+    "Waiting for your action",
+    "Waiting for you to do something",
+    "Ready when you are",
+    "Anytime you're ready",
+    "Whenever you're ready",
+    "You're in control",
+    "Your turn",
+    "Your move",
+    "Waiting for your command",
+    "It's all down to you now",
+    "All up to you now",
+    "The ball is in your court",
+    "Quick! Do something!",
+    "Erm... do something?",
+    "The suspense is killing me",
+    "I'm waiting...",
+    "Are you there?",
+    "Just waiting for you",
+    "Let's get this show on the road",
+    "Make a move",
+]
+
 
 support_url = "https://discord.gg/QYgABPDqzH"
 

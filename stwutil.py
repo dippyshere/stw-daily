@@ -654,6 +654,19 @@ def random_error(client):
     return random.choice(client.config["error_messages"])
 
 
+def random_waiting_message(client):
+    """
+    Gets a random waiting message
+
+    Args:
+        client: the client
+
+    Returns:
+        the randomly chosen error message
+    """
+    return random.choice(client.config["wait_on_user_messages"])
+
+
 async def check_for_auth_errors(client, request, ctx, message, command, auth_code, invite_link,
                                 send_error_message=True):
     """
