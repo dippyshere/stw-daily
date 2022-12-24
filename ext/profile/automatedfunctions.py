@@ -31,7 +31,7 @@ async def auto_authenticate(client, auth_entry):
     Returns:
         True if successful, False if not
     """
-
+    # TODO: with time, we can optimise / add more features to this function
     snowflake = auth_entry['user_snowflake']
     print(f"AUTO-AUTHENTICATING FOR USER: {snowflake}")
 

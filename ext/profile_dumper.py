@@ -105,7 +105,7 @@ class ProfileDump(ext.Cog):
         profile_file = io.BytesIO()
         profile_file.write(orjson.dumps(profile_json_response, option=orjson.OPT_INDENT_2))
         profile_file.seek(0)
-
+        # TODO: dump other profile ID's
         json_file = discord.File(profile_file,
                                  filename=f"campaign_profile-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
 

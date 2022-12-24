@@ -49,6 +49,7 @@ class Reminder(ext.Cog):
             return m.author == self.client.user
 
         await channel.purge(limit=2, check=is_me)
+        # TODO: add something about free llamas here
         # skuby was here
         embed = discord.Embed(title='Daily reminder:',
                               description=f'You can now claim today\'s daily reward. \n '
@@ -109,6 +110,7 @@ class TradingNag(ext.Cog):
             return m.author == self.client.user
 
         await channel.purge(limit=50, check=is_me)
+        # TODO: add a way to skip sending the nag if the channel is dead
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Welcome to the trading channel!",
                                             "checkmark"), description="\u200b", colour=succ_colour)

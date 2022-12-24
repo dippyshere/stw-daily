@@ -80,6 +80,7 @@ class BattleBreakersDaily(ext.Cog):
             error_code = json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
+            # TODO: determine what happens here after 30th December 2022
             embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url,
                                                        response=json_response)
             final_embeds.append(embed)
@@ -105,8 +106,6 @@ class BattleBreakersDaily(ext.Cog):
 
                 embed.add_field(name=f'{emoji_text} On day **{day[0]}**, you received:', value=f"```{amount} {name}```",
                                 inline=True)
-                print('Successfully claimed battle breaker daily:')
-                print(name)
             else:
                 embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
                                       description=f"\u200b\n<:Check:812201301843902474> "

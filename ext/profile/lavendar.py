@@ -248,6 +248,7 @@ class ProfileMainView(discord.ui.View):
             _button: The button.
             interaction: The interaction.
         """
+        # TODO: Add confirmation to this action
         self.client.processing_queue[self.user_document["user_snowflake"]] = True
         del self.user_document["profiles"][str(self.current_selected_profile)]
 

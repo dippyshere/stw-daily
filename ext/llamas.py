@@ -445,7 +445,7 @@ class Llamas(ext.Cog):
         free_llama = await stw.free_llama_count(llama_store)
 
         llama_option = await self.select_options_llamas(llama_store)
-
+        # TODO: hide llamas that are not available, or cannot be bought
         # With all info extracted, create the output
 
         embed = await self.llama_embed(ctx, free_llama, llama_store, preroll_data)

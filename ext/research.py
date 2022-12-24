@@ -480,6 +480,9 @@ class Research(ext.Cog):
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
         json_response = orjson.loads(await current_research_statistics_request.read())
         current_levels, proc_max = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
+        # TODO: handle proc_max properly i.e. skip redundant steps, hide buttons, etc.
+        if current_levels is None:
+            return
         # if proc_max:
         #     crown_yellow = self.client.colours["crown_yellow"]
         #     embed = discord.Embed(

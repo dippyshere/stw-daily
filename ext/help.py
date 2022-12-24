@@ -190,7 +190,7 @@ class Help(ext.Cog):
             The options for the select menu.
         """
         options = []
-
+        # TODO: active command as default in select menu
         for command in self.client.commands:
             if len(options) < 24:
                 try:
@@ -330,6 +330,7 @@ class Help(ext.Cog):
         Args:
             ctx: The context of the command.
         """
+        # TODO: update this message
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour,
                               title=await stw.add_emoji_title(self.client, "STW Daily", "calendar"),

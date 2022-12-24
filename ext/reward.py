@@ -66,6 +66,7 @@ class Reward(ext.Cog):
         embed_colour = self.client.colours["reward_magenta"]
         err_colour = self.client.colours["error_red"]
         if day == 'hi readers of the bot':
+            # TODO: update this message
             embed = discord.Embed(colour=err_colour,
                                   title=await stw.add_emoji_title(self.client, "Missing Day", "error"),
                                   description="```Please specify the day (number) of which you would like to see```")
@@ -87,6 +88,7 @@ class Reward(ext.Cog):
                     # hi?
                     # hi?
             except ValueError:
+                # TODO: update this message
                 embed = discord.Embed(colour=err_colour,
                                       title=await stw.add_emoji_title(self.client, "Non Numeric Day or Limit", "error"),
                                       description="```The inputted day or limit must be a valid integer, please try again```")
@@ -102,6 +104,7 @@ class Reward(ext.Cog):
             try:
                 reward = stw.get_reward(self.client, day, vbucks)
             except:
+                # TODO: update this message
                 embed = discord.Embed(colour=err_colour,
                                       title=await stw.add_emoji_title(self.client, "Invalid Day", "error"),
                                       description="```Please retry with a valid integer.```")

@@ -115,7 +115,7 @@ class DailyXP(ext.Cog):
             dailyxp = daily_xp['attributes']['daily_xp']
         except:
             dailyxp = 0
-
+        # TODO: update the style of this
         progress_bar = stw.get_progress_bar(dailyxp, stw.max_daily_stw_accolade_xp, 20)
 
         # With all info extracted, create the output

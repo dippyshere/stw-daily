@@ -97,7 +97,7 @@ class Power(ext.Cog):
         # check for le error code
         if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds):
             return
-
+        # TODO: Fix this calculation being slightly off
         power_level, total, total_stats = stw.calculate_homebase_rating(stw_json_response)
 
         # With all info extracted, create the output
