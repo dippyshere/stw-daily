@@ -25,6 +25,10 @@ async def insert_default_document(client, user_snowflake):
     """
     default_document = client.user_default
     default_document['user_snowflake'] = user_snowflake
+    try:
+        del default_document["_id"]
+    except KeyError:
+        pass
     await client.stw_database.insert_one(default_document)
 
     return default_document
