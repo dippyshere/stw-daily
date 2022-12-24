@@ -91,7 +91,11 @@ async def get_auto_claim(client):
     user_cursor = await get_autoclaim_user_cursor(client)
 
     async for user in user_cursor:
-        await auto_authenticate(client, user)
+        try:
+            await auto_authenticate(client, user)
+        except Exception as e:
+            print(f"autoclaim error: {e}")
+            pass
 
     claimed_account_ids.clear()
 
