@@ -48,7 +48,7 @@ async def auto_authenticate(client, auth_entry):
             account_id = dev_auth_info["accountId"]
             if account_id not in claimed_account_ids:
                 claimed_account_ids.append(account_id)
-
+                await asyncio.sleep(random.randint(2, 10))
                 print(f"DISPLAY NAME: {current_profile['authentication']['displayName']}")
                 token_req = await stw.get_token_devauth(client, auth_entry, game="ios",
                                                         auth_info_thread=auth_info_thread)
@@ -68,6 +68,7 @@ async def auto_authenticate(client, auth_entry):
                         "bb_day": None,
                         "games": "",
                     }
+                    await asyncio.sleep(random.randint(2, 10))
                     request = await stw.profile_request(client, "daily", entry)
                     json_response = orjson.loads(await request.read())
                     try:
