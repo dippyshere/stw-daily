@@ -133,7 +133,14 @@ class Reload(ext.Cog):
         self.client.watch_module.changed = set(())
 
     @ext.command(name='rlstwwatch',
-                 aliases=["rlsw"],
+                 aliases=['lsw', 'rsw', 'rlw', 'rls', 'rrlsw', 'rllsw', 'rlssw', 'rlsww', 'lrsw', 'rslw', 'rlws',
+                          'elsw', '4lsw', '5lsw', 'tlsw', 'glsw', 'flsw', 'dlsw', 'rksw', 'rosw', 'rpsw', 'rlaw',
+                          'rlww', 'rlew', 'rldw', 'rlxw', 'rlzw', 'rlsq', 'rls2', 'rls3', 'rlse', 'rlsd', 'rlss',
+                          'rlsa', 'erlsw', 'relsw', '4rlsw', 'r4lsw', '5rlsw', 'r5lsw', 'trlsw', 'rtlsw', 'grlsw',
+                          'rglsw', 'frlsw', 'rflsw', 'drlsw', 'rdlsw', 'rklsw', 'rlksw', 'rolsw', 'rlosw', 'rplsw',
+                          'rlpsw', 'rlasw', 'rlsaw', 'rlwsw', 'rlesw', 'rlsew', 'rldsw', 'rlsdw', 'rlxsw', 'rlsxw',
+                          'rlzsw', 'rlszw', 'rlsqw', 'rlswq', 'rls2w', 'rlsw2', 'rls3w', 'rlsw3', 'rlswe', 'rlswd',
+                          'rlsws', 'rlswa', 'rlsw', '/rlsw'],
                  extras={'emoji': "experimental", "args": {}, "dev": True},
                  brief="Reloads extensions marked by STW Watch",
                  description="Reload STW Daily extensions (cogs) to apply changes without restarting the bot. "
