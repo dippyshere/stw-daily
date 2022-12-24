@@ -153,11 +153,25 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         elif exchange_auth_session:
             auth_session = True
 
-        auth_session_found_message = f"[**To begin click here**](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode)\nThen copy your authentication code and enter it into the modal which appears from pressing the **{client.config['emojis']['locked']} Authenticate** Button below."
+        auth_session_found_message = f"**To begin, get an auth code from " \
+                                     f"[here](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epi" \
+                                     f"cgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad" \
+                                     f"83f5c6%26responseType%3Dcode)**\n" \
+                                     f"Then simply copy your authorisation code, press " \
+                                     f"the **{client.config['emojis']['locked']} Authenticate** Button below, and " \
+                                     f"paste your code into the prompt."
         if auth_session:
-            auth_session_found_message = f"Found an existing authentication session, you can proceed utilising the account associated with this authentication session by pressing the **{client.config['emojis']['library_input']} Auth With Session** Button below\n\u200b\nYou can use a different account by copying the authentication code from [this link](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode) and then type your authentication code into the modal that appears from pressing the the **{client.config['emojis']['locked']} Authenticate** Button"
+            auth_session_found_message = f"You already have an active authentication session! You can get started " \
+                                         f"with this account by pressing **{client.config['emojis']['library_input']}" \
+                                         f" Auth With Session**\n\u200b\nIf you want to switch accounts, you can " \
+                                         f"use [this link](https://www.epicgames.com/id/logout?redirectUrl=https%3A" \
+                                         f"%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F" \
+                                         f"%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId" \
+                                         f"%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode) and then " \
+                                         f"simply copy your authorisation code, press the **" \
+                                         f"{client.config['emojis']['locked']} Authenticate** button."
 
-        page_embed.description += f"\n**No device authentication found for current profile**" \
+        page_embed.description += f"\n**You haven't setup device authentication on this profile yet**" \
                                   f"\n" \
                                   f"\u200b\n" \
                                   f"{auth_session_found_message}\n" \
@@ -201,7 +215,7 @@ async def no_profiles_page(client, ctx):
 
     no_profiles_embed = discord.Embed(title=await stw.add_emoji_title(client, "Device Authentication", "pink_link"),
                                       description=(f"\u200b\n"
-                                                   f"**No available profiles**\n"
+                                                   f"**No profiles :(**\n"
                                                    f"```To create one use the profile command```\u200b\n"),
                                       color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "pink_link")
@@ -229,8 +243,18 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
                                 description=(f"\u200b\n"
                                              f"**Currently Selected Profile {currently_selected_profile_id}:**\n"
                                              f"```{current_profile['friendly_name']}```\u200b\n"
-                                             f"Whenever you attempt to authenticate without an authcode, you will automatically authenticated with the account associated with this profile.\n\u200b\n"
-                                             f"If you wish to remove this auth-link, press the {client.config['emojis']['library_trashcan']} **Remove Link** button\n\u200b\n"
+                                             f"Anytime you try to authenticate without an active session, you'll "
+                                             f"automatically authenticate with the account linked to this "
+                                             f"profile.\n\u200b\n "
+                                             f"If you want to remove this link, press the"
+                                             f" {client.config['emojis']['library_trashcan']} **Remove Link** "
+                                             f"button\n\u200b\n"
+                                             f"If you want to authenticate with this account now, press the "
+                                             f"{client.config['emojis']['library_floppydisc']} **Authenticate Now** "
+                                             f"button\n\u200b\n"
+                                             f"To enable auto-claim for all your accounts, press the "
+                                             f"{client.config['emojis']['library_clock']} **Enable Auto Claim** "
+                                             f"button\n\u200b\n"
                                              f"**Auth-Linked to:**\n"
                                              f"```{current_profile['authentication']['displayName']}```\u200b"
                                              ),
@@ -306,7 +330,8 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
 
     elif current_profile["authentication"] is not None:
         embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id)
-        stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction)
+        stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction,
+                                                embed)
         await active_view(client, ctx.author.id, stolen_account_view)
 
         if interaction is None:
@@ -359,7 +384,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
                                                       self.currently_selected_profile_id, self.ctx, self.interaction,
                                                       None)
 
-        timeout_embed.description += "*Timed out, please use command again to continue.*\n\u200b"
+        timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -442,7 +467,7 @@ class StolenAccountView(discord.ui.View):
     This class is the view for the EULA
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, embed=None):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -451,11 +476,23 @@ class StolenAccountView(discord.ui.View):
         self.ctx = ctx
         self.interaction_check_done = {}
         self.interaction = interaction
+        self.embed = embed
+        self.current_profile = user_document["profiles"][str(currently_selected_profile_id)]
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
         self.timed_out = False
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
+        try:
+            if self.user_document["auto_claim"]["enabled"]:
+                self.children[3].label = "Disable Auto Claim"
+                self.children[3].style = discord.ButtonStyle.red
+            else:
+                self.children[3].label = "Enable Auto Claim"
+                self.children[3].style = discord.ButtonStyle.green
+        except:
+            self.children[3].label = "Enable Auto Claim"
+            self.children[3].style = discord.ButtonStyle.green
 
     async def on_timeout(self):
         """
@@ -467,7 +504,7 @@ class StolenAccountView(discord.ui.View):
         timeout_embed = await existing_dev_auth_embed(self.client, self.ctx, self.user_document["profiles"][
             str(self.currently_selected_profile_id)], self.currently_selected_profile_id)
 
-        timeout_embed.description += "\u200b\n*Timed out, please use command again to continue.*\n\u200b"
+        timeout_embed.description += "\u200b\n*Timed out. Please rerun the command to continue.*\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -513,7 +550,7 @@ class StolenAccountView(discord.ui.View):
     @discord.ui.button(style=discord.ButtonStyle.danger, label="Remove Link", emoji="library_trashcan")
     async def regain_soul_button(self, button, interaction):
         """
-        This function handles the accept button
+        This function handles the delete link button
 
         Args:
             button: The button
@@ -535,10 +572,10 @@ class StolenAccountView(discord.ui.View):
 
         await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
 
-    @discord.ui.button(style=discord.ButtonStyle.green, label="Device Authenticate", emoji="library_floppydisc")
+    @discord.ui.button(style=discord.ButtonStyle.green, label="Authenticate Now", emoji="library_floppydisc")
     async def sell_your_data_button(self, button, interaction):
         """
-        This function handles the accept button
+        This function handles the auth now button
 
         Args:
             button: The button
@@ -560,6 +597,59 @@ class StolenAccountView(discord.ui.View):
             for child in self.children:
                 child.disabled = False
             await interaction.edit_original_message(view=self)
+
+    @discord.ui.button(style=discord.ButtonStyle.green, label="Enable Auto Claim", emoji="library_clock")
+    async def temp_auto_claim_button(self, button, interaction):
+        """
+        This function handles the temporary auto claim button
+
+        Args:
+            button: The button
+            interaction: The interaction
+        """
+        self.client.processing_queue[self.ctx.author.id] = True
+        try:
+            if self.user_document["auto_claim"]["enabled"]:
+                self.user_document["auto_claim"] = None
+                button.label = "Enable Auto Claim"
+                button.style = discord.ButtonStyle.green
+                result = "disabled auto-claim"
+            else:
+                self.user_document["auto_claim"] = {
+                    "enabled": True,
+                }
+                button.label = "Disable Auto Claim"
+                button.style = discord.ButtonStyle.red
+                result = "enabled auto-claim"
+        except:
+            self.user_document["auto_claim"] = {
+                "enabled": True,
+            }
+            button.label = "Disable Auto Claim"
+            button.style = discord.ButtonStyle.red
+            result = "enabled auto-claim"
+        await replace_user_document(self.client, self.user_document)
+        del self.client.processing_queue[self.ctx.author.id]
+        self.embed.description = (f"\u200b\n"
+                                  f"**Currently Selected Profile {self.currently_selected_profile_id}:**\n"
+                                  f"```{self.current_profile['friendly_name']}```\u200b\n"
+                                  f"Anytime you try to authenticate without an active session, you'll "
+                                  f"automatically authenticate with the account linked to this "
+                                  f"profile.\n\u200b\n "
+                                  f"If you want to remove this link, press the"
+                                  f" {self.client.config['emojis']['library_trashcan']} **Remove Link** "
+                                  f"button\n\u200b\n"
+                                  f"To reauthenticate with this account, press the "
+                                  f"{self.client.config['emojis']['library_floppydisc']} **Authenticate Now** "
+                                  f"button\n\u200b\n"
+                                  f"To enable auto-claim for all your accounts, press the "
+                                  f"{self.client.config['emojis']['library_clock']} **Enable Auto Claim** "
+                                  f"button\n\u200b\n"
+                                  f"**Auth-Linked to:**\n"
+                                  f"```{self.current_profile['authentication']['displayName']}```\u200b\n"
+                                  f"*Successfully {result}*\n\u200b"
+                                  )
+        await interaction.response.edit_message(view=self, embed=self.embed)
 
 
 class EnslaveUserLicenseAgreementButton(discord.ui.View):
@@ -607,7 +697,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         """
         timeout_embed = await tos_acceptance_embed(self.user_document, self.client, self.currently_selected_profile_id,
                                                    self.ctx)
-        timeout_embed.description += "*Timed out, please use command again to continue.*\n\u200b"
+        timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -883,13 +973,13 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         self.ctx = ctx
         self.currently_selected_profile_id = currently_selected_profile_id
 
-        super().__init__(title="Please enter authcode here")
+        super().__init__(title="Authorisation Code")
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
         setting_input = discord.ui.InputText(style=discord.InputTextStyle.long,
-                                             label="Enter authcode",
-                                             placeholder="Enter authcode here",
+                                             label="Enter your authcode here",
+                                             placeholder="a51c1f4d35b1457c8e34a1f6026faa35",
                                              min_length=1,
                                              max_length=500,
                                              required=True)
