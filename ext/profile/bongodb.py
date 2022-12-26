@@ -9,6 +9,7 @@ This file is the cog for mongodb database interaction.
 import asyncio
 import discord
 import stwutil as stw
+import copy
 import inspect
 
 
@@ -23,7 +24,7 @@ async def insert_default_document(client, user_snowflake):
     Returns:
         dict: The default document.
     """
-    default_document = client.user_default
+    default_document = copy.deepcopy(client.user_default)
     default_document['user_snowflake'] = user_snowflake
     try:
         del default_document["_id"]
@@ -85,14 +86,14 @@ async def check_profile_ver_document(client, document):
         pass
 
     if not force_overwrite:
-        copied_default = client.user_default.copy()
+        copied_default = copy.deepcopy(client.user_default)
         new_base = await asyncio.gather(asyncio.to_thread(deep_merge, copied_default, document))
         new_base = new_base[0]
         for profile in list(new_base["profiles"].keys()):
             new_base["profiles"][profile] = await asyncio.gather(
                 asyncio.to_thread(deep_merge, copied_default["profiles"]["0"], new_base["profiles"][profile]))
     else:
-        new_base = client.user_default
+        new_base = copy.deepcopy(client.user_default)
         new_base['user_snowflake'] = user_id
 
     new_base["global"]["profiles_ver"] = current_profile_ver

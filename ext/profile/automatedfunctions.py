@@ -96,8 +96,9 @@ async def get_auto_claim(client):
         except Exception as e:
             print(f"autoclaim error: {e}")
             pass
-
+    claimed_accs = len(claimed_account_ids)
     claimed_account_ids.clear()
+    return claimed_accs
 
 
 class AutoFunction(ext.Cog):
