@@ -596,7 +596,7 @@ class StolenAccountView(discord.ui.View):
         if not self.timed_out:
             for child in self.children:
                 child.disabled = False
-            await interaction.edit_original_message(view=self)
+            await interaction.edit_original_response(view=self)
 
     @discord.ui.button(style=discord.ButtonStyle.green, label="Enable Auto Claim", emoji="library_clock")
     async def temp_auto_claim_button(self, button, interaction):
