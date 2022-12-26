@@ -208,7 +208,7 @@ class Daily(ext.Cog):
                             limit = i
                             max_rewards_reached = True
                             break
-                        rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
+                        rewards += str(stw.get_reward(self.client, int(day) + i, vbucks)[0])
                         if not (i + 1 == limit):
                             rewards += ', '
                         else:

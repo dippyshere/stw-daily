@@ -427,7 +427,7 @@ def get_reward(client, day, vbucks=True):
     try:
         item = item[0].split(" ")
         item[0] = "{:,}".format(int(item[0]))
-        item = " ".join(item)
+        item = str(" ".join(item))
     except ValueError:
         item = items.ItemDictionary[str(day_mod)][0]
 
@@ -442,7 +442,7 @@ def get_reward(client, day, vbucks=True):
     for emoji in emojis:
         emoji_text += client.config["emojis"][emoji]
 
-    return [item, emoji_text]
+    return [str(item), emoji_text]
 
 
 def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
