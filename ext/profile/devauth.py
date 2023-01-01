@@ -512,11 +512,20 @@ class StolenAccountView(discord.ui.View):
         for child in self.children:
             child.disabled = True
         self.stop()
-
-        if self.interaction is None:
-            await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
-        else:
-            await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+        try:
+            if self.interaction is None:
+                await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
+            else:
+                await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+        except:
+            if isinstance(self.message, discord.Interaction):
+                method = self.message.edit_original_response
+            else:
+                method = self.message.edit
+            try:
+                await method(view=self)
+            except:
+                await self.ctx.edit(view=self)
         self.timed_out = True
 
     @discord.ui.select(
