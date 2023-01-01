@@ -57,7 +57,8 @@ async def load_item_data():
         BannerColors, max_daily_stw_accolade_xp
 
 
-LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp = asyncio.get_event_loop().run_until_complete(load_item_data())
+LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp = asyncio.get_event_loop().run_until_complete(
+    load_item_data())
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
 
@@ -441,7 +442,7 @@ def get_reward(client, day, vbucks=True):
     emoji_text = ""
     for emoji in emojis:
         emoji_text += client.config["emojis"][emoji]
-
+    # TODO: this may return a list, not a string if vbucks is false - fix this
     return [str(item), emoji_text]
 
 
@@ -952,7 +953,8 @@ async def free_llama_count(store):
     return len(free_llamas), free_llamas
 
 
-async def purchase_llama(client, auth_entry, offer_id, currency="GameItem", currencySubType="AccountResource:currency_xrayllama", expectedTotalPrice=0):
+async def purchase_llama(client, auth_entry, offer_id, currency="GameItem",
+                         currencySubType="AccountResource:currency_xrayllama", expectedTotalPrice=0):
     """
     Purchases a llama from the store
 
@@ -2048,6 +2050,7 @@ def calculate_homebase_rating(profile):
                       time_input=total * 4), total, total_stats
 
 
+
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, add_entry=False, processing=True,
                                      dont_send_embeds=False):  # hi bye
     """
@@ -2285,7 +2288,8 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     #     print(entry)
 
     try:
-        display_name_on_auth = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["display_name_on_auth"]
+        display_name_on_auth = user_document["profiles"][str(currently_selected_profile_id)]["settings"][
+            "display_name_on_auth"]
     except:
         display_name_on_auth = True
 

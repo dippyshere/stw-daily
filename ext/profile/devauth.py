@@ -753,6 +753,7 @@ class ProfileAuth(ext.Cog):
         """
         await handle_dev_auth(self.client, ctx)
 
+    # TODO: fix slash timeouts
     @ext.slash_command(name='device',
                        description='Create an authentication session that will keep you logged in for a long time',
                        guild_ids=stw.guild_ids)

@@ -981,6 +981,7 @@ class ProfileSettings(ext.Cog):
         """
         return self.client.settings_choices
 
+    # TODO: fix slash timeouts
     @ext.slash_command(name='settings',
                        description='View/Change settings for STW Daily on a per-profile basis',
                        guild_ids=stw.guild_ids)

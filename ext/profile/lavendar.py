@@ -623,6 +623,7 @@ class Profile(ext.Cog):
         await command_counter(self.client, ctx.author.id)
         await self.profile_command(ctx, profile)
 
+    # TODO: fix slash timeouts
     @slash_command(name='profile',
                    description="Manage your different STW Daily profiles",
                    guild_ids=stw.guild_ids)

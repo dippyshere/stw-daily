@@ -63,6 +63,19 @@ async def get_autoclaim_user_cursor(client):
     return client.stw_database.find({"auto_claim": {"$ne": None}})
 
 
+async def count_of_accounts_to_autoclaim(client):
+    """
+    Gets the autoclaim user count
+
+    Args:
+        client: The bot client.
+
+    Returns:
+        int: The autoclaim user count.
+    """
+    return client.stw_database.count_documents({"auto_claim": {"$ne": None}})
+
+
 async def check_profile_ver_document(client, document):
     """
     Checks the profile version of a document and updates it if necessary.
