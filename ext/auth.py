@@ -27,7 +27,7 @@ class Auth(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def auth_command(self, ctx, token=''):
+    async def auth_command(self, ctx, token='', repeated=False):
         """
         The main function of the auth command
 
