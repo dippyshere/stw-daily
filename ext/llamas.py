@@ -528,7 +528,8 @@ class Llamas(ext.Cog):
                           'xdray', 'cxray', 'xcray', 'xeray', 'xreay', 'x4ray', 'xr4ay', 'x5ray', 'xr5ay', 'xtray',
                           'xrtay', 'xgray', 'xrgay', 'xfray', 'xrfay', 'xrday', 'xrqay', 'xraqy', 'xrway', 'xrawy',
                           'xrsay', 'xrasy', 'xrxay', 'xraxy', 'xrzay', 'xrazy', 'xraty', 'xrayt', 'xra6y', 'xray6',
-                          'xra7y', 'xray7', 'xrauy', 'xrayu', 'xrajy', 'xrayj', 'xrahy', 'xrayh', 'xragy', 'xrayg'],
+                          'xra7y', 'xray7', 'xrauy', 'xrayu', 'xrajy', 'xrayj', 'xrahy', 'xrayh', 'xragy', 'xrayg',
+                          'l', 'ahoura', '🙄'],
                  extras={'emoji': "llama", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
