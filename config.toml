@@ -23,20 +23,15 @@ wait_on_user_messages = [
     "Ready when you are",
     "Anytime you're ready",
     "Whenever you're ready",
-    "You're in control",
     "Your turn",
     "Your move",
     "Waiting for your command",
     "It's all down to you now",
     "All up to you now",
-    "The ball is in your court",
-    "Quick! Do something!",
     "Erm... do something?",
-    "The suspense is killing me",
     "I'm waiting...",
     "Are you there?",
     "Just waiting for you",
-    "Let's get this show on the road",
     "Make a move",
 ]
 
@@ -459,7 +454,7 @@ news = "https://prm-dialogue-public-api-prod.edea.live.use1a.on.epicgames.com/ap
 stw_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews"
 br_news = "https://fortnite-api.com/v2/news/br"
 pve_info = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
-bb_profile = "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId={}"
+bb_profile = "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId={}" # this is so sad 😿
 
 
 # different requests under profile
@@ -538,7 +533,7 @@ ko = ["Korean", "한국어", "ko", "ko-KR", "ko_KR", "koKR", "ko-KP", "ko_KP", "
 
 [entry_token_key_for_game]
 fn = "token"
-bb = "bb_token"
+# bb = "bb_token"
 
 [login_links]
 login_fortntite_pc = "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode"
