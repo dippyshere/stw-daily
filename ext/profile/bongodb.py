@@ -268,5 +268,6 @@ async def command_counter(client, user_snowflake):
         old_view = client.active_profile_command[user_snowflake]
         await old_view.on_timeout()
         del client.active_profile_command[user_snowflake]
-    except:
+    except Exception as E:
+        print(f"{E}")
         pass

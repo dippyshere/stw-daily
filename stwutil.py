@@ -812,37 +812,41 @@ async def slash_edit_original(ctx, msg, embeds, view=None, files=None):
         except:
             files = [files]
 
-    # TODO: This can probably be tidied up and optimised
+    if isinstance(msg, discord.Interaction):
+        method = msg.edit_original_response
+    else:
+        method = msg.edit
+
     if isinstance(ctx, discord.ApplicationContext):
         if view is not None and files is not None:
             try:
-                return await msg.edit_original_response(embeds=embeds, view=view, files=files)
+                return await method(embeds=embeds, view=view, files=files)
             except:
                 return await ctx.edit(embeds=embeds, view=view, files=files)
         if view is not None:
             try:
-                return await msg.edit_original_response(embeds=embeds, view=view)
+                return await method(embeds=embeds, view=view)
             except:
                 return await ctx.edit(embeds=embeds, view=view)
         if files is not None:
             try:
-                return await msg.edit_original_response(embeds=embeds, files=files)
+                return await method(embeds=embeds, files=files)
             except:
                 return await ctx.edit(embeds=embeds, files=files)
         else:
             try:
-                return await msg.edit_original_response(embeds=embeds)
+                return await method(embeds=embeds)
             except:
                 return await ctx.edit(embeds=embeds)
     else:
         if view is not None and files is not None:
-            return await msg.edit(embeds=embeds, view=view, files=files)
+            return await method(embeds=embeds, view=view, files=files)
         if view is not None:
-            return await msg.edit(embeds=embeds, view=view)
+            return await method(embeds=embeds, view=view)
         if files is not None:
-            return await msg.edit(embeds=embeds, files=files)
+            return await method(embeds=embeds, files=files)
         else:
-            return await msg.edit(embeds=embeds)
+            return await method(embeds=embeds)
 
 
 async def device_auth_request(client, account_id, token):
@@ -2050,6 +2054,30 @@ def calculate_homebase_rating(profile):
                       time_input=total * 4), total, total_stats
 
 
+async def check_devauth_user_auth_input(client, ctx):
+    """
+    Checks if the user is authorised to use the devauth command
+
+    Args:
+        client (discord.Client): The discord client
+        ctx: The discord context
+
+    Returns:
+        bool: True if authorised, False if not
+    """
+    try:
+        user_document = await get_user_document(ctx, client, ctx.author.id)
+        currently_selected_profile_id = user_document["global"]["selected_profile"]
+
+        current_profile = user_document["profiles"][str(currently_selected_profile_id)]
+
+        if current_profile["authentication"] is None:
+            raise Exception
+
+        return True
+    except:
+        return False
+
 
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, add_entry=False, processing=True,
                                      dont_send_embeds=False):  # hi bye
@@ -2109,14 +2137,22 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     # Return auth code if it exists
     if existing_auth is not None and extracted_auth_code == "":
 
-        # Send the logging in & processing if given
-        if processing and not dont_send_embeds:
-            proc_embed = await processing_embed(client, ctx)
-            return [await slash_send_embed(ctx, proc_embed),
-                    existing_auth,
-                    embeds]
+        valid_session = await validate_existing_session(client, existing_auth["token"])
 
-        return [None, existing_auth, embeds]
+        if valid_session:
+            # Send the logging in & processing if given
+            if processing and not dont_send_embeds:
+                proc_embed = await processing_embed(client, ctx)
+                return [await slash_send_embed(ctx, proc_embed),
+                        existing_auth,
+                        embeds]
+
+            return [None, existing_auth, embeds]
+        else:
+            try:
+                del client.temp_auth[ctx.author.id]
+            except:
+                pass
 
     error_colour = client.colours["error_red"]
     white_colour = client.colours["auth_white"]
@@ -2148,7 +2184,6 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
                 f"**Need Help? Run**\n"
                 f"{await mention_string(client, 'help {0}'.format(command))}\n"
                 f"Or [Join the support server]({support_url})\n"), colour=error_colour)
-
     elif extracted_auth_code in client.config["known_client_ids"]:
         error_embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
@@ -2184,20 +2219,47 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
                                     colour=error_colour)
 
     elif len(extracted_auth_code) != 32:
-        error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"), description=(
-            f"\u200b\n"
-            f"Attempted to authenticate with authcode:\n"
-            f"```{extracted_auth_code}```\n"
-            f"Your authcode should only be 32 characters long, and only contain numbers and letters. Check if you have any stray quotation marks\n\n"
-            f"**An Example:**\n"
-            f"```a51c1f4d35b1457c8e34a1f6026faa35```\n"
-            f"If you need a new authcode you can get one by:\n"
-            f"[Refreshing the page to get a new code or by clicking here](https://www.epicgames.com/id/api/redirect?clientId={auth_client_id}&responseType=code)\n"
-            f"\u200b\n"
-            f"**If you need any help try:**\n"
-            f"{await mention_string(client, 'help {0}'.format(command))}\n"
-            f"Or [Join the support server]({support_url})\n"),
-                                    colour=error_colour)
+        try:
+            user_document = await get_user_document(ctx, client, ctx.author.id)
+            current_profile = user_document["profiles"][str(extracted_auth_code)]
+            currently_selected_profile_id = int(extracted_auth_code)
+            user_document["global"]["selected_profile"] = currently_selected_profile_id
+            await replace_user_document(client, user_document)
+
+            if current_profile["authentication"] is None:
+                error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"),
+                                            description=(
+                                                f"\u200b\n"
+                                                f"Attempted to authenticate with profile:\n"
+                                                f"```{current_profile['friendly_name']}```\n"
+                                                f"**You have not setup device authentication for this profile!**\n"
+                                                f"To do so use the devauth command.\n"
+                                                f"\u200b\n"
+                                                f"**If you need any help try:**\n"
+                                                f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                                                f"Or [Join the support server]({support_url})\n"),
+                                            colour=error_colour)
+
+            auth_with_devauth = True
+        except:
+            error_embed = discord.Embed(title=await add_emoji_title(client, random_error(client), "error"),
+                                        description=(
+                                            f"\u200b\n"
+                                            f"Attempted to authenticate with authcode:\n"
+                                            f"```{extracted_auth_code}```\n"
+                                            f"Your authcode should only be 32 characters long, and only contain "
+                                            f"numbers and letters. Check if you have any stray quotation marks\n\n"
+                                            f"**An Example:**\n"
+                                            f"```a51c1f4d35b1457c8e34a1f6026faa35```\n"
+                                            f"If you need a new authcode you can get one by:\n"
+                                            f"[Refreshing the page to get a new code or by clicking here]("
+                                            f"https://www.epicgames.com/id/api/redirect?clientId="
+                                            f"{auth_client_id}&responseType=code)\n"
+                                            f"\u200b\n"
+                                            f"**If you need any help try:**\n"
+                                            f"{await mention_string(client, 'help {0}'.format(command))}\n"
+                                            f"Or [Join the support server]({support_url})\n"),
+                                        colour=error_colour)
 
     if error_embed is not None:
         embed = await set_thumbnail(client, error_embed, "error")
@@ -2298,7 +2360,11 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     else:
         description = "\u200b\n"
 
-    embed = discord.Embed(title=await add_emoji_title(client, "Successfully Authenticated", "whitekey"),
+    title = "Successfully Authenticated"
+    if auth_with_devauth:
+        title += f" With Profile {currently_selected_profile_id}"
+
+    embed = discord.Embed(title=await add_emoji_title(client, title, "whitekey"),
                           description=description, colour=white_colour)
 
     if add_entry:
@@ -2340,6 +2406,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
     """
     error_colour = client.colours["error_red"]
     yellow = client.colours["warning_yellow"]
+    reattempt_for_devauth = False
 
     # Epic Games Error Codes
     if error_code == "errors.com.epicgames.common.missing_action":
@@ -2376,6 +2443,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, s
             colour=error_colour
         )
     elif error_code == "errors.com.epicgames.common.authentication.token_verification_failed":
+        reattempt_for_devauth = True
         embed = discord.Embed(
             title=await add_emoji_title(client, random_error(client), "error"),
             description=(f"\u200b\n"

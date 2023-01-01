@@ -325,7 +325,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=self)
         self.stop()
 
-    @discord.ui.button(label="Information", emoji="experimental", row=2, disabled=True)
+    @discord.ui.button(label="Information", emoji="experimental", row=2, disabled=False)
     async def information_button(self, _button, interaction):  # hi
         """
         Called when the information button is pressed.
@@ -335,8 +335,8 @@ class ProfileMainView(discord.ui.View):
             interaction: The interaction.
         """
 
-        # await get_auto_claim(self.client)
-        await interaction.response.send_message(content=stw.truncate(str(self.user_document), 2000))
+        self.client.temp_auth[interaction.user.id]["token"] = "💀"
+        #await interaction.response.send_message(content=stw.truncate(str(self.user_document), 2000))
 
 
 # How do I explain to my gynecologist that I don't want to get rid of my pubic lice? I am infertile and my sweet little crab babies are the closest thing I have to birthing actual children...
@@ -629,7 +629,7 @@ class Profile(ext.Cog):
                    guild_ids=stw.guild_ids)
     async def slashprofile(self, ctx: discord.ApplicationContext,
                            profile: Option(int,
-                                           "The ID of the profile to switch to (e.g. 0)") = -1):
+                                           "The ID of the profile to switch to (e.g. 0)") = None):
         """
         The profile command.
 

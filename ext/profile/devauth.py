@@ -102,7 +102,7 @@ async def add_enslaved_user_accepted_license(view, interaction):
 
 
 async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction=None,
-                                  exchange_auth_session=None):
+                                  exchange_auth_session=None, timeout_bypass=False):
     """
     This is the function that is called when the user has not device authed yet
 
@@ -132,7 +132,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         # Not authenticated yet data stuffy ;p
 
         auth_session = False
-        if exchange_auth_session is None:
+        if exchange_auth_session is None and timeout_bypass is False:
             try:
                 temp_auth = client.temp_auth[ctx.author.id]
                 auth_session = temp_auth
@@ -156,7 +156,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         auth_session_found_message = f"**To begin, get an auth code from " \
                                      f"[here](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epi" \
                                      f"cgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad" \
-                                     f"83f5c6%26responseType%3Dcode)**\n" \
+                                     f"83f5c6%26responseType%3Dcode)**\n\u200b\n" \
                                      f"Then simply copy your authorisation code, press " \
                                      f"the **{client.config['emojis']['locked']} Authenticate** Button below, and " \
                                      f"paste your code into the prompt."
@@ -192,8 +192,8 @@ async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, int
         interaction: The interaction
         message: The message
     """
-    get_ios_auth = await stw.exchange_games(client, temp_auth["token"], "ios")
     try:
+        get_ios_auth = await stw.exchange_games(client, temp_auth["token"], "ios")
         response_json = orjson.loads(await get_ios_auth.read())
         await handle_dev_auth(client, ctx, interaction, user_document, response_json, message)
     except:
@@ -366,8 +366,11 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
         self.timed_out = False
 
-        if self.response_json is None:
+        self.exchanged = False
+        if self.response_json is None or self.response_json is False:
             del self.children[2]
+        else:
+            self.exchanged = True
 
     async def on_timeout(self, processing_timeout=False):
         """
@@ -382,7 +385,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
 
         timeout_embed = await pre_authentication_time(self.user_document, self.client,
                                                       self.currently_selected_profile_id, self.ctx, self.interaction,
-                                                      None)
+                                                      self.exchanged, True)
 
         timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
 
