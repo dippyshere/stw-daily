@@ -239,6 +239,7 @@ class Help(ext.Cog):
             command: The command to get the help page for.
         """
         embed = await self.help_embed(ctx, command)
+        # TODO: dont add this if we arent in a submenu
         help_options = [discord.SelectOption(label="all", value="main_menu",
                                              description="Return to viewing all available commands",
                                              emoji=self.emojis['left_arrow'], default=False)]
