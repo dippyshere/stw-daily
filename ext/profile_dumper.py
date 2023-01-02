@@ -260,7 +260,7 @@ class ProfileDump(ext.Cog):
                                    filename=f"{auth_info[1]['account_name']}-recycle_bin-"
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
 
-        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.set_thumbnail(self.client, embed, "floppy")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
         await asyncio.sleep(0.25)
@@ -275,11 +275,10 @@ class ProfileDump(ext.Cog):
                  extras={'emoji': "library_floppydisc", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": True},
-                 brief="Dumps your Epic Games common_core / campaign profile as a JSON attatchment (authentication "
-                       "required)",
+                         "dev": False},
+                 brief="Dumps your Fortnite profiles as JSON attachments (authentication required)",
                  description=(
-                         "This command Dumps your Fortnite common_core / campaign profile as a JSON attatchment. "
+                         "This command dumps all your Fortnite profiles (14 total) as JSON attachments. "
                          "You must be authenticated to use this command.\n ⦾ Please note that this command is still "
                          "experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
     async def profiledump(self, ctx, authcode='', optout=None):

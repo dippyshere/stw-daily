@@ -69,7 +69,7 @@ class LlamasView(discord.ui.View):
                 break
         embed.description += f"\u200b\n"
         embed.description = stw.truncate(embed.description, 3999)
-        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
 
@@ -240,7 +240,7 @@ class LlamasPurchaseView(discord.ui.View):
                     article = "an"
                 break
         embed.description += f"**Are you sure you want to purchase {article} {llama_datatable[0]} for {self.price} {stw.get_item_icon_emoji(self.client, self.currency)}?**\n\u200b"
-        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
 
@@ -270,7 +270,7 @@ class LlamasPurchaseView(discord.ui.View):
                             f"{'You got: ' + self.contents if self.contents != '' else ''}\nReturning <t:{int(time.time()) + 6}:R>\n\u200b",
                 colour=self.client.colours["generic_blue"])
             # print("Success:", purchase)
-        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
 
@@ -390,7 +390,7 @@ class Llamas(ext.Cog):
             embed.description += f"\n"
         embed.description += f"\u200b\n"
         embed.description = stw.truncate(embed.description, 3999)
-        embed = await stw.set_thumbnail(self.client, embed, "meme")
+        embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
 
