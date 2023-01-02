@@ -393,7 +393,7 @@ maximum_profiles = 25
 settings_per_page = 5
 default_settings_page = 1
 
-#a list of links to thumbnails that the bot utilises for embeds
+# a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]
 error = "https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png"
 warn = "https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png"
@@ -424,6 +424,8 @@ Shared2 = "https://cdn.discordapp.com/attachments/767607876348018689/10438443884
 incoming_envelope = "https://cdn.discordapp.com/attachments/767607876348018689/1046074223690522716/incoming-envelope_1f4e8.png"
 xp_everywhere = "https://cdn.discordapp.com/attachments/1042781227767312384/1051183843165601852/T_UI_FNBR_XPeverywhere_L.png"
 salute = "https://cdn.discordapp.com/attachments/767607876348018689/1052869723634810900/saluting-face_1fae1.gif"
+upgrade_llama = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263659102218/PinataStandardPack-Upgrade.png"
+fleming = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263956910110/T_CardPack_Fleming_IconMask.png"
 
 
 # Different colours for commands
@@ -438,7 +440,8 @@ auth_white = [255, 255, 255]
 crown_yellow = [255, 176, 41]
 vbuck_blue = [99, 240, 238]
 profile_lavendar = [217, 146, 255]
-# Dont edit values beyond this point unless you know what you're doing!
+
+# Dont edit values above or below this point unless you know what you're doing! (🖕 skidders)
 
 # endpoints for requests to be sent to
 [endpoints]
@@ -485,13 +488,13 @@ br = "athena" # battle royale
 cr = "creative" # creative
 collections = "collections" # br collections (fishing/npc)
 metadata = "metadata" # stw homebase metadata (access)
-collection_book_people0 = "collection_book_people0" # stw collection book (hero, survivor, defender)
-collection_book_schematics0 = "collection_book_schematics0" # stw collection book (schematics)
+cbook_ppl = "collection_book_people0" # stw collection book (hero, survivor, defender)
+cbook_schm = "collection_book_schematics0" # stw collection book (schematics)
 outpost0 = "outpost0" # stw storage
 theater0 = "theater0" # stw backpack
 theater1 = "theater1" # stw event backpack
 theater2 = "theater2" # stw ventures data
-recycle_bin = "recycle_bin" # stw recycle bin
+bin = "recycle_bin" # stw recycle bin
 
 [mango]
 uri_env_var = "STW_MONGO_URI" # added the env var mongodb://localhost:27017
