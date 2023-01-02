@@ -249,8 +249,8 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
                                              f"If you want to remove this link, press the"
                                              f" {client.config['emojis']['library_trashcan']} **Remove Link** "
                                              f"button\n\u200b\n"
-                                             f"If you want to authenticate with this account now, press the "
-                                             f"{client.config['emojis']['library_floppydisc']} **Authenticate Now** "
+                                             f"To reauthenticate with this account, press the "
+                                             f"{client.config['emojis']['library_floppydisc']} **Reauthenticate Now** "
                                              f"button\n\u200b\n"
                                              f"To enable auto-claim for all your accounts, press the "
                                              f"{client.config['emojis']['library_clock']} **Enable Auto Claim** "
@@ -518,11 +518,11 @@ class StolenAccountView(discord.ui.View):
             else:
                 await self.interaction.edit_original_response(embed=timeout_embed, view=self)
         except:
-            if isinstance(self.message, discord.Interaction):
-                method = self.message.edit_original_response
-            else:
-                method = self.message.edit
             try:
+                if isinstance(self.message, discord.Interaction):
+                    method = self.message.edit_original_response
+                else:
+                    method = self.message.edit
                 await method(view=self)
             except:
                 await self.ctx.edit(view=self)
@@ -584,7 +584,7 @@ class StolenAccountView(discord.ui.View):
 
         await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
 
-    @discord.ui.button(style=discord.ButtonStyle.green, label="Authenticate Now", emoji="library_floppydisc")
+    @discord.ui.button(style=discord.ButtonStyle.green, label="Reauthenticate Now", emoji="library_floppydisc")
     async def sell_your_data_button(self, button, interaction):
         """
         This function handles the auth now button
@@ -652,7 +652,7 @@ class StolenAccountView(discord.ui.View):
                                   f" {self.client.config['emojis']['library_trashcan']} **Remove Link** "
                                   f"button\n\u200b\n"
                                   f"To reauthenticate with this account, press the "
-                                  f"{self.client.config['emojis']['library_floppydisc']} **Authenticate Now** "
+                                  f"{self.client.config['emojis']['library_floppydisc']} **Reauthenticate Now** "
                                   f"button\n\u200b\n"
                                   f"To enable auto-claim for all your accounts, press the "
                                   f"{self.client.config['emojis']['library_clock']} **Enable Auto Claim** "
