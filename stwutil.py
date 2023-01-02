@@ -434,7 +434,7 @@ def get_reward(client, day, vbucks=True):
 
     if not vbucks:
         try:
-            item = [item.replace('V-Bucks & ', '')]
+            item = item.replace('V-Bucks & ', '')
             emojis[emojis.index('mtxswap_combined')] = 'xray'
         except:
             pass
@@ -442,7 +442,6 @@ def get_reward(client, day, vbucks=True):
     emoji_text = ""
     for emoji in emojis:
         emoji_text += client.config["emojis"][emoji]
-    # TODO: this may return a list, not a string if vbucks is false - fix this
     return [str(item), emoji_text]
 
 
@@ -1353,7 +1352,8 @@ async def add_other_game_entry(client, user_id, entry, game, other_games):
     return entry
 
 
-async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None, game="fn"):
+async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None, game="fn",
+                         original_token=""):
     """
     Adds a temporary authentication session entry for the user
 
@@ -1366,6 +1366,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         add_entry: Whether to start or opt out of an auth session
         bb_token: The battlebreakers access token to store
         game: The game to add the entry for
+        original_token: The original token to store
 
     Returns:
         The authentication session entry of the user
@@ -1382,6 +1383,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         "bb_token": bb_token,
         "bb_day": None,
         "games": [game],
+        "original_token": original_token
     }
     if add_entry:
         asyncio.get_event_loop().create_task(auto_stab_stab_session(client, ctx.author.id, entry['expiry']))
@@ -2131,16 +2133,15 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     # Attempt to retrieve the existing auth code.
     try:
         existing_auth = client.temp_auth[ctx.author.id]
+        existing_token = existing_auth["original_token"]
     except:
         existing_auth = None
+        existing_token = None
 
     # Return auth code if it exists
-    if existing_auth is not None and extracted_auth_code == "":
-
-        valid_session = await validate_existing_session(client, existing_auth["token"])
-
-        if valid_session:
-            # Send the logging in & processing if given
+    if existing_auth is not None and (extracted_auth_code == "" or extracted_auth_code == existing_token):  # does that work idk
+        if await validate_existing_session(client, existing_auth["token"]):
+            # Send the logging in & processing if given-
             if processing and not dont_send_embeds:
                 proc_embed = await processing_embed(client, ctx)
                 return [await slash_send_embed(ctx, proc_embed),
@@ -2340,7 +2341,8 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     #     except:
     #         entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, game=game)
 
-    entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry)  # authing for fn first
+    entry = await add_temp_entry(client, ctx, auth_token, account_id, response, add_entry,
+                                 original_token=extracted_auth_code)  # authing for fn first
     # print(entry)
     # print(game)
     # if game != "fn":
