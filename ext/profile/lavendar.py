@@ -325,7 +325,7 @@ class ProfileMainView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=self)
         self.stop()
 
-    @discord.ui.button(label="Information", emoji="experimental", row=2, disabled=False)
+    @discord.ui.button(label="Information", emoji="experimental", row=2)
     async def information_button(self, _button, interaction):  # hi
         """
         Called when the information button is pressed.
