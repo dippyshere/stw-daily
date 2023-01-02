@@ -22,9 +22,10 @@ class Reminder(ext.Cog):
 
     def __init__(self, client):
         self.client = client
-        self.dailyreminder.start()
+        if client.is_ready() and client.user.id == 757776996418715651:
+            self.reminder.start()
 
-    @tasks.loop(time=datetime.time(0, 0, tzinfo=datetime.timezone.utc))
+    @tasks.loop(time=datetime.time(tzinfo=datetime.timezone.utc))
     async def dailyreminder(self):
         """
         Sends a reminder to the stw dailies reminder channel
@@ -82,9 +83,10 @@ class TradingNag(ext.Cog):
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
-        self.tradingnag.start()
+        if client.is_ready() and client.user.id == 757776996418715651:
+            self.tradingnag.start()
 
-    @tasks.loop(time=datetime.time(7, 0, tzinfo=datetime.timezone.utc))
+    @tasks.loop(time=datetime.time(7, tzinfo=datetime.timezone.utc))
     async def tradingnag(self):
         """
         Sends a trading nag to the stw dailies trading channel everyday at 7am UTC (6pm aest)
@@ -109,18 +111,24 @@ class TradingNag(ext.Cog):
             """
             return m.author == self.client.user
 
-        await channel.purge(limit=50, check=is_me)
-        # TODO: add a way to skip sending the nag if the channel is dead
+        async for message in channel.history(limit=6):
+            if message.author == self.client.user:
+                return                              #         🥺
+        await channel.purge(limit=50, check=is_me)  # is me? 👉👈
+        # hi
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, "Welcome to the trading channel!",
-                                            "checkmark"), description="\u200b", colour=succ_colour)
-        embed.add_field(name=f'<:warningstwdaily:925648230736347158> **Some rules:**',
-                        value=f"```- Scam = Clowned\n- If scammed, DM Staff with proof + Discord ID```", inline=True)
-        embed.set_footer(text=
-                         f"\nTrading nag for STW Dailies"
-                         , icon_url=self.client.user.display_avatar.url)
+                                            "library_chat"),
+            description=f"\u200b\n"
+                        f"{self.emojis['library_clipboard']} **Some rules:**\n"
+                        f"```diff\n"
+                        f"- Scam = Clowned\n"
+                        f"- If scammed, DM mods with proof + Discord ID"
+                        f"```\u200b",
+            colour=succ_colour)
+        embed.set_footer(text=f"\nTrading nag for STW Dailies", icon_url=self.client.user.display_avatar.url)
         embed.timestamp = datetime.datetime.now()
-        embed = await stw.set_thumbnail(self.client, embed, "check")
+        embed = await stw.set_thumbnail(self.client, embed, "fleming")
         await channel.send(embed=embed)
 
 
