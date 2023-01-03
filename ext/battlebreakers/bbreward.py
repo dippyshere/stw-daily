@@ -140,6 +140,7 @@ class BBReward(ext.Cog):
                         embed.description = f'\u200b\nDisplaying rewards for day **{day:,}** ' \
                                             f'and **~{limit:,}** days after\n\u200b'
             # TODO: make this compliant with the upcoming day limit setting
+            # rip
             embed = await stw.set_thumbnail(self.client, embed, "Shared2")
             embed = await stw.add_requested_footer(ctx, embed)
 

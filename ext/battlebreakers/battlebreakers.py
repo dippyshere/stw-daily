@@ -82,6 +82,7 @@ class BattleBreakersDaily(ext.Cog):
         #     support_url = self.client.config["support_url"]
         #     acc_name = auth_info[1]["account_name"]
         #     # TODO: determine what happens here after 30th December 2022
+        #     # Answer: WEX 504 gateway timeout
         #     embed = await stw.post_error_possibilities(ctx, self.client, "bbdaily", acc_name, error_code, support_url,
         #                                                response=json_response)
         #     final_embeds.append(embed)
