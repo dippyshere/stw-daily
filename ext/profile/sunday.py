@@ -357,7 +357,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         self.selected_profile = str(user_document["global"]["selected_profile"])
 
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
-        print(current_slice)
+        # print(current_slice)
         settings_options = generate_settings_view_options(client, current_slice)
 
         self.children[0].options = generate_profile_select_options(client, int(self.selected_profile), user_document)
@@ -935,6 +935,8 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                     base_error_message += ","
 
         base_error_message += "*\n\u200b\n"
+        base_error_message.replace(":,", ":")
+        base_error_message.replace(",,", ",")
 
         if setting is not None and setting is not False:
             embed = await sub_setting_page(setting, client, ctx, user_profile)
