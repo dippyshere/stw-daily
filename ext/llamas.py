@@ -30,6 +30,7 @@ class LlamasView(discord.ui.View):
         self.llama_store = llama_store
         self.free_llama = free_llama
         self.preroll_data = preroll_data
+        self.interaction_check_done = {}
         self.children[0].options = llama_options
         self.auth_info = auth_info
 
@@ -137,6 +138,7 @@ class LlamasPurchaseView(discord.ui.View):
         self.auth_info = auth_info
         self.confirm_stage = 0
         self.price = 0
+        self.interaction_check_done = {}
         self.currency = ""
         self.contents = ""
         # self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
