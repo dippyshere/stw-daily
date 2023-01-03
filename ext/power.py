@@ -98,6 +98,8 @@ class Power(ext.Cog):
         if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds):
             return
         # TODO: Fix this calculation being slightly off
+        # TODO: Fix some stats being missing
+        # https://canary.discord.com/channels/757765475823517851/757768833946877992/1058604927557050438
         power_level, total, total_stats = stw.calculate_homebase_rating(stw_json_response)
 
         # With all info extracted, create the output

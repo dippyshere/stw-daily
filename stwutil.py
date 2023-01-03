@@ -1534,7 +1534,7 @@ async def battle_breakers_deprecation(client, ctx, command="Battle Breakers comm
     """
     generic = client.colours["generic_blue"]
     embed = discord.Embed(title=await add_emoji_title(client, "Command Unavailable", "broken_heart"),
-                          description=f"\u200b\n**Sorry... {command} {collective_noun} no longer available😢**\u200b\n"
+                          description=f"\u200b\n**Sorry... {command} {collective_noun} no longer available 😢**\u200b\n"
                                       f"\nAs of <t:1672425127:R>, Battle Breakers was shut down by Epic Games.\n"
                                       f"If you're interested, check out the "
                                       f"[Battle Breakers Private Server]"

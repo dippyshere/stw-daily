@@ -549,7 +549,6 @@ class Research(ext.Cog):
         research_points_claimed = None
         try:
             research_feedback, check = json_response["notifications"], False
-
             for notification in research_feedback:
                 if notification["type"] == "collectedResourceResult":
                     research_feedback, check = notification, True
@@ -581,8 +580,8 @@ class Research(ext.Cog):
                 return
             # this variable might be referenced before assignment hmm
             research_points_claimed = research_item['quantity']
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         # Create the embed for displaying nyaa~
 
