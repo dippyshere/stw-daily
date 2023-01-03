@@ -23,7 +23,17 @@ try:
 except ModuleNotFoundError:
     import tomli as toml
 
-client = ext.AutoShardedBot(command_prefix=ext.when_mentioned, case_insensitive=True, intents=discord.Intents.default())
+
+def stw_when_mentioned(bot: discord.ext.commands.Bot | discord.AutoShardedBot, msg: discord.Message) -> list[str]:
+    """A callable that implements a command prefix equivalent to being mentioned.
+
+    These are meant to be passed into the :attr:`.Bot.command_prefix` attribute.
+    """
+    # bot.user will never be None when this is called
+    return [f"<@{bot.user.id}>", f"<@!{bot.user.id}>"]  # type: ignore
+
+
+client = ext.AutoShardedBot(command_prefix=stw_when_mentioned, case_insensitive=True, intents=discord.Intents.default())
 
 
 def load_config(config_path):
@@ -162,19 +172,21 @@ async def on_message(message):
     Returns:
         None
     """
-    if '"' in message.content:
-        message = stw.process_quotes_in_message(message)
+    if message.content.startswith(tuple(client.command_prefix(client, message))):
+        message.content = " ".join(message.content.split())
+        message.content = message.content.replace(" ", "", 1)
+        if '"' in message.content:
+            message = stw.process_quotes_in_message(message)
+        # pro watch me i am the real github copilot
+        # make epic auth system thing
+        try:
+            if len(stw.extract_auth_code(message.content.split(" ")[1])) == 32:
+                await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
+                return
+        except IndexError:
+            pass
 
-    # pro watch me i am the real github copilot
-    # make epic auth system thing
-    try:
-        if len(stw.extract_auth_code(message.content.split(" ")[1])) == 32:
-            await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
-            return
-    except IndexError:
-        pass
-
-    await client.process_commands(message)
+        await client.process_commands(message)
 
 
 # simple task which updates the status every 60 seconds to display time until next day/reset
