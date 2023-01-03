@@ -221,21 +221,21 @@ class Help(ext.Cog):
                     if not command.extras["dev"]:
                         options.append(
                             discord.SelectOption(label=command.name, value=command.name,
-                                                 description=stw.truncate(command.brief, 100),
-                                                 emoji=self.emojis[command.extras['emoji']], default=False)
+                                                 description=stw.truncate(command.brief),
+                                                 emoji=self.emojis[command.extras['emoji']])
                         )
                     else:
                         if ctx.author.id in self.client.config["devs"]:
                             options.append(
                                 discord.SelectOption(label=command.name, value=command.name,
-                                                     description=stw.truncate(command.brief, 100),
-                                                     emoji=self.emojis[command.extras['emoji']], default=False)
+                                                     description=stw.truncate(command.brief),
+                                                     emoji=self.emojis[command.extras['emoji']])
                             )
                 except KeyError:
                     options.append(
                         discord.SelectOption(label=command.name, value=command.name,
-                                             description=stw.truncate(command.brief, 100),
-                                             emoji=self.emojis[command.extras['emoji']], default=False)
+                                             description=stw.truncate(command.brief),
+                                             emoji=self.emojis[command.extras['emoji']])
                     )
                 finally:
                     if selected is not None:
