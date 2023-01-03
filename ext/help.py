@@ -56,6 +56,10 @@ class HelpView(discord.ui.View):
             interaction: The interaction that was used.
         """
         embed = await self.help.help_embed(self.ctx, select.values[0])
+        if select.values[0] == "main_menu":
+            self.children[0].options = await self.help.select_options_commands(self.ctx, False)
+        else:
+            self.children[0].options = await self.help.select_options_commands(self.ctx, selected=select.values[0])
         await interaction.response.edit_message(embed=embed, view=self)
 
     async def on_timeout(self):
@@ -193,18 +197,24 @@ class Help(ext.Cog):
 
         return embed
 
-    async def select_options_commands(self, ctx):
+    async def select_options_commands(self, ctx, add_return=True, selected=None):
         """
         Creates the options for the select menu for the help command.
 
         Args:
             ctx: The context of the command.
+            add_return: Whether to add the return option to the list.
+            selected: The option that was selected.
 
         Returns:
             The options for the select menu.
         """
-        options = []
-        # TODO: active command as default in select menu
+        if add_return:
+            options = [discord.SelectOption(label="all", value="main_menu",
+                                            description="Return to viewing all available commands",
+                                            emoji=self.emojis['left_arrow'])]
+        else:
+            options = []
         for command in self.client.commands:
             if len(options) < 24:
                 try:
@@ -227,6 +237,12 @@ class Help(ext.Cog):
                                              description=stw.truncate(command.brief, 100),
                                              emoji=self.emojis[command.extras['emoji']], default=False)
                     )
+                finally:
+                    if selected is not None:
+                        if selected == command.name:
+                            options[-1].default = True
+            else:
+                break
 
         return options
 
@@ -240,10 +256,7 @@ class Help(ext.Cog):
         """
         embed = await self.help_embed(ctx, command)
         # TODO: dont add this if we arent in a submenu
-        help_options = [discord.SelectOption(label="all", value="main_menu",
-                                             description="Return to viewing all available commands",
-                                             emoji=self.emojis['left_arrow'], default=False)]
-        help_options += await self.select_options_commands(ctx)
+        help_options = await self.select_options_commands(ctx, False)
 
         help_view = HelpView(ctx, help_options, self.client)
         help_view.help = self
