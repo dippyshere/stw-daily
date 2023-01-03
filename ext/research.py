@@ -460,7 +460,7 @@ class Research(ext.Cog):
         res_green = self.client.colours["research_green"]
         crown_yellow = self.client.colours["crown_yellow"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "research", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 
