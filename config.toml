@@ -427,6 +427,7 @@ salute = "https://cdn.discordapp.com/attachments/767607876348018689/105286972363
 upgrade_llama = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263659102218/PinataStandardPack-Upgrade.png"
 fleming = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263956910110/T_CardPack_Fleming_IconMask.png"
 floppy = "https://cdn.discordapp.com/attachments/1042781227767312384/1059456356492525679/T_UI_IconLibrary_FloppyDisc_128.png"
+disconnected = "https://cdn.discordapp.com/attachments/1042781227767312384/1059460908763586620/T_UI_IconLibrary_Disconnected_128.png"
 
 
 # Different colours for commands

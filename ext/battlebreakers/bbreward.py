@@ -36,14 +36,14 @@ class BBReward(ext.Cog):
         Returns:
             None
         """
-        try:
-            temp_auth = self.client.temp_auth[ctx.author.id]
-            if day == 'hi readers of the bot':
-                daye = temp_auth["bb_day"]
-                if daye is not None:
-                    day = daye
-        except:
-            pass
+        # try:
+        #     temp_auth = self.client.temp_auth[ctx.author.id]
+        #     if day == 'hi readers of the bot':
+        #         daye = temp_auth["bb_day"]
+        #         if daye is not None:
+        #             day = daye
+        # except:
+        #     pass
 
         embed_colour = self.client.colours["reward_magenta"]
         err_colour = self.client.colours["error_red"]
@@ -180,13 +180,16 @@ class BBReward(ext.Cog):
                           'bbrwfrd', 'bbrwrfd', 'bbrwrsd', 'bbrwrds', 'bbrwrde', 'bbrwrdr', 'bbrwrdf', 'bbrwrcd',
                           'bbrwrdc', 'bbrwrxd', 'bbrwrdx', '/bbr', '/bbrwrd', '/bbreward', '/battlebreakersrewards',
                           'battlebreakersrewards', 'bbitem', '/bbitem'],
-                 extras={'emoji': "Shared2", "args": {'day': 'The day to get the rewards of. Not required if you '
-                                                             'are authenticated',
+                 extras={'emoji': "Shared2", "args": {'day': 'The day to get the rewards of',
                                                       'limit': 'The number of upcoming days to see (Optional)'},
                          "dev": False},
-                 brief="View info about a specific day\'s reward, and the rewards that follow in Battle Breakers",
+                 brief="View info about a specific day's reward, and the rewards that follow in Battle Breakers",
                  description="This command lets you view the rewards of any specific day, and any number of rewards "
-                             "that follow. This command is for Battle Breakers rewards.")
+                             "that follow in Battle Breakers.\n\n"
+                             "As of <t:1672425127:R>, Battle Breakers has been shut down. 💔\n"
+                             "If you'd like to continue playing Battle Breakers from your "
+                             "profile dump, or just want to play it again, check out "
+                             "https://github.com/dippyshere/battle-breakers-private-server.")
     async def bbreward(self, ctx, day='hi readers of the bot', limit='7'):
         """
         This command lets you view the rewards of any specific day, and any number of rewards that follow.
@@ -198,12 +201,12 @@ class BBReward(ext.Cog):
         """
         await self.bbreward_command(ctx, day, int(limit))
 
-    @slash_command(name='bbreward',
-                   description='View info about a specific day\'s reward, and the rewards that follow in Battle Breakers',
+    @slash_command(name="bbreward",
+                   description="View info about a specific day's reward, and the rewards that follow in Battle Breakers",
                    guild_ids=stw.guild_ids)
     async def bbslashreward(self, ctx: discord.ApplicationContext,
                             day: Option(int,
-                                        "The day to get the rewards of. Not required if you are authenticated") = 'hi readers of the bot',
+                                        "The day to get the rewards of") = 'hi readers of the bot',
                             limit: Option(int, "The number of upcoming days to see") = 7):
         """
         This command lets you view the rewards of any specific day, and any number of rewards that follow.

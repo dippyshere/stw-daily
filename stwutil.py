@@ -1519,6 +1519,33 @@ async def create_news_page(self, ctx, news_json, current, total):
     return embed
 
 
+async def battle_breakers_deprecation(client, ctx, command="Battle Breakers commands", collective_noun="are"):
+    """
+    Creates a warning embed for deprecated battle breakers commands
+
+    Args:
+        client: The client
+        ctx: The context
+        command: The command that is deprecated
+        collective_noun: The collective noun to use for grammar
+
+    Returns:
+        the constructed bb deprecation warning embed
+    """
+    generic = client.colours["generic_blue"]
+    embed = discord.Embed(title=await add_emoji_title(client, "Command Unavailable", "broken_heart"),
+                          description=f"\u200b\n**Sorry... {command} {collective_noun} no longer available😢**\u200b\n"
+                                      f"\nAs of <t:1672425127:R>, Battle Breakers was shut down by Epic Games.\n"
+                                      f"If you're interested, check out the "
+                                      f"[Battle Breakers Private Server]"
+                                      f"(https://github.com/dippyshere/battle-breakers-private-server) project.",
+                          colour=generic)
+    embed.description += "\u200b\n\u200b"
+    embed = await set_thumbnail(client, embed, "disconnected")
+    embed = await add_requested_footer(ctx, embed)
+    return embed
+
+
 async def set_embed_image(embed, image_url):
     """
     Sets the embed image
