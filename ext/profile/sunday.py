@@ -832,6 +832,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
         discord.Embed: The embed.
     """
     settings = client.settings_choices
+    settings_per_page = 5
 
     user_profile = await get_user_document(ctx, client, ctx.author.id)
     user_snowflake = user_profile["user_snowflake"]
