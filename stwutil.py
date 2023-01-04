@@ -135,6 +135,7 @@ def edit_emoji_button(client, button):
     button.emoji = client.config["emojis"][button.emoji.name]
     return button
 
+
 global_quotes = discord.ext.commands.view._all_quotes
 def process_quotes_in_message(message_content): """Handles quotes in a message's content by replacing them with the appropriate unicode character\n\n\u200b\n\n**Args:**\n\n*message: the message to process*\n\n\n**Returns:**\n\n*The processed message*"""; [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["＂]', message_content)][1:-1])];     [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'[‘,’,“,”,„,‟,⹂,⹂,「,」,『,』,〝,〞,﹁,﹂,﹃,﹄,｢,｣,«,»,‹,›,《,》,〈,〉]', message_content)])]; return message_content
 
@@ -2540,7 +2541,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
         embed = await create_error_embed(client, ctx,
                                          description=f"Attempted to change Homebase name to:\n"
                                                      f"```{truncate(acc_name)}```\n"
-                                                     f"**This name is too long.**\n"
+                                                     f"**This name is too long**\n"
                                                      f"⦾ Homebase names must be under 16 characters\n"
                                                      f"⦾ Homebase names also have additional criteria, to check them, "
                                                      f"try running "
@@ -2552,7 +2553,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
         embed = await create_error_embed(client, ctx,
                                          description=f"Attempted to change Homebase name to:\n"
                                                      f"```{truncate(acc_name)}```\n"
-                                                     f"**This name contains unacceptable characters.**\n"
+                                                     f"**This name contains unacceptable characters**\n"
                                                      f"⦾ Homebase names must be alphanumeric, with limited support "
                                                      f"for extra characters.\n"
                                                      f"⦾ Homebase names also have additional criteria, to check them, "
