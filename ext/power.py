@@ -64,7 +64,7 @@ class Power(ext.Cog):
         """
         vbucc_colour = self.client.colours["vbuck_blue"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "power", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
 

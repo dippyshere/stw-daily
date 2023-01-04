@@ -602,7 +602,7 @@ class StolenAccountView(discord.ui.View):
             child.disabled = True
         await interaction.response.edit_message(view=self)
 
-        auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "stw dev auth", "", True, False, True)
+        auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", "", True, False, True)
         await stw.slash_send_embed(self.ctx, embeds=auth_stuff[2])
 
         if not self.timed_out:
