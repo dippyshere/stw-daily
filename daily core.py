@@ -3,6 +3,9 @@ STW Daily Discord bot Copyright 2022 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
+import asyncio
+import time
+
 print("Starting STW Daily")
 
 import orjson
@@ -109,7 +112,6 @@ def main():
         print(client.load_extension(f"ext.{extension}"))
 
     set_client_modules(client)
-
     update_status.start()
     client.run(f"{os.environ['STW_DAILY_TOKEN']}")
 
@@ -176,8 +178,12 @@ async def on_message(message):
     if message.content.startswith(tuple(client.command_prefix(client, message))):
         message.content = " ".join(message.content.split())
         message.content = message.content.replace(" ", "", 1)
-        if '"' in message.content:
-            message = stw.process_quotes_in_message(message)
+
+        now = time.perf_counter_ns()
+        if set(message.content) & stw.global_quotes:
+            message_future = await asyncio.gather(asyncio.to_thread(stw.process_quotes_in_message, message.content))
+            message.content = message_future[0]
+            print(time.perf_counter_ns() - now)
         # pro watch me i am the real github copilot
         # make epic auth system thing
         try:

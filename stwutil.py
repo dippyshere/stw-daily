@@ -136,8 +136,10 @@ def edit_emoji_button(client, button):
     return button
 
 
+global_quotes = discord.ext.commands.view._all_quotes
 
-def process_quotes_in_message(message):
+
+def process_quotes_in_message(message_content):
     """
     Handles quotes in a message's content by replacing them with the appropriate unicode character
 
@@ -145,44 +147,11 @@ def process_quotes_in_message(message):
         message_content:  content of the message to process
 
     Returns:
-        The processed message
+        The processed messages content
     """
-    # do not question the ways of the regex
-    re_iter = re.finditer(r'((?:^|\s)\"|\"(?:\s|$))', message.content)
-
-    indices = [m.start(0) for m in re_iter]
-    content = list(message.content)
-
-    if len(indices) == 1:
-        indices = []
-
-    else:
-
-        rem_values = []
-
-        # true represents an ending ", False represents a starting "
-        temp_indices = [True if content[index] == '"' else False for index in indices]
-
-        for index, value in enumerate(temp_indices[:-1]):
-
-            if not value:
-                indices[index] += 1
-                if not temp_indices[index + 1]:
-                    rem_values.append(index + 1)
-
-            elif temp_indices[index + 1] and value:
-                rem_values.append(index)
-
-        for remove_index in rem_values:
-            indices[remove_index] = 0
-
-    # fear my list comprehension
-    escaped_content = [r'\\"' if char == '"' and index not in indices else char for index, char in enumerate(content)]
-
-    # reform list into a string
-    message.content = "".join(escaped_content)
-
-    return message
+    # The echoes of the void shall haunt us forever
+    [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["]', message_content)][1:-1])]
+    return message_content
 
 
 async def slash_send_embed(ctx, embeds, view=None, interaction=False):
