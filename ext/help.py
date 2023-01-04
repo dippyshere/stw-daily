@@ -255,7 +255,10 @@ class Help(ext.Cog):
             command: The command to get the help page for.
         """
         embed = await self.help_embed(ctx, command)
-        help_options = await self.select_options_commands(ctx, False)
+        if command in self.client.command_name_list:
+            help_options = await self.select_options_commands(ctx, selected=command)
+        else:
+            help_options = await self.select_options_commands(ctx, False)
 
         help_view = HelpView(ctx, help_options, self.client)
         help_view.help = self
