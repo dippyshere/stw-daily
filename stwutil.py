@@ -2589,8 +2589,8 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"**This name is too long.**\n"
                                                      f"⦾ Homebase names must be under 16 characters\n"
                                                      f"⦾ Homebase names also have additional criteria, to check them, "
-                                                     f"try running"
-                                                     f"{await mention_string(client, 'help {0}'.format(command))}\n",
+                                                     f"try running "
+                                                     f"{await mention_string(client, 'help {0}'.format(command))}",
                                          prompt_authcode=False, command=command,
                                          error_level=error_level)
 
@@ -2602,8 +2602,8 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"⦾ Homebase names must be alphanumeric, with limited support "
                                                      f"for extra characters.\n"
                                                      f"⦾ Homebase names also have additional criteria, to check them, "
-                                                     f"try running"
-                                                     f"{await mention_string(client, 'help {0}'.format(command))}\n",
+                                                     f"try running "
+                                                     f"{await mention_string(client, 'help {0}'.format(command))}",
                                          prompt_authcode=False, command=command,
                                          error_level=error_level)
 
