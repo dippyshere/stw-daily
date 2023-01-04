@@ -2108,6 +2108,60 @@ async def check_devauth_user_auth_input(client, ctx):
         return False
 
 
+async def create_error_embed(client, ctx, title=None, description=None, prompt_help=False, prompt_authcode=True,
+                             prompt_newcode=False, command="", error_level=1, title_emoji=None, thumbnail=None,
+                             colour=None):
+    """
+    Creates an embed with the error colour and the error emoji
+
+    Args:
+        client (discord.Client): The discord client
+        ctx: The discord context
+        title (str): The title of the embed
+        description (str): The description of the embed
+        prompt_help (bool): If the embed should prompt the user to use the help command
+        prompt_authcode (bool): If the embed should prompt the user to get a new code
+        prompt_newcode (bool): If the embed should prompt the user to get a new code each time
+        command (str): The command to prompt the user to use
+        error_level (int): The error level, 1 = error, 2 = warning, 3 = info
+        title_emoji (str): The emoji to use for the title
+        thumbnail (str): The thumbnail to use
+        colour (str): The colour to use
+
+    Returns:
+        discord.Embed: The created embed
+    """
+    if error_level:
+        if title_emoji is None:
+            title_emoji = "error"
+        if thumbnail is None:
+            thumbnail = "error"
+        if colour is None:
+            colour = "error_red"
+    else:
+        if title_emoji is None:
+            title_emoji = "warning"
+        if thumbnail is None:
+            thumbnail = "warn"
+        if colour is None:
+            colour = "warning_yellow"
+    if title is None:
+        title = random_error(client)
+
+    embed = discord.Embed(title=await add_emoji_title(client, title, title_emoji), description=f"\u200b\n{description}",
+                          colour=client.colours[colour])
+    if prompt_help:
+        embed.description += f"\n\u200b\n**If you need help, check out:**\n" \
+                             f"{await mention_string(client, 'help {0}'.format(command))}  •  {bytes.fromhex('5B4A6F696E2074686520737570706F7274207365727665725D2868747470733A2F2F646973636F72642E67672F51596741425044717A4829').decode('utf-8')}"
+    if prompt_newcode:
+        embed.description += f"\n*You'll need a new code __each time__ you authenticate*"
+
+    embed.description += f"\n\u200b"
+    embed = await set_thumbnail(client, embed, thumbnail)
+    embed = await add_requested_footer(ctx, embed)
+    return embed
+
+
 async def get_or_create_auth_session(client, ctx, command, original_auth_code, add_entry=False, processing=True,
                                      dont_send_embeds=False):  # hi bye
     """
@@ -2166,7 +2220,8 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
         existing_token = None
 
     # Return auth code if it exists
-    if existing_auth is not None and (extracted_auth_code == "" or extracted_auth_code == existing_token):  # does that work idk
+    if existing_auth is not None and (
+            extracted_auth_code == "" or extracted_auth_code == existing_token):  # does that work idk
         if await validate_existing_session(client, existing_auth["token"]):
             # Send the logging in & processing if given-
             if processing and not dont_send_embeds:
