@@ -2459,7 +2459,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"```{acc_name}```\n"
                                                      f"**You are not allowed to purchase this item.**\n"
                                                      f"⦾ You may have exceeded the daily limit on this item.\n"
-                                                     f"⦾ Returning <t:{int(time.time()) + 6.6}:R>",
+                                                     f"⦾ Returning <t:{int(time.time()) + 7}:R>",
                                          prompt_help=True, prompt_authcode=False, command=command,
                                          error_level=error_level)
     elif error_code == "errors.com.epicgames.modules.gamesubcatalog.cannot_afford_purchase":
@@ -2467,7 +2467,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                          description=f"Attempted to {verbiage_action} with account:\n"
                                                      f"```{acc_name}```\n"
                                                      f"**You cannot afford this item**\n"
-                                                     f"⦾ Returning <t:{int(time.time()) + 6.6}:R>",
+                                                     f"⦾ Returning <t:{int(time.time()) + 7}:R>",
                                          prompt_help=True, prompt_authcode=False, command=command,
                                          error_level=error_level)
     elif error_code == "errors.com.epicgames.modules.gamesubcatalog.catalog_out_of_date":
@@ -2476,7 +2476,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"```{acc_name}```\n"
                                                      f"**The shop has updated**\n"
                                                      f"⦾ Please re-run {await mention_string(client, command)}\n"
-                                                     f"⦾ Returning <t:{int(time.time()) + 6.6}:R>",
+                                                     f"⦾ Returning <t:{int(time.time()) + 7}:R>",
                                          prompt_help=True, prompt_authcode=False, command=command,
                                          error_level=error_level)
     # battle breakers error codes
