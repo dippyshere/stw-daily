@@ -530,9 +530,9 @@ ru = ["Russian", "Pусский", "ru", "russia", "ru-RU", "ru_RU", "ruRU", "rus
 uk = ["Ukrainian", "Українська", "uk", "ukraine", "uk-UA", "uk_UA", "ukUA", "ukrainian", "ukrainian"]
 hi = ["Hindi", "हिन्दी", "hi", "india", "hi-IN", "hi_IN", "hiIN", "hindi", "hindi"]
 th = ["Thai", "ไทย", "th", "thailand", "th-TH", "th_TH", "thTH", "thai", "thai"]
-zh-CN = ["Chinese, China", "中文", "zh", "zh-CN", "zh_CN", "zhCN", "zh-Hans", "zh_Hans", "zhHans"]
+zh-CN = ["Chinese, China", "中文", "zh-CN", "zh_CN", "zhCN", "zh-Hans", "zh_Hans", "zhHans"]
 ja = ["Japanese", "日本語", "ja", "ja-JP", "ja_JP", "jaJP", "ja-JP-mac", "ja_JP_mac", "jaJPmac"]
-zh-TW = ["Chinese, Taiwan", "繁體中文", "zh", "zh-TW", "zh_TW", "zhTW", "zh-Hant", "zh_Hant", "zhHant"]
+zh-TW = ["Chinese, Taiwan", "繁體中文", "zh-TW", "zh_TW", "zhTW", "zh-Hant", "zh_Hant", "zhHant"]
 ko = ["Korean", "한국어", "ko", "ko-KR", "ko_KR", "koKR", "ko-KP", "ko_KP", "koKP"]
 # whats with tthe :sob: lmao what have you done oh you added more
 
