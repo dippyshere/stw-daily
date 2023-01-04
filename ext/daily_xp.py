@@ -65,8 +65,7 @@ class DailyXP(ext.Cog):
         """
         generic_colour = self.client.colours["generic_blue"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "dailyxp", authcode, auth_opt_out, True,
-                                                         True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "dailyxp", authcode, auth_opt_out)
         if not auth_info[0]:
             return
 
