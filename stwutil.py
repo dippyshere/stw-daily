@@ -135,23 +135,8 @@ def edit_emoji_button(client, button):
     button.emoji = client.config["emojis"][button.emoji.name]
     return button
 
-
 global_quotes = discord.ext.commands.view._all_quotes
-
-
-def process_quotes_in_message(message_content):
-    """
-    Handles quotes in a message's content by replacing them with the appropriate unicode character
-
-    Args:
-        message_content:  content of the message to process
-
-    Returns:
-        The processed messages content
-    """
-    # The echoes of the void shall haunt us forever
-    [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["]', message_content)][1:-1])]
-    return message_content
+def process_quotes_in_message(message_content): """Handles quotes in a message's content by replacing them with the appropriate unicode character\n\n\u200b\n\n**Args:**\n\n*message: the message to process*\n\n\n**Returns:**\n\n*The processed message*"""; [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["＂]', message_content)][1:-1])];     [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'[‘,’,“,”,„,‟,⹂,⹂,「,」,『,』,〝,〞,﹁,﹂,﹃,﹄,｢,｣,«,»,‹,›,《,》,〈,〉]', message_content)])]; return message_content
 
 
 async def slash_send_embed(ctx, embeds, view=None, interaction=False):
