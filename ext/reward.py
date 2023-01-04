@@ -66,36 +66,42 @@ class Reward(ext.Cog):
         embed_colour = self.client.colours["reward_magenta"]
         err_colour = self.client.colours["error_red"]
         if day == 'hi readers of the bot':
-            # TODO: update this message
-            embed = discord.Embed(colour=err_colour,
-                                  title=await stw.add_emoji_title(self.client, "Missing Day", "error"),
-                                  description="```Please specify the day (number) of which you would like to see```")
-            embed = await stw.add_requested_footer(ctx, embed)
-            embed = await stw.set_thumbnail(self.client, embed, "error")
+            embed = await stw.create_error_embed(self.client, ctx,
+                                                 description=f"**No day specified**\n"
+                                                             f"⦾ You need to specify a day to get the reward for\n"
+                                                             f"⦾ For example, "
+                                                             f"{await stw.mention_string(self.client, 'reward 336')}",
+                                                 error_level=0, command="reward", prompt_help=True,
+                                                 prompt_authcode=False)
             await stw.slash_send_embed(ctx, embed)
+            return
 
         else:
             try:
                 day = int(day)
-                limit = int(limit)
-
-                if limit < 0:
-                    limit = 7
-                if day <= 0:
-                    day = 1
-                    # hi?
-                    # hi?
-                    # hi?
-                    # hi?
             except ValueError:
-                # TODO: update this message
-                embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Non Numeric Day or Limit", "error"),
-                                      description="```The inputted day or limit must be a valid integer, please try again```")
-                embed = await stw.add_requested_footer(ctx, embed)
-                embed = await stw.set_thumbnail(self.client, embed, "error")
+                embed = await stw.create_error_embed(self.client, ctx,
+                                                     description="**Invalid number**\n"
+                                                                 "⦾ The day must be a number",
+                                                     error_level=0, prompt_help=True, prompt_authcode=False,
+                                                     command="reward")
                 await stw.slash_send_embed(ctx, embed)
                 return
+            try:
+                limit = int(limit)
+            except ValueError:
+                embed = await stw.create_error_embed(self.client, ctx,
+                                                     description="**Invalid number**\n"
+                                                                 "⦾ The limit must be a number",
+                                                     error_level=0, prompt_help=True, prompt_authcode=False,
+                                                     command="reward")
+                await stw.slash_send_embed(ctx, embed)
+                return
+            if limit < 0:
+                limit = 7
+            if day <= 0:
+                day = 1
+
             limit_str = f" and **{limit:,}** days after" if limit >= 1 else ""
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "stormeye"),
                                   description=f'\u200b\nDisplaying rewards for day **{day:,}**{limit_str}\n\u200b',
@@ -104,13 +110,12 @@ class Reward(ext.Cog):
             try:
                 reward = stw.get_reward(self.client, day, vbucks)
             except:
-                # TODO: update this message
-                embed = discord.Embed(colour=err_colour,
-                                      title=await stw.add_emoji_title(self.client, "Invalid Day", "error"),
-                                      description="```Please retry with a valid integer.```")
-                embed = await stw.add_requested_footer(ctx, embed)
-                embed = await stw.set_thumbnail(self.client, embed, "error")
+                embed = await stw.create_error_embed(self.client, ctx,
+                                                     description=f"**An error occured when fetching day {day}**\n"
+                                                                 f"⦾ Please let us know on the support server :D",
+                                                     prompt_help=True, prompt_authcode=False, command="reward")
                 await stw.slash_send_embed(ctx, embed)
+                print(f"Error when getting reward for day {day}")
                 return
 
             embed.add_field(name=f'**{reward[1]} Item: **', value=f'```{reward[0]}```\u200b')
