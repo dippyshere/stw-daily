@@ -45,7 +45,7 @@ class ProfileDump(ext.Cog):
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "profiledump", acc_name, error_code,
-                                                       support_url)
+                                                       verbiage_action="dump profiles")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True

@@ -42,7 +42,8 @@ class Homebase(ext.Cog):
             error_code = public_json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
+                                                       verbiage_action="change Homebase name")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return error_code, True
@@ -59,7 +60,7 @@ class Homebase(ext.Cog):
                     acc_name = auth_info[1]["account_name"]
                     error_code = "errors.com.epicgames.fortnite.check_access_failed"
                     embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
-                                                               support_url)
+                                                               verbiage_action="change Homebase name")
                     final_embeds.append(embed)
                     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                     return error_code, True
@@ -158,13 +159,13 @@ class Homebase(ext.Cog):
             if len(name) > 16:
                 error_code = "errors.stwdaily.homebase_long"
                 embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
-                                                           self.client.config["support_url"])
+                                                           verbiage_action="change Homebase name")
                 final_embeds.append(embed)
                 await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
             error_code = "errors.stwdaily.homebase_illegal"
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
-                                                       self.client.config["support_url"])
+                                                       verbiage_action="change Homebase name")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return

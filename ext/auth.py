@@ -34,6 +34,7 @@ class Auth(ext.Cog):
         Args:
             ctx (discord.ext.commands.Context): The context of the command
             token: The token to authenticate with
+            repeated: Whether or not the command has been repeated
 
         Returns:
             None

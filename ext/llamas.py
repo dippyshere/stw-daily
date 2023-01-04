@@ -263,7 +263,8 @@ class LlamasPurchaseView(discord.ui.View):
             error_code = purchase["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = self.auth_info["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code,
+                                                       verbiage_action="purchase Llama")
             print("Error:", purchase)
         except:
             embed = discord.Embed(
@@ -305,7 +306,8 @@ class Llamas(ext.Cog):
             error_code = public_json_response["errorCode"]
             support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code,
+                                                       verbiage_action="get Llama info")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True

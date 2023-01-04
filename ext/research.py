@@ -202,7 +202,7 @@ class ResearchView(discord.ui.View):
                 support_url = self.client.config["support_url"]
                 acc_name = self.auth_info[1]["account_name"]
                 embed = await stw.post_error_possibilities(self.ctx, self.client, "research", acc_name, error_code,
-                                                           support_url)
+                                                           verbiage_action="research item")
                 await interaction.edit_original_response(embed=embed, view=self)
                 return
             except:
@@ -345,7 +345,8 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
 
     try:
         error_code = json_response["errorCode"]
-        embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
+        embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code,
+                                                   verbiage_action="research")
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return None, None
@@ -369,7 +370,8 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         except:
             # account doesn't have stw
             error_code = "errors.com.epicgames.fortnite.check_access_failed"
-            embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code,
+                                                       verbiage_action="research")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return None, None
@@ -509,7 +511,8 @@ class Research(ext.Cog):
         if research_guid_check[0] is None:
             print("errors.stwdaily.failed_guid_research encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_guid_research"
-            embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
+                                                       verbiage_action="research")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
@@ -524,7 +527,8 @@ class Research(ext.Cog):
 
         try:
             error_code = json_response["errorCode"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
+                                                       verbiage_action="research")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         except:
@@ -535,7 +539,8 @@ class Research(ext.Cog):
         if total_points_check[0] is None:
             print("errors.stwdaily.failed_total_points encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_total_points"
-            embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code, support_url)
+            embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
+                                                       verbiage_action="research")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
@@ -557,7 +562,7 @@ class Research(ext.Cog):
             if not check:
                 error_code = "errors.stwdaily.failed_get_collected_resource_type"
                 embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
-                                                           support_url)
+                                                           verbiage_action="research")
                 final_embeds.append(embed)
                 await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
@@ -574,7 +579,7 @@ class Research(ext.Cog):
             if not check:
                 error_code = "errors.stwdaily.failed_get_collected_resource_item"
                 embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
-                                                           support_url)
+                                                           verbiage_action="research")
                 final_embeds.append(embed)
                 await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return

@@ -25,7 +25,7 @@ class EmbedTester(ext.Cog):
         self.emojis = client.config["emojis"]
 
     async def et_command(self, ctx, title, desc, prompt_help, prompt_authcode, prompt_newcode, command, error_level,
-                         title_emoji, thumbnail, colour):
+                         title_emoji, thumbnail, colour, add_auth_gif):
         """
         The embed tester command
 
@@ -41,12 +41,14 @@ class EmbedTester(ext.Cog):
             title_emoji: The emoji to be used in the title
             thumbnail: The thumbnail of the embed
             colour: The colour of the embed
+            add_auth_gif: Whether to add the auth gif to the embed
 
         Returns:
             None
         """
         embed = await stw.create_error_embed(self.client, ctx, title, desc, prompt_help, prompt_authcode,
-                                             prompt_newcode, command, error_level, title_emoji, thumbnail, colour)
+                                             prompt_newcode, command, error_level, title_emoji, thumbnail, colour,
+                                             add_auth_gif)
         return await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='embedtester',
@@ -70,7 +72,7 @@ class EmbedTester(ext.Cog):
                          "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
     async def embedtester(self, ctx, title=None, desc=None, prompt_help=False, prompt_authcode=True,
                           prompt_newcode=False, command="", error_level=1, title_emoji=None, thumbnail=None,
-                          colour=None):
+                          colour=None, add_auth_gif=False):
         """
         This function is the entry point for the embedtest command when called traditionally
 
@@ -86,10 +88,11 @@ class EmbedTester(ext.Cog):
             title_emoji: The emoji to be used in the title
             thumbnail: The thumbnail of the embed
             colour: The colour of the embed
+            add_auth_gif: Whether to add the auth gif to the embed
         """
 
         await self.et_command(ctx, title, desc, bool(prompt_help), bool(prompt_authcode), bool(prompt_newcode), command,
-                              int(error_level), title_emoji, thumbnail, colour)
+                              int(error_level), title_emoji, thumbnail, colour, bool(add_auth_gif))
 
 
 def setup(client):

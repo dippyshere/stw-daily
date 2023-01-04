@@ -194,13 +194,11 @@ async def get_user_document(ctx, client, user_snowflake, silent_error=False):
         dict: The user document.
     """
 
-    error_check = await stw.processing_queue_error_check(client, user_snowflake)
+    error_check = await stw.processing_queue_error_check(client, ctx, user_snowflake)
 
     if error_check is not True:
 
         if not silent_error:
-            error_check = await stw.set_thumbnail(client, error_check, "error")
-            error_check = await stw.add_requested_footer(ctx, error_check)
             await stw.slash_send_embed(ctx, embeds=error_check)
         print(f"{user_snowflake} STUCK IN PROCESSING USER DOCUMENT?")
         return False
