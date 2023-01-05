@@ -22,8 +22,7 @@ class Reminder(ext.Cog):
 
     def __init__(self, client):
         self.client = client
-        if client.is_ready() and client.user.id == 757776996418715651:
-            self.reminder.start()
+        self.reminder.start()
 
     @tasks.loop(time=datetime.time(tzinfo=datetime.timezone.utc))
     async def dailyreminder(self):
@@ -83,8 +82,7 @@ class TradingNag(ext.Cog):
     def __init__(self, client):
         self.client = client
         self.emojis = client.config["emojis"]
-        if client.is_ready() and client.user.id == 757776996418715651:
-            self.tradingnag.start()
+        self.tradingnag.start()
 
     @tasks.loop(time=datetime.time(7, tzinfo=datetime.timezone.utc))
     async def tradingnag(self):

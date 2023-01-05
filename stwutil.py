@@ -615,8 +615,7 @@ def random_waiting_message(client):
     return random.choice(client.config["wait_on_user_messages"])
 
 
-async def check_for_auth_errors(client, request, ctx, message, command, auth_code, invite_link,
-                                send_error_message=True):
+async def check_for_auth_errors(client, request, ctx, message, command, auth_code, send_error_message=True):
     """
     Checks for auth errors and sends the appropriate message
 
@@ -627,7 +626,6 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         message: the message to edit
         command: the command that was run
         auth_code: the auth code used
-        invite_link: the support server invite link
         send_error_message: whether to send the error message or not
 
     Returns:
@@ -640,7 +638,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         error_code = request["errorCode"]
         error_message = request["errorMessage"]
 
-    if auth_code == "": auth_code = " "
+    if auth_code == "": auth_code = "{saved session}" # hell o
 
     print(f'[ERROR]: {error_code}')
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
@@ -668,7 +666,8 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
                                                      f"**Your saved auth info has expired 😱**\n"
                                                      f"⦾ Please try {await mention_string(client, 'kill')}, then "
                                                      f"{await mention_string(client, 'device')} and remove your linked"
-                                                     f" account",
+                                                     f" account\n"
+                                                     f"⦾ If you enabled auto-claim, you will need to re-enable it",
                                          prompt_help=True, command=command)
 
     elif error_code == 'errors.com.epicgames.accountportal.date_of_birth_verification_required':
@@ -2185,12 +2184,8 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
             except:
                 pass
 
-    error_colour = client.colours["error_red"]
     white_colour = client.colours["auth_white"]
     error_embed = None
-    support_url = client.config["support_url"]
-
-    auth_client_id = "ec684b8c687f479fadea3cb2ad83f5c6"
 
     auth_with_devauth = False
     user_document = None
@@ -2299,7 +2294,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
             pass
 
     check_auth_error_result = await check_for_auth_errors(client, response, ctx, message, command,
-                                                          extracted_auth_code, support_url, not dont_send_embeds)
+                                                          extracted_auth_code, not dont_send_embeds)
 
     try:
         success, auth_token, account_id = check_auth_error_result
