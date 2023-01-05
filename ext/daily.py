@@ -85,8 +85,8 @@ class Daily(ext.Cog):
             except:
                 pass
 
-            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
             try:
+                user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
                 currently_selected_profile = str(user_document["global"]["selected_profile"])
                 limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"] + 1
             except:

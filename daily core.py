@@ -16,6 +16,7 @@ import base64
 import discord.ext.commands as ext
 from discord.ext import tasks
 from Crypto.Cipher import AES
+import re
 
 import stwwatch as watch
 import stwutil as stw
@@ -177,17 +178,19 @@ async def on_message(message):
     """
     if message.content.startswith(tuple(client.command_prefix(client, message))):
         message.content = " ".join(message.content.split())
-        message.content = message.content.replace(" ", "", 1)
+        # determine if there is a space after the prefix using regex, if there is, remove it
+        message.content = re.sub(r"^<@.\d*> ", f"{client.command_prefix(client, message)[0]}", message.content)
 
-        now = time.perf_counter_ns()
+        # now = time.perf_counter_ns()
         if set(message.content) & stw.global_quotes:
             message_future = await asyncio.gather(asyncio.to_thread(stw.process_quotes_in_message, message.content))
             message.content = message_future[0]
-            print(time.perf_counter_ns() - now)
+            # print(time.perf_counter_ns() - now)
+            print(message.content)
         # pro watch me i am the real github copilot
         # make epic auth system thing
         try:
-            if len(stw.extract_auth_code(message.content.split(" ")[1])) == 32:
+            if len(stw.extract_auth_code(re.split(r'<@.\d*>', message.content, 1))[1]) == 32:
                 await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
                 return
         except IndexError:
