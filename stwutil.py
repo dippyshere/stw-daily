@@ -640,10 +640,9 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         error_code = request["errorCode"]
         error_message = request["errorMessage"]
 
-    error_colour = client.colours["error_red"]
+    if auth_code == "": auth_code = " "
 
     print(f'[ERROR]: {error_code}')
-    # TODO: refactor text
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
         # login error
         embed = await create_error_embed(client, ctx,
@@ -660,6 +659,16 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
                                                      f"```{truncate(auth_code)}```\n"
                                                      f"**This authcode was created with the wrong link**\n"
                                                      f"⦾ Make sure you are using the correct link",
+                                         prompt_help=True, command=command)
+    elif error_code == 'errors.com.epicgames.account.invalid_account_credentials':
+        # invalid grant error
+        embed = await create_error_embed(client, ctx,
+                                         description=f"Attempted to authenticate with authcode:\n"
+                                                     f"```{truncate(auth_code)}```\n"
+                                                     f"**Your saved auth info has expired 😱**\n"
+                                                     f"⦾ Please try {await mention_string(client, 'kill')}, then "
+                                                     f"{await mention_string(client, 'device')} and remove your linked"
+                                                     f" account",
                                          prompt_help=True, command=command)
 
     elif error_code == 'errors.com.epicgames.accountportal.date_of_birth_verification_required':
@@ -2479,6 +2488,16 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"⦾ Returning <t:{int(time.time()) + 7}:R>",
                                          prompt_help=True, prompt_authcode=False, command=command,
                                          error_level=error_level)
+    elif error_code == 'errors.com.epicgames.account.invalid_account_credentials':
+        # invalid grant error
+        embed = await create_error_embed(client, ctx,
+                                         description=f"Attempted to {verbiage_action} with account:\n"
+                                                     f"```{acc_name}```\n"
+                                                     f"**Your saved auth info has expired 😱**\n"
+                                                     f"⦾ Please try {await mention_string(client, 'kill')}, then "
+                                                     f"{await mention_string(client, 'device')} and remove your linked"
+                                                     f" account",
+                                         prompt_help=True, command=command)
     # battle breakers error codes
     elif error_code == "errors.com.epicgames.world_explorers.login_reward_not_available":
         reward = get_bb_reward_data(client, response, True)
