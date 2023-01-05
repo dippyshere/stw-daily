@@ -63,6 +63,19 @@ async def get_autoclaim_user_cursor(client):
     return client.stw_database.find({"auto_claim": {"$ne": None}})
 
 
+async def get_accounts_with_auth_data_cursor(client):
+    """
+    Gets a cursor of all accounts with any profile with auth data.
+
+    Args:
+        client: The bot client.
+
+    Returns:
+        pymongo.cursor.Cursor: The autoclaim user cursor.
+    """
+    return client.stw_database.find({"profiles": {"$ne": None}})
+
+
 async def count_of_accounts_to_autoclaim(client):
     """
     Gets the autoclaim user count
