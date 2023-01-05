@@ -137,7 +137,27 @@ def edit_emoji_button(client, button):
 
 
 global_quotes = discord.ext.commands.view._all_quotes
-def process_quotes_in_message(message_content): """Handles quotes in a message's content by replacing them with the appropriate unicode character\n\n\u200b\n\n**Args:**\n\n*message: the message to process*\n\n\n**Returns:**\n\n*The processed message*"""; [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["＂]', message_content)][1:-1])];     [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'[‘,’,“,”,„,‟,⹂,⹂,「,」,『,』,〝,〞,﹁,﹂,﹃,﹄,｢,｣,«,»,‹,›,《,》,〈,〉]', message_content)])]; return message_content
+
+# rip the one line dream
+# def process_quotes_in_message(message_content): """Handles quotes in a message's content by replacing them with the appropriate unicode character\n\n\u200b\n\n**Args:**\n\n*message: the message to process*\n\n\n**Returns:**\n\n*The processed message*"""; [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["＂]', message_content)][1:-1])];     [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'[‘,’,“,”,„,‟,⹂,⹂,「,」,『,』,〝,〞,﹁,﹂,﹃,﹄,｢,｣,«,»,‹,›,《,》,〈,〉]', message_content)])]; return message_content
+
+
+def process_quotes_in_message(message_content):
+    message_content = re.sub(rf'[‘’“”„‟⹂⹂「」『』〝〞﹁﹂﹃﹄｢｣«»‹›《》〈〉"＂]', lambda match: rf'\\{match.group()}', message_content)
+
+    starting, ending = None, None
+    try:
+        starting = re.search(r'(^| )\\\\["＂]', message_content).span()[1] - 1
+        ending = len(message_content) - re.search(r'(^| )["＂]', message_content[::-1]).span()[0] - 1
+    except:
+        pass
+
+    # just gotta make sure None is None
+    if starting != ending and starting != None and ending != None and None is None:
+        message_content = message_content[:starting - 2] + message_content[starting:]
+        message_content = message_content[:ending - 4] + message_content[ending - 2:]
+
+    return message_content
 
 
 async def slash_send_embed(ctx, embeds, view=None, interaction=False):
