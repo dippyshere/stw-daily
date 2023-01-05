@@ -379,11 +379,13 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
 
         else:
             self.children = self.children[:-2]
+        self.timed_out = False
 
     async def on_timeout(self):
         """
         This is the function that is called when the view times out.
         """
+        self.timed_out = True
         await settings_view_timeout(self, True)
 
     async def interaction_check(self, interaction):
@@ -532,11 +534,13 @@ class MainPageProfileSettingsView(discord.ui.View):
         if math.ceil(len(client.default_settings) / settings_per_page):
             self.children[2].disabled = True
             self.children[3].disabled = True
+        self.timed_out = False
 
     async def on_timeout(self):
         """
         This is the function that is called when the view times out.
         """
+        self.timed_out = True
         await settings_view_timeout(self)
 
     async def interaction_check(self, interaction):

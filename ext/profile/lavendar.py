@@ -136,6 +136,7 @@ class ProfileMainView(discord.ui.View):
         self.current_selected_profile = current_selected_profile
         self.user_document = user_document
         self.interaction_check_done = {}
+        self.timed_out = False
 
         if not (len(user_document["profiles"].keys()) < client.config["profile_settings"]["maximum_profiles"]):
             self.children[2].disabled = True
@@ -151,6 +152,7 @@ class ProfileMainView(discord.ui.View):
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
         embed.description += "\n*Timed out. Please rerun the command to continue*\n\u200b"
+        self.timed_out = True
         return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
     def map_button_emojis(self, button):

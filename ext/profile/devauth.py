@@ -346,7 +346,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
     """
 
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, response_json, interaction=None,
-                 extra_message=None):
+                 extra_message=None, error_embed=None):
 
         super().__init__()
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -365,6 +365,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
                                                                    user_document)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
         self.timed_out = False
+        self.error_embed = error_embed
 
         self.exchanged = False
         if self.response_json is None or self.response_json is False:
@@ -383,11 +384,13 @@ class EnslaveAndStealUserAccount(discord.ui.View):
             None
         """
 
-        timeout_embed = await pre_authentication_time(self.user_document, self.client,
-                                                      self.currently_selected_profile_id, self.ctx, self.interaction,
-                                                      self.exchanged, True)
+        if self.error_embed is None:
+            timeout_embed = await pre_authentication_time(self.user_document, self.client,
+                                                          self.currently_selected_profile_id, self.ctx,
+                                                          self.interaction,
+                                                          self.exchanged, True)
 
-        timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
+            timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -678,6 +681,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         self.ctx = ctx
         self.interaction_check_done = {}
         self.interaction = interaction
+        self.timed_out = False
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
@@ -719,6 +723,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
             await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
         else:
             await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+        self.timed_out = True
 
     async def interaction_check(self, interaction):
         """
@@ -1007,6 +1012,9 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         Args:
             interaction: The interaction
         """
+
+        self.view.stop()
+        self.view.timed_out = True
 
         value = self.children[0].value
 
