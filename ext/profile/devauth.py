@@ -391,6 +391,9 @@ class EnslaveAndStealUserAccount(discord.ui.View):
                                                           self.exchanged, True)
 
             timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
+        else:
+            self.error_embed.description += "\n\u200b\n*Timed out. Please rerun the devauth command to continue.*"
+            timeout_embed = self.error_embed
 
         for child in self.children:
             child.disabled = True
@@ -606,7 +609,10 @@ class StolenAccountView(discord.ui.View):
         await interaction.response.edit_message(view=self)
 
         auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", "", True, False, True)
-        await stw.slash_send_embed(self.ctx, embeds=auth_stuff[2])
+        try:
+            await stw.slash_send_embed(self.ctx, embeds=auth_stuff[2])
+        except:
+            await stw.slash_send_embed(self.ctx, embeds=auth_stuff)
 
         if not self.timed_out:
             for child in self.children:
@@ -1025,8 +1031,10 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
                                                                    False, True)
         try:
             token = auth_session_result[1]['token']
-        except:
-            await interaction.edit_original_response(embed=auth_session_result, view=None)
+        except:  # ? :3 hi hi should i push this to code bot ting if u ting it goo enog mkk 
+            slave_view_numero_duo = EnslaveAndStealUserAccount(self.user_document, self.client, self.ctx, self.currently_selected_profile_id, self.view.response_json, interaction, None, auth_session_result)
+            await active_view(self.client, self.ctx.author.id, slave_view_numero_duo)
+            await interaction.edit_original_response(embed=auth_session_result, view=slave_view_numero_duo)
             return
 
         get_ios_auth = await stw.exchange_games(self.client, token, "ios")

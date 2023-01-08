@@ -191,7 +191,7 @@ async def on_message(message):
         try:
             if re.match(r'<@.*>( |)(\w|\d){32,}', message.content):
                 await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
-                return
+                return  # what song are u listening to rn? youtube.com youtube.com what~? homepage oh nothing~ :3
         except IndexError:
             pass
 
