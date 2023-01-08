@@ -181,15 +181,15 @@ async def on_message(message):
         # determine if there is a space after the prefix using regex, if there is, remove it
         message.content = re.sub(r"^<@.\d*> ", f"{client.command_prefix(client, message)[0]}", message.content)
 
-        now = time.perf_counter_ns()
+        # now = time.perf_counter_ns()
         if set(message.content) & stw.global_quotes:
             message_future = await asyncio.gather(asyncio.to_thread(stw.process_quotes_in_message, message.content))
             message.content = message_future[0]
-            print(time.perf_counter_ns() - now)
+            # print(time.perf_counter_ns() - now)
         # pro watch me i am the real github copilot
         # make epic auth system thing
         try:
-            if len(stw.extract_auth_code(re.split(r'<@.\d*>', message.content, 1))[1]) == 32:
+            if re.match(r'<@.*>( |)(\w|\d){32,}', message.content):
                 await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
                 return
         except IndexError:
