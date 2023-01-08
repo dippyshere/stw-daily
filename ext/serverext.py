@@ -22,7 +22,7 @@ class Reminder(ext.Cog):
 
     def __init__(self, client):
         self.client = client
-        self.reminder.start()
+        self.dailyreminder.start()
 
     @tasks.loop(time=datetime.time(tzinfo=datetime.timezone.utc))
     async def dailyreminder(self):

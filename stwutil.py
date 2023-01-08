@@ -143,6 +143,15 @@ global_quotes = discord.ext.commands.view._all_quotes
 
 
 def process_quotes_in_message(message_content):
+    """
+    Handles quotes in a message's content by replacing them with the appropriate unicode character
+
+    Args:
+        message_content: the message to process
+
+    Returns:
+        The processed message hi?
+    """
     message_content = re.sub(rf'[‘’“”„‟⹂⹂「」『』〝〞﹁﹂﹃﹄｢｣«»‹›《》〈〉"＂]', lambda match: rf'\\{match.group()}', message_content)
 
     starting, ending = None, None
@@ -658,7 +667,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         error_code = request["errorCode"]
         error_message = request["errorMessage"]
 
-    if auth_code == "": auth_code = "{saved session}" # hell o
+    if auth_code == "": auth_code = "[saved session]"  # hell o hi
 
     print(f'[ERROR]: {error_code}')
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
@@ -2564,12 +2573,10 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
 
     elif error_code == "errors.stwdaily.not_author_interaction_response":
         embed = await create_error_embed(client, ctx,
-                                         description=f"Attempted to {verbiage_action} on account:\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"**Failed to get research item**\n"
-                                                     f"⦾ You may need to unlock research first",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level)
+                                         description=f"**You aren't the author of this message**\n"
+                                                     f"⦾ To use the {command} command, you'll need to run it yourself",
+                                         prompt_authcode=False, command=command,
+                                         error_level=0)
 
     elif error_code == "errors.stwdaily.homebase_long":
         embed = await create_error_embed(client, ctx,
