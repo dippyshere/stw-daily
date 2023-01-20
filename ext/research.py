@@ -74,6 +74,10 @@ class ResearchView(discord.ui.View):
             The button with the disabled attribute set.
         """
         button_map = ['fortitude', 'offense', 'resistance', 'technology']  # woah ur alive yes
+        if self.current_levels[button_map[index]] >= 120:
+            button.disabled = True
+            button.label = "MAX"
+            return button
         button.disabled = not self.check_stat_affordability(button_map[index])
         button.label = f"{int(stw.research_stat_cost(button_map[index], self.current_levels[button_map[index]])):,}"
         return button
