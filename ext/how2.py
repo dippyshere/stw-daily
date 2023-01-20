@@ -58,10 +58,10 @@ class HowTo(ext.Cog):
                                           f'Go to [this link]({self.client.config["login_links"]["login_fortntite_pc"]}) and copy your auth code.\n'
                                           f'\n**Claiming your daily**\n'
                                           f'There are two ways to claim your daily:\n'
-                                          f'  • Use </daily:1053017052031496196> `<token>`\n'
-                                          f'  • Use {await stw.mention_string(self.client, "daily <token>")}\n'
+                                          f'  • Use </daily:1057120945522876473> `<token>`\n'
+                                          f'  • Use <@757776996418715651> daily <token>\n'
                                           f'\n*For example:*\n'
-                                          f'*{await stw.mention_string(self.client, "")}`d a51c1f4d35b1457c8e34a1f6026faa35`*'
+                                          f'*<@757776996418715651> `d a51c1f4d35b1457c8e34a1f6026faa35`*'
                                           f'\n\u200b',
                               color=embed_colour)
 

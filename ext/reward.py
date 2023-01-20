@@ -64,7 +64,6 @@ class Reward(ext.Cog):
             pass
 
         embed_colour = self.client.colours["reward_magenta"]
-        err_colour = self.client.colours["error_red"]
         if day == 'hi readers of the bot':
             embed = await stw.create_error_embed(self.client, ctx,
                                                  description=f"**No day specified**\n"
@@ -82,7 +81,7 @@ class Reward(ext.Cog):
             except ValueError:
                 embed = await stw.create_error_embed(self.client, ctx,
                                                      description="**Invalid number**\n"
-                                                                 "⦾ The day must be a number",
+                                                                 "⦾ The given day must be a number",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
                                                      command="reward")
                 await stw.slash_send_embed(ctx, embed)

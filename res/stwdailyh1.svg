@@ -2,9 +2,12 @@
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
+                <!--
+                    Made by Dippyshere - https://github.com/dippyshere
+                -->
                 @font-face {
                 font-family: google-sans;
-                src: url(https://raw.githubusercontent.com/AndyH0ng/Google-Sans-Font/master/GoogleSans-Bold.ttf);
+                src: url(https://raw.githubusercontent.com/dippyshere/stw-daily/mango/res/GoogleSans-Bold.ttf);
                 font-weight: bold;
                 }
 

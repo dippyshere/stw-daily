@@ -715,7 +715,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
                                          description=f"Attempted to authenticate with authcode:\n"
                                                      f"```{truncate(auth_code)}```\n"
                                                      f"**You don't have Save the World**\n"
-                                                     f"⦾ `{command}` requires STW\n"
+                                                     f"⦾ `{command.capitalize()}` requires STW\n"
                                                      f"⦾ If this is the wrong account, try switching accounts with the"
                                                      f" link below",
                                          prompt_help=True, command=command)
@@ -1952,7 +1952,10 @@ def calculate_homebase_rating(profile):
         #     survivors.update({val["attributes"]["squad_slot_idx"]: val})
         # print(val)
         personality = val["attributes"]["personality"].split(".")[-1]
-        squad = val["attributes"]["squad_id"]
+        try:
+            squad = val["attributes"]["squad_id"]
+        except:
+            continue
         if squad == '':
             continue
         rating, info = get_survivor_rating(val)
@@ -2032,8 +2035,7 @@ def calculate_homebase_rating(profile):
     # combine total stats into one number
     total = 0
     for attr, val in total_stats.items():
-        total_stats[attr] = int(val + 24)
-        total += val + 24
+        total += val
     return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating",
                       time_input=total * 4), total, total_stats
 
