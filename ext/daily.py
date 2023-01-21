@@ -230,7 +230,10 @@ class Daily(ext.Cog):
                                         inline=False)
             embed = await stw.set_thumbnail(self.client, embed, "check")
             embed = await stw.add_requested_footer(ctx, embed)
-            final_embeds.append(embed)
+            if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
+                final_embeds.append(embed)
+            else:
+                final_embeds = embed
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
