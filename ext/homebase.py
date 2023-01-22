@@ -199,9 +199,10 @@ class Homebase(ext.Cog):
                 colour = await stw.get_banner_colour(homebase_colour, "rgb")
                 embed.colour = discord.Colour.from_rgb(colour[0], colour[1], colour[2])
             except:
-                pass
+                embed = await stw.set_thumbnail(self.client, embed, "check")
+        else:
+            embed = await stw.set_thumbnail(self.client, embed, "check")
 
-        embed = await stw.set_thumbnail(self.client, embed, "check")
         embed = await stw.add_requested_footer(ctx, embed)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
