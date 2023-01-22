@@ -2450,7 +2450,15 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"```{acc_name}```\n"
                                                      f"**Failed to {verbiage_action}**\n"
                                                      f"⦾ You don't have Fortnite\n"
-                                                     f"⦾ You've been banned",
+                                                     f"⦾ You may have been banned",
+                                         prompt_help=True, command=command, auth_push_strong=False,
+                                         error_level=error_level)
+    elif error_code == "errors.com.epicgames.account.account_not_active":
+        embed = await create_error_embed(client, ctx,
+                                         description=f"Attempted to {verbiage_action} for account:\n"
+                                                     f"```{acc_name}```\n"
+                                                     f"**Failed to {verbiage_action}**\n"
+                                                     f"⦾ Your account is not active",
                                          prompt_help=True, command=command, auth_push_strong=False,
                                          error_level=error_level)
     elif error_code == "errors.com.epicgames.fortnite.check_access_failed":
