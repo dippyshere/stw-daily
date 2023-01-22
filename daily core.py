@@ -134,7 +134,7 @@ async def create_http_session():
     Returns:
         aiohttp.ClientSession: The aiohttp session
     """
-    headers = {"User-Agent": "Fortnite/++Fortnite+Release-23.20-CL-23659353-Windows/10.0.25267.1.256.64bit"}  # idk
+    headers = {"User-Agent": "Fortnite/++Fortnite+Release-23.20-CL-23659353 Windows/10.0.25267.1.256.64bit"}  # idk
     return aiohttp.ClientSession(json_serialize=lambda x: orjson.dumps(x).decode(), headers=headers)
 
 

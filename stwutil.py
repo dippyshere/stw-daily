@@ -2252,7 +2252,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
                                                    command=command, add_auth_gif=True)
     elif extracted_auth_code in client.config["known_client_ids"]:
         error_embed = await create_error_embed(client, ctx, description=f"Attempted to authenticate with authcode:\n"
-                                                                        f"```{truncate(extracted_auth_code)}```\n"
+                                                                        f"```{truncate(extracted_auth_code) if len(extracted_auth_code) != 0 else ' '}```\n"
                                                                         f"**This authcode is from the URL, "
                                                                         f"not the body**\n"
                                                                         f"⦾ Follow the GIF below to see what to copy",
@@ -2261,7 +2261,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
 
     elif extracted_auth_code == "errors.stwdaily.illegal_auth_code" or (re.sub('[ -~]', '', extracted_auth_code)) != "":
         error_embed = await create_error_embed(client, ctx, description=f"Attempted to authenticate with authcode:\n"
-                                                                        f"```{truncate(original_auth_code)}```\n"
+                                                                        f"```{truncate(original_auth_code) if len(original_auth_code) != 0 else ' '}```\n"
                                                                         f"**This auth code contains characters it's not"
                                                                         f" supposed to**\n⦾ Try copying "
                                                                         f"your code again, or get a new one\n\n"
@@ -2280,7 +2280,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
             if current_profile["authentication"] is None:
                 error_embed = await create_error_embed(client, ctx,
                                                        description=f"Attempted to authenticate with profile:\n"
-                                                                   f"```{current_profile['friendly_name']}```\n"
+                                                                   f"```{current_profile['friendly_name'].replace('`', '')}```\n"
                                                                    f"**This profile has no saved authentication**\n"
                                                                    f"⦾ Set it up with "
                                                                    f"{await mention_string(client, 'device')}",
@@ -2413,6 +2413,19 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
         embed.description += "\n"
     if not entry['day']:
         embed.description += f"• You don't have Save the World. [Learn more](https://github.com/dippyshere/stw-daily/wiki)\n\u200b"
+
+    # if add_entry and not auth_with_devauth and original_auth_code != "":
+    #     try:
+    #         user_document = await get_user_document(ctx, client, ctx.author.id)
+    #         for profile in user_document["profiles"]:
+    #             if profile["authentication"] is not None:
+    #                 auth_info_thread = await asyncio.gather(
+    #                     asyncio.to_thread(decrypt_user_data, ctx.author.id, profile["authentication"]))
+    #                 dev_auth_info = auth_info_thread[0]
+    #                 if dev_auth_info["accountId"] == entry["accountId"]:
+    #
+    #     except:
+    #         pass
 
     embed = await set_thumbnail(client, embed, "keycard")
     embed = await add_requested_footer(ctx, embed)
