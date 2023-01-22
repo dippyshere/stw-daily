@@ -1459,16 +1459,24 @@ async def create_news_page(self, ctx, news_json, current, total):
         the constructed news embed
     """
     generic = self.client.colours["generic_blue"]
-    embed = discord.Embed(title=await add_emoji_title(self.client, "News", "bang"),
-                          description=f"\u200b\n**News page {current} of {total}:**\u200b\n"
-                                      f"**{news_json[current - 1]['title']}**"
-                                      f"\n{news_json[current - 1]['body']}",
-                          colour=generic)
+    try:
+        embed = discord.Embed(title=await add_emoji_title(self.client, "News", "bang"),
+                              description=f"\u200b\n**News page {current} of {total}:**\u200b\n"
+                                          f"**{news_json[current - 1]['title']}**"
+                                          f"\n{news_json[current - 1]['body']}",
+                              colour=generic)
+    except:
+        embed = discord.Embed(title=await add_emoji_title(self.client, "News", "bang"),
+                              description=f"\u200b\n**There's no news today...**",
+                              colour=generic)
 
-    embed.description += "\u200b\n\u200b"
+    embed.description += "\u200b"
 
     # set embed image
-    embed = await set_embed_image(embed, news_json[current - 1]["image"])
+    try:
+        embed = await set_embed_image(embed, news_json[current - 1]["image"])
+    except:
+        embed = await set_embed_image(embed, self.client.config["thumbnails"]["placeholder"])
     embed = await set_thumbnail(self.client, embed, "newspaper")
     embed = await add_requested_footer(ctx, embed)
     return embed

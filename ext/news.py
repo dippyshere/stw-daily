@@ -42,6 +42,20 @@ class NewsView(discord.ui.View):
 
         self.children = list(map(self.map_button_emojis, self.children))
 
+        if self.mode == "stw":
+            self.children[2].disabled = True
+            self.children[3].disabled = False
+            if self.stw_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+
+        if self.mode == "br":
+            self.children[2].disabled = False
+            self.children[3].disabled = True
+            if self.br_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+
     def map_button_emojis(self, button):
         """
         Maps the button emojis to the buttons
@@ -90,15 +104,29 @@ class NewsView(discord.ui.View):
         elif action == "prev":
             self.page -= 1
         if self.mode == "stw":
-            self.page = ((self.page - 1) % self.stw_pages_length) + 1
+            try:
+                self.page = ((self.page - 1) % self.stw_pages_length) + 1
+            except:
+                self.page = 1
             embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
-            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            # embed = await stw.add_requested_footer(self.ctx, embed) #hi
+            if self.stw_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
         else:
-            self.page = ((self.page - 1) % self.br_pages_length) + 1
+            try:
+                self.page = ((self.page - 1) % self.br_pages_length) + 1
+            except:
+                self.page = 1
             embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
-            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            # embed = await stw.add_requested_footer(self.ctx, embed)
+            if self.br_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
