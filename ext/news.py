@@ -108,25 +108,25 @@ class NewsView(discord.ui.View):
                 self.page = ((self.page - 1) % self.stw_pages_length) + 1
             except:
                 self.page = 1
-            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
             if self.stw_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
             else:
                 self.children[0].disabled = False
                 self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
         else:
             try:
                 self.page = ((self.page - 1) % self.br_pages_length) + 1
             except:
                 self.page = 1
-            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
             if self.br_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
             else:
                 self.children[0].disabled = False
                 self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
@@ -144,6 +144,12 @@ class NewsView(discord.ui.View):
         if mode == "stw":
             self.mode = "stw"
             self.page = 1
+            if self.stw_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
             embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             # embed = await stw.add_requested_footer(self.ctx, embed)
@@ -152,6 +158,12 @@ class NewsView(discord.ui.View):
         else:
             self.mode = "br"
             self.page = 1
+            if self.br_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
             embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             # embed = await stw.add_requested_footer(self.ctx, embed)
