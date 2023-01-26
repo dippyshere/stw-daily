@@ -999,7 +999,7 @@ class ProfileSettings(ext.Cog):
                                            "The value to change this setting to") = None,
                              profile: Option(str,
                                              "The profile you want to change this setting on") = None
-                             ):
+                             ):  # TODO: Autocomplete this
         """
         This function is the slash command for the settings command.
 

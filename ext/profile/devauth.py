@@ -392,7 +392,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
 
             timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
         else:
-            self.error_embed.description += "\n\u200b\n*Timed out. Please rerun the devauth command to continue.*"
+            self.error_embed.description += "\n\u200b\n*Timed out. Please rerun the command to continue.*"
             timeout_embed = self.error_embed
 
         for child in self.children:
@@ -663,8 +663,8 @@ class StolenAccountView(discord.ui.View):
                                   f"To reauthenticate with this account, press the "
                                   f"{self.client.config['emojis']['library_floppydisc']} **Reauthenticate Now** "
                                   f"button\n\u200b\n"
-                                  f"To enable auto-claim for all your accounts, press the "
-                                  f"{self.client.config['emojis']['library_clock']} **Enable Auto Claim** "
+                                  f"To {button.label.lower()} for all your accounts, press the "
+                                  f"{self.client.config['emojis']['library_clock']} **{button.label}** "
                                   f"button\n\u200b\n"
                                   f"**Auth-Linked to:**\n"
                                   f"```{self.current_profile['authentication']['displayName']}```\u200b\n"
@@ -891,7 +891,7 @@ class ProfileAuth(ext.Cog):
                  extras={'emoji': "link_acc", "args": {}, "dev": False},
                  brief="Create an authentication session that will keep you logged in for a long time",
                  description=("This command allows you to save your authentication session to keep you logged in for a "
-                              "long time. Once you use this command, you will no longer need to provide your auth code."
+                              "long time. Once you setup this command, you will no longer need to provide your auth code."
                               "\nPlease do not use this command unless you have access to your account's email, as "
                               "password resets *may* be triggered.\n\nAfter you setup device authentication, you can "
                               "use this command to opt-in to the auto-claim trial period. This will automatically claim"
