@@ -70,23 +70,23 @@ class HowTo(ext.Cog):
         embed = await stw.set_embed_image(embed, "https://cdn.discordapp.com/attachments/757768060810559541"
                                                  "/1050461779991474266/stw_daily_noob_tutorial_render_2_hd.gif")
 
-        # get channel from id
-        channel = self.client.get_channel(758561253156847629)
-        # get message from id
-        message = await channel.fetch_message(813715483928559656)
-        # edit message
-        await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
-        # get channel from id
-        channel = self.client.get_channel(757768833946877992)
-        # get message from id
-        message = await channel.fetch_message(1050835103179341960)
-        # edit message
-        await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
-        await ctx.channel.send(
-            f"{ctx.author.mention} I've updated the how to use embed in <#758561253156847629> and <#757768833946877992>.")
+        # # get channel from id
+        # channel = self.client.get_channel(758561253156847629)
+        # # get message from id
+        # message = await channel.fetch_message(813715483928559656)
+        # # edit message
+        # await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
+        # # get channel from id
+        # channel = self.client.get_channel(757768833946877992)
+        # # get message from id
+        # message = await channel.fetch_message(1050835103179341960)
+        # # edit message
+        # await message.edit(embed=embed, view=HowToUseView(self.client, ctx.author, ctx))
+        # await ctx.channel.send(
+        #     f"{ctx.author.mention} I've updated the how to use embed in <#758561253156847629> and <#757768833946877992>.")
 
-        # invite_view = HowToUseView(self.client, ctx.author, ctx)
-        # await stw.slash_send_embed(ctx, embed, invite_view)
+        invite_view = HowToUseView(self.client, ctx.author, ctx)
+        await stw.slash_send_embed(ctx, embed, invite_view)
         return
 
     @ext.command(name='how2',

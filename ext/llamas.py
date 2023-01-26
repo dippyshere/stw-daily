@@ -261,7 +261,6 @@ class LlamasPurchaseView(discord.ui.View):
                                             expectedTotalPrice=self.price)
         try:
             error_code = purchase["errorCode"]
-            support_url = self.client.config["support_url"]
             acc_name = self.auth_info["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code,
                                                        verbiage_action="purchase Llama")
@@ -304,7 +303,6 @@ class Llamas(ext.Cog):
         try:
             # general error
             error_code = public_json_response["errorCode"]
-            support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code,
                                                        verbiage_action="get Llama info")

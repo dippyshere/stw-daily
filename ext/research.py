@@ -203,7 +203,6 @@ class ResearchView(discord.ui.View):
             print(e, "\nError during purchase:\n", stw.truncate(purchased_json))
             try:
                 error_code = json_response["errorCode"]
-                support_url = self.client.config["support_url"]
                 acc_name = self.auth_info[1]["account_name"]
                 embed = await stw.post_error_possibilities(self.ctx, self.client, "research", acc_name, error_code,
                                                            verbiage_action="research item")
@@ -344,7 +343,6 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
     Returns:
         tuple: The current research levels dict, and a bool if the max research level has been reached.
     """
-    support_url = client.config["support_url"]
     acc_name = auth_info[1]["account_name"]
 
     try:

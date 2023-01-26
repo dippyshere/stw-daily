@@ -64,7 +64,6 @@ class Daily(ext.Cog):
         # check for le error code
         try:
             error_code = json_response["errorCode"]
-            support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "daily", acc_name, error_code,
                                                        verbiage_action="claim daily")
@@ -124,7 +123,7 @@ class Daily(ext.Cog):
                         (f"\u200b\n"
                          f"You have already claimed your reward for day **{day}**.\n"
                          f"\u200b\n"
-                         f"**{reward[1]} Todays reward was:**\n"
+                         f"**{reward[1]} Today's reward was:**\n"
                          f"```{reward[0]}```\n"), colour=yellow)
                     if limit == 2:
                         embed.description += (f"**{calendar} Tomorrow\'s reward:**\n"

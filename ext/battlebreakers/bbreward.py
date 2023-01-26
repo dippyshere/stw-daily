@@ -46,7 +46,6 @@ class BBReward(ext.Cog):
         #     pass
 
         embed_colour = self.client.colours["reward_magenta"]
-        err_colour = self.client.colours["error_red"]
         if day == 'hi readers of the bot':
             embed = await stw.create_error_embed(self.client, ctx,
                                                  description=f"**No day specified**\n"
@@ -92,13 +91,13 @@ class BBReward(ext.Cog):
             try:
                 # day, name, emoji_text, description, quantity
                 reward = stw.get_bb_reward_data(self.client, pre_calc_day=day)
-            except:
+            except Exception as e:
                 embed = await stw.create_error_embed(self.client, ctx,
                                                      description=f"**An error occured when fetching day {day}**\n"
                                                                  f"⦾ Please let us know on the support server :D",
                                                      prompt_help=True, prompt_authcode=False, command="bbreward")
                 await stw.slash_send_embed(ctx, embed)
-                print(f"Error when getting reward for day {day}")
+                print(f"Error when getting bbreward for day {day} - {e}")
                 return
 
             embed.add_field(name=f'**{reward[2]} Item: **', value=f'```{reward[4]} {reward[1]}```\u200b')
@@ -137,7 +136,7 @@ class BBReward(ext.Cog):
                 if limit == 1:
                     reward = stw.get_bb_reward_data(self.client, pre_calc_day=day + 1)
 
-                    embed.add_field(name=f'**{reward[2]} Tomorrows reward:**',
+                    embed.add_field(name=f'**{reward[2]} Tomorrow\'s reward:**',
                                     value=f'```{reward[4]} {reward[1]}```\u200b',
                                     inline=False)
                 else:

@@ -56,7 +56,6 @@ class Homebase(ext.Cog):
             except:
                 # trying to check homebase with no stw or homebase, assume error
                 if name == "":
-                    support_url = self.client.config["support_url"]
                     acc_name = auth_info[1]["account_name"]
                     error_code = "errors.com.epicgames.fortnite.check_access_failed"
                     embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,

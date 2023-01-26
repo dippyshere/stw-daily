@@ -108,13 +108,13 @@ class Reward(ext.Cog):
 
             try:
                 reward = stw.get_reward(self.client, day, vbucks)
-            except:
+            except Exception as e:
                 embed = await stw.create_error_embed(self.client, ctx,
-                                                     description=f"**An error occured when fetching day {day}**\n"
+                                                     description=f"**An error occurred when fetching day {day}**\n"
                                                                  f"⦾ Please let us know on the support server :D",
                                                      prompt_help=True, prompt_authcode=False, command="reward")
                 await stw.slash_send_embed(ctx, embed)
-                print(f"Error when getting reward for day {day}")
+                print(f"Error when getting reward for day {day} - {e}")
                 return
 
             embed.add_field(name=f'**{reward[1]} Item: **', value=f'```{reward[0]}```\u200b')

@@ -703,7 +703,7 @@ the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-a
 
 ## Info <a id="inf"></a>
 
-> **Note** Valid auth codes may allow an attacker to compromise your
+> **Note** Valid auth codes *may* allow an attacker to compromise your
 > account.  [Read more here](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions)
 
 ###### <p align=center> Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. </p>

@@ -41,7 +41,6 @@ class Vbucks(ext.Cog):
         try:
             # general error
             error_code = public_json_response["errorCode"]
-            support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "vbucks", acc_name, error_code,
                                                        verbiage_action="get V-Bucks info")

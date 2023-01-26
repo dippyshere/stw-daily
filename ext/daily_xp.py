@@ -40,7 +40,6 @@ class DailyXP(ext.Cog):
         try:
             # general error
             error_code = public_json_response["errorCode"]
-            support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "dailyxp", acc_name, error_code,
                                                        verbiage_action="get daily XP info")
@@ -214,12 +213,12 @@ class DailyXP(ext.Cog):
                                                                                                           '/dailycap',
                           '/stwxp'],
                  extras={'emoji': "xp_everywhere", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
+                     'authcode': 'Your Epic Games authcode. Required unless you have an active session.',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
                          "dev": False},
-                 brief="View your daily STW XP cap (authentication required for personalised info)",
+                 brief="View your daily STW XP cap (authentication required)",
                  description="This command allows you to view the current XP cap, or your remaining shared XP from "
-                             "STW. You must be authenticated to view your remaining cap.⦾ Please note that this command"
+                             "STW. You must be authenticated to use this command.\n\n⦾ Please note that this command"
                              " is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
     async def dailyxp(self, ctx, authcode='', optout=None):
         """
