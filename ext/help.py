@@ -159,7 +159,7 @@ class Help(ext.Cog):
             The embed with the default help page added.
         """
         embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
-                              description=f"\u200b\n**To use a command mention the bot, then type the name and arguments after e.g:** {await stw.mention_string(self.client, 'reward 7')}\n\u200b\n\u200b")
+                              description=f"\u200b\n**To use a command: Ping the bot, type the command + options after; Example:** {await stw.mention_string(self.client, 'reward 7')}\n\u200b\n\u200b")
 
         embed = await stw.add_requested_footer(ctx, embed)
 
@@ -360,31 +360,29 @@ class Help(ext.Cog):
         Args:
             ctx: The context of the command.
         """
-        # TODO: update this message
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(colour=embed_colour,
                               title=await stw.add_emoji_title(self.client, "STW Daily", "calendar"),
-                              description=f"\u200b\nHello! I'm Save The World Daily, A bot that collects your "
-                                          f"Fortnite: Save The World daily rewards via Discord. [If you have any "
-                                          f"questions or issues join us here]({self.client.config['support_url']}), "
-                                          f"[If you want to invite the bot press here!]("
-                                          f"https://tinyurl.com/stwdailyinvite)\n\u200b")
+                              description=f"\u200b\n**👋 Hello! :D I'm STW Daily** - A bot for all things "
+                                          f"Fortnite: Save the World (and more!)\n"
+                                          f"Questions? Problems? Hit us up on our"
+                                          f" [support server!](https://discord.gg/QYgABPDqzH)\n"
+                                          f"Invite me to your server "
+                                          f"[here](https://canary.discord.com/api/oauth2/authorize"
+                                          f"?client_id=757776996418715651&permissions=2147798080"
+                                          f"&scope=applications.commands%20bot)\n\u200b")
 
         embed = await stw.add_requested_footer(ctx, embed)
 
-        embed.add_field(name="To check out my commands use:", value=await stw.mention_string(self.client,
-                                                                                             "help") + "\n\u200b\n["
-                                                                                                       "**To view the "
-                                                                                                       "privacy "
-                                                                                                       "policy and "
-                                                                                                       "terms of use "
-                                                                                                       "click "
-                                                                                                       "here**]("
-                                                                                                       "https://sites.google.com/view/stwdaily/legal-info)\n\u200b")
-        embed.add_field(name="Disclaimer:",
-                        value="Portions of the materials used are trademarks and/or copyrighted works of Epic Games, "
+        embed.add_field(name=f"{self.emojis['library_clipboard']} To check out my commands, use:",
+                        value=await stw.mention_string(self.client, "help") + "\n\u200b")
+        embed.add_field(name=f"{self.emojis['library_list']} Important:",
+                        value="*Portions of the materials used are trademarks and/or copyrighted works of Epic Games, "
                               "Inc. All rights reserved by Epic. This material is not official and is not endorsed by "
-                              "Epic.\n\u200b",
+                              "Epic.\n\n"
+                              "[Privacy Policy](https://sites.google.com/view/stwdaily/legal-info/privacy-policy)  •  "
+                              "[Terms of Service](https://sites.google.com/view/stwdaily/legal-info/terms-of-service)*"
+                              "\n\u200b",
                         inline=False)
         embed = await stw.set_thumbnail(self.client, embed, "calendar")
         await ctx.channel.send(embed=embed)
