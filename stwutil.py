@@ -110,8 +110,6 @@ async def view_interaction_check(view, interaction, command):
             view.interaction_check_done[interaction.user.id] = True
 
         if not already_notified:
-
-            support_url = view.client.config["support_url"]
             acc_name = ""
             error_code = "errors.stwdaily.not_author_interaction_response"
             embed = await post_error_possibilities(interaction, view.client, command, acc_name, error_code)
@@ -137,6 +135,7 @@ def edit_emoji_button(client, button):
 
 
 global_quotes = discord.ext.commands.view._all_quotes
+
 
 # rip the one line dream
 # def process_quotes_in_message(message_content): """Handles quotes in a message's content by replacing them with the appropriate unicode character\n\n\u200b\n\n**Args:**\n\n*message: the message to process*\n\n\n**Returns:**\n\n*The processed message*"""; [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["＂]', message_content)][1:-1])];     [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'[‘,’,“,”,„,‟,⹂,⹂,「,」,『,』,〝,〞,﹁,﹂,﹃,﹄,｢,｣,«,»,‹,›,《,》,〈,〉]', message_content)])]; return message_content
@@ -547,7 +546,7 @@ async def get_token_devauth(client, user_document, game="ios", auth_info_thread=
 
     h = get_game_headers(game)
 
-    if auth_info_thread == None:
+    if auth_info_thread is None:
         auth_info_thread = await asyncio.gather(asyncio.to_thread(decrypt_user_data, snowflake,
                                                                   user_document["profiles"][
                                                                       str(currently_selected_profile_id)][
@@ -667,7 +666,8 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
         error_code = request["errorCode"]
         error_message = request["errorMessage"]
 
-    if auth_code == "": auth_code = "[saved session]"  # hell o hi
+    if auth_code == "":
+        auth_code = "[saved session]"  # hell o hi
 
     print(f'[ERROR]: {error_code}')
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
@@ -717,7 +717,8 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
                                                      f"**You don't have Save the World**\n"
                                                      f"⦾ `{command.capitalize()}` requires STW\n"
                                                      f"⦾ If this is the wrong account, try switching accounts with the"
-                                                     f" link below",
+                                                     f" link below\n"
+                                                     f"⦾ If you just purchased STW, try again tomorrow :D",
                                          prompt_help=True, command=command)
 
     else:
@@ -726,7 +727,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
                                          description=f"Attempted to authenticate with:\n"
                                                      f"```{truncate(auth_code)}```\n"
                                                      f"**What happened? {shrug}**\n"
-                                                     f"⦾ Please let us know in the support server about this\n"
+                                                     f"⦾ Please let us know in the support server about this:\n"
                                                      f"```{error_code}\n\n{error_message}```",
                                          prompt_help=True, command=command, auth_push_strong=False)
 
