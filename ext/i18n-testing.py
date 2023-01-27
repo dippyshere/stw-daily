@@ -83,7 +83,7 @@ class Internationalisation(ext.Cog):
 
     @ext.command(name='i18n',
                  aliases=[],
-                 extras={'emoji': "experimental", "args": {"*args": "arguments to pass"}, "dev": True},
+                 extras={'emoji': "experimental", "args": {"\*args": "arguments to pass"}, "dev": True},
                  brief="Test internationalisation",
                  description="Test internationalisation (translation) for STW Daily\n⦾ Please note that this command is"
                              " primarily for development purposes "

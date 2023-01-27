@@ -612,7 +612,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         await shift_page(self, interaction, 1)
 
 
-async def add_field_to_page_embed(page_embed, setting, client, profile):
+async def add_field_to_page_embed(page_embed, setting, client, profile, ctx):
     """
     This function adds a field to the page embed.
 
@@ -621,14 +621,21 @@ async def add_field_to_page_embed(page_embed, setting, client, profile):
         setting: The setting to add to the embed.
         client: The client.
         profile: The profile.
+        ctx: The context.
 
     Returns:
         discord.Embed: The embed with the field added.
     """
     setting_info = client.default_settings[setting]
     setting_type = str(type(setting_info["default"]).__name__)  # unused but cool
+    try:
+        current_value = f"{profile['settings'][setting]} " \
+                        f"- {stw.I18n.get('lang.{0}'.format(profile['settings'][setting]), await stw.I18n.get_desired_lang(client, ctx))} " \
+                        f"({client.config['valid_locales'][profile['settings'][setting]][1]})"
+    except:
+        current_value = profile['settings'][setting]
     page_embed.fields[
-        0].value += f"""\n\n# {setting.replace("_", " ").capitalize()}\n> {setting.replace("_", "-")} | {profile["settings"][setting]}\n{setting_info['description']}"""
+        0].value += f"""\n\n# {setting.replace("_", " ").capitalize()}\n> {setting.replace("_", "-")} | {current_value}\n{setting_info['description']}"""
     return page_embed
 
 
@@ -706,7 +713,7 @@ async def main_page(page_number, client, ctx, user_profile, settings):
 
     page_embed.add_field(name=f"Showing Settings Page {page_number}/{pages}", value="```md", inline=False)
     for setting in current_slice:
-        page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data)
+        page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data, ctx)
 
     page_embed.fields[0].value += "```"
 
@@ -746,9 +753,16 @@ async def sub_setting_page(setting, client, ctx, user_profile):
     else:
         requirement_string = setting_info['req_string']
 
+    try:
+        current_value = f"{selected_profile_data['settings'][setting]} " \
+                        f"- {stw.I18n.get('lang.{0}'.format(selected_profile_data['settings'][setting]), await stw.I18n.get_desired_lang(client, ctx))} " \
+                        f"({client.config['valid_locales'][selected_profile_data['settings'][setting]][1]})"
+    except:
+        current_value = selected_profile_data['settings'][setting]
+
     page_embed.add_field(name=f"{client.config['emojis'][setting_info['emoji']]} "
                               f"Selected Setting: {setting.replace('_', ' ').capitalize()}",
-                         value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\nCurrent Value:: {selected_profile_data['settings'][setting]}\n\n{setting_info['description']}\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```",
+                         value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\nCurrent Value:: {current_value}\n\n{setting_info['description']}\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```",
                          inline=False)
 
     return page_embed
