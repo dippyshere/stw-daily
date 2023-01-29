@@ -98,7 +98,7 @@ class Vbucks(ext.Cog):
                               item_string="Currency:Mtx"))
 
         # fetch x-ray ticket count TODO: can this be done in the same request as the vbucks?
-        stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
+        stw_request = await stw.profile_request(self.client, "query", auth_info[1])
         stw_json_response = orjson.loads(await stw_request.read())
 
         # check for le error code

@@ -1163,8 +1163,8 @@ class ProfileSettings(ext.Cog):
                           'preferencxe', 'preferendce', 'preferencde', 'preferenfce', 'preferencfe', 'preferenvce',
                           'preferencve', 'preferencwe', 'preferenc3e', 'preference3', 'preferenc4e', 'preference4',
                           'preferencre', 'preferencer', 'preferencef', 'preferences', '/settings', '/options',
-                          '/preferences', '/setting', '/option', '/preference', 'set', '/set', 'opt', '/opt', 'pref'
-                                                                                                              '/pref'],
+                          '/preferences', '/setting', '/option', '/preference', 'set', '/set', 'opt', '/opt', 'pref',
+                          '/pref', 'settomgs'],
                  extras={'emoji': "pink_link", "args": {
                      'setting': 'The name of the setting to change(Optional)',
                      'value': 'The value to change this setting to(Optional)',

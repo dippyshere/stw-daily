@@ -1005,9 +1005,7 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         setting_input = discord.ui.InputText(style=discord.InputTextStyle.long,
                                              label="Enter your authcode here",
                                              placeholder="a51c1f4d35b1457c8e34a1f6026faa35",
-                                             min_length=1,
-                                             max_length=500,
-                                             required=True)
+                                             min_length=32)
 
         self.add_item(setting_input)
 

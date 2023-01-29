@@ -10,9 +10,66 @@ import orjson
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import SelectOption as Option
 
 import stwutil as stw
+
+
+class ModalTest(discord.ui.Modal):
+    """
+    The view for the llama command.
+    """
+
+    def __init__(self, ctx, client):
+        super().__init__(title="Modal Testing", timeout=0)
+        self.ctx = ctx
+        self.client = client
+        setting_input = discord.ui.InputText(placeholder="placeholder", label="label", value="value")
+        setting_input2 = discord.ui.InputText(placeholder="placeholder2", label="label2", required=False, value="value2")
+        setting_input3 = discord.ui.InputText(placeholder="placeholder3", label="label3", required=False, value="value3", style=discord.InputTextStyle.long)
+        self.add_item(setting_input)
+        self.add_item(setting_input2)
+        self.add_item(setting_input3)
+
+
+class ViewTest(discord.ui.View):
+    """
+    The view for the llama command.
+    """
+
+    def __init__(self, ctx, client):
+        super().__init__(timeout=0)
+        self.ctx = ctx
+        self.client = client
+
+    # @discord.ui.select(
+    #     placeholder="select menu testing",
+    #     options=[
+    #         Option(label="Option 1", value="1", description="This is option 1", emoji="👍", default=True),
+    #         Option(label="Option 2", value="2", description="This is option 2", emoji="👎"),
+    #         Option(label="Option 3", value="3", description="This is option 3", emoji="🤷"),
+    #     ]
+    # )
+    # @discord.ui.select(discord.ComponentType.channel_select, placeholder="select menu testing", max_values=25)
+    # async def selected_option(self, select, interaction):
+    #     """
+    #     Called when a help page is selected.
+    #
+    #     Args:
+    #         select: The select menu that was used.
+    #         interaction: The interaction that was used.
+    #     """
+    #     await interaction.response.send_message(f"You selected {select.values[0]}")
+    @discord.ui.button(label="open modal", style=discord.ButtonStyle.primary)
+    async def button_test(self, button, interaction):
+        """
+        Called when a help page is selected.
+
+        Args:
+            button: The button that was used.
+            interaction: The interaction that was used.
+        """
+        await interaction.response.send_modal(modal=ModalTest(self.ctx, self.client))
 
 
 class EmbedTester(ext.Cog):
@@ -49,7 +106,8 @@ class EmbedTester(ext.Cog):
         embed = await stw.create_error_embed(self.client, ctx, title, desc, prompt_help, prompt_authcode,
                                              prompt_newcode, command, error_level, title_emoji, thumbnail, colour,
                                              add_auth_gif)
-        return await stw.slash_send_embed(ctx, embed)
+        view = ViewTest(ctx, self.client)
+        return await stw.slash_send_embed(ctx, embed, view=view)
 
     @ext.command(name='embedtester',
                  aliases=['et'],
