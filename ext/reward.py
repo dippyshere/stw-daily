@@ -51,20 +51,17 @@ class Reward(ext.Cog):
         try:
             temp_auth = self.client.temp_auth[ctx.author.id]
             vbucks = temp_auth["vbucks"]
-
-            if day == 'hi readers of the bot':
+            if day is None:
                 try:
-                    daye = temp_auth["day"]
-                    if daye is not None:
-                        day = daye
+                    if temp_auth["day"] is not None:
+                        day = temp_auth["day"]
                 except KeyError:
                     pass
-
         except KeyError:
             pass
 
         embed_colour = self.client.colours["reward_magenta"]
-        if day == 'hi readers of the bot':
+        if day is None:
             embed = await stw.create_error_embed(self.client, ctx,
                                                  description=f"**No day specified**\n"
                                                              f"⦾ You need to specify a day to get the reward for\n"
@@ -233,7 +230,7 @@ class Reward(ext.Cog):
                  brief="View info about a specific day\'s reward, and the rewards that follow",
                  description="This command lets you view the rewards of any specific day, and any number of rewards "
                              "that follow")
-    async def reward(self, ctx, day='hi readers of the bot', limit=None):
+    async def reward(self, ctx, day=None, limit=None):
         """
         This function is the entry point for the vbucks command when called traditionally
 
@@ -249,8 +246,10 @@ class Reward(ext.Cog):
                    guild_ids=stw.guild_ids)
     async def slashreward(self, ctx: discord.ApplicationContext,
                           day: Option(int,
-                                      "The day to get the rewards of. Not required if you are authenticated") = 'hi readers of the bot',
-                          limit: Option(int, "The number of upcoming days to see") = None):
+                                      "The day to get the rewards of. Not required if you are authenticated",
+                                      description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day.description")) = None,
+                          limit: Option(int, "The number of upcoming days to see",
+                                        description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit.description")) = None):
         """
         This function is the entry point for the reward command when called via slash
 
