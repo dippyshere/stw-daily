@@ -146,7 +146,7 @@ class Vbucks(ext.Cog):
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
-    @ext.slash_command(name='vbucks', name_localizations=stw.I18n.construct_slash_dict("vbucks.slash.name"),
+    @ext.slash_command(name='vbucks', name_localizations=stw.I18n.construct_slash_dict("vbucks.slash.name"),  # yay (say yay if you're yay yay) 😱
                        description='View your V-Bucks and X-Ray Tickets balance (authentication required)',
                        description_localizations=stw.I18n.construct_slash_dict("vbucks.slash.description"),
                        guild_ids=stw.guild_ids)
@@ -155,10 +155,14 @@ class Vbucks(ext.Cog):
                                         description="Your Epic Games authcode. Required unless you have an active "
                                                     "session.",
                                         description_localizations=stw.I18n.construct_slash_dict(
-                                            "generic.slash.token")) = "",
+                                            "generic.slash.token"),
+                                        name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                                        min_length=32) = "",
                           auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
                                                description_localizations=stw.I18n.construct_slash_dict(
-                                                   "generic.slash.optout")) = False):
+                                                   "generic.slash.optout"),
+                                               name_localizations=stw.I18n.construct_slash_dict(
+                                                   "generic.meta.args.optout")) = False):
         """
         This function is the entry point for the vbucks command when called via slash
 
