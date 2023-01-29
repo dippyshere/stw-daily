@@ -227,16 +227,18 @@ async def edit_current_setting_bool(view, interaction, set_value):
     view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting] = set_value
     await replace_user_document(view.client, view.user_document)
 
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
+
     current_value = view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting]
 
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+
     embed.fields[0].value += f"\u200b\n*Changed **{view.selected_setting}** to **{current_value}***\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message)
-    await active_view(view.client, view.ctx.author.id, sub_view)
 
-    del view.client.processing_queue[view.user_document["user_snowflake"]]
+    await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
@@ -297,6 +299,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
             self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = check_result
             await replace_user_document(view.client, view.user_document)
 
+        del view.client.processing_queue[view.user_document["user_snowflake"]]
+
         embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
         sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                       view.client, view.page, view.ctx, view.settings,
@@ -308,7 +312,6 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         else:
             embed.fields[0].value += f"\u200b\n*Invalid value entered! Please try again*\n\u200b"
 
-        del view.client.processing_queue[view.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
