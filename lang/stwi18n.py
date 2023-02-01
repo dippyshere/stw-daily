@@ -6,6 +6,7 @@ https://github.com/dippyshere/stw-daily
 This file is a custom system for i18n (internationalisation) for STW Daily using a single JSON file
 """
 import orjson
+import babel
 from ext.profile.bongodb import get_user_document
 
 
@@ -48,6 +49,8 @@ class I18n:
         Returns:
             str: The string in the specified language
         """
+
+        # args = [f"{arg:,}" if isinstance(arg, int) else arg for arg in args]
 
         try:
             # get the string from the i18n json file
@@ -180,6 +183,10 @@ class I18n:
             if lang == "en":
                 slash_dict["en-US"] = self.get(key, lang)
                 slash_dict["en-GB"] = self.get(key, lang)
+            elif lang == "zh-CHS":
+                slash_dict["zh-CN"] = self.get(key, lang)
+            elif lang == "zh-CHT":
+                slash_dict["zh-TW"] = self.get(key, lang)
             else:
                 slash_dict[lang] = self.get(key, lang)
         return slash_dict

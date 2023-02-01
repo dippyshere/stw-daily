@@ -42,14 +42,14 @@ class NewsView(discord.ui.View):
 
         self.children = list(map(self.map_button_emojis, self.children))
 
-        if self.mode == "stw":
+        if self.mode in ["stw", "Save the World"]:
             self.children[2].disabled = True
             self.children[3].disabled = False
             if self.stw_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
 
-        if self.mode == "br":
+        if self.mode in ["br", "Battle Royale"]:
             self.children[2].disabled = False
             self.children[3].disabled = True
             if self.br_pages_length == 0:
@@ -76,7 +76,7 @@ class NewsView(discord.ui.View):
         Returns:
             None
         """
-        if self.mode == "stw":
+        if self.mode in ["stw", "Save the World"]:
             embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             embed = await stw.add_requested_footer(self.ctx, embed)
@@ -103,7 +103,7 @@ class NewsView(discord.ui.View):
             self.page += 1
         elif action == "prev":
             self.page -= 1
-        if self.mode == "stw":
+        if self.mode in ["stw", "Save the World"]:
             try:
                 self.page = ((self.page - 1) % self.stw_pages_length) + 1
             except:
@@ -141,7 +141,7 @@ class NewsView(discord.ui.View):
         Returns:
             None
         """
-        if mode == "stw":
+        if mode in ["stw", "Save the World"]:
             self.mode = "stw"
             self.page = 1
             if self.stw_pages_length == 0:
@@ -262,7 +262,7 @@ class News(ext.Cog):
         br_news = br_news_json["data"]["motds"]
         br_pages_length = len(br_news)
 
-        if mode == "br":
+        if mode in ["br", "Battle Royale"]:
             embed = await stw.create_news_page(self, ctx, br_news, page, br_pages_length)
         else:
             embed = await stw.create_news_page(self, ctx, stw_news, page, stw_pages_length)

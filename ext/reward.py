@@ -38,6 +38,8 @@ class Reward(ext.Cog):
             None
         """
 
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         if limit is None:
             user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
             try:
@@ -164,8 +166,8 @@ class Reward(ext.Cog):
                              f'**{"~" if max_rewards_reached else ""}{limit}** days:',
                         value=f'```{rewards}```\u200b', inline=False)
                     if max_rewards_reached:
-                        embed.description = f'\u200b\nDisplaying rewards for day **{day:,}** ' \
-                                            f'and **~{limit:,}** days after\n\u200b'
+                        embed.description = f'\u200b\nDisplaying rewards for day **{day:,}** and **~{limit:,}** days after\n\u200b'
+                        stw.I18n.get("vbucks.embed.title", desired_lang)
 
             embed = await stw.set_thumbnail(self.client, embed, "stormbottle")
             embed = await stw.add_requested_footer(ctx, embed)
@@ -227,7 +229,7 @@ class Reward(ext.Cog):
                                                               'authenticated',
                                                        'limit': 'The number of upcoming days to see (Optional)'},
                          "dev": False},
-                 brief="View info about a specific day\'s reward, and the rewards that follow",
+                 brief="View info about a specific day's reward, and the rewards that follow",
                  description="This command lets you view the rewards of any specific day, and any number of rewards "
                              "that follow")
     async def reward(self, ctx, day=None, limit=None):
@@ -241,8 +243,9 @@ class Reward(ext.Cog):
         """
         await self.reward_command(ctx, day, limit)
 
-    @slash_command(name='reward',
-                   description='View info about a specific day\'s reward, and the rewards that follow',
+    @slash_command(name="reward", name_localizations=stw.I18n.construct_slash_dict("reward.slash.name"),
+                   description="'View info about a specific day's reward, and the rewards that follow'",
+                   description_localizations=stw.I18n.construct_slash_dict("reward.slash.description"),
                    guild_ids=stw.guild_ids)
     async def slashreward(self, ctx: discord.ApplicationContext,
                           day: Option(int,

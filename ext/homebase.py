@@ -212,10 +212,22 @@ class Homebase(ext.Cog):
                        guild_ids=stw.guild_ids)
     async def slashhbrename(self, ctx: discord.ApplicationContext,
                             name: Option(str,
-                                         "The new name for your Homebase. Leave blank to view your current name + banner") = "",
+                                         description="The new name for your Homebase. Leave blank to view your current name + banner",
+                                         description_localizations=stw.I18n.construct_slash_dict("homebase.meta.args.name.description"),
+                                         name_localizations=stw.I18n.construct_slash_dict("homebase.meta.args.name"),
+                                         min_length=1, max_length=16) = "",
                             token: Option(str,
-                                          "Your Epic Games authcode. Required unless you have an active session.") = "",
-                            auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+                                          description="Your Epic Games authcode. Required unless you have an active "
+                                                      "session.",
+                                          description_localizations=stw.I18n.construct_slash_dict(
+                                              "generic.slash.token"),
+                                          name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                                          min_length=32) = "",
+                            auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+                                                 description_localizations=stw.I18n.construct_slash_dict(
+                                                     "generic.slash.optout"),
+                                                 name_localizations=stw.I18n.construct_slash_dict(
+                                                     "generic.meta.args.optout")) = False):
         """
         This function is the entry point for the homebase command when called via slash
 

@@ -464,8 +464,17 @@ class Llamas(ext.Cog):
                        guild_ids=stw.guild_ids)
     async def slashllamas(self, ctx: discord.ApplicationContext,
                           token: Option(str,
-                                        "Your Epic Games authcode. Required unless you have an active session.") = "",
-                          auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+                                        description="Your Epic Games authcode. Required unless you have an active "
+                                                    "session.",
+                                        description_localizations=stw.I18n.construct_slash_dict(
+                                            "generic.slash.token"),
+                                        name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                                        min_length=32) = "",
+                          auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+                                               description_localizations=stw.I18n.construct_slash_dict(
+                                                   "generic.slash.optout"),
+                                               name_localizations=stw.I18n.construct_slash_dict(
+                                                   "generic.meta.args.optout")) = False):
         """
         This function is the entry point for the llama command when called via slash
 

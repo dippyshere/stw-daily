@@ -504,6 +504,7 @@ database = "stw_dailies"
 collection = "user_info"
 
 [valid_locales] # You can contribute additional values to a list to add locale aliases. For contributing text, see /lang
+id = ["Indonesian", "Bahasa Indonesia", "id", "id-ID", "id_ID", "idID", "indonesia"]
 da = ["Danish", "Dansk", "da", "da-DK", "da_DK", "daDK"]
 de = ["German", "Deutsch", "de", "germany", "de-DE", "de_DE", "deDE", "deutschland"]
 en = ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en", "en-au", "English US", "en-US", "US", "usa", "enUS", "en_AU", "enAU", "en_GB", "enGB", "en_US", "eng", "English AU", "English, AU", "English, CA", "English CA"]
@@ -530,11 +531,15 @@ ru = ["Russian", "Pусский", "ru", "russia", "ru-RU", "ru_RU", "ruRU"]
 uk = ["Ukrainian", "Українська", "uk", "ukraine", "uk-UA", "uk_UA", "ukUA"]
 hi = ["Hindi", "हिन्दी", "hi", "india", "hi-IN", "hi_IN", "hiIN", "indian"] # indian 💀
 th = ["Thai", "ไทย", "th", "thailand", "th-TH", "th_TH", "thTH"]
-zh-CHS = ["Chinese, China", "中文", "zh-CN", "zh_CN", "zhCN", "zh-Hans", "zh_Hans", "zhHans", "simplified", "Chinese (simplified)", "Chinese", "People's Republic of China", "Peoples Republic of China", "cn", "chs", "cn s", "ch s", "singapore", "sg", "hans", "zh_chs", "zhchs", "zh_sg", "zh-sg", "zhsg", "zh_cn", "zhcn", "zh-cn"]
+zh-CHS = ["Chinese, China", "中文", "zh-CN", "zh_CN", "zhCN", "zh-Hans", "zh_Hans", "zhHans", "simplified", "Chinese (simplified)", "Chinese", "People's Republic of China", "Peoples Republic of China", "cn", "chs", "cn s", "ch s", "singapore", "sg", "hans", "zh_chs", "zhchs", "zh_sg", "zh-sg", "zhsg", "zh_cn", "zhcn", "zh-cn", "zh-CHS"]
 ja = ["Japanese", "日本語", "ja", "ja-JP", "ja_JP", "jaJP", "ja-JP-mac", "ja_JP_mac", "jaJPmac"]
-zh-CHT = ["Chinese, Taiwan", "繁體中文", "zh-TW", "zh_TW", "zhTW", "zh-Hant", "zh_Hant", "zhHant", "traditional", "Chinese (traditional)", "hk", "hong kong", "cht", "ch t", "cn t", "Hong Kong S.A.R.", "Macau S.A.R.", "macau", "hant", "zh_cht", "zhcht", "zh-MO", "zhmo", "zh_mo", "zhhk", "zh_hk", "zh-hk", ]
+zh-CHT = ["Chinese, Taiwan", "繁體中文", "zh-TW", "zh_TW", "zhTW", "zh-Hant", "zh_Hant", "zhHant", "traditional", "Chinese (traditional)", "hk", "hong kong", "cht", "ch t", "cn t", "Hong Kong S.A.R.", "Macau S.A.R.", "macau", "hant", "zh_cht", "zhcht", "zh-MO", "zhmo", "zh_mo", "zhhk", "zh_hk", "zh-hk", "zh-TW", "zh-CHT"]
 ko = ["Korean", "한국어", "ko", "ko-KR", "ko_KR", "koKR", "ko-KP", "ko_KP", "koKP", "kor"]
 # whats with tthe :sob: lmao what have you done oh you added more
+af = ["Afrikaans", "afr", "af-ZA", "af_ZA", "afZA", "afrikaanse"]
+ar = ["Arabic", "ar", "ar-EG", "ar_EG", "arEG"]
+ca = ["Catalan", "ca", "català", "catala", "catalunya", "catalonia", "ca-ES", "ca_ES", "caES", "ca"]
+sr = ["Serbian", "српски", "srpski", "srp", "serbia", "sr-RS", "sr_RS", "srRS", "serbian", "sr"]
 
 [entry_token_key_for_game]
 fn = "token"
