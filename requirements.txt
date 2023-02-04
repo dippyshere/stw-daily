@@ -12,14 +12,17 @@ tomli>=2.0.1
 Cython==3.0.0a11
 aiodns>=3.0.0
 brotlipy>=0.7.0
-faust-cchardet>=2.1.13
-orjson>=3.8.3
+faust-cchardet>=2.1.16
+orjson>=3.8.5
 aiofiles>=22.1.0
 # database
 motor>=3.1.1
 # for banner rendering
 blendmodes>=2022
-Pillow>=9.3.0
+Pillow>=9.4.0
 # development
 watchfiles>=0.18.1
-pycryptodome>=3.16.0
+pycryptodome>=3.17.0
+# localisation
+babel>=2.11.0
+pytz>=2022.7.1
