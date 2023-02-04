@@ -100,10 +100,25 @@ class Reward(ext.Cog):
             if day <= 0:
                 day = 1
 
-            limit_str = f" and **{limit:,}** days after" if limit >= 1 else ""
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "stormeye"),
-                                  description=f'\u200b\nDisplaying rewards for day **{day:,}**{limit_str}\n\u200b',
-                                  color=embed_colour)
+            if limit >= 1:
+                if limit == 1:
+                    embed = discord.Embed(
+                        title=await stw.add_emoji_title(self.client, stw.I18n.get("reward.embed.title", desired_lang),
+                                                        "stormeye"),
+                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                        color=embed_colour)
+                else:
+                    embed = discord.Embed(
+                        title=await stw.add_emoji_title(self.client, stw.I18n.get("reward.embed.title", desired_lang),
+                                                        "stormeye"),
+                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                        color=embed_colour)
+            else:
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, stw.I18n.get("reward.embed.title", desired_lang),
+                                                    "stormeye"),
+                    description=f'\u200b\n{stw.I18n.get("reward.embed.description1.skull", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                    color=embed_colour)
 
             try:
                 reward = stw.get_reward(self.client, day, vbucks)
@@ -116,26 +131,36 @@ class Reward(ext.Cog):
                 print(f"Error when getting reward for day {day} - {e}")
                 return
 
-            embed.add_field(name=f'**{reward[1]} Item: **', value=f'```{reward[0]}```\u200b')
+            embed.add_field(name=stw.I18n.get("reward.embed.field1", desired_lang, reward[1]), value=f'```{reward[0]}```\u200b')
             for day1 in items.ItemDictionary:
                 if 'V-Bucks & X-Ray Tickets' in items.ItemDictionary[day1][0]:
                     if int(day) % 336 < int(day1):
-                        if int(day1) - int(day) % 336 == 1:
-                            day_string = "day"
-                        else:
-                            day_string = "days"
-
                         if vbucks is True:
-                            embed.add_field(
-                                name=f'**{self.client.config["emojis"]["vbucks"]}{self.client.config["emojis"]["xray"]}'
-                                     f' Next V-Bucks & X-Ray Tickets reward:**',
-                                value=f'```{stw.get_reward(self.client, day1)[0]} in {int(day1) - int(day) % 336} '
-                                      f'{day_string}```\u200b', inline=False)
+                            if int(day1) - int(day) % 336 == 1:
+                                embed.add_field(
+                                    name=stw.I18n.get("reward.embed.field2.founder", desired_lang,
+                                                      f'{self.client.config["emojis"]["vbucks"]}{self.client.config["emojis"]["xray"]}'),
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, stw.get_reward(self.client, day1, False)[0], int(day1) - int(day) % 336)}'
+                                          f'```\u200b', inline=False)
+                            else:
+                                embed.add_field(
+                                    name=stw.I18n.get("reward.embed.field2.founder", desired_lang,
+                                                      f'{self.client.config["emojis"]["vbucks"]}{self.client.config["emojis"]["xray"]}'),
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, stw.get_reward(self.client, day1, False)[0], int(day1) - int(day) % 336)}'
+                                          f'```\u200b', inline=False)
                         else:
-                            embed.add_field(
-                                name=f'**{self.client.config["emojis"]["xray"]} Next X-Ray Tickets reward:**',
-                                value=f'```{stw.get_reward(self.client, day1, False)[0]} in '
-                                      f'{int(day1) - int(day) % 336} {day_string}```\u200b', inline=False)
+                            if int(day1) - int(day) % 336 == 1:
+                                embed.add_field(
+                                    name=stw.I18n.get("reward.embed.field2.nonfounder", desired_lang,
+                                                      self.client.config["emojis"]["xray"]),
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, stw.get_reward(self.client, day1, False)[0], int(day1) - int(day) % 336)}'
+                                          f'```\u200b', inline=False)
+                            else:
+                                embed.add_field(
+                                    name=stw.I18n.get("reward.embed.field2.nonfounder", desired_lang,
+                                                      self.client.config["emojis"]["xray"]),
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, stw.get_reward(self.client, day1, False)[0], int(day1) - int(day) % 336)}'
+                                          f'```\u200b', inline=False)
                         break
             if limit >= 1:
                 rewards = ''
@@ -158,16 +183,18 @@ class Reward(ext.Cog):
                 if limit == 1:
                     reward = stw.get_reward(self.client, int(day) + 1, vbucks)
 
-                    embed.add_field(name=f'**{reward[1]} Tomorrow\'s reward:**', value=f'```{reward[0]}```\u200b',
+                    embed.add_field(name=stw.I18n.get("reward.embed.field3", desired_lang, reward[1]),
+                                    value=f'```{reward[0]}```\u200b',
                                     inline=False)
                 else:
                     embed.add_field(
-                        name=f'{self.client.config["emojis"]["calendar"]} Rewards for the next '
-                             f'**{"~" if max_rewards_reached else ""}{limit}** days:',
+                        name=stw.I18n.get("reward.embed.field4", desired_lang, self.client.config["emojis"]["calendar"], f"{'~' if max_rewards_reached else ''}{limit:}"),
                         value=f'```{rewards}```\u200b', inline=False)
                     if max_rewards_reached:
-                        embed.description = f'\u200b\nDisplaying rewards for day **{day:,}** and **~{limit:,}** days after\n\u200b'
-                        stw.I18n.get("vbucks.embed.title", desired_lang)
+                        if limit == 1:  # this will never happen
+                            embed.description = stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")
+                        else:
+                            embed.description = stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")
 
             embed = await stw.set_thumbnail(self.client, embed, "stormbottle")
             embed = await stw.add_requested_footer(ctx, embed)
@@ -238,9 +265,11 @@ class Reward(ext.Cog):
     async def slashreward(self, ctx: discord.ApplicationContext,
                           day: Option(int,
                                       "The day to get the rewards of. Not required if you are authenticated",
-                                      description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day.description")) = None,
+                                      description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day.description"),
+                                      name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day")) = None,
                           limit: Option(int, "The number of upcoming days to see",
-                                        description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit.description")) = None):
+                                        description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit.description"),
+                                        name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit")) = None):
         """
         This function is the entry point for the reward command when called via slash
 
