@@ -19,7 +19,7 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 import stwutil as stw
 
 
-async def add_fort_fields(client, embed, current_levels, extra_white_space=False):
+async def add_fort_fields(client, embed, current_levels, desired_lang, extra_white_space=False):
     """
     Add the fields to the embed for the fort stats.
 
@@ -27,6 +27,7 @@ async def add_fort_fields(client, embed, current_levels, extra_white_space=False
         client: The client object.
         embed: The embed to add the fields to.
         current_levels: The dictionary of current levels of the stats.
+        desired_lang: The language to use for the embed.
         extra_white_space: Whether to add extra white space to the embed.
 
     Returns:
@@ -39,19 +40,19 @@ async def add_fort_fields(client, embed, current_levels, extra_white_space=False
     technology = current_levels["technology"]
 
     embed.add_field(name="\u200B", value="\u200B", inline=True)
-    embed.add_field(name=f'**{client.config["emojis"]["fortitude"]} Fortitude: **',
+    embed.add_field(name=stw.I18n.get("research.stat.fortitude", desired_lang, client.config["emojis"]["fortitude"]),
                     value=f'```{fortitude} (+{int((await stw.research_stat_rating("fortitude", fortitude))[0])}%)```\u200b',
                     inline=True)
-    embed.add_field(name=f'**{client.config["emojis"]["offense"]} Offense: **',
+    embed.add_field(name=stw.I18n.get("research.stat.offense", desired_lang, client.config["emojis"]["offense"]),
                     value=f'```{offense} (+{int((await stw.research_stat_rating("offense", offense))[0])}%)```\u200b',
                     inline=True)
     embed.add_field(name="\u200B", value="\u200B", inline=True)
-    embed.add_field(name=f'**{client.config["emojis"]["resistance"]} Resistance: **',
+    embed.add_field(name=stw.I18n.get("research.stat.resistance", desired_lang, client.config["emojis"]["resistance"]),
                     value=f'```{resistance} (+{int((await stw.research_stat_rating("resistance", resistance))[0])}%)```\u200b',
                     inline=True)
 
     extra_white_space = "\u200b\n\u200b\n\u200b" if extra_white_space is True else ""
-    embed.add_field(name=f'**{client.config["emojis"]["technology"]} Technology: **',
+    embed.add_field(name=stw.I18n.get("research.stat.tech", desired_lang, client.config["emojis"]["technology"]),
                     value=f'```{technology} (+{int((await stw.research_stat_rating("technology", technology))[0])}%)```{extra_white_space}',
                     inline=True)
     return embed
@@ -76,7 +77,7 @@ class ResearchView(discord.ui.View):
         button_map = ['fortitude', 'offense', 'resistance', 'technology']  # woah ur alive yes
         if self.current_levels[button_map[index]] >= 120:
             button.disabled = True
-            button.label = "MAX"
+            button.label = stw.I18n.get('research.button.max', self.desired_lang)
             return button
         button.disabled = not self.check_stat_affordability(button_map[index])
         button.label = f"{int(stw.research_stat_cost(button_map[index], self.current_levels[button_map[index]])):,}"
@@ -129,18 +130,20 @@ class ResearchView(discord.ui.View):
                 proc_max = True
         except:
             pass
-        max_fort_string = "Congratulations, you have **maximum** FORT stats.\n"
+        max_fort_string = f"{stw.I18n.get('research.embed.maximumstats', self.desired_lang)}\n"
+        total_points_quantity = total_points["quantity"]
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Research", "crown" if proc_max else "research_point"),
-            description=(f"\u200b\n{max_fort_string if proc_max else ''}"
-                         f"You currently have **{total_points['quantity']:,}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
+            title=await stw.add_emoji_title(self.client, stw.I18n.get('research.embed.title', self.desired_lang),
+                                            "crown" if proc_max else "research_point"),
+            description=(f'\u200b\n{max_fort_string if proc_max else ""}'
+                         f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
             colour=crown_yellow if proc_max else res_green
         )
 
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(self.ctx, embed)
-        embed = await add_fort_fields(self.client, embed, current_levels)
-        embed.add_field(name=f"\u200b", value=f"*Timed out, please reuse command to continue*\n\u200b")
+        embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
+        embed.add_field(name=f"\u200b", value=f"{stw.I18n.get('generic.embed.timeout', self.desired_lang)}\n\u200b")
         return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
     async def universal_stat_process(self, interaction, stat):
@@ -173,17 +176,21 @@ class ResearchView(discord.ui.View):
 
         try:
             if purchased_json['errorCode'] == 'errors.com.epicgames.fortnite.item_consumption_failed':
+                total_points_quantity = total_points["quantity"]
                 embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, "Research", "research_point"),
-                    description=(f"\u200b\n"
-                                 f"You currently have **{total_points['quantity']:,}** research point{'s' if total_points['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
+                    title=await stw.add_emoji_title(self.client,
+                                                    stw.I18n.get('research.embed.title', self.desired_lang),
+                                                    "research_point"),
+                    description=(f'\u200b\n'
+                                 f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
                     colour=res_green
                 )
 
                 embed = await stw.set_thumbnail(self.client, embed, "research")
                 embed = await stw.add_requested_footer(interaction, embed)
-                embed = await add_fort_fields(self.client, embed, current_levels)
-                embed.add_field(name=f"\u200b", value=f"*You do not have enough points to level up **{stat}***\n\u200b")
+                embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
+                embed.add_field(name=f"\u200b",
+                                value=f'{stw.I18n.get("research.embed.insufficient", self.desired_lang, stw.I18n.get("research.button.{0}".format(stat), self.desired_lang))}\n\u200b')
                 await interaction.edit_original_response(embed=embed, view=self)
                 return
         except:
@@ -210,14 +217,17 @@ class ResearchView(discord.ui.View):
                 return
             except:
                 embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, "Research", "research_point"),
+                    title=await stw.add_emoji_title(self.client,
+                                                    stw.I18n.get('research.embed.title', self.desired_lang),
+                                                    "research_point"),
                     description=(f"\u200b\n"
-                                 f"You currently have **0** research points available.\n\u200b\n\u200b"),
+                                 f"{stw.I18n.get('research.error.zeroplaceholder', self.desired_lang)}\n\u200b\n\u200b"),
                     colour=res_green
                 )
 
-                embed = await add_fort_fields(self.client, embed, current_levels)
-                embed.add_field(name=f"\u200b", value=f"*No more research points!*\n\u200b")
+                embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
+                embed.add_field(name=f"\u200b",
+                                value=f"{stw.I18n.get('research.embed.expendedpoints', self.desired_lang)}\n\u200b")
                 embed = await stw.set_thumbnail(self.client, embed, "research")
                 embed = await stw.add_requested_footer(interaction, embed)
                 for child in self.children:
@@ -226,17 +236,19 @@ class ResearchView(discord.ui.View):
                 return
 
         spent_points = self.total_points['quantity'] - research_points_item['quantity']
-        max_fort_string = "Congratulations, you have **maximum** FORT stats.\n"
-
+        max_fort_string = f"{stw.I18n.get('research.embed.maximumstats', self.desired_lang)}\n"
+        total_points_quantity = research_points_item['quantity']
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Research", "crown" if proc_max else "research_point"),
-            description=(f"\u200b\n{max_fort_string if proc_max else ''}"
-                         f"You currently have **{research_points_item['quantity']:,}** research point{'s' if research_points_item['quantity'] > 1 else ''} available.\n\u200b\n\u200b"),
+            title=await stw.add_emoji_title(self.client, stw.I18n.get('research.embed.title', self.desired_lang),
+                                            "crown" if proc_max else "research_point"),
+            description=(f'\u200b\n{max_fort_string if proc_max else ""}'
+                         f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
             colour=crown_yellow if proc_max else res_green
         )
 
-        embed = await add_fort_fields(self.client, embed, current_levels)
-        embed.add_field(name=f"\u200b", value=f"*Spent **{spent_points:,}** to level up **{stat}***\n\u200b")
+        embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
+        embed.add_field(name=f"\u200b",
+                        value=f"{stw.I18n.get('research.embed.purchasestat', self.desired_lang, f'{spent_points:,}', stw.I18n.get('research.button.{0}'.format(stat)))}\n\u200b")
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(interaction, embed)
         self.total_points = research_points_item
@@ -247,7 +259,8 @@ class ResearchView(discord.ui.View):
         await interaction.edit_original_response(embed=embed, view=self)
 
     # creo kinda fire though ngl
-    def __init__(self, client, auth_info, author, total_points, current_levels, research_token_guid, ctx, og_msg):
+    def __init__(self, client, ctx, auth_info, author, total_points, current_levels, research_token_guid, og_msg,
+                 desired_lang):
         super().__init__()
         self.client = client
         self.ctx = ctx
@@ -258,6 +271,7 @@ class ResearchView(discord.ui.View):
         self.current_levels = current_levels
         self.research_token_guid = research_token_guid
         self.message = og_msg
+        self.desired_lang = desired_lang
 
         self.button_emojis = {
             'fortitude': self.client.config["emojis"]["fortitude"],
@@ -268,9 +282,9 @@ class ResearchView(discord.ui.View):
 
         self.children = list(map(self.map_button_emojis, self.children))
 
-        for i, child in enumerate(
-            self.children):  # hmm github copilot ;o maybe i should use it instead of writing everything :( it DOESNT work on the remote client :p it doesnt work well on the remote clientif it works
+        for i, child in enumerate(self.children):
             self.disable_button_when_poor(child, i)
+            # hmm github copilot ;o maybe i should use it instead of writing everything :( it DOESNT work on the remote client :p it doesnt work well on the remote clientif it works
 
     async def interaction_check(self, interaction):
         """
@@ -362,7 +376,8 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         try:
             # check if account has daily reward stats, if not, then account doesn't have stw
             check_stw = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
-            print(e, "\nno research stat, but daily reward; must have zero research stats.\n", stw.truncate(json_response))
+            print(e, "\nno research stat, but daily reward; must have zero research stats.\n",
+                  stw.truncate(json_response))
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
             # dippy note here - after some investigation, this condition is entered when the stats are missing (due to being level 0 / not unlocked yet)
             # it should be when all stats are missing, but this is entered when 1 stat is missing, we should check which stats are missing and assign to level 0
@@ -461,6 +476,9 @@ class Research(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         res_green = self.client.colours["research_green"]
         crown_yellow = self.client.colours["crown_yellow"]
 
@@ -594,28 +612,31 @@ class Research(ext.Cog):
 
         if research_points_claimed is not None:
             if research_points_claimed == 1:
-                claimed_text = f"*Claimed **{research_points_claimed:,}** research point*\n\u200b"
+                claimed_text = f"{stw.I18n.get('research.embed.claim.claimed.singular', desired_lang, f'{research_points_claimed:,}')}\n\u200b"
             else:
-                claimed_text = f"*Claimed **{research_points_claimed:,}** research points*\n\u200b"
+                claimed_text = f"{stw.I18n.get('research.embed.claim.claimed.plural', desired_lang, f'{research_points_claimed:,}')}\n\u200b"
         else:
             # TODO: add info about player's research storage limit / regen time (wallet)
-            claimed_text = f"*Did not claim any research points*\n\u200b"
-        max_fort_string = "Congratulations, you have **maximum** FORT stats.\n"
+            claimed_text = f"{stw.I18n.get('research.embed.claim.romania', desired_lang)}\n\u200b"
+        max_fort_string = f"{stw.I18n.get('research.embed.maximumstats', desired_lang)}\n"
+        total_points_quantity = total_points["quantity"]
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Research", "crown" if proc_max else "research_point"),
-            description=(f"\u200b\n{max_fort_string if proc_max else ''}"
-                         f"You currently have **{total_points['quantity']:,}** research point{'s' if total_points['quantity'] > 1 else ''} available. \n\u200b\n\u200b"),
+            title=await stw.add_emoji_title(self.client, stw.I18n.get('research.embed.title', desired_lang),
+                                            "crown" if proc_max else "research_point"),
+            description=(f'\u200b\n{max_fort_string if proc_max else ""}'
+                         f'{stw.I18n.get("research.embed.description.singular", desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
             colour=crown_yellow if proc_max else res_green
         )
 
-        embed = await add_fort_fields(self.client, embed, current_levels)
+        embed = await add_fort_fields(self.client, embed, current_levels, desired_lang)
         embed.add_field(name=f"\u200b", value=claimed_text)
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(ctx, embed)
 
         final_embeds.append(embed)
-        research_view = ResearchView(self.client, auth_info, ctx.author, total_points, current_levels, rp_token_guid,
-                                     ctx, embed)
+        research_view = ResearchView(self.client, ctx, auth_info, ctx.author, total_points, current_levels,
+                                     rp_token_guid,
+                                     embed, desired_lang)
         research_view.message = await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=research_view)
 
     @ext.command(name='research',
@@ -672,8 +693,9 @@ class Research(ext.Cog):
 
         await self.research_command(ctx, authcode, not optout)
 
-    @slash_command(name='research',
+    @slash_command(name='research', name_localizations=stw.I18n.construct_slash_dict("research.slash.name"),
                    description="Claim and spend your research points (authentication required)",
+                   description_localizations=stw.I18n.construct_slash_dict("research.slash.description"),
                    guild_ids=stw.guild_ids)
     async def slashresearch(self, ctx: discord.ApplicationContext,
                             token: Option(str,
