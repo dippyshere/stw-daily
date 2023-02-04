@@ -225,7 +225,7 @@ class Vbucks(ext.Cog):
                           'balanxce', 'balancxe', 'balandce', 'balancde', 'balanfce', 'balancfe', 'balanvce',
                           'balancve', 'balancwe', 'balancew', 'balanc3e', 'balance3', 'balanc4e', 'balance4',
                           'balancre', 'balancer', 'balancef', 'balanced', 'balancse', 'balances', '/v', '/vb',
-                          '/vbucks', '/v-bucks', 'chucks', '/chucks', '/balance'],
+                          '/vbucks', '/v-bucks', 'chucks', '/chucks', '/balance', 'money', 'currency', 'cash', 'vbu'],
                  extras={'emoji': "vbuck_book", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},

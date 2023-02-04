@@ -307,7 +307,7 @@ class BBDump(ext.Cog):
                           'battlebreakersdjump', 'battlebreakersdujmp', 'battlebreakersdhump', 'battlebreakersduhmp',
                           'battlebreakersdunmp', 'battlebreakersdumnp', 'battlebreakersdumjp', 'battlebreakersdumkp',
                           'battlebreakersdumop', 'battlebreakersdumpo', 'battlebreakersdum0p', 'battlebreakersdump0',
-                          'battlebreakersdumlp', 'battlebreakersdumpl', 'ddump', '/ddump'],
+                          'battlebreakersdumlp', 'battlebreakersdumpl'],
                  extras={'emoji': "library_floppydisc", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},

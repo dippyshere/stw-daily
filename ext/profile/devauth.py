@@ -887,7 +887,8 @@ class ProfileAuth(ext.Cog):
                           'profileautyh', 'profileaugth', 'profileautgh', 'profileaufth', 'profileautfh',
                           'profileauthg', 'profileauthy', 'profileautuh', 'profileauthu', 'profileautjh',
                           'profileauthj', 'profileautnh', 'profileauthn', 'profileautbh', 'profileauthb', 'savelogin',
-                          '/device', '/deviceauth', '/profileauth', '/savelogin', 'dauth', '/dauth', 'save', '/save'],
+                          '/device', '/deviceauth', '/profileauth', '/savelogin', 'dauth', '/dauth', 'save', '/save',
+                          '.save', '.autodaily', '.device'],
                  extras={'emoji': "link_acc", "args": {}, "dev": False},
                  brief="Create an authentication session that will keep you logged in for a long time",
                  description=("This command allows you to save your authentication session to keep you logged in for a "

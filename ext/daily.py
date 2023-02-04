@@ -287,7 +287,7 @@ class Daily(ext.Cog):
                           'collecht', 'coll3ect', 'fdaily', 'collrct', 'daaily', 'c0ollect', 'clsaim', 'collwect',
                           'dailh', 'c0llect', 'collkect', 'cklaim', 'co0llect', 'copllect', 'colledct', 'edaily',
                           'dail7y', 'dauily', 'cllaim', 'collectr', 'claaim', 'faily', 'daipy', 'coillect', 'dail6y',
-                          '/claim', '/daily', '/d', '/collect'],
+                          '/claim', '/daily', '/d', '/collect', '.daily', '.d', '.claim'],
                  extras={'emoji': "vbucks", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},

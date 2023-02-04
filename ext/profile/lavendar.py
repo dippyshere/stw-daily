@@ -605,7 +605,7 @@ class Profile(ext.Cog):
                           'sessionhs', 'sessiojns', 'sessionjs', 'sessiomns', 'sessionms', 'sessionas', 'sessionsa',
                           'sessionws', 'sessionsw', 'sessiones', 'sessionse', 'sessionds', 'sessionsd', 'sessionxs',
                           'sessionsx', 'sessionzs', 'sessionsz', '/profile', '/profiles', '/session', '/sessions',
-                          '/account', '/accounts', '/essions', 'accounts', 'p', '/p'],
+                          '/account', '/accounts', '/essions', 'accounts', 'p', '/p', '.accounts', '.saved', '.p'],
                  extras={'emoji': "stormshard", "args": {
                      'profile': 'The ID of the profile to switch to (e.g. 0)(Optional)'},
                          "dev": False},

@@ -304,7 +304,7 @@ class News(ext.Cog):
                           'nwews', 'n3ews', 'ne3ws', 'n4ews', 'ne4ws', 'nrews', 'nerws', 'nfews', 'nefws', 'ndews',
                           'nedws', 'nsews', 'nesws', 'neqws', 'newqs', 'ne2ws', 'new2s', 'new3s', 'newes', 'newds',
                           'neaws', 'newas', 'newsa', 'newsw', 'newse', 'newsd', 'newxs', 'newsx', 'newzs', 'newsz', 'n',
-                          '/n', '/new', '/news'],
+                          '/n', '/new', '/news', 'feed'],
                  extras={'emoji': "bang", "args": {'page': "The page number to view (Optional)",
                                                    "mode": "The game mode to see news from (stw/br) (Optional)"},
                          "dev": False},

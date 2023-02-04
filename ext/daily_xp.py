@@ -209,9 +209,8 @@ class DailyXP(ext.Cog):
                           'shtwxp', 'sthwxp', 'sgtwxp', 'stgwxp', 'sftwxp', 'stfwxp', 'stqwxp', 'stwqxp', 'st2wxp',
                           'stw2xp', 'st3wxp', 'stw3xp', 'stewxp', 'stwexp', 'stdwxp', 'stwdxp', 'stswxp', 'stwsxp',
                           'stawxp', 'stwaxp', 'stwzxp', 'stwxzp', 'stwxsp', 'stwxdp', 'stwcxp', 'stwxcp', 'stwxop',
-                          'stwxpo', 'stwx0p', 'stwxp0', 'stwxlp', 'stwxpl', 'xpcap', 'dailycap', 'stwxp', '/xpcap'
-                                                                                                          '/dailycap',
-                          '/stwxp'],
+                          'stwxpo', 'stwx0p', 'stwxp0', 'stwxlp', 'stwxpl', 'xpcap', 'dailycap', 'stwxp', '/xpcap',
+                          '/dailycap', '/stwxp', 'sharedxp'],
                  extras={'emoji': "xp_everywhere", "args": {
                      'authcode': 'Your Epic Games authcode. Required unless you have an active session.',
                      'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
