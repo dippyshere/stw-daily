@@ -62,6 +62,9 @@ class Power(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         vbucc_colour = self.client.colours["vbuck_blue"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "power", authcode, auth_opt_out, True)
@@ -82,7 +85,7 @@ class Power(ext.Cog):
             final_embeds = auth_info[2]
 
         # get common core profile
-        stw_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
+        stw_request = await stw.profile_request(self.client, "query", auth_info[1])
         stw_json_response = orjson.loads(await stw_request.read())
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
@@ -102,16 +105,18 @@ class Power(ext.Cog):
         # https://canary.discord.com/channels/757765475823517851/757768833946877992/1058604927557050438
         # https://canary.discord.com/channels/757765475823517851/1042781227767312384/1071340105035423775
         power_level, total, total_stats = stw.calculate_homebase_rating(stw_json_response)
-
+        power_level_emoji = self.emojis['power_level']
         # With all info extracted, create the output
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Power Level", "power_level"),
-                              description=f"\u200b\n**Your powerlevel is: {self.emojis['power_level']}{power_level}**\u200b\n"
-                                          f"\u200b\n**Total FORT stats: {self.emojis['power_level']}{total}**\u200b\n"
-                                          f"\u200b\n**Fortitude: {self.emojis['fortitude']} {total_stats['fortitude']}**\u200b\n"
-                                          f"\u200b\n**Offense: {self.emojis['offense']} {total_stats['offense']}**\u200b\n"
-                                          f"\u200b\n**Resistance: {self.emojis['resistance']} {total_stats['resistance']}**\u200b\n"
-                                          f"\u200b\n**Technology: {self.emojis['technology']} {total_stats['technology']}**\u200b\n",
-                              colour=vbucc_colour)
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, stw.I18n.get('power.embed.title', desired_lang),
+                                            "power_level"),
+            description=f"\u200b\n{stw.I18n.get('power.embed.description', desired_lang, f'{power_level_emoji}{power_level}')}**\u200b\n"
+                        f"\u200b\n**Total FORT stats: {self.emojis['power_level']}{total}**\u200b\n"
+                        f"\u200b\n**Fortitude: {self.emojis['fortitude']} {total_stats['fortitude']}**\u200b\n"
+                        f"\u200b\n**Offense: {self.emojis['offense']} {total_stats['offense']}**\u200b\n"
+                        f"\u200b\n**Resistance: {self.emojis['resistance']} {total_stats['resistance']}**\u200b\n"
+                        f"\u200b\n**Technology: {self.emojis['technology']} {total_stats['technology']}**\u200b\n",
+            colour=vbucc_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed)
@@ -119,31 +124,32 @@ class Power(ext.Cog):
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
-    @ext.slash_command(name='power',
-                       description='View your Power level (authentication required)',
-                       guild_ids=stw.guild_ids)
-    async def slashpower(self, ctx: discord.ApplicationContext,
-                         token: Option(str,
-                                       description="Your Epic Games authcode. Required unless you have an active "
-                                                   "session.",
-                                       description_localizations=stw.I18n.construct_slash_dict(
-                                           "generic.slash.token"),
-                                       name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
-                                       min_length=32) = "",
-                         auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
-                                              description_localizations=stw.I18n.construct_slash_dict(
-                                                  "generic.slash.optout"),
-                                              name_localizations=stw.I18n.construct_slash_dict(
-                                                  "generic.meta.args.optout")) = False):
-        """
-        This function is the entry point for the power command when called via slash
-
-        Args:
-            ctx: The context of the command
-            token: The authcode of the user
-            auth_opt_out: Whether the user has opted out of auth
-        """
-        await self.power_command(ctx, token, not auth_opt_out)
+    # @ext.slash_command(name='power', name_localizations=stw.I18n.construct_slash_dict("power.slash.name"),
+    #                    description='View your Power level',
+    #                    description_localizations=stw.I18n.construct_slash_dict("power.slash.description"),
+    #                    guild_ids=stw.guild_ids)
+    # async def slashpower(self, ctx: discord.ApplicationContext,
+    #                      token: Option(str,
+    #                                    description="Your Epic Games authcode. Required unless you have an active "
+    #                                                "session.",
+    #                                    description_localizations=stw.I18n.construct_slash_dict(
+    #                                        "generic.slash.token"),
+    #                                    name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+    #                                    min_length=32) = "",
+    #                      auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+    #                                           description_localizations=stw.I18n.construct_slash_dict(
+    #                                               "generic.slash.optout"),
+    #                                           name_localizations=stw.I18n.construct_slash_dict(
+    #                                               "generic.meta.args.optout")) = False):
+    #     """
+    #     This function is the entry point for the power command when called via slash
+    #
+    #     Args:
+    #         ctx: The context of the command
+    #         token: The authcode of the user
+    #         auth_opt_out: Whether the user has opted out of auth
+    #     """
+    #     await self.power_command(ctx, token, not auth_opt_out)
 
     @ext.command(name='power',
                  aliases=['pow', 'powerlevel', 'rating', 'level', 'pwr', 'ower', 'pwer', 'poer', 'powr', 'powe',
