@@ -61,6 +61,7 @@ class I18n:
                 string = self.i18n_json["en"][key]
             except KeyError:
                 # if string not found in english, return the key
+                print(f"String not found: {key} ({lang})")
                 return key
 
         try:
