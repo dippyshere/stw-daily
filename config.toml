@@ -2,7 +2,7 @@
 # Please do not skid our hard work.
 # https://github.com/dippyshere/stw-daily
 
-# This document is used to configure many things about the bot.
+# This document is used to configure many things about the bot. DO NOT EDIT 🖕 skidders
 
 # A list of error messages the bot can pick from for the error embeds.
 error_messages = [
@@ -21,17 +21,14 @@ wait_on_user_messages = [
     "Waiting for your action",
     "Waiting for you to do something",
     "Ready when you are",
-    "Anytime you're ready",
     "Whenever you're ready",
     "Your turn",
     "Your move",
     "Waiting for your command",
-    "It's all down to you now",
     "All up to you now",
-    "Erm... do something?",
-    "I'm waiting...",
+    "Waiting...",
     "Are you there?",
-    "Just waiting for you",
+    "Waiting for you",
     "Make a move",
 ]
 
@@ -443,7 +440,7 @@ crown_yellow = [255, 176, 41]
 vbuck_blue = [99, 240, 238]
 profile_lavendar = [217, 146, 255]
 
-# Dont edit values above or below this point unless you know what you're doing! (🖕 skidders)
+# Dont edit values ABOVE OR BELOW this point unless you know what you're doing! (🖕 skidders)
 
 # endpoints for requests to be sent to
 [endpoints]
@@ -505,34 +502,34 @@ collection = "user_info"
 
 [valid_locales] # You can contribute additional values to a list to add locale aliases. For contributing text, see /lang
 id = ["Indonesian", "Bahasa Indonesia", "id", "id-ID", "id_ID", "idID", "indonesia"]
-da = ["Danish", "Dansk", "da", "da-DK", "da_DK", "daDK"]
+da = ["Danish", "Dansk", "da", "da-DK", "da_DK", "daDK", "danmark"]
 de = ["German", "Deutsch", "de", "germany", "de-DE", "de_DE", "deDE", "deutschland"]
 en = ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en", "en-au", "English US", "en-US", "US", "usa", "enUS", "en_AU", "enAU", "en_GB", "enGB", "en_US", "eng", "English AU", "English, AU", "English, CA", "English CA"]
 # no american localisation >:(
 es-ES = ["Spanish", "Español", "Espanol", "es-ES", "spain", "es_ES", "esES", "españa", "espana", "es", "es-419", "es419", "es_419"]
-fr = ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francaise", "francais"]
-hr = ["Croatian", "Hrvatski", "hr", "croatia", "hr-HR", "hr_HR", "hrHR", "hrvatska"]
+fr = ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francaise", "francais", "française", "français"]
+hr = ["Croatian", "Hrvatski", "hr", "croatia", "hr-HR", "hr_HR", "hrHR", "hrvatska", "hrvatski jezik"]
 it = ["Itallian", "Italian", "Italiano", "it", "italy", "it-IT", "it_IT", "itIT", "italia"]
 lt = ["Lithuanian", "Lietuviškai", "lt", "lithuania", "lt-LT", "lt_LT", "ltLT", "lietuviškai", "lietuva", "skubby"]
 hu = ["Hungarian", "Magyar", "hu", "hungary", "hu-HU", "hu_HU", "huHU", "magyarorszag", "magyarország"]
 nl = ["Dutch", "Nederlands", "nl", "netherlands", "nl-NL", "nl_NL", "nlNL", "nederland", "nederlandse"]
 no = ["Norwegian", "Norsk", "Nork", "Norway", "no", "Nor", "Nynorsk", "Nordic", "Norse", "no-NO", "no_NO", "noNO", "norge"]
 pl = ["Polish", "Polski", "pl", "poland", "pl-PL", "pl_PL", "plPL", "polski", "polska", "Pol"]
-pt-BR = ["Portuguese", "Português", "Portugues", "pt-BR", "brazil", "pt_BR", "ptBR"]
-ro = ["Romanian", "Română", "Roman", "ro", "romania", "ro-RO", "ro_RO", "roRO", "thief"] # the only reason i kept making new files was cos dumbass github kept stopping
+pt-BR = ["Portuguese", "Português do Brasil", "Portugues", "pt-BR", "brazil", "pt_BR", "ptBR", "brazilian", "Portuguese, Brazilian", "Portugues do Brasil", "Português"]
+ro = ["Romanian", "Română", "Roman", "ro", "romania", "ro-RO", "ro_RO", "roRO", "romana", "Romanian, Romania"] # the only reason i kept making new files was cos dumbass github kept stopping
 fi = ["Finnish", "Suomi", "fi", "finland", "finish", "suomi", "suomen kieli", "finnic", "fin"] #oh you dont want to put it in a seperate file? lmao ok thn mb ohhhh that makes sense :3
 sv-SE = ["Swedish", "Svenska", "sv-SE", "sweden", "sv_SE", "svSE", "svenska", "svensk"]
-vi = ["Vietnamese", "Tiếng Việt", "Viet", "vi", "vietnam", "vi-VN", "vi_VN", "viVN"]
+vi = ["Vietnamese", "Tiếng Việt", "Viet", "vi", "vietnam", "vi-VN", "vi_VN", "viVN", "tieng viet"]
 tr = ["Turkish", "Türkçe", "Turk", "tr", "turkey", "tr-TR", "tr_TR", "trTR", "turkce", "turkce"]
-cs = ["Czech", "Čeština", "Cesky", "cs", "czech republic", "cs-CZ", "cs_CZ", "csCZ", "czech republic", "cesky", "ceska"]
-el = ["Greek", "Ελληνικά", "el", "greece", "el-GR", "el_GR", "elGR"]
-bg = ["Bulgarian", "български", "bg", "bulgaria", "bg-BG", "bg_BG", "bgBG"]
-ru = ["Russian", "Pусский", "ru", "russia", "ru-RU", "ru_RU", "ruRU"]
-uk = ["Ukrainian", "Українська", "uk", "ukraine", "uk-UA", "uk_UA", "ukUA"]
+cs = ["Czech", "Čeština", "Cesky", "cs", "czech republic", "cs-CZ", "cs_CZ", "csCZ", "czech republic", "cesky", "ceska", "cestina"]
+el = ["Greek", "Ελληνικά", "el", "greece", "el-GR", "el_GR", "elGR", "eyynvlka", "eaanvlka"]
+bg = ["Bulgarian", "български", "bg", "bulgaria", "bg-BG", "bg_BG", "bgBG", "6barapckn"]
+ru = ["Russian", "Pусский", "ru", "russia", "ru-RU", "ru_RU", "ruRU", "pyccknn"]
+uk = ["Ukrainian", "Українська", "uk", "ukraine", "uk-UA", "uk_UA", "ukUA", "ykpaihcbka"]
 hi = ["Hindi", "हिन्दी", "hi", "india", "hi-IN", "hi_IN", "hiIN", "indian"] # indian 💀
-th = ["Thai", "ไทย", "th", "thailand", "th-TH", "th_TH", "thTH"]
+th = ["Thai", "ไทย", "th", "thailand", "th-TH", "th_TH", "thTH", "lnu"]
 zh-CHS = ["Chinese, China", "中文", "zh-CN", "zh_CN", "zhCN", "zh-Hans", "zh_Hans", "zhHans", "simplified", "Chinese (simplified)", "Chinese", "People's Republic of China", "Peoples Republic of China", "cn", "chs", "cn s", "ch s", "singapore", "sg", "hans", "zh_chs", "zhchs", "zh_sg", "zh-sg", "zhsg", "zh_cn", "zhcn", "zh-cn", "zh-CHS"]
-ja = ["Japanese", "日本語", "ja", "ja-JP", "ja_JP", "jaJP", "ja-JP-mac", "ja_JP_mac", "jaJPmac"]
+ja = ["Japanese", "日本語", "ja", "ja-JP", "ja_JP", "jaJP", "ja-JP-mac", "ja_JP_mac", "jaJPmac", "jp"]
 zh-CHT = ["Chinese, Taiwan", "繁體中文", "zh-TW", "zh_TW", "zhTW", "zh-Hant", "zh_Hant", "zhHant", "traditional", "Chinese (traditional)", "hk", "hong kong", "cht", "ch t", "cn t", "Hong Kong S.A.R.", "Macau S.A.R.", "macau", "hant", "zh_cht", "zhcht", "zh-MO", "zhmo", "zh_mo", "zhhk", "zh_hk", "zh-hk", "zh-TW", "zh-CHT"]
 ko = ["Korean", "한국어", "ko", "ko-KR", "ko_KR", "koKR", "ko-KP", "ko_KP", "koKP", "kor"]
 # whats with tthe :sob: lmao what have you done oh you added more
@@ -540,6 +537,7 @@ af = ["Afrikaans", "afr", "af-ZA", "af_ZA", "afZA", "afrikaanse"]
 ar = ["Arabic", "ar", "ar-EG", "ar_EG", "arEG"]
 ca = ["Catalan", "ca", "català", "catala", "catalunya", "catalonia", "ca-ES", "ca_ES", "caES", "ca"]
 sr = ["Serbian", "српски", "srpski", "srp", "serbia", "sr-RS", "sr_RS", "srRS", "serbian", "sr"]
+
 
 [entry_token_key_for_game]
 fn = "token"
