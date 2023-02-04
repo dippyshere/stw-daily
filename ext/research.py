@@ -694,7 +694,7 @@ class Research(ext.Cog):
         await self.research_command(ctx, authcode, not optout)
 
     @slash_command(name='research', name_localizations=stw.I18n.construct_slash_dict("research.slash.name"),
-                   description="Claim and spend your research points (authentication required)",
+                   description="Claim and spend your research points",
                    description_localizations=stw.I18n.construct_slash_dict("research.slash.description"),
                    guild_ids=stw.guild_ids)
     async def slashresearch(self, ctx: discord.ApplicationContext,

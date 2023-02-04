@@ -147,7 +147,7 @@ class Vbucks(ext.Cog):
         return
 
     @ext.slash_command(name='vbucks', name_localizations=stw.I18n.construct_slash_dict("vbucks.slash.name"),  # yay (say yay if you're yay yay) 😱
-                       description='View your V-Bucks and X-Ray Tickets balance (authentication required)',
+                       description='View your V-Bucks and X-Ray Tickets balance',
                        description_localizations=stw.I18n.construct_slash_dict("vbucks.slash.description"),
                        guild_ids=stw.guild_ids)
     async def slashvbucks(self, ctx: discord.ApplicationContext,

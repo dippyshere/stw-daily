@@ -237,7 +237,7 @@ class Daily(ext.Cog):
             return
 
     @ext.slash_command(name='daily',
-                       description='Claim your Save The World daily reward (authentication required)',
+                       description='Claim your Save The World daily reward',
                        guild_ids=stw.guild_ids)
     async def slashdaily(self, ctx: discord.ApplicationContext,
                          token: Option(str,

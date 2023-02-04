@@ -206,7 +206,7 @@ class Auth(ext.Cog):
                           'loglout', 'logolut', 'logkout', 'logokut', 'logoyut', 'logouyt', 'logo7ut', 'logou7t',
                           'logo8ut', 'logou8t', 'logouit', 'logoukt', 'logojut', 'logoujt', 'logohut', 'logouht',
                           'logourt', 'logoutr', 'logou5t', 'logout5', 'logou6t', 'logout6', 'logouty', 'logouth',
-                          'logougt', 'logoutg', 'logouft', 'logoutf', '.logout', '/kill', '/logout', '/end'],
+                          'logougt', 'logoutg', 'logouft', 'logoutf', '.logout', '/end'],
                  extras={'emoji': "whitekey", "args": {}, "dev": False},
                  brief="End your active authentication session",
                  description="This command will end your active authentication session and delete any temporarily "
