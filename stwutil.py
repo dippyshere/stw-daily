@@ -1445,7 +1445,7 @@ async def get_br_news(client):
     return await client.stw_session.get(endpoint)
 
 
-async def create_news_page(self, ctx, news_json, current, total):
+async def create_news_page(self, ctx, news_json, current, total, desired_lang="en"):
     """
     Creates a news page embed
 
@@ -1455,21 +1455,24 @@ async def create_news_page(self, ctx, news_json, current, total):
         news_json: The news json
         current: The current page
         total: The total pages
+        desired_lang: The desired language
 
     Returns:
         the constructed news embed
     """
     generic = self.client.colours["generic_blue"]
     try:
-        embed = discord.Embed(title=await add_emoji_title(self.client, "News", "bang"),
-                              description=f"\u200b\n**News page {current} of {total}:**\u200b\n"
-                                          f"**{news_json[current - 1]['title']}**"
-                                          f"\n{news_json[current - 1]['body']}",
-                              colour=generic)
+        embed = discord.Embed(
+            title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
+            description=f"\u200b\n{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n"
+                        f"**{news_json[current - 1]['title']}**"
+                        f"\n{news_json[current - 1]['body']}",
+            colour=generic)
     except:
-        embed = discord.Embed(title=await add_emoji_title(self.client, "News", "bang"),
-                              description=f"\u200b\n**There's no news today...**",
-                              colour=generic)
+        embed = discord.Embed(
+            title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
+            description=f"\u200b\n{I18n.get('util.news.embed.missing', desired_lang)}",
+            colour=generic)
 
     embed.description += "\u200b"
 

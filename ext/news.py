@@ -8,7 +8,7 @@ This file is the cog for the news command. It is used to get the latest news fro
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import Option, OptionChoice
 import asyncio
 
 import stwutil as stw
@@ -19,7 +19,8 @@ class NewsView(discord.ui.View):
     The UI View for the news command
     """
 
-    def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode, og_msg):
+    def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode, og_msg,
+                 desired_lang):
         super().__init__()
         self.client = client
         self.ctx = ctx
@@ -32,6 +33,7 @@ class NewsView(discord.ui.View):
         self.br_news = br_news
         self.br_pages_length = br_pages_length
         self.message = og_msg
+        self.desired_lang = desired_lang
 
         self.button_emojis = {
             'prev': self.client.config["emojis"]["left_icon"],
@@ -41,6 +43,9 @@ class NewsView(discord.ui.View):
         }
 
         self.children = list(map(self.map_button_emojis, self.children))
+
+        self.children[2].label = stw.I18n.get("news.view.button.stw", self.desired_lang)
+        self.children[3].label = stw.I18n.get("news.view.button.br", self.desired_lang)
 
         if self.mode in ["stw", "Save the World"]:
             self.children[2].disabled = True
@@ -77,11 +82,13 @@ class NewsView(discord.ui.View):
             None
         """
         if self.mode in ["stw", "Save the World"]:
-            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
+                                               self.desired_lang)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             embed = await stw.add_requested_footer(self.ctx, embed)
         else:
-            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
+                                               self.desired_lang)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             embed = await stw.add_requested_footer(self.ctx, embed)
         for button in self.children:
@@ -114,7 +121,8 @@ class NewsView(discord.ui.View):
             else:
                 self.children[0].disabled = False
                 self.children[1].disabled = False
-            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
+                                               self.desired_lang)
         else:
             try:
                 self.page = ((self.page - 1) % self.br_pages_length) + 1
@@ -126,7 +134,8 @@ class NewsView(discord.ui.View):
             else:
                 self.children[0].disabled = False
                 self.children[1].disabled = False
-            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
+                                               self.desired_lang)
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
@@ -150,7 +159,8 @@ class NewsView(discord.ui.View):
             else:
                 self.children[0].disabled = False
                 self.children[1].disabled = False
-            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
+                                               self.desired_lang)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             # embed = await stw.add_requested_footer(self.ctx, embed)
             self.children[2].disabled = True
@@ -164,7 +174,8 @@ class NewsView(discord.ui.View):
             else:
                 self.children[0].disabled = False
                 self.children[1].disabled = False
-            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length)
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
+                                               self.desired_lang)
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             # embed = await stw.add_requested_footer(self.ctx, embed)
             self.children[2].disabled = False
@@ -251,8 +262,10 @@ class News(ext.Cog):
             None
         """
 
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx,
-                                                                              title="Fetching the latest news"))
+                                                                              title=stw.I18n.get("news.embed.processing.title", desired_lang)))
         stw_news_req = await stw.get_stw_news(self.client)
         stw_news_json = await stw_news_req.json(content_type=None)
         stw_news = stw_news_json["news"]["messages"]
@@ -263,25 +276,34 @@ class News(ext.Cog):
         br_pages_length = len(br_news)
 
         if mode in ["br", "Battle Royale"]:
-            embed = await stw.create_news_page(self, ctx, br_news, page, br_pages_length)
+            embed = await stw.create_news_page(self, ctx, br_news, page, br_pages_length, desired_lang)
         else:
-            embed = await stw.create_news_page(self, ctx, stw_news, page, stw_pages_length)
+            embed = await stw.create_news_page(self, ctx, stw_news, page, stw_pages_length, desired_lang)
         embed = await stw.set_thumbnail(self.client, embed, "newspaper")
         embed = await stw.add_requested_footer(ctx, embed)
         news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
-                             mode, load_msg)
+                             mode, load_msg, desired_lang)
         await asyncio.sleep(0.25)
         await stw.slash_edit_original(ctx, load_msg, embed, news_view)
         return
 
-    @ext.slash_command(name='news',
+    @ext.slash_command(name='news', name_localizations=stw.I18n.construct_slash_dict("news.slash.name"),
                        description='View the latest in-game news from Fortnite',
+                       description_localizations=stw.I18n.construct_slash_dict("news.slash.description"),
                        guild_ids=stw.guild_ids)
     async def slashnews(self, ctx: discord.ApplicationContext,
-                        page: Option(int,
-                                     "The page number to view") = 1,
-                        mode: Option(str, description="Choose a game mode to see news from",
-                                     choices=["stw", "br"]) = "stw"):
+                        page: Option(int, min_value=1, max_value=100, default=1,
+                                     name_localizations=stw.I18n.construct_slash_dict("news.meta.args.page"),
+                                     description="The page number to view",
+                                     description_localizations=stw.I18n.construct_slash_dict("news.meta.args.page.description")) = 1,
+                        mode: Option(default="stw",
+                                     name_localizations=stw.I18n.construct_slash_dict("news.meta.args.mode"),
+                                     description="Choose a game mode to see news from",
+                                     description_localizations=stw.I18n.construct_slash_dict("news.slash.mode.description"),
+                                     choices=[OptionChoice("Save the World", "stw",
+                                                           stw.I18n.construct_slash_dict("generic.stw")),
+                                              OptionChoice("Battle Royale", "br",
+                                                           stw.I18n.construct_slash_dict("generic.br"))]) = "stw"):
         """
         This function is the entry point for the news command when called via slash
 
