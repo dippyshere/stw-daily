@@ -13,6 +13,7 @@ import orjson
 
 import discord
 import discord.ext.commands as ext
+from discord import Option
 
 import stwutil as stw
 
@@ -42,7 +43,6 @@ class ProfileDump(ext.Cog):
         try:
             # general error
             error_code = public_json_response["errorCode"]
-            support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "profiledump", acc_name, error_code,
                                                        verbiage_action="dump profiles")
@@ -65,6 +65,9 @@ class ProfileDump(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         generic_colour = self.client.colours["generic_blue"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "profiledump", authcode, auth_opt_out, True)
@@ -93,7 +96,9 @@ class ProfileDump(ext.Cog):
         if await self.check_errors(ctx, profile_json_response, auth_info, final_embeds):
             return
 
-        load_msg = await stw.processing_embed(self.client, ctx, "Dumping profiles", "This won't take too long...")
+        load_msg = await stw.processing_embed(self.client, ctx,
+                                              stw.I18n.get('profiledumper.embed.processing.title', desired_lang),
+                                              stw.I18n.get('profiledumper.embed.processing.description', desired_lang))
         load_msg = await stw.slash_edit_original(ctx, auth_info[0], load_msg)
 
         # get stw profile
@@ -138,22 +143,23 @@ class ProfileDump(ext.Cog):
 
         # With all info extracted, create the output
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Profile dump", "library_floppydisc"),
-            description=f"\u200b\nHere are your Fortnite profiles:\n\n"
-                        f"common_core - Fortnite profile data\n"
-                        f"campaign - STW profile data\n"
-                        f"athena - BR profile data\n"
-                        f"creative - Creative profile data\n"
-                        f"common_public - Public profile data\n"
-                        f"metadata - STW Homebase permissions\n"
-                        f"collections - BR Collections (Fishing, etc)\n"
-                        f"collection_book_people0 - Collection Book People\n"
-                        f"collection_book_schematics0 - Collection Book Schematics\n"
-                        f"outpost0 - STW Storage\n"
-                        f"theater0 - STW Backpack\n"
-                        f"theater1 - STW Event Backpack\n"
-                        f"theater2 - STW Ventures Backpack\n"
-                        f"recycle_bin - STW Recycle Bin\n"
+            title=await stw.add_emoji_title(self.client, stw.I18n.get('profiledumper.embed.title', desired_lang),
+                                            "library_floppydisc"),
+            description=f"\u200b\n{stw.I18n.get('profiledumper.embed.description', desired_lang)}\n\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key1', desired_lang, 'common_core')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key2', desired_lang, 'campaign')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key3', desired_lang, 'athena')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key4', desired_lang, 'creative')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key5', desired_lang, 'common_public')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key6', desired_lang, 'metadata')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key7', desired_lang, 'collections')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key8', desired_lang, 'collection_book_people0')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key9', desired_lang, 'collection_book_schematics0')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key10', desired_lang, 'outpost0')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key11', desired_lang, 'theater0')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key12', desired_lang, 'theater1')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key13', desired_lang, 'theater2')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key14', desired_lang, 'recycle_bin')}\n"
                         f"\u200b\n\u200b",
             colour=generic_colour)
 
@@ -434,6 +440,33 @@ class ProfileDump(ext.Cog):
             optout = False
 
         await self.profile_dump_command(ctx, authcode, not optout)
+
+    # @ext.slash_command(name='profiledump', name_localizations=stw.I18n.construct_slash_dict("profiledumper.slash.name"),  # yay (say yay if you're yay yay) 😱
+    #                    description='Dumps your Fortnite profiles as JSON attachments',
+    #                    description_localizations=stw.I18n.construct_slash_dict("profiledumper.slash.description"),
+    #                    guild_ids=stw.guild_ids)
+    # async def slashprofiledump(self, ctx: discord.ApplicationContext,
+    #                            token: Option(str,
+    #                                          description="Your Epic Games authcode. Required unless you have an active "
+    #                                                      "session.",
+    #                                          description_localizations=stw.I18n.construct_slash_dict(
+    #                                              "generic.slash.token"),
+    #                                          name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+    #                                          min_length=32) = "",
+    #                            auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+    #                                                 description_localizations=stw.I18n.construct_slash_dict(
+    #                                                     "generic.slash.optout"),
+    #                                                 name_localizations=stw.I18n.construct_slash_dict(
+    #                                                     "generic.meta.args.optout")) = False):
+    #     """
+    #     This function is the entry point for the profile dumper command when called via slash
+    #
+    #     Args:
+    #         ctx: The context of the command.
+    #         token: The authcode to use for authentication.
+    #         auth_opt_out: Whether to opt out of starting an authentication session.
+    #     """
+    #     await self.profile_dump_command(ctx, token, not auth_opt_out)
 
 
 def setup(client):
