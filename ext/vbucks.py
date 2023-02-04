@@ -11,7 +11,7 @@ import orjson
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import Option, OptionChoice
 
 import stwutil as stw
 
@@ -151,18 +151,23 @@ class Vbucks(ext.Cog):
                        description_localizations=stw.I18n.construct_slash_dict("vbucks.slash.description"),
                        guild_ids=stw.guild_ids)
     async def slashvbucks(self, ctx: discord.ApplicationContext,
-                          token: Option(str,
-                                        description="Your Epic Games authcode. Required unless you have an active "
-                                                    "session.",
-                                        description_localizations=stw.I18n.construct_slash_dict(
-                                            "generic.slash.token"),
-                                        name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
-                                        min_length=32) = "",
-                          auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+                          token: Option(
+                              description="Your Epic Games authcode. Required unless you have an active session.",
+                              description_localizations=stw.I18n.construct_slash_dict(
+                                  "generic.slash.token"),
+                              name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                              min_length=32) = "",
+                          auth_opt_out: Option(default="False",
+                                               description="Opt out of starting an authentication session",
                                                description_localizations=stw.I18n.construct_slash_dict(
                                                    "generic.slash.optout"),
                                                name_localizations=stw.I18n.construct_slash_dict(
-                                                   "generic.meta.args.optout")) = False):
+                                                   "generic.meta.args.optout"),
+                                               choices=[OptionChoice("Do not start an authentication session", "True",
+                                                                     stw.I18n.construct_slash_dict("generic.slash.optout.true")),
+                                                        OptionChoice("Start an authentication session (Default)", "False",
+                                                                     stw.I18n.construct_slash_dict(
+                                                                         "generic.slash.optout.false"))]) = "False"):
         """
         This function is the entry point for the vbucks command when called via slash
 
@@ -171,7 +176,7 @@ class Vbucks(ext.Cog):
             token: The authcode to use for authentication.
             auth_opt_out: Whether to opt out of starting an authentication session.
         """
-        await self.vbuck_command(ctx, token, not auth_opt_out)
+        await self.vbuck_command(ctx, token, not bool(auth_opt_out))
 
     @ext.command(name='vbucks',
                  aliases=['v', 'vb', 'vbuck', 'vbucc', 'v-bucks', 'balance', 'bucks', 'vucks', 'vbcks', 'vbuks',
