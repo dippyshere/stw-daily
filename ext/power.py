@@ -100,6 +100,7 @@ class Power(ext.Cog):
         # TODO: Fix this calculation being slightly off
         # TODO: Fix some stats being missing
         # https://canary.discord.com/channels/757765475823517851/757768833946877992/1058604927557050438
+        # https://canary.discord.com/channels/757765475823517851/1042781227767312384/1071340105035423775
         power_level, total, total_stats = stw.calculate_homebase_rating(stw_json_response)
 
         # With all info extracted, create the output

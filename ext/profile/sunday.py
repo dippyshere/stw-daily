@@ -332,6 +332,7 @@ async def settings_view_timeout(view, sub=False):
         embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
 
     embed.fields[0].value += f"\u200b\n*Timed out. Please rerun the command to continue*\n\u200b"
+    # TODO: This has a none type error
     await view.message.edit(embed=embed, view=view)
 
 
