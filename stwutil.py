@@ -1415,26 +1415,28 @@ def extract_profile_item(profile_json, item_string="Currency:Mtx"):
     return found_items
 
 
-async def get_stw_news(client):
+async def get_stw_news(client, locale="en"):
     """
     Gets the news for stw from epic games
 
     Args:
         client: The client
+        locale: The locale to get the news for
 
     Returns:
         The news for stw from epic games
     """
     endpoint = client.config["endpoints"]["stw_news"]
-    return await client.stw_session.get(endpoint)
+    return await client.stw_session.get(endpoint.format(locale))
 
 
-async def get_br_news(client):
+async def get_br_news(client, locale="en"):
     """
     Gets the news for br from fortnite-api as its personalised from epic games
 
     Args:
         client: The client
+        locale: The locale to get the news for
 
     Returns:
         The news for br from fortnite-api
@@ -1442,7 +1444,7 @@ async def get_br_news(client):
     # TODO: This should be changed to use the epic games api
     # We can't use the epic games api as it requires a personalised request
     endpoint = client.config["endpoints"]["br_news"]
-    return await client.stw_session.get(endpoint)
+    return await client.stw_session.get(endpoint.format(locale))
 
 
 async def create_news_page(self, ctx, news_json, current, total, desired_lang="en"):

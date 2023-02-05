@@ -266,11 +266,11 @@ class News(ext.Cog):
 
         load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx,
                                                                               title=stw.I18n.get("news.embed.processing.title", desired_lang)))
-        stw_news_req = await stw.get_stw_news(self.client)
+        stw_news_req = await stw.get_stw_news(self.client, desired_lang)
         stw_news_json = await stw_news_req.json(content_type=None)
         stw_news = stw_news_json["news"]["messages"]
         stw_pages_length = len(stw_news)
-        br_news_req = await stw.get_br_news(self.client)
+        br_news_req = await stw.get_br_news(self.client, desired_lang)
         br_news_json = await br_news_req.json(content_type=None)
         br_news = br_news_json["data"]["motds"]
         br_pages_length = len(br_news)

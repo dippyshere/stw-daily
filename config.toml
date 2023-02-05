@@ -453,8 +453,8 @@ device_auth = "https://account-public-service-prod.ol.epicgames.com/account/api/
 verify = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/verify"
 store = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
 news = "https://prm-dialogue-public-api-prod.edea.live.use1a.on.epicgames.com/api/v1/fortnite-br/surfaces/motd/target"
-stw_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews"
-br_news = "https://fortnite-api.com/v2/news/br"
+stw_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews?lang={0}"
+br_news = "https://fortnite-api.com/v2/news/br?language={0}"
 pve_info = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
 bb_profile = "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId={}" # this is so sad 😿
 
