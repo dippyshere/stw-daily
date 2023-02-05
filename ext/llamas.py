@@ -21,7 +21,8 @@ class LlamasView(discord.ui.View):
     The view for the llama command.
     """
 
-    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, llama_options, auth_info):
+    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, llama_options, auth_info,
+                 desired_lang):
         super().__init__()
         self.ctx = ctx
         self.client = client
@@ -32,7 +33,9 @@ class LlamasView(discord.ui.View):
         self.preroll_data = preroll_data
         self.interaction_check_done = {}
         self.children[0].options = llama_options
+        self.children[0].placeholder = stw.I18n.get("llamas.view.option.placeholder", desired_lang)
         self.auth_info = auth_info
+        self.desired_lang = desired_lang
 
     async def llama_purchase_embed(self, ctx, offer_id, select=True):
         """
@@ -48,23 +51,28 @@ class LlamasView(discord.ui.View):
         """
         if select:
             if offer_id == "back":
-                self.children[0].options = await self.llamas.select_options_llamas(self.llama_store)
-                return await self.llamas.llama_embed(ctx, self.free_llama, self.llama_store, self.preroll_data)
+                self.children[0].options = await self.llamas.select_options_llamas(self.llama_store,
+                                                                                   desired_lang=self.desired_lang)
+                return await self.llamas.llama_embed(ctx, self.free_llama, self.llama_store, self.preroll_data,
+                                                     self.desired_lang)
             else:
-                self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
+                self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True,
+                                                                                   desired_lang=self.desired_lang)
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Store", "llama"),
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang), "llama"),
             description=f"\u200b\n",
             colour=self.client.colours["generic_blue"])
         for entry in self.llama_store["catalogEntries"]:
             if entry["offerId"] == offer_id:
                 llama_datatable = await stw.get_llama_datatable(self.client, entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0])
                 embed.description = f"\u200b\n{llama_datatable[2]}{llama_datatable[3]} **{llama_datatable[0]}**\n"
-                embed.description += f"Price: {'~~' + str(entry['prices'][0]['regularPrice']) + '~~ ' if entry['prices'][0]['regularPrice'] != entry['prices'][0]['finalPrice'] else ''}**{entry['prices'][0]['finalPrice']:,}** {stw.get_item_icon_emoji(self.client, entry['prices'][0]['currencySubType'])}\n"  # TODO: make this sale_sticker_store
+                embed.description += stw.I18n.get("llamas.embed.description.price", self.desired_lang,
+                                                  f"{'~~' + str(entry['prices'][0]['regularPrice']) + '~~ ' if entry['prices'][0]['regularPrice'] != entry['prices'][0]['finalPrice'] else ''}**{entry['prices'][0]['finalPrice']:,}** {stw.get_item_icon_emoji(self.client, entry['prices'][0]['currencySubType'])}\n")  # TODO: make this sale_sticker_store
                 for attr, val in self.preroll_data.items():
                     if offer_id == val["attributes"]["offerId"]:
-                        embed.description += "Contents: " + stw.llama_contents_render(self.client,
-                                                                                      val["attributes"]["items"])
+                        embed.description += stw.I18n.get("llamas.embed.description.contents", self.desired_lang,
+                                                          stw.llama_contents_render(self.client,
+                                                                                    val["attributes"]["items"]))
                         break
                 embed.description += f"\n\n*{llama_datatable[1]}*\n"
                 break
@@ -114,7 +122,7 @@ class LlamasView(discord.ui.View):
         """
         embed = await self.llama_purchase_embed(self.ctx, select.values[0])
         view = LlamasPurchaseView(self.ctx, self.client, self.message, self.author, self.llama_store, self.free_llama,
-                                  self.preroll_data, select.values[0], self.auth_info)
+                                  self.preroll_data, select.values[0], self.auth_info, self.desired_lang)
         view.llamas = self.llamas
         view.llamaview = self
         await interaction.response.edit_message(embed=embed, view=view)
@@ -125,7 +133,8 @@ class LlamasPurchaseView(discord.ui.View):
     The view for the llama purchase command.
     """
 
-    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, offer_id, auth_info):
+    def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, offer_id, auth_info,
+                 desired_lang):
         super().__init__()
         self.ctx = ctx
         self.client = client
@@ -141,6 +150,11 @@ class LlamasPurchaseView(discord.ui.View):
         self.interaction_check_done = {}
         self.currency = ""
         self.contents = ""
+        self.desired_lang = desired_lang
+
+        self.children[0].label = stw.I18n.get("llamas.confirmation.button.purchase", self.desired_lang)
+        self.children[1].label = stw.I18n.get("generic.view.button.cancel", self.desired_lang)
+
         # self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
 
     async def on_timeout(self):
@@ -192,8 +206,8 @@ class LlamasPurchaseView(discord.ui.View):
             self.llama_store = await stw.get_llama_store(shop_json_response)
             self.free_llama = await stw.free_llama_count(self.llama_store)
             self.llamaview.preroll_data, self.llamaview.llama_store, self.llamaview.free_llama = self.preroll_data, self.llama_store, self.free_llama
-            await asyncio.sleep(5.8)
             embed = await self.llamaview.llama_purchase_embed(self.ctx, "back")
+            await asyncio.sleep(5.8)
             await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self.llamaview)
 
     @discord.ui.button(label="Cancel", style=discord.ButtonStyle.danger)
@@ -224,9 +238,9 @@ class LlamasPurchaseView(discord.ui.View):
         Returns:
             The embed with the llama purchase
         """
-        article = "a"
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Store", "llama"),
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang),
+                                            "llama"),
             description=f"\u200b\n",
             colour=self.client.colours["generic_blue"])
         for entry in self.llama_store["catalogEntries"]:
@@ -238,10 +252,14 @@ class LlamasPurchaseView(discord.ui.View):
                     if offer_id == val["attributes"]["offerId"]:
                         self.contents = stw.llama_contents_render(self.client, val["attributes"]["items"])
                         break
-                if llama_datatable[0][0].lower() in "aeiou":
-                    article = "an"
                 break
-        embed.description += f"**Are you sure you want to purchase {article} {llama_datatable[0]} for {self.price} {stw.get_item_icon_emoji(self.client, self.currency)}?**\n\u200b"
+        if self.desired_lang == "en":
+            if llama_datatable[0][0].lower() in "aeiou":
+                embed.description += f'{stw.I18n.get("llamas.confirmation.description.vowel", self.desired_lang, llama_datatable[0], self.price, stw.get_item_icon_emoji(self.client, self.currency))}\n\u200b'
+            else:
+                embed.description += f'{stw.I18n.get("llamas.confirmation.description.consonant", self.desired_lang, llama_datatable[0], self.price, stw.get_item_icon_emoji(self.client, self.currency))}\n\u200b'
+        else:
+            embed.description += f'{stw.I18n.get("llamas.confirmation.description", self.desired_lang, llama_datatable[0], self.price, stw.get_item_icon_emoji(self.client, self.currency))}\n\u200b'
         embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
@@ -267,9 +285,10 @@ class LlamasPurchaseView(discord.ui.View):
             print("Error:", purchase)
         except:
             embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, "Store", "llama"),
-                description=f"\u200b\n**Successfully purchased Llama!**\n"
-                            f"{'You got: ' + self.contents if self.contents != '' else ''}\nReturning <t:{int(time.time()) + 6}:R>\n\u200b",
+                title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang),
+                                                "llama"),
+                description=f"\u200b\n{stw.I18n.get('llamas.purchase.description', self.desired_lang)}\n"
+                            f"{stw.I18n.get('llamas.purchase.description.get', self.desired_lang) + ' ' + self.contents if self.contents != '' else ''}\n{stw.I18n.get('util.error.posterrors.purchase.returning', self.desired_lang, f'<t:{int(time.time()) + 6}:R>')}\n\u200b",
                 colour=self.client.colours["generic_blue"])
             # print("Success:", purchase)
         embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
@@ -313,21 +332,24 @@ class Llamas(ext.Cog):
             # no error
             return False
 
-    async def select_options_llamas(self, llama_store, return_visible=False):
+    async def select_options_llamas(self, llama_store, return_visible=False, desired_lang="en"):
         """
         Creates the options for the select menu for the llamas command.
 
         Args:
             llama_store: The llama store data.
             return_visible: Whether the return value should be the visible options or the hidden options.
+            desired_lang: The language to use for the llama names.
 
         Returns:
             The options for the select menu.
         """
         options = []
         if return_visible:
-            options.append(SelectOption(label="Return", value="back", emoji=self.emojis["left_arrow"],
-                                        description="Return to the shop"))
+            options.append(SelectOption(label=stw.I18n.get("llamas.view.option.return.name", desired_lang),
+                                        value="back", emoji=self.emojis["left_arrow"],
+                                        description=stw.I18n.get("llamas.view.option.return.description",
+                                                                 desired_lang)))
         for entry in llama_store["catalogEntries"]:
             if entry['devName'] == "Always.UpgradePack.03":
                 continue
@@ -335,25 +357,28 @@ class Llamas(ext.Cog):
                                                             entry['displayAssetPath'].split('/Game/Items/CardPacks/')[
                                                                 -1].split('.')[0])
             options.append(discord.SelectOption(label=llama_datatable[0], value=entry['offerId'],
-                                                description=f"Price: {entry['prices'][0]['finalPrice']:,}",
+                                                description=stw.I18n.get("llamas.embed.description.price", desired_lang,
+                                                                         f"{entry['prices'][0]['finalPrice']:,}"),
                                                 emoji=llama_datatable[2]))
         return options
 
-    async def llama_entry(self, catalog_entry, client):
+    async def llama_entry(self, catalog_entry, client, desired_lang='en'):
         """
         Creates an embed entry string for a single llama catalog entry.
 
         Args:
             catalog_entry: The catalog entry to be processed.
             client: The bot client.
+            desired_lang: The language to use for the llama names.
 
         Returns:
             The embed entry string.
         """
-        llama_datatable = await stw.get_llama_datatable(self.client, catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0])
+        llama_datatable = await stw.get_llama_datatable(self.client, catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0], desired_lang)
         entry_string = f"\u200b\n{llama_datatable[2]}{llama_datatable[3]} **{llama_datatable[0]}**\n"
         # entry_string += f"Rarity: {catalog_entry['itemGrants'][0]['templateId'].split('CardPack:cardpack_')[1]}\n"
-        entry_string += f"Price: {'~~' + str(catalog_entry['prices'][0]['regularPrice']) + '~~ ' if catalog_entry['prices'][0]['regularPrice'] != catalog_entry['prices'][0]['finalPrice'] else ''}**{catalog_entry['prices'][0]['finalPrice']:,}** {stw.get_item_icon_emoji(client, catalog_entry['prices'][0]['currencySubType'])} \n"
+        entry_string += stw.I18n.get("llamas.embed.description.price", desired_lang,
+                                     f"{'~~' + str(catalog_entry['prices'][0]['regularPrice']) + '~~ ' if catalog_entry['prices'][0]['regularPrice'] != catalog_entry['prices'][0]['finalPrice'] else ''}**{catalog_entry['prices'][0]['finalPrice']:,}** {stw.get_item_icon_emoji(client, catalog_entry['prices'][0]['currencySubType'])} \n")
         # entry_string += f"OfferID: {catalog_entry['offerId']}\n"
         # entry_string += f"Dev name: {catalog_entry['devName']}\n"
         # entry_string += f"Daily limit: {catalog_entry['dailyLimit']}\n"
@@ -361,7 +386,7 @@ class Llamas(ext.Cog):
         # entry_string += f"Icon: {catalog_entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0]}\n"
         return entry_string
 
-    async def llama_embed(self, ctx, free_llama, llama_store, preroll_data):
+    async def llama_embed(self, ctx, free_llama, llama_store, preroll_data, desired_lang):
         """
         Creates the embed for the llama command.
 
@@ -370,24 +395,28 @@ class Llamas(ext.Cog):
             free_llama: The free llama data.
             llama_store: The llama store data.
             preroll_data: The preroll data.
+            desired_lang: The language to use for the llama names.
 
         Returns:
             The embed.
         """
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Store", "llama"),
-            description=f"\u200b\nHere's the current shop:\u200b\n\u200b",
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", desired_lang), "llama"),
+            description=f"\u200b\n{stw.I18n.get('llamas.embed.description', desired_lang)}\u200b\n\u200b",
             colour=self.client.colours["generic_blue"])
         if free_llama[0] > 0:
-            embed.description += f"\u200b\n{self.client.config['emojis']['new_item_store']} **There is a free llama available!** {self.client.config['emojis']['new_item_store']}\n"
+            embed.description += f"\u200b\n{self.client.config['emojis']['new_item_store']} " \
+                                 f"{stw.I18n.get('llamas.embed.description.freellama', desired_lang)} " \
+                                 f"{self.client.config['emojis']['new_item_store']}\n"
         for entry in llama_store["catalogEntries"]:
             if entry['devName'] == "Always.UpgradePack.03":
                 continue
-            embed.description += await self.llama_entry(entry, self.client)
+            embed.description += await self.llama_entry(entry, self.client, desired_lang)
             for attr, val in preroll_data.items():  # :>
                 if entry["offerId"] == val["attributes"]["offerId"]:
-                    embed.description += "Contents: " + stw.llama_contents_render(self.client,
-                                                                                  val["attributes"]["items"])
+                    embed.description += stw.I18n.get("llamas.embed.description.contents", desired_lang,
+                                                      stw.llama_contents_render(self.client,
+                                                                                val["attributes"]["items"]))
                     break
             embed.description += f"\n"
         embed.description += f"\u200b\n"
@@ -449,15 +478,15 @@ class Llamas(ext.Cog):
 
         free_llama = await stw.free_llama_count(llama_store)
 
-        llama_option = await self.select_options_llamas(llama_store)
+        llama_option = await self.select_options_llamas(llama_store, desired_lang=desired_lang)
         # TODO: hide llamas that are not available, or cannot be bought
         # With all info extracted, create the output
 
-        embed = await self.llama_embed(ctx, free_llama, llama_store, preroll_data)
+        embed = await self.llama_embed(ctx, free_llama, llama_store, preroll_data, desired_lang)
 
         final_embeds.append(embed)
         llama_view = LlamasView(ctx, self.client, auth_info[0], ctx.author, llama_store, free_llama, preroll_data,
-                                llama_option, auth_info[1])
+                                llama_option, auth_info[1], desired_lang)
         llama_view.llamas = self
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=llama_view)
         return

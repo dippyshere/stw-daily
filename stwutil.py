@@ -939,13 +939,14 @@ async def purchase_llama(client, auth_entry, offer_id, currency="GameItem",
     return orjson.loads(await req_buy_free_llama.read())
 
 
-async def get_llama_datatable(client, path):
+async def get_llama_datatable(client, path, desired_lang='en'):
     """
     Gets the llama datatable from the game files
 
     Args:
         client: The client
         path: The path to the cardpack
+        desired_lang: The desired language to use
 
     Returns:
         Name, Description, image emoji, pack image emoji, and rarity of the llama
@@ -972,10 +973,10 @@ async def get_llama_datatable(client, path):
             get_item_icon_emoji(client, llama_file["PackImage"]["AssetPathName"].split(".")[-1]), \
             llama_file["Rarity"].split("::")[-1]
     except:
-        return "Upgrade Llama", "The old faithful llama, packed with a variety of goodies and upgrade materials. " \
-                                "Contains at least 4 items, including a rare item or a hero! Has a high chance to " \
-                                "upgrade.", "<:PinataStandardPack:1055058584808984587>", \
-            "<:T_CardPack_Upgrade_IconMask:1055049365426819092>", "Rare"
+        return I18n.get("stw.item.CardPack_Bronze.name", desired_lang), \
+            I18n.get("stw.item.CardPack_Bronze.desc", desired_lang), \
+            "<:T_CardPack_Upgrade_IconMask:1055049365426819092>", \
+            "Rare"
 
 
 async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
