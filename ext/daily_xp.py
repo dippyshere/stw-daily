@@ -10,7 +10,7 @@ import asyncio
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import Option, OptionChoice
 
 import stwutil as stw
 
@@ -135,13 +135,30 @@ class DailyXP(ext.Cog):
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
-    @ext.slash_command(name='dailyxp',
+    @ext.slash_command(name='dailyxp', name_localizations=stw.I18n.construct_slash_dict("dailyxp.slash.name"),
                        description='View your daily STW XP cap',
+                       description_localizations=stw.I18n.construct_slash_dict("dailyxp.slash.description"),
                        guild_ids=stw.guild_ids)
     async def slashldailyxp(self, ctx: discord.ApplicationContext,
-                            token: Option(str,
-                                          "Your Epic Games authcode. Required unless you have an active session.") = "",
-                            auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+                            token: Option(
+                                description="Your Epic Games authcode. Required unless you have an active session.",
+                                description_localizations=stw.I18n.construct_slash_dict(
+                                    "generic.slash.token"),
+                                name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                                min_length=32) = "",
+                            auth_opt_out: Option(default="False",
+                                                 description="Opt out of starting an authentication session",
+                                                 description_localizations=stw.I18n.construct_slash_dict(
+                                                     "generic.slash.optout"),
+                                                 name_localizations=stw.I18n.construct_slash_dict(
+                                                     "generic.meta.args.optout"),
+                                                 choices=[OptionChoice("Do not start an authentication session", "True",
+                                                                       stw.I18n.construct_slash_dict(
+                                                                           "generic.slash.optout.true")),
+                                                          OptionChoice("Start an authentication session (Default)",
+                                                                       "False",
+                                                                       stw.I18n.construct_slash_dict(
+                                                                           "generic.slash.optout.false"))]) = "False"):
         """
         This function is the entry point for the daily xp command when called via slash
 
@@ -150,7 +167,7 @@ class DailyXP(ext.Cog):
             token: Your Epic Games authcode. Required unless you have an active session.
             auth_opt_out: Opt out of starting an authentication session
         """
-        await self.daily_xp_command(ctx, token, not auth_opt_out)
+        await self.daily_xp_command(ctx, token, not bool(auth_opt_out))
 
     @ext.command(name='dailyxp',
                  aliases=['dxp', '/dxp', '/dailyxp', 'daily_xp', '/daily_xp', 'ailyxp', 'dilyxp', 'dalyxp', 'daiyxp',

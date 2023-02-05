@@ -10,7 +10,7 @@ import time
 
 import discord
 import discord.ext.commands as ext
-from discord import Option, SelectOption
+from discord import Option, SelectOption, OptionChoice
 import orjson
 
 import stwutil as stw
@@ -408,6 +408,9 @@ class Llamas(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "llamas", authcode, auth_opt_out, True)
         if not auth_info[0]:
             return
@@ -463,18 +466,23 @@ class Llamas(ext.Cog):
                        description='View and purchase Llamas in the Llama shop',
                        guild_ids=stw.guild_ids)
     async def slashllamas(self, ctx: discord.ApplicationContext,
-                          token: Option(str,
-                                        description="Your Epic Games authcode. Required unless you have an active "
+                          token: Option(description="Your Epic Games authcode. Required unless you have an active "
                                                     "session.",
                                         description_localizations=stw.I18n.construct_slash_dict(
                                             "generic.slash.token"),
                                         name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
                                         min_length=32) = "",
-                          auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+                          auth_opt_out: Option(default="False",
+                                               description="Opt out of starting an authentication session",
                                                description_localizations=stw.I18n.construct_slash_dict(
                                                    "generic.slash.optout"),
                                                name_localizations=stw.I18n.construct_slash_dict(
-                                                   "generic.meta.args.optout")) = False):
+                                                   "generic.meta.args.optout"),
+                                               choices=[OptionChoice("Do not start an authentication session", "True",
+                                                                     stw.I18n.construct_slash_dict("generic.slash.optout.true")),
+                                                        OptionChoice("Start an authentication session (Default)", "False",
+                                                                     stw.I18n.construct_slash_dict(
+                                                                         "generic.slash.optout.false"))]) = "False"):
         """
         This function is the entry point for the llama command when called via slash
 
@@ -483,7 +491,7 @@ class Llamas(ext.Cog):
             token: Your Epic Games authcode. Required unless you have an active session.
             auth_opt_out: Opt out of starting an authentication session
         """
-        await self.llamas_command(ctx, token, not auth_opt_out)
+        await self.llamas_command(ctx, token, not bool(auth_opt_out))
 
     @ext.command(name='llamas',
                  aliases=['lama', 'llma', 'llaa', 'llam', 'lllama', 'llaama', 'llamma', 'llamaa', 'lalma', 'llmaa',

@@ -698,8 +698,7 @@ class Research(ext.Cog):
                    description_localizations=stw.I18n.construct_slash_dict("research.slash.description"),
                    guild_ids=stw.guild_ids)
     async def slashresearch(self, ctx: discord.ApplicationContext,
-                            token: Option(str,
-                                          description="Your Epic Games authcode. Required unless you have an active "
+                            token: Option(description="Your Epic Games authcode. Required unless you have an active "
                                                       "session.",
                                           description_localizations=stw.I18n.construct_slash_dict(
                                               "generic.slash.token"),

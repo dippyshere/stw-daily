@@ -10,7 +10,7 @@ import orjson
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import Option, OptionChoice
 
 import stwutil as stw
 
@@ -236,13 +236,30 @@ class Daily(ext.Cog):
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
-    @ext.slash_command(name='daily',
+    @ext.slash_command(name='daily', name_localizations=stw.I18n.construct_slash_dict("daily.slash.name"),
                        description='Claim your Save The World daily reward',
+                       description_localizations=stw.I18n.construct_slash_dict("daily.slash.description"),
                        guild_ids=stw.guild_ids)
     async def slashdaily(self, ctx: discord.ApplicationContext,
-                         token: Option(str,
-                                       "Your Epic Games authcode. Required unless you have an active session.") = "",
-                         auth_opt_out: Option(bool, "Opt out of starting an authentication session") = False, ):
+                         token: Option(
+                             description="Your Epic Games authcode. Required unless you have an active session.",
+                             description_localizations=stw.I18n.construct_slash_dict(
+                                 "generic.slash.token"),
+                             name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                             min_length=32) = "",
+                         auth_opt_out: Option(default="False",
+                                              description="Opt out of starting an authentication session",
+                                              description_localizations=stw.I18n.construct_slash_dict(
+                                                  "generic.slash.optout"),
+                                              name_localizations=stw.I18n.construct_slash_dict(
+                                                  "generic.meta.args.optout"),
+                                              choices=[OptionChoice("Do not start an authentication session", "True",
+                                                                    stw.I18n.construct_slash_dict(
+                                                                        "generic.slash.optout.true")),
+                                                       OptionChoice("Start an authentication session (Default)",
+                                                                    "False",
+                                                                    stw.I18n.construct_slash_dict(
+                                                                        "generic.slash.optout.false"))]) = "False"):
         """
         This function is the entry point for the daily command when called via slash
 
@@ -251,7 +268,7 @@ class Daily(ext.Cog):
             token: The authcode of the user
             auth_opt_out: Whether the user wants to opt out of starting an authentication session
         """
-        await self.daily_command(ctx, token, not auth_opt_out)
+        await self.daily_command(ctx, token, not bool(auth_opt_out))
 
     @ext.command(name='daily',
                  aliases=['daxily', 'clllect', 'deaily', 'clailm', 'c9llect', 'claimm', 'dai9ly', 'claiom', 'collfct',

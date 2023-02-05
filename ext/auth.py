@@ -220,22 +220,28 @@ class Auth(ext.Cog):
         """
         await self.kill_command(ctx)
 
-    @slash_command(name='auth',
+    @slash_command(name='auth', name_localizations=stw.I18n.construct_slash_dict("auth.slash.name"),
                    description='Login with your Epic Games authcode and start an authentication session',
+                   description_localizations=stw.I18n.construct_slash_dict("auth.slash.description"),
                    guild_ids=stw.guild_ids)
     async def slashauth(self, ctx: discord.ApplicationContext,
-                        authcode: Option(str,
-                                         "Your Epic Games authcode. Leave this blank to get one") = ''):
+                        token: Option(
+                            description="Your Epic Games authcode. Leave this blank to get one",
+                            description_localizations=stw.I18n.construct_slash_dict(
+                                "auth.slash.token"),
+                            name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                            min_length=32, default="") = ""):
         """
         This function is the entry point for the auth command when called via slash commands
         Args:
             ctx: The context of the command
-            authcode: The authcode to use for authentication
+            token: The authcode to use for authentication
         """
-        await self.auth_command(ctx, authcode)
+        await self.auth_command(ctx, token)
 
-    @slash_command(name='kill',
+    @slash_command(name='kill', name_localizations=stw.I18n.construct_slash_dict("auth.kill.slash.name"),
                    description='End your active authentication session',
+                   description_localizations=stw.I18n.construct_slash_dict("auth.kill.slash.description"),
                    guild_ids=stw.guild_ids)
     async def slashkill(self, ctx):
         """

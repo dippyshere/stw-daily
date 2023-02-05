@@ -10,7 +10,7 @@ import orjson
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import Option, OptionChoice
 
 import stwutil as stw
 
@@ -129,18 +129,25 @@ class Power(ext.Cog):
     #                    description_localizations=stw.I18n.construct_slash_dict("power.slash.description"),
     #                    guild_ids=stw.guild_ids)
     # async def slashpower(self, ctx: discord.ApplicationContext,
-    #                      token: Option(str,
-    #                                    description="Your Epic Games authcode. Required unless you have an active "
+    #                      token: Option(description="Your Epic Games authcode. Required unless you have an active "
     #                                                "session.",
     #                                    description_localizations=stw.I18n.construct_slash_dict(
     #                                        "generic.slash.token"),
     #                                    name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
     #                                    min_length=32) = "",
-    #                      auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+    #                      auth_opt_out: Option(default="False",
+    #                                           description="Opt out of starting an authentication session",
     #                                           description_localizations=stw.I18n.construct_slash_dict(
     #                                               "generic.slash.optout"),
     #                                           name_localizations=stw.I18n.construct_slash_dict(
-    #                                               "generic.meta.args.optout")) = False):
+    #                                               "generic.meta.args.optout"),
+    #                                           choices=[OptionChoice("Do not start an authentication session", "True",
+    #                                                                 stw.I18n.construct_slash_dict(
+    #                                                                     "generic.slash.optout.true")),
+    #                                                    OptionChoice("Start an authentication session (Default)",
+    #                                                                 "False",
+    #                                                                 stw.I18n.construct_slash_dict(
+    #                                                                     "generic.slash.optout.false"))]) = "False"):
     #     """
     #     This function is the entry point for the power command when called via slash
     #
@@ -149,7 +156,7 @@ class Power(ext.Cog):
     #         token: The authcode of the user
     #         auth_opt_out: Whether the user has opted out of auth
     #     """
-    #     await self.power_command(ctx, token, not auth_opt_out)
+    #     await self.power_command(ctx, token, not bool(auth_opt_out))
 
     @ext.command(name='power',
                  aliases=['pow', 'powerlevel', 'rating', 'level', 'pwr', 'ower', 'pwer', 'poer', 'powr', 'powe',

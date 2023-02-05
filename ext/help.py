@@ -365,7 +365,9 @@ class Help(ext.Cog):
     async def slashhelp(
             self,
             ctx: discord.ApplicationContext,
-            command: Option(str, "Choose a command to display detailed information on",
+            command: Option(description="Choose a command to display detailed information on",
+                            description_localizations=stw.I18n.construct_slash_dict("help.meta.args.command.description"),
+                            name_localizations=stw.I18n.construct_slash_dict("help.meta.args.command"),
                             autocomplete=get_bot_commands) = None):
         """
         This function is the entry point for the help command when called via slash command.

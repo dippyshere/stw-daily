@@ -8,7 +8,7 @@ This file is the cog for the homebase command. renames homebase / displays curre
 
 import discord
 import discord.ext.commands as ext
-from discord import Option
+from discord import Option, OptionChoice
 import orjson
 
 import stwutil as stw
@@ -211,23 +211,30 @@ class Homebase(ext.Cog):
                        description='This command allows you to view / change the name of your Homebase in STW',
                        guild_ids=stw.guild_ids)
     async def slashhbrename(self, ctx: discord.ApplicationContext,
-                            name: Option(str,
-                                         description="The new name for your Homebase. Leave blank to view your current name + banner",
-                                         description_localizations=stw.I18n.construct_slash_dict("homebase.meta.args.name.description"),
-                                         name_localizations=stw.I18n.construct_slash_dict("homebase.meta.args.name"),
-                                         min_length=1, max_length=16) = "",
-                            token: Option(str,
-                                          description="Your Epic Games authcode. Required unless you have an active "
+                            name: Option(
+                                description="The new name for your Homebase. Leave blank to view your current name + banner",
+                                description_localizations=stw.I18n.construct_slash_dict("homebase.meta.args.name.description"),
+                                name_localizations=stw.I18n.construct_slash_dict("homebase.meta.args.name"),
+                                min_length=1, max_length=16) = "",
+                            token: Option(description="Your Epic Games authcode. Required unless you have an active "
                                                       "session.",
                                           description_localizations=stw.I18n.construct_slash_dict(
                                               "generic.slash.token"),
                                           name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
                                           min_length=32) = "",
-                            auth_opt_out: Option(bool, description="Opt out of starting an authentication session",
+                            auth_opt_out: Option(default="False",
+                                                 description="Opt out of starting an authentication session",
                                                  description_localizations=stw.I18n.construct_slash_dict(
                                                      "generic.slash.optout"),
                                                  name_localizations=stw.I18n.construct_slash_dict(
-                                                     "generic.meta.args.optout")) = False):
+                                                     "generic.meta.args.optout"),
+                                                 choices=[OptionChoice("Do not start an authentication session", "True",
+                                                                       stw.I18n.construct_slash_dict(
+                                                                           "generic.slash.optout.true")),
+                                                          OptionChoice("Start an authentication session (Default)",
+                                                                       "False",
+                                                                       stw.I18n.construct_slash_dict(
+                                                                           "generic.slash.optout.false"))]) = "False"):
         """
         This function is the entry point for the homebase command when called via slash
 
@@ -237,7 +244,7 @@ class Homebase(ext.Cog):
             token: Your Epic Games authcode. Required unless you have an active session.
             auth_opt_out: Opt out of starting an authentication session
         """
-        await self.hbrename_command(ctx, name, token, not auth_opt_out)
+        await self.hbrename_command(ctx, name, token, not bool(auth_opt_out))
 
     @ext.command(name='homebase',
                  aliases=['hbrename', 'hbrn', 'rename', 'changehomebase', 'homebasename', 'hbname', 'hb', 'brn', 'hrn',
