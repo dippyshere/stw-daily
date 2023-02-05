@@ -140,13 +140,13 @@ class Reward(ext.Cog):
                                 embed.add_field(
                                     name=stw.I18n.get("reward.embed.field2.founder", desired_lang,
                                                       f'{self.client.config["emojis"]["vbucks"]}{self.client.config["emojis"]["xray"]}'),
-                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, stw.get_reward(self.client, day1, False)[0], int(day1) - int(day) % 336)}'
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, stw.get_reward(self.client, day1)[0], int(day1) - int(day) % 336)}'
                                           f'```\u200b', inline=False)
                             else:
                                 embed.add_field(
                                     name=stw.I18n.get("reward.embed.field2.founder", desired_lang,
                                                       f'{self.client.config["emojis"]["vbucks"]}{self.client.config["emojis"]["xray"]}'),
-                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, stw.get_reward(self.client, day1, False)[0], int(day1) - int(day) % 336)}'
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, stw.get_reward(self.client, day1)[0], int(day1) - int(day) % 336)}'
                                           f'```\u200b', inline=False)
                         else:
                             if int(day1) - int(day) % 336 == 1:
@@ -266,10 +266,12 @@ class Reward(ext.Cog):
                           day: Option(int,
                                       "The day to get the rewards of. Not required if you are authenticated",
                                       description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day.description"),
-                                      name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day")) = None,
+                                      name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day"),
+                                      min_value=1) = None,
                           limit: Option(int, "The number of upcoming days to see",
                                         description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit.description"),
-                                        name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit")) = None):
+                                        name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit"),
+                                        min_value=0, max_value=60, default=7) = None):
         """
         This function is the entry point for the reward command when called via slash
 
