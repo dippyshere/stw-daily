@@ -120,7 +120,7 @@ class Information(ext.Cog):
                               f'{stw.I18n.get("info.embed.entry.statistics.shard", desired_lang, shard_name)}\n'
                               f'{stw.I18n.get("info.embed.entry.statistics.shard.id", desired_lang, shard_id)}\n'
                               f'{stw.I18n.get("info.embed.entry.statistics.shard.total", desired_lang, shards)}\n'
-                              f'{stw.I18n.get("info.embed.entry.statistics.guilds", desired_lang, len(self.client.guilds))}```\u200b')
+                              f'{stw.I18n.get("info.embed.entry.statistics.guilds", desired_lang, f"{len(self.client.guilds):,}")}```\u200b')
         websocket_ping = int(self.client.latency * 100)
         embed.add_field(name=stw.I18n.get("info.embed.entry.latency", desired_lang),
                         value=f'```yaml\n{stw.I18n.get("info.embed.entry.latency.websocket", desired_lang, f"{websocket_ping:,}")}\n'
