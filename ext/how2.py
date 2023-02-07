@@ -8,6 +8,9 @@ This file is the cog for the how2 command. Displays the how to use embed + gif
 
 import discord
 import discord.ext.commands as ext
+from discord.commands import (  # Importing the decorator that makes slash commands.
+    slash_command,
+)
 
 import stwutil as stw
 
@@ -18,16 +21,19 @@ class HowToUseView(discord.ui.View):
     discord UI View for the how to use command.
     """
 
-    def __init__(self, client, author, ctx):
+    def __init__(self, client, author, ctx, desired_lang):
         super().__init__(timeout=None)
         self.client = client
         self.ctx = ctx
         self.author = author
+        self.desired_lang = desired_lang
 
-        self.add_item(discord.ui.Button(label="Get an Auth code", style=discord.ButtonStyle.link,
+        self.add_item(discord.ui.Button(label=stw.I18n.get("how2.view.getcode", desired_lang),
+                                        style=discord.ButtonStyle.link,
                                         url=self.client.config["login_links"]["login_fortntite_pc"],
                                         emoji=self.client.config["emojis"]["link_icon"]))
-        self.add_item(discord.ui.Button(label="More Help", style=discord.ButtonStyle.link,
+        self.add_item(discord.ui.Button(label=stw.I18n.get("how2.view.button.morehelp", desired_lang),
+                                        style=discord.ButtonStyle.link,
                                         url="https://github.com/dippyshere/stw-daily/wiki",
                                         emoji=self.client.config["emojis"]["info"]))
 
@@ -51,19 +57,26 @@ class HowTo(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         embed_colour = self.client.colours["generic_blue"]
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "How to Use STW Daily", "info"),
-                              description=f'\u200b\nFor some commands (like [daily](https://github.com/dippyshere/stw-daily/wiki)), you\'ll need to **[authenticate](https://github.com/dippyshere/stw-daily/wiki)**.\n'
-                                          f'\n**Getting an auth code**\n'
-                                          f'Go to [this link]({self.client.config["login_links"]["login_fortntite_pc"]}) and copy your auth code.\n'
-                                          f'\n**Claiming your daily**\n'
-                                          f'There are two ways to claim your daily:\n'
-                                          f'  • Use </daily:1057120945522876473> `<token>`\n'
-                                          f'  • Use <@757776996418715651> daily <token>\n'
-                                          f'\n*For example:*\n'
-                                          f'*<@757776996418715651> `d a51c1f4d35b1457c8e34a1f6026faa35`*'
-                                          f'\n\u200b',
-                              color=embed_colour)
+
+        token_arg = stw.I18n.get("generic.meta.args.token", desired_lang)
+
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("how2.embed.title", desired_lang), "info"),
+            description=f'\u200b\n{stw.I18n.get("how2.embed.description1", desired_lang, "https://github.com/dippyshere/stw-daily/wiki", "https://github.com/dippyshere/stw-daily/wiki")}\n'
+                        f'\n{stw.I18n.get("how2.embed.description2", desired_lang)}\n'
+                        f'{stw.I18n.get("how2.embed.description3", desired_lang, self.client.config["login_links"]["login_fortntite_pc"])}\n'
+                        f'\n{stw.I18n.get("how2.embed.description4", desired_lang)}\n'
+                        f'{stw.I18n.get("how2.embed.description5", desired_lang)}\n'
+                        f'{stw.I18n.get("how2.embed.description6", desired_lang, "  •", f"</daily:1057120945522876473> `{token_arg}`")}\n'
+                        f'{stw.I18n.get("how2.embed.description6", desired_lang, "  •", f"<@757776996418715651> daily `{token_arg}`")}\n'
+                        f'\n{stw.I18n.get("how2.embed.description7", desired_lang)}\n'
+                        f'*<@757776996418715651> `d a51c1f4d35b1457c8e34a1f6026faa35`*'
+                        f'\n\u200b',
+            color=embed_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "help")
         # embed = await stw.add_requested_footer(ctx, embed)
@@ -85,7 +98,7 @@ class HowTo(ext.Cog):
         # await ctx.channel.send(
         #     f"{ctx.author.mention} I've updated the how to use embed in <#758561253156847629> and <#757768833946877992>.")
 
-        invite_view = HowToUseView(self.client, ctx.author, ctx)
+        invite_view = HowToUseView(self.client, ctx.author, ctx, desired_lang)
         await stw.slash_send_embed(ctx, embed, invite_view)
         return
 
@@ -504,6 +517,19 @@ class HowTo(ext.Cog):
             ctx (discord.ext.commands.Context): The context of the command call
         """
         await self.how_to_command(ctx)
+
+    # @slash_command(name='how2', name_localizations=stw.I18n.construct_slash_dict("how2.slash.name"),
+    #                description="View how to use STW Daily",
+    #                description_localizations=stw.I18n.construct_slash_dict("how2.slash.description"),
+    #                guild_ids=stw.guild_ids)
+    # async def slashhow2(self, ctx):
+    #     """
+    #     This function is the entry point for the how to use command when called via slash command
+    #
+    #     Args:
+    #         ctx: The context of the command
+    #     """
+    #     await self.how_to_command(ctx)
 
 
 def setup(client):
