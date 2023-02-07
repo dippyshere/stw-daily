@@ -154,12 +154,26 @@ class I18n:
             profile_language = None
         try:
             interaction_language = ctx.interaction.locale
+            if interaction_language.lower() in ["en-us", "en-gb", "en"]:
+                interaction_language = "en"
+            elif interaction_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn", "zh-hans-sg"]:
+                interaction_language = "zh-CHS"
+            elif interaction_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant", "zh-hant-tw",
+                                                  "zh-hant-hk", "zh-hant-mo"]:
+                interaction_language = "zh-CHT"
             if not self.is_lang(interaction_language):
                 interaction_language = None
         except:
             interaction_language = None
         try:
             guild_language = ctx.guild.preferred_locale
+            if guild_language.lower() in ["en-us", "en-gb", "en"]:
+                guild_language = "en"
+            elif guild_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn", "zh-hans-sg"]:
+                guild_language = "zh-CHS"
+            elif guild_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant", "zh-hant-tw",
+                                            "zh-hant-hk", "zh-hant-mo"]:
+                guild_language = "zh-CHT"
             if not self.is_lang(guild_language):
                 guild_language = None
         except:
