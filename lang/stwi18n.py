@@ -58,6 +58,10 @@ class I18n:
         try:
             # get the string from the i18n json file
             string = self.i18n_json[lang][key]
+            # if "slash" in key or "meta" in key:
+            #     string = self.i18n_json[lang][key]
+            # else:
+            #     return key
         except KeyError:
             # if string not found, first try to get the string in english
             try:
