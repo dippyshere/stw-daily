@@ -40,7 +40,6 @@ class Homebase(ext.Cog):
         try:
             # general error
             error_code = public_json_response["errorCode"]
-            support_url = self.client.config["support_url"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
                                                        verbiage_action="change Homebase name")
@@ -79,6 +78,9 @@ class Homebase(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         succ_colour = self.client.colours["success_green"]
         white = self.client.colours["auth_white"]
 
@@ -131,9 +133,10 @@ class Homebase(ext.Cog):
         # Empty name should fetch current name
         if name == "":
             embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, "Homebase Name", "storm_shield"),
+                title=await stw.add_emoji_title(self.client, stw.I18n.get("homebase.embed.title", desired_lang),
+                                                "storm_shield"),
                 description=f"\u200b\n"
-                            f"**Your current Homebase name is:**\n"
+                            f"{stw.I18n.get('homebase.embed.description', desired_lang)}\n"
                             f"```{current}```\u200b", colour=white)
             if homebase_icon != "placeholder":
                 try:
@@ -184,11 +187,12 @@ class Homebase(ext.Cog):
                               description="\u200b",
                               colour=succ_colour)
 
-        embed.add_field(name=f'{self.emojis["broken_heart"]} Changed Homebase name from:',
+        embed.add_field(name=stw.I18n.get("homebase.embed.field1.name", desired_lang, self.emojis["broken_heart"]),
                         value=f"```{current}```\u200b",
                         inline=False)
 
-        embed.add_field(name=f'{self.emojis["storm_shield"]} To:', value=f"```{name}```\u200b",
+        embed.add_field(name=stw.I18n.get("homebase.embed.field2.name", desired_lang, self.emojis["storm_shield"]),
+                        value=f"```{name}```\u200b",
                         inline=False)
 
         if homebase_icon != "placeholder":
@@ -207,8 +211,9 @@ class Homebase(ext.Cog):
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
-    @ext.slash_command(name='homebase',
+    @ext.slash_command(name='homebase', name_localization=stw.I18n.construct_slash_dict("homebase.slash.name"),
                        description='This command allows you to view / change the name of your Homebase in STW',
+                       description_localization=stw.I18n.construct_slash_dict("homebase.slash.description"),
                        guild_ids=stw.guild_ids)
     async def slashhbrename(self, ctx: discord.ApplicationContext,
                             name: Option(

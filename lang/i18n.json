@@ -232,7 +232,7 @@
         "how2.meta.description2": "Please note that this command is intended for {0} only.",
         "how2.meta.description3": "You may still find this helpful / useful if you're unsure how to use the bot, however: DON'T SKID AND USE THIS to mirror stw dailies server :( its really not cool. 😢",
         "homebase.embed.title": "Homebase Name",
-        "homebase.embed.description": "**Your current Homebase name is:**{0}",
+        "homebase.embed.description": "**Your current Homebase name is:**",
         "homebase.embed.field1.name": "{0} Changed Homebase name from:",
         "homebase.embed.field2.name": "{0} To:",
         "homebase.slash.name": "homebase",
