@@ -5,12 +5,16 @@ https://github.com/dippyshere/stw-daily
 
 This file is a custom system for i18n (internationalisation) for STW Daily using a single JSON file
 """
+from typing import List
+
+import discord.client
+import discord.ext.commands
 import orjson
 import babel
 from ext.profile.bongodb import get_user_document
 
 
-def get_plural_form(count):
+def get_plural_form(count: int) -> str:
     """
     Gets the plural form of a language
 
@@ -23,8 +27,7 @@ def get_plural_form(count):
 
     if count == 1:
         return "one"
-    else:
-        return "many"
+    return "many"
 
 
 class I18n:
@@ -32,12 +35,12 @@ class I18n:
     I18n class for internationalisation
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # load the i18n json file
         with open(f"lang/i18n.json", "rb") as f:
             self.i18n_json = orjson.loads(f.read())
 
-    def get(self, key, lang, *args):  # hiiiiiiiiiiiiiiiii
+    def get(self, key: str, lang: str, *args) -> str:  # hiiiiiiiiiiiiiiiii
         """
         Gets a string from the i18n json file
 
@@ -71,7 +74,7 @@ class I18n:
             # if the string has no arguments but arguments were given, just return the string
             return string
 
-    def get_langs(self):
+    def get_langs(self) -> List[str]:
         """
         Gets a list of the available languages
 
@@ -81,7 +84,7 @@ class I18n:
         # get the list of available languages
         return list(self.i18n_json.keys())
 
-    def get_langs_str(self):
+    def get_langs_str(self) -> str:
         """
         Gets a string of the available languages
 
@@ -91,7 +94,7 @@ class I18n:
         # get the string of available languages
         return ", ".join(self.get_langs())
 
-    def is_lang(self, lang):
+    def is_lang(self, lang: str) -> bool:
         """
         Checks if a language is valid
 
@@ -104,7 +107,7 @@ class I18n:
         # check if the language is valid
         return lang in self.get_langs()
 
-    def resolve_plural(self, lang, key, count):
+    def resolve_plural(self, lang: str, key: str, count: int) -> str:
         """
         Resolves a plural string from the i18n json file
 
@@ -132,7 +135,7 @@ class I18n:
             # if the string has no arguments, return the string
             return plural_string
 
-    async def get_desired_lang(self, client, ctx):
+    async def get_desired_lang(self, client: discord.Client, ctx: discord.ext.commands.Context) -> str:
         """
         Calculates the language to use based on the user's preferred language and the server's preferred language
 
@@ -182,7 +185,7 @@ class I18n:
         # return the desired language
         return profile_language or interaction_language or guild_language or "en"
 
-    def construct_slash_dict(self, key):
+    def construct_slash_dict(self, key: str) -> dict:
         """
         Constructs a dict of all the localised strings for a slash commands property
 

@@ -13,7 +13,7 @@ from watchfiles import awatch
 changed = set(())
 
 
-def stw_extension_changed(changes):
+def stw_extension_changed(changes: list) -> None:
     """
     This function is called when a change is detected in the ext folder.
 
@@ -33,7 +33,7 @@ def stw_extension_changed(changes):
     changed.update(changed_files)
 
 
-async def watch_stw_extensions():
+async def watch_stw_extensions() -> None:
     """
     This function watches for changes in the ext folder.
 

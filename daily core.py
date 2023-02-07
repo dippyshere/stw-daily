@@ -5,6 +5,8 @@ https://github.com/dippyshere/stw-daily
 """
 import asyncio
 import time
+from pathlib import Path
+from typing import Dict, Any
 
 print("Starting STW Daily")
 
@@ -40,7 +42,7 @@ def stw_when_mentioned(bot: discord.ext.commands.Bot | discord.AutoShardedBot, m
 client = ext.AutoShardedBot(command_prefix=stw_when_mentioned, case_insensitive=True, intents=discord.Intents.default())
 
 
-def load_config(config_path):
+def load_config(config_path: str) -> Dict[str, Any]:
     """
     Loads the config file
 
@@ -57,7 +59,7 @@ def load_config(config_path):
     return config
 
 
-def main():
+def main() -> None:
     """
     Main function
     """
@@ -117,7 +119,7 @@ def main():
     client.run(f"{os.environ['STW_DAILY_TOKEN']}")
 
 
-def set_client_modules(client):
+def set_client_modules(client: ext.AutoShardedBot) -> None:
     """
     Sets the client modules
 
@@ -127,7 +129,7 @@ def set_client_modules(client):
     client.watch_module = watch
 
 
-async def create_http_session():
+async def create_http_session() -> aiohttp.ClientSession:
     """
     Creates an aiohttp session
 
@@ -140,7 +142,7 @@ async def create_http_session():
 
 # basic information for you <33
 @client.event
-async def on_ready():
+async def on_ready() -> None:
     """
     Event for when the bot is ready
     """
@@ -165,7 +167,7 @@ async def on_ready():
 
 
 @client.event
-async def on_message(message):
+async def on_message(message: discord.Message) -> None:
     """
     Event for when a message is sent.
     This works without message.content, and is currently used to: handle quote marks, auth by default
@@ -200,7 +202,7 @@ async def on_message(message):
 
 # simple task which updates the status every 60 seconds to display time until next day/reset
 @tasks.loop(seconds=60)
-async def update_status():
+async def update_status() -> None:
     """
     Task to update the status of the bot
     """
