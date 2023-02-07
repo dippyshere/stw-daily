@@ -491,8 +491,9 @@ class Llamas(ext.Cog):
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=llama_view)
         return
 
-    @ext.slash_command(name='llamas',
+    @ext.slash_command(name='llamas', name_localizations=stw.I18n.construct_slash_dict("llamas.slash.name"),
                        description='View and purchase Llamas in the Llama shop',
+                       description_localizations=stw.I18n.construct_slash_dict("llamas.meta.brief"),
                        guild_ids=stw.guild_ids)
     async def slashllamas(self, ctx: discord.ApplicationContext,
                           token: Option(description="Your Epic Games authcode. Required unless you have an active "
