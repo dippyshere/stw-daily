@@ -188,7 +188,7 @@ class Reward(ext.Cog):
                                     inline=False)
                 else:
                     embed.add_field(
-                        name=stw.I18n.get("reward.embed.field4", desired_lang, self.client.config["emojis"]["calendar"], f"{'~' if max_rewards_reached else ''}{limit:}"),
+                        name=stw.I18n.get("reward.embed.field4", desired_lang, self.client.config["emojis"]["calendar"], f"{'~' if max_rewards_reached else ''}{limit:,}"),
                         value=f'```{rewards}```\u200b', inline=False)
                     if max_rewards_reached:
                         if limit == 1:  # this will never happen
