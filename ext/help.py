@@ -21,13 +21,16 @@ class HelpView(discord.ui.View):
     discord UI View for the help command
     """
 
-    def __init__(self, ctx, help_options, client):
+    def __init__(self, ctx, help_options, client, desired_lang="en"):
         super().__init__()
         self.ctx = ctx
         self.author = ctx.author
         self.children[0].options = help_options
         self.client = client
+        self.desired_lang = desired_lang
         self.interaction_check_done = {}
+
+        self.children[0].placeholder = stw.I18n.get("help.view.select.placeholder", desired_lang)
 
     async def interaction_check(self, interaction):
         """
@@ -43,8 +46,6 @@ class HelpView(discord.ui.View):
 
     @discord.ui.select(
         placeholder="Select a help page here",
-        min_values=1,
-        max_values=1,
         options=[],
     )
     async def selected_option(self, select, interaction):
@@ -55,11 +56,13 @@ class HelpView(discord.ui.View):
             select: The select menu that was used.
             interaction: The interaction that was used.
         """
-        embed = await self.help.help_embed(self.ctx, select.values[0])
+        embed = await self.help.help_embed(self.ctx, select.values[0], self.desired_lang)
         if select.values[0] == "main_menu":
-            self.children[0].options = await self.help.select_options_commands(self.ctx, False)
+            self.children[0].options = await self.help.select_options_commands(self.ctx, False,
+                                                                               desired_lang=self.desired_lang)
         else:
-            self.children[0].options = await self.help.select_options_commands(self.ctx, selected=select.values[0])
+            self.children[0].options = await self.help.select_options_commands(self.ctx, selected=select.values[0],
+                                                                               desired_lang=self.desired_lang)
         await interaction.response.edit_message(embed=embed, view=self)
 
     async def on_timeout(self):
@@ -104,7 +107,7 @@ class Help(ext.Cog):
         embed.add_field(name=name_string, value=f"```{command.brief}```\u200b\n", inline=False)
         return embed
 
-    async def add_big_command_info(self, ctx, embed, command):
+    async def add_big_command_info(self, ctx, embed, command, desired_lang="en"):
         """
         Adds a detailed description of a command to an embed.
 
@@ -112,6 +115,7 @@ class Help(ext.Cog):
             ctx: The context of the command.
             embed: The embed to add the command to.
             command: The command to add to the embed.
+            desired_lang: The language to use for the help page.
 
         Returns:
             The embed with the detailed command added.
@@ -135,7 +139,7 @@ class Help(ext.Cog):
 
             if "(Optional)" in info:
                 info = info.replace("(Optional)", "")
-                info += f"**\n*This argument is optional*"
+                info += f"**\n*{stw.I18n.get('help.embed.optional', desired_lang)}*"
             else:
                 info += "**"
 
@@ -147,19 +151,23 @@ class Help(ext.Cog):
         embed = await stw.add_requested_footer(ctx, embed)
         return embed
 
-    async def add_default_page(self, ctx, embed_colour):
+    async def add_default_page(self, ctx, embed_colour, desired_lang="en"):
         """
         Adds the default help page to an embed.
 
         Args:
             ctx: The context of the command.
             embed_colour: The colour of the embed.
+            desired_lang: The language to use for the help page.
 
         Returns:
             The embed with the default help page added.
         """
-        embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
-                              description=f"\u200b\n**To use a command: Ping the bot, type the command + options after; Example:** {await stw.mention_string(self.client, 'reward 7')}\n\u200b\n\u200b")
+        embed = discord.Embed(colour=embed_colour,
+                              title=await stw.add_emoji_title(self.client,
+                                                              stw.I18n.get('help.embed.title', desired_lang),
+                                                              "info"),
+                              description=f"\u200b\n{stw.I18n.get('help.embed.description', desired_lang, await stw.mention_string(self.client, 'reward 7'))}\n\u200b\n\u200b")
 
         embed = await stw.add_requested_footer(ctx, embed)
 
@@ -174,30 +182,34 @@ class Help(ext.Cog):
                 embed = await self.add_brief_command_info(embed, command)
         return embed
 
-    async def help_embed(self, ctx, inputted_command):
+    async def help_embed(self, ctx, inputted_command, desired_lang="en"):
         """
         Creates an embed with the help page for a command.
 
         Args:
             ctx: The context of the command.
             inputted_command: The command to get the help page for.
+            desired_lang: The language to get the help page in.
 
         Returns:
             The embed with the help page for the command.
         """
         embed_colour = self.client.colours["generic_blue"]
-        embed = discord.Embed(colour=embed_colour, title=await stw.add_emoji_title(self.client, "Help", "info"),
+        embed = discord.Embed(colour=embed_colour,
+                              title=await stw.add_emoji_title(self.client,
+                                                              stw.I18n.get('help.embed.title', desired_lang),
+                                                              "info"),
                               description="\u200b")
 
         if inputted_command not in self.client.command_name_list:
-            embed = await self.add_default_page(ctx, embed_colour)
+            embed = await self.add_default_page(ctx, embed_colour, desired_lang)
         else:
             command_retrieved = self.client.command_dict[self.client.command_name_dict[inputted_command]]
-            embed = await self.add_big_command_info(ctx, embed, command_retrieved)
+            embed = await self.add_big_command_info(ctx, embed, command_retrieved, desired_lang)
 
         return embed
 
-    async def select_options_commands(self, ctx, add_return=True, selected=None):
+    async def select_options_commands(self, ctx, add_return=True, selected=None, desired_lang="en"):
         """
         Creates the options for the select menu for the help command.
 
@@ -205,13 +217,15 @@ class Help(ext.Cog):
             ctx: The context of the command.
             add_return: Whether to add the return option to the list.
             selected: The option that was selected.
+            desired_lang: The language to use for the help page.
 
         Returns:
             The options for the select menu.
         """
         if add_return:
-            options = [discord.SelectOption(label="all", value="main_menu",
-                                            description="Return to viewing all available commands",
+            options = [discord.SelectOption(label=stw.I18n.get('help.view.select.all', desired_lang),
+                                            value="main_menu",
+                                            description=stw.I18n.get('help.view.select.main_menu.description', desired_lang),
                                             emoji=self.emojis['left_arrow'])]
         else:
             options = []
@@ -254,11 +268,14 @@ class Help(ext.Cog):
             ctx: The context of the command.
             command: The command to get the help page for.
         """
-        embed = await self.help_embed(ctx, command)
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
+        embed = await self.help_embed(ctx, command, desired_lang)
         if command in self.client.command_name_list:
-            help_options = await self.select_options_commands(ctx, selected=command)
+            help_options = await self.select_options_commands(ctx, selected=command, desired_lang=desired_lang)
         else:
-            help_options = await self.select_options_commands(ctx, False)
+            help_options = await self.select_options_commands(ctx, False, desired_lang=desired_lang)
 
         help_view = HelpView(ctx, help_options, self.client)
         help_view.help = self
@@ -359,16 +376,15 @@ class Help(ext.Cog):
 
         return autocomplete_choices
 
-    @slash_command(name='help',
+    @slash_command(name='help', name_localizations=stw.I18n.construct_slash_dict("help.slash.name"),
                    description='An interactive view of all available commands',
+                   description_localizations=stw.I18n.construct_slash_dict("help.slash.description"),
                    guild_ids=stw.guild_ids)
-    async def slashhelp(
-            self,
-            ctx: discord.ApplicationContext,
-            command: Option(description="Choose a command to display detailed information on",
-                            description_localizations=stw.I18n.construct_slash_dict("help.meta.args.command.description"),
-                            name_localizations=stw.I18n.construct_slash_dict("help.meta.args.command"),
-                            autocomplete=get_bot_commands) = None):
+    async def slashhelp(self, ctx: discord.ApplicationContext,
+                        command: Option(description="Choose a command to display detailed information on",
+                                        description_localizations=stw.I18n.construct_slash_dict("help.meta.args.command.description"),
+                                        name_localizations=stw.I18n.construct_slash_dict("help.meta.args.command"),
+                                        autocomplete=get_bot_commands) = None):  # TODO: Should this use autocomplete or choices?
         """
         This function is the entry point for the help command when called via slash command.
 
@@ -387,30 +403,28 @@ class Help(ext.Cog):
         Args:
             ctx: The context of the command.
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         embed_colour = self.client.colours["generic_blue"]
+
         embed = discord.Embed(colour=embed_colour,
-                              title=await stw.add_emoji_title(self.client, "STW Daily", "calendar"),
-                              description=f"\u200b\n**👋 Hello! :D I'm STW Daily** - A bot for all things "
-                                          f"Fortnite: Save the World (and more!)\n"
-                                          f"Questions? Problems? Hit us up on our"
-                                          f" [support server!](https://discord.gg/QYgABPDqzH)\n"
-                                          f"Invite me to your server "
-                                          f"[here](https://canary.discord.com/api/oauth2/authorize"
-                                          f"?client_id=757776996418715651&permissions=2147798080"
-                                          f"&scope=applications.commands%20bot)\n\u200b")
+                              title=await stw.add_emoji_title(self.client,
+                                                              stw.I18n.get('generic.stwdaily', desired_lang),
+                                                              "calendar"),
+                              description=f"\u200b\n{stw.I18n.get('help.hello.description1', desired_lang)}\n"
+                                          f"{stw.I18n.get('help.hello.description2', desired_lang, 'https://discord.gg/QYgABPDqzH')}\n"
+                                          f"{stw.I18n.get('help.hello.description3', desired_lang, 'https://canary.discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147798080&scope=applications.commands%20bot')}\n\u200b")
 
         embed = await stw.add_requested_footer(ctx, embed)
 
-        embed.add_field(name=f"{self.emojis['library_clipboard']} To check out my commands, use:",
+        embed.add_field(name=stw.I18n.get('help.hello.description4', desired_lang, self.emojis['library_clipboard']),
                         value=await stw.mention_string(self.client, "help") + "\n\u200b")
-        embed.add_field(name=f"{self.emojis['library_list']} Important:",
-                        value="*Portions of the materials used are trademarks and/or copyrighted works of Epic Games, "
-                              "Inc. All rights reserved by Epic. This material is not official and is not endorsed by "
-                              "Epic.\n\n"
-                              "[Privacy Policy](https://sites.google.com/view/stwdaily/legal-info/privacy-policy)  •  "
-                              "[Terms of Service](https://sites.google.com/view/stwdaily/legal-info/terms-of-service)*"
-                              "\n\u200b",
-                        inline=False)
+        embed.add_field(
+            name=stw.I18n.get('help.hello.epic.fancontentdisclaimer.title', desired_lang, self.emojis['library_list']),
+            value=f"{stw.I18n.get('help.hello.epic.fancontentdisclaimer.value', desired_lang)}\n\n"
+                  f"{stw.I18n.get('help.hello.legal.view', desired_lang, 'https://sites.google.com/view/stwdaily/legal-info/privacy-policy'), 'https://sites.google.com/view/stwdaily/legal-info/terms-of-service'}\n\u200b",
+            inline=False)
         embed = await stw.set_thumbnail(self.client, embed, "calendar")
         await ctx.channel.send(embed=embed)
 
