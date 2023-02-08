@@ -160,7 +160,7 @@ class ProfileDump(ext.Cog):
                         f"{stw.I18n.get('profiledumper.embed.description.key12', desired_lang, 'theater1')}\n"
                         f"{stw.I18n.get('profiledumper.embed.description.key13', desired_lang, 'theater2')}\n"
                         f"{stw.I18n.get('profiledumper.embed.description.key14', desired_lang, 'recycle_bin')}\n"
-                        f"\u200b\n\u200b",
+                        f"\u200b",
             colour=generic_colour)
 
         profile_file = io.BytesIO()
