@@ -37,6 +37,7 @@ class Homebase(ext.Cog):
         Returns:
             True if an error is found, False otherwise.
         """
+        # if "errorCode" in public_json_response:
         try:
             # general error
             error_code = public_json_response["errorCode"]
@@ -105,30 +106,58 @@ class Homebase(ext.Cog):
         public_request = await stw.profile_request(self.client, "query_public", auth_info[1],
                                                    profile_id="common_public")
         public_json_response = orjson.loads(await public_request.read())
+        stw_request = await stw.profile_request(self.client, "query_public", auth_info[1])
+        stw_json_response = orjson.loads(await stw_request.read())
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         file = None
         # check for le error code
         error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, name)
-        if error_check[0] == "errors.stwdaily.no_stw":
-            current = " "
-            homebase_icon = "placeholder"
-            homebase_colour = "defaultcolor1"
-        elif error_check[1]:
+        if error_check[1]:
             return
-        else:
-            # extract info from response
-            current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+        elif error_check[0] == "errors.stwdaily.no_stw":
+            br_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="br")
+            br_json_response = orjson.loads(await br_request.read())
+            current = " "
             try:
-                homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
-                    "banner_icon"]
+                homebase_icon = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_icon_template"]
             except KeyError:
                 homebase_icon = "placeholder"
             try:
-                homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
-                    "banner_color"]
+                homebase_colour = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
             except KeyError:
                 homebase_colour = "defaultcolor1"
+        else:
+            stw_request = await stw.profile_request(self.client, "query", auth_info[1])
+            stw_json_response = orjson.loads(await stw_request.read())
+            # extract info from response
+            current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+            try:
+                homebase_icon = stw_json_response["profileChanges"][0]["profile"]["items"][stw_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_icon_template"]
+                try:
+                    homebase_colour = stw_json_response["profileChanges"][0]["profile"]["items"][stw_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
+                except KeyError:
+                    try:
+                        homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
+                    except:
+                        homebase_colour = "defaultcolor1"
+            except KeyError:
+                try:
+                    homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
+                except:
+                    try:
+                        br_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="br")
+                        br_json_response = orjson.loads(await br_request.read())
+                        try:
+                            homebase_icon = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_icon_template"]
+                        except KeyError:
+                            homebase_icon = "placeholder"
+                        try:
+                            homebase_colour = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
+                        except KeyError:
+                            homebase_colour = "defaultcolor1"
+                    except:
+                        homebase_icon = "placeholder"
 
         # Empty name should fetch current name
         if name == "":
@@ -156,18 +185,20 @@ class Homebase(ext.Cog):
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
 
-        # failing this check means the name has problems thus we cannot accept it
-        if not await stw.is_legal_homebase_name(name):
-            if len(name) > 16:
-                error_code = "errors.stwdaily.homebase_long"
-                embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
-                                                           verbiage_action="change Homebase name")
-                final_embeds.append(embed)
-                await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-                return
-            error_code = "errors.stwdaily.homebase_illegal"
+        # failing these checks means the name has problems thus we cannot accept it
+        if len(name) > 16:
+            error_code = "errors.stwdaily.homebase_long"
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
                                                        verbiage_action="change Homebase name")
+            final_embeds.append(embed)
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+            return
+        name_validation = await stw.validate_homebase_name(name)
+        if not name_validation[0]:
+            error_code = "errors.stwdaily.homebase_illegal"
+            embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
+                                                       verbiage_action="change Homebase name",
+                                                       hb_badchars=name_validation[1])
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
@@ -183,9 +214,10 @@ class Homebase(ext.Cog):
             return
 
         # If passed all checks and changed name, present success embed
-        embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
-                              description="\u200b",
-                              colour=succ_colour)
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("generic.success", desired_lang), "checkmark"),
+            description="\u200b",
+            colour=succ_colour)
 
         embed.add_field(name=stw.I18n.get("homebase.embed.field1.name", desired_lang, self.emojis["broken_heart"]),
                         value=f"```{current}```\u200b",

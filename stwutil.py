@@ -53,11 +53,13 @@ async def load_item_data():
         BannerColors = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/STW_Accolade_Tracker.json') as f:
         max_daily_stw_accolade_xp = orjson.loads(await f.read())[0]["Properties"]["MaxDailyXP"]
+    async with aiofiles.open('ext/DataTables/allowed-name-chars.json') as f:
+        allowed_chars = orjson.loads(await f.read())
     return LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
-        BannerColors, max_daily_stw_accolade_xp
+        BannerColors, max_daily_stw_accolade_xp, allowed_chars
 
 
-LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp = asyncio.get_event_loop().run_until_complete(
+LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars = asyncio.get_event_loop().run_until_complete(
     load_item_data())
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
@@ -2442,7 +2444,7 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
 
 
 async def post_error_possibilities(ctx, client, command, acc_name, error_code, error_level=1, response=None,
-                                   verbiage_action=None):
+                                   verbiage_action=None, hb_badchars=None):
     """
     Handle errors that could occur when posting to the api, and present an embed with possible solutions
 
@@ -2455,6 +2457,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
         error_level: The level of error, either error or warning
         response: The response from the api
         verbiage_action: The action that was being performed
+        hb_badchars: The bad characters that were found in the homebase name
 
     Returns:
         an error embed
@@ -2629,17 +2632,29 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                          error_level=error_level)
 
     elif error_code == "errors.stwdaily.homebase_illegal":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"Attempted to change Homebase name to:\n"
-                                                     f"```{truncate(acc_name)}```\n"
-                                                     f"**This name contains unacceptable characters**\n"
-                                                     f"⦾ Homebase names must be alphanumeric, with limited support "
-                                                     f"for extra characters.\n"
-                                                     f"⦾ Homebase names also have additional criteria, to check them, "
-                                                     f"try running "
-                                                     f"{await mention_string(client, 'help {0}'.format(command))}",
-                                         prompt_authcode=False, command=command,
-                                         error_level=error_level)
+        if hb_badchars is None or len(hb_badchars) == 0:
+            embed = await create_error_embed(client, ctx,
+                                             description=f"Attempted to change Homebase name to:\n"
+                                                         f"```{truncate(acc_name)}```\n"
+                                                         f"**This name contains unacceptable characters**\n"
+                                                         f"⦾ Homebase names cannot contain certain characters\n"
+                                                         f"⦾ Check out the "
+                                                         f"[wiki](https://github.com/dippyshere/stw-daily/wiki) for "
+                                                         f"more info",
+                                             prompt_authcode=False, command=command, prompt_help=True,
+                                             error_level=error_level)
+        else:
+            embed = await create_error_embed(client, ctx,
+                                             description=f"Attempted to change Homebase name to:\n"
+                                                         f"```{truncate(acc_name)}```\n"
+                                                         f"**This name contains unacceptable characters**\n"
+                                                         f"⦾ Homebase names cannot contain these characters: "
+                                                         f"`{', '.join(hb_badchars)}`\n"
+                                                         f"⦾ Check out the "
+                                                         f"[wiki](https://github.com/dippyshere/stw-daily/wiki) for "
+                                                         f"more info",
+                                             prompt_authcode=False, command=command, prompt_help=True,
+                                             error_level=error_level)
 
     else:
         shrug = u'¯\\\_(ツ)\_/¯'
@@ -2766,6 +2781,56 @@ async def is_legal_homebase_name(string):
     """
     # TODO: add obfuscated filter for protected homebase names
     return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string)
+
+
+async def validate_homebase_name(string: str) -> (bool, tuple):
+    """
+    validate a homebase name against the allowed characters datatable
+
+    Args:
+        string (str): the name to validate
+
+    Returns:
+        bool: True if the string is valid, False if the string is not valid
+        tuple: a tuple containing the list of invalid characters used
+    """
+
+    list_of_invalid_chars_used = []
+
+    # loop through the string
+    for char in string:
+        # get the unicode decimal value of the character
+        char_value = ord(char)
+
+        # check if the character is in the excluded points list
+        if char_value in allowed_chars["excludedPoints"]:
+            # the character is in the excluded points list
+            list_of_invalid_chars_used.append(char)
+            continue
+
+        # check if the character is in the single points list
+        if char_value in allowed_chars["singlePoints"]:
+            # the character is in the single points list
+            continue
+
+        # check if the character is within the ranges
+        for i in range(0, len(allowed_chars["ranges"]), 2):
+            # check if the character is in the range
+            if allowed_chars["ranges"][i] <= char_value <= allowed_chars["ranges"][i + 1]:
+                # the character is in the range
+                break
+        else:
+            # the character is not in the range
+            list_of_invalid_chars_used.append(char)
+            continue
+
+    # check if there are any invalid characters used
+    if len(list_of_invalid_chars_used) > 0:
+        # there are invalid characters used
+        return False, list_of_invalid_chars_used
+
+    # the string is valid
+    return True, list_of_invalid_chars_used
 
 
 async def generate_banner(client, embed, homebase_icon, homebase_colour, author_id):
