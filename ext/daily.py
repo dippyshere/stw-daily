@@ -36,6 +36,9 @@ class Daily(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         succ_colour = self.client.colours["success_green"]
         yellow = self.client.colours["warning_yellow"]
 
@@ -121,24 +124,23 @@ class Daily(ext.Cog):
                         title=await stw.add_emoji_title(self.client, stw.random_error(self.client), "warning"),
                         description=
                         (f"\u200b\n"
-                         f"You have already claimed your reward for day **{day}**.\n"
+                         f"{stw.I18n.get('daily.embed.alreadyclaimed.description1', desired_lang, f'{day:,}')}\n"
                          f"\u200b\n"
-                         f"**{reward[1]} Today's reward was:**\n"
+                         f"{stw.I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[1])}\n"
                          f"```{reward[0]}```\n"), colour=yellow)
                     if limit == 2:
-                        embed.description += (f"**{calendar} Tomorrow\'s reward:**\n"
-                                              f"```{rewards[:-1]}```\n"
-                                              f"You can claim tomorrow's reward "
-                                              f"<t:{stw.get_tomorrow_midnight_epoch()}:R>\n\u200b\n")
-                    elif limit > 2:
                         embed.description += (
-                            f"**{calendar} Rewards for the next {'~' if max_rewards_reached else ''}{limit - 1} days"
+                            f"{stw.I18n.get('reward.embed.field3', desired_lang, calendar)}\n"
+                            f"```{rewards[:-1]}```\n"
+                            f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n")
+                    elif limit > 2:
+                        approx = '~' if max_rewards_reached else ''
+                        embed.description += (
+                            f"**{stw.I18n.get('reward.embed.field4', desired_lang, calendar, f'{approx}{limit - 1:,}')}**"
                             f":**\n ```{rewards}```\n"
-                            f"You can claim tomorrow's reward <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
-                            f"\u200b\n")
+                            f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n")
                     else:
-                        embed.description += (f"You can claim tomorrow's reward "
-                                              f"<t:{stw.get_tomorrow_midnight_epoch()}:R>\n\u200b\n")
+                        embed.description += f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n"
                     embed = await stw.set_thumbnail(self.client, embed, "warn")
                     embed = await stw.add_requested_footer(ctx, embed)
                     final_embeds.append(embed)
@@ -146,9 +148,11 @@ class Daily(ext.Cog):
                     return
 
                 # Initialise the claimed embed
-                embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
-                                      description="\u200b",
-                                      colour=succ_colour)
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, stw.I18n.get('generic.success', desired_lang),
+                                                    "checkmark"),
+                    description="\u200b",
+                    colour=succ_colour)
 
                 # First item is the default daily reward, add it using the get_reward method
                 reward = stw.get_reward(self.client, day, vbucks)
@@ -162,7 +166,8 @@ class Daily(ext.Cog):
                     except:
                         pass
 
-                embed.add_field(name=f'{reward[1]} On day **{day}**, you received:', value=f"```{reward[0]}```",
+                embed.add_field(name=stw.I18n.get('daily.embed.claimed.field.name', desired_lang, reward[1]),
+                                value=f"```{reward[0]}```",
                                 inline=True)
 
                 # Second item is founders reward
@@ -172,29 +177,24 @@ class Daily(ext.Cog):
                     itemtype = founders["itemType"]
 
                     if itemtype == 'CardPack:cardpack_event_founders':
-                        display_itemtype = "Founder's Llama"
+                        display_itemtype = stw.I18n.get('daily.embed.claimed.founders.cardpack_founders', desired_lang)
                     elif itemtype == 'CardPack:cardpack_bronze':
-                        display_itemtype = "Upgrade Llama"
+                        display_itemtype = stw.I18n.get('stw.item.CardPack_Bronze.name', desired_lang)
                     else:
                         display_itemtype = itemtype
 
-                    embed.add_field(name=f'{self.client.config["emojis"]["founders"]} Founders rewards:',
+                    embed.add_field(name=stw.I18n.get('daily.embed.claimed.founders.field.name', desired_lang,
+                                                      self.client.config["emojis"]["founders"]),
                                     value=f"```{amount} {display_itemtype}```",
                                     inline=True)
                 except:
                     pass
             else:
-                if len(items) > 1:
-                    plural = "rewards"
-                else:
-                    plural = "reward"
-                embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Success", "checkmark"),
-                                      description=f"\u200b\n<:Check:812201301843902474> "
-                                                  f"Successfully claimed daily {plural}"
-                                                  f"\n\u200b\n{self.emojis['check_mark']} **Please claim in "
-                                                  f"<#757768833946877992> for more detail** "
-                                                  f"\n\u200b",
-                                      colour=succ_colour)
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, stw.I18n.get('generic.success', desired_lang), "checkmark"),
+                    description=f"\u200b\n{stw.I18n.get('daily.embed.claimed.umpcoming.channelalert1.plural' if len(items) > 1 else 'daily.embed.claimed.umpcoming.channelalert1.singular', desired_lang, '<:Check:812201301843902474>')}"
+                                f"\n\u200b\n{self.emojis['check_mark']} {stw.I18n.get('daily.embed.claimed.umpcoming.channelalert2', desired_lang, '<#757768833946877992>')}\n\u200b",
+                    colour=succ_colour)
 
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
                 if limit >= 2:
@@ -218,15 +218,15 @@ class Daily(ext.Cog):
 
                     calendar = self.client.config["emojis"]["calendar"]
                     if limit == 2:
-                        embed.add_field(name=f'\u200b\n{calendar} Tomorrow\'s reward:',
+                        embed.add_field(name=f'\u200b\n{stw.I18n.get("reward.embed.field3", desired_lang, calendar)}',
                                         value=f'```{rewards[:-1]}```\u200b',
                                         inline=False)
                     elif limit > 2:
-                        embed.add_field(name=f'\u200b\n{calendar} Rewards for the next '
-                                             f'{"~" if max_rewards_reached else ""}'
-                                             f'{limit - 1} days:',
-                                        value=f'```{rewards}```\u200b',
-                                        inline=False)
+                        approx = '~' if max_rewards_reached else ''
+                        embed.add_field(
+                            name=f'\u200b\n{stw.I18n.get("reward.embed.field4", desired_lang, calendar, f"{approx}{limit - 1:,}")}',
+                            value=f'```{rewards}```\u200b',
+                            inline=False)
             embed = await stw.set_thumbnail(self.client, embed, "check")
             embed = await stw.add_requested_footer(ctx, embed)
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
