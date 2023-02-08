@@ -303,24 +303,25 @@ async def mention_string(client, prompt=""):
         return f"@STW Daily {prompt}"
 
 
-async def add_requested_footer(ctx, embed):
+async def add_requested_footer(ctx, embed, desired_lang="en"):
     """
     Adds the requested by user to the footer of the embed
 
     Args:
         ctx: the context
         embed: the embed to add the footer to
+        desired_lang: the desired language
 
     Returns:
         The embed with the footer added
     """
     try:
         embed.set_footer(text=
-                         f"\nRequested by: {ctx.author.name}"
+                         f"\n{I18n.get('util.footer.requested', desired_lang, ctx.author.name)}"
                          , icon_url=ctx.author.display_avatar.url)
     except:
         embed.set_footer(text=
-                         f"\nRequested by: {ctx.user.name}"
+                         f"\n{I18n.get('util.footer.requested', desired_lang, ctx.user.name)}"
                          , icon_url=ctx.user.display_avatar.url)
 
     embed.timestamp = datetime.datetime.now()
