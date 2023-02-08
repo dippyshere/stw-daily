@@ -45,8 +45,19 @@ class BBReward(ext.Cog):
         # except:
         #     pass
 
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         embed_colour = self.client.colours["reward_magenta"]
-        if day == 'hi readers of the bot':
+
+        if limit is None:
+            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
+            try:
+                currently_selected_profile = str(user_document["global"]["selected_profile"])
+                limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"]
+            except:
+                limit = 7
+
+        if day is None:
             embed = await stw.create_error_embed(self.client, ctx,
                                                  description=f"**No day specified**\n"
                                                              f"⦾ You need to specify a day to get the reward for\n"
@@ -83,10 +94,25 @@ class BBReward(ext.Cog):
             if day <= 0:
                 day = 1
 
-            limit_str = f" and **{limit:,}** days after" if limit >= 1 else ""
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reward", "Shared2"),
-                                  description=f'\u200b\nDisplaying rewards for day **{day:,}**{limit_str}\n\u200b',
-                                  color=embed_colour)
+            if limit >= 1:
+                if limit == 1:
+                    embed = discord.Embed(
+                        title=await stw.add_emoji_title(self.client, stw.I18n.get("bbreward.embed.title", desired_lang),
+                                                        "Shared2"),
+                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                        color=embed_colour)
+                else:
+                    embed = discord.Embed(
+                        title=await stw.add_emoji_title(self.client, stw.I18n.get("bbreward.embed.title", desired_lang),
+                                                        "Shared2"),
+                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                        color=embed_colour)
+            else:
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, stw.I18n.get("bbreward.embed.title", desired_lang),
+                                                    "Shared2"),
+                    description=f'\u200b\n{stw.I18n.get("reward.embed.description1.skull", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                    color=embed_colour)
 
             try:
                 # day, name, emoji_text, description, quantity
@@ -100,19 +126,22 @@ class BBReward(ext.Cog):
                 print(f"Error when getting bbreward for day {day} - {e}")
                 return
 
-            embed.add_field(name=f'**{reward[2]} Item: **', value=f'```{reward[4]} {reward[1]}```\u200b')
+            embed.add_field(name=stw.I18n.get("reward.embed.field1", desired_lang, reward[2]), value=f'```{reward[4]} {reward[1]}```\u200b')
             for row in stw.LoginRewards[0]['Rows']:
                 if 'MtxGiveaway' in stw.LoginRewards[0]['Rows'][row]['ItemDefinition']['AssetPathName']:
                     if int(day) % 1800 < int(row):
                         if int(row) - int(day) % 1800 == 1:
-                            day_string = "day"
+                            embed.add_field(
+                                name=stw.I18n.get("bbreward.embed.mtx.field.name", desired_lang,
+                                                  self.client.config["emojis"]["T_MTX_Gem_Icon"]),  # hello
+                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[1]}", int(row) - int(day) % 1800)}'
+                                      f'```\u200b', inline=False)
                         else:
-                            day_string = "days"
-                        embed.add_field(
-                            name=f'**{self.client.config["emojis"]["T_MTX_Gem_Icon"]} Next Gem reward:**',  # hello
-                            value=f'```{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[-1]} '
-                                  f'{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[1]} in '
-                                  f'{int(row) - int(day) % 1800} {day_string}```\u200b', inline=False)
+                            embed.add_field(
+                                name=stw.I18n.get("bbreward.embed.mtx.field.name", desired_lang,
+                                                  self.client.config["emojis"]["T_MTX_Gem_Icon"]),  # hello
+                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[1]}", int(row) - int(day) % 1800)}'
+                                      f'```\u200b', inline=False)
                         break  # hello alexander hanson
             if limit >= 1:
                 rewards = ''
@@ -136,17 +165,18 @@ class BBReward(ext.Cog):
                 if limit == 1:
                     reward = stw.get_bb_reward_data(self.client, pre_calc_day=day + 1)
 
-                    embed.add_field(name=f'**{reward[2]} Tomorrow\'s reward:**',
+                    embed.add_field(name=stw.I18n.get("reward.embed.field3", desired_lang, reward[2]),
                                     value=f'```{reward[4]} {reward[1]}```\u200b',
                                     inline=False)
                 else:
                     embed.add_field(
-                        name=f'{self.client.config["emojis"]["calendar"]} Rewards for the next '
-                             f'**{"~" if max_rewards_reached else ""}{limit}** days:',
+                        name=stw.I18n.get("reward.embed.field4", desired_lang, self.client.config["emojis"]["calendar"], f"{'~' if max_rewards_reached else ''}{limit:,}"),
                         value=f'```{rewards}```\u200b', inline=False)
                     if max_rewards_reached:
-                        embed.description = f'\u200b\nDisplaying rewards for day **{day:,}** ' \
-                                            f'and **~{limit:,}** days after\n\u200b'
+                        if limit == 1:  # this will never happen
+                            embed.description = stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")
+                        else:
+                            embed.description = stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")
             # TODO: make this compliant with the upcoming day limit setting
             # rip
             embed = await stw.set_thumbnail(self.client, embed, "Shared2")
@@ -199,7 +229,7 @@ class BBReward(ext.Cog):
                              "If you'd like to continue playing Battle Breakers from your "
                              "profile dump, or just want to play it again, check out "
                              "https://github.com/dippyshere/battle-breakers-private-server.")
-    async def bbreward(self, ctx, day='hi readers of the bot', limit='7'):
+    async def bbreward(self, ctx, day=None, limit=None):
         """
         This command lets you view the rewards of any specific day, and any number of rewards that follow.
 
@@ -208,15 +238,24 @@ class BBReward(ext.Cog):
             day: The day to get the rewards of. Not required if you are authenticated
             limit: The number of upcoming days to see (Optional)
         """
-        await self.bbreward_command(ctx, day, int(limit))
+        await self.bbreward_command(ctx, day, limit)
 
-    @slash_command(name="bbreward",
+    @slash_command(name="bbreward", name_localization=stw.I18n.construct_slash_dict("bbreward.slash.name"),
                    description="View info about a specific day's reward, and the rewards that follow in Battle Breakers",
+                   description_localization=stw.I18n.construct_slash_dict("bbreward.slash.description"),
                    guild_ids=stw.guild_ids)
     async def bbslashreward(self, ctx: discord.ApplicationContext,
                             day: Option(int,
-                                        "The day to get the rewards of") = 'hi readers of the bot',
-                            limit: Option(int, "The number of upcoming days to see") = 7):
+                                        "The day to get the rewards of. Not required if you are authenticated",
+                                        description_localizations=stw.I18n.construct_slash_dict(
+                                            "reward.meta.args.day.description"),
+                                        name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day"),
+                                        min_value=1) = None,
+                            limit: Option(int, "The number of upcoming days to see",
+                                          description_localizations=stw.I18n.construct_slash_dict(
+                                              "reward.meta.args.limit.description"),
+                                          name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit"),
+                                          min_value=0, max_value=60, default=7) = None):
         """
         This command lets you view the rewards of any specific day, and any number of rewards that follow.
 
