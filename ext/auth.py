@@ -39,6 +39,9 @@ class Auth(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         white = self.client.colours["auth_white"]
         error_colour = self.client.colours["error_red"]
 
@@ -58,20 +61,22 @@ class Auth(ext.Cog):
             await stw.slash_edit_original(ctx, auth_info[0], auth_info[2])
         elif await stw.validate_existing_session(self.client, auth_info[1]["token"]):
             # TODO: update this to a view + use config["login_links"]["logout_login_fortnite_pc"]
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Currently Authenticated", "whitekey"),
-                                  description=(f"\u200b\n"
-                                               f"Existing Auth Session Found For:\n"
-                                               f"```{auth_info[1]['account_name']}```\n"
-                                               f"{self.emojis['stopwatch_anim']} **Your auth session expires** <t:{math.floor(auth_info[1]['expiry'])}:R>\n"
-                                               f"\u200b\n"
-                                               f"Rerun this command with a new auth code to change accounts, you can get one from:\n"
-                                               f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)\n"
-                                               f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n\n"
-                                               f"**Need Help? Run**\n"
-                                               f"{await stw.mention_string(self.client, 'help auth')}\n"
-                                               f"Or [Join the support server]({self.client.config['support_url']})\n"
-                                               f"Note: You need a new code __each time you authenticate__\n\u200b\n"),
-                                  colour=white)
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(self.client, stw.I18n.get('auth.embed.currentauth.title', desired_lang),
+                                                "whitekey"),
+                description=(f"\u200b\n"
+                             f"Existing Auth Session Found For:\n"
+                             f"```{auth_info[1]['account_name']}```\n"
+                             f"{self.emojis['stopwatch_anim']} **Your auth session expires** <t:{math.floor(auth_info[1]['expiry'])}:R>\n"
+                             f"\u200b\n"
+                             f"Rerun this command with a new auth code to change accounts, you can get one from:\n"
+                             f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)\n"
+                             f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n\n"
+                             f"**Need Help? Run**\n"
+                             f"{await stw.mention_string(self.client, 'help auth')}\n"
+                             f"Or [Join the support server]({self.client.config['support_url']})\n"
+                             f"Note: You need a new code __each time you authenticate__\n\u200b\n"),
+                colour=white)
             embed = await stw.set_thumbnail(self.client, embed, "keycard")
             embed = await stw.add_requested_footer(ctx, embed)
             await stw.slash_edit_original(ctx, auth_info[0], embed)
@@ -103,13 +108,20 @@ class Auth(ext.Cog):
         Args:
             ctx (discord.ext.commands.Context): The context of the command
         """
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
         white = self.client.colours["auth_white"]
         if await stw.manslaughter_session(self.client, ctx.author.id, "override"):
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Killed Auth Session", "whitekey"),
-                                  description=f"```Successfully ended authentication session```\n", colour=white)
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(self.client, stw.I18n.get('auth.kill.embed.title', desired_lang),
+                                                "whitekey"),
+                description=f"```{stw.I18n.get('auth.kill.embed.description', desired_lang)}```\n", colour=white)
         else:
-            embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Kill Auth Session", "whitekey"),
-                                  description=f"```You have no sessions to kill```\n", colour=white)
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(self.client,
+                                                stw.I18n.get('auth.kill.missing.embed.title', desired_lang),
+                                                "whitekey"),
+                description=f"```{stw.I18n.get('auth.kill.missing.embed.description', desired_lang)}```\n",
+                colour=white)
 
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
         embed = await stw.add_requested_footer(ctx, embed)
@@ -206,7 +218,7 @@ class Auth(ext.Cog):
                           'loglout', 'logolut', 'logkout', 'logokut', 'logoyut', 'logouyt', 'logo7ut', 'logou7t',
                           'logo8ut', 'logou8t', 'logouit', 'logoukt', 'logojut', 'logoujt', 'logohut', 'logouht',
                           'logourt', 'logoutr', 'logou5t', 'logout5', 'logou6t', 'logout6', 'logouty', 'logouth',
-                          'logougt', 'logoutg', 'logouft', 'logoutf', '.logout', '/end'],
+                          'logougt', 'logoutg', 'logouft', 'logoutf', '.logout', '/end', 'welp', 'kys', 'kms'],
                  extras={'emoji': "whitekey", "args": {}, "dev": False},
                  brief="End your active authentication session",
                  description="This command will end your active authentication session and delete any temporarily "
