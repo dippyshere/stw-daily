@@ -2563,6 +2563,18 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"{await mention_string(client, 'device')} and remove your linked"
                                                      f" account",
                                          prompt_help=True, command=command)
+
+    elif error_code == "errors.com.epicgames.fortnite.town_name_validation":
+        embed = await create_error_embed(client, ctx,
+                                         description=f"Attempted to change Homebase name:\n\u200b\n"
+                                                     f"**This name contains unacceptable characters**\n"
+                                                     f"⦾ Homebase names cannot contain certain characters\n"
+                                                     f"⦾ Check out the "
+                                                     f"[wiki](https://github.com/dippyshere/stw-daily/wiki) for "
+                                                     f"more info",
+                                         prompt_authcode=False, command=command, prompt_help=True,
+                                         error_level=error_level)
+
     # battle breakers error codes
     elif error_code == "errors.com.epicgames.world_explorers.login_reward_not_available":
         reward = get_bb_reward_data(client, response, True)
