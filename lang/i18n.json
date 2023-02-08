@@ -243,7 +243,7 @@
         "homebase.meta.description.main": "This command allows you to view / change the name of your Homebase in STW. You must be authenticated to use this command.",
         "homebase.meta.description.list": "**Please note there are limitations on what your Homebase name can be:**",
         "homebase.meta.description.list.item1": "It must be between 1-16 characters",
-        "homebase.meta.description.list.item2": "It may only contain alphanumerics (0-9, a-z) + additional characters ('-._~) + spaces",
+        "homebase.meta.description.list.item2": "It may not contain certain characters",
         "homebase.meta.description.list.item3": "When entering a name with spaces while not using slash commands, please put \"quote marks\" around the new name",
         "homebase.meta.description.list.item4": "Support for other languages will be available in the future",
         "homebase.meta.description.list.item5": "STW isn't required but what's the point?",

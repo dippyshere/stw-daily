@@ -346,7 +346,7 @@ class Homebase(ext.Cog):
                          "\u200b\n"
                          "**Please note there are limitations on what your Homebase name can be:**\n"
                          "⦾ It must be between 1-16 characters\n"
-                         "⦾ It may only contain alphanumerics (0-9, a-z) + additional characters ('-._~) + spaces\n"
+                         "⦾ It may not contain certain characters\n"
                          "⦾ When entering a name with spaces while not using slash commands, please put \"quote marks\" around the new name\n"
                          "⦾ Support for other languages will be available in the future\n"
                          "⦾ STW isn't required but what's the point?\n"))
