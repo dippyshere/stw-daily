@@ -62,6 +62,9 @@ class DailyXP(ext.Cog):
         Returns:
             None
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         generic_colour = self.client.colours["generic_blue"]
 
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "dailyxp", authcode, auth_opt_out)
@@ -82,7 +85,7 @@ class DailyXP(ext.Cog):
             final_embeds = auth_info[2]
 
         # get common core profile
-        profile_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="stw")
+        profile_request = await stw.profile_request(self.client, "query", auth_info[1])
         profile_json_response = orjson.loads(await profile_request.read())
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
@@ -100,8 +103,9 @@ class DailyXP(ext.Cog):
         except Exception as e:
             # TODO: debug and fix this case
             print(e)
-            embed = discord.Embed(title="Daily XP",
-                                  description=f"An error occurred while trying to get your daily xp info: ```{e}```",
+            embed = discord.Embed(title=stw.I18n.get('dailyxp.embed.title', desired_lang),
+                                  description=stw.I18n.get('dailyxp.embed.error.description', desired_lang,
+                                                           f'```{e}```'),
                                   colour=generic_colour)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
@@ -120,13 +124,12 @@ class DailyXP(ext.Cog):
 
         # With all info extracted, create the output
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, "Daily XP", "xp_everywhere"),
-            description=f"\u200b\nDaily XP used: {dailyxp:,}\u200b\n"
-                        f"Daily XP total: {stw.max_daily_stw_accolade_xp:,}\u200b\n"
-                        f"Daily XP remaining: {(stw.max_daily_stw_accolade_xp - dailyxp):,}\u200b\n"
+            title=await stw.add_emoji_title(self.client, stw.I18n.get('dailyxp.embed.title', desired_lang),
+                                            "xp_everywhere"),
+            description=f"\u200b\n{stw.I18n.get('dailyxp.embed.description1', desired_lang, f'{dailyxp:,}')}\u200b\n"
+                        f"{stw.I18n.get('dailyxp.embed.description2', desired_lang, f'{stw.max_daily_stw_accolade_xp - dailyxp:,}')}\u200b\n"
                         f"{progress_bar}\u200b\n"
-                        f"Last reset was: <t:{last_reset}:R>"
-                        f"\n\u200b",
+                        f"{stw.I18n.get('dailyxp.embed.description3', desired_lang, f'<t:{last_reset}:R>')}\n\u200b",
             colour=generic_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "xp_everywhere")
