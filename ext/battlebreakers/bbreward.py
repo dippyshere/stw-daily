@@ -116,7 +116,7 @@ class BBReward(ext.Cog):
 
             try:
                 # day, name, emoji_text, description, quantity
-                reward = stw.get_bb_reward_data(self.client, pre_calc_day=day)
+                reward = stw.get_bb_reward_data(self.client, pre_calc_day=day, desired_lang=desired_lang)
             except Exception as e:
                 embed = await stw.create_error_embed(self.client, ctx,
                                                      description=f"**An error occured when fetching day {day}**\n"
@@ -127,20 +127,20 @@ class BBReward(ext.Cog):
                 return
 
             embed.add_field(name=stw.I18n.get("reward.embed.field1", desired_lang, reward[2]), value=f'```{reward[4]} {reward[1]}```\u200b')
-            for row in stw.LoginRewards[0]['Rows']:
-                if 'MtxGiveaway' in stw.LoginRewards[0]['Rows'][row]['ItemDefinition']['AssetPathName']:
+            for row in stw.bbLoginRewards[0]['Rows']:
+                if 'MtxGiveaway' in stw.bbLoginRewards[0]['Rows'][row]['ItemDefinition']['AssetPathName']:
                     if int(day) % 1800 < int(row):
                         if int(row) - int(day) % 1800 == 1:
                             embed.add_field(
                                 name=stw.I18n.get("bbreward.embed.mtx.field.name", desired_lang,
                                                   self.client.config["emojis"]["T_MTX_Gem_Icon"]),  # hello
-                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[1]}", int(row) - int(day) % 1800)}'
+                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[1]}", int(row) - int(day) % 1800)}'
                                       f'```\u200b', inline=False)
                         else:
                             embed.add_field(
                                 name=stw.I18n.get("bbreward.embed.mtx.field.name", desired_lang,
                                                   self.client.config["emojis"]["T_MTX_Gem_Icon"]),  # hello
-                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row))[1]}", int(row) - int(day) % 1800)}'
+                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[1]}", int(row) - int(day) % 1800)}'
                                       f'```\u200b', inline=False)
                         break  # hello alexander hanson
             if limit >= 1:
@@ -154,7 +154,7 @@ class BBReward(ext.Cog):
                         limit = i
                         max_rewards_reached = True
                         break
-                    data = stw.get_bb_reward_data(self.client, pre_calc_day=day + i)
+                    data = stw.get_bb_reward_data(self.client, pre_calc_day=day + i, desired_lang=desired_lang)
                     rewards += str(data[4]) + " " + str(data[1])
                     if not (i + 1 == limit + 1):
                         rewards += ', '
@@ -163,7 +163,7 @@ class BBReward(ext.Cog):
                     if i % 7 == 0:
                         rewards += '\n\n'
                 if limit == 1:
-                    reward = stw.get_bb_reward_data(self.client, pre_calc_day=day + 1)
+                    reward = stw.get_bb_reward_data(self.client, pre_calc_day=day + 1, desired_lang=desired_lang)
 
                     embed.add_field(name=stw.I18n.get("reward.embed.field3", desired_lang, reward[2]),
                                     value=f'```{reward[4]} {reward[1]}```\u200b',

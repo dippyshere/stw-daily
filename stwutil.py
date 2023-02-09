@@ -38,7 +38,7 @@ async def load_item_data():
         The item data
     """
     async with aiofiles.open("ext/battlebreakers/LoginRewards.json", "r") as f:
-        LoginRewards = orjson.loads(await f.read())
+        bbLoginRewards = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/SurvivorItemRating.json') as f:
         SurvivorItemRating = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/HomebaseRatingMapping.json') as f:
@@ -55,11 +55,15 @@ async def load_item_data():
         max_daily_stw_accolade_xp = orjson.loads(await f.read())[0]["Properties"]["MaxDailyXP"]
     async with aiofiles.open('ext/DataTables/allowed-name-chars.json') as f:
         allowed_chars = orjson.loads(await f.read())
-    return LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
-        BannerColors, max_daily_stw_accolade_xp, allowed_chars
+    async with aiofiles.open('ext/DataTables/DailyRewards.json') as f:
+        stwDailyRewards = orjson.loads(await f.read())
+    async with aiofiles.open('ext/DataTables/DailyFoundersRewards.json') as f:
+        stwFounderDailyRewards = orjson.loads(await f.read())
+    return bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
+        BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards
 
 
-LoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars = asyncio.get_event_loop().run_until_complete(
+bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards = asyncio.get_event_loop().run_until_complete(
     load_item_data())
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
@@ -424,7 +428,7 @@ def get_reward(client, day, vbucks=True):
     return [str(item), emoji_text]
 
 
-def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
+def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0, desired_lang="en"):
     """
     gets the reward data for battle breakers rewards
 
@@ -433,6 +437,7 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
         response: the epic api response to get the data from
         error: whether there was an error or not
         pre_calc_day: the day to calculate the reward for
+        desired_lang: the desired language
 
     Returns:
         the reward day, name, emoji key, description, quantity
@@ -445,15 +450,27 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0):
         day = response["profileChanges"][0]["profile"]["stats"]["attributes"]["login_reward"]["next_level"] - 1
 
     # im not sure if it actually loops after day 1800, but just in case not like anyone will use this command anyway
+    # hello, future dippy here -
+    # now that I have made a private server, we can finally determine what happens after day 1800...
+    # since the game was never available for 1800+ days, there is no legitimate way to encounter this, however:
+    # after day 1800, the game will crash upon login.
+    # Presumably, the game would be patched to loop after 1800,
+    # or a serverside implementation would prevent daily rewards notification from displaying / going above 1800
     day_mod = int(day) % 1800
     if day_mod == 0:
         day_mod = 1800
 
     # done FORTIFICAITION OF THE NIGHT hmm i see folders
-    asset_path_name = LoginRewards[0]["Rows"][str(day_mod)]["ItemDefinition"]["AssetPathName"]
-    quantity = f"{LoginRewards[0]['Rows'][str(day_mod)]['ItemCount']:,}"
+    asset_path_name = bbLoginRewards[0]["Rows"][str(day_mod)]["ItemDefinition"]["AssetPathName"]
+    quantity = f"{bbLoginRewards[0]['Rows'][str(day_mod)]['ItemCount']:,}"
 
     emoji, name, description = ext.battlebreakers.BBLootTable.BBLootTable[asset_path_name]
+
+    try:
+        name = I18n.get(f"wex.item.{asset_path_name.split('.')[1]}.name", desired_lang)
+        description = I18n.get(f"wex.item.{asset_path_name.split('.')[1]}.description", desired_lang)
+    except:
+        pass
 
     emoji_text = client.config["emojis"][emoji]
 
@@ -1288,7 +1305,7 @@ async def entry_profile_req(client, entry, game):
 async def add_other_game_entry(client, user_id, entry, game, other_games):
     """
     Adds an entry for another game to the user's auth session
-    
+
     Args:
         client: The client
         user_id: The id of the user
@@ -1843,7 +1860,7 @@ def get_survivor_rating(survivor):
 def get_survivor_bonus(leader_personality, survivor_personality, leader_rarity, survivor_rating):
     """
     Gets the bonus to the powerlevel of a survivor based on the leader's personality and rarity, and the survivor's personality and rating
-    
+
     Args:
         leader_personality: The personality of the leader (e.g. Homebase.Worker.Personality.IsAnalytical)
         survivor_personality: The personality of the survivor (e.g. Homebase.Worker.Personality.IsAnalytical)
@@ -1876,7 +1893,7 @@ def get_survivor_bonus(leader_personality, survivor_personality, leader_rarity, 
 def get_lead_bonus(lead_synergy, squad_name, rating):
     """
     Gets the bonus to the power level of a lead survivor based on the leader's synergy, squad and rating
-    
+
     Args:
         lead_synergy: The synergy of the leader (e.g. Homebase.Manager.IsGadgeteer)
         squad_name: The name of the squad (e.g. squad_attribute_scavenging_gadgeteers)
@@ -2754,7 +2771,7 @@ def create_command_dict(client):
         for alias in command.aliases:
             command_name_dict[alias] = command.name
 
-        # Adds the command to the 
+        # Adds the command to the
         command_dict[command.name] = command
 
     return command_name_dict, command_dict, list(command_name_dict)
