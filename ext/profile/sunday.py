@@ -19,7 +19,7 @@ from ext.profile.bongodb import *
 from ext.profile.settings_checks import *
 
 
-async def settings_profile_setting_select(view, select, interaction):
+async def settings_profile_setting_select(view, select, interaction, desired_lang="en"):
     """
     This is the function that is called when the user selects a setting to change.
 
@@ -27,42 +27,44 @@ async def settings_profile_setting_select(view, select, interaction):
         view: The view that the user is currently on.
         select: The select menu that the user selected.
         interaction: The interaction that the user did.
+        desired_lang: The desired language.
     """
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
     view.stop()
 
-    embed = await sub_setting_page(select.values[0][:-1], view.client, view.ctx, view.user_document)
-    embed.fields[0].value += f"\u200b\n*Selected Setting: **{select.values[0][:-1]}***\n\u200b\n"
+    embed = await sub_setting_page(select.values[0][:-1], view.client, view.ctx, view.user_document, desired_lang)
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.select', desired_lang, select.values[0][:-1])}\n\u200b\n"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(select.values[0][:-1], view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  int(select.values[0][-1]), view.message)
+                                                                  int(select.values[0][-1]), view.message, desired_lang)
     await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def back_to_main_page(view, interaction):
+async def back_to_main_page(view, interaction, desired_lang="en"):
     """
     This is the function that is called when the user selects the back button on the sub page.
 
     Args:
         view: The view that the user is currently on.
         interaction: The interaction that the user did.
+        desired_lang: The desired language.
     """
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
     view.stop()
     main_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
-                                            view.message)
+                                            view.message, desired_lang)
     await active_view(view.client, view.ctx.author.id, main_view)
-    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
-    embed.fields[0].value += f"\u200b\n*Returned to main menu*\n\u200b\n"
+    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.return', desired_lang)}\n\u200b\n"
     await interaction.edit_original_response(embed=embed, view=main_view)
 
 
-async def shift_page(view, interaction, amount):
+async def shift_page(view, interaction, amount, desired_lang="en"):
     """
     This is the function that is called when the user selects the back or forward button on the main page.
 
@@ -70,6 +72,7 @@ async def shift_page(view, interaction, amount):
         view: The view that the user is currently on.
         interaction: The interaction that the user did.
         amount: The amount of pages to shift by.
+        desired_lang: The desired language.
     """
     for child in view.children:
         child.disabled = True
@@ -84,17 +87,17 @@ async def shift_page(view, interaction, amount):
     elif view.page > max_pages:
         view.page = 1
 
-    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
 
-    embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.pagination.changepage', desired_lang, view.page)}\n\u200b"
 
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
-                                           view.message)
+                                           view.message, desired_lang)
     await active_view(view.client, view.ctx.author.id, new_view)
     await interaction.edit_original_response(embed=embed, view=new_view)
 
 
-async def shift_page_on_sub_page(view, interaction, amount):
+async def shift_page_on_sub_page(view, interaction, amount, desired_lang="en"):
     """
     This is the function that is called when the user selects the back or forward button on the sub page.
 
@@ -102,6 +105,7 @@ async def shift_page_on_sub_page(view, interaction, amount):
         view: The view that the user is currently on.
         interaction: The interaction that the user did.
         amount: The amount of pages to shift by.
+        desired_lang: The desired language.
     """
     for child in view.children:
         child.disabled = True
@@ -120,16 +124,17 @@ async def shift_page_on_sub_page(view, interaction, amount):
 
     view.selected_setting = current_slice[max(0, min(int(view.selected_setting_index), len(current_slice) - 1))]
 
-    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
-    embed.fields[0].value += f"\u200b\n*Changed to page **{view.page}***\n\u200b"
+    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.pagination.changepage', desired_lang, view.page)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  view.selected_setting_index, view.message)
+                                                                  view.selected_setting_index, view.message,
+                                                                  desired_lang)
     await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def sub_settings_profile_select_change(view, select, interaction):
+async def sub_settings_profile_select_change(view, select, interaction, desired_lang="en"):
     """
     This is the function that is called when the user selects a setting to change on the sub page.
 
@@ -137,6 +142,7 @@ async def sub_settings_profile_select_change(view, select, interaction):
         view: The view that the user is currently on.
         select: The select menu that the user selected.
         interaction: The interaction that the user did.
+        desired_lang: The desired language.
     """
     view.client.processing_queue[view.user_document["user_snowflake"]] = True
 
@@ -149,18 +155,19 @@ async def sub_settings_profile_select_change(view, select, interaction):
     view.stop()
 
     await replace_user_document(view.client, view.user_document)
-    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
-    embed.fields[0].value += f"\u200b\n*Selected Profile **{new_profile_selected}***\n\u200b"
+    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  view.selected_setting_index, view.message)
+                                                                  view.selected_setting_index, view.message,
+                                                                  desired_lang)
     await active_view(view.client, view.ctx.author.id, sub_view)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def settings_profile_select_change(view, select, interaction):
+async def settings_profile_select_change(view, select, interaction, desired_lang="en"):
     """
     This is the function that is called when the user selects a setting to change on the main page.
 
@@ -168,6 +175,7 @@ async def settings_profile_select_change(view, select, interaction):
         view: The view that the user is currently on.
         select: The select menu that the user selected.
         interaction: The interaction that the user did.
+        desired_lang: The desired language.
     """
     view.client.processing_queue[view.user_document["user_snowflake"]] = True
 
@@ -180,10 +188,10 @@ async def settings_profile_select_change(view, select, interaction):
     view.stop()
 
     await replace_user_document(view.client, view.user_document)
-    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
-    embed.fields[0].value += f"\u200b\n*Selected profile **{new_profile_selected}***\n\u200b"
+    embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
-                                           view.message)
+                                           view.message, desired_lang)
     await active_view(view.client, view.ctx.author.id, new_view)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=new_view)
@@ -205,7 +213,7 @@ async def edit_current_setting(view, interaction):
     await interaction.response.send_modal(modal)
 
 
-async def edit_current_setting_bool(view, interaction, set_value):
+async def edit_current_setting_bool(view, interaction, set_value, desired_lang="en"):
     """
     This is the function that is called when the user selects the edit button on the sub page.
 
@@ -213,6 +221,7 @@ async def edit_current_setting_bool(view, interaction, set_value):
         view: The view that the user is currently on.
         interaction: The interaction that the user did.
         set_value: The value to set the setting to.
+        desired_lang: The desired language
     """
     selected_setting = view.selected_setting
     setting_information = view.client.default_settings[selected_setting]
@@ -231,12 +240,13 @@ async def edit_current_setting_bool(view, interaction, set_value):
 
     current_value = view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting]
 
-    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
 
-    embed.fields[0].value += f"\u200b\n*Changed **{view.selected_setting}** to **{current_value}***\n\u200b"
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change', desired_lang, view.selected_setting, current_value)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  view.selected_setting_index, view.message)
+                                                                  view.selected_setting_index, view.message,
+                                                                  desired_lang)
 
     await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
@@ -247,22 +257,21 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
     This is the modal that is used to retrieve the value that the user wants to change the setting to.
     """
 
-    def __init__(self, setting_information, client, view, user_document, ctx, current_setting):
+    def __init__(self, setting_information, client, view, user_document, ctx, current_setting, desired_lang):
 
         self.client = client
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
-        self.current_setting_value = \
-        user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        self.desired_lang = desired_lang
 
         title = setting_information["modal_title"].format(self.current_setting_value)
         super().__init__(title=title)
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
-        input_style = discord.InputTextStyle.long if setting_information[
-                                                         "input_type"] == "long" else discord.InputTextStyle.short
+        input_style = discord.InputTextStyle.long if setting_information["input_type"] == "long" else discord.InputTextStyle.short
         setting_input = discord.ui.InputText(style=input_style,
                                              label=setting_information["input_label"].format(
                                                  self.current_setting_value),
@@ -301,37 +310,40 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
 
         del view.client.processing_queue[view.user_document["user_snowflake"]]
 
-        embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+        embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document,
+                                       self.desired_lang)
         sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                       view.client, view.page, view.ctx, view.settings,
-                                                                      view.selected_setting_index, view.message)
+                                                                      view.selected_setting_index, view.message,
+                                                                      self.desired_lang)
         await active_view(view.client, view.ctx.author.id, sub_view)
 
         if check_result:
-            embed.fields[0].value += f"\u200b\n*Changed Setting Value to **{value}***\n\u200b"
+            embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change1', self.desired_lang, value)}\n\u200b"
         else:
-            embed.fields[0].value += f"\u200b\n*Invalid value entered! Please try again*\n\u200b"
+            embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change1.invalid', self.desired_lang)}\n\u200b"
 
         await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def settings_view_timeout(view, sub=False):
+async def settings_view_timeout(view, sub=False, desired_lang="en"):
     """
     This is the function that is called when the view times out.
 
     Args:
         view: The view that timed out.
         sub: Whether or not the view is a sub page.
+        desired_lang: The desired language.
     """
     for child in view.children:
         child.disabled = True
 
     if not sub:
-        embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings)
+        embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
     else:
-        embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document)
+        embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
 
-    embed.fields[0].value += f"\u200b\n*Timed out. Please rerun the command to continue*\n\u200b"
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('generic.embed.timeout', desired_lang)}\n\u200b"
     # TODO: This has a none type error
     await view.message.edit(embed=embed, view=view)
 
@@ -342,7 +354,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
     """
 
     def __init__(self, selected_setting, user_document, client, page, ctx, settings, selected_setting_index,
-                 pass_message=None):
+                 pass_message=None, desired_lang=None):
         super().__init__()
 
         if pass_message is not None:
@@ -359,6 +371,16 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         self.selected_setting_index = selected_setting_index
         self.selected_setting = selected_setting
         self.selected_profile = str(user_document["global"]["selected_profile"])
+        self.desired_lang = desired_lang
+
+        self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
+        self.children[1].placeholder = stw.I18n.get('settings.view.select.setting.placeholder', self.desired_lang)
+        self.children[2].label = stw.I18n.get('generic.view.button.previous')
+        self.children[3].label = stw.I18n.get('generic.view.button.next')
+        self.children[4].label = stw.I18n.get('generic.view.button.mainmenu')
+        self.children[5].label = stw.I18n.get('settings.view.button.changevalue')
+        self.children[6].label = stw.I18n.get('generic.true')
+        self.children[7].label = stw.I18n.get('generic.false')
 
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
         # print(current_slice)
@@ -390,7 +412,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         This is the function that is called when the view times out.
         """
         self.timed_out = True
-        await settings_view_timeout(self, True)
+        await settings_view_timeout(self, True, self.desired_lang)
 
     async def interaction_check(self, interaction):
         """
@@ -436,7 +458,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             select: The select that the user selected.
             interaction: The interaction that the user did.
         """
-        await settings_profile_setting_select(self, select, interaction)
+        await settings_profile_setting_select(self, select, interaction, self.desired_lang)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2, label="Previous Page")
     async def previous_page(self, button, interaction):
@@ -469,7 +491,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             button: The button that the user pressed.
             interaction: The interaction that the user did.
         """
-        await back_to_main_page(self, interaction)
+        await back_to_main_page(self, interaction, self.desired_lang)
 
     @discord.ui.button(style=discord.ButtonStyle.blurple, emoji="library_cogs", row=3, label="Change Value")
     async def edit_setting_non_bool(self, button, interaction):
@@ -510,7 +532,7 @@ class MainPageProfileSettingsView(discord.ui.View):
     This is the view for the profile settings page.
     """
 
-    def __init__(self, user_document, client, page, ctx, settings, pass_message=None):
+    def __init__(self, user_document, client, page, ctx, settings, pass_message=None, desired_lang=None):
         super().__init__()
 
         if pass_message is not None:
@@ -524,6 +546,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         self.settings_per_page = settings_per_page
         self.settings = settings
         self.interaction_check_done = {}
+        self.desired_lang = desired_lang
 
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
         settings_options = generate_settings_view_options(client, current_slice)
@@ -545,7 +568,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         This is the function that is called when the view times out.
         """
         self.timed_out = True
-        await settings_view_timeout(self)
+        await settings_view_timeout(self, desired_lang=self.desired_lang)
 
     async def interaction_check(self, interaction):
         """
@@ -591,7 +614,7 @@ class MainPageProfileSettingsView(discord.ui.View):
             select: The select that the user selected.
             interaction: The interaction that the user did.
         """
-        await settings_profile_setting_select(self, select, interaction)
+        await settings_profile_setting_select(self, select, interaction, self.desired_lang)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_icon", row=2, label="Previous Page")
     async def previous_page(self, button, interaction):
@@ -602,7 +625,7 @@ class MainPageProfileSettingsView(discord.ui.View):
             button: The button that the user pressed.
             interaction: The interaction that the user did.
         """
-        await shift_page(self, interaction, -1)
+        await shift_page(self, interaction, -1, self.desired_lang)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2, label="Next Page")
     async def next_page(self, button, interaction):
@@ -613,7 +636,7 @@ class MainPageProfileSettingsView(discord.ui.View):
             button: The button that the user pressed.
             interaction: The interaction that the user did.
         """
-        await shift_page(self, interaction, 1)
+        await shift_page(self, interaction, 1, self.desired_lang)
 
 
 async def add_field_to_page_embed(page_embed, setting, client, profile, ctx):
@@ -681,7 +704,7 @@ def get_current_settings_slice(page_number, settings_per_page, settings):
     return settings[(0 + shift):(settings_per_page + shift)]
 
 
-async def main_page(page_number, client, ctx, user_profile, settings):
+async def main_page(page_number, client, ctx, user_profile, settings, desired_lang="en"):
     """
     This function generates the main page.
 
@@ -691,6 +714,7 @@ async def main_page(page_number, client, ctx, user_profile, settings):
         ctx: The context.
         user_profile: The user profile.
         settings: The settings.
+        desired_lang: The desired language.
 
     Returns:
         discord.Embed: The embed.
@@ -709,13 +733,13 @@ async def main_page(page_number, client, ctx, user_profile, settings):
 
     page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
                                description=(f"\u200b\n"
-                                            f"**Currently Selected Profile {selected_profile}:**\n"
+                                            f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, selected_profile)}\n"
                                             f"```{selected_profile_data['friendly_name']}```\u200b"),
                                color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
-    page_embed.add_field(name=f"Showing Settings Page {page_number}/{pages}", value="```md", inline=False)
+    page_embed.add_field(name=stw.I18n.get('settings.pagination.showing', desired_lang, page_number, pages), value="```md", inline=False)
     for setting in current_slice:
         page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data, ctx)
 
@@ -724,7 +748,7 @@ async def main_page(page_number, client, ctx, user_profile, settings):
     return page_embed
 
 
-async def sub_setting_page(setting, client, ctx, user_profile):
+async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
     """
     This function generates the sub setting page.
 
@@ -733,6 +757,7 @@ async def sub_setting_page(setting, client, ctx, user_profile):
         client: The client.
         ctx: The context.
         user_profile: The user profile.
+        desired_lang: The desired language.
 
     Returns:
         discord.Embed: The embed.
@@ -746,7 +771,7 @@ async def sub_setting_page(setting, client, ctx, user_profile):
 
     page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
                                description=(f"\u200b\n"
-                                            f"**Currently Selected Profile {selected_profile}:**\n"
+                                            f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, selected_profile)}\n"
                                             f"```{selected_profile_data['friendly_name']}```\u200b"),
                                color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
@@ -759,15 +784,15 @@ async def sub_setting_page(setting, client, ctx, user_profile):
 
     try:
         current_value = f"{selected_profile_data['settings'][setting]} " \
-                        f"- {stw.I18n.get('lang.{0}'.format(selected_profile_data['settings'][setting]), await stw.I18n.get_desired_lang(client, ctx))} " \
+                        f"- {stw.I18n.get('lang.{0}'.format(selected_profile_data['settings'][setting]), desired_lang)} " \
                         f"({client.config['valid_locales'][selected_profile_data['settings'][setting]][1]})"
     except:
         current_value = selected_profile_data['settings'][setting]
 
-    page_embed.add_field(name=f"{client.config['emojis'][setting_info['emoji']]} "
-                              f"Selected Setting: {setting.replace('_', ' ').capitalize()}",
-                         value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\nCurrent Value:: {current_value}\n\n{setting_info['description']}\n\n\nType:: {type(setting_info['default']).__name__}\nRequirement:: {requirement_string}```",
-                         inline=False)
+    page_embed.add_field(
+        name=stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']], setting.replace('_', ' ').capitalize()),
+        value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{setting_info['description']}\n\n\n{stw.I18n.get('settings.type', desired_lang)}:: {type(setting_info['default']).__name__}\n{stw.I18n.get('settings.requirement', desired_lang)}:: {requirement_string}```",
+        inline=False)
 
     return page_embed
 
@@ -795,7 +820,7 @@ async def map_settings_aliases(client):
     return setting_map
 
 
-async def default_page_profile_settings(client, ctx, user_profile, settings, message):
+async def default_page_profile_settings(client, ctx, user_profile, settings, message, desired_lang):
     """
     This function generates the default page for the profile settings.
 
@@ -805,34 +830,37 @@ async def default_page_profile_settings(client, ctx, user_profile, settings, mes
         user_profile: The user profile.
         settings: The settings.
         message: The message.
+        desired_lang: The desired language.
     """
     page = client.config["profile_settings"]["default_settings_page"]
-    main_page_embed = await main_page(page, client, ctx, user_profile, settings)
+    main_page_embed = await main_page(page, client, ctx, user_profile, settings, desired_lang)
     main_page_embed.fields[0].value += message
 
-    settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings)
+    settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings, desired_lang)
     await active_view(client, ctx.author.id, settings_view)
     await stw.slash_send_embed(ctx, embeds=main_page_embed, view=settings_view)
 
 
-async def no_profiles_page(client, ctx):
+async def no_profiles_page(client, ctx, desired_lang):
     """
     This is the function that is called when the user has no profiles
 
     Args:
         client: The client
         ctx: The context
+        desired_lang: The desired language
 
     Returns:
         The embed
     """
     embed_colour = client.colours["profile_lavendar"]
 
-    no_profiles_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
-                                      description=(f"\u200b\n"
-                                                   f"**You don't have any profiles yet**\n"
-                                                   f"```To create one, use the profile command```\u200b\n"),
-                                      color=embed_colour)
+    no_profiles_embed = discord.Embed(
+        title=await stw.add_emoji_title(client, stw.I18n.get('settings.embed.title', desired_lang), "settings"),
+        description=(f"\u200b\n"
+                     f"{stw.I18n.get('settings.noprofile1', desired_lang)}\n"
+                     f"```{stw.I18n.get('settings.noprofile2', desired_lang)}```\u200b\n"),
+        color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "settings_cog")
     no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed)
 
@@ -853,6 +881,9 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
     Returns:
         discord.Embed: The embed.
     """
+
+    desired_lang = await stw.I18n.get_desired_lang(client, ctx)
+
     settings = client.settings_choices
     settings_per_page = 5
 
@@ -863,7 +894,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
     try:
         user_profile["profiles"]["0"]
     except:
-        embed = await no_profiles_page(client, ctx)
+        embed = await no_profiles_page(client, ctx, desired_lang)
         await stw.slash_send_embed(ctx, embeds=embed)
         return
 
@@ -877,7 +908,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
         if setting in list(setting_map.keys()):
             settings_per_page = client.config["profile_settings"]["settings_per_page"]
             setting = setting_map[setting]
-            happy_message += f"Changed Setting **{setting.replace('_', ' ').capitalize()}**"
+            happy_message += stw.I18n.get('settings.change2', desired_lang, setting.replace('_', ' ').capitalize())
         else:
             setting = False
 
@@ -889,7 +920,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             await replace_user_document(client, user_profile)
 
             del client.processing_queue[user_snowflake]
-            happy_message += f" on profile **{profile}**"
+            happy_message += stw.I18n.get('settings.change2.1', desired_lang, profile)
         elif profile is not None:
             profile = False
 
@@ -915,14 +946,14 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                 await replace_user_document(client, user_profile)
 
             if check_result is not False:
-                happy_message += f" to **{value}**"
+                happy_message += stw.I18n.get('settings.change2.2', desired_lang, value)
             else:
                 value = False
 
             del client.processing_queue[user_snowflake]
 
             if value is not False:
-                embed = await sub_setting_page(setting, client, ctx, user_profile)
+                embed = await sub_setting_page(setting, client, ctx, user_profile, desired_lang)
 
                 # may be referenced before assignment
                 selected_setting_index = (settings.index(setting) % settings_per_page) - 1
@@ -931,7 +962,8 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                 sub_view = SettingProfileSettingsSettingViewOfSettingSettings(setting, user_profile,
                                                                               client, page, ctx,
                                                                               settings,
-                                                                              selected_setting_index)
+                                                                              selected_setting_index,
+                                                                              desired_lang=desired_lang)
                 await active_view(client, ctx.author.id, sub_view)
 
                 embed.fields[0].value += happy_message + "*\n\u200b\n"
@@ -942,10 +974,13 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             value = False
 
         list_of_potential_nones = [setting, profile, value]
-        associated_error = ["Invalid setting entered", "Invalid profile entered", "Invalid value entered"]
-        associated_missing = ["Missing setting to change", "Missing profile to apply change to",
-                              "Missing value to change to"]
-        base_error_message = "\u200b\n*Failed to change setting:"
+        associated_error = [stw.I18n.get('settings.error.invalid.setting', desired_lang),
+                            stw.I18n.get('settings.error.invalid.profile', desired_lang),
+                            stw.I18n.get('settings.error.invalid.value', desired_lang)]
+        associated_missing = [stw.I18n.get('settings.error.missing.setting', desired_lang),
+                              stw.I18n.get('settings.error.missing.profile', desired_lang),
+                              stw.I18n.get('settings.error.missing.value', desired_lang)]
+        base_error_message = f"\u200b\n{stw.I18n.get('settings.error.base', desired_lang)}"
 
         for index, missing_or_error in enumerate(list_of_potential_nones):
 
@@ -959,10 +994,10 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
 
         base_error_message += "*\n\u200b\n"
         base_error_message.replace(":,", ":")
-        base_error_message.replace(",,", ",")
+        base_error_message.replace(",,", ",")  # TODO: fix this, perhaps use .join?
 
         if setting is not None and setting is not False:
-            embed = await sub_setting_page(setting, client, ctx, user_profile)
+            embed = await sub_setting_page(setting, client, ctx, user_profile, desired_lang)
             # may be referenced before assignment
             selected_setting_index = (settings.index(setting) % settings_per_page) - 1
             page = math.floor(settings.index(setting) / settings_per_page) + 1
@@ -970,18 +1005,20 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             sub_view = SettingProfileSettingsSettingViewOfSettingSettings(setting, user_profile,
                                                                           client, page, ctx,
                                                                           settings,
-                                                                          selected_setting_index)
+                                                                          selected_setting_index,
+                                                                          desired_lang=desired_lang)
             await active_view(client, ctx.author.id, sub_view)
 
             embed.fields[0].value += base_error_message
             await stw.slash_send_embed(ctx, embeds=embed, view=sub_view)
             return
         else:
-            await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message)
+            await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message, desired_lang)
             return
 
     await default_page_profile_settings(client, ctx, user_profile, settings,
-                                        f"\u200b\n*{stw.random_waiting_message(client)}*\n\u200b\n")
+                                        f"\u200b\n*{stw.random_waiting_message(client)}*\n\u200b\n",
+                                        desired_lang)
     return
 
 
@@ -1006,18 +1043,22 @@ class ProfileSettings(ext.Cog):
         """
         return self.client.settings_choices
 
-    @ext.slash_command(name='settings',
+    @ext.slash_command(name='settings', name_localization=stw.I18n.construct_slash_dict('settings.slash.name'),
                        description='View/Change settings for STW Daily on a per-profile basis',
+                       description_localization=stw.I18n.construct_slash_dict('settings.slash.description'),
                        guild_ids=stw.guild_ids)
     async def slash_settings(self, ctx: discord.ApplicationContext,
-                             setting: Option(str,
-                                             "The name of the setting to change",
+                             setting: Option(description="The name of the setting to change",
+                                             description_localizations=stw.I18n.construct_slash_dict('settings.meta.args.setting.description'),
+                                             name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.setting'),
                                              autocomplete=autocomplete_settings) = None,
-                             value: Option(str,
-                                           "The value to change this setting to") = None,
-                             profile: Option(str,
-                                             "The profile you want to change this setting on") = None
-                             ):  # TODO: Autocomplete this
+                             value: Option(description="The value to change this setting to",
+                                           description_localizations=stw.I18n.construct_slash_dict('settings.meta.args.value.description'),
+                                           name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.value')) = None,  # TODO: autocomplete if possible
+                             profile: Option(int, "The profile you want to change this setting on",
+                                             description_localizations=stw.I18n.construct_slash_dict('settings.meta.args.profile.description'),
+                                             name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.setting')) = None  # TODO: autocomplete / choice this
+                             ):
         """
         This function is the slash command for the settings command.
 
