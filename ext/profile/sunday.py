@@ -197,18 +197,19 @@ async def settings_profile_select_change(view, select, interaction, desired_lang
     await interaction.edit_original_response(embed=embed, view=new_view)
 
 
-async def edit_current_setting(view, interaction):
+async def edit_current_setting(view, interaction, desired_lang="en"):
     """
     This is the function that is called when the user selects the edit button on the sub page.
 
     Args:
         view: The view that the user is currently on.
         interaction: The interaction that the user did.
+        desired_lang: The desired language
     """
     selected_setting = view.selected_setting
     setting_information = view.client.default_settings[selected_setting]
     modal = RetrieveSettingChangeModal(setting_information, view.client, view, view.user_document, view.ctx,
-                                       view.selected_setting)
+                                       view.selected_setting, desired_lang)
 
     await interaction.response.send_modal(modal)
 
@@ -442,7 +443,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             select: The select that the user selected.
             interaction: The interaction that the user did.
         """
-        await sub_settings_profile_select_change(self, select, interaction)
+        await sub_settings_profile_select_change(self, select, interaction, self.desired_lang)
 
     @discord.ui.select(
         placeholder="Select a setting to view/change here",
@@ -469,7 +470,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             button: The button that the user pressed.
             interaction: The interaction that the user did.
         """
-        await shift_page_on_sub_page(self, interaction, -1)  # hio :3 hyanson
+        await shift_page_on_sub_page(self, interaction, -1, self.desired_lang)  # hio :3 hyanson
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="right_icon", row=2, label="Next Page")
     async def next_page(self, button, interaction):
@@ -480,7 +481,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             button: The button that the user pressed.
             interaction: The interaction that the user did.
         """
-        await shift_page_on_sub_page(self, interaction, 1)
+        await shift_page_on_sub_page(self, interaction, 1, self.desired_lang)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, emoji="left_arrow", row=3, label="Main Menu")
     async def exit_back(self, button, interaction):
@@ -502,7 +503,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             button: The button that the user pressed.
             interaction: The interaction that the user did.
         """
-        await edit_current_setting(self, interaction)
+        await edit_current_setting(self, interaction, self.desired_lang)
 
     @discord.ui.button(style=discord.ButtonStyle.green, emoji="check_checked", row=3, label="True")
     async def edit_setting_bool_true(self, button, interaction):
@@ -598,7 +599,7 @@ class MainPageProfileSettingsView(discord.ui.View):
             select: The select that the user selected.
             interaction: The interaction that the user did.
         """
-        await settings_profile_select_change(self, select, interaction)
+        await settings_profile_select_change(self, select, interaction, self.desired_lang)
 
     @discord.ui.select(
         placeholder="Select a setting to view/change here",
@@ -639,7 +640,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         await shift_page(self, interaction, 1, self.desired_lang)
 
 
-async def add_field_to_page_embed(page_embed, setting, client, profile, ctx):
+async def add_field_to_page_embed(page_embed, setting, client, profile, desired_lang="en"):
     """
     This function adds a field to the page embed.
 
@@ -648,7 +649,7 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, ctx):
         setting: The setting to add to the embed.
         client: The client.
         profile: The profile.
-        ctx: The context.
+        desired_lang: The desired language.
 
     Returns:
         discord.Embed: The embed with the field added.
@@ -657,12 +658,11 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, ctx):
     setting_type = str(type(setting_info["default"]).__name__)  # unused but cool
     try:
         current_value = f"{profile['settings'][setting]} " \
-                        f"- {stw.I18n.get('lang.{0}'.format(profile['settings'][setting]), await stw.I18n.get_desired_lang(client, ctx))} " \
+                        f"- {stw.I18n.get('lang.{0}'.format(profile['settings'][setting]), desired_lang)} " \
                         f"({client.config['valid_locales'][profile['settings'][setting]][1]})"
     except:
         current_value = profile['settings'][setting]
-    page_embed.fields[
-        0].value += f"""\n\n# {setting.replace("_", " ").capitalize()}\n> {setting.replace("_", "-")} | {current_value}\n{setting_info['description']}"""
+    page_embed.fields[0].value += f"""\n\n# {setting.replace("_", " ").capitalize()}\n> {setting.replace("_", "-")} | {current_value}\n{setting_info['description']}"""
     return page_embed
 
 
@@ -739,9 +739,10 @@ async def main_page(page_number, client, ctx, user_profile, settings, desired_la
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
-    page_embed.add_field(name=stw.I18n.get('settings.pagination.showing', desired_lang, page_number, pages), value="```md", inline=False)
+    page_embed.add_field(name=stw.I18n.get('settings.pagination.showing', desired_lang, page_number, pages),
+                         value="```md", inline=False)
     for setting in current_slice:
-        page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data, ctx)
+        page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data, desired_lang)
 
     page_embed.fields[0].value += "```"
 
@@ -778,7 +779,7 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
     if isinstance(setting_info['default'], bool):
-        requirement_string = "True or False"
+        requirement_string = stw.I18n.get('settings.boolean.requirement', desired_lang)
     else:
         requirement_string = setting_info['req_string']
 
