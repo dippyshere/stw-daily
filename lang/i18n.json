@@ -452,7 +452,6 @@
         "settings.meta.args.value.description": "The new value for the setting",
         "settings.meta.args.setting": "setting",
         "settings.meta.args.setting.description": "The setting you want to change",
-        "settings.meta.args.profile": "profile",
         "settings.meta.args.profile.description": "The profile ID you want to change this setting on",
         "generic.slash.token": "Your Epic Games authcode. Required unless you have an active session.",
         "generic.slash.optout": "Opt out of starting an authentication session",

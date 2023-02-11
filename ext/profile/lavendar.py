@@ -76,7 +76,7 @@ def setup(client):
     client.add_cog(Profile(client))
 
 
-async def create_main_embed(ctx, client, current_selected_profile, user_document):
+async def create_main_embed(ctx, client, current_selected_profile, user_document, desired_lang):
     """
     Creates the main embed for the profile command.
 
@@ -85,6 +85,7 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
         client: The bot client.
         current_selected_profile: The current selected profile.
         user_document: The user document.
+        desired_lang: The desired language.
 
     Returns:
         discord.Embed: The main embed.
@@ -92,17 +93,21 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
     embed_colour = client.colours["profile_lavendar"]
 
     if current_selected_profile is None:
-        embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
-                              description=(f"\u200b\n"
-                                           f"**No Profiles :(**\n"
-                                           f"```Create a new profile using the \"New Profile\" Button! :D```"),
-                              color=embed_colour)
+        embed = discord.Embed(
+            title=await stw.split_emoji_title(client, stw.I18n.get('profile.embed.title', desired_lang),
+                                              "left_delta", "right_delta"),
+            description=(f"\u200b\n"
+                         f"{stw.I18n.get('profile.embed.noprofiles.description1', desired_lang)}\n"
+                         f"```{stw.I18n.get('profile.embed.noprofiles.description2', desired_lang)}```"),
+            color=embed_colour)
     else:
-        embed = discord.Embed(title=await stw.split_emoji_title(client, "Profile", "left_delta", "right_delta"),
-                              description=(f"\u200b\n"
-                                           f"**Currently Selected Profile {current_selected_profile}**\n"
-                                           f"```{user_document['profiles'][str(current_selected_profile)]['friendly_name']}```"),
-                              color=embed_colour)
+        embed = discord.Embed(
+            title=await stw.split_emoji_title(client, stw.I18n.get('profile.embed.title', desired_lang), "left_delta",
+                                              "right_delta"),
+            description=(f"\u200b\n"
+                         f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, current_selected_profile)}\n"
+                         f"```{user_document['profiles'][str(current_selected_profile)]['friendly_name']}```"),
+            color=embed_colour)
     embed = await stw.set_thumbnail(client, embed, "storm_shard")
     embed = await stw.add_requested_footer(ctx, embed)
     return embed
@@ -113,14 +118,24 @@ class ProfileMainView(discord.ui.View):
     The main view for the profile command.
     """
 
-    def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None):
+    def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None,
+                 desired_lang=None):
         super().__init__()
 
         self.client = client
         self.children[0].options = profile_options
+        self.desired_lang = desired_lang
 
         if previous_message is not None:
             self.message = previous_message
+
+        self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
+        self.children[1].label = stw.I18n.get('profile.view.button.changename', self.desired_lang)
+        self.children[2].label = stw.I18n.get('profile.view.button.newprofile', self.desired_lang)
+        self.children[3].label = stw.I18n.get('profile.view.button.deleteprofile', self.desired_lang)
+        self.children[4].label = stw.I18n.get('profile.view.button.edit', self.desired_lang)
+        self.children[5].label = stw.I18n.get('profile.view.button.auth', self.desired_lang)
+        self.children[6].label = stw.I18n.get('profile.view.button.info', self.desired_lang)
 
         # look ok it works dont judge arvo
         if current_selected_profile is None:
@@ -129,7 +144,7 @@ class ProfileMainView(discord.ui.View):
             self.children[3].disabled = True
             self.children[4].disabled = True
             self.children[5].disabled = True
-            self.children[0].placeholder = "No profiles :("
+            self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder.noprofile', self.desired_lang)
 
         self.ctx = ctx
         self.author = ctx.author
@@ -150,8 +165,9 @@ class ProfileMainView(discord.ui.View):
         for child in self.children:
             child.disabled = True
 
-        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
-        embed.description += "\n*Timed out. Please rerun the command to continue*\n\u200b"
+        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('generic.embed.timeout', self.desired_lang)}\n\u200b"
         self.timed_out = True
         return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
@@ -207,11 +223,13 @@ class ProfileMainView(discord.ui.View):
         self.stop()
 
         await replace_user_document(self.client, self.user_document)
-        embed = await create_main_embed(self.ctx, self.client, new_profile_selected, self.user_document)
-        embed.description += f"\n*Selected profile **{new_profile_selected}***\n\u200b"
-        select_options = generate_profile_select_options(self.client, new_profile_selected, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, new_profile_selected, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('profile.embed.select', self.desired_lang, new_profile_selected)}\n\u200b"
+        select_options = generate_profile_select_options(self.client, new_profile_selected, self.user_document,
+                                                         self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document,
-                                       self.message)
+                                       self.message, self.desired_lang)
         await active_view(self.client, self.ctx.author.id, profile_view)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -227,7 +245,7 @@ class ProfileMainView(discord.ui.View):
             interaction: The interaction.
         """
         await interaction.response.send_modal(
-            ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self))
+            ChangeNameModal(self.ctx, self.client, self.user_document, self.message, self, self.desired_lang))
 
     @discord.ui.button(style=discord.ButtonStyle.success, label="New Profile", emoji="library_add_person", row=1)
     async def new_button(self, _button, interaction):
@@ -239,7 +257,7 @@ class ProfileMainView(discord.ui.View):
             interaction: The interaction.
         """
         await interaction.response.send_modal(
-            NewProfileModal(self.ctx, self.client, self.user_document, self.message, self))
+            NewProfileModal(self.ctx, self.client, self.user_document, self.message, self, self.desired_lang))
 
     @discord.ui.button(style=discord.ButtonStyle.danger, label="Delete Profile", emoji="library_trashcan", row=1)
     async def delete_button(self, _button, interaction):
@@ -279,11 +297,13 @@ class ProfileMainView(discord.ui.View):
                 del self.user_document["profiles"][profile]
 
         await replace_user_document(self.client, self.user_document)
-        embed = await create_main_embed(self.ctx, self.client, new_selected, self.user_document)
-        embed.description += f"\n*Deleted Profile **{self.current_selected_profile}***\n\u200b"
-        select_options = generate_profile_select_options(self.client, new_selected, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, new_selected, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('profile.embed.delete', self.desired_lang, self.current_selected_profile)}\n\u200b"
+        select_options = generate_profile_select_options(self.client, new_selected, self.user_document,
+                                                         self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document,
-                                       self.message)
+                                       self.message, self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -300,8 +320,9 @@ class ProfileMainView(discord.ui.View):
         """
         await settings_command(self.client, self.ctx)
 
-        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
-        embed.description += f"\n*Started settings command. Please rerun to continue*\n\u200b"
+        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('profile.embed.start.settings', self.desired_lang)}\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -319,8 +340,9 @@ class ProfileMainView(discord.ui.View):
         """
         await handle_dev_auth(self.client, self.ctx)
 
-        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document)
-        embed.description += f"\n*Started authentication command. Please rerun to continue*\n\u200b"
+        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('profile.embed.start.auth', self.desired_lang)}\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -353,14 +375,15 @@ class ChangeNameModal(discord.ui.Modal):
     The modal for changing the name of a profile.
     """
 
-    def __init__(self, ctx, client, user_document, message, view):
+    def __init__(self, ctx, client, user_document, message, view, desired_lang):
         self.ctx = ctx
         self.client = client
         self.cur_profile_id = user_document["global"]["selected_profile"]
         self.view = view
+        self.desired_lang = desired_lang
 
         self.user_document = user_document
-        super().__init__(title=f"Change name of profile {self.cur_profile_id}")
+        super().__init__(title=stw.I18n.get('profile.modal.changename.title', desired_lang, self.cur_profile_id))
 
         # Add the required items into this modal for entering
 
@@ -369,10 +392,10 @@ class ChangeNameModal(discord.ui.Modal):
         # The profile friendly name
         input_profile_name = discord.ui.InputText(
             style=discord.InputTextStyle.short,
-            label="Enter a new name for this profile",
+            label=stw.I18n.get('profile.modal.changename.input.label', desired_lang),
             min_length=profile_settings["min_friendly_name_length"],
             max_length=profile_settings["max_friendly_name_length"],
-            placeholder="Enter a new name"
+            placeholder=stw.I18n.get('profile.modal.changename.input.placeholder', desired_lang)
         )
         self.message = message
         self.add_item(input_profile_name)
@@ -395,11 +418,13 @@ class ChangeNameModal(discord.ui.Modal):
         self.user_document["profiles"][str(self.cur_profile_id)]["friendly_name"] = self.children[0].value
 
         await replace_user_document(self.client, self.user_document)
-        embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
-        embed.description += f"\n*Changed the name of profile **{self.cur_profile_id}***\n\u200b"
-        select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('profile.embed.changename', self.desired_lang, self.cur_profile_id)}\n\u200b"
+        select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document,
+                                                         self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
-                                       self.message)
+                                       self.message, self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -411,13 +436,14 @@ class NewProfileModal(discord.ui.Modal):
     The modal for creating a new profile.
     """
 
-    def __init__(self, ctx, client, user_document, message, view):
+    def __init__(self, ctx, client, user_document, message, view, desired_lang):
         self.ctx = ctx
         self.client = client
         self.cur_profile_id = len(user_document["profiles"])
         self.view = view
+        self.desired_lang = desired_lang
         self.user_document = user_document
-        super().__init__(title=f"Create profile {self.cur_profile_id}")
+        super().__init__(title=stw.I18n.get('profile.modal.create.title', desired_lang, self.cur_profile_id))
 
         # Add the required items into this modal for entering
 
@@ -426,10 +452,10 @@ class NewProfileModal(discord.ui.Modal):
         # The profile friendly name
         input_profile_name = discord.ui.InputText(
             style=discord.InputTextStyle.short,
-            label="Enter a name for this profile",
+            label=stw.I18n.get('profile.modal.create.input.label', desired_lang),
             min_length=profile_settings["min_friendly_name_length"],
             max_length=profile_settings["max_friendly_name_length"],
-            placeholder="Awesome Profile 123"
+            placeholder=stw.I18n.get('profile.modal.create.input.placeholder', desired_lang)
         )
         self.message = message
         self.add_item(input_profile_name)
@@ -455,11 +481,13 @@ class NewProfileModal(discord.ui.Modal):
         self.user_document["profiles"][str(self.cur_profile_id)]["id"] = self.cur_profile_id
 
         await replace_user_document(self.client, self.user_document)
-        embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document)
-        embed.description += f"\n*Created profile **{self.cur_profile_id}***\n\u200b"
-        select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document)
+        embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('profile.embed.create', self.desired_lang, self.cur_profile_id)}\n\u200b"
+        select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document,
+                                                         self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
-                                       self.message)
+                                       self.message, self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -484,27 +512,32 @@ class Profile(ext.Cog):
             ctx: The context.
             new_profile: The new profile to switch to.
         """
+
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
         user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id)
-        current_command = f"\n*{stw.random_waiting_message(self.client)}*\n\u200b"
+        current_command = f"\n*{stw.random_waiting_message(self.client, desired_lang)}*\n\u200b"
 
         if new_profile is not None:
 
             if new_profile not in list(user_document["profiles"].keys()):
-                current_command = "\n*Attempted to switch to a profile that doesn't exist*\n\u200b"
+                current_command = f"\n{stw.I18n.get('profile.embed.switch.nonexistent', desired_lang)}\n\u200b"
             else:
                 self.client.processing_queue[user_document["user_snowflake"]] = True
 
                 user_document["global"]["selected_profile"] = int(new_profile)
                 await replace_user_document(self.client, user_document)
-                current_command = f"\n*Selected profile **{new_profile}***\n\u200b"
+                current_command = f"\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile)}\n\u200b"
                 del self.client.processing_queue[user_document["user_snowflake"]]
 
         current_selected_profile = user_document["global"]["selected_profile"]
 
-        embed = await create_main_embed(ctx, self.client, current_selected_profile, user_document)
+        embed = await create_main_embed(ctx, self.client, current_selected_profile, user_document, desired_lang)
         embed.description += current_command
-        select_options = generate_profile_select_options(self.client, current_selected_profile, user_document)
-        profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document)
+        select_options = generate_profile_select_options(self.client, current_selected_profile, user_document,
+                                                         desired_lang)
+        profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document,
+                                       desired_lang)
         # brb back gtg soonish
         await active_view(self.client, ctx.author.id, profile_view)
         await stw.slash_send_embed(ctx, embed, profile_view)
@@ -625,12 +658,15 @@ class Profile(ext.Cog):
         await command_counter(self.client, ctx.author.id)
         await self.profile_command(ctx, profile)
 
-    @slash_command(name='profile',
+    @slash_command(name='profile', name_localization=stw.I18n.construct_slash_dict('profile.slash.name'),
                    description="Manage your different STW Daily profiles",
+                   description_localization=stw.I18n.construct_slash_dict('profile.slash.description'),
                    guild_ids=stw.guild_ids)
     async def slashprofile(self, ctx: discord.ApplicationContext,
-                           profile: Option(int,
-                                           "The ID of the profile to switch to (e.g. 0)") = None):
+                           profile: Option(int, name_localizations=stw.I18n.construct_slash_dict('profile.meta.args.profile'),
+                                           description_localizations=stw.I18n.construct_slash_dict('profile.meta.args.profile.description'),
+                                           description="The ID of the profile to switch to (e.g. 0)",
+                                           default=0) = None):  # TODO: Autocomplete this with the user's profiles
         """
         The profile command.
 

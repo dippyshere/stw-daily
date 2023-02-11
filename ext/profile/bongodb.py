@@ -128,7 +128,7 @@ async def check_profile_ver_document(client, document):
     return new_base
 
 
-def generate_profile_select_options(client, current_selected_profile, user_document):
+def generate_profile_select_options(client, current_selected_profile, user_document, desired_lang):
     """
     Generates a list of profile select options for a user.
 
@@ -136,6 +136,7 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
         client: The bot client.
         current_selected_profile: The currently selected profile.
         user_document: The user document.
+        desired_lang: The desired language.
 
     Returns:
         list: A list of profile select options.
@@ -144,7 +145,7 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
 
     if current_selected_profile is None:
         select_options.append(discord.SelectOption(
-            label="No Profiles :(",
+            label=stw.I18n.get('profile.view.options.placeholder.noprofile', desired_lang),
             value="None",
             default=False,
             emoji=client.config["emojis"]["error"]
