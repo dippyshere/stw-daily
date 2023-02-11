@@ -149,7 +149,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         elif exchange_auth_session:
             auth_session = True
 
-        auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.nosession1', desired_lang, client.config['login_links']['login_fortnite_pc'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.nosession2', desired_lang, client.config['emojis']['locked'])}"
+        auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.nosession1', desired_lang, client.config['login_links']['login_fortntite_pc'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.nosession2', desired_lang, client.config['emojis']['locked'])}"
         if auth_session:
             auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.activesession1', desired_lang, client.config['emojis']['library_input'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.activesession2', desired_lang, client.config['login_links']['logout_login_fortnite_pc'], client.config['emojis']['locked'])}"
 
@@ -483,13 +483,13 @@ class StolenAccountView(discord.ui.View):
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
         try:
             if self.user_document["auto_claim"]["enabled"]:
-                self.children[3].label = stw.I18n.get('devauth.view.button.autolaim.disable', self.desired_lang)
+                self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
                 self.children[3].style = discord.ButtonStyle.red
             else:
-                self.children[3].label = stw.I18n.get('devauth.view.button.autolaim.enable', self.desired_lang)
+                self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
                 self.children[3].style = discord.ButtonStyle.green
         except:
-            self.children[3].label = stw.I18n.get('devauth.view.button.autolaim.enable', self.desired_lang)
+            self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
             self.children[3].style = discord.ButtonStyle.green
 
     async def on_timeout(self):
@@ -621,21 +621,21 @@ class StolenAccountView(discord.ui.View):
         try:
             if self.user_document["auto_claim"]["enabled"]:
                 self.user_document["auto_claim"] = None
-                button.label = stw.I18n.get('devauth.view.button.autolaim.enable', self.desired_lang)
+                button.label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
                 button.style = discord.ButtonStyle.green
                 result = "devauth.embed.existing.processed.success.disable", "devauth.embed.existing.description4.disable"
             else:
                 self.user_document["auto_claim"] = {
                     "enabled": True,
                 }
-                button.label = stw.I18n.get('devauth.view.button.autolaim.disable', self.desired_lang)
+                button.label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
                 button.style = discord.ButtonStyle.red
                 result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.enable"
         except:
             self.user_document["auto_claim"] = {
                 "enabled": True,
             }
-            button.label = stw.I18n.get('devauth.view.button.autolaim.disable', self.desired_lang)
+            button.label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
             button.style = discord.ButtonStyle.red
             result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.enable"
         await replace_user_document(self.client, self.user_document)
@@ -649,7 +649,7 @@ class StolenAccountView(discord.ui.View):
             f"{stw.I18n.get('devauth.embed.existing.description3', self.desired_lang, self.client.config['emojis']['library_floppydisc'])}\n\u200b\n"
             f"{stw.I18n.get(result[1], self.desired_lang, self.client.config['emojis']['library_clock'])}\n\u200b\n"
             f"{stw.I18n.get('devauth.embed.existing.description5', self.desired_lang)}\n"
-            f"```{self.current_profile['authentication']['displayName']}```\u200b"
+            f"```{self.current_profile['authentication']['displayName']}```\u200b\n"
             f"{stw.I18n.get(result[0], self.desired_lang)}\n\u200b"
         )
         await interaction.response.edit_message(view=self, embed=self.embed)
