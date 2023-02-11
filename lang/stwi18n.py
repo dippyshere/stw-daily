@@ -6,12 +6,15 @@ https://github.com/dippyshere/stw-daily
 This file is a custom system for i18n (internationalisation) for STW Daily using a single JSON file
 """
 from typing import List
+import logging
 
 import discord.client
 import discord.ext.commands
 import orjson
 import babel
 from ext.profile.bongodb import get_user_document
+
+logger = logging.getLogger(__name__)
 
 
 def get_plural_form(count: int) -> str:
@@ -65,17 +68,20 @@ class I18n:
         except KeyError:
             # if string not found, first try to get the string in english
             try:
+                logger.warning(f"Key {key} not found in language {lang}, trying en")
                 string = self.i18n_json["en"][key]
             except KeyError:
                 # if string not found in english, return the key
-                print(f"String not found: {key} ({lang})")
+                logger.warning(f"Key {key} not found in language {lang} or en")
                 return key
 
         try:
             # format the string with arguments
+            logger.debug(f"Returning {string.format(*args)} for key {key} in language {lang} (args: {args})")
             return string.format(*args)
         except IndexError:
             # if the string has no arguments but arguments were given, just return the string
+            logger.debug(f"Returning {string} for key {key} in language {lang} (key: {key}")
             return string
 
     def get_langs(self) -> List[str]:
@@ -86,6 +92,7 @@ class I18n:
             list: A list of the available languages
         """
         # get the list of available languages
+        logger.debug(f"Returning {list(self.i18n_json.keys())} for get_langs")
         return list(self.i18n_json.keys())
 
     def get_langs_str(self) -> str:
@@ -96,6 +103,7 @@ class I18n:
             str: A string of the available languages
         """
         # get the string of available languages
+        logger.debug(f"Returning {', '.join(self.get_langs())} for get_langs_str")
         return ", ".join(self.get_langs())
 
     def is_lang(self, lang: str) -> bool:
@@ -109,6 +117,7 @@ class I18n:
             bool: True if the language is valid, False if the language is not valid
         """
         # check if the language is valid
+        logger.debug(f"Returning {lang in self.get_langs()} for is_lang({lang})")
         return lang in self.get_langs()
 
     def resolve_plural(self, lang: str, key: str, count: int) -> str:
@@ -134,9 +143,11 @@ class I18n:
 
         try:
             # format the string with the count
+            logger.debug(f"Returning {plural_string.format(count)} for key {key} in language {lang} (key: {key}, count: {count})")
             return plural_string.format(count)
         except IndexError:
             # if the string has no arguments, return the string
+            logger.debug(f"Returning {plural_string} for key {key} in language {lang} (key: {key}")
             return plural_string
 
     async def get_desired_lang(self, client: discord.Client, ctx: discord.ext.commands.Context) -> str:
@@ -187,6 +198,7 @@ class I18n:
             guild_language = None
 
         # return the desired language
+        logger.debug(f"Returning {profile_language or interaction_language or guild_language or 'en'} for get_desired_lang")
         return profile_language or interaction_language or guild_language or "en"
 
     def construct_slash_dict(self, key: str) -> dict:

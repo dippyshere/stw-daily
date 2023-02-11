@@ -7,8 +7,78 @@ import asyncio
 import time
 from pathlib import Path
 from typing import Dict, Any
+import logging
+import colorama
 
-print("Starting STW Daily")
+colorama.init(autoreset=True)
+
+
+class ColourFormatter(logging.Formatter):
+    """
+    A formatter that colors the output based on the level of the log message
+
+    Args:
+        logging.Formatter: The logging formatter
+
+    Attributes:
+        COLOURS (dict): A dictionary of colours for each log level
+
+    Methods:
+        format: Formats the log message
+    """
+    COLOURS = {
+        "WARNING": colorama.Fore.YELLOW,
+        "ERROR": colorama.Fore.RED,
+        "DEBUG": colorama.Fore.GREEN,
+        "INFO": colorama.Fore.BLUE,
+        "CRITICAL": colorama.Fore.RED + colorama.Back.BLACK
+    }
+
+    def format(self, record):
+        """
+        Formats the log message
+        Args:
+            record: The log record
+
+        Returns:
+            str: The formatted log message
+        """
+        colour = self.COLOURS.get(record.levelname, "")
+        if colour:
+            record.name = colour + record.name
+            record.levelname = colour + record.levelname
+            record.msg = colour + record.msg
+        return logging.Formatter.format(self, record)
+
+
+class ColourLogger(logging.Logger):
+    """
+    A logger that uses the colour formatter
+
+    Args:
+        logging.Logger: The logging logger
+
+    Attributes:
+        name (str): The name of the logger
+
+    Methods:
+        __init__(self, name): The constructor
+    """
+
+    def __init__(self, name):
+        logging.Logger.__init__(self, name, logging.DEBUG)
+        self.propagate = False
+        color_formatter = ColourFormatter("%(name)-10s %(levelname)-18s %(message)s")
+        console = logging.StreamHandler()
+        console.setFormatter(color_formatter)
+        self.addHandler(console)
+
+
+logging.setLoggerClass(ColourLogger)
+logger = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.DEBUG)
+
+logger.info("Starting STW Daily")
 
 import orjson
 import os
@@ -26,8 +96,12 @@ import stwutil as stw
 # Compatability layer for future versions of python 3.11+
 try:
     import tomllib as toml
+
+    logger.debug("Using tomllib for toml support")
 except ModuleNotFoundError:
     import tomli as toml
+
+    logger.debug("Using tomli for toml support")
 
 
 def stw_when_mentioned(bot: discord.ext.commands.Bot | discord.AutoShardedBot, msg: discord.Message) -> list[str]:
@@ -66,6 +140,9 @@ def main() -> None:
     # Loading config file
     config_path = "config.toml"
     client.config = load_config(config_path)
+
+    # set logging level
+    logger.setLevel(client.config["logging_level"])
 
     # simple way to parse the colours from config into usable colours;
     client.colours = {}
@@ -112,9 +189,9 @@ def main() -> None:
     ]  # why no ext.bongodb :( doot doot doot doot
 
     for extension in extensions:
-        print(client.load_extension(f"ext.{extension}"))
+        logger.info(f"Loading extension {client.load_extension(f'ext.{extension}')[0]}")
 
-    set_client_modules(client)
+    # set_client_modules(client)
     update_status.start()
     client.run(f"{os.environ['STW_DAILY_TOKEN']}")
 
@@ -137,6 +214,7 @@ async def create_http_session() -> aiohttp.ClientSession:
         aiohttp.ClientSession: The aiohttp session
     """
     headers = {"User-Agent": "Fortnite/++Fortnite+Release-23.30-CL-23901854 Windows/10.0.25267.1.256.64bit"}  # idk
+    logger.debug("Creating aiohttp session")
     return aiohttp.ClientSession(json_serialize=lambda x: orjson.dumps(x).decode(), headers=headers)
 
 
@@ -158,11 +236,13 @@ async def on_ready() -> None:
     if eval(bytes.fromhex("636C69656E742E6163636573735B345D20213D2073747228313636202A203229")):
         await eval(bytes.fromhex("636C69656E742E6368616E67655F70726573656E63652861637469766974793D646973636F72642E47616D65286E616D653D6622E29AA0EFB88F5741524E494E473A207B6261736536342E6236346465636F646528636C69656E742E6163636573735B305D292E6465636F646528277574662D3827297D207C2020496E207B6C656E28636C69656E742E6775696C6473297D206775696C6473222929")); update_status.cancel()
     client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
-    print("Started STW Daily")
+    logger.debug(f"Logged in as {client.user} (ID: {client.user.id}), ready to serve {len(client.guilds)} guilds")
+    logger.info(f"Started STW Daily")
 
     try:
+        # TODO: remember to disable this on prod
         await client.watch_module.watch_stw_extensions()
-    except RuntimeError:
+    except:
         pass
 
 
