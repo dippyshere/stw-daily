@@ -19,7 +19,7 @@ from ext.profile.bongodb import *
 from ext.profile.settings_checks import *
 
 
-async def settings_profile_setting_select(view, select, interaction, desired_lang="en"):
+async def settings_profile_setting_select(view, select, interaction, desired_lang=None):
     """
     This is the function that is called when the user selects a setting to change.
 
@@ -43,7 +43,7 @@ async def settings_profile_setting_select(view, select, interaction, desired_lan
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def back_to_main_page(view, interaction, desired_lang="en"):
+async def back_to_main_page(view, interaction, desired_lang=None):
     """
     This is the function that is called when the user selects the back button on the sub page.
 
@@ -64,7 +64,7 @@ async def back_to_main_page(view, interaction, desired_lang="en"):
     await interaction.edit_original_response(embed=embed, view=main_view)
 
 
-async def shift_page(view, interaction, amount, desired_lang="en"):
+async def shift_page(view, interaction, amount, desired_lang=None):
     """
     This is the function that is called when the user selects the back or forward button on the main page.
 
@@ -97,7 +97,7 @@ async def shift_page(view, interaction, amount, desired_lang="en"):
     await interaction.edit_original_response(embed=embed, view=new_view)
 
 
-async def shift_page_on_sub_page(view, interaction, amount, desired_lang="en"):
+async def shift_page_on_sub_page(view, interaction, amount, desired_lang=None):
     """
     This is the function that is called when the user selects the back or forward button on the sub page.
 
@@ -134,7 +134,7 @@ async def shift_page_on_sub_page(view, interaction, amount, desired_lang="en"):
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def sub_settings_profile_select_change(view, select, interaction, desired_lang="en"):
+async def sub_settings_profile_select_change(view, select, interaction, desired_lang=None):
     """
     This is the function that is called when the user selects a setting to change on the sub page.
 
@@ -167,7 +167,7 @@ async def sub_settings_profile_select_change(view, select, interaction, desired_
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def settings_profile_select_change(view, select, interaction, desired_lang="en"):
+async def settings_profile_select_change(view, select, interaction, desired_lang=None):
     """
     This is the function that is called when the user selects a setting to change on the main page.
 
@@ -197,7 +197,7 @@ async def settings_profile_select_change(view, select, interaction, desired_lang
     await interaction.edit_original_response(embed=embed, view=new_view)
 
 
-async def edit_current_setting(view, interaction, desired_lang="en"):
+async def edit_current_setting(view, interaction, desired_lang=None):
     """
     This is the function that is called when the user selects the edit button on the sub page.
 
@@ -214,7 +214,7 @@ async def edit_current_setting(view, interaction, desired_lang="en"):
     await interaction.response.send_modal(modal)
 
 
-async def edit_current_setting_bool(view, interaction, set_value, desired_lang="en"):
+async def edit_current_setting_bool(view, interaction, set_value, desired_lang=None):
     """
     This is the function that is called when the user selects the edit button on the sub page.
 
@@ -327,7 +327,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
-async def settings_view_timeout(view, sub=False, desired_lang="en"):
+async def settings_view_timeout(view, sub=False, desired_lang=None):
     """
     This is the function that is called when the view times out.
 
@@ -376,12 +376,12 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
 
         self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
         self.children[1].placeholder = stw.I18n.get('settings.view.select.setting.placeholder', self.desired_lang)
-        self.children[2].label = stw.I18n.get('generic.view.button.previous')
-        self.children[3].label = stw.I18n.get('generic.view.button.next')
-        self.children[4].label = stw.I18n.get('generic.view.button.mainmenu')
-        self.children[5].label = stw.I18n.get('settings.view.button.changevalue')
-        self.children[6].label = stw.I18n.get('generic.true')
-        self.children[7].label = stw.I18n.get('generic.false')
+        self.children[2].label = stw.I18n.get('generic.view.button.previous', self.desired_lang)
+        self.children[3].label = stw.I18n.get('generic.view.button.next', self.desired_lang)
+        self.children[4].label = stw.I18n.get('generic.view.button.mainmenu', self.desired_lang)
+        self.children[5].label = stw.I18n.get('settings.view.button.changevalue', self.desired_lang)
+        self.children[6].label = stw.I18n.get('generic.true', self.desired_lang)
+        self.children[7].label = stw.I18n.get('generic.false', self.desired_lang)
 
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
         # print(current_slice)
@@ -640,7 +640,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         await shift_page(self, interaction, 1, self.desired_lang)
 
 
-async def add_field_to_page_embed(page_embed, setting, client, profile, desired_lang="en"):
+async def add_field_to_page_embed(page_embed, setting, client, profile, desired_lang=None):
     """
     This function adds a field to the page embed.
 
@@ -704,7 +704,7 @@ def get_current_settings_slice(page_number, settings_per_page, settings):
     return settings[(0 + shift):(settings_per_page + shift)]
 
 
-async def main_page(page_number, client, ctx, user_profile, settings, desired_lang="en"):
+async def main_page(page_number, client, ctx, user_profile, settings, desired_lang=None):
     """
     This function generates the main page.
 
@@ -1058,7 +1058,7 @@ class ProfileSettings(ext.Cog):
                                            name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.value')) = None,  # TODO: autocomplete if possible
                              profile: Option(int, "The profile you want to change this setting on",
                                              description_localizations=stw.I18n.construct_slash_dict('settings.meta.args.profile.description'),
-                                             name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.setting')) = None  # TODO: autocomplete / choice this
+                                             name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.profile')) = None  # TODO: autocomplete / choice this
                              ):
         """
         This function is the slash command for the settings command.
@@ -1210,7 +1210,8 @@ class ProfileSettings(ext.Cog):
                           'preferencve', 'preferencwe', 'preferenc3e', 'preference3', 'preferenc4e', 'preference4',
                           'preferencre', 'preferencer', 'preferencef', 'preferences', '/settings', '/options',
                           '/preferences', '/setting', '/option', '/preference', 'set', '/set', 'opt', '/opt', 'pref',
-                          '/pref', 'settomgs', '.settings', '.options', '.preferences', '.setting', '.option'],
+                          '/pref', 'settomgs', '.settings', '.options', '.preferences', '.setting', '.option',
+                          'sett', 'setin', 'setti'],
                  extras={'emoji': "pink_link", "args": {
                      'setting': 'The name of the setting to change(Optional)',
                      'value': 'The value to change this setting to(Optional)',
