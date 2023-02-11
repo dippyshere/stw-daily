@@ -13,9 +13,11 @@ import re
 import time
 import math
 from difflib import SequenceMatcher
+import logging
 
 import aiofiles
 import blendmodes.blend
+import deprecation
 from Crypto.Cipher import AES
 from PIL import Image
 import asyncio
@@ -29,6 +31,8 @@ import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
 from lang.stwi18n import I18n
 from ext.profile.bongodb import get_user_document, replace_user_document
 
+logger = logging.getLogger(__name__)
+
 
 async def load_item_data():
     """
@@ -36,6 +40,9 @@ async def load_item_data():
 
     Returns:
         The item data
+
+    Raises:
+        Exception: If the item data file is not found.
     """
     async with aiofiles.open("ext/battlebreakers/LoginRewards.json", "r") as f:
         bbLoginRewards = orjson.loads(await f.read())
@@ -65,8 +72,10 @@ async def load_item_data():
 
 bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards = asyncio.get_event_loop().run_until_complete(
     load_item_data())
+logger.debug("Loaded item data")
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
+logger.debug("Loaded banner textures")
 
 I18n = I18n()
 
@@ -90,6 +99,7 @@ def reverse_dict_with_list_keys(dictionary):
         for item in value:
             new_dict[item] = key
 
+    logger.debug(f"Reversed dictionary with list keys: {new_dict}")
     return new_dict
 
 
@@ -105,8 +115,11 @@ async def view_interaction_check(view, interaction, command):
     Returns:
         True if the interaction is created by the view author, False if notifying the user
 
+    Raises:
+        Exception: If the interaction is not created by the view author and notifying the user failed.
     """
     if view.ctx.author == interaction.user:
+        logger.debug("Interaction check passed")
         return True
     else:
         try:
@@ -120,8 +133,10 @@ async def view_interaction_check(view, interaction, command):
             error_code = "errors.stwdaily.not_author_interaction_response"
             embed = await post_error_possibilities(interaction, view.client, command, acc_name, error_code)
             await interaction.response.send_message(embed=embed, ephemeral=True)
+            logger.debug("Interaction check failed, user notified")
             return False
         else:
+            logger.debug("Interaction check failed, user already notified")
             return False
 
 
@@ -135,8 +150,12 @@ def edit_emoji_button(client, button):
 
     Returns:
         The button with the emoji edited
+
+    Raises:
+        Exception: If the emoji is not found in the config.
     """
     button.emoji = client.config["emojis"][button.emoji.name]
+    logger.debug(f"Edited emoji button: {button}")
     return button
 
 
@@ -156,7 +175,18 @@ def process_quotes_in_message(message_content):
 
     Returns:
         The processed message hi?
+
+    Raises:
+        Exception: If the message content is None.
+
+    Notes:
+        This is a mess, but it works.
+
+        I'm not sure if this is the best way to do this, but it works.
+
+        GitHub wrote this, not me.
     """
+    logging.debug(f"Processing quotes in message content: {message_content}")
     message_content = re.sub(rf'[‘’“”„‟⹂⹂「」『』〝〞﹁﹂﹃﹄｢｣«»‹›《》〈〉"＂]', lambda match: rf'\\{match.group()}', message_content)
 
     starting, ending = None, None
@@ -167,10 +197,10 @@ def process_quotes_in_message(message_content):
         pass
 
     # just gotta make sure None is None
-    if starting != ending and starting != None and ending != None and None is None:
+    if starting != ending and starting is not None and ending is not None and None is None:
         message_content = message_content[:starting - 2] + message_content[starting:]
         message_content = message_content[:ending - 4] + message_content[ending - 2:]
-
+    logger.debug(f"Result: {message_content}")
     return message_content
 
 
@@ -186,6 +216,9 @@ async def slash_send_embed(ctx, embeds, view=None, interaction=False):
 
     Returns:
         The message sent
+
+    Raises:
+        Exception: If the context is not a message, interaction, or application context.
     """
     try:
         embeds[0]
@@ -230,6 +263,9 @@ async def retrieve_shard(client, shard_id):
 
     Returns:
         The shard name if available, else the shard id
+
+    Raises:
+        Exception: If the shard id is greater than the number of shards
     """
     if shard_id > len(client.config["shard_names"]):
         return shard_id
@@ -244,6 +280,9 @@ def time_until_end_of_day():
 
     Returns:
         The time until the end of the day in hours, minutes
+
+    Raises:
+        Exception: If the time until the end of the day is less than 0
     """
     tomorrow = datetime.datetime.utcnow() + datetime.timedelta(days=1)
     a = datetime.datetime.combine(tomorrow, datetime.time.min) - datetime.datetime.utcnow()
@@ -276,14 +315,19 @@ async def processing_queue_error_check(client, ctx, user_snowflake):
 
     Returns:
         an embed if the user is in the processing queue, else False
+
+    Raises:
+        Exception: If the user is in the processing queue
     """
     try:
         if client.processing_queue[user_snowflake]:
+            logger.warning(f"User {user_snowflake} is in the processing queue. Queue: {client.processing_queue}")
             return await create_error_embed(client, ctx,
                                             description=f"**Sorry! We're still processing your last request**\n"
                                                         f"⦾ Please wait a bit and try again", prompt_authcode=False,
                                             error_level=0)
     except:
+        logger.debug(f"User {user_snowflake} is not in the processing queue. Queue: {client.processing_queue}")
         return True
 
 
@@ -297,11 +341,15 @@ async def mention_string(client, prompt=""):
 
     Returns:
         The mention string (@STW Daily prompt)
+
+    Raises:
+        Exception: If the bot is not ready
     """
     try:
         me = client.user
         return f"{me.mention} {prompt}"
-    except:
+    except Exception as e:
+        logger.debug(f"Bot not ready, using fallback mention string. Error: {e}")
         # this is a fallback for when the bot is not ready, i guess
         # could probably make this an f string /shrug
         return f"@STW Daily {prompt}"
@@ -318,6 +366,9 @@ async def add_requested_footer(ctx, embed, desired_lang="en"):
 
     Returns:
         The embed with the footer added
+
+    Raises:
+        Exception: If the footer cannot be added
     """
     try:
         embed.set_footer(text=
@@ -344,10 +395,14 @@ async def add_emoji_title(client, title, emoji):
 
     Returns:
         The title with the emojis added
+
+    Raises:
+        Exception: If the emoji is not found in the config
     """
     try:
         emoji = client.config["emojis"][emoji]
     except KeyError:
+        logger.warning(f"Emoji {emoji} not found in config. Using placeholder emoji instead")
         emoji = client.config["emojis"]["placeholder"]
     return f"{emoji}  {title}  {emoji}"
 
@@ -364,9 +419,20 @@ async def split_emoji_title(client, title, emoji_1, emoji_2):
 
     Returns:
         The title with the emojis added
+
+    Raises:
+        Exception: If the emoji is not found in the config
     """
-    emoji_1 = client.config["emojis"][emoji_1]
-    emoji_2 = client.config["emojis"][emoji_2]
+    try:
+        emoji_1 = client.config["emojis"][emoji_1]
+    except:
+        logger.warning(f"Title emoji {emoji_1} not found in config. Using placeholder emoji instead")
+        emoji_1 = client.config["emojis"]["placeholder"]
+    try:
+        emoji_2 = client.config["emojis"][emoji_2]
+    except:
+        logger.warning(f"Title emoji {emoji_2} not found in config. Using placeholder emoji instead")
+        emoji_2 = client.config["emojis"]["placeholder"]
     return f"{emoji_1}  {title}  {emoji_2}"
 
 
@@ -381,10 +447,14 @@ async def set_thumbnail(client, embed, thumb_type):
 
     Returns:
         the embed with the thumbnail set
+
+    Raises:
+        Exception: If the thumbnail is not found in the config
     """
     try:
         embed.set_thumbnail(url=client.config["thumbnails"][thumb_type])
     except KeyError:
+        logger.warning(f"Thumbnail type {thumb_type} not found, using placeholder")
         embed.set_thumbnail(url=client.config["thumbnails"]["placeholder"])
     return embed
 
@@ -400,6 +470,9 @@ def get_reward(client, day, vbucks=True):
 
     Returns:
         the reward for the given day and emoji key
+
+    Raises:
+        Exception: If the reward is not found in the item dictionary
     """
     day_mod = int(day) % 336
     if day_mod == 0:
@@ -441,6 +514,9 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0, desir
 
     Returns:
         the reward day, name, emoji key, description, quantity
+
+    Raises:
+        Exception: If the reward is not found in the item dictionary
     """
     if error:
         day = int(response['messageVars'][0]) - 1  # hello world explorer hi
@@ -470,7 +546,7 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0, desir
         name = I18n.get(f"wex.item.{asset_path_name.split('.')[1]}.name", desired_lang)
         description = I18n.get(f"wex.item.{asset_path_name.split('.')[1]}.description", desired_lang)
     except:
-        pass
+        logger.warning(f"Could not find translation for {asset_path_name}")
 
     emoji_text = client.config["emojis"][emoji]
 
@@ -485,6 +561,9 @@ def get_game_headers(game):
 
     Returns:
         the headers
+
+    Raises:
+        Exception: If the game is not found
     """
     if game == "bb":
         h = {
@@ -514,6 +593,9 @@ async def get_token(client, auth_code: str, game="fn"):
 
     Returns:
         the access token response
+
+    Raises:
+        Exception: If the game is not found
     """
     h = get_game_headers(game)
     d = {
@@ -535,6 +617,9 @@ def decrypt_user_data(user_snowflake, authentication_information):
 
     Returns:
         the decrypted user data
+
+    Raises:
+        Exception: If the decryption fails
     """
 
     battle_breakers_id = base64.b64decode(authentication_information["battleBreakersId"])
@@ -551,13 +636,18 @@ def decrypt_user_data(user_snowflake, authentication_information):
 async def get_token_devauth(client, user_document, game="ios", auth_info_thread=None):
     """
     gets an access token for the given game/context
+
     Args:
         client: the client
         user_document: the document of the user to get the access token for
         game: bb, ios, fn pc client
+        auth_info_thread: the thread to get the auth info from
 
     Returns:
         the access token response
+
+    Raises:
+        Exception: If the game is not found
     """
 
     client.processing_queue[user_document["user_snowflake"]] = True
@@ -589,12 +679,17 @@ async def get_token_devauth(client, user_document, game="ios", auth_info_thread=
 async def exchange_games(client, auth_token, game="fn"):
     """
     exchanges the given auth token for the given game
+
     Args:
         client: the client
         auth_token: the auth token to exchange
         game: the game to exchange for
+
     Returns:
         the new auth token response
+
+    Raises:
+        Exception: If the game is not found
     """
     h = {
         "Content-Type": "application/json",
@@ -616,7 +711,7 @@ async def exchange_games(client, auth_token, game="fn"):
     return await client.stw_session.post(url, headers=h, data=d)
 
 
-async def processing_embed(client, ctx, title="Logging in and Processing", description="This won\'t take long..."):
+async def processing_embed(client, ctx, title="Logging in and Processing", description="This won't take long..."):
     """
     Constructs the processing embed
 
@@ -679,6 +774,9 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     Returns:
         If there was no error, returns True, access token, account id
         If there was an error, returns False, None, None
+
+    Raises:
+        Exception: If the language is not found
     """
     try:
         return True, request["access_token"], request["account_id"]
@@ -776,6 +874,9 @@ async def slash_edit_original(ctx, msg, embeds, view=None, files=None):
 
     Returns:
         The edited message
+
+    Raises:
+        discord.errors.HTTPException: If the message is not found
     """
     try:
         embeds[0]
@@ -832,6 +933,12 @@ async def device_auth_request(client, account_id, token):
         client: The client to use
         account_id: The account id to use
         token: The token to use
+
+    Returns:
+        The response from epic
+
+    Raises:
+        HTTPException: If the request fails
     """
     url = client.config["endpoints"]["device_auth"].format(account_id)
     header = {
@@ -858,6 +965,9 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None, pr
 
     Returns:
         The response from the request
+
+    Raises:
+        HTTPException: If the request fails
     """
     if game == "bb":
         token = auth_entry["bb_token"]
@@ -888,6 +998,9 @@ async def shop_request(client, token):
 
     Returns:
         json response from the endpoint
+
+    Raises:
+        HTTPException: If the request fails
     """
 
     h = {
@@ -908,10 +1021,14 @@ async def get_llama_store(shop):
 
     Returns:
         The llama store
+
+    Raises:
+        ValueError: If the store is not found
     """
     for store in shop["storefronts"]:
         if store["name"] == "CardPackStorePreroll":
             return store
+    logger.warning("Could not find llama store")
     return None
 
 
@@ -924,6 +1041,9 @@ async def free_llama_count(store):
 
     Returns:
         The amount of free llamas
+
+    Raises:
+        ValueError: If the store is not found
     """
     free_llamas = []
     for entry in store["catalogEntries"]:
@@ -947,6 +1067,9 @@ async def purchase_llama(client, auth_entry, offer_id, currency="GameItem",
 
     Returns:
         The response from the request
+
+    Raises:
+        HTTPException: If the request fails
     """
     json = {"offerId": offer_id,
             "purchaseQuantity": 1,
@@ -970,6 +1093,9 @@ async def get_llama_datatable(client, path, desired_lang='en'):
 
     Returns:
         Name, Description, image emoji, pack image emoji, and rarity of the llama
+
+    Raises:
+        ValueError: If the datatable is not found
     """
     try:
         path = path.split("/")[-1]
@@ -992,7 +1118,8 @@ async def get_llama_datatable(client, path, desired_lang='en'):
             get_item_icon_emoji(client, llama_file["LargePreviewImage"]["AssetPathName"].split(".")[-1]), \
             get_item_icon_emoji(client, llama_file["PackImage"]["AssetPathName"].split(".")[-1]), \
             llama_file["Rarity"].split("::")[-1]
-    except:
+    except Exception as e:
+        logger.warning(f"Could not find DataTable for {path}, using default llama values. Error: {e}")
         return I18n.get("stw.item.CardPack_Bronze.name", desired_lang), \
             I18n.get("stw.item.CardPack_Bronze.desc", desired_lang), \
             "<:T_CardPack_Upgrade_IconMask:1055049365426819092>", \
@@ -1011,6 +1138,9 @@ async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
 
     Returns:
         The response from the request
+
+    Raises:
+        HTTPException: If the request fails
     """
     already_opened_free_llamas = 0
     free_llamas_count, free_llamas_list = await free_llama_count(store)
@@ -1100,6 +1230,9 @@ async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already
 
     Returns:
         The response from the request
+
+    Raises:
+        HTTPException: If the request fails
     """
 
     if recycle_config is None:
@@ -1202,7 +1335,9 @@ async def validate_existing_session(client, token):
     valid = await client.stw_session.get(endpoint, headers=header, data="{}")
     # returns code 200 if valid, 401 if invalid
     if valid.status == 200:
+        logger.debug(f"Valid session for {token}")
         return True
+    logger.debug(f"Invalid session for {token}")
     return False
 
 
@@ -1219,7 +1354,9 @@ def vbucks_query_check(profile_text):
         True if the profile can claim vbucks, False if not
     """
     if 'Token:receivemtxcurrency' in profile_text:
+        logger.debug("Profile can claim vbucks")
         return True
+    logger.debug("Profile cannot claim vbucks")
     return False
 
 
@@ -1264,8 +1401,10 @@ async def manslaughter_session(client, account_id, kill_stamp):
             }
             endpoint = client.config["endpoints"]["kill_token"].format(info['token'])
             await client.stw_session.delete(endpoint, headers=header, data="{}")
+            logger.debug(f"Logged out {account_id}")
             return True
     except:
+        logger.debug(f"Failed to log out {account_id}, no session found")
         return False
         # 😳 they will know 😳
         # now they know :D
@@ -1308,12 +1447,16 @@ async def add_other_game_entry(client, user_id, entry, game, other_games):
 
     Args:
         client: The client
-        user_id: The id of the user
+        user_id: The id of the user (unused)
         entry: The entry to add to
         game: The game to add the entry for
         other_games: The other games to add an entry for
+
+    Returns:
+        The entry of the user
     """
     token = entry[client.config["entry_token_key_for_game"][game]]
+    logger.debug(f"Adding entry for {other_games} to {user_id}")
 
     for other_game in other_games:
         exchange = await exchange_games(client, token, other_game)
@@ -1339,7 +1482,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         ctx: The context
         auth_token: The fortnite access token to store
         account_id: The epic account id
-        response: The response (to grab displayname)
+        response: The response (to grab display name)
         add_entry: Whether to start or opt out of an auth session
         bb_token: The battlebreakers access token to store
         game: The game to add the entry for
@@ -1372,7 +1515,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
 
     if add_entry:
         client.temp_auth[ctx.author.id] = entry
-
+    logger.debug(f"Added entry for {ctx.author.id}: {entry}")
     return entry
 
 
@@ -1423,6 +1566,18 @@ def extract_profile_item(profile_json, item_string="Currency:Mtx"):
 
     Returns:
         A dictionary of found items
+
+    Example:
+        {
+            0: {
+                "templateId": "Currency:Mtx",
+                "quantity": 1000
+            },
+            1: {
+                "templateId": "Currency:Mtx",
+                "quantity": 1000
+            }
+        }
     """
     found_items = {}
     num = 0
@@ -1433,6 +1588,7 @@ def extract_profile_item(profile_json, item_string="Currency:Mtx"):
                 num += 1
     except:
         pass
+    logger.debug(f"Found {num} items for {item_string}. Returning {found_items}")
     return found_items
 
 
@@ -1461,6 +1617,22 @@ async def get_br_news(client, locale="en"):
 
     Returns:
         The news for br from fortnite-api
+
+    Notes:
+        This supports the following languages:
+        - English
+        - German
+        - Italian
+        - French
+        - Spanish
+        - Russian
+        - Japanese
+        - Brazilian Portuguese
+        - Polish
+        - Turkish
+        - Arabic
+        - Korean
+        - Mexican Spanish
     """
     # TODO: This should be changed to use the epic games api
     # We can't use the epic games api as it requires a personalised request
@@ -1492,6 +1664,7 @@ async def create_news_page(self, ctx, news_json, current, total, desired_lang="e
                         f"\n{news_json[current - 1]['body']}",
             colour=generic)
     except:
+        logger.warning(f"News page {current} is missing from the news json")
         embed = discord.Embed(
             title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
             description=f"\u200b\n{I18n.get('util.news.embed.missing', desired_lang)}",
@@ -1503,6 +1676,7 @@ async def create_news_page(self, ctx, news_json, current, total, desired_lang="e
     try:
         embed = await set_embed_image(embed, news_json[current - 1]["image"])
     except:
+        logger.warning(f"News page {current} is missing an image from the news json")
         embed = await set_embed_image(embed, self.client.config["thumbnails"]["placeholder"])
     embed = await set_thumbnail(self.client, embed, "newspaper")
     embed = await add_requested_footer(ctx, embed)
@@ -1538,7 +1712,7 @@ async def battle_breakers_deprecation(client, ctx, command="Battle Breakers comm
 
 async def set_embed_image(embed, image_url):
     """
-    Sets the embed image
+    Sets the embed image to the given url
 
     Args:
         embed: The embed to set the image for
@@ -1571,6 +1745,7 @@ async def resolve_vbuck_source(vbuck_source):
     elif vbuck_source == "Currency:MtxDebt":
         return "Debt", "LMAO"
     else:
+        logger.warning(f"Unknown vbuck source: {vbuck_source}")
         return vbuck_source, "placeholder"
 
 
@@ -1592,6 +1767,7 @@ async def calculate_vbucks(item):
                     vbucks -= val["quantity"]
                 else:
                     vbucks += val["quantity"]
+    logger.debug(f"Calculated vbucks: {vbucks}")
     return vbucks
 
 
@@ -1606,6 +1782,12 @@ async def get_banner_colour(colour, colour_format="hex", colour_type="Primary"):
 
     Returns:
         The banner colour in the specified format (default hex)
+
+    Example:
+        >>> get_banner_colour("DefaultColor1")
+        '#ff0000'
+        >>> get_banner_colour("DefaultColor1", colour_format="rgb")
+        (255, 0, 0)
     """
     colour_key = BannerColors[0]["Rows"][colour]["ColorKeyName"]
     colour_map = BannerColorMap[0]["Properties"]["ColorMap"][colour_key][f"{colour_type}Color"]
@@ -1629,6 +1811,10 @@ def truncate(string, length=100, end="..."):
 
     Returns:
         The truncated string
+
+    Example:
+        >>> truncate("Hello World", 5)
+        'Hello...'
     """
     return (string[:length - 3] + end) if len(string) > length else string
 
@@ -1639,6 +1825,10 @@ def get_tomorrow_midnight_epoch():
 
     Returns:
         The epoch for tomorrow UTC midnight in seconds
+
+    Example:
+        >>> get_tomorrow_midnight_epoch()
+        1632508800
     """
     return int(time.time() + 86400 - time.time() % 86400)
 
@@ -1653,6 +1843,10 @@ def get_item_icon_emoji(client, template_id):
 
     Returns:
         The emoji for the item icon
+
+    Example:
+        >>> get_item_icon_emoji(client, "AthenaCharacter:cid_028_athena_commando_f")
+        '<:cid_028_athena_commando_f:8675309>'
     """
     try:
         try:
@@ -1660,6 +1854,7 @@ def get_item_icon_emoji(client, template_id):
         except:
             filtered = template_id
         if 'bow' in filtered:
+            logger.debug(f"Matched {filtered} to bow with a similarity of 1.0")
             return client.config['emojis']['bow']
         outcome = max(client.config['emojis'], key=lambda emoji: SequenceMatcher(a=emoji, b=filtered).ratio())
         similarity = SequenceMatcher(a=outcome, b=filtered).ratio()
@@ -1669,9 +1864,10 @@ def get_item_icon_emoji(client, template_id):
                 pass
             else:
                 outcome = 'placeholder'
-        # print(f"Chose emoji: {outcome} for item: {filtered} (Similarity: {similarity})")
+        logger.debug(f"Matched {filtered} to {outcome} with a similarity of {similarity}")
         return client.config['emojis'][outcome]
     except:
+        logger.warning(f"Failed to match {template_id} to an emoji")
         return client.config['emojis']['placeholder']
 
 
@@ -1685,6 +1881,13 @@ def llama_contents_render(client, llama_items):
 
     Returns:
         The rendered contents of the llama
+
+    Example:
+        >>> llama_contents_render(client, [{"itemType": "AthenaCharacter:cid_028_athena_commando_f", "quantity": 1}])
+        '<:cid_028_athena_commando_f:8675309> '
+
+        >>> llama_contents_render(client, [{"itemType": "AthenaCharacter:cid_028_athena_commando_f", "quantity": 2}])
+        '<:cid_028_athena_commando_f:8675309> x2 '
     """
     string = ""
     for item in llama_items:
@@ -1708,16 +1911,19 @@ def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0)
     # ROOT[0].Rows.Default_C_T01.Keys[0].Time
     # clamp to lower bound.
     if time_input < row_data['Keys'][0]['Time']:
+        logger.debug(f"Clamped {time_input} to {row_data['Keys'][0]['Time']}")
         return row_data['Keys'][0]['Value']
 
     # clamp to upper bound.
     if time_input >= row_data['Keys'][-1]['Time']:
+        logger.debug(f"Clamped {time_input} to {row_data['Keys'][-1]['Time']}")
         return row_data['Keys'][-1]['Value']
 
     # find the two keys that the time_input is between.
     for i in range(len(row_data['Keys']) - 1):
         if row_data['Keys'][i]['Time'] <= time_input < row_data['Keys'][i + 1]['Time']:
             # interpolate between the two keys.
+            logger.debug(f"Interpolated {time_input} between {row_data['Keys'][i]['Time']} and {row_data['Keys'][i + 1]['Time']} to get {row_data['Keys'][i]['Value'] + (time_input - row_data['Keys'][i]['Time']) / (row_data['Keys'][i + 1]['Time'] - row_data['Keys'][i]['Time']) * (row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])}")
             return row_data['Keys'][i]['Value'] + (time_input - row_data['Keys'][i]['Time']) / (
                     row_data['Keys'][i + 1]['Time'] - row_data['Keys'][i]['Time']) * (
                     row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])
@@ -1738,6 +1944,19 @@ def parse_survivor_template_id(template_id):
 
     Returns:
         The type of survivor (e.g. worker, manager, basic), The tier of survivor (e.g. t01, t02, t03, t04, t05), The rarity of survivor (e.g. c, uc, r, vr, sr, ur), The name of the survivor if available (e.g. eagle, smasher, joel)
+
+    Example:
+        >>> parse_survivor_template_id("Worker:managerexplorer_sr_eagle_t05")
+        ('manager', 't05', 'sr', 'eagle')
+
+        >>> parse_survivor_template_id("Worker:workerbasic_sr_t05")
+        ('basic', 't05', 'sr', None)
+
+        >>> parse_survivor_template_id("Worker:worker_halloween_smasher_sr_t05")
+        ('special', 't05', 'sr', 'smasher')
+
+        >>> parse_survivor_template_id("Worker:worker_joel_ur_t05")
+        ('special', 't05', 'ur', 'joel')
     """
     tid = template_id.split(":")[1]
     fields = tid.split("_")
@@ -1770,7 +1989,7 @@ def parse_survivor_template_id(template_id):
     name = ""
     for val in fields:
         name += val + "_"
-
+    logger.debug(f"Survivor type: {survivor_type}, Tier: {tier}, Rarity: {rarity}, Name: {name[:-1]}")
     return survivor_type, tier, rarity, name[:-1]
 
 
@@ -1849,6 +2068,7 @@ def get_survivor_rating(survivor):
         survivor_type = "Manager"
     else:
         survivor_type = "Default"
+    logger.debug(f"Survivor Power Level: {get_rating(data_table=SurvivorItemRating, row=f'{survivor_type}_{survivor_info[2].upper()}_{survivor_info[1].upper()}', time_input=survivor['attributes']['level'])}")
     return get_rating(data_table=SurvivorItemRating,
                       row=f"{survivor_type}_{survivor_info[2].upper()}_{survivor_info[1].upper()}",
                       time_input=survivor["attributes"]["level"]), survivor_info
@@ -1960,6 +2180,8 @@ def calculate_homebase_rating(profile):
         The power level of the profile's homebase, total FORT stats, and dict of FORT stats by type
     """
     # ROOT.profileChanges[0].profile.items
+    logger.info("Calculating homebase rating")
+    logger.debug(f"Profile: {profile}")
     workers = extract_profile_item(profile, "Worker:")
     survivors = {}
     total_stats = {"fortitude": 0,
@@ -2007,22 +2229,24 @@ def calculate_homebase_rating(profile):
                 survivors.update({squad: {"Followers": {f"Follower{attr}": [rating, info, personality]}}})
         # survivors.update()
         # print(rating, personality, squad)
-    # print(survivors)
+        logger.debug(f"Survivor: {attr} - {val} - {rating} - {personality} - {squad} - {info}")
+    logger.debug(f"Survivors before processing: {survivors}")
     # leader / survivor bonuses
     for attr, val in survivors.items():
         try:
             val["Leader"][0] += get_lead_bonus(val["Leader"][-1].split(".")[-1], attr.split("_")[-1], val["Leader"][0])
-        except:
-            pass
+        except Exception as e:
+            logger.error(f"Error calculating leader bonus for {attr}. Error: {e}")
         for follower, stats in val["Followers"].items():
             try:
                 stats[0] += get_survivor_bonus(val["Leader"][-2], stats[-1], val["Leader"][1][-2], stats[0])
-            except:
-                pass
+            except Exception as e:
+                logger.error(f"Error calculating follower bonus for {follower}. Error: {e}")
 
     # research stats
     # ROOT.profileChanges[0].profile.stats.attributes.research_levels
     research_levels = extract_profile_item(profile, "Stat:")
+    logger.debug(f"Research levels: {research_levels}")
     for attr, val in research_levels.items():
         if "_team" in val["templateId"]:
             if "phoenix" in val['templateId'].lower():
@@ -2030,6 +2254,7 @@ def calculate_homebase_rating(profile):
             total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem,
                                                                                              row=f"{val['templateId'].split(':')[1]}_cumulative",
                                                                                              time_input=val["quantity"])
+            logger.debug(f"Research stat: {val['templateId'].split(':')[1].split('_')[0].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
         else:
             # exclude phoenix stats
             if "phoenix" in val['templateId'].lower():
@@ -2037,25 +2262,29 @@ def calculate_homebase_rating(profile):
             total_stats[val['templateId'].split(':')[1].lower()] += get_rating(data_table=ResearchSystem,
                                                                                row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
                                                                                time_input=val["quantity"])
+            logger.debug(f"Research stat: {val['templateId'].split(':')[1].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_personal_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
     # for attr, val in research_levels.items():
     #     total_stats += val
     for attr, val in survivors.items():
         try:
             total_stats[stw_role_map[val["Leader"][-1].split(".")[-1]]] += val["Leader"][0]
-        except:
+        except Exception as e:
+            logger.error(f"Error calculating leader stat for {attr}. Error: {e}")
             continue
         for follower, stats in val["Followers"].items():
             try:
                 total_stats[stw_role_map[val["Leader"][-1].split(".")[-1]]] += stats[0]
-            except:
+            except Exception as e:
+                logger.error(f"Error calculating follower stat for {follower}. Error: {e}")
                 continue
 
-    # print(survivors)
-    # print(workers)
+    logger.debug(f"Survivors after processing: {survivors}")
+    logger.debug(f"Worker stats: {workers}")
 
     cmd_level = profile["profileChanges"][0]["profile"]["stats"]["attributes"]["level"]
-    # print(cmd_level)
-    # print(total_stats)
+
+    logger.debug(f"Commander level: {cmd_level}")
+    logger.debug(f"Total stats before commander level: {total_stats}")
     for attr, val in AccountLevels[0]["Rows"].items():
         if int(attr) <= cmd_level:
             if val["Rewards"][0]["TemplateId"] == "Stat:fortitude":
@@ -2071,6 +2300,9 @@ def calculate_homebase_rating(profile):
     total = 0
     for attr, val in total_stats.items():
         total += val
+    logger.debug(f"Total stats after commander level: {total_stats}")
+    logger.debug(f"Total stats: {total}")
+    logger.debug(f"Power level: {get_rating(data_table=HomebaseRatingMapping, row='UIMonsterRating', time_input=total * 4)}")
     return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating",
                       time_input=total * 4), total, total_stats
 
@@ -2102,7 +2334,7 @@ async def check_devauth_user_auth_input(client, ctx):
 
 async def create_error_embed(client, ctx, title=None, description=None, prompt_help=False, prompt_authcode=True,
                              prompt_newcode=False, command="", error_level=1, title_emoji=None, thumbnail=None,
-                             colour=None, add_auth_gif=False, auth_push_strong=True):
+                             colour=None, add_auth_gif=False, auth_push_strong=True, desired_lang="en"):
     """
     Creates an embed with the error colour and the error emoji
 
@@ -2122,6 +2354,7 @@ async def create_error_embed(client, ctx, title=None, description=None, prompt_h
         colour (str): The colour to use
         add_auth_gif (bool): If the embed should add the auth tutorial gif
         auth_push_strong (bool): If the authcode prompt should be forceful or not
+        desired_lang (str): The desired language
 
     Returns:
         discord.Embed: The created embed
@@ -2141,7 +2374,7 @@ async def create_error_embed(client, ctx, title=None, description=None, prompt_h
         if colour is None:
             colour = "warning_yellow"
     if title is None:
-        title = random_error(client)
+        title = random_error(client, desired_lang)
 
     embed = discord.Embed(title=await add_emoji_title(client, title, title_emoji), description=f"\u200b\n{description}",
                           colour=client.colours[colour])
@@ -2221,7 +2454,9 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     """
 
     # extract auth code from auth_code
+    logger.debug(f"get_or_create_auth_session called with {original_auth_code}")
     extracted_auth_code = extract_auth_code(original_auth_code)
+    logger.debug(f"extracted auth code: {extracted_auth_code}")
     embeds = []
 
     # Attempt to retrieve the existing auth code.
@@ -2480,6 +2715,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
     Returns:
         an error embed
     """
+    logger.debug(f"Epic Games Error Code: {error_code}. Response: {response}")
     reattempt_for_devauth = False
     if verbiage_action is None:
         verbiage_action = "perform action"
@@ -2688,6 +2924,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
 
     else:
         shrug = u'¯\\\_(ツ)\_/¯'
+        logger.warning(f"Unknown error code: {error_code}. Response: {response}")
         embed = await create_error_embed(client, ctx,
                                          description=f"Attempted to {verbiage_action} on account:\n"
                                                      f"```{acc_name}```\n"
@@ -2726,8 +2963,10 @@ async def slash_name(client, command):
     commands = client._application_commands.values()
     for slash in commands:
         if slash.name == command:
+            logger.debug(f"Found slash name for {command}: {slash.name}")
             return slash.name
     # run hardcoded checks here if the slash name differs from real name :D
+    logger.debug(f"Could not find slash name for {command}")
     return command
 
 
@@ -2745,10 +2984,13 @@ async def slash_mention_string(client, command, return_placeholder=False):
     """
     for x in client._application_commands.values():
         if x.name == command:
+            logger.debug(f"Found slash name for {command}: {x.name}")
             return f"</{x.name}:{x.id}>"
     if return_placeholder:
+        logger.debug(f"Could not find slash name for {command}")
         return f"`/{command}`"
     else:
+        logger.debug(f"Could not find slash name for {command}")
         return None
 
 
@@ -2771,9 +3013,9 @@ def create_command_dict(client):
         for alias in command.aliases:
             command_name_dict[alias] = command.name
 
-        # Adds the command to the
+        # Adds the command to the command dict
         command_dict[command.name] = command
-
+    logger.debug(f"Created command dictionary: {command_name_dict} and {command_dict}")
     return command_name_dict, command_dict, list(command_name_dict)
 
 
@@ -2789,19 +3031,20 @@ def extract_auth_code(string):
     """
     try:
         return re.search(r"[0-9a-f]{32}", string)[0]  # hi
-
     except TypeError:
         if len(string) == 32:
             return "errors.stwdaily.illegal_auth_code"
-
         return string
 
 
+@deprecation.deprecated(details="Use `validate_homebase_name` instead")
 async def is_legal_homebase_name(string):
     """
     Checks if a string is a legal homebase name
 
     Homebase names must be alphanumeric, with limited support for extra characters.
+
+    Deprecated: Use `validate_homebase_name` instead
 
     Args:
         string: string to check
@@ -2823,6 +3066,12 @@ async def validate_homebase_name(string: str) -> (bool, tuple):
     Returns:
         bool: True if the string is valid, False if the string is not valid
         tuple: a tuple containing the list of invalid characters used
+
+    Example:
+        >>> validate_homebase_name("test")
+        (True, [])
+        >>> validate_homebase_name("test!")
+        (False, ['!'])
     """
 
     list_of_invalid_chars_used = []
@@ -2857,9 +3106,11 @@ async def validate_homebase_name(string: str) -> (bool, tuple):
     # check if there are any invalid characters used
     if len(list_of_invalid_chars_used) > 0:
         # there are invalid characters used
+        logger.debug(f"String {string} is not valid, invalid characters used: {list_of_invalid_chars_used}")
         return False, list_of_invalid_chars_used
 
     # the string is valid
+    logger.debug(f"String {string} is valid")
     return True, list_of_invalid_chars_used
 
 
@@ -2876,6 +3127,12 @@ async def generate_banner(client, embed, homebase_icon, homebase_colour, author_
 
     Returns:
         Embed with thumbnail set to the banner, discord attachment of file generated
+
+    Example:
+        >>> embed = discord.Embed()
+        >>> embed = await generate_banner(client, embed, "ot7banner", "defaultcolor15", 123456789)
+        >>> embed.thumbnail.url
+        'attachment://banner.png'
     """
     banner_url = f"https://fortnite-api.com/images/banners/{homebase_icon}/icon.png"
     async with client.stw_session.get(banner_url) as resp:
@@ -2904,9 +3161,14 @@ async def research_stat_rating(stat, level):
 
     Returns:
         tuple: The combined rating of the stat, the personal rating, the team rating
+
+    Example:
+        >>> research_stat_rating("fortitude", 10)
+        (0.1, 0.05, 0.05)
     """
     personal_rating = get_rating(data_table=ResearchSystem, row=f"{stat}_personal_cumulative", time_input=level)
     team_rating = get_rating(data_table=ResearchSystem, row=f"{stat}_team_cumulative", time_input=level)
+    logger.debug(f"Research stat {stat} level {level} rating: {personal_rating + team_rating} (personal: {personal_rating}, team: {team_rating})")
     return personal_rating + team_rating, personal_rating, team_rating
 
 
@@ -2921,7 +3183,12 @@ def research_stat_cost(stat, level):
 
     Returns:
         tuple: The cost to upgrade the stat
+
+    Example:
+        >>> research_stat_cost("fortitude", 10)
+        100000
     """
+    logger.debug(f"Research stat {stat} level {level} cost: {get_rating(data_table=ResearchSystem, row=f'{stat}_cost', time_input=sorted((0, level + 1, 120))[1])}")
     return get_rating(data_table=ResearchSystem, row=f"{stat}_cost", time_input=sorted((0, level + 1, 120))[1])
 
 
@@ -2934,7 +3201,15 @@ def convert_iso_to_unix(iso_timestamp):
 
     Returns:
         unix timestamp rounded to the nearest second
+
+    Example:
+        >>> convert_iso_to_unix("2021-01-01T00:00:00.000Z")
+        1609459200
+
+        >>> convert_iso_to_unix("2021-01-01T00:00:00.000+00:00")
+        1609459200
     """
+    logger.debug(f"Converted ISO timestamp {iso_timestamp} to unix timestamp: {round(datetime.datetime.fromisoformat(iso_timestamp).timestamp())}")
     return round(datetime.datetime.fromisoformat(iso_timestamp).timestamp())
 
 
@@ -2949,5 +3224,15 @@ def get_progress_bar(start, end, length):
 
     Returns:
         progress bar string
+
+    Example:
+        >>> get_progress_bar(0, 100, 10)
+        "[----------]"
+
+        >>> get_progress_bar(50, 100, 10)
+        "[====------]"
+
+        >>> get_progress_bar(100, 100, 10)
+        "[==========]"
     """
     return f"[{'=' * round((start / end) * length)}{'-' * (length - round((start / end) * length))}]"

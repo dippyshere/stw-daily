@@ -155,7 +155,7 @@ def main() -> None:
     client.config = load_config(config_path)
 
     # set logging level
-    logger.setLevel(client.config["logging_level"])
+    # logger.setLevel(client.config["logging_level"])
 
     # simple way to parse the colours from config into usable colours;
     client.colours = {}

@@ -7,6 +7,9 @@ This file watches for changes in the ext folder and reloads the cogs if they are
 """
 import asyncio
 import pathlib
+import logging
+
+logger = logging.getLogger(__name__)
 
 from watchfiles import awatch
 
@@ -19,6 +22,12 @@ def stw_extension_changed(changes: list) -> None:
 
     Args:
         changes: The changes detected.
+
+    Returns:
+        None
+
+    Raises:
+        None
     """
     changed_files = []
 
@@ -29,6 +38,7 @@ def stw_extension_changed(changes: list) -> None:
             if file_change[1][-3:] == ".py":
                 path = file_change[1].split("./ext")[1][:-3].replace("\\", ".")
                 changed_files.append(f"ext{path}")
+                logger.debug(f"Changed file: {file_change[1]}")
 
     changed.update(changed_files)
 
