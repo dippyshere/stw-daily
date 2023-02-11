@@ -23,7 +23,7 @@ from ext.profile.bongodb import get_user_document, replace_user_document, genera
 TOS_VERSION = 31
 
 
-async def tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx):
+async def tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx, desired_lang):
     """
     This is the embed that is sent when the user has not accepted the TOS
 
@@ -32,44 +32,36 @@ async def tos_acceptance_embed(user_document, client, currently_selected_profile
         client: The client
         currently_selected_profile_id: The currently selected profile id
         ctx: The context
+        desired_lang: The desired language
 
     Returns:
         The embed
     """
-    # TODO: Create proper TOS, Privacy Policy & EULA for this command
     embed_colour = client.colours["profile_lavendar"]
     selected_profile_data = user_document["profiles"][str(currently_selected_profile_id)]
 
-    embed = discord.Embed(title=await stw.add_emoji_title(client, "User Agreement", "pink_link"),
-                          description=(f"\u200b\n"
-                                       f"**Currently Selected Profile {currently_selected_profile_id}:**\n"
-                                       f"```{selected_profile_data['friendly_name']}```\u200b\n"),
-                          color=embed_colour)
-    embed.description += (f"**You have not accepted the user agreement on profile {currently_selected_profile_id}**\n"
-                          f"```Agreement:\n\nUsage of these STW Daily features (Device Auth, Settings, Profile, "
-                          f"etc) is governed by the following additional set of terms:\n\n1. Usage agreement\nBy "
-                          f"making use of these features, you hereby imply agreement to the base set of agreements "
-                          f"for STW Daily, available at: https://www.stwdaily.tk/legal-info/terms-of-service. You "
-                          f"also agree to these terms outlined within this agreement.\n\n2. Licence\nYour access to "
-                          f"these features exists as a licence which may be revoked at any time for any reason. The "
-                          f"STW Daily Dev Team reserves the right to revoke your access at any time for any "
-                          f"reason.\n\n3. Responsibility / Liability\nYou are responsible for all account(s) "
-                          f"connected to this service, and anything that may occur to them. You are responsible for "
-                          f"doing your part to keep your account(s) secure, and safe; DO NOT USE ACCOUNT(S) THAT YOU "
-                          f"DO NOT HAVE EMAIL ACCESS TO (unless you understand what you are doing), as a \"password "
-                          f"rest\" may be triggered on connected account(s).\nYou assume all liabilty in your use of "
-                          f"STW Daily. The STW Daily Team may not be held accountable for any adverse outcome.\n\n4. "
-                          f"Security\nThe STW Daily Team strives to keep your account as secure as possible, "
-                          f"while also being transparent and open source. We store some limited information that is "
-                          f"linked to your Discord account on a MongoDB Atlas database hosted in America. STW Daily "
-                          f"itself is hosted on AWS servers in America. Your account data is securely stored as "
-                          f"ciphered AES encrypted data that only part of the STW Daily Team has access to.\n\n"
-                          f"5. Privacy\nSTW Daily will collect and store very limited data linked to your Discord "
-                          f"account, in order to securely store account authentication data for relatively long periods"
-                          f" of time, as well as provide you with a great experience both now, and in the future. You "
-                          f"may view our Privacy Policy here: https://www.stwdaily.tk/legal-info/privacy-policy "
-                          f"```\n"
-                          f"\u200b\n")
+    embed = discord.Embed(
+        title=await stw.add_emoji_title(client, stw.I18n.get('devauth.embed.legal.title', desired_lang), "pink_link"),
+        description=(f"\u200b\n"
+                     f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, currently_selected_profile_id)}\n"
+                     f"```{selected_profile_data['friendly_name']}```\u200b\n"),
+        color=embed_colour)
+    embed.description += (
+        f"{stw.I18n.get('devauth.embed.legal.description', desired_lang, currently_selected_profile_id)}\n"
+        f"```{stw.I18n.get('devauth.embed.legal.agreement1', desired_lang)}\n\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement2', desired_lang)}\n\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement3', desired_lang)}\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement4', desired_lang, 'https://www.stwdaily.tk/legal-info/terms-of-service')}\n\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement5', desired_lang)}\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement6', desired_lang)}\n\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement7', desired_lang)}\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement8', desired_lang)}\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement9', desired_lang)}\n\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement10', desired_lang)}\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement11', desired_lang)}\n\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement12', desired_lang)}\n"
+        f"{stw.I18n.get('devauth.embed.legal.agreement13', desired_lang, 'https://www.stwdaily.tk/legal-info/privacy-policy')}"
+        f"```\n\u200b")
 
     embed = await stw.set_thumbnail(client, embed, "pink_link")
     embed = await stw.add_requested_footer(ctx, embed)
@@ -102,7 +94,7 @@ async def add_enslaved_user_accepted_license(view, interaction):
 
 
 async def pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction=None,
-                                  exchange_auth_session=None, timeout_bypass=False):
+                                  exchange_auth_session=None, timeout_bypass=False, desired_lang=None):
     """
     This is the function that is called when the user has not device authed yet
 
@@ -113,6 +105,8 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         ctx: The context
         interaction: The interaction
         exchange_auth_session: The exchange auth session
+        timeout_bypass: Whether or not to bypass the timeout
+        desired_lang: The desired language
 
     Returns:
         The embed
@@ -120,11 +114,12 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
     embed_colour = client.colours["profile_lavendar"]
     selected_profile_data = user_document["profiles"][str(currently_selected_profile_id)]
 
-    page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Device Authentication", "pink_link"),
-                               description=(f"\u200b\n"
-                                            f"**Currently Selected Profile {currently_selected_profile_id}:**\n"
-                                            f"```{selected_profile_data['friendly_name']}```\u200b"),
-                               color=embed_colour)
+    page_embed = discord.Embed(
+        title=await stw.add_emoji_title(client, stw.I18n.get('devauth.embed.title', desired_lang), "pink_link"),
+        description=(f"\u200b\n"
+                     f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, currently_selected_profile_id)}\n"
+                     f"```{selected_profile_data['friendly_name']}```\u200b"),
+        color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "pink_link")
     page_embed = await stw.add_requested_footer(ctx, page_embed)
 
@@ -146,41 +141,26 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
                     await interaction.edit_original_response(embed=embed)
 
                 asyncio.get_event_loop().create_task(
-                    attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction, message))
+                    attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction, message,
+                                                desired_lang))
                 return False
             except:
                 pass
         elif exchange_auth_session:
             auth_session = True
 
-        auth_session_found_message = f"**To begin, get an auth code from " \
-                                     f"[here](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epi" \
-                                     f"cgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad" \
-                                     f"83f5c6%26responseType%3Dcode)**\n\u200b\n" \
-                                     f"Then simply copy your authorisation code, press " \
-                                     f"the **{client.config['emojis']['locked']} Authenticate** Button below, and " \
-                                     f"paste your code into the prompt."
+        auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.nosession1', desired_lang, client.config['login_links']['login_fortnite_pc'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.nosession2', desired_lang, client.config['emojis']['locked'])}"
         if auth_session:
-            auth_session_found_message = f"You already have an active authentication session! You can get started " \
-                                         f"with this account by pressing **{client.config['emojis']['library_input']}" \
-                                         f" Auth With Session**\n\u200b\nIf you want to switch accounts, you can " \
-                                         f"use [this link](https://www.epicgames.com/id/logout?redirectUrl=https%3A" \
-                                         f"%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F" \
-                                         f"%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId" \
-                                         f"%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode) and then " \
-                                         f"simply copy your authorisation code, press the **" \
-                                         f"{client.config['emojis']['locked']} Authenticate** button."
+            auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.activesession1', desired_lang, client.config['emojis']['library_input'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.activesession2', desired_lang, client.config['login_links']['logout_login_fortnite_pc'], client.config['emojis']['locked'])}"
 
-        page_embed.description += f"\n**You haven't setup device authentication on this profile yet**" \
-                                  f"\n" \
-                                  f"\u200b\n" \
-                                  f"{auth_session_found_message}\n" \
-                                  f"\u200b\n"
+        page_embed.description += f"\n{stw.I18n.get('devauth.embed.preauth.description', desired_lang)}" \
+                                  f"\n\u200b\n{auth_session_found_message}\n\u200b"
 
     return page_embed
 
 
-async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction=None, message=None):
+async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction=None, message=None,
+                                      desired_lang=None):
     """
     This function attemps to exchange the auth to an ios token
 
@@ -191,40 +171,44 @@ async def attempt_to_exchange_session(temp_auth, user_document, client, ctx, int
         ctx: The context
         interaction: The interaction
         message: The message
+        desired_lang: The desired lang
     """
     try:
         get_ios_auth = await stw.exchange_games(client, temp_auth["token"], "ios")
         response_json = orjson.loads(await get_ios_auth.read())
-        await handle_dev_auth(client, ctx, interaction, user_document, response_json, message)
+        await handle_dev_auth(client, ctx, interaction, user_document, response_json, message,
+                              desired_lang=desired_lang)
     except:
-        await handle_dev_auth(client, ctx, interaction, user_document, False, message)
+        await handle_dev_auth(client, ctx, interaction, user_document, False, message, desired_lang=desired_lang)
 
 
-async def no_profiles_page(client, ctx):
+async def no_profiles_page(client, ctx, desired_lang):
     """
     This is the function that is called when the user has no profiles
 
     Args:
         client: The client
         ctx: The context
+        desired_lang: The desired lang
 
     Returns:
         The embed
     """
     embed_colour = client.colours["profile_lavendar"]
 
-    no_profiles_embed = discord.Embed(title=await stw.add_emoji_title(client, "Device Authentication", "pink_link"),
-                                      description=(f"\u200b\n"
-                                                   f"**No profiles :(**\n"
-                                                   f"```To create one use the profile command```\u200b\n"),
-                                      color=embed_colour)
+    no_profiles_embed = discord.Embed(
+        title=await stw.add_emoji_title(client, stw.I18n.get('devauth.embed.title', desired_lang), "pink_link"),
+        description=(f"\u200b\n"
+                     f"{stw.I18n.get('profile.embed.noprofiles.description1', desired_lang)}\n"
+                     f"```{stw.I18n.get('devauth.embed.noprofile.description2', desired_lang)}```\u200b\n"),
+        color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "pink_link")
     no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed)
 
     return no_profiles_embed
 
 
-async def existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id):
+async def existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang):
     """
     This is the function that is called when the user has device authed
 
@@ -233,39 +217,34 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
         ctx: The context
         current_profile: The current profile
         currently_selected_profile_id: The currently selected profile id
+        desired_lang: The desired lang
 
     Returns:
         The embed
     """
     embed_colour = client.colours["profile_lavendar"]
 
-    happy_embed = discord.Embed(title=await stw.add_emoji_title(client, "Device Authentication", "pink_link"),
-                                description=(f"\u200b\n"
-                                             f"**Currently Selected Profile {currently_selected_profile_id}:**\n"
-                                             f"```{current_profile['friendly_name']}```\u200b\n"
-                                             f"Anytime you try to authenticate without an active session, you'll "
-                                             f"automatically authenticate with the account linked to this "
-                                             f"profile.\n\u200b\n "
-                                             f"If you want to remove this link, press the"
-                                             f" {client.config['emojis']['library_trashcan']} **Remove Link** "
-                                             f"button\n\u200b\n"
-                                             f"To reauthenticate with this account, press the "
-                                             f"{client.config['emojis']['library_floppydisc']} **Reauthenticate Now** "
-                                             f"button\n\u200b\n"
-                                             f"To enable auto-claim for all your accounts, press the "
-                                             f"{client.config['emojis']['library_clock']} **Enable Auto Claim** "
-                                             f"button\n\u200b\n"
-                                             f"**Auth-Linked to:**\n"
-                                             f"```{current_profile['authentication']['displayName']}```\u200b"
-                                             ),
-                                color=embed_colour)
+    happy_embed = discord.Embed(
+        title=await stw.add_emoji_title(client, stw.I18n.get('devauth.embed.title', desired_lang), "pink_link"),
+        description=(f"\u200b\n"
+                     f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, currently_selected_profile_id)}\n"
+                     f"```{current_profile['friendly_name']}```\u200b\n"
+                     f"{stw.I18n.get('devauth.embed.existing.description1', desired_lang)}\n\u200b\n "
+                     f"{stw.I18n.get('devauth.embed.existing.description2', desired_lang, client.config['emojis']['library_trashcan'])}\n\u200b\n"
+                     f"{stw.I18n.get('devauth.embed.existing.description3', desired_lang, client.config['emojis']['library_floppydisc'])}\n\u200b\n"
+                     f"{stw.I18n.get('devauth.embed.existing.description4.enable', desired_lang, client.config['emojis']['library_clock'])}\n\u200b\n"
+                     f"{stw.I18n.get('devauth.embed.existing.description5', desired_lang)}\n"
+                     f"```{current_profile['authentication']['displayName']}```\u200b"
+                     ),
+        color=embed_colour)
     sad_embed = await stw.set_thumbnail(client, happy_embed, "pink_link")
     neutral_embed = await stw.add_requested_footer(ctx, sad_embed)
 
     return neutral_embed
 
 
-async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exchange_auth_session=None, message=None):
+async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exchange_auth_session=None, message=None,
+                          desired_lang=None):
     """
     This function handles the device auth
 
@@ -276,6 +255,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         user_document: The user document
         exchange_auth_session: The exchange auth session
         message: The message
+        desired_lang: The desired lang
 
     Returns:
         The embed
@@ -292,14 +272,14 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     try:
         current_profile = user_document["profiles"][str(currently_selected_profile_id)]
     except:
-        embed = await no_profiles_page(client, ctx)
+        embed = await no_profiles_page(client, ctx, desired_lang)
         await stw.slash_send_embed(ctx, embeds=embed)
         return False
 
     if current_profile["statistics"]["tos_accepted_version"] != TOS_VERSION:
-        embed = await tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx)
+        embed = await tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx, desired_lang)
         button_accept_view = EnslaveUserLicenseAgreementButton(user_document, client, ctx,
-                                                               currently_selected_profile_id, interaction)
+                                                               currently_selected_profile_id, interaction, desired_lang)
         await active_view(client, ctx.author.id, button_accept_view)
 
         if interaction is None:
@@ -310,13 +290,14 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     elif current_profile["authentication"] is None:
 
         embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction,
-                                              exchange_auth_session)
+                                              exchange_auth_session, desired_lang=desired_lang)
 
         if not embed:
             return
 
         account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id,
-                                                           exchange_auth_session, interaction, message)
+                                                           exchange_auth_session, interaction, message,
+                                                           desired_lang=desired_lang)
         await active_view(client, ctx.author.id, account_stealing_view)
 
         if message is not None:
@@ -329,9 +310,9 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
             await interaction.edit_original_response(embed=embed, view=account_stealing_view)
 
     elif current_profile["authentication"] is not None:
-        embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id)
+        embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang)
         stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction,
-                                                embed)
+                                                embed, desired_lang)
         await active_view(client, ctx.author.id, stolen_account_view)
 
         if interaction is None:
@@ -346,7 +327,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
     """
 
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, response_json, interaction=None,
-                 extra_message=None, error_embed=None):
+                 extra_message=None, error_embed=None, desired_lang=None):
 
         super().__init__()
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -362,11 +343,14 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         self.interaction = interaction
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
-                                                                   user_document)
+                                                                   user_document, desired_lang)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
         self.timed_out = False
         self.error_embed = error_embed
-
+        self.desired_lang = desired_lang
+        self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', desired_lang)
+        self.children[1].label = stw.I18n.get('devauth.view.button.auth', desired_lang)
+        self.children[2].label = stw.I18n.get('devauth.view.button.auth.withsession', desired_lang)
         self.exchanged = False
         if self.response_json is None or self.response_json is False:
             del self.children[2]
@@ -388,11 +372,11 @@ class EnslaveAndStealUserAccount(discord.ui.View):
             timeout_embed = await pre_authentication_time(self.user_document, self.client,
                                                           self.currently_selected_profile_id, self.ctx,
                                                           self.interaction,
-                                                          self.exchanged, True)
+                                                          self.exchanged, True, desired_lang=self.desired_lang)
 
-            timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
+            timeout_embed.description += f"{stw.I18n.get('generic.embed.timeout', self.desired_lang)}\n\u200b"
         else:
-            self.error_embed.description += "\n\u200b\n*Timed out. Please rerun the command to continue.*"
+            self.error_embed.description += f"\n\u200b\n{stw.I18n.get('generic.embed.timeout', self.desired_lang)}"
             timeout_embed = self.error_embed
 
         for child in self.children:
@@ -420,7 +404,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
             select: The select
             interaction: The interaction
         """
-        await select_change_profile(self, select, interaction)
+        await select_change_profile(self, select, interaction, self.desired_lang)
 
     async def interaction_check(self, interaction):
         """
@@ -446,7 +430,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
             interaction:
         """
         modal = StealAccountLoginDetailsModal(self, self.user_document, self.client, self.ctx,
-                                              self.currently_selected_profile_id)
+                                              self.currently_selected_profile_id, self.desired_lang)
         await interaction.response.send_modal(modal)
 
     @discord.ui.button(style=discord.ButtonStyle.primary, label="Auth With Session", emoji="library_input")
@@ -476,7 +460,8 @@ class StolenAccountView(discord.ui.View):
     This class is the view for the EULA
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, embed=None):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, embed=None,
+                 desired_lang=None):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -486,21 +471,25 @@ class StolenAccountView(discord.ui.View):
         self.interaction_check_done = {}
         self.interaction = interaction
         self.embed = embed
+        self.desired_lang = desired_lang
         self.current_profile = user_document["profiles"][str(currently_selected_profile_id)]
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
-                                                                   user_document)
+                                                                   user_document, self.desired_lang)
+        self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
+        self.children[1].label = stw.I18n.get('devauth.view.button.remove', self.desired_lang)
+        self.children[2].label = stw.I18n.get('devauth.view.button.reauthenticate', self.desired_lang)
         self.timed_out = False
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
         try:
             if self.user_document["auto_claim"]["enabled"]:
-                self.children[3].label = "Disable Auto Claim"
+                self.children[3].label = stw.I18n.get('devauth.view.button.autolaim.disable', self.desired_lang)
                 self.children[3].style = discord.ButtonStyle.red
             else:
-                self.children[3].label = "Enable Auto Claim"
+                self.children[3].label = stw.I18n.get('devauth.view.button.autolaim.enable', self.desired_lang)
                 self.children[3].style = discord.ButtonStyle.green
         except:
-            self.children[3].label = "Enable Auto Claim"
+            self.children[3].label = stw.I18n.get('devauth.view.button.autolaim.enable', self.desired_lang)
             self.children[3].style = discord.ButtonStyle.green
 
     async def on_timeout(self):
@@ -511,9 +500,9 @@ class StolenAccountView(discord.ui.View):
             None
         """
         timeout_embed = await existing_dev_auth_embed(self.client, self.ctx, self.user_document["profiles"][
-            str(self.currently_selected_profile_id)], self.currently_selected_profile_id)
+            str(self.currently_selected_profile_id)], self.currently_selected_profile_id, self.desired_lang)
 
-        timeout_embed.description += "\u200b\n*Timed out. Please rerun the command to continue.*\n\u200b"
+        timeout_embed.description += f"\u200b\n{stw.I18n.get('generic.embed.timeout', self.desired_lang)}\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -549,7 +538,7 @@ class StolenAccountView(discord.ui.View):
             interaction: The interaction
         """
 
-        await select_change_profile(self, select, interaction)
+        await select_change_profile(self, select, interaction, self.desired_lang)
 
     async def interaction_check(self, interaction):
         """
@@ -588,7 +577,7 @@ class StolenAccountView(discord.ui.View):
         await replace_user_document(self.client, self.user_document)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
 
-        await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
+        await handle_dev_auth(self.client, self.ctx, interaction, self.user_document, desired_lang=self.desired_lang)
 
     @discord.ui.button(style=discord.ButtonStyle.green, label="Reauthenticate Now", emoji="library_floppydisc")
     async def sell_your_data_button(self, button, interaction):
@@ -632,44 +621,37 @@ class StolenAccountView(discord.ui.View):
         try:
             if self.user_document["auto_claim"]["enabled"]:
                 self.user_document["auto_claim"] = None
-                button.label = "Enable Auto Claim"
+                button.label = stw.I18n.get('devauth.view.button.autolaim.enable', self.desired_lang)
                 button.style = discord.ButtonStyle.green
-                result = "disabled auto-claim"
+                result = "devauth.embed.existing.processed.success.disable", "devauth.embed.existing.description4.disable"
             else:
                 self.user_document["auto_claim"] = {
                     "enabled": True,
                 }
-                button.label = "Disable Auto Claim"
+                button.label = stw.I18n.get('devauth.view.button.autolaim.disable', self.desired_lang)
                 button.style = discord.ButtonStyle.red
-                result = "enabled auto-claim"
+                result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.enable"
         except:
             self.user_document["auto_claim"] = {
                 "enabled": True,
             }
-            button.label = "Disable Auto Claim"
+            button.label = stw.I18n.get('devauth.view.button.autolaim.disable', self.desired_lang)
             button.style = discord.ButtonStyle.red
-            result = "enabled auto-claim"
+            result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.enable"
         await replace_user_document(self.client, self.user_document)
         del self.client.processing_queue[self.ctx.author.id]
-        self.embed.description = (f"\u200b\n"
-                                  f"**Currently Selected Profile {self.currently_selected_profile_id}:**\n"
-                                  f"```{self.current_profile['friendly_name']}```\u200b\n"
-                                  f"Anytime you try to authenticate without an active session, you'll "
-                                  f"automatically authenticate with the account linked to this "
-                                  f"profile.\n\u200b\n "
-                                  f"If you want to remove this link, press the"
-                                  f" {self.client.config['emojis']['library_trashcan']} **Remove Link** "
-                                  f"button\n\u200b\n"
-                                  f"To reauthenticate with this account, press the "
-                                  f"{self.client.config['emojis']['library_floppydisc']} **Reauthenticate Now** "
-                                  f"button\n\u200b\n"
-                                  f"To {button.label.lower()} for all your accounts, press the "
-                                  f"{self.client.config['emojis']['library_clock']} **{button.label}** "
-                                  f"button\n\u200b\n"
-                                  f"**Auth-Linked to:**\n"
-                                  f"```{self.current_profile['authentication']['displayName']}```\u200b\n"
-                                  f"*Successfully {result}*\n\u200b"
-                                  )
+        self.embed.description = (
+            f"\u200b\n"
+            f"{stw.I18n.get('profile.embed.currentlyselected', self.desired_lang, self.currently_selected_profile_id)}\n"
+            f"```{self.current_profile['friendly_name']}```\u200b\n"
+            f"{stw.I18n.get('devauth.embed.existing.description1', self.desired_lang)}\n\u200b\n "
+            f"{stw.I18n.get('devauth.embed.existing.description2', self.desired_lang, self.client.config['emojis']['library_trashcan'])}\n\u200b\n"
+            f"{stw.I18n.get('devauth.embed.existing.description3', self.desired_lang, self.client.config['emojis']['library_floppydisc'])}\n\u200b\n"
+            f"{stw.I18n.get(result[1], self.desired_lang, self.client.config['emojis']['library_clock'])}\n\u200b\n"
+            f"{stw.I18n.get('devauth.embed.existing.description5', self.desired_lang)}\n"
+            f"```{self.current_profile['authentication']['displayName']}```\u200b"
+            f"{stw.I18n.get(result[0], self.desired_lang)}\n\u200b"
+        )
         await interaction.response.edit_message(view=self, embed=self.embed)
 
 
@@ -678,7 +660,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
     This class is the view for the EULA
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, desired_lang=None):
         super().__init__()
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -687,10 +669,13 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         self.ctx = ctx
         self.interaction_check_done = {}
         self.interaction = interaction
+        self.desired_lang = desired_lang
         self.timed_out = False
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document)
+        self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
+        self.children[1].label = stw.I18n.get('devauth.view.button.agreement', self.desired_lang)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
 
     @discord.ui.select(
@@ -708,7 +693,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
             interaction: The interaction
         """
 
-        await select_change_profile(self, select, interaction)
+        await select_change_profile(self, select, interaction, self.desired_lang)
 
     async def on_timeout(self):
         """
@@ -718,8 +703,8 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
             None
         """
         timeout_embed = await tos_acceptance_embed(self.user_document, self.client, self.currently_selected_profile_id,
-                                                   self.ctx)
-        timeout_embed.description += "*Timed out. Please rerun the command to continue.*\n\u200b"
+                                                   self.ctx, self.desired_lang)
+        timeout_embed.description += f"{stw.I18n.get('generic.embed.timeout', self.desired_lang)}\n\u200b"
 
         for child in self.children:
             child.disabled = True
@@ -755,7 +740,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
             interaction: The interaction
         """
         await add_enslaved_user_accepted_license(self, interaction)
-        await handle_dev_auth(self.client, self.ctx, interaction, self.user_document)
+        await handle_dev_auth(self.client, self.ctx, interaction, self.user_document, desired_lang=self.desired_lang)
 
 
 # cog for the device auth login command.
@@ -774,10 +759,14 @@ class ProfileAuth(ext.Cog):
         Args:
             ctx: The context
         """
-        await handle_dev_auth(self.client, ctx)
 
-    @ext.slash_command(name='device',
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+
+        await handle_dev_auth(self.client, ctx, desired_lang=desired_lang)
+
+    @ext.slash_command(name='device', name_localizations=stw.I18n.construct_slash_dict('devauth.slash.name'),
                        description='Create an authentication session that will keep you logged in for a long time',
+                       description_localizations=stw.I18n.construct_slash_dict('devauth.slash.description'),
                        guild_ids=stw.guild_ids)
     async def slash_device(self, ctx: discord.ApplicationContext):
         """
@@ -908,7 +897,7 @@ class ProfileAuth(ext.Cog):
         await self.devauth_command(ctx)
 
 
-async def select_change_profile(view, select, interaction):
+async def select_change_profile(view, select, interaction, desired_lang):
     """
     This function handles the profile select
 
@@ -916,6 +905,7 @@ async def select_change_profile(view, select, interaction):
         view: The view
         select: The select
         interaction: The interaction
+        desired_lang: The desired language
     """
     view.client.processing_queue[view.user_document["user_snowflake"]] = True
 
@@ -930,7 +920,7 @@ async def select_change_profile(view, select, interaction):
     await replace_user_document(view.client, view.user_document)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
-    await handle_dev_auth(view.client, view.ctx, interaction, view.user_document)
+    await handle_dev_auth(view.client, view.ctx, interaction, view.user_document, desired_lang=desired_lang)
 
 
 def encrypt_user_data(current_authentication, user_information, user_document):
@@ -955,7 +945,7 @@ def encrypt_user_data(current_authentication, user_information, user_document):
 
 
 async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_document, currently_selected_profile_id, ctx,
-                                                 response_json):
+                                                 response_json, desired_lang):
     """
     This function handles the device auth login command at least according to github
 
@@ -966,6 +956,7 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
         currently_selected_profile_id: The currently selected profile id
         ctx: The context
         response_json: The response json
+        desired_lang: The desired language
     """
 
     client.processing_queue[user_document["user_snowflake"]] = True
@@ -984,7 +975,7 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
     await replace_user_document(client, user_document)
 
     del client.processing_queue[user_document["user_snowflake"]]
-    await handle_dev_auth(client, ctx, interaction, user_document)
+    await handle_dev_auth(client, ctx, interaction, user_document, desired_lang=desired_lang)
 
 
 class StealAccountLoginDetailsModal(discord.ui.Modal):
@@ -992,19 +983,20 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
     This class is the modal for the login details
     """
 
-    def __init__(self, view, user_document, client, ctx, currently_selected_profile_id):
+    def __init__(self, view, user_document, client, ctx, currently_selected_profile_id, desired_lang):
         self.client = client
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
         self.currently_selected_profile_id = currently_selected_profile_id
+        self.desired_lang = desired_lang
 
-        super().__init__(title="Authorisation Code")
+        super().__init__(title=stw.I18n.get('devauth.modal.authcode.title', self.desired_lang))
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
         setting_input = discord.ui.InputText(style=discord.InputTextStyle.long,
-                                             label="Enter your authcode here",
+                                             label=stw.I18n.get('devauth.modal.authcode.label', self.desired_lang),
                                              placeholder="a51c1f4d35b1457c8e34a1f6026faa35",
                                              min_length=32)
 
@@ -1031,7 +1023,7 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         try:
             token = auth_session_result[1]['token']
         except:  # ? :3 hi hi should i push this to code bot ting if u ting it goo enog mkk 
-            slave_view_numero_duo = EnslaveAndStealUserAccount(self.user_document, self.client, self.ctx, self.currently_selected_profile_id, self.view.response_json, interaction, None, auth_session_result)
+            slave_view_numero_duo = EnslaveAndStealUserAccount(self.user_document, self.client, self.ctx, self.currently_selected_profile_id, self.view.response_json, interaction, None, auth_session_result, desired_lang=self.desired_lang)
             await active_view(self.client, self.ctx.author.id, slave_view_numero_duo)
             await interaction.edit_original_response(embed=auth_session_result, view=slave_view_numero_duo)
             return
@@ -1040,7 +1032,8 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         response_json = orjson.loads(await get_ios_auth.read())
 
         await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document,
-                                                     self.currently_selected_profile_id, self.ctx, response_json)
+                                                     self.currently_selected_profile_id, self.ctx, response_json,
+                                                     self.desired_lang)
 
 
 def setup(client):

@@ -338,7 +338,7 @@ class ProfileMainView(discord.ui.View):
             _button: The button.
             interaction: The interaction.
         """
-        await handle_dev_auth(self.client, self.ctx)
+        await handle_dev_auth(self.client, self.ctx, desired_lang=self.desired_lang)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,
                                         self.desired_lang)
