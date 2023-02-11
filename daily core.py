@@ -108,6 +108,13 @@ def stw_when_mentioned(bot: discord.ext.commands.Bot | discord.AutoShardedBot, m
     """A callable that implements a command prefix equivalent to being mentioned.
 
     These are meant to be passed into the :attr:`.Bot.command_prefix` attribute.
+
+    Args:
+        bot: The bot instance
+        msg: The message to check for a prefix
+
+    Returns:
+        list[str]: A list of prefixes
     """
     # bot.user will never be None when this is called
     return [f"<@{bot.user.id}>", f"<@!{bot.user.id}>"]  # type: ignore
@@ -136,6 +143,12 @@ def load_config(config_path: str) -> Dict[str, Any]:
 def main() -> None:
     """
     Main function
+
+    Returns:
+        None
+
+    Raises:
+        Exception: If the config file is not found
     """
     # Loading config file
     config_path = "config.toml"
@@ -202,6 +215,9 @@ def set_client_modules(client: ext.AutoShardedBot) -> None:
 
     Args:
         client: The client
+
+    Returns:
+        None
     """
     client.watch_module = watch
 
@@ -223,6 +239,12 @@ async def create_http_session() -> aiohttp.ClientSession:
 async def on_ready() -> None:
     """
     Event for when the bot is ready
+
+    Returns:
+        None
+
+    Raises:
+        Exception: If the bot is not ready
     """
 
     client.stw_session = await create_http_session()
@@ -285,6 +307,9 @@ async def on_message(message: discord.Message) -> None:
 async def update_status() -> None:
     """
     Task to update the status of the bot
+
+    Returns:
+        None
     """
     await client.wait_until_ready()
     client.update_status = update_status

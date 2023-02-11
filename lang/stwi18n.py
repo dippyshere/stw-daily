@@ -36,6 +36,26 @@ def get_plural_form(count: int) -> str:
 class I18n:
     """
     I18n class for internationalisation
+
+    Args:
+        discord.ext.commands.Bot: The bot
+        discord.client.Client: The client
+        discord.ext.commands.Context: The context
+
+    Attributes:
+        bot (discord.ext.commands.Bot): The bot
+        client (discord.client.Client): The client
+        context (discord.ext.commands.Context): The context
+        i18n_json (dict): The i18n json file
+
+    Methods:
+        __init__(self): The constructor
+        get(self, key: str, lang: str, *args) -> str: Gets a string from the i18n json file
+        get_langs(self) -> List[str]: Gets a list of the available languages
+        get_lang(self, user_id: int) -> str: Gets the language of a user
+    Examples:
+        >>> i18n.get("test", "en", "Hello", "World")
+        "Hello World"
     """
 
     def __init__(self) -> None:
@@ -54,6 +74,13 @@ class I18n:
 
         Returns:
             str: The string in the specified language
+
+        Raises:
+            KeyError: If the key is not found in the i18n json file
+
+        Examples:
+            >>> i18n.get("test", "en", "Hello", "World")
+            "Hello World"
         """
 
         # args = [f"{arg:,}" if isinstance(arg, int) else arg for arg in args]
