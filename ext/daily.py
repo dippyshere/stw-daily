@@ -121,7 +121,7 @@ class Daily(ext.Cog):
                     calendar = self.client.config["emojis"]["calendar"]
 
                     embed = discord.Embed(
-                        title=await stw.add_emoji_title(self.client, stw.random_error(self.client), "warning"),
+                        title=await stw.add_emoji_title(self.client, stw.random_error(self.client, desired_lang), "warning"),
                         description=
                         (f"\u200b\n"
                          f"{stw.I18n.get('daily.embed.alreadyclaimed.description1', desired_lang, f'{day:,}')}\n"

@@ -732,30 +732,38 @@ async def processing_embed(client, ctx, title="Logging in and Processing", descr
     return embed
 
 
-def random_error(client):
+def random_error(client, desired_lang="en"):
     """
     Gets a random error message
 
     Args:
         client: the client
+        desired_lang: the desired language
 
     Returns:
         the randomly chosen error message
+
+    Raises:
+        Exception: If the language is not found
     """
-    return random.choice(client.config["error_messages"])
+    return I18n.get(random.choice(client.config["error_messages"]), desired_lang)
 
 
-def random_waiting_message(client):
+def random_waiting_message(client, desired_lang="en"):
     """
     Gets a random waiting message
 
     Args:
         client: the client
+        desired_lang: the desired language
 
     Returns:
         the randomly chosen error message
+
+    Raises:
+        Exception: If the language is not found
     """
-    return random.choice(client.config["wait_on_user_messages"])
+    return I18n.get(random.choice(client.config["wait_on_user_messages"]), desired_lang)
 
 
 async def check_for_auth_errors(client, request, ctx, message, command, auth_code, send_error_message=True):

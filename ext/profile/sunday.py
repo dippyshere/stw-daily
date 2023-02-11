@@ -1018,7 +1018,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             return
 
     await default_page_profile_settings(client, ctx, user_profile, settings,
-                                        f"\u200b\n*{stw.random_waiting_message(client)}*\n\u200b\n",
+                                        f"\u200b\n*{stw.random_waiting_message(client, desired_lang)}*\n\u200b\n",
                                         desired_lang)
     return
 

@@ -5,36 +5,35 @@
 # This document is used to configure many things about the bot. DO NOT EDIT 🖕 skidders
 
 # A list of error messages the bot can pick from for the error embeds.
+# This can be done more efficiently, but this allows for other keys to be used
 error_messages = [
-    "Whoops!",
-    "Not the llama you're looking for",
-    "Drat! We're Sorry",
-    "Uh-oh! Something goofed",
-    "That wasn't supposed to happen",
-    "There was a problem",
-    "We hit a roadblock",
-    "There was an error"
+    "messages.error.1",
+    "messages.error.2",
+    "messages.error.3",
+    "messages.error.4",
+    "messages.error.5",
+    "messages.error.6",
+    "messages.error.7",
+    "messages.error.8"
 ]
 
 wait_on_user_messages = [
-    "Wating for you :D",
-    "Waiting for your action",
-    "Waiting for you to do something",
-    "Ready when you are",
-    "Whenever you're ready",
-    "Your turn",
-    "Your move",
-    "Waiting for your command",
-    "All up to you now",
-    "Waiting...",
-    "Are you there?",
-    "Waiting for you",
-    "Make a move",
+    "messages.waiting.1",
+    "messages.waiting.2",
+    "messages.waiting.3",
+    "messages.waiting.4",
+    "messages.waiting.5",
+    "messages.waiting.6",
+    "messages.waiting.7",
+    "messages.waiting.8",
+    "messages.waiting.9",
+    "messages.waiting.10",
+    "messages.waiting.11",
+    "messages.waiting.12",
 ]
 
 
-logging_level = "WARNING" # DEBUG, INFO, WARNING, ERROR, CRITICAL
-
+# logging_level = "WARNING" # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 support_url = "https://discord.gg/QYgABPDqzH"
 
