@@ -640,6 +640,7 @@
         "util.error.posterrors.stw.homebase.illegal.description4": "Check out the [wiki]({0}) for more info",
         "util.processing.title": "Logging in and Processing",
         "util.processing.description": "This won't take long...",
+        "lang.auto": "Auto",
         "lang.id": "Indonesian",
         "lang.da": "Danish",
         "lang.de": "German",
