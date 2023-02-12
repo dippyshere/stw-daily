@@ -194,7 +194,7 @@ def deep_merge(dict1, dict2):
 
 
 # define function to read mongodb database and return a list of all the collections in the database
-async def get_user_document(ctx, client, user_snowflake, silent_error=False):
+async def get_user_document(ctx, client, user_snowflake, silent_error=False, desired_lang="en"):
     """
     Gets a user document from the database.
 
@@ -203,12 +203,13 @@ async def get_user_document(ctx, client, user_snowflake, silent_error=False):
         client: The bot client.
         user_snowflake: The user snowflake to get the document for.
         silent_error: Whether to silently error or not.
+        desired_lang: The desired language.
 
     Returns:
         dict: The user document.
     """
 
-    error_check = await stw.processing_queue_error_check(client, ctx, user_snowflake)
+    error_check = await stw.processing_queue_error_check(client, ctx, user_snowflake, desired_lang)
 
     if error_check is not True:
 

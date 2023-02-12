@@ -50,7 +50,8 @@ class BattleBreakersDaily(ext.Cog):
         Returns:
             None
         """
-        embed = await stw.battle_breakers_deprecation(self.client, ctx, "BB Daily", "is")
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+        embed = await stw.battle_breakers_deprecation(self.client, ctx, "util.battlebreakers.deprecation.embed.description2.bbdaily", desired_lang)
         return await stw.slash_send_embed(ctx, embed)
 
         # succ_colour = self.client.colours["success_green"]

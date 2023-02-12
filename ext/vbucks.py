@@ -25,7 +25,7 @@ class Vbucks(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, desired_lang):
         """
         Checks for errors in the public_json_response and edits the original message if an error is found.
 
@@ -34,6 +34,7 @@ class Vbucks(ext.Cog):
             public_json_response: The json response from the public API.
             auth_info: The auth_info tuple from get_or_create_auth_session.
             final_embeds: The list of embeds to be edited.
+            desired_lang: The desired language of the user.
 
         Returns:
             True if an error is found, False otherwise.
@@ -43,7 +44,7 @@ class Vbucks(ext.Cog):
             error_code = public_json_response["errorCode"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "vbucks", acc_name, error_code,
-                                                       verbiage_action="get V-Bucks info")
+                                                       verbiage_action="getmtx", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True
@@ -67,7 +68,8 @@ class Vbucks(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "vbucks", authcode, auth_opt_out, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -90,7 +92,7 @@ class Vbucks(ext.Cog):
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # check for le error code
-        if await self.check_errors(ctx, core_json_response, auth_info, final_embeds):
+        if await self.check_errors(ctx, core_json_response, auth_info, final_embeds, desired_lang):
             return
 
         vbucks = await asyncio.gather(
@@ -102,7 +104,7 @@ class Vbucks(ext.Cog):
         stw_json_response = orjson.loads(await stw_request.read())
 
         # check for le error code
-        error_check = await self.check_errors(ctx, stw_json_response, auth_info, final_embeds)
+        error_check = await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, desired_lang)
         if error_check:
             return
 
@@ -141,7 +143,7 @@ class Vbucks(ext.Cog):
             embed = await stw.set_thumbnail(self.client, embed, "vbuck_book")
         else:
             embed = await stw.set_thumbnail(self.client, embed, "clown")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return

@@ -190,14 +190,6 @@ class I18n:
         """
         # get the user's preferred language
         try:
-            user_profile = await get_user_document(ctx, client, ctx.author.id)
-            profile_language = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"][
-                "language"]
-            if profile_language == "auto" or not self.is_lang(profile_language):
-                profile_language = None
-        except:
-            profile_language = None
-        try:
             interaction_language = ctx.interaction.locale
             if interaction_language.lower() in ["en-us", "en-gb", "en"]:
                 interaction_language = "en"
@@ -223,9 +215,18 @@ class I18n:
                 guild_language = None
         except:
             guild_language = None
+        try:
+            user_profile = await get_user_document(ctx, client, ctx.author.id,
+                                                   desired_lang=interaction_language or guild_language or "en")
+            profile_language = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"][
+                "language"]
+            if profile_language == "auto" or not self.is_lang(profile_language):
+                profile_language = None
+        except:
+            profile_language = None
 
         # return the desired language
-        logger.debug(f"Returning {profile_language or interaction_language or guild_language or 'en'} for get_desired_lang")
+        logger.debug(f"Returning {profile_language or interaction_language or guild_language or 'en'} for get_desired_lang (profile_language: {profile_language}, interaction_language: {interaction_language}, guild_language: {guild_language})")
         return profile_language or interaction_language or guild_language or "en"
 
     def construct_slash_dict(self, key: str) -> dict:

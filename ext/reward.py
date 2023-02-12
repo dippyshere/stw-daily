@@ -41,7 +41,7 @@ class Reward(ext.Cog):
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
         if limit is None:
-            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
+            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True, desired_lang)
             try:
                 currently_selected_profile = str(user_document["global"]["selected_profile"])
                 limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"]
@@ -70,7 +70,7 @@ class Reward(ext.Cog):
                                                              f"⦾ For example, "
                                                              f"{await stw.mention_string(self.client, 'reward 336')}",
                                                  error_level=0, command="reward", prompt_help=True,
-                                                 prompt_authcode=False)
+                                                 prompt_authcode=False, desired_lang=desired_lang)
             await stw.slash_send_embed(ctx, embed)
             return
 
@@ -82,7 +82,7 @@ class Reward(ext.Cog):
                                                      description="**Invalid number**\n"
                                                                  "⦾ The given day must be a number",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
-                                                     command="reward")
+                                                     command="reward", desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
                 return
             try:
@@ -92,7 +92,7 @@ class Reward(ext.Cog):
                                                      description="**Invalid number**\n"
                                                                  "⦾ The limit must be a number",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
-                                                     command="reward")
+                                                     command="reward", desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
                 return
             if limit < 0:
@@ -126,7 +126,8 @@ class Reward(ext.Cog):
                 embed = await stw.create_error_embed(self.client, ctx,
                                                      description=f"**An error occurred when fetching day {day}**\n"
                                                                  f"⦾ Please let us know on the support server :D",
-                                                     prompt_help=True, prompt_authcode=False, command="reward")
+                                                     prompt_help=True, prompt_authcode=False, command="reward",
+                                                     desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
                 print(f"Error when getting reward for day {day} - {e}")
                 return
@@ -197,7 +198,7 @@ class Reward(ext.Cog):
                             embed.description = stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")
 
             embed = await stw.set_thumbnail(self.client, embed, "stormbottle")
-            embed = await stw.add_requested_footer(ctx, embed)
+            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
             await stw.slash_send_embed(ctx, embed)
 

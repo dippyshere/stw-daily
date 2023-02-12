@@ -66,7 +66,7 @@ async def tos_acceptance_embed(user_document, client, currently_selected_profile
         f"```\n\u200b")
 
     embed = await stw.set_thumbnail(client, embed, "pink_link")
-    embed = await stw.add_requested_footer(ctx, embed)
+    embed = await stw.add_requested_footer(ctx, embed, desired_lang)
     return embed
 
 
@@ -123,7 +123,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
                      f"```{selected_profile_data['friendly_name']}```\u200b"),
         color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "pink_link")
-    page_embed = await stw.add_requested_footer(ctx, page_embed)
+    page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
     if selected_profile_data["authentication"] is None:
         # Not authenticated yet data stuffy ;p
@@ -134,7 +134,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
                 temp_auth = client.temp_auth[ctx.author.id]
                 auth_session = temp_auth
 
-                embed = await stw.processing_embed(client, ctx)
+                embed = await stw.processing_embed(client, ctx, desired_lang)
 
                 message = None
                 if interaction is None:
@@ -205,7 +205,7 @@ async def no_profiles_page(client, ctx, desired_lang):
                      f"```{stw.I18n.get('devauth.embed.noprofile.description2', desired_lang)}```\u200b\n"),
         color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "pink_link")
-    no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed)
+    no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed, desired_lang)
 
     return no_profiles_embed
 
@@ -240,7 +240,7 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
                      ),
         color=embed_colour)
     sad_embed = await stw.set_thumbnail(client, happy_embed, "pink_link")
-    neutral_embed = await stw.add_requested_footer(ctx, sad_embed)
+    neutral_embed = await stw.add_requested_footer(ctx, sad_embed, desired_lang)
 
     return neutral_embed
 
@@ -267,7 +267,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     current_author_id = ctx.author.id
 
     if user_document is None:
-        user_document = await get_user_document(ctx, client, current_author_id)
+        user_document = await get_user_document(ctx, client, current_author_id, desired_lang=desired_lang)
 
     # Get the currently selected profile
 
@@ -452,7 +452,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         await interaction.response.send_modal(modal)
         """
 
-        processing_embed = await stw.processing_embed(self.client, self.ctx)
+        processing_embed = await stw.processing_embed(self.client, self.ctx, self.desired_lang)
         await interaction.response.edit_message(embed=processing_embed, view=None)
 
         await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document,
@@ -601,7 +601,8 @@ class StolenAccountView(discord.ui.View):
             child.disabled = True
         await interaction.response.edit_message(view=self)
 
-        auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", "", True, False, True)
+        auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", "", True, False, True,
+                                                          desired_lang=self.desired_lang)
         try:
             await stw.slash_send_embed(self.ctx, embeds=auth_stuff[2])
         except:
@@ -1019,7 +1020,7 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
 
         value = self.children[0].value
 
-        processing_embed = await stw.processing_embed(self.client, self.ctx)
+        processing_embed = await stw.processing_embed(self.client, self.ctx, self.desired_lang)
         await interaction.response.edit_message(embed=processing_embed, view=None)
 
         auth_session_result = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", value, False,

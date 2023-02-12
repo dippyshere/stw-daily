@@ -109,7 +109,7 @@ async def create_main_embed(ctx, client, current_selected_profile, user_document
                          f"```{user_document['profiles'][str(current_selected_profile)]['friendly_name']}```"),
             color=embed_colour)
     embed = await stw.set_thumbnail(client, embed, "storm_shard")
-    embed = await stw.add_requested_footer(ctx, embed)
+    embed = await stw.add_requested_footer(ctx, embed, desired_lang)
     return embed
 
 
@@ -515,7 +515,7 @@ class Profile(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id)
+        user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, desired_lang=desired_lang)
         current_command = f"\n*{stw.random_waiting_message(self.client, desired_lang)}*\n\u200b"
 
         if new_profile is not None:
@@ -638,7 +638,8 @@ class Profile(ext.Cog):
                           'sessionhs', 'sessiojns', 'sessionjs', 'sessiomns', 'sessionms', 'sessionas', 'sessionsa',
                           'sessionws', 'sessionsw', 'sessiones', 'sessionse', 'sessionds', 'sessionsd', 'sessionxs',
                           'sessionsx', 'sessionzs', 'sessionsz', '/profile', '/profiles', '/session', '/sessions',
-                          '/account', '/accounts', '/essions', 'accounts', 'p', '/p', '.accounts', '.saved', '.p'],
+                          '/account', '/accounts', '/essions', 'accounts', 'p', '/p', '.accounts', '.saved', '.p',
+                          'pro', 'prof'],
                  extras={'emoji': "stormshard", "args": {
                      'profile': 'The ID of the profile to switch to (e.g. 0)(Optional)'},
                          "dev": False},

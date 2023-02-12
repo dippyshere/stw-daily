@@ -148,7 +148,7 @@ class Help(ext.Cog):
         embed_desc = f"\n\u200b\n{name_string}\n\u200b\n{command.description}\n\u200b".replace("<@mention_me>",
                                                                                                f"{mention}")
         embed.description = embed_desc
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         return embed
 
     async def add_default_page(self, ctx, embed_colour, desired_lang="en"):
@@ -169,7 +169,7 @@ class Help(ext.Cog):
                                                               "info"),
                               description=f"\u200b\n{stw.I18n.get('help.embed.description', desired_lang, await stw.mention_string(self.client, 'reward 7'))}\n\u200b\n\u200b")
 
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
         for command in self.client.commands:
             try:
@@ -416,7 +416,7 @@ class Help(ext.Cog):
                                           f"{stw.I18n.get('help.hello.description2', desired_lang, 'https://discord.gg/QYgABPDqzH')}\n"
                                           f"{stw.I18n.get('help.hello.description3', desired_lang, 'https://canary.discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147798080&scope=applications.commands%20bot')}\n\u200b")
 
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
         embed.add_field(name=stw.I18n.get('help.hello.description4', desired_lang, self.emojis['library_clipboard']),
                         value=await stw.mention_string(self.client, "help") + "\n\u200b")

@@ -42,7 +42,8 @@ class Daily(ext.Cog):
         succ_colour = self.client.colours["success_green"]
         yellow = self.client.colours["warning_yellow"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -69,7 +70,7 @@ class Daily(ext.Cog):
             error_code = json_response["errorCode"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "daily", acc_name, error_code,
-                                                       verbiage_action="claim daily")
+                                                       verbiage_action="daily", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         except:
@@ -88,7 +89,7 @@ class Daily(ext.Cog):
                 pass
 
             try:
-                user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
+                user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True, desired_lang)
                 currently_selected_profile = str(user_document["global"]["selected_profile"])
                 limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"] + 1
             except:
@@ -142,7 +143,7 @@ class Daily(ext.Cog):
                     else:
                         embed.description += f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n"
                     embed = await stw.set_thumbnail(self.client, embed, "warn")
-                    embed = await stw.add_requested_footer(ctx, embed)
+                    embed = await stw.add_requested_footer(ctx, embed, desired_lang)
                     final_embeds.append(embed)
                     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                     return
@@ -228,7 +229,7 @@ class Daily(ext.Cog):
                             value=f'```{rewards}```\u200b',
                             inline=False)
             embed = await stw.set_thumbnail(self.client, embed, "check")
-            embed = await stw.add_requested_footer(ctx, embed)
+            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
                 final_embeds.append(embed)
             else:

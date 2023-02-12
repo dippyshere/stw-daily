@@ -23,7 +23,7 @@ class Homebase(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, name=""):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, name="", desired_lang="en"):
         """
         Checks for errors in the public_json_response and edits the original message if an error is found.
 
@@ -33,6 +33,7 @@ class Homebase(ext.Cog):
             auth_info: The auth_info tuple from get_or_create_auth_session.
             final_embeds: The list of embeds to be edited.
             name: The attempted name of the homebase. Used to check if empty (for no stw)
+            desired_lang: The desired language for the error message.
 
         Returns:
             True if an error is found, False otherwise.
@@ -43,7 +44,8 @@ class Homebase(ext.Cog):
             error_code = public_json_response["errorCode"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
-                                                       verbiage_action="change Homebase name")
+                                                       verbiage_action="hbrn",
+                                                       desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return error_code, True
@@ -59,7 +61,8 @@ class Homebase(ext.Cog):
                     acc_name = auth_info[1]["account_name"]
                     error_code = "errors.com.epicgames.fortnite.check_access_failed"
                     embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
-                                                               verbiage_action="change Homebase name")
+                                                               verbiage_action="hbrn",
+                                                               desired_lang=desired_lang)
                     final_embeds.append(embed)
                     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                     return error_code, True
@@ -85,7 +88,8 @@ class Homebase(ext.Cog):
         succ_colour = self.client.colours["success_green"]
         white = self.client.colours["auth_white"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "homebase", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "homebase", authcode, auth_opt_out, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -112,7 +116,7 @@ class Homebase(ext.Cog):
 
         file = None
         # check for le error code
-        error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, name)
+        error_check = await self.check_errors(ctx, public_json_response, auth_info, final_embeds, name, desired_lang)
         if error_check[1]:
             return
         elif error_check[0] == "errors.stwdaily.no_stw":
@@ -177,7 +181,7 @@ class Homebase(ext.Cog):
                     embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])
             else:
                 embed.set_thumbnail(url=self.client.config["thumbnails"]["placeholder"])
-            embed = await stw.add_requested_footer(ctx, embed)
+            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
             final_embeds.append(embed)
             if file is not None:
                 await stw.slash_edit_original(ctx, auth_info[0], final_embeds, files=file)
@@ -189,7 +193,8 @@ class Homebase(ext.Cog):
         if len(name) > 16:
             error_code = "errors.stwdaily.homebase_long"
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
-                                                       verbiage_action="change Homebase name")
+                                                       verbiage_action="hbrn",
+                                                       desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
@@ -197,8 +202,9 @@ class Homebase(ext.Cog):
         if not name_validation[0]:
             error_code = "errors.stwdaily.homebase_illegal"
             embed = await stw.post_error_possibilities(ctx, self.client, "homebase", name, error_code,
-                                                       verbiage_action="change Homebase name",
-                                                       hb_badchars=name_validation[1])
+                                                       verbiage_action="hbrn",
+                                                       hb_badchars=name_validation[1],
+                                                       desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
@@ -209,7 +215,7 @@ class Homebase(ext.Cog):
         request_json_response = orjson.loads(await request.read())
 
         # check for le error code
-        error_check = await self.check_errors(ctx, request_json_response, auth_info, final_embeds, name)
+        error_check = await self.check_errors(ctx, request_json_response, auth_info, final_embeds, name, desired_lang)
         if error_check[1]:
             return
 
@@ -238,7 +244,7 @@ class Homebase(ext.Cog):
         else:
             embed = await stw.set_thumbnail(self.client, embed, "check")
 
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return

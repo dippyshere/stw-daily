@@ -24,7 +24,7 @@ class Power(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, desired_lang):
         """
         Checks for errors in the public_json_response and returns True if there is an error
 
@@ -33,6 +33,7 @@ class Power(ext.Cog):
             public_json_response: The json response from the public API
             auth_info: The auth_info from the auth session
             final_embeds: The list of embeds to be sent
+            desired_lang: The desired language of the user
 
         Returns:
             True if there is an error, False if there is not
@@ -42,7 +43,7 @@ class Power(ext.Cog):
             error_code = public_json_response["errorCode"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "power", acc_name, error_code,
-                                                       verbiage_action="get STW profile")
+                                                       verbiage_action="getprofile", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True
@@ -67,7 +68,8 @@ class Power(ext.Cog):
 
         vbucc_colour = self.client.colours["vbuck_blue"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "power", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "power", authcode, auth_opt_out, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -98,7 +100,7 @@ class Power(ext.Cog):
         # print(stw3_json_response)
 
         # check for le error code
-        if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds):
+        if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, desired_lang):
             return
         # TODO: Fix this calculation being slightly off
         # TODO: Fix some stats being missing
@@ -119,7 +121,7 @@ class Power(ext.Cog):
             colour=vbucc_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "clown")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return

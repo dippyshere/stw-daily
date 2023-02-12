@@ -742,7 +742,7 @@ async def main_page(page_number, client, ctx, user_profile, settings, desired_la
                                             f"```{selected_profile_data['friendly_name']}```\u200b"),
                                color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
-    page_embed = await stw.add_requested_footer(ctx, page_embed)
+    page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
     page_embed.add_field(name=stw.I18n.get('settings.pagination.showing', desired_lang, page_number, pages),
                          value="```md", inline=False)
@@ -781,7 +781,7 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
                                             f"```{selected_profile_data['friendly_name']}```\u200b"),
                                color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
-    page_embed = await stw.add_requested_footer(ctx, page_embed)
+    page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
     if isinstance(setting_info['default'], bool):
         requirement_string = stw.I18n.get('settings.boolean.requirement', desired_lang)
@@ -868,7 +868,7 @@ async def no_profiles_page(client, ctx, desired_lang):
                      f"```{stw.I18n.get('settings.noprofile2', desired_lang)}```\u200b\n"),
         color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "settings_cog")
-    no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed)
+    no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed, desired_lang)
 
     return no_profiles_embed
 
@@ -893,7 +893,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
     settings = client.settings_choices
     settings_per_page = 5
 
-    user_profile = await get_user_document(ctx, client, ctx.author.id)
+    user_profile = await get_user_document(ctx, client, ctx.author.id, desired_lang=desired_lang)
     user_snowflake = user_profile["user_snowflake"]
 
     # Check if user actually has a profile we can get the settings of :)

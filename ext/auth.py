@@ -45,7 +45,8 @@ class Auth(ext.Cog):
         white = self.client.colours["auth_white"]
         error_colour = self.client.colours["error_red"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, True, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, True, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -78,7 +79,7 @@ class Auth(ext.Cog):
                              f"Note: You need a new code __each time you authenticate__\n\u200b\n"),
                 colour=white)
             embed = await stw.set_thumbnail(self.client, embed, "keycard")
-            embed = await stw.add_requested_footer(ctx, embed)
+            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
             await stw.slash_edit_original(ctx, auth_info[0], embed)
         else:
             embed = discord.Embed(
@@ -98,7 +99,7 @@ class Auth(ext.Cog):
                              f"            ")
                 , colour=error_colour)
             embed = await stw.set_thumbnail(self.client, embed, "error")
-            embed = await stw.add_requested_footer(ctx, embed)
+            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
             await stw.slash_edit_original(ctx, auth_info[0], embed)
 
     async def kill_command(self, ctx):
@@ -124,7 +125,7 @@ class Auth(ext.Cog):
                 colour=white)
 
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         await stw.slash_send_embed(ctx, embed)
 
     @ext.command(name='auth',

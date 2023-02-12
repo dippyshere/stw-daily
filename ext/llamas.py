@@ -79,7 +79,7 @@ class LlamasView(discord.ui.View):
         embed.description += f"\u200b\n"
         embed.description = stw.truncate(embed.description, 3999)
         embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, self.desired_lang)
         return embed
 
     async def interaction_check(self, interaction):
@@ -261,7 +261,7 @@ class LlamasPurchaseView(discord.ui.View):
         else:
             embed.description += f'{stw.I18n.get("llamas.confirmation.description", self.desired_lang, llama_datatable[0], self.price, stw.get_item_icon_emoji(self.client, self.currency))}\n\u200b'
         embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, self.desired_lang)
         return embed
 
     async def llama_purchase_buy_embed(self, ctx, offer_id):
@@ -281,7 +281,7 @@ class LlamasPurchaseView(discord.ui.View):
             error_code = purchase["errorCode"]
             acc_name = self.auth_info["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code,
-                                                       verbiage_action="purchase Llama")
+                                                       verbiage_action="buyllama", desired_lang=self.desired_lang)
             print("Error:", purchase)
         except:
             embed = discord.Embed(
@@ -292,7 +292,7 @@ class LlamasPurchaseView(discord.ui.View):
                 colour=self.client.colours["generic_blue"])
             # print("Success:", purchase)
         embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, self.desired_lang)
         return embed
 
 
@@ -306,7 +306,7 @@ class Llamas(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, desired_lang):
         """
         Checks for errors in the public_json_response and edits the original message if an error is found.
 
@@ -315,6 +315,7 @@ class Llamas(ext.Cog):
             public_json_response: The json response from the public API.
             auth_info: The auth_info tuple from get_or_create_auth_session.
             final_embeds: The list of embeds to be edited.
+            desired_lang: The desired language for the embeds.
 
         Returns:
             True if an error is found, False otherwise.
@@ -324,7 +325,7 @@ class Llamas(ext.Cog):
             error_code = public_json_response["errorCode"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code,
-                                                       verbiage_action="get Llama info")
+                                                       verbiage_action="getllama", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True
@@ -422,7 +423,7 @@ class Llamas(ext.Cog):
         embed.description += f"\u200b\n"
         embed.description = stw.truncate(embed.description, 3999)
         embed = await stw.set_thumbnail(self.client, embed, "upgrade_llama")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         return embed
 
     async def llamas_command(self, ctx, authcode, auth_opt_out):
@@ -440,7 +441,8 @@ class Llamas(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "llamas", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "llamas", authcode, auth_opt_out, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -471,7 +473,7 @@ class Llamas(ext.Cog):
         #                          filename=f"PrerollData-{datetime.datetime.now().strftime('%d-%m-%Y_%H-%M-%S')}.json")
 
         # check for le error code
-        if await self.check_errors(ctx, shop_json_response, auth_info, final_embeds):
+        if await self.check_errors(ctx, shop_json_response, auth_info, final_embeds, desired_lang):
             return
 
         llama_store = await stw.get_llama_store(shop_json_response)

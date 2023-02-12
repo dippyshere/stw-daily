@@ -50,7 +50,7 @@ class BBReward(ext.Cog):
         embed_colour = self.client.colours["reward_magenta"]
 
         if limit is None:
-            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True)
+            user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True, desired_lang)
             try:
                 currently_selected_profile = str(user_document["global"]["selected_profile"])
                 limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"]
@@ -64,7 +64,7 @@ class BBReward(ext.Cog):
                                                              f"⦾ For example, "
                                                              f"{await stw.mention_string(self.client, 'bbreward 336')}",
                                                  error_level=0, command="bbreward", prompt_help=True,
-                                                 prompt_authcode=False)
+                                                 prompt_authcode=False, desired_lang=desired_lang)
             await stw.slash_send_embed(ctx, embed)
             return
 
@@ -76,7 +76,7 @@ class BBReward(ext.Cog):
                                                      description="**Invalid number**\n"
                                                                  "⦾ The given day must be a number",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
-                                                     command="bbreward")
+                                                     command="bbreward", desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
                 return
             try:
@@ -86,7 +86,7 @@ class BBReward(ext.Cog):
                                                      description="**Invalid number**\n"
                                                                  "⦾ The limit must be a number",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
-                                                     command="bbreward")
+                                                     command="bbreward", desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
                 return
             if limit < 0:
@@ -121,7 +121,8 @@ class BBReward(ext.Cog):
                 embed = await stw.create_error_embed(self.client, ctx,
                                                      description=f"**An error occured when fetching day {day}**\n"
                                                                  f"⦾ Please let us know on the support server :D",
-                                                     prompt_help=True, prompt_authcode=False, command="bbreward")
+                                                     prompt_help=True, prompt_authcode=False, command="bbreward",
+                                                     desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
                 print(f"Error when getting bbreward for day {day} - {e}")
                 return
@@ -180,7 +181,7 @@ class BBReward(ext.Cog):
             # TODO: make this compliant with the upcoming day limit setting
             # rip
             embed = await stw.set_thumbnail(self.client, embed, "Shared2")
-            embed = await stw.add_requested_footer(ctx, embed)
+            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
             await stw.slash_send_embed(ctx, embed)
 

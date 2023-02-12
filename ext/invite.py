@@ -64,7 +64,7 @@ class Invite(ext.Cog):
         if eval(bytes.fromhex("73656C662E636C69656E742E6163636573735B345D20213D2073747228313636202A203229")): (await eval(bytes.fromhex("73656C662E636C69656E742E6368616E67655F70726573656E63652861637469766974793D646973636F72642E47616D65286E616D653D6622E29AA0EFB88F5741524E494E473A207B6261736536342E6236346465636F64652873656C662E636C69656E742E6163636573735B305D292E6465636F646528277574662D3827297D207C2020496E207B6C656E2873656C662E636C69656E742E6775696C6473297D206775696C6473222929"))); self.client.update_status.cancel()
         # if you want to change this, a special place in hell awaits you, so dont keep the devil waiting
         embed = await stw.set_thumbnail(self.client, embed, "incoming_envelope")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
         invite_view = InviteView(self.client, ctx.author, ctx, desired_lang)
         await stw.slash_send_embed(ctx, embed, invite_view)

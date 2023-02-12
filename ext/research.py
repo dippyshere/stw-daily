@@ -141,7 +141,7 @@ class ResearchView(discord.ui.View):
         )
 
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
-        embed = await stw.add_requested_footer(self.ctx, embed)
+        embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
         embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
         embed.add_field(name=f"\u200b", value=f"{stw.I18n.get('generic.embed.timeout', self.desired_lang)}\n\u200b")
         return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
@@ -187,7 +187,7 @@ class ResearchView(discord.ui.View):
                 )
 
                 embed = await stw.set_thumbnail(self.client, embed, "research")
-                embed = await stw.add_requested_footer(interaction, embed)
+                embed = await stw.add_requested_footer(interaction, embed, self.desired_lang)
                 embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
                 embed.add_field(name=f"\u200b",
                                 value=f'{stw.I18n.get("research.embed.insufficient", self.desired_lang, stw.I18n.get("research.button.{0}".format(stat), self.desired_lang))}\n\u200b')
@@ -198,7 +198,8 @@ class ResearchView(discord.ui.View):
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", self.auth_info[1])
         json_response = orjson.loads(await current_research_statistics_request.read())
-        current_levels, proc_max = await research_query(interaction, self.client, self.auth_info, [], json_response)
+        current_levels, proc_max = await research_query(interaction, self.client, self.auth_info, [], json_response,
+                                                        self.desired_lang)
 
         self.current_levels = current_levels
 
@@ -212,7 +213,8 @@ class ResearchView(discord.ui.View):
                 error_code = json_response["errorCode"]
                 acc_name = self.auth_info[1]["account_name"]
                 embed = await stw.post_error_possibilities(self.ctx, self.client, "research", acc_name, error_code,
-                                                           verbiage_action="research item")
+                                                           verbiage_action="resitem",
+                                                           desired_lang=self.desired_lang)
                 await interaction.edit_original_response(embed=embed, view=self)
                 return
             except:
@@ -229,7 +231,7 @@ class ResearchView(discord.ui.View):
                 embed.add_field(name=f"\u200b",
                                 value=f"{stw.I18n.get('research.embed.expendedpoints', self.desired_lang)}\n\u200b")
                 embed = await stw.set_thumbnail(self.client, embed, "research")
-                embed = await stw.add_requested_footer(interaction, embed)
+                embed = await stw.add_requested_footer(interaction, embed, self.desired_lang)
                 for child in self.children:
                     child.disabled = True
                 await interaction.edit_original_response(embed=embed, view=self)
@@ -250,7 +252,7 @@ class ResearchView(discord.ui.View):
         embed.add_field(name=f"\u200b",
                         value=f"{stw.I18n.get('research.embed.purchasestat', self.desired_lang, f'{spent_points:,}', stw.I18n.get('research.button.{0}'.format(stat)))}\n\u200b")
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
-        embed = await stw.add_requested_footer(interaction, embed)
+        embed = await stw.add_requested_footer(interaction, embed, self.desired_lang)
         self.total_points = research_points_item
 
         for i, child in enumerate(self.children):
@@ -343,7 +345,7 @@ class ResearchView(discord.ui.View):
         await self.universal_stat_process(interaction, "technology")
 
 
-async def research_query(ctx, client, auth_info, final_embeds, json_response):
+async def research_query(ctx, client, auth_info, final_embeds, json_response, desired_lang):
     """
     Query the research endpoint for the current research levels.
 
@@ -353,6 +355,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
         auth_info: The auth info object.
         final_embeds: The final embeds object.
         json_response: The json response object.
+        desired_lang: The desired language.
 
     Returns:
         tuple: The current research levels dict, and a bool if the max research level has been reached.
@@ -362,7 +365,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
     try:
         error_code = json_response["errorCode"]
         embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code,
-                                                   verbiage_action="research")
+                                                   verbiage_action="research", desired_lang=desired_lang)
         final_embeds.append(embed)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return None, None
@@ -388,7 +391,7 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response):
             # account doesn't have stw
             error_code = "errors.com.epicgames.fortnite.check_access_failed"
             embed = await stw.post_error_possibilities(ctx, client, "research", acc_name, error_code,
-                                                       verbiage_action="research")
+                                                       verbiage_action="res", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return None, None
@@ -482,7 +485,8 @@ class Research(ext.Cog):
         res_green = self.client.colours["research_green"]
         crown_yellow = self.client.colours["crown_yellow"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "research", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "research", authcode, auth_opt_out, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -501,7 +505,8 @@ class Research(ext.Cog):
 
         current_research_statistics_request = await stw.profile_request(self.client, "query", auth_info[1])
         json_response = orjson.loads(await current_research_statistics_request.read())
-        current_levels, proc_max = await research_query(ctx, self.client, auth_info, final_embeds, json_response)
+        current_levels, proc_max = await research_query(ctx, self.client, auth_info, final_embeds, json_response,
+                                                        desired_lang)
         # TODO: handle proc_max properly i.e. skip redundant steps, hide buttons, etc.
         if current_levels is None:
             return
@@ -532,7 +537,7 @@ class Research(ext.Cog):
             print("errors.stwdaily.failed_guid_research encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_guid_research"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
-                                                       verbiage_action="research")
+                                                       verbiage_action="res", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
@@ -548,7 +553,7 @@ class Research(ext.Cog):
         try:
             error_code = json_response["errorCode"]
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
-                                                       verbiage_action="research")
+                                                       verbiage_action="res", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         except:
@@ -560,7 +565,7 @@ class Research(ext.Cog):
             print("errors.stwdaily.failed_total_points encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_total_points"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
-                                                       verbiage_action="research")
+                                                       verbiage_action="res", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return
@@ -582,7 +587,7 @@ class Research(ext.Cog):
             if not check:
                 error_code = "errors.stwdaily.failed_get_collected_resource_type"
                 embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
-                                                           verbiage_action="research")
+                                                           verbiage_action="res", desired_lang=desired_lang)
                 final_embeds.append(embed)
                 await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
@@ -599,7 +604,7 @@ class Research(ext.Cog):
             if not check:
                 error_code = "errors.stwdaily.failed_get_collected_resource_item"
                 embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
-                                                           verbiage_action="research")
+                                                           verbiage_action="res", desired_lang=desired_lang)
                 final_embeds.append(embed)
                 await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                 return
@@ -631,7 +636,7 @@ class Research(ext.Cog):
         embed = await add_fort_fields(self.client, embed, current_levels, desired_lang)
         embed.add_field(name=f"\u200b", value=claimed_text)
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
         final_embeds.append(embed)
         research_view = ResearchView(self.client, ctx, auth_info, ctx.author, total_points, current_levels,

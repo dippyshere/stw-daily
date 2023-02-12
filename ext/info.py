@@ -43,8 +43,8 @@ class Information(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx,
-                                                                              title=stw.I18n.get(
+        load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx, desired_lang,
+                                                                              stw.I18n.get(
                                                                                   "info.processing.title",
                                                                                   desired_lang)))
         shard_ping = shard_name = shard_id = shards = stw.I18n.get("info.entry.notavailable", desired_lang)
@@ -62,7 +62,7 @@ class Information(ext.Cog):
         embed, websocket_ping = (await asyncio.gather(asyncio.to_thread(self.info_embed, embed, shard_ping, shard_name,
                                                                         shard_id, shards, desired_lang)))[0]
         eval(bytes.fromhex("656D6265642E6164645F6669656C64286E616D653D7374772E4931386E2E6765742822696E666F2E656D6265642E6D6164656279222C20646573697265645F6C616E67292C2076616C75653D662760606079616D6C5C6E446970707973686572655C6E4A65616E313339385265626F726E5C6E68747470733A2F2F6769746875622E636F6D2F646970707973686572652F7374772D6461696C795C6E7B6261736536342E6236346465636F64652873656C662E636C69656E742E6163636573735B305D292E6465636F646528227574662D3822297D20287B73656C662E636C69656E742E6163636573735B345D7D296060605C7532303062272C20696E6C696E653D46616C736529"))
-        embed = await stw.add_requested_footer(ctx, embed)  # there are two of you ? ;o  ;o yay
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)  # there are two of you ? ;o  ;o yay
         embed = await stw.set_thumbnail(self.client, embed, "info")
         await asyncio.sleep(0.25)
         before = time.monotonic()

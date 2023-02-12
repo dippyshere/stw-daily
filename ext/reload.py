@@ -43,7 +43,7 @@ class Reload(ext.Cog):
             embed.add_field(name="Error:", value=f"```{e}```", inline=False)
 
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, "en")
 
         await stw.slash_send_embed(ctx, embed)
 
@@ -86,7 +86,7 @@ class Reload(ext.Cog):
             embed.add_field(name="Error:", value=f"```{e}```", inline=False)
 
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, "en")
 
         await stw.slash_send_embed(ctx, embed)
 
@@ -127,7 +127,7 @@ class Reload(ext.Cog):
                               color=embed_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "keycard")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, "en")
 
         await stw.slash_send_embed(ctx, embed)
         self.client.watch_module.changed = set(())

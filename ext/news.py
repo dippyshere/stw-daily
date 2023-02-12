@@ -86,12 +86,12 @@ class NewsView(discord.ui.View):
             embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
                                                self.desired_lang)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            embed = await stw.add_requested_footer(self.ctx, embed)
+            embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
         else:
             embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
                                                self.desired_lang)
             embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            embed = await stw.add_requested_footer(self.ctx, embed)
+            embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
         for button in self.children:
             button.disabled = True
         return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
@@ -265,8 +265,8 @@ class News(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx,
-                                                                              title=stw.I18n.get("news.embed.processing.title", desired_lang)))
+        load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx, desired_lang,
+                                                                              stw.I18n.get("news.embed.processing.title", desired_lang)))
         stw_news_req = await stw.get_stw_news(self.client, desired_lang)
         stw_news_json = await stw_news_req.json(content_type=None)
         stw_news = stw_news_json["news"]["messages"]
@@ -281,7 +281,7 @@ class News(ext.Cog):
         else:
             embed = await stw.create_news_page(self, ctx, stw_news, page, stw_pages_length, desired_lang)
         embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
                              mode, load_msg, desired_lang)
         await asyncio.sleep(0.25)

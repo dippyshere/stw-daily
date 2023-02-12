@@ -65,7 +65,7 @@ class Internationalisation(ext.Cog):
         embed.description += f'\n\u200b'
 
         embed = await stw.set_thumbnail(self.client, embed, "clown")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, "en")
 
         await stw.slash_send_embed(ctx, embed)
 

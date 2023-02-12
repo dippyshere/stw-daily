@@ -45,7 +45,7 @@ class ProfileDump(ext.Cog):
             error_code = public_json_response["errorCode"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "profiledump", acc_name, error_code,
-                                                       verbiage_action="dump profiles")
+                                                       verbiage_action="dump")
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True
@@ -70,7 +70,8 @@ class ProfileDump(ext.Cog):
 
         generic_colour = self.client.colours["generic_blue"]
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "profiledump", authcode, auth_opt_out, True)
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "profiledump", authcode, auth_opt_out, True,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -96,7 +97,7 @@ class ProfileDump(ext.Cog):
         if await self.check_errors(ctx, profile_json_response, auth_info, final_embeds):
             return
 
-        load_msg = await stw.processing_embed(self.client, ctx,
+        load_msg = await stw.processing_embed(self.client, ctx, desired_lang,
                                               stw.I18n.get('profiledumper.embed.processing.title', desired_lang),
                                               stw.I18n.get('profiledumper.embed.processing.description', desired_lang))
         load_msg = await stw.slash_edit_original(ctx, auth_info[0], load_msg)
@@ -267,7 +268,7 @@ class ProfileDump(ext.Cog):
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
 
         embed = await stw.set_thumbnail(self.client, embed, "floppy")
-        embed = await stw.add_requested_footer(ctx, embed)
+        embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
         await asyncio.sleep(0.25)
         await stw.slash_edit_original(ctx, load_msg, final_embeds,
