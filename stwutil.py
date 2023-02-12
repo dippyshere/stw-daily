@@ -652,7 +652,7 @@ def decrypt_user_data(user_snowflake: int | str, authentication_information: dic
     aes_cipher.update(bytes(str(user_snowflake), "ascii"))
     auth_information = aes_cipher.decrypt_and_verify(authentication, battle_breakers_token)
     decrypted_json = orjson.loads(auth_information)
-    logger.debug("Decrypted json: " + decrypted_json)
+    logger.debug(f"Decrypted json: {decrypted_json}")
     return decrypted_json
 
 
