@@ -69,7 +69,7 @@ def check_localisation(client, ctx, value):
     Returns:
         bool: True if the value is valid, False otherwise.
     """
-    if value.lower() in client.localisation:
+    if value.lower() in client.localisation.lower():
         return client.localisation[value.lower()]
     else:
         return False
