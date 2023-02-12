@@ -1610,6 +1610,26 @@ async def get_stw_news(client, locale="en"):
 
     Returns:
         The news for stw from epic games
+
+    Notes:
+        This supports the following languages:
+        "CompiledCultures": [
+            "ar",
+            "de",
+            "en",
+            "es",
+            "es-419",
+            "fr",
+            "it",
+            "ja",
+            "ko",
+            "pl",
+            "pt-BR",
+            "ru",
+            "tr",
+            "zh-CN",
+            "zh-Hant"
+      ]
     """
     logger.debug(f"Getting STW news for {locale}")
     endpoint = client.config["endpoints"]["stw_news"]
