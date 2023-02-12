@@ -10,6 +10,7 @@ import asyncio
 import base64
 import os
 import time
+import logging
 
 import discord
 import discord.ext.commands as ext
@@ -21,6 +22,7 @@ from ext.profile.bongodb import get_user_document, replace_user_document, genera
     timeout_check_processing, active_view, command_counter
 
 TOS_VERSION = 31
+logger = logging.getLogger(__name__)
 
 
 async def tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx, desired_lang):
@@ -260,6 +262,8 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     Returns:
         The embed
     """
+    logger.debug(f"handle_dev_auth() called with args: {locals()}")
+
     current_author_id = ctx.author.id
 
     if user_document is None:
