@@ -14,9 +14,10 @@ import time
 import math
 from difflib import SequenceMatcher
 import logging
-from typing import List, Dict, Tuple, Union
+from typing import Tuple, Union, Any, Optional
 
 import aiofiles
+import aiohttp.client_reqrep
 import blendmodes.blend
 import deprecation
 from Crypto.Cipher import AES
@@ -27,8 +28,8 @@ import orjson
 
 import discord
 from discord import Client
-from discord.ext.commands import Command
-from discord.types.interactions import Interaction
+from discord.ext import commands
+from discord.ext.commands import Command, Context
 from toolbox import Item
 
 import items
@@ -39,7 +40,7 @@ from ext.profile.bongodb import get_user_document, replace_user_document
 logger = logging.getLogger(__name__)
 
 
-async def load_item_data() -> Tuple[Dict, Dict, Dict, Dict, Dict, Dict, Dict, int, Dict, Dict, Dict]:
+async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, int, dict, dict, dict]:
     """
     Loads the item data from the item data file
 
@@ -50,27 +51,27 @@ async def load_item_data() -> Tuple[Dict, Dict, Dict, Dict, Dict, Dict, Dict, in
         Exception: If the item data file is not found.
     """
     async with aiofiles.open("ext/battlebreakers/LoginRewards.json", "r") as f:
-        bbLoginRewards: Dict = orjson.loads(await f.read())
+        bbLoginRewards: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/SurvivorItemRating.json') as f:
-        SurvivorItemRating: Dict = orjson.loads(await f.read())
+        SurvivorItemRating: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/HomebaseRatingMapping.json') as f:
-        HomebaseRatingMapping: Dict = orjson.loads(await f.read())
+        HomebaseRatingMapping: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/ResearchSystem.json') as f:
-        ResearchSystem: Dict = orjson.loads(await f.read())
+        ResearchSystem: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/AccountLevels.json') as f:
-        AccountLevels: Dict = orjson.loads(await f.read())
+        AccountLevels: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/BannerColorMap.json') as f:
-        BannerColorMap: Dict = orjson.loads(await f.read())
+        BannerColorMap: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/BannerColors.json') as f:
-        BannerColors: Dict = orjson.loads(await f.read())
+        BannerColors: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/STW_Accolade_Tracker.json') as f:
         max_daily_stw_accolade_xp: int = orjson.loads(await f.read())[0]["Properties"]["MaxDailyXP"]
     async with aiofiles.open('ext/DataTables/allowed-name-chars.json') as f:
-        allowed_chars: Dict = orjson.loads(await f.read())
+        allowed_chars: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/DailyRewards.json') as f:
-        stwDailyRewards: Dict = orjson.loads(await f.read())
+        stwDailyRewards: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/DailyFoundersRewards.json') as f:
-        stwFounderDailyRewards: Dict = orjson.loads(await f.read())
+        stwFounderDailyRewards: dict = orjson.loads(await f.read())
     return bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
         BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards
 
@@ -88,7 +89,7 @@ I18n = I18n()
 guild_ids = [757765475823517851]
 
 
-def reverse_dict_with_list_keys(dictionary: Dict[str, List[str]]) -> Dict[str, str]:
+def reverse_dict_with_list_keys(dictionary: dict[str, list[str]]) -> dict[str, str]:
     """
     Reverses a dictionary with list keys
 
@@ -111,7 +112,7 @@ def reverse_dict_with_list_keys(dictionary: Dict[str, List[str]]) -> Dict[str, s
     return new_dict
 
 
-async def view_interaction_check(view, interaction: Interaction, command: Command) -> bool:
+async def view_interaction_check(view, interaction: discord.Interaction, command: Command) -> bool:
     """
     Checks if the interaction is created by the view author
 
@@ -148,7 +149,7 @@ async def view_interaction_check(view, interaction: Interaction, command: Comman
             return False
 
 
-def edit_emoji_button(client: Client, button):
+def edit_emoji_button(client: Client, button: discord.ui.Button) -> discord.ui.Button:
     """
     Adds an emoji to a button
 
@@ -172,7 +173,6 @@ def edit_emoji_button(client: Client, button):
     except TypeError as e:
         logger.error(f"TypeError: {e}")
         return button
-
 
 
 global_quotes = discord.ext.commands.view._all_quotes
@@ -220,7 +220,7 @@ def process_quotes_in_message(message_content: str) -> str:
     return message_content
 
 
-async def slash_send_embed(ctx, embeds, view=None, interaction=False) -> Union[discord.Message, None]:
+async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Embed], view: discord.ui.View = None, interaction: discord.Interaction = False) -> Union[discord.Message, None]:
     """
     A small bridging function to send embeds to a slash, view, normal command, or interaction
 
@@ -269,7 +269,7 @@ async def slash_send_embed(ctx, embeds, view=None, interaction=False) -> Union[d
             return await ctx.send(embeds=embeds)
 
 
-async def retrieve_shard(client: Client, shard_id: int) -> int:
+async def retrieve_shard(client: Client, shard_id: int) -> int | str:
     """
     Retrieves the current shard name. Fallback to current shard id if no name is available
 
@@ -294,7 +294,7 @@ async def retrieve_shard(client: Client, shard_id: int) -> int:
         return shard_id
 
 
-def time_until_end_of_day():
+def time_until_end_of_day() -> str:
     """
     a string representing the time until the end of the day for the bot's status.
     this is one of the oldest surviving functions from the old bot.
@@ -325,7 +325,7 @@ def time_until_end_of_day():
     return fmt.format(d=days, h=hours, m=minutes)
 
 
-async def processing_queue_error_check(client, ctx, user_snowflake):
+async def processing_queue_error_check(client: Client, ctx: discord.Message, user_snowflake: int) -> discord.Embed | bool:
     """
     Checks if a user is in the processing queue
 
@@ -352,7 +352,7 @@ async def processing_queue_error_check(client, ctx, user_snowflake):
         return True
 
 
-async def mention_string(client, prompt=""):
+async def mention_string(client: Client, prompt: str = "") -> str:
     """
     A function to compile a mention string for the bot
 
@@ -375,7 +375,7 @@ async def mention_string(client, prompt=""):
         return f"@STW Daily {prompt}"
 
 
-async def add_requested_footer(ctx, embed, desired_lang="en"):
+async def add_requested_footer(ctx: Context | discord.ApplicationContext, embed: discord.Embed, desired_lang: str = "en") -> discord.Embed:
     """
     Adds the requested by user to the footer of the embed
 
@@ -404,7 +404,7 @@ async def add_requested_footer(ctx, embed, desired_lang="en"):
     return embed
 
 
-async def add_emoji_title(client, title, emoji):
+async def add_emoji_title(client: Client, title: str, emoji: str) -> str:
     """
     Adds emojis surrounding the title of an embed
 
@@ -427,7 +427,7 @@ async def add_emoji_title(client, title, emoji):
     return f"{emoji}  {title}  {emoji}"
 
 
-async def split_emoji_title(client, title, emoji_1, emoji_2):
+async def split_emoji_title(client: Client, title: str, emoji_1: str, emoji_2: str) -> str:
     """
     Adds two separate emojis surrounding the title of an embed
 
@@ -456,7 +456,7 @@ async def split_emoji_title(client, title, emoji_1, emoji_2):
     return f"{emoji_1}  {title}  {emoji_2}"
 
 
-async def set_thumbnail(client, embed, thumb_type):
+async def set_thumbnail(client: discord.Client, embed: discord.Embed, thumb_type: str) -> discord.Embed:
     """
     sets the thunbnail of an embed from the config key
 
@@ -479,7 +479,7 @@ async def set_thumbnail(client, embed, thumb_type):
     return embed
 
 
-def get_reward(client, day, vbucks=True):
+def get_reward(client: discord.Client, day: int | str, vbucks: bool = True) -> list[str, str]:
     """
     gets the reward for the given day, accounting for non founders
 
@@ -523,7 +523,7 @@ def get_reward(client, day, vbucks=True):
     return [str(item), emoji_text]
 
 
-def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0, desired_lang="en"):
+def get_bb_reward_data(client: Client, response: Optional[dict] = None, error: bool = False, pre_calc_day: int = 0, desired_lang: str = "en") -> list[int | str | Any]:
     """
     gets the reward data for battle breakers rewards
 
@@ -575,7 +575,7 @@ def get_bb_reward_data(client, response=None, error=False, pre_calc_day=0, desir
     return [day, name, emoji_text, description, quantity]
 
 
-def get_game_headers(game):
+def get_game_headers(game: str) -> dict[str, str]:
     """
     gets the http auth headers for the given game/context
     Args:
@@ -605,7 +605,7 @@ def get_game_headers(game):
     return h
 
 
-async def get_token(client, auth_code: str, game="fn"):
+async def get_token(client: discord.Client, auth_code: str, game: str = "fn") -> aiohttp.client_reqrep.ClientResponse:
     """
     gets an access token for the given game/context
     Args:
@@ -629,7 +629,7 @@ async def get_token(client, auth_code: str, game="fn"):
     return await client.stw_session.post(url, headers=h, data=d)
 
 
-def decrypt_user_data(user_snowflake, authentication_information):
+def decrypt_user_data(user_snowflake: int | str, authentication_information: dict) -> dict:
     """
     decrypts the user data
 
@@ -656,7 +656,7 @@ def decrypt_user_data(user_snowflake, authentication_information):
     return decrypted_json
 
 
-async def get_token_devauth(client, user_document, game="ios", auth_info_thread=None):
+async def get_token_devauth(client: discord.Client, user_document: dict, game: str = "ios", auth_info_thread: Optional[Tuple[BaseException]] = None) -> aiohttp.client_reqrep.ClientResponse:
     """
     gets an access token for the given game/context
 
@@ -699,7 +699,7 @@ async def get_token_devauth(client, user_document, game="ios", auth_info_thread=
 
 
 # hi
-async def exchange_games(client, auth_token, game="fn"):
+async def exchange_games(client: discord.Client, auth_token: str, game: str = "fn") -> aiohttp.client_reqrep.ClientResponse:
     """
     exchanges the given auth token for the given game
 
@@ -734,7 +734,7 @@ async def exchange_games(client, auth_token, game="fn"):
     return await client.stw_session.post(url, headers=h, data=d)
 
 
-async def processing_embed(client, ctx, title="Logging in and Processing", description="This won't take long..."):
+async def processing_embed(client: discord.Client, ctx: discord.ext.commands.Context, title: str = "Logging in and Processing", description: str = "This won't take long..."):
     """
     Constructs the processing embed
 
@@ -755,7 +755,7 @@ async def processing_embed(client, ctx, title="Logging in and Processing", descr
     return embed
 
 
-def random_error(client, desired_lang="en"):
+def random_error(client: Client, desired_lang: str = "en") -> str:
     """
     Gets a random error message
 
@@ -772,7 +772,7 @@ def random_error(client, desired_lang="en"):
     return I18n.get(random.choice(client.config["error_messages"]), desired_lang)
 
 
-def random_waiting_message(client, desired_lang="en"):
+def random_waiting_message(client: Client, desired_lang: str = "en") -> str:
     """
     Gets a random waiting message
 
@@ -789,7 +789,7 @@ def random_waiting_message(client, desired_lang="en"):
     return I18n.get(random.choice(client.config["wait_on_user_messages"]), desired_lang)
 
 
-async def check_for_auth_errors(client, request, ctx, message, command, auth_code, send_error_message=True):
+async def check_for_auth_errors(client: Client, request: dict, ctx: Context, message: discord.Message, command: str, auth_code: str, send_error_message: bool = True) -> Tuple[bool, Optional[str], Optional[str]] | discord.Embed:
     """
     Checks for auth errors and sends the appropriate message
 
@@ -892,7 +892,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
 
 
 # hi?
-async def slash_edit_original(ctx, msg, embeds, view=None, files=None):
+async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Interaction, embeds: discord.Embed | list[discord.Embed], view: discord.ui.View = None, files: list[discord.File] = None):
     """
     Edits the original message sent by the bot
 
@@ -956,7 +956,7 @@ async def slash_edit_original(ctx, msg, embeds, view=None, files=None):
             return await method(embeds=embeds)
 
 
-async def device_auth_request(client, account_id, token):
+async def device_auth_request(client: Client, account_id: str, token: str) -> aiohttp.client_reqrep.ClientResponse:
     """
     Sends a device auth request to epic
 
@@ -980,8 +980,7 @@ async def device_auth_request(client, account_id, token):
     return await client.stw_session.post(url, headers=header, json="")
 
 
-async def profile_request(client, req_type, auth_entry, data="{}", json=None, profile_id="stw", game="fn",
-                          profile_type="profile0"):
+async def profile_request(client: Client, req_type: str, auth_entry: dict[str, str | bool | float | None | list[str]], data: str | dict = "{}", json: dict = None, profile_id: str = "stw", game: str = "fn", profile_type: str = "profile0") -> aiohttp.client_reqrep.ClientResponse:
     """
     Request a profile from epic api
     Args:
@@ -1019,7 +1018,7 @@ async def profile_request(client, req_type, auth_entry, data="{}", json=None, pr
         return await client.stw_session.post(url, headers=header, json=json)
 
 
-async def shop_request(client, token):
+async def shop_request(client: Client, token: str) -> dict:
     """
     Makes a request to the shop endpoint
 
@@ -1043,7 +1042,7 @@ async def shop_request(client, token):
         return orjson.loads(await resp.read())
 
 
-async def get_llama_store(shop):
+async def get_llama_store(shop: dict) -> dict | None:
     """
     Gets the llama store from the shop request
 
@@ -1063,7 +1062,7 @@ async def get_llama_store(shop):
     return None
 
 
-async def free_llama_count(store):
+async def free_llama_count(store: dict) -> Tuple[int, list]:
     """
     Gets the amount of free llamas in the store, and any related info if available
 
@@ -1083,8 +1082,7 @@ async def free_llama_count(store):
     return len(free_llamas), free_llamas
 
 
-async def purchase_llama(client, auth_entry, offer_id, currency="GameItem",
-                         currencySubType="AccountResource:currency_xrayllama", expectedTotalPrice=0):
+async def purchase_llama(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], offer_id: str, currency: str = "GameItem", currencySubType: str = "AccountResource:currency_xrayllama", expectedTotalPrice: int = 0) -> dict:
     """
     Purchases a llama from the store
 
@@ -1113,7 +1111,7 @@ async def purchase_llama(client, auth_entry, offer_id, currency="GameItem",
     return orjson.loads(await req_buy_free_llama.read())
 
 
-async def get_llama_datatable(client, path, desired_lang='en'):
+async def get_llama_datatable(client: Client, path: str, desired_lang: str = 'en') -> tuple[str, str, str, str, str]:
     """
     Gets the llama datatable from the game files
 
@@ -1152,12 +1150,12 @@ async def get_llama_datatable(client, path, desired_lang='en'):
     except Exception as e:
         logger.warning(f"Could not find DataTable for {path}, using default llama values. Error: {e}")
         return I18n.get("stw.item.CardPack_Bronze.name", desired_lang), \
-            I18n.get("stw.item.CardPack_Bronze.desc", desired_lang), \
+            I18n.get("stw.item.CardPack_Bronze.desc", desired_lang), "<:PinataStandardPack:947728062739542036>", \
             "<:T_CardPack_Upgrade_IconMask:1055049365426819092>", \
             "Rare"
 
 
-async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
+async def claim_free_llamas(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], store: dict, prerolled_offers: dict[str, ...]) -> None:
     """
     Claims the free llamas in the store
 
@@ -1249,8 +1247,7 @@ async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
                 logger.info("opening failed")
 
 
-async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already_opened_free_llamas, free_llamas_count,
-                                  recycle_config=None):
+async def recycle_free_llama_loot(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], items_from_llamas: list[Item], already_opened_free_llamas: int, free_llamas_count: int, recycle_config: Optional[dict] = None) -> None:
     """
     Recycles the free llama loot
 
@@ -1350,7 +1347,7 @@ async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already
             logger.info(resources_message)
 
 
-async def validate_existing_session(client, token):
+async def validate_existing_session(client: Client, token: str) -> bool:
     """
     Validates an existing session
 
@@ -1375,7 +1372,7 @@ async def validate_existing_session(client, token):
     return False
 
 
-def vbucks_query_check(profile_text):
+def vbucks_query_check(profile_text: str | dict) -> bool:
     """
     Checks if the profile can claim vbucks or not
 
@@ -1400,7 +1397,7 @@ def vbucks_query_check(profile_text):
     return False
 
 
-async def auto_stab_stab_session(client, author_id, expiry_time):
+async def auto_stab_stab_session(client: Client, author_id: int, expiry_time: float) -> None:
     """
     Automatically logs out the user and clears data after a set amount of time
 
@@ -1423,7 +1420,7 @@ async def auto_stab_stab_session(client, author_id, expiry_time):
     return
 
 
-async def manslaughter_session(client, account_id, kill_stamp):
+async def manslaughter_session(client: Client, account_id: int, kill_stamp: int | float) -> bool:
     """
     Logs out the user and clears data
 
@@ -1455,7 +1452,7 @@ async def manslaughter_session(client, account_id, kill_stamp):
         # now they know :D
 
 
-async def entry_profile_req(client, entry, game):
+async def entry_profile_req(client: Client, entry: dict[str, str | bool | float | None | list[str]], game: str) -> dict[str, str | bool | float | None | list[str]]:
     """
     Gets the profile of the user for an auth session entry
 
@@ -1486,7 +1483,7 @@ async def entry_profile_req(client, entry, game):
     return entry
 
 
-async def add_other_game_entry(client, user_id, entry, game, other_games):
+async def add_other_game_entry(client: Client, user_id: int, entry: dict[str, str | bool | float | None | list[str]], game: str, other_games: list) -> dict[str, str | bool | float | None | list[str]]:
     """
     Adds an entry for another game to the user's auth session
 
@@ -1516,8 +1513,7 @@ async def add_other_game_entry(client, user_id, entry, game, other_games):
     return entry
 
 
-async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entry, bb_token=None, game="fn",
-                         original_token=""):
+async def add_temp_entry(client: Client, ctx: Context, auth_token: str, account_id: str, response: dict, add_entry: bool, bb_token: str = None, game: str = "fn", original_token: str = "") -> dict[str, str | bool | float | None | list[str]]:
     """
     Adds a temporary authentication session entry for the user
 
@@ -1530,7 +1526,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
         add_entry: Whether to start or opt out of an auth session
         bb_token: The battlebreakers access token to store
         game: The game to add the entry for
-        original_token: The original token to store
+        original_token: The original token to store (to ignore the token in the future)
 
     Returns:
         The authentication session entry of the user
@@ -1563,7 +1559,7 @@ async def add_temp_entry(client, ctx, auth_token, account_id, response, add_entr
     return entry
 
 
-def json_query_check(profile_text):
+def json_query_check(profile_text: dict) -> str | int | None:
     """
     Checks if the profile has a days logged in value
 
@@ -1581,7 +1577,7 @@ def json_query_check(profile_text):
         return None
 
 
-def bb_day_query_check(profile_text):
+def bb_day_query_check(profile_text: dict) -> str | int | None:
     """
     Checks if the profile has a next login reward level value
 
@@ -1598,7 +1594,7 @@ def bb_day_query_check(profile_text):
         return None
 
 
-def extract_profile_item(profile_json, item_string="Currency:Mtx"):
+def extract_profile_item(profile_json: dict, item_string: str = "Currency:Mtx") -> dict[int, dict[str, Union[str, int]]]:
     """
     Extracts an item from the profile json
 
@@ -1636,7 +1632,7 @@ def extract_profile_item(profile_json, item_string="Currency:Mtx"):
     return found_items
 
 
-async def get_stw_news(client, locale="en"):
+async def get_stw_news(client: Client, locale: str = "en") -> aiohttp.client_reqrep.ClientResponse:
     """
     Gets the news for stw from epic games
 
@@ -1674,7 +1670,7 @@ async def get_stw_news(client, locale="en"):
     return await client.stw_session.get(endpoint.format(locale))
 
 
-async def get_br_news(client, locale="en"):
+async def get_br_news(client: Client, locale: str = "en") -> aiohttp.client_reqrep.ClientResponse:
     """
     Gets the news for br from fortnite-api as its personalised from epic games
 
@@ -1707,7 +1703,7 @@ async def get_br_news(client, locale="en"):
     return await client.stw_session.get(endpoint.format(locale))
 
 
-async def create_news_page(self, ctx, news_json, current, total, desired_lang="en"):
+async def create_news_page(self, ctx: Context, news_json: dict, current: int, total: int, desired_lang: str = "en") -> discord.Embed:
     """
     Creates a news page embed
 
@@ -1750,7 +1746,7 @@ async def create_news_page(self, ctx, news_json, current, total, desired_lang="e
     return embed
 
 
-async def battle_breakers_deprecation(client, ctx, command="Battle Breakers commands", collective_noun="are"):
+async def battle_breakers_deprecation(client: discord.Client, ctx: commands.Context, command: str = "Battle Breakers commands", collective_noun: str = "are") -> discord.Embed:
     """
     Creates a warning embed for deprecated battle breakers commands
 
@@ -1777,7 +1773,7 @@ async def battle_breakers_deprecation(client, ctx, command="Battle Breakers comm
     return embed
 
 
-async def set_embed_image(embed, image_url):
+async def set_embed_image(embed: discord.Embed, image_url: str) -> discord.Embed:
     """
     Sets the embed image to the given url
 
@@ -1791,7 +1787,7 @@ async def set_embed_image(embed, image_url):
     return embed.set_image(url=image_url)
 
 
-async def resolve_vbuck_source(vbuck_source):
+async def resolve_vbuck_source(vbuck_source: str) -> Tuple[str, str]:
     """
     Resolves the vbuck source to a user friendly name and emoji
 
@@ -1816,7 +1812,7 @@ async def resolve_vbuck_source(vbuck_source):
         return vbuck_source, "placeholder"
 
 
-async def calculate_vbucks(item):
+async def calculate_vbucks(item: dict) -> int:
     """
     Calculates the total vbucks from a dict of items
 
@@ -1838,7 +1834,7 @@ async def calculate_vbucks(item):
     return vbucks
 
 
-async def get_banner_colour(colour, colour_format="hex", colour_type="Primary"):
+async def get_banner_colour(colour: str, colour_format: str = "hex", colour_type: str = "Primary") -> str | tuple[int, ...] | None:
     """
     Gets the banner colour from the banner name
 
@@ -1863,11 +1859,11 @@ async def get_banner_colour(colour, colour_format="hex", colour_type="Primary"):
     elif colour_format == "rgb":
         return tuple(int(colour_hex[i:i + 2], 16) for i in (1, 3, 5))
     else:
-        logging.error(f"Invalid colour_format {colour_format}")
+        logging.error(f"Invalid colour_format {colour_format}. Must be 'hex' or 'rgb'.")
         return None
 
 
-def truncate(string, length=100, end="..."):
+def truncate(string: str, length: int = 100, end: str = "...") -> str:
     """
     Truncates a string to a certain length
 
@@ -1886,7 +1882,7 @@ def truncate(string, length=100, end="..."):
     return (string[:length - 3] + end) if len(string) > length else string
 
 
-def get_tomorrow_midnight_epoch():
+def get_tomorrow_midnight_epoch() -> int:
     """
     Gets the epoch for tomorrow UTC midnight, independent of timezone
 
@@ -1900,7 +1896,7 @@ def get_tomorrow_midnight_epoch():
     return int(time.time() + 86400 - time.time() % 86400)
 
 
-def get_item_icon_emoji(client, template_id):
+def get_item_icon_emoji(client: Client, template_id: str) -> str:
     """
     Gets the emoji for the item icon
 
@@ -1938,7 +1934,7 @@ def get_item_icon_emoji(client, template_id):
         return client.config['emojis']['placeholder']
 
 
-def llama_contents_render(client, llama_items):
+def llama_contents_render(client: Client, llama_items: dict) -> str:
     """
     Renders the contents of a llama
 
@@ -1950,10 +1946,10 @@ def llama_contents_render(client, llama_items):
         The rendered contents of the llama
 
     Example:
-        >>> llama_contents_render(client, [{"itemType": "AthenaCharacter:cid_028_athena_commando_f", "quantity": 1}])
+        >>> llama_contents_render(client, {"itemType": "AthenaCharacter:cid_028_athena_commando_f", "quantity": 1})
         '<:cid_028_athena_commando_f:8675309> '
 
-        >>> llama_contents_render(client, [{"itemType": "AthenaCharacter:cid_028_athena_commando_f", "quantity": 2}])
+        >>> llama_contents_render(client, {"itemType": "AthenaCharacter:cid_028_athena_commando_f", "quantity": 2})
         '<:cid_028_athena_commando_f:8675309> x2 '
     """
     string = ""
@@ -1962,7 +1958,7 @@ def llama_contents_render(client, llama_items):
     return string
 
 
-def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0):
+def get_rating(data_table: dict = SurvivorItemRating, row: str = "Default_C_T01", time_input: float = 0) -> float:
     """
     Calculates the power level of an item in stw
 
@@ -1990,13 +1986,14 @@ def get_rating(data_table=SurvivorItemRating, row="Default_C_T01", time_input=0)
     for i in range(len(row_data['Keys']) - 1):
         if row_data['Keys'][i]['Time'] <= time_input < row_data['Keys'][i + 1]['Time']:
             # interpolate between the two keys.
-            logger.debug(f"Interpolated {time_input} between {row_data['Keys'][i]['Time']} and {row_data['Keys'][i + 1]['Time']} to get {row_data['Keys'][i]['Value'] + (time_input - row_data['Keys'][i]['Time']) / (row_data['Keys'][i + 1]['Time'] - row_data['Keys'][i]['Time']) * (row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])}")
+            logger.debug(
+                f"Interpolated {time_input} between {row_data['Keys'][i]['Time']} and {row_data['Keys'][i + 1]['Time']} to get {row_data['Keys'][i]['Value'] + (time_input - row_data['Keys'][i]['Time']) / (row_data['Keys'][i + 1]['Time'] - row_data['Keys'][i]['Time']) * (row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])}")
             return row_data['Keys'][i]['Value'] + (time_input - row_data['Keys'][i]['Time']) / (
                     row_data['Keys'][i + 1]['Time'] - row_data['Keys'][i]['Time']) * (
                     row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])
 
 
-def parse_survivor_template_id(template_id):
+def parse_survivor_template_id(template_id: str) -> Tuple[str, str, str, str]:
     """
     Parses the template id of a survivor
 
@@ -2100,7 +2097,7 @@ def parse_survivor_template_id(template_id):
 # }
 
 
-def get_survivor_rating(survivor):
+def get_survivor_rating(survivor: dict) -> Tuple[float, Tuple[str | Any, ...]]:
     """
     Gets the power level of a survivor from a profile's survivor entry dict
 
@@ -2135,7 +2132,8 @@ def get_survivor_rating(survivor):
         survivor_type = "Manager"
     else:
         survivor_type = "Default"
-    logger.debug(f"Survivor Power Level: {get_rating(data_table=SurvivorItemRating, row=f'{survivor_type}_{survivor_info[2].upper()}_{survivor_info[1].upper()}', time_input=survivor['attributes']['level'])}")
+    logger.debug(
+        f"Survivor Power Level: {get_rating(data_table=SurvivorItemRating, row=f'{survivor_type}_{survivor_info[2].upper()}_{survivor_info[1].upper()}', time_input=survivor['attributes']['level'])}")
     return get_rating(data_table=SurvivorItemRating,
                       row=f"{survivor_type}_{survivor_info[2].upper()}_{survivor_info[1].upper()}",
                       time_input=survivor["attributes"]["level"]), survivor_info
@@ -2144,7 +2142,7 @@ def get_survivor_rating(survivor):
 # print(get_survivor_rating(leader))
 # print(get_survivor_rating(worker))
 
-def get_survivor_bonus(leader_personality, survivor_personality, leader_rarity, survivor_rating):
+def get_survivor_bonus(leader_personality: str, survivor_personality: str, leader_rarity: str, survivor_rating: float | int) -> int:
     """
     Gets the bonus to the powerlevel of a survivor based on the leader's personality and rarity, and the survivor's personality and rating
 
@@ -2177,7 +2175,7 @@ def get_survivor_bonus(leader_personality, survivor_personality, leader_rarity, 
     return 0
 
 
-def get_lead_bonus(lead_synergy, squad_name, rating):
+def get_lead_bonus(lead_synergy: str, squad_name: str, rating: float | int) -> float:
     """
     Gets the bonus to the power level of a lead survivor based on the leader's synergy, squad and rating
 
@@ -2205,7 +2203,7 @@ def get_lead_bonus(lead_synergy, squad_name, rating):
     return 0
 
 
-def calculate_homebase_rating(profile):
+def calculate_homebase_rating(profile: dict[str]) -> Tuple[float, int, dict[str, int]]:
     """
     Calculates the power level of a profile's homebase by calculating FORT stats
 
@@ -2321,7 +2319,8 @@ def calculate_homebase_rating(profile):
             total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem,
                                                                                              row=f"{val['templateId'].split(':')[1]}_cumulative",
                                                                                              time_input=val["quantity"])
-            logger.debug(f"Research stat: {val['templateId'].split(':')[1].split('_')[0].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
+            logger.debug(
+                f"Research stat: {val['templateId'].split(':')[1].split('_')[0].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
         else:
             # exclude phoenix stats
             if "phoenix" in val['templateId'].lower():
@@ -2329,7 +2328,8 @@ def calculate_homebase_rating(profile):
             total_stats[val['templateId'].split(':')[1].lower()] += get_rating(data_table=ResearchSystem,
                                                                                row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
                                                                                time_input=val["quantity"])
-            logger.debug(f"Research stat: {val['templateId'].split(':')[1].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_personal_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
+            logger.debug(
+                f"Research stat: {val['templateId'].split(':')[1].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_personal_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
     # for attr, val in research_levels.items():
     #     total_stats += val
     for attr, val in survivors.items():
@@ -2369,12 +2369,13 @@ def calculate_homebase_rating(profile):
         total += val
     logger.debug(f"Total stats after commander level: {total_stats}")
     logger.debug(f"Total stats: {total}")
-    logger.debug(f"Power level: {get_rating(data_table=HomebaseRatingMapping, row='UIMonsterRating', time_input=total * 4)}")
+    logger.debug(
+        f"Power level: {get_rating(data_table=HomebaseRatingMapping, row='UIMonsterRating', time_input=total * 4)}")
     return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating",
                       time_input=total * 4), total, total_stats
 
 
-async def check_devauth_user_auth_input(client, ctx):
+async def check_devauth_user_auth_input(client: Client, ctx: Context) -> bool:
     """
     Checks if the user is authorised to use the devauth command
 
@@ -2399,9 +2400,7 @@ async def check_devauth_user_auth_input(client, ctx):
         return False
 
 
-async def create_error_embed(client, ctx, title=None, description=None, prompt_help=False, prompt_authcode=True,
-                             prompt_newcode=False, command="", error_level=1, title_emoji=None, thumbnail=None,
-                             colour=None, add_auth_gif=False, auth_push_strong=True, desired_lang="en"):
+async def create_error_embed(client: Client, ctx: Context, title: str = None, description: str = None, prompt_help: bool = False, prompt_authcode: bool = True, prompt_newcode: bool = False, command: str = "", error_level: int = 1, title_emoji: str = None, thumbnail: str = None, colour: str = None, add_auth_gif: bool = False, auth_push_strong: bool = True, desired_lang: str = "en") -> discord.Embed:
     """
     Creates an embed with the error colour and the error emoji
 
@@ -2475,8 +2474,7 @@ async def create_error_embed(client, ctx, title=None, description=None, prompt_h
     return embed
 
 
-async def get_or_create_auth_session(client, ctx, command, original_auth_code, add_entry=False, processing=True,
-                                     dont_send_embeds=False):  # hi bye
+async def get_or_create_auth_session(client: Client, ctx: Context, command: str, original_auth_code: str, add_entry: bool = False, processing: bool = True, dont_send_embeds: bool = False) -> list[discord.Message | None, dict, list]:  # hi bye
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 
@@ -2763,8 +2761,10 @@ async def get_or_create_auth_session(client, ctx, command, original_auth_code, a
     return [message, entry, embeds]
 
 
-async def post_error_possibilities(ctx, client, command, acc_name, error_code, error_level=1, response=None,
-                                   verbiage_action=None, hb_badchars=None):
+async def post_error_possibilities(ctx: Context, client: Client,
+                                   command: str, acc_name: str, error_code: int,
+                                   error_level: int = 1, response: str = None,
+                                   verbiage_action: str = None, hb_badchars: str = None) -> discord.Embed:
     """
     Handle errors that could occur when posting to the api, and present an embed with possible solutions
 
@@ -2838,7 +2838,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
                                                      f"⦾ Please let us know in the support server :D",
                                          prompt_help=True, prompt_authcode=False, command=command,
                                          error_level=error_level)
-        print(f"Error: {response}")
+        logger.critical(f"Error Code: {error_code}. Response: {response}")
     elif error_code == "errors.com.epicgames.accountportal.date_of_birth_verification_required":
         embed = await create_error_embed(client, ctx,
                                          description=f"Attempted to {verbiage_action} for account:\n"
@@ -3003,7 +3003,7 @@ async def post_error_possibilities(ctx, client, command, acc_name, error_code, e
     return embed
 
 
-async def strip_string(string):
+async def strip_string(string: str) -> str:
     """
     Strips a string of all non-alphanumeric characters
 
@@ -3016,7 +3016,7 @@ async def strip_string(string):
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
 
-async def slash_name(client, command):
+async def slash_name(client: Client, command: Command) -> str | Command:
     """
     Tries to find the name of a slash command from the command's normal name
 
@@ -3037,7 +3037,7 @@ async def slash_name(client, command):
     return command
 
 
-async def slash_mention_string(client, command, return_placeholder=False):
+async def slash_mention_string(client: Client, command: Command, return_placeholder: bool = False) -> str | None:
     """
     Returns a string with the slash command and mention
 
@@ -3061,7 +3061,7 @@ async def slash_mention_string(client, command, return_placeholder=False):
         return None
 
 
-def create_command_dict(client):
+def create_command_dict(client: Client) -> Tuple[dict, dict, list]:
     """
     Creates a dictionary of all commands and their aliases
 
@@ -3086,7 +3086,7 @@ def create_command_dict(client):
     return command_name_dict, command_dict, list(command_name_dict)
 
 
-def extract_auth_code(string):
+def extract_auth_code(string: str) -> str:
     """
     Extracts the auth code from a string
 
@@ -3105,7 +3105,7 @@ def extract_auth_code(string):
 
 
 @deprecation.deprecated(details="Use `validate_homebase_name` instead")
-async def is_legal_homebase_name(string):
+async def is_legal_homebase_name(string: str) -> bool:
     """
     Checks if a string is a legal homebase name
 
@@ -3120,10 +3120,10 @@ async def is_legal_homebase_name(string):
         True if legal, else False
     """
     # TODO: add obfuscated filter for protected homebase names
-    return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string)
+    return re.match(r"^[0-9a-zA-Z '\-._~]{1,16}$", string) is not None
 
 
-async def validate_homebase_name(string: str) -> (bool, tuple):
+async def validate_homebase_name(string: str) -> Tuple[bool, list[str]]:
     """
     validate a homebase name against the allowed characters datatable
 
@@ -3181,7 +3181,8 @@ async def validate_homebase_name(string: str) -> (bool, tuple):
     return True, list_of_invalid_chars_used
 
 
-async def generate_banner(client, embed, homebase_icon, homebase_colour, author_id):
+async def generate_banner(client: discord.Client, embed: discord.Embed, homebase_icon: discord.Asset,
+                          homebase_colour: discord.Colour, author_id: discord.User.id) -> discord.Embed:
     """
     Generates a banner thumbnail for the embed
 
@@ -3218,7 +3219,7 @@ async def generate_banner(client, embed, homebase_icon, homebase_colour, author_
     return embed, file
 
 
-async def research_stat_rating(stat, level):
+async def research_stat_rating(stat: str, level: int) -> int:
     """
     Calculates the % stat buff given to player + team from a research level
 
@@ -3235,11 +3236,12 @@ async def research_stat_rating(stat, level):
     """
     personal_rating = get_rating(data_table=ResearchSystem, row=f"{stat}_personal_cumulative", time_input=level)
     team_rating = get_rating(data_table=ResearchSystem, row=f"{stat}_team_cumulative", time_input=level)
-    logger.debug(f"Research stat {stat} level {level} rating: {personal_rating + team_rating} (personal: {personal_rating}, team: {team_rating})")
+    logger.debug(
+        f"Research stat {stat} level {level} rating: {personal_rating + team_rating} (personal: {personal_rating}, team: {team_rating})")
     return personal_rating + team_rating, personal_rating, team_rating
 
 
-def research_stat_cost(stat, level):
+def research_stat_cost(stat: str, level: int) -> int:
     """
     Calculates the cost to upgrade a research stat
     I'm not sure if the level given is the current level, or the next level, assume the next level
@@ -3255,11 +3257,12 @@ def research_stat_cost(stat, level):
         >>> research_stat_cost("fortitude", 10)
         100000
     """
-    logger.debug(f"Research stat {stat} level {level} cost: {get_rating(data_table=ResearchSystem, row=f'{stat}_cost', time_input=sorted((0, level + 1, 120))[1])}")
+    logger.debug(
+        f"Research stat {stat} level {level} cost: {get_rating(data_table=ResearchSystem, row=f'{stat}_cost', time_input=sorted((0, level + 1, 120))[1])}")
     return get_rating(data_table=ResearchSystem, row=f"{stat}_cost", time_input=sorted((0, level + 1, 120))[1])
 
 
-def convert_iso_to_unix(iso_timestamp):
+def convert_iso_to_unix(iso_timestamp: str) -> int:
     """
     Converts an ISO timestamp to a unix timestamp rounded to the nearest second
 
@@ -3276,11 +3279,12 @@ def convert_iso_to_unix(iso_timestamp):
         >>> convert_iso_to_unix("2021-01-01T00:00:00.000+00:00")
         1609459200
     """
-    logger.debug(f"Converted ISO timestamp {iso_timestamp} to unix timestamp: {round(datetime.datetime.fromisoformat(iso_timestamp).timestamp())}")
+    logger.debug(
+        f"Converted ISO timestamp {iso_timestamp} to unix timestamp: {round(datetime.datetime.fromisoformat(iso_timestamp).timestamp())}")
     return round(datetime.datetime.fromisoformat(iso_timestamp).timestamp())
 
 
-def get_progress_bar(start, end, length):
+def get_progress_bar(start: int, end: int, length: int) -> str:
     """
     Generates a progress bar
 
