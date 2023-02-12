@@ -557,6 +557,10 @@ class MainPageProfileSettingsView(discord.ui.View):
         self.children[0].options = generate_profile_select_options(client, selected_profile, user_document,
                                                                    desired_lang)
         self.children[1].options = settings_options
+        self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
+        self.children[1].placeholder = stw.I18n.get('settings.view.select.setting.placeholder', self.desired_lang)
+        self.children[2].label = stw.I18n.get('generic.view.button.previous', self.desired_lang)
+        self.children[3].label = stw.I18n.get('generic.view.button.next', self.desired_lang)
 
         self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
 
@@ -838,7 +842,7 @@ async def default_page_profile_settings(client, ctx, user_profile, settings, mes
     main_page_embed = await main_page(page, client, ctx, user_profile, settings, desired_lang)
     main_page_embed.fields[0].value += message
 
-    settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings, desired_lang)
+    settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings, desired_lang=desired_lang)
     await active_view(client, ctx.author.id, settings_view)
     await stw.slash_send_embed(ctx, embeds=main_page_embed, view=settings_view)
 
