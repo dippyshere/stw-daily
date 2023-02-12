@@ -43,7 +43,8 @@ class NewsView(discord.ui.View):
         }
 
         self.children = list(map(self.map_button_emojis, self.children))
-
+        self.children[0].label = stw.I18n.get('generic.view.button.previous', self.desired_lang)
+        self.children[1].label = stw.I18n.get('generic.view.button.next', self.desired_lang)
         self.children[2].label = stw.I18n.get("news.view.button.stw", self.desired_lang)
         self.children[3].label = stw.I18n.get("news.view.button.br", self.desired_lang)
 
