@@ -1611,7 +1611,10 @@ async def get_stw_news(client, locale="en"):
     Returns:
         The news for stw from epic games
     """
+    logger.debug(f"Getting STW news for {locale}")
     endpoint = client.config["endpoints"]["stw_news"]
+    # if locale == "es-ES":
+    #     locale = "es"  # TODO: es, es-419, or es-ES?
     return await client.stw_session.get(endpoint.format(locale))
 
 
