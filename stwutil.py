@@ -307,7 +307,8 @@ def time_until_end_of_day() -> str:
     """
     tomorrow = datetime.datetime.utcnow() + datetime.timedelta(days=1)
     a = datetime.datetime.combine(tomorrow, datetime.time.min) - datetime.datetime.utcnow()
-    days, hours, minutes, seconds = [int(x.total_seconds()) for x in divmod(a, datetime.timedelta(seconds=60))]
+    hours, remainder = divmod(int(a.total_seconds()), 3600)
+    minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
     fmt = ''
     if hours == 1:
@@ -318,11 +319,7 @@ def time_until_end_of_day() -> str:
         fmt += '{m} minute'
     else:
         fmt += '{m} minutes'
-    if days == 1:
-        fmt = '{d} day, ' + fmt
-    elif days > 1:
-        fmt = '{d} days, ' + fmt
-    return fmt.format(d=days, h=hours, m=minutes)
+    return fmt.format(h=hours, m=minutes)
 
 
 async def processing_queue_error_check(client: Client, ctx: discord.Message, user_snowflake: int) -> discord.Embed | bool:
@@ -2316,20 +2313,22 @@ def calculate_homebase_rating(profile: dict[str]) -> Tuple[float, int, dict[str,
         if "_team" in val["templateId"]:
             if "phoenix" in val['templateId'].lower():
                 continue
-            total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem,
-                                                                                             row=f"{val['templateId'].split(':')[1]}_cumulative",
-                                                                                             time_input=val["quantity"])
+            # total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += get_rating(data_table=ResearchSystem,
+            #                                                                                  row=f"{val['templateId'].split(':')[1]}_cumulative",
+            #                                                                                  time_input=val["quantity"])
+            total_stats[val['templateId'].split(':')[1].split("_")[0].lower()] += val["quantity"]
             logger.debug(
-                f"Research stat: {val['templateId'].split(':')[1].split('_')[0].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
+                f"Research stat: {val['templateId'].split(':')[1].split('_')[0].lower()} ({val['templateId'].split(':')[1]}) - quantity: {val['quantity']} rating: {get_rating(data_table=ResearchSystem, row='{0}_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
         else:
             # exclude phoenix stats
             if "phoenix" in val['templateId'].lower():
                 continue
-            total_stats[val['templateId'].split(':')[1].lower()] += get_rating(data_table=ResearchSystem,
-                                                                               row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
-                                                                               time_input=val["quantity"])
+            # total_stats[val['templateId'].split(':')[1].lower()] += get_rating(data_table=ResearchSystem,
+            #                                                                    row=f"{val['templateId'].split(':')[1]}_personal_cumulative",
+            #                                                                    time_input=val["quantity"])
+            total_stats[val['templateId'].split(':')[1].lower()] += val["quantity"]
             logger.debug(
-                f"Research stat: {val['templateId'].split(':')[1].lower()} - {val['templateId'].split(':')[1]} - {val['quantity']} - {get_rating(data_table=ResearchSystem, row='{0}_personal_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
+                f"Research stat: {val['templateId'].split(':')[1].lower()} ({val['templateId'].split(':')[1]}) - quantity: {val['quantity']} rating: {get_rating(data_table=ResearchSystem, row='{0}_personal_cumulative'.format(val['templateId'].split(':')[1]), time_input=val['quantity'])}")
     # for attr, val in research_levels.items():
     #     total_stats += val
     for attr, val in survivors.items():
@@ -2348,27 +2347,27 @@ def calculate_homebase_rating(profile: dict[str]) -> Tuple[float, int, dict[str,
     logger.debug(f"Survivors after processing: {survivors}")
     logger.debug(f"Worker stats: {workers}")
 
-    cmd_level = profile["profileChanges"][0]["profile"]["stats"]["attributes"]["level"]
-
-    logger.debug(f"Commander level: {cmd_level}")
-    logger.debug(f"Total stats before commander level: {total_stats}")
-    for attr, val in AccountLevels[0]["Rows"].items():
-        if int(attr) <= cmd_level:
-            if val["Rewards"][0]["TemplateId"] == "Stat:fortitude":
-                total_stats['fortitude'] += val["Rewards"][0]["Quantity"]
-            if val["Rewards"][0]["TemplateId"] == "Stat:offense":
-                total_stats['offense'] += val["Rewards"][0]["Quantity"]
-            if val["Rewards"][0]["TemplateId"] == "Stat:resistance":
-                total_stats['resistance'] += val["Rewards"][0]["Quantity"]
-            if val["Rewards"][0]["TemplateId"] == "Stat:technology":
-                total_stats['technology'] += val["Rewards"][0]["Quantity"]
+    # cmd_level = profile["profileChanges"][0]["profile"]["stats"]["attributes"]["level"]
+    #
+    # logger.debug(f"Commander level: {cmd_level}")
+    # logger.debug(f"Total stats before commander level: {total_stats}")
+    # for attr, val in AccountLevels[0]["Rows"].items():
+    #     if int(attr) <= cmd_level:
+    #         if val["Rewards"][0]["TemplateId"] == "Stat:fortitude":
+    #             total_stats['fortitude'] += val["Rewards"][0]["Quantity"]
+    #         if val["Rewards"][0]["TemplateId"] == "Stat:offense":
+    #             total_stats['offense'] += val["Rewards"][0]["Quantity"]
+    #         if val["Rewards"][0]["TemplateId"] == "Stat:resistance":
+    #             total_stats['resistance'] += val["Rewards"][0]["Quantity"]
+    #         if val["Rewards"][0]["TemplateId"] == "Stat:technology":
+    #             total_stats['technology'] += val["Rewards"][0]["Quantity"]
 
     # combine total stats into one number
     total = 0
     for attr, val in total_stats.items():
         total += val
-    logger.debug(f"Total stats after commander level: {total_stats}")
-    logger.debug(f"Total stats: {total}")
+    logger.debug(f"Total stats: {total_stats}")
+    logger.debug(f"Total FORT: {total}")
     logger.debug(
         f"Power level: {get_rating(data_table=HomebaseRatingMapping, row='UIMonsterRating', time_input=total * 4)}")
     return get_rating(data_table=HomebaseRatingMapping, row="UIMonsterRating",

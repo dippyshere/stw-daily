@@ -110,12 +110,12 @@ class Power(ext.Cog):
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, stw.I18n.get('power.embed.title', desired_lang),
                                             "power_level"),
-            description=f"\u200b\n{stw.I18n.get('power.embed.description', desired_lang, f'{power_level_emoji}{power_level}')}**\u200b\n"
+            description=f"\u200b\n{stw.I18n.get('power.embed.description', desired_lang, f'{power_level_emoji}{power_level}')}\u200b\n"
                         f"\u200b\n**Total FORT stats: {self.emojis['power_level']}{total}**\u200b\n"
                         f"\u200b\n**Fortitude: {self.emojis['fortitude']} {total_stats['fortitude']}**\u200b\n"
                         f"\u200b\n**Offense: {self.emojis['offense']} {total_stats['offense']}**\u200b\n"
                         f"\u200b\n**Resistance: {self.emojis['resistance']} {total_stats['resistance']}**\u200b\n"
-                        f"\u200b\n**Technology: {self.emojis['technology']} {total_stats['technology']}**\u200b\n",
+                        f"\u200b\n**Technology: {self.emojis['technology']} {total_stats['technology']}**\u200b\n\u200b",
             colour=vbucc_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "clown")
