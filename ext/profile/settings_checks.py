@@ -57,7 +57,7 @@ def check_bool(client, ctx, value):
         return False
 
 
-def check_localisation(client, ctx, value):
+def check_localisation(client, ctx, value) -> bool:
     """
     Checks if the value is a valid localisation.
 
@@ -69,7 +69,7 @@ def check_localisation(client, ctx, value):
     Returns:
         bool: True if the value is valid, False otherwise.
     """
-    if value.lower() in client.localisation.lower():
+    if value.lower() in client.localisation:
         return client.localisation[value.lower()]
     else:
         return False

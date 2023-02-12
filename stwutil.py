@@ -83,7 +83,7 @@ I18n = I18n()
 guild_ids = [757765475823517851]
 
 
-def reverse_dict_with_list_keys(dictionary):
+def reverse_dict_with_list_keys(dictionary: Dict[str, List[str]]) -> Dict[str, str]:
     """
     Reverses a dictionary with list keys
 
@@ -96,10 +96,13 @@ def reverse_dict_with_list_keys(dictionary):
     new_dict = {}
 
     for key, value in dictionary.items():
-        for item in value:
-            new_dict[item] = key
+        if isinstance(value, list):
+            for item in value:
+                new_dict[item.lower()] = key
+        else:
+            new_dict[value.lower()] = key
 
-    logger.debug(f"Reversed dictionary with list keys: {new_dict}")
+    logger.debug(f"Reversed dictionary with list and non-list keys: {new_dict}")
     return new_dict
 
 
