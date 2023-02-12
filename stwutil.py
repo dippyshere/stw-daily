@@ -14,6 +14,7 @@ import time
 import math
 from difflib import SequenceMatcher
 import logging
+from typing import List, Dict, Tuple, Union
 
 import aiofiles
 import blendmodes.blend
@@ -25,6 +26,10 @@ import io
 import orjson
 
 import discord
+from discord import Client
+from discord.ext.commands import Command
+from discord.types.interactions import Interaction
+from toolbox import Item
 
 import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
@@ -34,7 +39,7 @@ from ext.profile.bongodb import get_user_document, replace_user_document
 logger = logging.getLogger(__name__)
 
 
-async def load_item_data():
+async def load_item_data() -> Tuple[Dict, Dict, Dict, Dict, Dict, Dict, Dict, int, Dict, Dict, Dict]:
     """
     Loads the item data from the item data file
 
@@ -45,27 +50,27 @@ async def load_item_data():
         Exception: If the item data file is not found.
     """
     async with aiofiles.open("ext/battlebreakers/LoginRewards.json", "r") as f:
-        bbLoginRewards = orjson.loads(await f.read())
+        bbLoginRewards: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/SurvivorItemRating.json') as f:
-        SurvivorItemRating = orjson.loads(await f.read())
+        SurvivorItemRating: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/HomebaseRatingMapping.json') as f:
-        HomebaseRatingMapping = orjson.loads(await f.read())
+        HomebaseRatingMapping: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/ResearchSystem.json') as f:
-        ResearchSystem = orjson.loads(await f.read())
+        ResearchSystem: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/AccountLevels.json') as f:
-        AccountLevels = orjson.loads(await f.read())
+        AccountLevels: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/BannerColorMap.json') as f:
-        BannerColorMap = orjson.loads(await f.read())
+        BannerColorMap: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/BannerColors.json') as f:
-        BannerColors = orjson.loads(await f.read())
+        BannerColors: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/STW_Accolade_Tracker.json') as f:
-        max_daily_stw_accolade_xp = orjson.loads(await f.read())[0]["Properties"]["MaxDailyXP"]
+        max_daily_stw_accolade_xp: int = orjson.loads(await f.read())[0]["Properties"]["MaxDailyXP"]
     async with aiofiles.open('ext/DataTables/allowed-name-chars.json') as f:
-        allowed_chars = orjson.loads(await f.read())
+        allowed_chars: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/DailyRewards.json') as f:
-        stwDailyRewards = orjson.loads(await f.read())
+        stwDailyRewards: Dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/DailyFoundersRewards.json') as f:
-        stwFounderDailyRewards = orjson.loads(await f.read())
+        stwFounderDailyRewards: Dict = orjson.loads(await f.read())
     return bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
         BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards
 
@@ -106,7 +111,7 @@ def reverse_dict_with_list_keys(dictionary: Dict[str, List[str]]) -> Dict[str, s
     return new_dict
 
 
-async def view_interaction_check(view, interaction, command):
+async def view_interaction_check(view, interaction: Interaction, command: Command) -> bool:
     """
     Checks if the interaction is created by the view author
 
@@ -143,7 +148,7 @@ async def view_interaction_check(view, interaction, command):
             return False
 
 
-def edit_emoji_button(client, button):
+def edit_emoji_button(client: Client, button):
     """
     Adds an emoji to a button
 
@@ -157,9 +162,17 @@ def edit_emoji_button(client, button):
     Raises:
         Exception: If the emoji is not found in the config.
     """
-    button.emoji = client.config["emojis"][button.emoji.name]
-    logger.debug(f"Edited emoji button: {button}")
-    return button
+    try:
+        button.emoji = client.config["emojis"][button.emoji.name]
+        logger.debug(f"Edited emoji button: {button}")
+        return button
+    except KeyError as e:
+        logger.error(f"KeyError: {e}")
+        return button
+    except TypeError as e:
+        logger.error(f"TypeError: {e}")
+        return button
+
 
 
 global_quotes = discord.ext.commands.view._all_quotes
@@ -169,7 +182,7 @@ global_quotes = discord.ext.commands.view._all_quotes
 # def process_quotes_in_message(message_content): """Handles quotes in a message's content by replacing them with the appropriate unicode character\n\n\u200b\n\n**Args:**\n\n*message: the message to process*\n\n\n**Returns:**\n\n*The processed message*"""; [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["＂]', message_content)][1:-1])];     [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'[‘,’,“,”,„,‟,⹂,⹂,「,」,『,』,〝,〞,﹁,﹂,﹃,﹄,｢,｣,«,»,‹,›,《,》,〈,〉]', message_content)])]; return message_content
 
 
-def process_quotes_in_message(message_content):
+def process_quotes_in_message(message_content: str) -> str:
     """
     Handles quotes in a message's content by replacing them with the appropriate unicode character
 
@@ -207,7 +220,7 @@ def process_quotes_in_message(message_content):
     return message_content
 
 
-async def slash_send_embed(ctx, embeds, view=None, interaction=False):
+async def slash_send_embed(ctx, embeds, view=None, interaction=False) -> Union[discord.Message, None]:
     """
     A small bridging function to send embeds to a slash, view, normal command, or interaction
 
@@ -256,7 +269,7 @@ async def slash_send_embed(ctx, embeds, view=None, interaction=False):
             return await ctx.send(embeds=embeds)
 
 
-async def retrieve_shard(client, shard_id):
+async def retrieve_shard(client: Client, shard_id: int) -> int:
     """
     Retrieves the current shard name. Fallback to current shard id if no name is available
 
@@ -271,9 +284,14 @@ async def retrieve_shard(client, shard_id):
         Exception: If the shard id is greater than the number of shards
     """
     if shard_id > len(client.config["shard_names"]):
+        print("Shard id {} is out of range".format(shard_id))
         return shard_id
 
-    return client.config["shard_names"][shard_id]
+    try:
+        return client.config["shard_names"][shard_id]
+    except (KeyError, IndexError):
+        print("Unable to find shard name for shard id {}".format(shard_id))
+        return shard_id
 
 
 def time_until_end_of_day():
@@ -289,8 +307,7 @@ def time_until_end_of_day():
     """
     tomorrow = datetime.datetime.utcnow() + datetime.timedelta(days=1)
     a = datetime.datetime.combine(tomorrow, datetime.time.min) - datetime.datetime.utcnow()
-    hours, remainder = divmod(int(a.total_seconds()), 3600)
-    minutes, seconds = divmod(remainder, 60)
+    days, hours, minutes, seconds = [int(x.total_seconds()) for x in divmod(a, datetime.timedelta(seconds=60))]
     days, hours = divmod(hours, 24)
     fmt = ''
     if hours == 1:
@@ -301,10 +318,11 @@ def time_until_end_of_day():
         fmt += '{m} minute'
     else:
         fmt += '{m} minutes'
-    try:
-        return fmt.format(h=hours, m=minutes)
-    except:
-        return fmt.format(m=minutes)
+    if days == 1:
+        fmt = '{d} day, ' + fmt
+    elif days > 1:
+        fmt = '{d} days, ' + fmt
+    return fmt.format(d=days, h=hours, m=minutes)
 
 
 async def processing_queue_error_check(client, ctx, user_snowflake):
@@ -349,8 +367,7 @@ async def mention_string(client, prompt=""):
         Exception: If the bot is not ready
     """
     try:
-        me = client.user
-        return f"{me.mention} {prompt}"
+        return f"{client.user.mention} {prompt}"
     except Exception as e:
         logger.debug(f"Bot not ready, using fallback mention string. Error: {e}")
         # this is a fallback for when the bot is not ready, i guess
@@ -480,6 +497,8 @@ def get_reward(client, day, vbucks=True):
     day_mod = int(day) % 336
     if day_mod == 0:
         day_mod = 336
+    elif day_mod > 336:
+        day_mod = day_mod - 336
 
     item = items.ItemDictionary[str(day_mod)]
     emojis = item[1:]
@@ -633,6 +652,7 @@ def decrypt_user_data(user_snowflake, authentication_information):
     aes_cipher.update(bytes(str(user_snowflake), "ascii"))
     auth_information = aes_cipher.decrypt_and_verify(authentication, battle_breakers_token)
     decrypted_json = orjson.loads(auth_information)
+    logger.debug("Decrypted json: " + decrypted_json)
     return decrypted_json
 
 
@@ -798,7 +818,7 @@ async def check_for_auth_errors(client, request, ctx, message, command, auth_cod
     if auth_code == "":
         auth_code = "[saved session]"  # hell o hi
 
-    print(f'[ERROR]: {error_code}')
+    logger.debug(f"Epic Error code: {error_code}")
     if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
         # login error
         embed = await create_error_embed(client, ctx,
@@ -1122,7 +1142,7 @@ async def get_llama_datatable(client, path, desired_lang='en'):
                 pass
             else:
                 outcome = 'CardPack_Bronze.json'
-        # print(f"Chose DataTable: {outcome} for item: {path} (Similarity: {similarity})")
+        logger.debug(f"Chose DataTable: {outcome} for item: {path} (Similarity: {similarity})")
         async with aiofiles.open(f"./ext/DataTables/CardPacks/{outcome}", "r") as f:
             llama_file = orjson.loads(await f.read())[0]["Properties"]
         return llama_file["DisplayName"]["SourceString"], llama_file["Description"]["SourceString"], \
@@ -1156,6 +1176,7 @@ async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
     already_opened_free_llamas = 0
     free_llamas_count, free_llamas_list = await free_llama_count(store)
     if not free_llamas_count:
+        logger.info("No free llamas to open")
         return None
     else:
         items_from_llamas = []
@@ -1195,10 +1216,10 @@ async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
                         if opened_llamas == 0:
                             already_opened_free_llamas += 1
                     if "because fulfillment" in req_buy_free_llama_json['errorMessage']:
-                        "account is unable to claim free llama"
+                        logger.warning("account is unable to claim free llama")
                     break
                 else:
-                    "opening llama_to_claim_name tier llama_tier"
+                    logger.info("opening llama_to_claim_name tier llama_tier")
                     llama_loot = req_buy_free_llama_json['notifications'][0]['lootResult']['items']
                     llama_loot_count = 0
                     opened_llamas += 1
@@ -1218,12 +1239,14 @@ async def claim_free_llamas(client, auth_entry, store, prerolled_offers):
                             items_from_llamas.append(
                                 {"itemName": item_name, "itemType": item_type, "templateId": template_id,
                                  "itemGuid": item_guid, "itemRarity": item_rarity, "itemQuantity": item_quantity})
-                        print(f"{llama_loot_count}: {item_rarity} | {item_type}: {item_quantity}x {item_name}")
+                        logger.info(f"{llama_loot_count}: {item_rarity} | {item_type}: {item_quantity}x {item_name}")
         if int(already_opened_free_llamas) == free_llamas_count:
-            "alreadyclaimed"
+            logger.info("alreadyclaimed")
         else:
             if opened_llamas > 0:
-                "successfully opened opened_llamas"
+                logger.info("successfully opened opened_llamas")
+            else:
+                logger.info("opening failed")
 
 
 async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already_opened_free_llamas, free_llamas_count,
@@ -1324,7 +1347,7 @@ async def recycle_free_llama_loot(client, auth_entry, items_from_llamas, already
                     recycle_resources_count += 1
                     resources_message += f"{recycle_resources_count}: {resource_quantity}x {resource['itemName']}. " \
                                          f"Total ammount: {req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']]['quantity']}\n"
-            print(resources_message)
+            logger.info(resources_message)
 
 
 async def validate_existing_session(client, token):
@@ -1364,6 +1387,12 @@ def vbucks_query_check(profile_text):
     Returns:
         True if the profile can claim vbucks, False if not
     """
+    if not profile_text:
+        logger.error("No profile received")
+        return False
+    if not isinstance(profile_text, str):
+        logger.error("Profile was not a string")
+        return False
     if 'Token:receivemtxcurrency' in profile_text:
         logger.debug("Profile can claim vbucks")
         return True
@@ -1384,8 +1413,13 @@ async def auto_stab_stab_session(client, author_id, expiry_time):
         None
     """
     patience_is_a_virtue = expiry_time - time.time()
-    await asyncio.sleep(patience_is_a_virtue)
-    await manslaughter_session(client, author_id, expiry_time)
+    try:
+        await asyncio.sleep(patience_is_a_virtue)
+        await manslaughter_session(client, author_id, expiry_time)
+    except asyncio.CancelledError:
+        logger.debug('auto_stab_stab_session was cancelled')
+    except Exception as e:
+        logger.debug(f"Error in auto_stab_stab_session: {e}")
     return
 
 
@@ -1479,7 +1513,6 @@ async def add_other_game_entry(client, user_id, entry, game, other_games):
         entry["games"].append(other_game)
         entry = await entry_profile_req(client, entry, other_game)
         # This should definitely return the entry so we can allow opt-out
-        # forget above comment ig
     return entry
 
 
@@ -1824,13 +1857,13 @@ async def get_banner_colour(colour, colour_format="hex", colour_type="Primary"):
         (255, 0, 0)
     """
     colour_key = BannerColors[0]["Rows"][colour]["ColorKeyName"]
-    colour_map = BannerColorMap[0]["Properties"]["ColorMap"][colour_key][f"{colour_type}Color"]
-    colour_hex = f'#{colour_map["Hex"][2:]}'
+    colour_hex = f'#{BannerColorMap[0]["Properties"]["ColorMap"][colour_key][f"{colour_type}Color"]["Hex"][2:]}'
     if colour_format == "hex":
         return colour_hex
     elif colour_format == "rgb":
         return tuple(int(colour_hex[i:i + 2], 16) for i in (1, 3, 5))
     else:
+        logging.error(f"Invalid colour_format {colour_format}")
         return None
 
 
