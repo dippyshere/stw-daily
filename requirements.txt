@@ -1,5 +1,5 @@
 # literally everything this bot does lmao
-aiohttp<3.9.0,>=3.8.3
+aiohttp<3.9.0,>=3.8.4
 # py-cord>=2.2.2
 # for python 3.11
 git+https://github.com/Pycord-Development/pycord
