@@ -457,7 +457,8 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         await interaction.response.edit_message(embed=processing_embed, view=None)
 
         await dont_sue_me_please_im_sorry_forgive_me(self.client, interaction, self.user_document,
-                                                     self.currently_selected_profile_id, self.ctx, self.response_json)
+                                                     self.currently_selected_profile_id, self.ctx, self.response_json,
+                                                     self.desired_lang)
 
 
 class StolenAccountView(discord.ui.View):

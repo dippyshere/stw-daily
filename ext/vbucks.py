@@ -126,7 +126,7 @@ class Vbucks(ext.Cog):
         if vbucks_total != 0:
             for item in vbucks:
                 for attr, val in item.items():
-                    name, emoji = await stw.resolve_vbuck_source(val["templateId"])
+                    name, emoji = await stw.resolve_vbuck_source(val["templateId"], desired_lang)
                     embed.description += f"{self.emojis[emoji]} {name}: {val['quantity']}\n"
         else:
             embed.description += f"{stw.I18n.get('vbucks.embed.description.zerovbucks', desired_lang, self.emojis['spongebob'], self.emojis['megamind'])}\n"

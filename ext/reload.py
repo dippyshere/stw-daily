@@ -108,6 +108,15 @@ class Reload(ext.Cog):
         await self.load_command(ctx, extension)
 
     async def nhen(self, ctx):
+        """
+        The main function for the nhen command.
+
+        Args:
+            ctx: The context of the command.
+
+        Returns:
+            None
+        """
         description = "\u200b\n**Reloaded:**```asciidoc\n"
 
         if len(self.client.watch_module.changed) == 0:

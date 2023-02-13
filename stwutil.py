@@ -279,25 +279,25 @@ async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Em
 
     if isinstance(ctx, discord.Message):
         if view is not None:
-            return await ctx.channel.send(embeds=embeds, view=view, silent=True)
+            return await ctx.channel.send(embeds=embeds, view=view)
         else:
-            return await ctx.channel.send(embeds=embeds, silent=True)
+            return await ctx.channel.send(embeds=embeds)
     elif isinstance(ctx, discord.Interaction):
         ctx = ctx.response
         if view is not None:
-            return await ctx.send_message(embeds=embeds, view=view, silent=True)
+            return await ctx.send_message(embeds=embeds, view=view)
         else:
-            return await ctx.send_message(embeds=embeds, silent=True)
+            return await ctx.send_message(embeds=embeds)
     elif isinstance(ctx, discord.ApplicationContext):
         if view is not None:
-            return await ctx.respond(embeds=embeds, view=view, silent=True)
+            return await ctx.respond(embeds=embeds, view=view)
         else:
-            return await ctx.respond(embeds=embeds, silent=True)
+            return await ctx.respond(embeds=embeds)
     elif interaction:
         if view is not None:
-            return await ctx.response.send_message(embeds=embeds, view=view, silent=True)
+            return await ctx.response.send_message(embeds=embeds, view=view)
         else:
-            return await ctx.response.send_message(embeds=embeds, silent=True)
+            return await ctx.response.send_message(embeds=embeds)
     else:
         if view is not None:
             return await ctx.send(embeds=embeds, view=view, silent=True)
@@ -540,7 +540,7 @@ def get_reward(client: discord.Client, day: int | str, vbucks: bool = True) -> l
     if day_mod == 0:
         day_mod = 336
     elif day_mod > 336:
-        day_mod = day_mod - 336
+        day_mod -= 336
 
     item = items.ItemDictionary[str(day_mod)]
     emojis = item[1:]
