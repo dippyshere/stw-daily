@@ -58,7 +58,7 @@
         "localised_name": "settings.config.lang.name",
         "short_description": "settings.config.lang.description.short",
         "long_description": "settings.config.lang.description.long",
-        "modal_title": "Language",
+        "modal_title": "settings.config.lang.name",
         "input_placeholder": "settings.config.lang.modal.placeholder",
         "input_label": "settings.config.lang.modal.label",
         "check_function": "check_localisation",

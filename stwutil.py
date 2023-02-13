@@ -279,30 +279,30 @@ async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Em
 
     if isinstance(ctx, discord.Message):
         if view is not None:
-            return await ctx.channel.send(embeds=embeds, view=view)
+            return await ctx.channel.send(embeds=embeds, view=view, silent=True)
         else:
-            return await ctx.channel.send(embeds=embeds)
+            return await ctx.channel.send(embeds=embeds, silent=True)
     elif isinstance(ctx, discord.Interaction):
         ctx = ctx.response
         if view is not None:
-            return await ctx.send_message(embeds=embeds, view=view)
+            return await ctx.send_message(embeds=embeds, view=view, silent=True)
         else:
-            return await ctx.send_message(embeds=embeds)
+            return await ctx.send_message(embeds=embeds, silent=True)
     elif isinstance(ctx, discord.ApplicationContext):
         if view is not None:
-            return await ctx.respond(embeds=embeds, view=view)
+            return await ctx.respond(embeds=embeds, view=view, silent=True)
         else:
-            return await ctx.respond(embeds=embeds)
+            return await ctx.respond(embeds=embeds, silent=True)
     elif interaction:
         if view is not None:
-            return await ctx.response.send_message(embeds=embeds, view=view)
+            return await ctx.response.send_message(embeds=embeds, view=view, silent=True)
         else:
-            return await ctx.response.send_message(embeds=embeds)
+            return await ctx.response.send_message(embeds=embeds, silent=True)
     else:
         if view is not None:
-            return await ctx.send(embeds=embeds, view=view)
+            return await ctx.send(embeds=embeds, view=view, silent=True)
         else:
-            return await ctx.send(embeds=embeds)
+            return await ctx.send(embeds=embeds, silent=True)
 
 
 async def retrieve_shard(client: Client, shard_id: int) -> int | str:
@@ -2508,7 +2508,7 @@ async def create_error_embed(client: Client, ctx: Context, title: str = None, de
         if embed.description[-3:] != "```":
             embed.description += "\n"
         embed.description += f"\u200b\n{I18n.get('util.error.embed.prompthelp', desired_lang)}\n" \
-                             f"{await mention_string(client, 'help {0}'.format(command))}  •  {I18n.get('util.error.embed.prompthelp.1', desired_lang, eval(bytes.fromhex('68747470733A2F2F646973636F72642E67672F51596741425044717A48').decode('utf-8')))}"
+                             f"{await mention_string(client, 'help {0}'.format(command))}  •  {I18n.get('util.error.embed.prompthelp.1', desired_lang, bytes.fromhex('68747470733A2F2F646973636F72642E67672F51596741425044717A48').decode('utf-8'))}"
     if prompt_newcode:
         embed.description += f"\n{I18n.get('util.error.embed.promptnewcode', desired_lang)}"
     if add_auth_gif:

@@ -9,6 +9,7 @@ This file is the cog for the settings command. not currently under development.
 # it does matter if its sunday
 
 import math
+import logging
 
 import discord
 import discord.ext.commands as ext
@@ -17,6 +18,8 @@ from discord import Option
 import stwutil as stw
 from ext.profile.bongodb import *
 from ext.profile.settings_checks import *
+
+logger = logging.getLogger(__name__)
 
 
 async def settings_profile_setting_select(view, select, interaction, desired_lang):
@@ -268,17 +271,15 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
         self.desired_lang = desired_lang
 
-        title = setting_information["modal_title"].format(self.current_setting_value)
-        super().__init__(title=title)
+        logger.debug(f"Setting information: {setting_information}")
+        super().__init__(title=stw.I18n.get(setting_information["modal_title"], desired_lang))
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
         input_style = discord.InputTextStyle.long if setting_information["input_type"] == "long" else discord.InputTextStyle.short
         setting_input = discord.ui.InputText(style=input_style,
-                                             label=setting_information["input_label"].format(
-                                                 self.current_setting_value),
-                                             placeholder=setting_information["input_placeholder"].format(
-                                                 self.current_setting_value),
+                                             label=stw.I18n.get(setting_information["input_label"], self.desired_lang),
+                                             placeholder=stw.I18n.get(setting_information["input_placeholder"], self.desired_lang, self.current_setting_value),
                                              required=True,
                                              min_length=setting_information["min_length"],
                                              max_length=setting_information["max_length"])
@@ -386,7 +387,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
 
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
         # print(current_slice)
-        settings_options = generate_settings_view_options(client, current_slice)
+        settings_options = generate_settings_view_options(client, current_slice, self.desired_lang, selected_setting)
 
         self.children[0].options = generate_profile_select_options(client, int(self.selected_profile), user_document, desired_lang)
         self.children[1].options = settings_options
@@ -551,7 +552,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         self.desired_lang = desired_lang
 
         current_slice = get_current_settings_slice(page, settings_per_page, settings)
-        settings_options = generate_settings_view_options(client, current_slice)
+        settings_options = generate_settings_view_options(client, current_slice, self.desired_lang)
 
         selected_profile = user_document["global"]["selected_profile"]
 
@@ -672,13 +673,15 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
     return page_embed
 
 
-def generate_settings_view_options(client, current_slice):
+def generate_settings_view_options(client, current_slice, desired_lang, selected_setting=None):
     """
     This function generates the options for the settings select.
 
     Args:
         client: The client.
         current_slice: The current slice of settings.
+        desired_lang: The desired language.
+        selected_setting: The selected setting.
 
     Returns:
         list: The list of options.
@@ -687,9 +690,13 @@ def generate_settings_view_options(client, current_slice):
 
     for index, setting_option in enumerate(current_slice):
         emoji_key = client.default_settings[setting_option]["emoji"]
-        select_options.append(discord.SelectOption(label=setting_option.replace('_', ' ').capitalize(),
-                                                   value=setting_option + str(index),
-                                                   emoji=client.config["emojis"][emoji_key]))
+        logger.debug(f"Current slice: {current_slice}")
+        select_options.append(discord.SelectOption(
+            label=stw.I18n.get(client.default_settings[setting_option]["localised_name"], desired_lang),
+            description=stw.truncate(stw.I18n.get(client.default_settings[setting_option]["short_description"], desired_lang)) if '.' not in stw.I18n.get(client.default_settings[setting_option]["short_description"], desired_lang) else None,
+            value=setting_option + str(index),
+            emoji=client.config["emojis"][emoji_key],
+            default=True if selected_setting == setting_option else False))
 
     return select_options
 
@@ -795,14 +802,14 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
         page_embed.add_field(
             name=stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']],
                               stw.I18n.get(setting_info['localised_name'], desired_lang)),
-            value=f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n// {setting}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.requirement', desired_lang)}:: {stw.I18n.get('settings.type.bool', desired_lang)}```",
+            value=f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.requirement', desired_lang)}:: {stw.I18n.get('settings.type.bool', desired_lang)}```",
             inline=False)
     else:
         requirement_string = stw.I18n.get(setting_info['req_string'], desired_lang)
         page_embed.add_field(
             name=stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']],
                               stw.I18n.get(setting_info['localised_name'], desired_lang)),
-            value=f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n// {setting}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.type', desired_lang)}:: {stw.I18n.get('settings.type.{}'.format(type(setting_info['default']).__name__), desired_lang)}\n{stw.I18n.get('settings.requirement', desired_lang)}:: {requirement_string}```",
+            value=f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.type', desired_lang)}:: {stw.I18n.get('settings.type.{}'.format(type(setting_info['default']).__name__), desired_lang)}\n{stw.I18n.get('settings.requirement', desired_lang)}:: {requirement_string}```",
             inline=False)
 
     return page_embed
