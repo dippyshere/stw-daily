@@ -229,7 +229,7 @@ class ProfileMainView(discord.ui.View):
         select_options = generate_profile_select_options(self.client, new_profile_selected, self.user_document,
                                                          self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document,
-                                       self.message, self.desired_lang)
+                                       self.message, desired_lang=self.desired_lang)
         await active_view(self.client, self.ctx.author.id, profile_view)
 
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -303,7 +303,7 @@ class ProfileMainView(discord.ui.View):
         select_options = generate_profile_select_options(self.client, new_selected, self.user_document,
                                                          self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_selected, self.user_document,
-                                       self.message, self.desired_lang)
+                                       self.message, desired_lang=self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -424,7 +424,7 @@ class ChangeNameModal(discord.ui.Modal):
         select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document,
                                                          self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
-                                       self.message, self.desired_lang)
+                                       self.message, desired_lang=self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -487,7 +487,7 @@ class NewProfileModal(discord.ui.Modal):
         select_options = generate_profile_select_options(self.client, self.cur_profile_id, self.user_document,
                                                          self.desired_lang)
         profile_view = ProfileMainView(self.ctx, self.client, select_options, self.cur_profile_id, self.user_document,
-                                       self.message, self.desired_lang)
+                                       self.message, desired_lang=self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
@@ -537,7 +537,7 @@ class Profile(ext.Cog):
         select_options = generate_profile_select_options(self.client, current_selected_profile, user_document,
                                                          desired_lang)
         profile_view = ProfileMainView(ctx, self.client, select_options, current_selected_profile, user_document,
-                                       desired_lang)
+                                       desired_lang=desired_lang)
         # brb back gtg soonish
         await active_view(self.client, ctx.author.id, profile_view)
         await stw.slash_send_embed(ctx, embed, profile_view)
@@ -667,7 +667,7 @@ class Profile(ext.Cog):
                            profile: Option(int, name_localizations=stw.I18n.construct_slash_dict('profile.meta.args.profile'),
                                            description_localizations=stw.I18n.construct_slash_dict('profile.meta.args.profile.description'),
                                            description="The ID of the profile to switch to (e.g. 0)",
-                                           default=0) = None):  # TODO: Autocomplete this with the user's profiles
+                                           default=None) = None):  # TODO: Autocomplete this with the user's profiles
         """
         The profile command.
 
@@ -675,5 +675,7 @@ class Profile(ext.Cog):
             ctx: The context.
             profile: The profile to switch to.
         """
+        if not isinstance(profile, int):
+            profile = None
         await command_counter(self.client, ctx.author.id)
         await self.profile_command(ctx, profile)

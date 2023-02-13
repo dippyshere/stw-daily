@@ -144,7 +144,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
 
                 asyncio.get_event_loop().create_task(
                     attempt_to_exchange_session(temp_auth, user_document, client, ctx, interaction, message,
-                                                desired_lang))
+                                                desired_lang=desired_lang))
                 return False
             except:
                 pass
@@ -283,7 +283,8 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     if current_profile["statistics"]["tos_accepted_version"] != TOS_VERSION:
         embed = await tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx, desired_lang)
         button_accept_view = EnslaveUserLicenseAgreementButton(user_document, client, ctx,
-                                                               currently_selected_profile_id, interaction, desired_lang)
+                                                               currently_selected_profile_id, interaction,
+                                                               desired_lang=desired_lang)
         await active_view(client, ctx.author.id, button_accept_view)
 
         if interaction is None:
@@ -316,7 +317,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
     elif current_profile["authentication"] is not None:
         embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang)
         stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction,
-                                                embed, desired_lang)
+                                                embed, desired_lang=desired_lang)
         await active_view(client, ctx.author.id, stolen_account_view)
 
         if interaction is None:
@@ -678,7 +679,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         self.timed_out = False
 
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
-                                                                   user_document)
+                                                                   user_document, self.desired_lang)
         self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
         self.children[1].label = stw.I18n.get('devauth.view.button.agreement', self.desired_lang)
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
