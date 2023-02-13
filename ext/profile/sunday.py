@@ -916,10 +916,9 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
         await stw.slash_send_embed(ctx, embeds=embed)
         return
 
-    if profile is None:
-        profile = user_profile["global"]["selected_profile"]
-
     if setting is not None or profile is not None or value is not None:
+        if profile is None:
+            profile = user_profile["global"]["selected_profile"]
         setting_map = await map_settings_aliases(client)
 
         happy_message = "\u200b\n*"
