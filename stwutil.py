@@ -30,7 +30,6 @@ import discord
 from discord import Client
 from discord.ext import commands
 from discord.ext.commands import Command, Context
-from toolbox import Item
 
 import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
@@ -1294,7 +1293,7 @@ async def claim_free_llamas(client: Client, auth_entry: dict[str, str | bool | f
                 logger.info("opening failed")
 
 
-async def recycle_free_llama_loot(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], items_from_llamas: list[Item], already_opened_free_llamas: int, free_llamas_count: int, recycle_config: Optional[dict] = None) -> None:
+async def recycle_free_llama_loot(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], items_from_llamas: dict | list, already_opened_free_llamas: int, free_llamas_count: int, recycle_config: Optional[dict] = None) -> None:
     """
     Recycles the free llama loot
 
@@ -2927,10 +2926,9 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
         embed = await create_error_embed(client, ctx,
                                          description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
                                                      f"```{acc_name}```\n"
-                                                     f"**Your saved auth info has expired 😱**\n"
-                                                     f"⦾ Please try {await mention_string(client, 'kill')}, then "
-                                                     f"{await mention_string(client, 'device')} and remove your linked"
-                                                     f" account",
+                                                     f"{I18n.get('util.error.auth.devauth.expired.description1', desired_lang)}\n"
+                                                     f"⦾ {I18n.get('util.error.auth.devauth.expired.description2', desired_lang, await mention_string(client, 'kill'), await mention_string(client, 'device'))}\n"
+                                                     f"⦾ {I18n.get('util.error.auth.devauth.expired.description3', desired_lang)}",
                                          prompt_help=True, command=command, desired_lang=desired_lang)
 
     elif error_code == "errors.com.epicgames.fortnite.town_name_validation":
@@ -2946,12 +2944,11 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
     elif error_code == "errors.com.epicgames.world_explorers.login_reward_not_available":
         reward = get_bb_reward_data(client, response, True, desired_lang=desired_lang)
         embed = await create_error_embed(client, ctx,
-                                         description=f"You have already claimed your reward for day **{reward[0]}**.\n"
+                                         description=f"{I18n.get('util.error.posterrors.wex.daily.claimed.description1', desired_lang, reward[0])}\n"
                                                      f"\u200b\n"
-                                                     f"**{reward[2]} Todays reward was:**\n"
+                                                     f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[2])}\n"
                                                      f"```{reward[4]} {reward[1]}```\n"
-                                                     f"You can claim tomorrow's reward "
-                                                     f"<t:{get_tomorrow_midnight_epoch()}:R>",
+                                                     f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, f'<t:{get_tomorrow_midnight_epoch()}:R>')}",
                                          prompt_authcode=False, command=command, error_level=0, desired_lang=desired_lang)
 
     # STW Daily Error Codes
