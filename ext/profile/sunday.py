@@ -38,7 +38,8 @@ async def settings_profile_setting_select(view, select, interaction, desired_lan
     embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.select', desired_lang, select.values[0][:-1])}\n\u200b\n"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(select.values[0][:-1], view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
-                                                                  int(select.values[0][-1]), view.message, desired_lang)
+                                                                  int(select.values[0][-1]), view.message,
+                                                                  desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
@@ -57,7 +58,7 @@ async def back_to_main_page(view, interaction, desired_lang):
     await interaction.response.edit_message(view=view)
     view.stop()
     main_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
-                                            view.message, desired_lang)
+                                            view.message, desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, main_view)
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
     embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.return', desired_lang)}\n\u200b\n"
@@ -92,7 +93,7 @@ async def shift_page(view, interaction, amount, desired_lang):
     embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.pagination.changepage', desired_lang, view.page)}\n\u200b"
 
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
-                                           view.message, desired_lang)
+                                           view.message, desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, new_view)
     await interaction.edit_original_response(embed=embed, view=new_view)
 
@@ -129,7 +130,7 @@ async def shift_page_on_sub_page(view, interaction, amount, desired_lang):
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message,
-                                                                  desired_lang)
+                                                                  desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
@@ -160,7 +161,7 @@ async def sub_settings_profile_select_change(view, select, interaction, desired_
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message,
-                                                                  desired_lang)
+                                                                  desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, sub_view)
 
     del view.client.processing_queue[view.user_document["user_snowflake"]]
@@ -191,7 +192,7 @@ async def settings_profile_select_change(view, select, interaction, desired_lang
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
     embed.fields[0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
-                                           view.message, desired_lang)
+                                           view.message, desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, new_view)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=new_view)
@@ -247,7 +248,7 @@ async def edit_current_setting_bool(view, interaction, set_value, desired_lang):
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message,
-                                                                  desired_lang)
+                                                                  desired_lang=desired_lang)
 
     await active_view(view.client, view.ctx.author.id, sub_view)
     await interaction.edit_original_response(embed=embed, view=sub_view)
@@ -316,7 +317,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                       view.client, view.page, view.ctx, view.settings,
                                                                       view.selected_setting_index, view.message,
-                                                                      self.desired_lang)
+                                                                      desired_lang=self.desired_lang)
         await active_view(view.client, view.ctx.author.id, sub_view)
 
         if check_result:
@@ -667,7 +668,7 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
                         f"({client.config['valid_locales'][profile['settings'][setting]][1]})"
     except:
         current_value = profile['settings'][setting]
-    page_embed.fields[0].value += f"""\n\n# {setting.replace("_", " ").capitalize()}\n> {setting.replace("_", "-")} | {current_value}\n{setting_info['description']}"""
+    page_embed.fields[0].value += f"""\n\n# {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n> {current_value}\n{stw.I18n.get(setting_info['short_description'], desired_lang)}"""
     return page_embed
 
 
@@ -783,11 +784,6 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
-    if isinstance(setting_info['default'], bool):
-        requirement_string = stw.I18n.get('settings.boolean.requirement', desired_lang)
-    else:
-        requirement_string = setting_info['req_string']
-
     try:
         current_value = f"{selected_profile_data['settings'][setting]} " \
                         f"- {stw.I18n.get('lang.{0}'.format(selected_profile_data['settings'][setting]), desired_lang)} " \
@@ -795,10 +791,19 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
     except:
         current_value = selected_profile_data['settings'][setting]
 
-    page_embed.add_field(
-        name=stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']], setting.replace('_', ' ').capitalize()),
-        value=f"```asciidoc\n== {setting.replace('_', ' ').capitalize()}\n// {setting}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{setting_info['description']}\n\n\n{stw.I18n.get('settings.type', desired_lang)}:: {type(setting_info['default']).__name__}\n{stw.I18n.get('settings.requirement', desired_lang)}:: {requirement_string}```",
-        inline=False)
+    if isinstance(setting_info['default'], bool):
+        page_embed.add_field(
+            name=stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']],
+                              stw.I18n.get(setting_info['localised_name'], desired_lang)),
+            value=f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n// {setting}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.requirement', desired_lang)}:: {stw.I18n.get('settings.type.bool', desired_lang)}```",
+            inline=False)
+    else:
+        requirement_string = stw.I18n.get(setting_info['req_string'], desired_lang)
+        page_embed.add_field(
+            name=stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']],
+                              stw.I18n.get(setting_info['localised_name'], desired_lang)),
+            value=f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n// {setting}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.type', desired_lang)}:: {stw.I18n.get('settings.type.{}'.format(type(setting_info['default']).__name__), desired_lang)}\n{stw.I18n.get('settings.requirement', desired_lang)}:: {requirement_string}```",
+            inline=False)
 
     return page_embed
 

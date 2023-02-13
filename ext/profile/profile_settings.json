@@ -8,15 +8,17 @@
         ],
         "default": 7,
         "emoji": "cal_anim",
-        "description": "How many upcoming days should STW Daily display in the reward and daily commands? A value of 0 will disable this feature.",
-        "modal_title": "Upcoming rewards limit",
+        "localised_name": "settings.config.upcomingdisplaydays.name",
+        "short_description": "settings.config.upcomingdisplaydays.description.short",
+        "long_description": "settings.config.upcomingdisplaydays.description.long",
+        "modal_title": "settings.config.upcomingdisplaydays.modal.title",
         "input_type": "short",
-        "input_placeholder": "Enter a new limit here. Current limit: {0}",
-        "input_label": "Enter a new limit between 0 and 60",
+        "input_placeholder": "settings.config.upcomingdisplaydays.modal.placeholder",
+        "input_label": "settings.config.upcomingdisplaydays.modal.label",
         "check_function": "check_upcoming_display_days",
         "min_length": 1,
         "max_length": 2,
-        "req_string": "Must be a number between 0 and 60"
+        "req_string": "settings.config.upcomingdisplaydays.requirement"
     },
     "display_name_on_auth": {
         "aliases": [
@@ -25,8 +27,10 @@
             "auth_name"
         ],
         "default": true,
-        "description": "Should STW Daily display your Epic Games display name when authenticating?",
-        "emoji": "storm_shield"
+        "emoji": "storm_shield",
+        "localised_name": "settings.config.nameonauth.name",
+        "short_description": "settings.config.nameonauth.description.short",
+        "long_description": "settings.config.nameonauth.description.long"
     },
     "language": {
         "aliases": [
@@ -50,15 +54,17 @@
             "international"
         ],
         "default": "auto",
-        "description": "What language should STW Daily use? Auto will try to use your Discord language, falling back to the server's language if it can't be determined. This feature is currently NOT AVAILABLE.",
-        "modal_title": "Language",
-        "input_placeholder": "Enter language here. Default: auto",
-        "input_label": "Enter a new language to use here",
-        "check_function": "check_localisation",
         "emoji": "world_globe",
+        "localised_name": "settings.config.lang.name",
+        "short_description": "settings.config.lang.description.short",
+        "long_description": "settings.config.lang.description.long",
+        "modal_title": "Language",
+        "input_placeholder": "settings.config.lang.modal.placeholder",
+        "input_label": "settings.config.lang.modal.label",
+        "check_function": "check_localisation",
         "input_type": "short",
         "min_length": 2,
-        "max_length": 100,
-        "req_string": "fixed in localised json ting fam innit k ite "
+        "max_length": 0,
+        "req_string": "settings.config.lang.requirement"
     }
 }
