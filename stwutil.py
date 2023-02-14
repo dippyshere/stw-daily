@@ -517,7 +517,7 @@ async def set_thumbnail(client: discord.Client, embed: discord.Embed, thumb_type
     return embed
 
 
-def get_reward(client: discord.Client, day: int | str, vbucks: bool = True) -> list[str, str]:
+def get_reward(client: discord.Client, day: int | str, vbucks: bool = True, desired_lang: str = "en") -> list[str, ...]:
     """
     gets the reward for the given day, accounting for non founders
 
@@ -525,6 +525,7 @@ def get_reward(client: discord.Client, day: int | str, vbucks: bool = True) -> l
         client: the client
         day: the day to get the reward for
         vbucks: whether to get vbucks or not
+        desired_lang: the desired language
 
     Returns:
         the reward for the given day and emoji key
@@ -542,27 +543,30 @@ def get_reward(client: discord.Client, day: int | str, vbucks: bool = True) -> l
     elif day_mod > 336:
         day_mod -= 336
 
-    item = items.ItemDictionary[str(day_mod)]
-    emojis = item[1:]
-    # add comma separators to the number
+    asset_path_name = stwDailyRewards[0]["Rows"][str(day_mod - 1)]["ItemDefinition"]["AssetPathName"]
+    quantity = stwDailyRewards[0]['Rows'][str(day_mod - 1)]['ItemCount']
+    if asset_path_name == "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap":
+        if vbucks:
+            asset_path_name = "/Game/Items/PersistentResources/Currency_Hybrid_MTX_XRayLlama.Currency_Hybrid_MTX_XRayLlama"
+        else:
+            asset_path_name = "/Game/Items/PersistentResources/Currency_XRayLlama.Currency_XRayLlama"
+    emoji, name, description = items.LootTable[asset_path_name]
+
     try:
-        item = item[0].split(" ")
-        item[0] = "{:,}".format(int(item[0]))
-        item = str(" ".join(item))
-    except ValueError:
-        item = items.ItemDictionary[str(day_mod)][0]
+        if asset_path_name.split('.')[1] in ["Voucher_BasicPack", "Reagent_C_T01", "SmallXpBoost", "CardPack_Bronze", "SmallXpBoost_Gift"]:
+            if quantity != 1:
+                name = I18n.get(f"stw.item.{asset_path_name.split('.')[1]}.name.plural", desired_lang)
+            else:
+                name = I18n.get(f"stw.item.{asset_path_name.split('.')[1]}.name.singular", desired_lang)
+        else:
+            name = I18n.get(f"stw.item.{asset_path_name.split('.')[1]}.name", desired_lang)
+        description = I18n.get(f"stw.item.{asset_path_name.split('.')[1]}.desc", desired_lang)
+    except:
+        logger.warning(f"Could not find translation for {asset_path_name}")
 
-    if not vbucks:
-        try:
-            item = item.replace('V-Bucks & ', '')
-            emojis[emojis.index('mtxswap_combined')] = 'xray'
-        except:
-            pass
-
-    emoji_text = ""
-    for emoji in emojis:
-        emoji_text += client.config["emojis"][emoji]
-    return [str(item), emoji_text]
+    emoji_text = f"{client.config['emojis']['celebrate']} {client.config['emojis'][emoji]} {client.config['emojis']['celebrate']}" if quantity == 1000 else client.config['emojis'][emoji]
+    logger.debug(f"Returning reward info: {name}, {emoji_text}, {description}, {quantity}")
+    return [name, emoji_text, description, quantity]
 
 
 def get_bb_reward_data(client: Client, response: Optional[dict] = None, error: bool = False, pre_calc_day: int = 0, desired_lang: str = "en") -> list[int | str | Any]:
