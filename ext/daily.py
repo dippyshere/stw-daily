@@ -99,7 +99,8 @@ class Daily(ext.Cog):
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
                 # Empty items means that daily was already claimed
                 if len(items) == 0:
-                    reward = stw.get_reward(self.client, day, vbucks)
+                    reward = stw.get_reward(self.client, day, vbucks, desired_lang)
+                    reward_quantity = f"{reward[-1]:,} " if reward[-1] != 1 else ""
                     rewards = ''
                     max_rewards_reached = False
                     if limit >= 2:
@@ -111,7 +112,9 @@ class Daily(ext.Cog):
                                 limit = i
                                 max_rewards_reached = True
                                 break
-                            rewards += stw.get_reward(self.client, int(day) + i, vbucks)[0]
+                            data = stw.get_reward(self.client, i + int(day), vbucks, desired_lang)
+                            data_quantity = f"{data[-1]:,} " if data[-1] != 1 else ""
+                            rewards += f"{data_quantity}{data[0]}"
                             if not (i + 1 == limit):
                                 rewards += ', '
                             else:
@@ -128,7 +131,7 @@ class Daily(ext.Cog):
                          f"{stw.I18n.get('daily.embed.alreadyclaimed.description1', desired_lang, f'{day:,}')}\n"
                          f"\u200b\n"
                          f"{stw.I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[1])}\n"
-                         f"```{reward[0]}```\n"), colour=yellow)
+                         f"```{reward_quantity}{reward[0]}```\n"), colour=yellow)
                     if limit == 2:
                         embed.description += (
                             f"{stw.I18n.get('reward.embed.field3', desired_lang, calendar)}\n"
@@ -156,7 +159,8 @@ class Daily(ext.Cog):
                     colour=succ_colour)
 
                 # First item is the default daily reward, add it using the get_reward method
-                reward = stw.get_reward(self.client, day, vbucks)
+                reward = stw.get_reward(self.client, day, vbucks, desired_lang)
+                reward_quantity = f"{reward[-1]:,} " if reward[-1] != 1 else ""
 
                 # Add any excess items + the default daily reward
                 for item in items[2:]:
@@ -168,7 +172,7 @@ class Daily(ext.Cog):
                         pass
 
                 embed.add_field(name=stw.I18n.get('daily.embed.claimed.field.name', desired_lang, reward[1]),
-                                value=f"```{reward[0]}```",
+                                value=f"```{reward_quantity}{reward[0]}```",
                                 inline=True)
 
                 # Second item is founders reward
@@ -178,7 +182,7 @@ class Daily(ext.Cog):
                     itemtype = founders["itemType"]
 
                     if itemtype == 'CardPack:cardpack_event_founders':
-                        display_itemtype = stw.I18n.get('daily.embed.claimed.founders.cardpack_founders', desired_lang)
+                        display_itemtype = stw.I18n.get('stw.item.CardPack_Event_Founders.name', desired_lang)
                     elif itemtype == 'CardPack:cardpack_bronze':
                         display_itemtype = stw.I18n.get('stw.item.CardPack_Bronze.name', desired_lang)
                     else:
@@ -186,7 +190,7 @@ class Daily(ext.Cog):
 
                     embed.add_field(name=stw.I18n.get('daily.embed.claimed.founders.field.name', desired_lang,
                                                       self.client.config["emojis"]["founders"]),
-                                    value=f"```{amount} {display_itemtype}```",
+                                    value=f"```{amount + ' ' if int(amount) != 1 else ''}{display_itemtype}```",
                                     inline=True)
                 except:
                     pass
@@ -209,7 +213,9 @@ class Daily(ext.Cog):
                             limit = i
                             max_rewards_reached = True
                             break
-                        rewards += str(stw.get_reward(self.client, int(day) + i, vbucks)[0])
+                        data = stw.get_reward(self.client, i + int(day), vbucks, desired_lang)
+                        data_quantity = f"{data[-1]:,} " if data[-1] != 1 else ""
+                        rewards += f"{data_quantity}{data[0]}"
                         if not (i + 1 == limit):
                             rewards += ', '
                         else:
