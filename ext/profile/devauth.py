@@ -1026,7 +1026,7 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         await interaction.response.edit_message(embed=processing_embed, view=None)
 
         auth_session_result = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", value, False,
-                                                                   False, True)
+                                                                   False, True, desired_lang=self.desired_lang)
         try:
             token = auth_session_result[1]['token']
         except:  # ? :3 hi hi should i push this to code bot ting if u ting it goo enog mkk 

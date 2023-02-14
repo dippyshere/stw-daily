@@ -2425,19 +2425,20 @@ def calculate_homebase_rating(profile: dict[Any]) -> Tuple[float, int, dict[str,
                       time_input=total * 4), total, total_stats
 
 
-async def check_devauth_user_auth_input(client: Client, ctx: Context) -> bool:
+async def check_devauth_user_auth_input(client: Client, ctx: Context, desired_lang: str) -> bool:
     """
     Checks if the user is authorised to use the devauth command
 
     Args:
         client (discord.Client): The discord client
         ctx: The discord context
+        desired_lang (str): The desired language
 
     Returns:
         bool: True if authorised, False if not
     """
     try:
-        user_document = await get_user_document(ctx, client, ctx.author.id)
+        user_document = await get_user_document(ctx, client, ctx.author.id, desired_lang=desired_lang)
         currently_selected_profile_id = user_document["global"]["selected_profile"]
 
         current_profile = user_document["profiles"][str(currently_selected_profile_id)]
@@ -2861,10 +2862,10 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
         embed = await create_error_embed(client, ctx,
                                          description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
                                                      f"```{acc_name}```\n"
-                                                     f"**You don't have Save the World**\n"
-                                                     f"⦾ `{command}` requires STW\n"
-                                                     f"⦾ If this is the wrong account, try switching accounts "
-                                                     f"with the link below",
+                                                     f"{I18n.get('util.error.auth.nostw.description1', desired_lang)}\n"
+                                                     f"⦾ {I18n.get('util.error.auth.nostw.description2', desired_lang, f'`{command.capitalize()}`')}\n"
+                                                     f"⦾ {I18n.get('util.error.auth.nostw.description3', desired_lang)}\n"
+                                                     f"⦾ {I18n.get('util.error.auth.nostw.description4', desired_lang)}",
                                          prompt_help=True, command=command, auth_push_strong=False,
                                          error_level=error_level, desired_lang=desired_lang)
     elif error_code == "errors.com.epicgames.common.authentication.token_verification_failed":
@@ -2890,9 +2891,8 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
         embed = await create_error_embed(client, ctx,
                                          description=f"{I18n.get(f'util.error.posterrors1.title.{verbiage_action}', desired_lang)}\n"
                                                      f"```{acc_name}```\n"
-                                                     f"**You need to verify your Date of Birth**\n"
-                                                     f"⦾ Please launch Fortnite or login to [Epic Games]("
-                                                     f"https://www.epicgames.com/fortnite) and try again",
+                                                     f"{I18n.get('util.error.auth.cabined.description1', desired_lang)}\n"
+                                                     f"⦾ {I18n.get('util.error.auth.cabined.description2', desired_lang, 'https://www.epicgames.com/fortnite')}",
                                          prompt_help=True, command=command,
                                          error_level=error_level, desired_lang=desired_lang)
     elif error_code == "errors.com.epicgames.modules.gamesubcatalog.purchase_not_allowed":

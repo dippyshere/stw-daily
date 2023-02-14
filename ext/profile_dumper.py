@@ -27,7 +27,7 @@ class ProfileDump(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds):
+    async def check_errors(self, ctx, public_json_response, auth_info, final_embeds, desired_lang):
         """
         Checks for errors in the public_json_response and edits the original message if an error is found.
 
@@ -36,6 +36,7 @@ class ProfileDump(ext.Cog):
             public_json_response: The json response from the public API.
             auth_info: The auth_info tuple from get_or_create_auth_session.
             final_embeds: The list of embeds to be edited.
+            desired_lang: The desired language of the user.
 
         Returns:
             True if an error is found, False otherwise.
@@ -45,7 +46,7 @@ class ProfileDump(ext.Cog):
             error_code = public_json_response["errorCode"]
             acc_name = auth_info[1]["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "profiledump", acc_name, error_code,
-                                                       verbiage_action="dump")
+                                                       verbiage_action="dump", desired_lang=desired_lang)
             final_embeds.append(embed)
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
             return True
@@ -94,7 +95,7 @@ class ProfileDump(ext.Cog):
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         # check for le error code
-        if await self.check_errors(ctx, profile_json_response, auth_info, final_embeds):
+        if await self.check_errors(ctx, profile_json_response, auth_info, final_embeds, desired_lang):
             return
 
         load_msg = await stw.processing_embed(self.client, ctx, desired_lang,

@@ -64,7 +64,7 @@ class LlamasView(discord.ui.View):
             colour=self.client.colours["generic_blue"])
         for entry in self.llama_store["catalogEntries"]:
             if entry["offerId"] == offer_id:
-                llama_datatable = await stw.get_llama_datatable(self.client, entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0])
+                llama_datatable = await stw.get_llama_datatable(self.client, entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0], self.desired_lang)
                 embed.description = f"\u200b\n{llama_datatable[2]}{llama_datatable[3]} **{llama_datatable[0]}**\n"
                 embed.description += stw.I18n.get("llamas.embed.description.price", self.desired_lang,
                                                   f"{'~~' + str(entry['prices'][0]['regularPrice']) + '~~ ' if entry['prices'][0]['regularPrice'] != entry['prices'][0]['finalPrice'] else ''}**{entry['prices'][0]['finalPrice']:,}** {stw.get_item_icon_emoji(self.client, entry['prices'][0]['currencySubType'])}\n")  # TODO: make this sale_sticker_store
@@ -245,7 +245,7 @@ class LlamasPurchaseView(discord.ui.View):
             colour=self.client.colours["generic_blue"])
         for entry in self.llama_store["catalogEntries"]:
             if entry["offerId"] == offer_id:
-                llama_datatable = await stw.get_llama_datatable(self.client, entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0])
+                llama_datatable = await stw.get_llama_datatable(self.client, entry['displayAssetPath'].split('/Game/Items/CardPacks/')[-1].split('.')[0], self.desired_lang)
                 self.price = entry['prices'][0]['finalPrice']
                 self.currency = entry['prices'][0]['currencySubType']
                 for attr, val in self.preroll_data.items():
@@ -356,7 +356,7 @@ class Llamas(ext.Cog):
                 continue
             llama_datatable = await stw.get_llama_datatable(self.client,
                                                             entry['displayAssetPath'].split('/Game/Items/CardPacks/')[
-                                                                -1].split('.')[0])
+                                                                -1].split('.')[0], desired_lang)
             options.append(discord.SelectOption(label=llama_datatable[0], value=entry['offerId'],
                                                 description=stw.I18n.get("llamas.embed.description.price", desired_lang,
                                                                          f"{entry['prices'][0]['finalPrice']:,}"),
