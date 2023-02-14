@@ -2778,7 +2778,7 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
 
     title = I18n.get('util.createsession.welcome.title', desired_lang)
     if auth_with_devauth:
-        title = I18n.get('util.createsession.welcome1.title', desired_lang, currently_selected_profile_id)
+        title = I18n.get('util.createsession.welcome1.title.profile', desired_lang, currently_selected_profile_id)
 
     embed = discord.Embed(title=await add_emoji_title(client, title, "whitekey"),
                           description=description, colour=white_colour)
