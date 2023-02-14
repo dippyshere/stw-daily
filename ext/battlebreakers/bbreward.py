@@ -59,10 +59,9 @@ class BBReward(ext.Cog):
 
         if day is None:
             embed = await stw.create_error_embed(self.client, ctx,
-                                                 description=f"**No day specified**\n"
-                                                             f"⦾ You need to specify a day to get the reward for\n"
-                                                             f"⦾ For example, "
-                                                             f"{await stw.mention_string(self.client, 'bbreward 336')}",
+                                                 description=f"{stw.I18n.get('reward.error.noday1', desired_lang)}\n"
+                                                             f"⦾ {stw.I18n.get('reward.error.noday2', desired_lang)}\n"
+                                                             f"⦾ {stw.I18n.get('reward.error.noday3', desired_lang, await stw.mention_string(self.client, 'bbreward 336'))}",
                                                  error_level=0, command="bbreward", prompt_help=True,
                                                  prompt_authcode=False, desired_lang=desired_lang)
             await stw.slash_send_embed(ctx, embed)
@@ -73,8 +72,8 @@ class BBReward(ext.Cog):
                 day = int(day)
             except ValueError:
                 embed = await stw.create_error_embed(self.client, ctx,
-                                                     description="**Invalid number**\n"
-                                                                 "⦾ The given day must be a number",
+                                                     description=f"{stw.I18n.get('reward.error.invalidday1', desired_lang)}\n"
+                                                                 f"⦾ {stw.I18n.get('reward.error.invalidday2', desired_lang)}",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
                                                      command="bbreward", desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
@@ -83,8 +82,8 @@ class BBReward(ext.Cog):
                 limit = int(limit)
             except ValueError:
                 embed = await stw.create_error_embed(self.client, ctx,
-                                                     description="**Invalid number**\n"
-                                                                 "⦾ The limit must be a number",
+                                                     description=f"{stw.I18n.get('reward.error.invalidday1', desired_lang)}\n"
+                                                                 f"⦾ {stw.I18n.get('reward.error.invalidlimit2', desired_lang)}",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
                                                      command="bbreward", desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
@@ -119,15 +118,16 @@ class BBReward(ext.Cog):
                 reward = stw.get_bb_reward_data(self.client, pre_calc_day=day, desired_lang=desired_lang)
             except Exception as e:
                 embed = await stw.create_error_embed(self.client, ctx,
-                                                     description=f"**An error occured when fetching day {day}**\n"
-                                                                 f"⦾ Please let us know on the support server :D",
+                                                     description=f"{stw.I18n.get('reward.error.general1', desired_lang, day)}\n"
+                                                                 f"⦾ {stw.I18n.get('reward.error.general2', desired_lang)}",
                                                      prompt_help=True, prompt_authcode=False, command="bbreward",
                                                      desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, embed)
                 print(f"Error when getting bbreward for day {day} - {e}")
                 return
-
-            embed.add_field(name=stw.I18n.get("reward.embed.field1", desired_lang, reward[2]), value=f'```{reward[4]} {reward[1]}```\u200b')
+            reward_quantity = f"{reward[4]:,} " if reward[4] != 1 else ""
+            embed.add_field(name=stw.I18n.get("reward.embed.field1", desired_lang, reward[2]),
+                            value=f'```{reward_quantity}{reward[1]}```\u200b')
             for row in stw.bbLoginRewards[0]['Rows']:
                 if 'MtxGiveaway' in stw.bbLoginRewards[0]['Rows'][row]['ItemDefinition']['AssetPathName']:
                     if int(day) % 1800 < int(row):
@@ -135,13 +135,13 @@ class BBReward(ext.Cog):
                             embed.add_field(
                                 name=stw.I18n.get("bbreward.embed.mtx.field.name", desired_lang,
                                                   self.client.config["emojis"]["T_MTX_Gem_Icon"]),  # hello
-                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[1]}", int(row) - int(day) % 1800)}'
+                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[-1]:,} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[1]}", int(row) - int(day) % 1800)}'
                                       f'```\u200b', inline=False)
                         else:
                             embed.add_field(
                                 name=stw.I18n.get("bbreward.embed.mtx.field.name", desired_lang,
                                                   self.client.config["emojis"]["T_MTX_Gem_Icon"]),  # hello
-                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[-1]} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[1]}", int(row) - int(day) % 1800)}'
+                                value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[-1]:,} {stw.get_bb_reward_data(self.client, pre_calc_day=int(row), desired_lang=desired_lang)[1]}", int(row) - int(day) % 1800)}'
                                       f'```\u200b', inline=False)
                         break  # hello alexander hanson
             if limit >= 1:
@@ -156,7 +156,8 @@ class BBReward(ext.Cog):
                         max_rewards_reached = True
                         break
                     data = stw.get_bb_reward_data(self.client, pre_calc_day=day + i, desired_lang=desired_lang)
-                    rewards += str(data[4]) + " " + str(data[1])
+                    data_quantity = f"{data[4]:,} " if data[4] != 1 else ""
+                    rewards += f"{data_quantity}{data[1]}"
                     if not (i + 1 == limit + 1):
                         rewards += ', '
                     else:
@@ -167,7 +168,7 @@ class BBReward(ext.Cog):
                     reward = stw.get_bb_reward_data(self.client, pre_calc_day=day + 1, desired_lang=desired_lang)
 
                     embed.add_field(name=stw.I18n.get("reward.embed.field3", desired_lang, reward[2]),
-                                    value=f'```{reward[4]} {reward[1]}```\u200b',
+                                    value=f'```{reward[4]:,} {reward[1]}```\u200b',
                                     inline=False)
                 else:
                     embed.add_field(
@@ -178,8 +179,6 @@ class BBReward(ext.Cog):
                             embed.description = stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")
                         else:
                             embed.description = stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")
-            # TODO: make this compliant with the upcoming day limit setting
-            # rip
             embed = await stw.set_thumbnail(self.client, embed, "Shared2")
             embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 

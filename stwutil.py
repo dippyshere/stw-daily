@@ -602,13 +602,13 @@ def get_bb_reward_data(client: Client, response: Optional[dict] = None, error: b
 
     # done FORTIFICAITION OF THE NIGHT hmm i see folders
     asset_path_name = bbLoginRewards[0]["Rows"][str(day_mod)]["ItemDefinition"]["AssetPathName"]
-    quantity = f"{bbLoginRewards[0]['Rows'][str(day_mod)]['ItemCount']:,}"
+    quantity = bbLoginRewards[0]['Rows'][str(day_mod)]['ItemCount']
 
     emoji, name, description = ext.battlebreakers.BBLootTable.BBLootTable[asset_path_name]
 
     try:
         name = I18n.get(f"wex.item.{asset_path_name.split('.')[1]}.name", desired_lang)
-        description = I18n.get(f"wex.item.{asset_path_name.split('.')[1]}.description", desired_lang)
+        description = I18n.get(f"wex.item.{asset_path_name.split('.')[1]}.desc", desired_lang)
     except:
         logger.warning(f"Could not find translation for {asset_path_name}")
 
