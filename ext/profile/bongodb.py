@@ -165,7 +165,7 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
         select_options.append(discord.SelectOption(
             label=profile["friendly_name"],
             value=profile_id,
-            default=False,
+            default=selected,
             emoji=client.config["emojis"][profile_id]
         ))
 
