@@ -675,13 +675,11 @@ class Research(ext.Cog):
                           '/research', 'resea', 'resear', 'lab', 'fortitude', 'fort', 'upgrade',
                           'skill', 'tree'],
                  extras={'emoji': "research_point", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": False},
-                 brief="Claim and spend your research points (authentication required)",
-                 description="This command lets you claim your available research points, view your FORT research "
-                             "levels, and upgrade those levels. Press the button corresponding with the stat you want "
-                             "to upgrade.")
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.slash.optout', True]
+                 }, "dev": False, "description_keys": ["research.meta.description"], "name_key": "research.slash.name"},
+                 brief="research.meta.brief",
+                 description="{0}")
     async def research(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the research command when called traditionally

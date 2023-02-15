@@ -419,14 +419,14 @@ class ProfileDump(ext.Cog):
                           'archiv3e', 'archive3', 'archiv4e', 'archive4', 'archivre', 'archiver', 'archivef',
                           'archivde', 'archived', 'archivse', 'archives', '/dump', '/profiledump'],
                  extras={'emoji': "library_floppydisc", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": False},
-                 brief="Dumps your Fortnite profiles as JSON attachments (authentication required)",
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.slash.optout', True]
+                 }, "dev": False,
+                         "description_keys": ["profiledumper.meta.description", "generic.description.experimental"],
+                         "name_key": "profiledumper.slash.name"},
+                 brief="profiledumper.meta.brief",
                  description=(
-                         "This command dumps all your Fortnite profiles (14 total) as JSON attachments. "
-                         "You must be authenticated to use this command.\n ⦾ Please note that this command is still "
-                         "experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
+                         "{0}\n⦾ {1}<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
     async def profiledump(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the profile dump command when called traditionally

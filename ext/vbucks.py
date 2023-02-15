@@ -235,14 +235,11 @@ class Vbucks(ext.Cog):
                           '/vbucks', '/v-bucks', 'chucks', '/chucks', '/balance', 'money', 'currency', 'cash', 'vbu',
                           'vbucks\\', 'vbuck\\', 'v\\'],
                  extras={'emoji': "vbuck_book", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": False},
-                 brief="View your V-Bucks and X-Ray Tickets balance (authentication required)",
-                 description=(
-                         "This command displays your total V-Bucks, provide a breakdown on the source(s) of those "
-                         "V-Bucks, and additionally display how many X-Ray tickets you have. You must be "
-                         "authenticated to use this command."))
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.slash.optout', True]
+                 }, "dev": False, "description_keys": ["vbucks.meta.description"], "name_key": "vbucks.slash.name"},
+                 brief="vbucks.meta.brief",
+                 description="{0}")
     async def vbucks(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the vbucks command when called traditionally
