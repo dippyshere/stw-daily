@@ -30,7 +30,7 @@ class HowToUseView(discord.ui.View):
 
         self.add_item(discord.ui.Button(label=stw.I18n.get("how2.view.getcode", desired_lang),
                                         style=discord.ButtonStyle.link,
-                                        url=self.client.config["login_links"]["login_fortntite_pc"],
+                                        url=self.client.config["login_links"]["login_fortnite_pc"],
                                         emoji=self.client.config["emojis"]["link_icon"]))
         self.add_item(discord.ui.Button(label=stw.I18n.get("how2.view.button.morehelp", desired_lang),
                                         style=discord.ButtonStyle.link,
@@ -68,7 +68,7 @@ class HowTo(ext.Cog):
             title=await stw.add_emoji_title(self.client, stw.I18n.get("how2.embed.title", desired_lang), "info"),
             description=f'\u200b\n{stw.I18n.get("how2.embed.description1", desired_lang, "https://github.com/dippyshere/stw-daily/wiki", "https://github.com/dippyshere/stw-daily/wiki")}\n'
                         f'\n{stw.I18n.get("how2.embed.description2", desired_lang)}\n'
-                        f'{stw.I18n.get("how2.embed.description3", desired_lang, self.client.config["login_links"]["login_fortntite_pc"])}\n'
+                        f'{stw.I18n.get("how2.embed.description3", desired_lang, self.client.config["login_links"]["login_fortnite_pc"])}\n'
                         f'\n{stw.I18n.get("how2.embed.description4", desired_lang)}\n'
                         f'{stw.I18n.get("how2.embed.description5", desired_lang)}\n'
                         f'{stw.I18n.get("how2.embed.description6", desired_lang, "  •", f"</daily:1057120945522876473> `{token_arg}`")}\n'

@@ -2502,12 +2502,12 @@ async def create_error_embed(client: Client, ctx: Context, title: str = None, de
     if prompt_authcode and auth_push_strong:
         if embed.description[-3:] != "```":
             embed.description += "\n"
-        embed.description += f"\u200b\n{I18n.get('util.error.embed.promptauth.strong1', desired_lang, client.config['login_links']['login_fortntite_pc'])}\n" \
+        embed.description += f"\u200b\n{I18n.get('util.error.embed.promptauth.strong1', desired_lang, client.config['login_links']['login_fortnite_pc'])}\n" \
                              f"{I18n.get('util.error.embed.promptauth.strong2', desired_lang, client.config['login_links']['logout_login_fortnite_pc'])}"
     if prompt_authcode and not auth_push_strong:
         if embed.description[-3:] != "```":
             embed.description += "\n"
-        embed.description += f"\u200b\n{I18n.get('util.error.embed.promptauth.weak1', desired_lang, client.config['login_links']['login_fortntite_pc'])}\n" \
+        embed.description += f"\u200b\n{I18n.get('util.error.embed.promptauth.weak1', desired_lang, client.config['login_links']['login_fortnite_pc'])}\n" \
                              f"{I18n.get('util.error.embed.promptauth.strong2', desired_lang, client.config['login_links']['logout_login_fortnite_pc'])}"
     if prompt_help:
         if embed.description[-3:] != "```":
@@ -2624,7 +2624,7 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
             error_embed = await create_error_embed(client, ctx, title=I18n.get('util.error.createsession.nocode.title',
                                                                                desired_lang),
                                                    description=f"{I18n.get('util.error.createsession.nocode.description1', desired_lang)}\n"
-                                                               f"⦾ {I18n.get('util.error.createsession.nocode.description2', desired_lang, client.config['login_links']['login_fortntite_pc'])}\n"
+                                                               f"⦾ {I18n.get('util.error.createsession.nocode.description2', desired_lang, client.config['login_links']['login_fortnite_pc'])}\n"
                                                                f"⦾ {I18n.get('util.error.createsession.nocode.description3', desired_lang)}\n"
                                                                f"⦾ {I18n.get('util.error.createsession.nocode.description4', desired_lang, await mention_string(client, '{0} `code`'.format(command)))}",
                                                    prompt_help=True, prompt_authcode=False, prompt_newcode=True,
