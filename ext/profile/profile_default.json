@@ -1,8 +1,8 @@
 {
     "auto_claim": null,
     "global": {
-        "profiles_ver": 953,
-        "rewrite_older": true,
+        "profiles_ver": 971,
+        "rewrite_older": false,
         "selected_profile": 0,
         "banned": false,
         "banned_reason": null,
