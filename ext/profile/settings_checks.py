@@ -11,7 +11,7 @@ This file validates inputs for the settings command
 # ---- CHECK FUNCTIONS ----
 
 
-def check_upcoming_display_days(client, ctx, value):
+def check_upcoming_display_days(client, ctx, value) -> tuple[bool | int, bool]:
     """
     Checks if the value is a valid number of days to display upcoming events for.
 
@@ -26,18 +26,18 @@ def check_upcoming_display_days(client, ctx, value):
     try:
         integer_value = int(value)
         if 60 >= integer_value >= 0:
-            return integer_value
+            return integer_value, True
         else:
-            return False
+            return False, False
     except:
-        return False
+        return False, False
 
 
 boolean_string_representation = {'true': True, 't': True, '1': True, 'yes': True, 'y': True, 'on': True, 'enable': True, 'enabled': True, 'o': True, 'active': True, 'all': True, '✅': True, '☑️': True, '✔️': True, 'ye': True, 'yeah': True,
                                  'false': False, 'f': False, '0': False, 'no': False, 'n': False, 'off': False, 'disable': False, 'disabled': False, 'x': False, 'inactive': False, 'none': False, '✖️': False, '❌': False, '❎': False, 'na': True, 'nah': False}
 
 
-def check_bool(client, ctx, value):
+def check_bool(client, ctx, value) -> tuple[bool, bool]:
     """
     Checks if the value is a valid boolean.
 
@@ -52,12 +52,12 @@ def check_bool(client, ctx, value):
     try:
         # what is this??????
         boolean_string_representation[value.lower()]
-        return True
+        return True, True
     except:
-        return False
+        return False, False
 
 
-def check_localisation(client, ctx, value) -> bool:
+def check_localisation(client, ctx, value) -> tuple[bool, bool]:
     """
     Checks if the value is a valid localisation.
 
@@ -70,6 +70,6 @@ def check_localisation(client, ctx, value) -> bool:
         bool: True if the value is valid, False otherwise.
     """
     if value.lower() in client.localisation:
-        return client.localisation[value.lower()]
+        return client.localisation[value.lower()], True
     else:
-        return False
+        return False, False
