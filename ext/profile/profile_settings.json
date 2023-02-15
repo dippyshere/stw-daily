@@ -226,6 +226,49 @@
         "input_type": "short",
         "min_length": 2,
         "max_length": 0,
-        "req_string": "settings.config.lang.requirement"
+        "req_string": "settings.config.lang.requirement",
+        "url": "https://github.com/dippyshere/stw-daily/wiki"
+    },
+    "silent": {
+        "aliases": [
+            "no_notifications",
+            "no_notification",
+            "no_notif",
+            "no_notifs",
+            "push_notifications",
+            "suppress_notifications",
+            "suppress_notification",
+            "suppress_notif",
+            "suppress_notifs",
+            "disable_notifications",
+            "disable_notification",
+            "disable_notif",
+            "disable_notifs",
+            "quiet",
+            "suppress",
+            "silent"
+        ],
+        "default": false,
+        "emoji": "library_bell",
+        "localised_name": "settings.config.silent.name",
+        "short_description": "settings.config.silent.description.short",
+        "long_description": "settings.config.silent.description.long"
+    },
+    "ephemeral": {
+        "aliases": [
+            "ephemeral",
+            "ephemeral_mode",
+            "private",
+            "private_mode",
+            "private_mode_ephemeral",
+            "hidden",
+            "hidden_mode",
+            "hidden_mode_ephemeral"
+        ],
+        "default": false,
+        "emoji": "hidden",
+        "localised_name": "settings.config.ephemeral.name",
+        "short_description": "settings.config.ephemeral.description.short",
+        "long_description": "settings.config.ephemeral.description.long"
     }
 }
