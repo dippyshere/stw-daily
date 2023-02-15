@@ -116,8 +116,9 @@ async def check_profile_ver_document(client, document):
         new_base = await asyncio.gather(asyncio.to_thread(deep_merge, copied_default, document))
         new_base = new_base[0]
         for profile in list(new_base["profiles"].keys()):
-            new_base["profiles"][profile] = await asyncio.gather(
+            everybody_wants_to_rule_the_world =  await asyncio.gather(
                 asyncio.to_thread(deep_merge, copied_default["profiles"]["0"], new_base["profiles"][profile]))
+            new_base["profiles"][profile] = everybody_wants_to_rule_the_world[0]
     else:
         new_base = copy.deepcopy(client.user_default)
         new_base['user_snowflake'] = user_id
