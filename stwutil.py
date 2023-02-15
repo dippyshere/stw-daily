@@ -279,25 +279,30 @@ async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Em
 
     if isinstance(ctx, discord.Message):
         if view is not None:
-            return await ctx.channel.send(embeds=embeds, view=view)
+            return await ctx.channel.send(embeds=embeds, view=view, silent=True)
         else:
-            return await ctx.channel.send(embeds=embeds)
+            return await ctx.channel.send(embeds=embeds, silent=True)
     elif isinstance(ctx, discord.Interaction):
-        ctx = ctx.response
         if view is not None:
-            return await ctx.send_message(embeds=embeds, view=view)
+            return await ctx.response.send_message(embeds=embeds, view=view)
         else:
-            return await ctx.send_message(embeds=embeds)
+            return await ctx.response.send_message(embeds=embeds)
     elif isinstance(ctx, discord.ApplicationContext):
         if view is not None:
             return await ctx.respond(embeds=embeds, view=view)
         else:
             return await ctx.respond(embeds=embeds)
     elif interaction:
-        if view is not None:
-            return await ctx.response.send_message(embeds=embeds, view=view)
-        else:
-            return await ctx.response.send_message(embeds=embeds)
+        try:
+            if view is not None:
+                return await ctx.response.send_message(embeds=embeds, view=view)
+            else:
+                return await ctx.response.send_message(embeds=embeds)
+        except:
+            if view is not None:
+                return await ctx.send_message(embeds=embeds, view=view)
+            else:
+                return await ctx.send_message(embeds=embeds)
     else:
         if view is not None:
             return await ctx.send(embeds=embeds, view=view, silent=True)
