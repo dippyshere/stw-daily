@@ -61,45 +61,24 @@ class Auth(ext.Cog):
         if auth_info[0] is not None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
             await stw.slash_edit_original(ctx, auth_info[0], auth_info[2])
         elif await stw.validate_existing_session(self.client, auth_info[1]["token"]):
-            # TODO: update this to a view + use config["login_links"]["logout_login_fortnite_pc"]
-            embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, stw.I18n.get('auth.embed.currentauth.title', desired_lang),
-                                                "whitekey"),
-                description=(f"\u200b\n"
-                             f"Existing Auth Session Found For:\n"
-                             f"```{auth_info[1]['account_name']}```\n"
-                             f"{self.emojis['stopwatch_anim']} **Your auth session expires** <t:{math.floor(auth_info[1]['expiry'])}:R>\n"
-                             f"\u200b\n"
-                             f"Rerun this command with a new auth code to change accounts, you can get one from:\n"
-                             f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)\n"
-                             f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n\n"
-                             f"**Need Help? Run**\n"
-                             f"{await stw.mention_string(self.client, 'help auth')}\n"
-                             f"Or [Join the support server]({self.client.config['support_url']})\n"
-                             f"Note: You need a new code __each time you authenticate__\n\u200b\n"),
-                colour=white)
-            embed = await stw.set_thumbnail(self.client, embed, "keycard")
-            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
+            embed = await stw.create_error_embed(self.client, ctx,
+                                                 stw.I18n.get('auth.embed.currentauth.title', desired_lang),
+                                                 f"{stw.I18n.get('auth.embed.currentauth.description1', desired_lang)}\n"
+                                                 f"```{auth_info[1]['account_name']}```\n"
+                                                 f"{stw.I18n.get('auth.embed.currentauth.description2', desired_lang, self.emojis['stopwatch_anim'], '<t:{0}:R>'.format(math.floor(auth_info[1]['expiry'])))}\n",
+                                                 prompt_newcode=True, title_emoji="whitekey", thumbnail="keycard",
+                                                 colour="auth_white", auth_push_strong=False,
+                                                 desired_lang=desired_lang)
             await stw.slash_edit_original(ctx, auth_info[0], embed)
         else:
-            embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, stw.random_error(self.client, desired_lang), "error"),
-                description=(f"\u200b\n"
-                             f"Your auth session has expired prematurely for:\n"
-                             f"```{auth_info[1]['account_name']}```\n"
-                             f"⦾ This can happen if you launch the game after authenticating.\n"
-                             f"\u200b\n"
-                             f"You'll need to reauthenticate with a new code, you can get one from:\n"
-                             f"[Here if you **ARE NOT** signed into Epic Games on your browser](https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode)\n"
-                             f"[Here if you **ARE** signed into Epic Games on your browser](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code)\n\n"
-                             f"**Need Help? Run**\n"
-                             f"{await stw.mention_string(self.client, 'help auth')}\n"
-                             f"Or [Join the support server]({self.client.config['support_url']})\n"
-                             f"Note: You need a new code __each time you authenticate__\n\u200b\n"
-                             f"            ")
-                , colour=error_colour)
-            embed = await stw.set_thumbnail(self.client, embed, "error")
-            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
+            embed = await stw.create_error_embed(self.client, ctx,
+                                                 description=f"{stw.I18n.get('auth.embed.currentauth.expired.description1', desired_lang)}\n"
+                                                             f"```{auth_info[1]['account_name']}```\n"
+                                                             f"{stw.I18n.get('auth.embed.currentauth.expired.description2', desired_lang)}\n"
+                                                             f"⦾ {stw.I18n.get('auth.embed.currentauth.expired.description3', desired_lang)}\n"
+                                                             f"⦾ {stw.I18n.get('auth.embed.currentauth.expired.description4', desired_lang)}\n",
+                                                 desired_lang=desired_lang,
+                                                 promptauth_key="util.error.embed.promptauth.strong1.auth")
             await stw.slash_edit_original(ctx, auth_info[0], embed)
 
     async def kill_command(self, ctx):
