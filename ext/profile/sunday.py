@@ -310,6 +310,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
             selected_profile = self.user_document["global"]["selected_profile"]
             self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = check_result[0]
             await replace_user_document(view.client, view.user_document)
+            if self.view.selected_setting == "language":
+                self.desired_lang = self.user_document["profiles"][str(selected_profile)]["settings"]["language"]
 
         del view.client.processing_queue[view.user_document["user_snowflake"]]
 
@@ -974,10 +976,12 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                 selected_profile = user_profile["global"]["selected_profile"]
 
                 if isinstance(client.default_settings[setting]['default'], bool):
-                    user_profile["profiles"][str(profile)]["settings"][setting] = boolean_string_representation[
+                    user_profile["profiles"][str(selected_profile)]["settings"][setting] = boolean_string_representation[
                         value.lower()]
                 else:
-                    user_profile["profiles"][str(profile)]["settings"][setting] = check_result[0]
+                    user_profile["profiles"][str(selected_profile)]["settings"][setting] = check_result[0]
+                    if setting == "language":
+                        desired_lang = user_profile["profiles"][str(selected_profile)]["settings"]["language"]
 
                 await replace_user_document(client, user_profile)
 
