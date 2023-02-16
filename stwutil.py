@@ -1470,7 +1470,7 @@ async def auto_stab_stab_session(client: Client, author_id: int, expiry_time: fl
     return
 
 
-async def manslaughter_session(client: Client, account_id: int, kill_stamp: int | float) -> bool:
+async def manslaughter_session(client: Client, account_id: int, kill_stamp: int | float | str) -> bool:
     """
     Logs out the user and clears data
 
@@ -2455,7 +2455,7 @@ async def check_devauth_user_auth_input(client: Client, ctx: Context, desired_la
         return False
 
 
-async def create_error_embed(client: Client, ctx: Context, title: str = None, description: str = None, prompt_help: bool = False, prompt_authcode: bool = True, prompt_newcode: bool = False, command: str = "", error_level: int = 1, title_emoji: str = None, thumbnail: str = None, colour: str = None, add_auth_gif: bool = False, auth_push_strong: bool = True, desired_lang: str = "en") -> discord.Embed:
+async def create_error_embed(client: Client, ctx: Context, title: str = None, description: str = None, prompt_help: bool = False, prompt_authcode: bool = True, prompt_newcode: bool = False, command: str = "", error_level: int = 1, title_emoji: str = None, thumbnail: str = None, colour: str = None, add_auth_gif: bool = False, auth_push_strong: bool = True, desired_lang: str = "en", promptauth_key: str = "util.error.embed.promptauth.strong1") -> discord.Embed:
     """
     Creates an embed with the error colour and the error emoji
 
@@ -2476,6 +2476,7 @@ async def create_error_embed(client: Client, ctx: Context, title: str = None, de
         add_auth_gif (bool): If the embed should add the auth tutorial gif
         auth_push_strong (bool): If the authcode prompt should be forceful or not
         desired_lang (str): The desired language
+        promptauth_key (str): The key to use for the promptauth string
 
     Returns:
         discord.Embed: The created embed
@@ -2502,7 +2503,7 @@ async def create_error_embed(client: Client, ctx: Context, title: str = None, de
     if prompt_authcode and auth_push_strong:
         if embed.description[-3:] != "```":
             embed.description += "\n"
-        embed.description += f"\u200b\n{I18n.get('util.error.embed.promptauth.strong1', desired_lang, client.config['login_links']['login_fortntite_pc'])}\n" \
+        embed.description += f"\u200b\n{I18n.get(promptauth_key, desired_lang, client.config['login_links']['login_fortntite_pc'])}\n" \
                              f"{I18n.get('util.error.embed.promptauth.strong2', desired_lang, client.config['login_links']['logout_login_fortnite_pc'])}"
     if prompt_authcode and not auth_push_strong:
         if embed.description[-3:] != "```":
