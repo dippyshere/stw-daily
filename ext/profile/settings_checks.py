@@ -72,4 +72,8 @@ def check_localisation(client, ctx, value) -> tuple[bool, bool]:
     if value.lower() in client.localisation:
         return client.localisation[value.lower()], True
     else:
+        for attempt in [" ", "-", "_", ".", ",", ";", ":", "/", "\\", "|", "!", "?", "@", "#", "$", "%", "^", "&", "*", "(", ")", "[", "]", "{", "}", "<", ">", "`", "~", "+", "=", "’", "‘", "“", "”", "—", "–", "…", "•", "°", "²", "³", "¹", "⁰", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₊", "₋", "₌", "₍", "₎", "ₐ", "ₑ", "ₒ", "ₓ", "ₔ", "ₕ", "ₖ", "ₗ", "ₘ", "ₙ", "ₚ", "ₛ", "ₜ"]:
+            for i in value.lower().split(attempt):
+                if i in client.localisation:
+                    return client.localisation[i], True
         return False, False
