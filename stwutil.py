@@ -239,7 +239,7 @@ def process_quotes_in_message(message_content: str) -> str:
         GitHub wrote this, not me.
     """
     logging.debug(f"Processing quotes in message content: {message_content}")
-    message_content = re.sub(rf'[‘’“”„‟⹂⹂「」『』〝〞﹁﹂﹃﹄｢｣«»‹›《》〈〉"＂]', lambda match: rf'\\{match.group()}', message_content)
+    message_content = re.sub(rf'[‘’“”„‟⹂「」『』〝〞﹁﹂﹃﹄｢｣«»‹›《》〈〉"＂]', lambda match: rf'\\{match.group()}', message_content)
 
     starting, ending = None, None
     try:
