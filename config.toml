@@ -123,7 +123,7 @@ offense = "<:TIconOffense:1000217970552877086>"
 resistance = "<:TIconResistance:1000217966618615828>"
 survivorgeneric = "<:GenericWorkercopy:947728015683616778>"
 teammatexpboost = "<:IconGiftXPXL:812201304670601227>"
-crown = "<:crown_teams2:1054045734925770782> "
+crown = "<:crown_teams2:1054045734925770782>"
 celebrate = "<a:tada_teams:1030710460078633010>"
 stopwatch_anim = "<a:stwstopwatch2:1028520039596445757>"
 experimental = "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"
@@ -135,6 +135,7 @@ library_cal = "<:T_UI_IconLibrary_Calendar_128rea:1028513523128614932>"
 vbuck_icon = "<:T_UI_icon_vbucks_128realesrganx4:1028828835002720286>"
 stormshard = "<:TItemsReagentCT04Lrealesrganx4pl:1028513528375689366>"
 bp_icon = "<:BPIcon:1028828256658534503>"
+epic_games = "<:TEpicGamesLogo:1075297557372219512>"
 placeholder = "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
 LMAO = "😂"
 spongebob = "<a:sadspongebob:1028829840977182770>"
@@ -174,7 +175,8 @@ left_icon = "<:left_stw:1032194339398488064>"
 locked = "<:Locked:812201301848358923>"
 championleague = "<:championleague:1032854538484453467>"
 add_acc = "<:T_UI_Icon_AddFriends_128:1032861023507599450>"
-link_acc = "<:T_UI_Icon_ChainPerson_White:1035117130892455946>"
+link_acc = "<:T_UI_Icon_ChainPerson_Pinkish:1035115729764237352>"
+link_acc_old = "<:T_UI_Icon_ChainPerson_White:1035117130892455946>"
 pink_link = "<:T_Icon_ChainLink_Purple:1035115632171163709>"
 settings = "<:settingsstwdaily:1041658146655051816>"
 multi_acc = "<:T_UI_Icon_SocialPanel_64:1032861026309373962>"
@@ -389,7 +391,7 @@ pinataanniversarpack = "<:PinataAnniversaryPackL:1055058543281176586>"
 max_friendly_name_length = 100
 min_friendly_name_length = 1
 maximum_profiles = 25
-settings_per_page = 5
+settings_per_page = 3
 default_settings_page = 1
 
 # a list of links to thumbnails that the bot utilises for embeds
@@ -546,7 +548,7 @@ fn = "token"
 # bb = "bb_token"
 
 [login_links]
-login_fortntite_pc = "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode"
+login_fortnite_pc = "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode"
 login_fortnite_ios = "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3D3446cd72694c4a4485d81b77adbb2141%26responseType%3Dcode"
 logout_login_fortnite_pc = "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode"
 logout_login_fortnite_ios = "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D3446cd72694c4a4485d81b77adbb2141%2526responseType%253Dcode"

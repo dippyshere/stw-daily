@@ -272,10 +272,11 @@ class Help(ext.Cog):
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
         embed = await self.help_embed(ctx, command, desired_lang)
-        if command in self.client.command_name_list:
-            help_options = await self.select_options_commands(ctx, selected=command, desired_lang=desired_lang)
-        else:
+        if command not in self.client.command_name_list:
             help_options = await self.select_options_commands(ctx, False, desired_lang=desired_lang)
+        else:
+            help_options = await self.select_options_commands(ctx, selected=self.client.command_dict[
+                self.client.command_name_dict[command]].name, desired_lang=desired_lang)
 
         help_view = HelpView(ctx, help_options, self.client)
         help_view.help = self

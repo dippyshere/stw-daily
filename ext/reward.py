@@ -196,7 +196,8 @@ class Reward(ext.Cog):
                                     inline=False)
                 else:
                     embed.add_field(
-                        name=stw.I18n.get("reward.embed.field4", desired_lang, self.client.config["emojis"]["calendar"], f"{'~' if max_rewards_reached else ''}{limit:,}"),
+                        name=stw.I18n.get("reward.embed.field4", desired_lang, self.client.config["emojis"]["calendar"],
+                                          f"{'~' if max_rewards_reached else ''}{limit:,}"),
                         value=f'```{rewards}```\u200b', inline=False)
                     if max_rewards_reached:
                         if limit == 1:  # this will never happen
@@ -248,13 +249,13 @@ class Reward(ext.Cog):
                           '9itm', 'i9tm', 'oitm', 'iotm', 'litm', 'iltm', 'kitm', 'iktm', 'jitm', 'ijtm', 'irtm',
                           'itrm', 'i5tm', 'it5m', 'i6tm', 'it6m', 'iytm', 'itym', 'ihtm', 'ithm', 'igtm', 'itgm',
                           'iftm', 'itfm', 'itnm', 'itmn', 'itjm', 'itmj', 'itkm', 'itmk'],
-                 extras={'emoji': "stormeye", "args": {'day': 'The day to get the rewards of. Not required if you are '
-                                                              'authenticated',
-                                                       'limit': 'The number of upcoming days to see (Optional)'},
-                         "dev": False},
-                 brief="View info about a specific day's reward, and the rewards that follow",
-                 description="This command lets you view the rewards of any specific day, and any number of rewards "
-                             "that follow")
+                 extras={'emoji': "stormeye", "args": {
+                     'reward.meta.args.day': ['reward.meta.args.day.description', False],
+                     'reward.meta.args.limit': ['reward.meta.args.limit.description', True]},
+                         "dev": False, "description_keys": ["reward.meta.description"],
+                         "name_key": "reward.slash.name"},
+                 brief="reward.slash.description",
+                 description="{0}")
     async def reward(self, ctx, day=None, limit=None):
         """
         This function is the entry point for the vbucks command when called traditionally
@@ -267,19 +268,21 @@ class Reward(ext.Cog):
         await self.reward_command(ctx, day, limit)
 
     @slash_command(name="reward", name_localizations=stw.I18n.construct_slash_dict("reward.slash.name"),
-                   description="'View info about a specific day's reward, and the rewards that follow'",
+                   description="View info about a specific day's reward, and the rewards that follow",
                    description_localizations=stw.I18n.construct_slash_dict("reward.slash.description"),
                    guild_ids=stw.guild_ids)
     async def slashreward(self, ctx: discord.ApplicationContext,
                           day: Option(int,
                                       "The day to get the rewards of. Not required if you are authenticated",
-                                      description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day.description"),
+                                      description_localizations=stw.I18n.construct_slash_dict(
+                                          "reward.meta.args.day.description"),
                                       name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.day"),
                                       min_value=1) = None,
                           limit: Option(int, "The number of upcoming days to see",
-                                        description_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit.description"),
+                                        description_localizations=stw.I18n.construct_slash_dict(
+                                            "reward.meta.args.limit.description"),
                                         name_localizations=stw.I18n.construct_slash_dict("reward.meta.args.limit"),
-                                        min_value=0, max_value=60, default=7) = None):
+                                        min_value=0, max_value=60) = None):
         """
         This function is the entry point for the reward command when called via slash
 
