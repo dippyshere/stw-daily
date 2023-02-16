@@ -322,7 +322,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         await active_view(view.client, view.ctx.author.id, sub_view)
 
         if check_result[1] is not False:
-            embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change1', self.desired_lang, value)}\n\u200b"
+            embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change1', self.desired_lang, str(check_result[0]))}\n\u200b"
         else:
             embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change1.invalid', self.desired_lang)}\n\u200b"
 
