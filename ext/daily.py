@@ -313,10 +313,10 @@ class Daily(ext.Cog):
                           'dail7y', 'dauily', 'cllaim', 'collectr', 'claaim', 'faily', 'daipy', 'coillect', 'dail6y',
                           '/claim', '/daily', '/d', '/collect', '.daily', '.d', '.claim'],
                  extras={'emoji': "vbucks", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         'dev': False},
-                 brief="Claim your Save The World daily reward (authentication requried)",
+                     'generic.meta.args.authcode': ['generic.slash.token'],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description']},
+                         'dev': False, "description_keys": ['']},
+                 brief="daily.meta.brief",
                  description=(
                          f"This command will instantly claim your daily reward, if available. To use this command, "
                          f"you'll need Fortnite: Save the World on the account you will claim with. You must be "

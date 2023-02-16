@@ -136,33 +136,24 @@ class Auth(ext.Cog):
                           'exchange', '/login', '/code', '/a', '/authcode', '/gettoken', '.login', '.code', '.a',
                           '.authcode', '.gettoken'],
                  extras={'emoji': "keycard", 'args': {
-                     'token': "Your Epic Games authcode. Leave this blank to get one."},
-                         "dev": False},
-                 brief="Login with your Epic Games authcode and start an authentication session",
-                 description=(  # TODO: update this help message
-                         "This command allows you to claim your Fortnite: Save The World rewards including dailies, "
-                         "research points and llamas, utilise other utility commands etc, Note that you must get a "
-                         "new token __each time you authenticate__. For a guide on how to authenticate\n\u200b\n "
-                         "\n[Firstly visit this link by clicking here](https://tinyurl.com/epicauthcode) You'll have "
-                         "to sign into your epic account, and then you should see something like:\n "
-                         "\n```yaml\n{\"redirectUrl\":\"https://accounts.epicgames.com/fnauth?code=a51c1f4d35b1457c8e34a1f6026faa35\",\"sid\":null})```\n"
-                         "Copy only the authentication token part which for our example would be:\n"
-                         "```a51c1f4d35b1457c8e34a1f6026faa35```\n"
-                         "Your authentication token should be different and this is __NOT__ [the code from the url, "
-                         "instead it is the one from the web page.]("
-                         "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png)\n"
-                         "\n "
-                         "After retrieving this token simply paste it as an argument into the command like:\n\n"
-                         "<@mention_me> auth a51c1f4d35b1457c8e34a1f6026faa35\n\n\n"
-                         "💡 **Tips:**\n"
-                         "⦾ After using the url where you have to login, you can just simply [use this link](https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code) instead which will directly give you the authcode without having to sign in\n"
-                         "\n⦾ In most browsers, double click on or below the code and it should highlight just the "
-                         "code making it easier to copy, you can also just refresh the last page with the authcode\n\n "
-                         "⦾ You can claim your daily once every day, check when you can claim it again by checking the bots status.\n\u200b\n\n"
-                         "**Important Disclaimer:**\n"
-                         "AFAIK, your auth code can be used maliciously, if you are sceptical, [check out the source "
-                         "code here](https://github.com/dippyshere/stw-daily), or check out #transparency in [STW "
-                         "Dailies]({self.client.config['support_url']})"))
+                     'generic.meta.args.authcode': ['auth.slash.token', False]},
+                         "dev": False, "description_keys": ['auth.meta.description1', 'auth.meta.description2',
+                                                            ['auth.meta.description3',
+                                                             'https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode'],
+                                                            'auth.meta.description4',
+                                                            ['auth.meta.description5', '<@mention_me> auth'],
+                                                            'auth.meta.description6', 'auth.meta.description7',
+                                                            'auth.meta.description8',
+                                                            ['auth.meta.description9',
+                                                             '<@mention_me> auth a51c1f4d35b1457c8e34a1f6026faa35'],
+                                                            ['auth.meta.description10', '💡'],
+                                                            ['auth.meta.description11', '<@mention_me> device'],
+                                                            'auth.meta.description12'],
+                         "name_key": "auth.slash.name"},
+                 brief="auth.slash.description",
+                 description='{0}\n{1}\n\u200b\n⦾ {2}\n⦾ {3}\n⦾ {4}\n⦾ {5}\n⦾ {6}\n{7}\n\n```json\n{'
+                             '"redirectUrl":"https://accounts.epicgames.com/fnauth?code'
+                             '=a51c1f4d35b1457c8e34a1f6026faa35","sid":null})```\n{8}\n{9}\n⦾ {10}\n⦾ {11}')
     async def auth(self, ctx, token=''):
         """
         This function is the entry point for the auth command when called traditionally
@@ -199,10 +190,11 @@ class Auth(ext.Cog):
                           'logo8ut', 'logou8t', 'logouit', 'logoukt', 'logojut', 'logoujt', 'logohut', 'logouht',
                           'logourt', 'logoutr', 'logou5t', 'logout5', 'logou6t', 'logout6', 'logouty', 'logouth',
                           'logougt', 'logoutg', 'logouft', 'logoutf', '.logout', '/end', 'welp', 'kys', 'kms'],
-                 extras={'emoji': "whitekey", "args": {}, "dev": False},
-                 brief="End your active authentication session",
-                 description="This command will end your active authentication session and delete any temporarily "
-                             "stored data.\nUse this command after switching profiles to logout of the old profile.")
+                 extras={'emoji': "whitekey", "args": {}, "dev": False,
+                         "description_keys": ['auth.kill.meta.description1', 'auth.kill.meta.description2'],
+                         "name_key": "auth.kill.slash.name"},
+                 brief="auth.kill.slash.description",
+                 description="{0}\n{1}")
     async def kill(self, ctx):
         """
         This function is the entry point for the kill command when called traditionally
