@@ -6,6 +6,10 @@ https://github.com/dippyshere/stw-daily
 This file checks ~~something~~ EVERYTHING! you really should know :3
 This file validates inputs for the settings command
 """
+from difflib import SequenceMatcher
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # ---- CHECK FUNCTIONS ----
@@ -70,10 +74,17 @@ def check_localisation(client, ctx, value) -> tuple[bool, bool]:
         bool: True if the value is valid, False otherwise.
     """
     if value.lower() in client.localisation:
+        logger.debug(f"Localisation check: {value.lower()} -> {value.lower()} (1.0)")
         return client.localisation[value.lower()], True
     else:
         for attempt in [" ", "-", "_", ".", ",", ";", ":", "/", "\\", "|", "!", "?", "@", "#", "$", "%", "^", "&", "*", "(", ")", "[", "]", "{", "}", "<", ">", "`", "~", "+", "=", "’", "‘", "“", "”", "—", "–", "…", "•", "°", "²", "³", "¹", "⁰", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉", "₊", "₋", "₌", "₍", "₎", "ₐ", "ₑ", "ₒ", "ₓ", "ₔ", "ₕ", "ₖ", "ₗ", "ₘ", "ₙ", "ₚ", "ₛ", "ₜ"]:
             for i in value.lower().split(attempt):
                 if i in client.localisation:
+                    logger.debug(f"Localisation check: {value.lower()} -> {i} (1.0) [attempt: {attempt}]")
                     return client.localisation[i], True
+        outcome = max(client.localisation, key=lambda x: SequenceMatcher(None, x, value.lower()).ratio())
+        similarity = SequenceMatcher(None, outcome, value.lower()).ratio()
+        logger.debug(f"Localisation check: {value.lower()} -> {outcome} ({similarity})")
+        if similarity > 0.5:
+            return client.localisation[outcome], True
         return False, False
