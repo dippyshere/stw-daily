@@ -982,7 +982,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                 await replace_user_document(client, user_profile)
 
             if check_result[1] is not False:
-                happy_message += stw.I18n.get('settings.change2.2', desired_lang, value)
+                happy_message += stw.I18n.get('settings.change2.2', desired_lang, str(check_result[0]))
             else:
                 value = False
 
