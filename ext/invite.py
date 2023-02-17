@@ -52,7 +52,7 @@ class Invite(ext.Cog):
             None
         """
 
-        desired_lang = stw.I18n.get_desired_lang(self.client, ctx)
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
         embed_colour = self.client.colours["generic_blue"]
         embed = discord.Embed(title=await stw.add_emoji_title(self.client,
