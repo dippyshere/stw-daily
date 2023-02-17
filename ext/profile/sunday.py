@@ -312,6 +312,35 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
             await replace_user_document(view.client, view.user_document)
             if self.view.selected_setting == "language" and stw.I18n.is_lang(check_result[0]):
                 self.desired_lang = self.user_document["profiles"][str(selected_profile)]["settings"]["language"]
+            if self.view.selected_setting == "language" and check_result[0] == "auto":
+                try:
+                    interaction_language = self.ctx.interaction.locale
+                    if interaction_language.lower() in ["en-us", "en-gb", "en"]:
+                        interaction_language = "en"
+                    elif interaction_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn",
+                                                          "zh-hans-sg"]:
+                        interaction_language = "zh-CHS"
+                    elif interaction_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant", "zh-hant-tw",
+                                                          "zh-hant-hk", "zh-hant-mo"]:
+                        interaction_language = "zh-CHT"
+                    if not stw.I18n.is_lang(interaction_language):
+                        interaction_language = None
+                except:
+                    interaction_language = None
+                try:
+                    guild_language = self.ctx.guild.preferred_locale
+                    if guild_language.lower() in ["en-us", "en-gb", "en"]:
+                        guild_language = "en"
+                    elif guild_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn", "zh-hans-sg"]:
+                        guild_language = "zh-CHS"
+                    elif guild_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant", "zh-hant-tw",
+                                                    "zh-hant-hk", "zh-hant-mo"]:
+                        guild_language = "zh-CHT"
+                    if not stw.I18n.is_lang(guild_language):
+                        guild_language = None
+                except:
+                    guild_language = None
+                self.desired_lang = interaction_language or guild_language or "en"
 
         del view.client.processing_queue[view.user_document["user_snowflake"]]
 
@@ -757,17 +786,18 @@ async def main_page(page_number, client, ctx, user_profile, settings, desired_la
     pages = math.ceil(len(client.default_settings) / settings_per_page)
     current_slice = get_current_settings_slice(page_number, settings_per_page, settings)
 
-    page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
-                               description=(f"\u200b\n"
-                                            f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, selected_profile)}\n"
-                                            f"```{selected_profile_data['friendly_name']}```\u200b"),
-                               color=embed_colour)
+    page_embed = discord.Embed(
+        title=await stw.add_emoji_title(client, stw.I18n.get('settings.embed.title', desired_lang), "settings"),
+        description=(f"\u200b\n"
+                     f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, selected_profile)}\n"
+                     f"```{selected_profile_data['friendly_name']}```\u200b"),
+        color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
     page_embed.add_field(name="",
                          value=f"**{stw.I18n.get('settings.pagination.showing', desired_lang, page_number, pages)}**"
-                         f"```md", inline=False)
+                               f"```md", inline=False)
     for setting in current_slice:
         page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data, desired_lang)
 
@@ -797,11 +827,12 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
     selected_profile = user_profile["global"]["selected_profile"]
     selected_profile_data = user_profile["profiles"][str(selected_profile)]
 
-    page_embed = discord.Embed(title=await stw.add_emoji_title(client, "Settings", "settings"),
-                               description=(f"\u200b\n"
-                                            f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, selected_profile)}\n"
-                                            f"```{selected_profile_data['friendly_name']}```\u200b"),
-                               color=embed_colour)
+    page_embed = discord.Embed(
+        title=await stw.add_emoji_title(client, stw.I18n.get('settings.embed.title', desired_lang), "settings"),
+        description=(f"\u200b\n"
+                     f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, selected_profile)}\n"
+                     f"```{selected_profile_data['friendly_name']}```\u200b"),
+        color=embed_colour)
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
@@ -982,6 +1013,38 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                     user_profile["profiles"][str(selected_profile)]["settings"][setting] = check_result[0]
                     if setting == "language" and stw.I18n.is_lang(user_profile["profiles"][str(selected_profile)]["settings"]["language"]):
                         desired_lang = user_profile["profiles"][str(selected_profile)]["settings"]["language"]
+                    if setting == "language" and check_result[0] == "auto":
+                        try:
+                            interaction_language = ctx.interaction.locale
+                            if interaction_language.lower() in ["en-us", "en-gb", "en"]:
+                                interaction_language = "en"
+                            elif interaction_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn",
+                                                                  "zh-hans-sg"]:
+                                interaction_language = "zh-CHS"
+                            elif interaction_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant",
+                                                                  "zh-hant-tw",
+                                                                  "zh-hant-hk", "zh-hant-mo"]:
+                                interaction_language = "zh-CHT"
+                            if not stw.I18n.is_lang(interaction_language):
+                                interaction_language = None
+                        except:
+                            interaction_language = None
+                        try:
+                            guild_language = ctx.guild.preferred_locale
+                            if guild_language.lower() in ["en-us", "en-gb", "en"]:
+                                guild_language = "en"
+                            elif guild_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn",
+                                                            "zh-hans-sg"]:
+                                guild_language = "zh-CHS"
+                            elif guild_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant",
+                                                            "zh-hant-tw",
+                                                            "zh-hant-hk", "zh-hant-mo"]:
+                                guild_language = "zh-CHT"
+                            if not stw.I18n.is_lang(guild_language):
+                                guild_language = None
+                        except:
+                            guild_language = None
+                        desired_lang = interaction_language or guild_language or "en"
 
                 await replace_user_document(client, user_profile)
 

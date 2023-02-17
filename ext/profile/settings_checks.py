@@ -61,7 +61,7 @@ def check_bool(client, ctx, value) -> tuple[bool, bool]:
         return False, False
 
 
-def check_localisation(client, ctx, value) -> tuple[bool, bool]:
+def check_localisation(client, ctx, value) -> tuple[bool | str, bool]:
     """
     Checks if the value is a valid localisation.
 
@@ -73,6 +73,8 @@ def check_localisation(client, ctx, value) -> tuple[bool, bool]:
     Returns:
         bool: True if the value is valid, False otherwise.
     """
+    if value.lower() == "auto":
+        return "auto", True
     if value.lower() in client.localisation:
         logger.debug(f"Localisation check: {value.lower()} -> {value.lower()} (1.0)")
         return client.localisation[value.lower()], True
