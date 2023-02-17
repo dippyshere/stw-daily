@@ -176,9 +176,9 @@ class BBReward(ext.Cog):
                         value=f'```{rewards}```\u200b', inline=False)
                     if max_rewards_reached:
                         if limit == 1:  # this will never happen
-                            embed.description = stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")
+                            embed.description = f'\u200b\n{stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"~{limit:,}")}\n\u200b'
                         else:
-                            embed.description = stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")
+                            embed.description = f'\u200b\n{stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"~{limit:,}")}\n\u200b'
             embed = await stw.set_thumbnail(self.client, embed, "Shared2")
             embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
