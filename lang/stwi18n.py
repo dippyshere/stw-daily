@@ -5,6 +5,7 @@ https://github.com/dippyshere/stw-daily
 
 This file is a custom system for i18n (internationalisation) for STW Daily using a single JSON file
 """
+import re
 from typing import List
 import logging
 
@@ -108,7 +109,11 @@ class I18n:
             return string.format(*args)
         except IndexError:
             # if the string has no arguments but arguments were given, just return the string
-            logger.debug(f"Returning {string} for key {key} in language {lang} (key: {key}")
+            logger.debug(f"Returning {string} for key {key} in language {lang} (key: {key}), error occurred: {IndexError}")
+            return string
+        except KeyError:
+            # if the string has no arguments but arguments were given, just return the string
+            logger.debug(f"Returning {string} for key {key} in language {lang} (key: {key}), error occurred: {KeyError}")
             return string
 
     def get_langs(self) -> List[str]:
