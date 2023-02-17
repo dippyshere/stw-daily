@@ -249,6 +249,8 @@ class I18n:
                 slash_dict["zh-CN"] = self.get(key, lang)
             elif lang == "zh-CHT":
                 slash_dict["zh-TW"] = self.get(key, lang)
-            else:
+            elif lang in ["id", "da", "de", "en", "es-ES", "fr", "hr", "it", "lt", "hu", "nl", "no", "pl", "pt-BR", "ro", "fi", "sv-SE", "vi", "tr", "cs", "el", "bg", "ru", "uk", "hi", "th", "zh-CN", "zh-TW", "ja", "ko"]:
                 slash_dict[lang] = self.get(key, lang)
+            else:
+                continue
         return slash_dict
