@@ -1931,10 +1931,12 @@ def truncate(string: str, length: int = 100, end: str = "...") -> str:
         The truncated string
 
     Example:
-        >>> truncate("Hello World", 5)
+        >>> truncate("Hello World", 8)
         'Hello...'
     """
-    return (string[:length - 3] + end) if len(string) > length else string
+    if len(string) > length:
+        logger.debug(f"Truncating string: {string} to {length} characters")
+    return (string[:length - len(end)] + end) if len(string) > length else string
 
 
 def get_tomorrow_midnight_epoch() -> int:
