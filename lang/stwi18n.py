@@ -242,15 +242,29 @@ class I18n:
         # construct the slash dict
         slash_dict = {}
         for lang in self.get_langs():
+            if re.match(r"\w+\.slash.name|\w+.\.meta.args\.\w+(?!^description$)", key):
+                if lang == "en":
+                    slash_dict["en-US"] = self.get(key, lang).lower()
+                    slash_dict["en-GB"] = self.get(key, lang).lower()
+                elif lang == "zh-CHS":
+                    slash_dict["zh-CN"] = self.get(key, lang).lower()
+                elif lang == "zh-CHT":
+                    slash_dict["zh-TW"] = self.get(key, lang).lower()
+                elif lang in ["da", "de", "en", "es-ES", "fr", "hr", "it", "lt", "hu", "nl", "no", "pl", "pt-BR", "ro", "fi", "sv-SE", "vi", "tr", "cs", "el", "bg", "ru", "uk", "hi", "th", "zh-CN", "zh-TW", "ja", "ko"]:
+                    slash_dict[lang] = self.get(key, lang).lower()
+                else:
+                    continue
+                return slash_dict
+            from stwutil import truncate
             if lang == "en":
-                slash_dict["en-US"] = self.get(key, lang)
-                slash_dict["en-GB"] = self.get(key, lang)
+                slash_dict["en-US"] = truncate(self.get(key, lang))
+                slash_dict["en-GB"] = truncate(self.get(key, lang))
             elif lang == "zh-CHS":
-                slash_dict["zh-CN"] = self.get(key, lang)
+                slash_dict["zh-CN"] = truncate(self.get(key, lang))
             elif lang == "zh-CHT":
-                slash_dict["zh-TW"] = self.get(key, lang)
-            elif lang in ["id", "da", "de", "en", "es-ES", "fr", "hr", "it", "lt", "hu", "nl", "no", "pl", "pt-BR", "ro", "fi", "sv-SE", "vi", "tr", "cs", "el", "bg", "ru", "uk", "hi", "th", "zh-CN", "zh-TW", "ja", "ko"]:
-                slash_dict[lang] = self.get(key, lang)
+                slash_dict["zh-TW"] = truncate(self.get(key, lang))
+            elif lang in ["da", "de", "en", "es-ES", "fr", "hr", "it", "lt", "hu", "nl", "no", "pl", "pt-BR", "ro", "fi", "sv-SE", "vi", "tr", "cs", "el", "bg", "ru", "uk", "hi", "th", "zh-CN", "zh-TW", "ja", "ko"]:
+                slash_dict[lang] = truncate(self.get(key, lang))
             else:
                 continue
         return slash_dict
