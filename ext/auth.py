@@ -65,7 +65,7 @@ class Auth(ext.Cog):
                                                  stw.I18n.get('auth.embed.currentauth.title', desired_lang),
                                                  f"{stw.I18n.get('auth.embed.currentauth.description1', desired_lang)}\n"
                                                  f"```{auth_info[1]['account_name']}```\n"
-                                                 f"{stw.I18n.get('auth.embed.currentauth.description2', desired_lang, self.emojis['stopwatch_anim'], '<t:{0}:R>'.format(math.floor(auth_info[1]['expiry'])))}\n",
+                                                 f"{stw.I18n.get('auth.embed.currentauth.description2', desired_lang, self.emojis['stopwatch_anim'], '<t:{0}:R>'.format(math.floor(auth_info[1]['expiry'])))}",
                                                  prompt_newcode=True, title_emoji="whitekey", thumbnail="keycard",
                                                  colour="auth_white", auth_push_strong=False,
                                                  desired_lang=desired_lang)
@@ -76,7 +76,7 @@ class Auth(ext.Cog):
                                                              f"```{auth_info[1]['account_name']}```\n"
                                                              f"{stw.I18n.get('auth.embed.currentauth.expired.description2', desired_lang)}\n"
                                                              f"⦾ {stw.I18n.get('auth.embed.currentauth.expired.description3', desired_lang)}\n"
-                                                             f"⦾ {stw.I18n.get('auth.embed.currentauth.expired.description4', desired_lang)}\n",
+                                                             f"⦾ {stw.I18n.get('auth.embed.currentauth.expired.description4', desired_lang)}",
                                                  desired_lang=desired_lang,
                                                  promptauth_key="util.error.embed.promptauth.strong1.auth")
             await stw.slash_edit_original(ctx, auth_info[0], embed)

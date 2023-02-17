@@ -140,8 +140,8 @@ class Daily(ext.Cog):
                     elif limit > 2:
                         approx = '~' if max_rewards_reached else ''
                         embed.description += (
-                            f"**{stw.I18n.get('reward.embed.field4', desired_lang, calendar, f'{approx}{limit - 1:,}')}**"
-                            f":**\n ```{rewards}```\n"
+                            f"**{stw.I18n.get('reward.embed.field4', desired_lang, calendar, f'{approx}{limit - 1:,}').replace('**', '')}**"
+                            f"\n ```{rewards}```\n"
                             f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n")
                     else:
                         embed.description += f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n"
