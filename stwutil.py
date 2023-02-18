@@ -1722,6 +1722,12 @@ async def get_stw_news(client: Client, locale: str = "en") -> aiohttp.client_req
     endpoint = client.config["endpoints"]["stw_news"]
     # if locale == "es-ES":
     #     locale = "es"  # TODO: es, es-419, or es-ES?
+    if locale == "zh-CHS":
+        locale = "zh-CN"
+    elif locale == "zh-CHT":
+        locale = "zh-CN"  # no traditional unfortunately
+    # if locale not in ["ar", "de", "en", "es", "es-419", "fr", "it", "ja", "ko", "pl", "pt-BR", "ru", "tr", "zh-CN", "zh-Hant"]:
+    #     locale = "en"
     return await client.stw_session.get(endpoint.format(locale))
 
 
@@ -1755,6 +1761,8 @@ async def get_br_news(client: Client, locale: str = "en") -> aiohttp.client_reqr
     # TODO: This should be changed to use the epic games api
     # We can't use the epic games api as it requires a personalised request
     endpoint = client.config["endpoints"]["br_news"]
+    if locale not in ["en", "de", "it", "fr", "es", "ru", "ja", "pt-BR", "pl", "tr", "ar", "ko", "es-419"]:
+        locale = "en"
     return await client.stw_session.get(endpoint.format(locale))
 
 
