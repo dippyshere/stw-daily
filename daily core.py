@@ -66,7 +66,7 @@ class ColourLogger(logging.Logger):
     """
 
     def __init__(self, name):
-        logging.Logger.__init__(self, name, logging.DEBUG)
+        logging.Logger.__init__(self, name, logging.INFO)
         self.propagate = False
         color_formatter = ColourFormatter("%(name)-10s %(levelname)-18s %(message)s")
         console = logging.StreamHandler()
@@ -75,6 +75,7 @@ class ColourLogger(logging.Logger):
 
 
 logging.setLoggerClass(ColourLogger)
+logging.getLogger('discord.gateway').setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.DEBUG)
 
