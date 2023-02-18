@@ -311,7 +311,7 @@ class Daily(ext.Cog):
                           'collecht', 'coll3ect', 'fdaily', 'collrct', 'daaily', 'c0ollect', 'clsaim', 'collwect',
                           'dailh', 'c0llect', 'collkect', 'cklaim', 'co0llect', 'copllect', 'colledct', 'edaily',
                           'dail7y', 'dauily', 'cllaim', 'collectr', 'claaim', 'faily', 'daipy', 'coillect', 'dail6y',
-                          '/claim', '/daily', '/d', '/collect', '.daily', '.d', '.claim'],
+                          '/claim', '/daily', '/d', '/collect', '.daily', '.d', '.claim', 'dc'],
                  extras={'emoji': "vbucks", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token'],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description']},
