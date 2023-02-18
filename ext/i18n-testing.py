@@ -29,38 +29,64 @@ class Internationalisation(ext.Cog):
             ctx: The context of the command.
             *args: The arguments of the command.
         """
-        try:
-            user_profile = await get_user_document(ctx, self.client, ctx.author.id)
-            localisation = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"][
-                "language"]
-        except KeyError:
-            localisation = "auto"
 
         embed_colour = self.client.colours["auth_white"]
         embed = discord.Embed(title=await stw.add_emoji_title(self.client, "i18n", "experimental"),
                               description=f'\u200b\n',
                               color=embed_colour)
+        desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
         if len(args) == 0 or isinstance(ctx, discord.ApplicationContext) or isinstance(ctx, discord.Message):
             try:
-                embed.description += f'\nYour chosen language: {localisation}\n'
+                user_profile = await get_user_document(ctx, self.client, ctx.author.id)
+                localisation = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"]["language"]
+                embed.description += f'Your chosen language: **{localisation}**\n'
             except Exception as e:
-                embed.description += f'\nError getting your chosen language: ```{e}```'
+                embed.description += f'Error getting your chosen language: ```{e}```\n'
+                localisation = "en"
             try:
-                embed.description += f'\nYour language: {ctx.locale}\n'
+                embed.description += f'Your language: **{ctx.locale}**\n'
             except Exception as e:
-                embed.description += f'\nError getting your language: ```{e}```'
+                embed.description += f'Error getting your language: ```{e}```\n'
             try:
-                embed.description += f'\nInteraction language: {ctx.interaction.locale}\n'
+                embed.description += f'Interaction language: **{ctx.interaction.locale}**\n'
             except Exception as e:
-                embed.description += f'\nError getting interaction language: ```{e}```'
+                embed.description += f'Error getting interaction language: ```{e}```\n'
             try:
-                embed.description += f'\nGuild language: {ctx.guild.preferred_locale}\n'
+                embed.description += f'Guild language: **{ctx.guild.preferred_locale}**\n'
             except Exception as e:
-                embed.description += f'\nError getting guild language: ```{e}```'
+                embed.description += f'Error getting guild language: ```{e}```\n'
             embed.description += f'\nAvailable languages:\n{stw.I18n.get_langs_str()}\n'
-            embed.description += f'\nDetermined language:\n{await stw.I18n.get_desired_lang(self.client, ctx)}\n'
+            try:
+                interaction_language = ctx.interaction.locale
+                if interaction_language.lower() in ["en-us", "en-gb", "en"]:
+                    interaction_language = "en"
+                elif interaction_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn",
+                                                      "zh-hans-sg"]:
+                    interaction_language = "zh-CHS"
+                elif interaction_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant", "zh-hant-tw",
+                                                      "zh-hant-hk", "zh-hant-mo"]:
+                    interaction_language = "zh-CHT"
+                if not stw.I18n.is_lang(interaction_language):
+                    interaction_language = None
+            except:
+                interaction_language = None
+            try:
+                guild_language = ctx.guild.preferred_locale
+                if guild_language.lower() in ["en-us", "en-gb", "en"]:
+                    guild_language = "en"
+                elif guild_language.lower() in ["zh-cn", "zh-sg", "zh-chs", "zh-hans", "zh-hans-cn", "zh-hans-sg"]:
+                    guild_language = "zh-CHS"
+                elif guild_language.lower() in ["zh-tw", "zh-hk", "zh-mo", "zh-cht", "zh-hant", "zh-hant-tw",
+                                                "zh-hant-hk", "zh-hant-mo"]:
+                    guild_language = "zh-CHT"
+                if not stw.I18n.is_lang(guild_language):
+                    guild_language = None
+            except:
+                guild_language = None
+            embed.description += f'\n\u200bFor desired lang, we\'ll use: Profile language **{localisation}** > Interaction language **{interaction_language}** > Guild language **{guild_language}** > Default language **en**\n'
+            embed.description += f'Determined language:\n{desired_lang}\n'
         else:
-            embed.description += f'\nThe value of {args[0]} in {await stw.I18n.get_desired_lang(self.client, ctx)} is:\n{stw.I18n.get(args[0], await stw.I18n.get_desired_lang(self.client, ctx))}\n '
+            embed.description += f'The value of **{args[0]}** in **{desired_lang}** is:\n**{stw.I18n.get(args[0], desired_lang)}**\n '
 
         embed.description += f'\n\u200b'
 
