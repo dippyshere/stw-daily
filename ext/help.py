@@ -424,7 +424,7 @@ class Help(ext.Cog):
         embed.add_field(
             name=stw.I18n.get('help.hello.epic.fancontentdisclaimer.title', desired_lang, self.emojis['library_list']),
             value=f"{stw.I18n.get('help.hello.epic.fancontentdisclaimer.value', desired_lang)}\n\n"
-                  f"{stw.I18n.get('help.hello.legal.view', desired_lang, 'https://sites.google.com/view/stwdaily/legal-info/privacy-policy'), 'https://sites.google.com/view/stwdaily/legal-info/terms-of-service'}\n\u200b",
+                  f"{stw.I18n.get('help.hello.legal.view', desired_lang, 'https://sites.google.com/view/stwdaily/legal-info/privacy-policy', 'https://sites.google.com/view/stwdaily/legal-info/terms-of-service')}\n\u200b",
             inline=False)
         embed = await stw.set_thumbnail(self.client, embed, "calendar")
         await ctx.channel.send(embed=embed)
