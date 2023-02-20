@@ -694,11 +694,11 @@ the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-a
 | [Dippyshere](https://github.com/dippyshere)                | STW Daily Dev Team                                                                                    |
 | [jean1398reborn](https://github.com/jean1398reborn)        | STW Daily Dev Team                                                                                    |
 | [PRO100KatYT](https://github.com/P100KatYT)                | Maintaining items.py :D                                                                               |
-| [Meiniac](https://github.com/Meiniac)                      | Reminder embed + mod                                                                                  |
+| [Meiniac](https://github.com/Meiniac)                      | Reminder embed + Mod                                                                                  |
 | [FF-TeaDoc](https://github.com/FF-TeaDoc)                  | Homebase rename endpoint                                                                              |
 | [Londiuh](https://github.com/Londiuh)                      | [Inspiration, Original auth + claim script](https://github.com/Londiuh/fstwrc)                        |
 | [MivV2](https://github.com/MixV2)                          | [Epic Research](https://github.com/MixV2/EpicResearch/)                                               |
-| [LeleDerGrasshalmi](https://github.com/LeleDerGrasshalmi/) | [FortniteEndpoinsDocumentation](https://github.com/LeleDerGrasshalmi/FortniteEndpointsDocumentation/) |
+| [LeleDerGrasshalmi](https://github.com/LeleDerGrasshalmi/) | [FortniteEndpointsDocumentation](https://github.com/LeleDerGrasshalmi/FortniteEndpointsDocumentation/) |
 
 
 ## Info <a id="inf"></a>
