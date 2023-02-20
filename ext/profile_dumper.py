@@ -422,11 +422,10 @@ class ProfileDump(ext.Cog):
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.slash.optout', True]
                  }, "dev": False,
-                         "description_keys": ["profiledumper.meta.description", "generic.description.experimental"],
-                         "name_key": "profiledumper.slash.name"},
+                         "description_keys": ["profiledumper.meta.description"],
+                         "name_key": "profiledumper.slash.name", "experimental": True},
                  brief="profiledumper.meta.brief",
-                 description=(
-                         "{0}\n⦾ {1}<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
+                 description="{0}")
     async def profiledump(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the profile dump command when called traditionally

@@ -313,8 +313,8 @@ class Daily(ext.Cog):
                           'dail7y', 'dauily', 'cllaim', 'collectr', 'claaim', 'faily', 'daipy', 'coillect', 'dail6y',
                           '/claim', '/daily', '/d', '/collect', '.daily', '.d', '.claim', 'dc'],
                  extras={'emoji': "vbucks", "args": {
-                     'generic.meta.args.authcode': ['generic.slash.token'],
-                     'generic.meta.args.optout': ['generic.meta.args.optout.description']},
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
                          'dev': False, "description_keys": ['daily.meta.description.main',
                                                             ['daily.meta.description.list.item1',
                                                              f'<t:{stw.get_tomorrow_midnight_epoch()}:R>'],

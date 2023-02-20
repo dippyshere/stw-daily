@@ -234,8 +234,8 @@ class DailyXP(ext.Cog):
                           'stwxpo', 'stwx0p', 'stwxp0', 'stwxlp', 'stwxpl', 'xpcap', 'dailycap', 'stwxp', '/xpcap',
                           '/dailycap', '/stwxp', 'sharedxp'],
                  extras={'emoji': "xp_everywhere", "args": {
-                     'generic.meta.args.authcode': ['generic.slash.token'],
-                     'generic.meta.args.optout': ['generic.meta.args.optout.description']},
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
                          "dev": False, "description_keys": ["dailyxp.slash.description"],
                          "name_keys": "dailyxp.slash.name", "experimental": True},
                  brief="dailyxp.slash.description",

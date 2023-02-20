@@ -136,7 +136,7 @@ class Auth(ext.Cog):
                           'exchange', '/login', '/code', '/a', '/authcode', '/gettoken', '.login', '.code', '.a',
                           '.authcode', '.gettoken'],
                  extras={'emoji': "keycard", 'args': {
-                     'generic.meta.args.authcode': ['auth.slash.token', False]},
+                     'generic.meta.args.authcode': ['auth.slash.token', True]},
                          "dev": False, "description_keys": ['auth.meta.description1', 'auth.meta.description2',
                                                             ['auth.meta.description3',
                                                              'https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode'],

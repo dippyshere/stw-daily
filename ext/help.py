@@ -330,7 +330,7 @@ class Help(ext.Cog):
                           'cmnd', 'cjmd', 'cmjd', 'ckmd', 'cmkd', 'cmsd', 'cmds', 'cmed', 'cmde', 'cmrd', 'cmdr',
                           'cmfd', 'cmdf', 'cmcd', 'cmdc', 'cmxd', 'cmdx', 'what', 'list', 'cmd', '?', 'h', 'commands'],
                  extras={'emoji': "info",
-                         'args': {'help.meta.args.command': "help.meta.args.command.description"},
+                         'args': {'help.meta.args.command': ['help.meta.args.command.description', True]},
                          "dev": False, "description_keys": ["help.meta.description"],
                          "name_key": "help.slash.name"},
                  brief="help.slash.description",
