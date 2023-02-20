@@ -21,7 +21,7 @@ class HelpView(discord.ui.View):
     discord UI View for the help command
     """
 
-    def __init__(self, ctx, help_options, client, desired_lang="en"):
+    def __init__(self, ctx, help_options, client, desired_lang):
         super().__init__()
         self.ctx = ctx
         self.author = ctx.author
@@ -89,25 +89,37 @@ class Help(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
-    async def add_brief_command_info(self, embed, command):
+    async def add_brief_command_info(self, embed, command, desired_lang):
         """
         Adds a brief description of a command to an embed.
 
         Args:
             embed: The embed to add the command to.
             command: The command to add to the embed.
+            desired_lang: The language to use for the help page.
 
         Returns:
             The embed with the command added.
         """
-        name_string = f"{self.emojis[command.extras['emoji']]}  {command.name}"
+        try:
+            name_string = f"{self.emojis[command.extras['emoji']]}  {stw.I18n.get(command.extras['name_key'], desired_lang)}"
+        except:
+            name_string = f"{self.emojis[command.extras['emoji']]}  {command.name}"
         for argument in command.extras["args"].keys():
-            name_string += f" <{argument}>"
+            try:
+                if command.extras['args'][argument][1] is True:
+                    name_string += f" *<{stw.I18n.get(argument, desired_lang) if '.' in argument else argument}>*"
+                else:
+                    name_string += f" <{stw.I18n.get(argument, desired_lang) if '.' in argument else argument}>"
+            except:
+                name_string += f" <{stw.I18n.get(argument, desired_lang) if '.' in argument else argument}>"
 
-        embed.add_field(name=name_string, value=f"```{command.brief}```\u200b\n", inline=False)
+        embed.add_field(name=name_string,
+                        value=f"```{stw.I18n.get(command.brief, desired_lang) if '.' in command.brief else command.brief}```\u200b\n",
+                        inline=False)
         return embed
 
-    async def add_big_command_info(self, ctx, embed, command, desired_lang="en"):
+    async def add_big_command_info(self, ctx, embed, command, desired_lang):
         """
         Adds a detailed description of a command to an embed.
 
@@ -122,30 +134,89 @@ class Help(ext.Cog):
         """
         me = self.client.user
         mention = "/"
-        cmd = f"/{command.name}"
+        try:
+            cmd = f"/{stw.I18n.get(command.extras['name_key'], desired_lang)}"
+        except:
+            cmd = f"/{command.name}"
         try:
             mention = me.mention
-            cmd = f"{me.mention} {command.name}"
+            try:
+                cmd = f"{me.mention} {stw.I18n.get(command.extras['name_key'], desired_lang)}"
+            except:
+                cmd = f"{me.mention} {command.name}"
         except:
             pass
-
-        name_string = f"**{await stw.add_emoji_title(self.client, command.name.title(), command.extras['emoji'])}**\n{cmd}"
+        try:
+            name_string = f"**{await stw.add_emoji_title(self.client, stw.I18n.get(command.extras['name_key'], desired_lang).title(), command.extras['emoji'])}**\n{cmd}"
+        except:
+            name_string = f"**{await stw.add_emoji_title(self.client, command.name.title(), command.extras['emoji'])}**\n{cmd}"
         for argument in command.extras["args"].keys():
-            name_string += f" <{argument}>"
+            try:
+                if command.extras['args'][argument][1] is True:
+                    name_string += f" *<{stw.I18n.get(argument, desired_lang) if '.' in argument else argument}>*"
+                else:
+                    name_string += f" <{stw.I18n.get(argument, desired_lang) if '.' in argument else argument}>"
+            except:
+                name_string += f" <{stw.I18n.get(argument, desired_lang) if '.' in argument else argument}>"
         name_string += "\n"
         for argument in command.extras["args"].keys():
-            arg = f"<{argument}>"
-            info = command.extras['args'][argument]
-
-            if "(Optional)" in info:
-                info = info.replace("(Optional)", "")
-                info += f"**\n*{stw.I18n.get('help.embed.optional', desired_lang)}*"
-            else:
-                info += "**"
+            try:
+                arg = f"<{stw.I18n.get(argument, desired_lang) if '.' in argument else argument}>"
+            except:
+                arg = f"<{argument}>"
+            try:
+                if command.extras['args'][argument][1] is True and isinstance(command.extras['args'][argument], list):
+                    info = f"{stw.I18n.get(command.extras['args'][argument][0], desired_lang)}**\n*{stw.I18n.get('help.embed.optional', desired_lang)}*"
+                else:
+                    if '.' in command.extras['args'][argument][0] and isinstance(command.extras['args'][argument],
+                                                                                 list):
+                        info = f"{stw.I18n.get(command.extras['args'][argument][0], desired_lang)}**"
+                    elif '.' in command.extras['args'][argument]:
+                        info = f"{stw.I18n.get(command.extras['args'][argument], desired_lang)}**"
+                    else:
+                        info = command.extras['args'][argument]
+                        if "(Optional)" in info:
+                            info = info.replace("(Optional)", "")
+                            info += f"**\n*{stw.I18n.get('help.embed.optional', desired_lang)}*"
+                        else:
+                            info += "**"
+            except:
+                try:
+                    if '.' in command.extras['args'][argument][0] and isinstance(command.extras['args'][argument],
+                                                                                 list):
+                        info = f"{stw.I18n.get(command.extras['args'][argument][0], desired_lang)}**"
+                    else:
+                        info = command.extras['args'][argument]
+                        if "(Optional)" in info:
+                            info = info.replace("(Optional)", "")
+                            info += f"**\n*{stw.I18n.get('help.embed.optional', desired_lang)}*"
+                        else:
+                            info += "**"
+                except:
+                    info = command.extras['args'][argument]
+                    if "(Optional)" in info:
+                        info = info.replace("(Optional)", "")
+                        info += f"**\n*{stw.I18n.get('help.embed.optional', desired_lang)}*"
+                    else:
+                        info += "**"
 
             name_string += f"\n**{arg}: {info}\n"
-
-        embed_desc = f"\n\u200b\n{name_string}\n\u200b\n{command.description}\n\u200b".replace("<@mention_me>",
+        try:
+            command_description = command.description.format(*[stw.I18n.get(key[0] if isinstance(key, list) else key, desired_lang, *key[1:]) for key in command.extras['description_keys']])
+        except:
+            command_description = command.description
+        try:
+            if command.extras["experimental"] is True:
+                command_description += f"\n⦾ {stw.I18n.get('generic.help.experimental', desired_lang, self.client.config['emojis']['experimental'])}"
+        except:
+            pass
+        try:
+            if command.extras["battle_broken"] is True:
+                command_description += f"\n\u200b\n{stw.I18n.get('bbdaily.meta.description.main2', desired_lang, '<t:1672425127:R>')}\n" \
+                                       f"{stw.I18n.get('bbdaily.meta.description.main3', desired_lang, 'https://github.com/dippyshere/battle-breakers-private-server')}\n"
+        except:
+            pass
+        embed_desc = f"\n\u200b\n{name_string}\n\u200b\n{command_description}\n\u200b".replace("<@mention_me>",
                                                                                                f"{mention}")
         embed.description = embed_desc
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
@@ -174,12 +245,12 @@ class Help(ext.Cog):
         for command in self.client.commands:
             try:
                 if not command.extras["dev"]:
-                    embed = await self.add_brief_command_info(embed, command)
+                    embed = await self.add_brief_command_info(embed, command, desired_lang)
                 else:
                     if ctx.author.id in self.client.config["devs"]:
-                        embed = await self.add_brief_command_info(embed, command)
+                        embed = await self.add_brief_command_info(embed, command, desired_lang)
             except KeyError:
-                embed = await self.add_brief_command_info(embed, command)
+                embed = await self.add_brief_command_info(embed, command, desired_lang)
         return embed
 
     async def help_embed(self, ctx, inputted_command, desired_lang="en"):
@@ -234,22 +305,33 @@ class Help(ext.Cog):
                 try:
                     if not command.extras["dev"]:
                         options.append(
-                            discord.SelectOption(label=command.name, value=command.name,
-                                                 description=stw.truncate(command.brief),
-                                                 emoji=self.emojis[command.extras['emoji']])
+                            discord.SelectOption(
+                                label=stw.I18n.get(command.name, desired_lang) if '.' in command.name else command.name,
+                                value=command.name,
+                                description=stw.truncate(stw.I18n.get(command.brief,
+                                                                      desired_lang) if '.' in command.brief else command.brief),
+                                emoji=self.emojis[command.extras['emoji']])
                         )
                     else:
                         if ctx.author.id in self.client.config["devs"]:
                             options.append(
-                                discord.SelectOption(label=command.name, value=command.name,
-                                                     description=stw.truncate(command.brief),
-                                                     emoji=self.emojis[command.extras['emoji']])
+                                discord.SelectOption(
+                                    label=stw.I18n.get(command.name,
+                                                       desired_lang) if '.' in command.name else command.name,
+                                    value=command.name,
+                                    description=stw.truncate(stw.I18n.get(command.brief,
+                                                                          desired_lang) if '.' in command.brief else command.brief),
+                                    emoji=self.emojis[command.extras['emoji']])
                             )
                 except KeyError:
                     options.append(
-                        discord.SelectOption(label=command.name, value=command.name,
-                                             description=stw.truncate(command.brief),
-                                             emoji=self.emojis[command.extras['emoji']])
+                        discord.SelectOption(
+                            label=stw.I18n.get(command.name,
+                                               desired_lang) if '.' in command.name else command.name,
+                            value=command.name,
+                            description=stw.truncate(stw.I18n.get(command.brief,
+                                                                  desired_lang) if '.' in command.brief else command.brief),
+                            emoji=self.emojis[command.extras['emoji']])
                     )
                 finally:
                     if selected is not None:
@@ -278,7 +360,7 @@ class Help(ext.Cog):
             help_options = await self.select_options_commands(ctx, selected=self.client.command_dict[
                 self.client.command_name_dict[command]].name, desired_lang=desired_lang)
 
-        help_view = HelpView(ctx, help_options, self.client)
+        help_view = HelpView(ctx, help_options, self.client, desired_lang)
         help_view.help = self
 
         await stw.slash_send_embed(ctx, embed, help_view)
