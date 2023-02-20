@@ -275,7 +275,7 @@ class Information(ext.Cog):
                           '/latency', '/about', '/memory', 'uptime', 'getmtime'],
                  extras={'emoji': "hard_drive", "args": {}, "dev": False, "description_keys": ['info.meta.description'],
                          "name_key": "info.slash.name"},
-                 brief="info.slash.description.",
+                 brief="info.slash.description",
                  description="{0}")
     async def info(self, ctx):
         """

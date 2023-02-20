@@ -163,15 +163,10 @@ class BattleBreakersDaily(ext.Cog):
                  extras={'emoji': "T_MTX_Gem_Icon", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
-                         "dev": True, "description_keys": ['bbdaily.meta.description']},
-                 brief="Claim your Battle Breakers daily reward (authentication required)",
-                 description=(
-                         f"This command allowed you to claim your Battle Breakers daily rewards\n"
-                         f"\u200b\nAs of <t:1672425127:R>, this command is no longer available, as Battle "
-                         "Breakers has been shut down. 💔\nIf you'd like to continue playing Battle Breakers from your "
-                         "profile dump, or just want to play it again, check out "
-                         "https://github.com/dippyshere/battle-breakers-private-server.\n\u200b\n"
-                         f"⦾ Looking for Fortnite daily rewards? Check out the `daily` command.\n"))
+                         "dev": True, "description_keys": ['bbdaily.meta.description'],
+                         "name_key": "bbdaily.slash.name", "battle_broken": True},
+                 brief="bbdaily.meta.brief",
+                 description="{0}")
     async def bbdaily(self, ctx):
         """
         This function is the entry point for the bbdaily command when called traditionally
