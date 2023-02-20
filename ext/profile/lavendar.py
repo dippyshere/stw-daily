@@ -641,13 +641,12 @@ class Profile(ext.Cog):
                           '/account', '/accounts', '/essions', 'accounts', 'p', '/p', '.accounts', '.saved', '.p',
                           'pro', 'prof'],
                  extras={'emoji': "stormshard", "args": {
-                     'profile': 'The ID of the profile to switch to (e.g. 0)(Optional)'},
-                         "dev": False},
-                 brief="Manage your different STW Daily profiles",
-                 description="This command allows you to manage your different STW Daily profiles. Each profile will "
-                             "have it's own settings and authentication information.\nWhen switching profiles, remember"
-                             "to run the `kill` command, so that next time you authenticate, it will use the selected"
-                             "profile's authentication information.")
+                     'profile.meta.args.profile': ['profile.meta.args.profile.description', True]},
+                         "dev": False,
+                         "description_keys": ['profile.meta.description1', ['profile.meta.description1', '`kill`']],
+                         "name_key": "profile.slash.name"},
+                 brief="profile.slash.description",
+                 description="{0}\n{1}")
     async def profile(self, ctx, profile=None):
         """
         entry point for profile command when called traditionally

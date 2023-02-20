@@ -129,10 +129,10 @@ class Invite(ext.Cog):
                           'jopin', 'jloin', 'jolin', 'jokin', 'jouin', 'joiun', 'jo8in', 'joi8n', 'joi9n', 'joion',
                           'joiln', 'joikn', 'jojin', 'joijn', 'joibn', 'joinb', 'joihn', 'joinh', 'joinj', 'joimn',
                           'joinm'],
-                 extras={'emoji': "incoming_envelope", "args": {}, "dev": False},
-                 brief="Invite STW Daily to your server, or join the support server",
-                 description="This command will provide you with links to invite STW Daily to your server, or join "
-                             "the support server")
+                 extras={'emoji': "incoming_envelope", "args": {}, "dev": False,
+                         "description_keys": ['invite.meta.description'], "name_key": "invite.slash.name"},
+                 brief="invite.slash.description",
+                 description="{0}")
     async def invite(self, ctx):
         """
         This function is the entry point for the invite command when called traditionally

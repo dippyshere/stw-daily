@@ -501,14 +501,12 @@ class HowTo(ext.Cog):
                           'bhow', 'hbow', 'hiow', 'hoiw', 'h9ow', 'ho9w', 'h0ow', 'ho0w', 'hpow', 'hopw', 'hlow',
                           'holw', 'hkow', 'hokw', 'hoqw', 'howq', 'ho3w', 'how3', 'hoew', 'howe', 'hodw',
                           'howd', 'hosw', 'hows', 'hoaw', 'howa'],
-                 extras={'emoji': "info", "args": {}, "dev": True},
-                 brief="Command used to send the how to use embed for STW Dailies",
-                 description="This command will send a compact how to instruction embed for use in the support server\n"
-                             "⦾ Please note that this command is intended for "
-                 # change this and youll be subject to the same fate as golden freddy
-                             "[STW Dailies](https://discord.gg/stw-dailies-757765475823517851) only. <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"
-                             "⦾ You may still find this helpful / useful if you're unsure how to use the bot, however:"
-                             "DON'T SKID AND USE THIS to mirror stw dailies server :( its really not cool. 😢")
+                 extras={'emoji': "info", "args": {}, "dev": True,
+                         "description_keys": ["how2.meta.description1", "how2.meta.description2",
+                                              "how2.meta.description3"],
+                         "name_key": "how2.slash.name"},
+                 brief="how2.slash.description",
+                 description="{0}\n⦾ {1}\n⦾ {2}")
     async def how2(self, ctx):
         """
         This function is the entry point for the how to use command when called traditionally

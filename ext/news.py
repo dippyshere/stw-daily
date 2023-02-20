@@ -328,13 +328,11 @@ class News(ext.Cog):
                           'nedws', 'nsews', 'nesws', 'neqws', 'newqs', 'ne2ws', 'new2s', 'new3s', 'newes', 'newds',
                           'neaws', 'newas', 'newsa', 'newsw', 'newse', 'newsd', 'newxs', 'newsx', 'newzs', 'newsz', 'n',
                           '/n', '/new', '/news', 'feed'],
-                 extras={'emoji': "bang", "args": {'page': "The page number to view (Optional)",
-                                                   "mode": "The game mode to see news from (stw/br) (Optional)"},
-                         "dev": False},
-                 brief="View the latest in-game news from Fortnite",
-                 description="This command will fetch and display the latest news from the game. You can switch "
-                             "between viewing Save the World or Battle Royale news by pressing the corresponding "
-                             "buttons. Cycle between pages by pressing the left/right arrow buttons.")
+                 extras={'emoji': "bang", "args": {'news.meta.args.page': ['news.meta.args.page.description', True],
+                                                   "news.meta.args.mode": ['news.meta.args.mode.description', True]},
+                         "dev": False, "description_keys": ['news.meta.description'], "name_key": 'news.slash.name'},
+                 brief="news.slash.description",
+                 description="{0}")
     async def news(self, ctx, page=1, mode="stw"):
         """
         This function is the entry point for the news command when called traditionally

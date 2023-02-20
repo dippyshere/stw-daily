@@ -315,19 +315,14 @@ class Daily(ext.Cog):
                  extras={'emoji': "vbucks", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token'],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description']},
-                         'dev': False, "description_keys": ['']},
+                         'dev': False, "description_keys": ['daily.meta.description.main',
+                                                            ['daily.meta.description.list.item1',
+                                                             f'<t:{stw.get_tomorrow_midnight_epoch()}:R>'],
+                                                            ['daily.meta.description.list.item2', '`device`'],
+                                                            ['daily.meta.description.list.item3', '`auth`', '`how2`']],
+                         "name_key": "daily.slash.name"},
                  brief="daily.meta.brief",
-                 description=(
-                         f"This command will instantly claim your daily reward, if available. To use this command, "
-                         f"you'll need Fortnite: Save the World on the account you will claim with. You must be "
-                         f"authenticated to use this command.\n "
-                         f"\u200b\n"
-                         f"⦾ This command only runs once, be sure to come back"
-                         f" <t:{stw.get_tomorrow_midnight_epoch()}:R>\n"
-                         f"⦾ Looking for autoclaim? Check out the `deviceauth` command to opt-in to the auto-claim "
-                         f"trial period!\n"
-                         f"⦾ Looking for help on authcodes? Check out help for the `auth` command, or try the `how2`"
-                         f" command."))
+                 description="{0}\n\u200b\n⦾ {1}\n⦾ {2}\n⦾ {3}")
     async def daily(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the daily command when called traditionally

@@ -330,13 +330,11 @@ class Help(ext.Cog):
                           'cmnd', 'cjmd', 'cmjd', 'ckmd', 'cmkd', 'cmsd', 'cmds', 'cmed', 'cmde', 'cmrd', 'cmdr',
                           'cmfd', 'cmdf', 'cmcd', 'cmdc', 'cmxd', 'cmdx', 'what', 'list', 'cmd', '?', 'h', 'commands'],
                  extras={'emoji': "info",
-                         'args': {'command': "The name of a command to display detailed information on (Optional)"},
-                         "dev": False},
-                 brief="An interactive view of all available commands",
-                 description="This command provides an interactive interface to view all available commands, and help "
-                             "for how to use each command.\nThe select menu is only available to the author of the "
-                             "command, and will display more detailed information of the selected command.\nIf no "
-                             "command is selected, brief info about all available command will be displayed.")
+                         'args': {'help.meta.args.command': "help.meta.args.command.description"},
+                         "dev": False, "description_keys": ["help.meta.description"],
+                         "name_key": "help.slash.name"},
+                 brief="help.slash.description",
+                 description="{0}")
     async def help(self, ctx, command=None):
         """
         This function is the entry point for the help command when called traditionally

@@ -161,9 +161,9 @@ class BattleBreakersDaily(ext.Cog):
                           'bbdailyh', 'bbdailgy', 'bbdailyg', '/bbd', 'battlebreakers', '/battlebreakers', '/wex',
                           '/bd', '/bbdaily'],
                  extras={'emoji': "T_MTX_Gem_Icon", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": True},
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
+                         "dev": True, "description_keys": ['bbdaily.meta.description']},
                  brief="Claim your Battle Breakers daily reward (authentication required)",
                  description=(
                          f"This command allowed you to claim your Battle Breakers daily rewards\n"

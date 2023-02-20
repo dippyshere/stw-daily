@@ -310,16 +310,12 @@ class BBDump(ext.Cog):
                           'battlebreakersdumop', 'battlebreakersdumpo', 'battlebreakersdum0p', 'battlebreakersdump0',
                           'battlebreakersdumlp', 'battlebreakersdumpl'],
                  extras={'emoji': "library_floppydisc", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": True},  # to hide from help
-                 brief="Dumps your Battle Breakers profile as a JSON attachment (authentication required)",
-                 description=(
-                         "This command would dump your Battle Breakers profiles as a JSON attachment for archival "
-                         "purposes.\n\u200b\nAs of <t:1672425127:R>, this command is no longer available, as Battle "
-                         "Breakers has been shut down. 💔\nIf you'd like to continue playing Battle Breakers from your "
-                         "profile dump, or just want to play it again, check out "
-                         "https://github.com/dippyshere/battle-breakers-private-server."))
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
+                         "dev": True, "description_keys": ['bbdump.meta.description'], "name_key": "bbdump.slash.name",
+                         "battle_broken": True},  # to hide from help
+                 brief="bbdump.meta.brief",
+                 description="{0}")
     async def bbdump(self, ctx):
         """
         This function is the entry point for the profile dump command when called traditionally

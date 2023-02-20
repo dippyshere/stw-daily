@@ -273,11 +273,10 @@ class Information(ext.Cog):
                           'statisticvs', 'statisticas', 'statisticsa', 'statisticws', 'statisticsw', 'statistices',
                           'statisticse', 'statisticsd', 'statisticsx', 'statisticzs', 'statisticsz', '/statistics',
                           '/latency', '/about', '/memory', 'uptime', 'getmtime'],
-                 extras={'emoji': "hard_drive", "args": {}, "dev": False},
-                 brief="View information about STW Daily's host, the bot, and the bot's developer. Also verify "
-                       "authenticity.",
-                 description="This command will return various bits of information about the bot, which you may find "
-                             "interesting as a developer. It will also verify the authenticity of the bot.")
+                 extras={'emoji': "hard_drive", "args": {}, "dev": False, "description_keys": ['info.meta.description'],
+                         "name_key": "info.slash.name"},
+                 brief="info.slash.description.",
+                 description="{0}")
     async def info(self, ctx):
         """
         This function is the entry point for the info command when called traditionally

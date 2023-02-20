@@ -885,14 +885,12 @@ class ProfileAuth(ext.Cog):
                           'profileauthj', 'profileautnh', 'profileauthn', 'profileautbh', 'profileauthb', 'savelogin',
                           '/device', '/deviceauth', '/profileauth', '/savelogin', 'dauth', '/dauth', 'save', '/save',
                           '.save', '.autodaily', '.device'],
-                 extras={'emoji': "link_acc", "args": {}, "dev": False},
-                 brief="Create an authentication session that will keep you logged in for a long time",
-                 description=("This command allows you to save your authentication session to keep you logged in for a "
-                              "long time. Once you setup this command, you will no longer need to provide your auth code."
-                              "\nPlease do not use this command unless you have access to your account's email, as "
-                              "password resets *may* be triggered.\n\nAfter you setup device authentication, you can "
-                              "use this command to opt-in to the auto-claim trial period. This will automatically claim"
-                              " your STW Daily rewards every day. You can opt-out of this at any time."))
+                 extras={'emoji': "link_acc", "args": {}, "dev": False,
+                         "description_keys": ['devauth.meta.description1', 'devauth.meta.description2',
+                                              'devauth.meta.description3'],
+                         "name_key": "devauth.slash.name"},
+                 brief="devauth.slash.description",
+                 description="{0}\n{1}\n\n{2}")
     async def device(self, ctx):
         """
         This function handles the device auth login command

@@ -342,20 +342,19 @@ class Homebase(ext.Cog):
                           'hbrenamer', 'hbrenamfe', 'hbrenamef', 'hbrenamde', 'hbrenamed', 'hbrenamse', 'hbrenames',
                           '/hbrn', '/homebase', '/hbrename', '/homebasern', '/rename', '/hbname'],
                  extras={'emoji': "storm_shield", "args": {
-                     'name': 'The new name for your Homebase. Leave blank to view your current name + banner (Optional)',
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         'dev': False},
-                 brief="View / change the name of your Homebase in STW (authentication required)",
-                 description=(
-                         "This command allows you to view / change the name of your Homebase in STW. You must be authenticated to use this command.\n"
-                         "\u200b\n"
-                         "**Please note there are limitations on what your Homebase name can be:**\n"
-                         "⦾ It must be between 1-16 characters\n"
-                         "⦾ It may not contain certain characters\n"
-                         "⦾ When entering a name with spaces while not using slash commands, please put \"quote marks\" around the new name\n"
-                         "⦾ Support for other languages will be available in the future\n"
-                         "⦾ STW isn't required but what's the point?\n"))
+                     'homebase.meta.args.name': 'homebase.meta.args.name.description',
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
+                         'dev': False,
+                         "description_keys": ['homebase.meta.description.main', 'homebase.meta.description.list',
+                                              'homebase.meta.description.list.item1',
+                                              'homebase.meta.description.list.item2',
+                                              'homebase.meta.description.list.item3',
+                                              'homebase.meta.description.list.item4',
+                                              'homebase.meta.description.list.item5'], "experimental": True,
+                         "name_key": "homebase.slash.name"},
+                 brief="homebase.meta.brief",
+                 description="{0}\n\u200b\n{1}\n⦾ {2}\n⦾ {3}\n⦾ {4}\n⦾ {5}\n⦾ {6}\n")
     async def hbrename(self, ctx, name='', authcode='', optout=None):
         """
         This is the entry point for the homebase command when called traditionally

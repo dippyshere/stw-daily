@@ -582,14 +582,12 @@ class Llamas(ext.Cog):
                           'xra7y', 'xray7', 'xrauy', 'xrayu', 'xrajy', 'xrayj', 'xrahy', 'xrayh', 'xragy', 'xrayg',
                           'l', 'ahoura', '🙄'],
                  extras={'emoji': "llama", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         'dev': False},
-                 brief="View and purchase Llamas in the Llama shop",
-                 description="This command allows you to view the available Llamas in the Llama shop, the contents of "
-                             "the available llamas purchase them. As this information is specific to your account, "
-                             "you will need an active session or to provide your authcode.\n⦾ Please note that this "
-                             "command is still experimental <:TBannersIconsBeakerLrealesrganx4:1028513516589682748>")
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
+                         'dev': False, "description_keys": ['llamas.meta.description'], "name_key": "llama.slash.name",
+                         "experimental": True},
+                 brief="llama.meta.brief",
+                 description="{0}")
     async def llamas(self, ctx, authcode='', optout=None):
         """
         This is the entry point for the llama command when called traditionally

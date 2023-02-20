@@ -219,16 +219,15 @@ class BBReward(ext.Cog):
                           'bbrwfrd', 'bbrwrfd', 'bbrwrsd', 'bbrwrds', 'bbrwrde', 'bbrwrdr', 'bbrwrdf', 'bbrwrcd',
                           'bbrwrdc', 'bbrwrxd', 'bbrwrdx', '/bbr', '/bbrwrd', '/bbreward', '/battlebreakersrewards',
                           'battlebreakersrewards', 'bbitem', '/bbitem'],
-                 extras={'emoji': "Shared2", "args": {'day': 'The day to get the rewards of',
-                                                      'limit': 'The number of upcoming days to see (Optional)'},
-                         "dev": False},
-                 brief="View info about a specific day's reward, and the rewards that follow in Battle Breakers",
-                 description="This command lets you view the rewards of any specific day, and any number of rewards "
-                             "that follow in Battle Breakers.\n\n"
-                             "As of <t:1672425127:R>, Battle Breakers has been shut down. 💔\n"
-                             "If you'd like to continue playing Battle Breakers from your "
-                             "profile dump, or just want to play it again, check out "
-                             "https://github.com/dippyshere/battle-breakers-private-server.")
+                 extras={'emoji': "Shared2", "args": {'reward.meta.args.day': ['reward.meta.args.day.description',
+                                                                               False],
+                                                      'reward.meta.args.limit': ['reward.meta.args.limit.description',
+                                                                                 True]},
+                         "dev": False, "description_keys": ['bbreward.meta.description'],
+                         "name_key": "bbreward.slash.name",
+                         "battle_broken": True},
+                 brief="bbreward.slash.description",
+                 description="{0}")
     async def bbreward(self, ctx, day=None, limit=None):
         """
         This command lets you view the rewards of any specific day, and any number of rewards that follow.

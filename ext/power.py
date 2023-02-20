@@ -234,15 +234,12 @@ class Power(ext.Cog):
                           'powq', 'po2w', 'pow2', 'po3w', 'pow3', 'poew', 'podw', 'powd', 'posw', 'pows', 'poaw',
                           'powa', '/pow', '/level', '/homebaserating', 'homebaserating', '/power', '/powerlevel'],
                  extras={'emoji': "power_level", "args": {
-                     'authcode': 'Your Epic Games authcode. Required unless you have an active session. (Optional)',
-                     'opt-out': 'Any text given will opt you out of starting an authentication session (Optional)'},
-                         "dev": True},
-                 brief="View your Power level (authentication required)",
-                 description=(
-                         "This command allows you to view the power level of your STW homebase, you must be "
-                         "authenticated to use this command for now."
-                         "⦾ Please note that this command is still experimental "
-                         "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
+                     'generic.meta.args.authcode': ['generic.slash.token', True],
+                     'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
+                         "dev": True, "description_keys": ['llamas.meta.description'], "name_key": "llama.slash.name",
+                         "experimental": True},
+                 brief="llama.meta.brief",
+                 description="{0}")
     async def power(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the power command when called traditionally
