@@ -33,7 +33,7 @@ wait_on_user_messages = [
 ]
 
 
-# logging_level = "WARNING" # DEBUG, INFO, WARNING, ERROR, CRITICAL
+logging_level = "INFO" # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 support_url = "https://discord.gg/QYgABPDqzH"
 

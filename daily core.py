@@ -76,6 +76,8 @@ class ColourLogger(logging.Logger):
 
 logging.setLoggerClass(ColourLogger)
 logging.getLogger('discord.gateway').setLevel(logging.WARNING)
+logging.getLogger('watchfiles').setLevel(logging.WARNING)
+# [logging.getLogger(name) for name in logging.root.manager.loggerDict]
 logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.DEBUG)
 
@@ -156,7 +158,7 @@ def main() -> None:
     client.config = load_config(config_path)
 
     # set logging level
-    # logger.setLevel(client.config["logging_level"])
+    # [logging.getLogger(name).setLevel(client.config["logging_level"]) for name in logging.root.manager.loggerDict]
 
     # simple way to parse the colours from config into usable colours;
     client.colours = {}
