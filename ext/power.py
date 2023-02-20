@@ -236,9 +236,9 @@ class Power(ext.Cog):
                  extras={'emoji': "power_level", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
-                         "dev": True, "description_keys": ['llamas.meta.description'], "name_key": "llama.slash.name",
+                         "dev": True, "description_keys": ['power.meta.description'], "name_key": "power.slash.name",
                          "experimental": True},
-                 brief="llama.meta.brief",
+                 brief="power.meta.brief",
                  description="{0}")
     async def power(self, ctx, authcode='', optout=None):
         """

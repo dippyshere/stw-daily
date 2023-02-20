@@ -342,7 +342,7 @@ class Homebase(ext.Cog):
                           'hbrenamer', 'hbrenamfe', 'hbrenamef', 'hbrenamde', 'hbrenamed', 'hbrenamse', 'hbrenames',
                           '/hbrn', '/homebase', '/hbrename', '/homebasern', '/rename', '/hbname'],
                  extras={'emoji': "storm_shield", "args": {
-                     'homebase.meta.args.name': 'homebase.meta.args.name.description',
+                     'homebase.meta.args.name': ['homebase.meta.args.name.description', True],
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
                          'dev': False,

@@ -584,9 +584,9 @@ class Llamas(ext.Cog):
                  extras={'emoji': "llama", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
-                         'dev': False, "description_keys": ['llamas.meta.description'], "name_key": "llama.slash.name",
+                         'dev': False, "description_keys": ['llamas.meta.description'], "name_key": "llamas.slash.name",
                          "experimental": True},
-                 brief="llama.meta.brief",
+                 brief="llamas.meta.brief",
                  description="{0}")
     async def llamas(self, ctx, authcode='', optout=None):
         """

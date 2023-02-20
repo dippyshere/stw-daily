@@ -163,10 +163,11 @@ class BattleBreakersDaily(ext.Cog):
                  extras={'emoji': "T_MTX_Gem_Icon", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
-                         "dev": True, "description_keys": ['bbdaily.meta.description'],
+                         "dev": True, "description_keys": ['bbdaily.meta.description.main1',
+                                                           ['bbdaily.meta.description.list.item1', '`daily`']],
                          "name_key": "bbdaily.slash.name", "battle_broken": True},
                  brief="bbdaily.meta.brief",
-                 description="{0}")
+                 description="{0}\n{1}")
     async def bbdaily(self, ctx):
         """
         This function is the entry point for the bbdaily command when called traditionally
