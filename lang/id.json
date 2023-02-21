@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Untuk memeriksa perintah saya, gunakan:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Penting:",
         "help.hello.epic.fancontentdisclaimer.value": "*Bagian dari materi yang digunakan adalah merek dagang dan/atau karya berhak cipta dari Epic Games, Inc. Semua hak dilindungi undang-undang oleh Epic. Materi ini tidak resmi dan tidak didukung oleh Epic.",
-        "help.hello.legal.view": "[Kebijakan Privasi]({0}) [Persyaratan Layanan]({1})*",
+        "help.hello.legal.view": "[Kebijakan Privasi]({0})  •  [Persyaratan Layanan]({1})*",
         "dailyxp.error.verbiage": "dapatkan info XP harian",
         "dailyxp.embed.title": "XP Harian",
         "dailyxp.embed.error.description": "Terjadi kesalahan saat mencoba mendapatkan info xp harian Anda: {0}",

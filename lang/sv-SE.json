@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} För att kolla in mina kommandon, använd:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Viktigt:",
         "help.hello.epic.fancontentdisclaimer.value": "*Delar av materialet som används är varumärken och/eller upphovsrättsskyddade verk som tillhör Epic Games, Inc. Alla rättigheter förbehålls av Epic. Detta material är inte officiellt och stöds inte av Epic.",
-        "help.hello.legal.view": "[Sekretesspolicy]({0}) [Användarvillkor]({1})*",
+        "help.hello.legal.view": "[Sekretesspolicy]({0})  •  [Användarvillkor]({1})*",
         "dailyxp.error.verbiage": "få daglig XP-information",
         "dailyxp.embed.title": "Daglig XP",
         "dailyxp.embed.error.description": "Ett fel uppstod när du försökte få din dagliga XP-information: {0}",

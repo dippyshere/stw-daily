@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} للتحقق من أوامري ، استخدم:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} هام:",
         "help.hello.epic.fancontentdisclaimer.value": "*أجزاء من المواد المستخدمة هي علامات تجارية و / أو أعمال محمية بحقوق الطبع والنشر لشركة Epic Games، Inc. جميع الحقوق محفوظة لشركة Epic. هذه المادة ليست رسمية ولم تقرها Epic.",
-        "help.hello.legal.view": "[سياسة الخصوصية]({0}) [شروط الخدمة]({1})*",
+        "help.hello.legal.view": "[سياسة الخصوصية]({0})  •  [شروط الخدمة]({1})*",
         "dailyxp.error.verbiage": "الحصول على معلومات XP اليومية",
         "dailyxp.embed.title": "Daily XP",
         "dailyxp.embed.error.description": "حدث خطأ أثناء محاولة الحصول على معلومات XP اليومية: {0}",

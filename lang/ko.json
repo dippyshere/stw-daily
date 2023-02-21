@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} 내 명령을 확인하려면 다음을 사용하세요.",
         "help.hello.epic.fancontentdisclaimer.title": "{0} 중요:",
         "help.hello.epic.fancontentdisclaimer.value": "*사용된 자료의 일부는 Epic Games, Inc.의 상표 및/또는 저작물입니다. Epic이 모든 권리를 보유합니다. 이 자료는 공식 자료가 아니며 Epic에서 보증하지 않습니다.",
-        "help.hello.legal.view": "[개인정보 보호정책]({0}) [서비스 약관]({1})*",
+        "help.hello.legal.view": "[개인정보 보호정책]({0})  •  [서비스 약관]({1})*",
         "dailyxp.error.verbiage": "일일 XP 정보 가져오기",
         "dailyxp.embed.title": "일일 XP",
         "dailyxp.embed.error.description": "일일 XP 정보를 가져오는 동안 오류가 발생했습니다. {0}",

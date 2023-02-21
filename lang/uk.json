@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Щоб перевірити мої команди, використовуйте:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Важливо:",
         "help.hello.epic.fancontentdisclaimer.value": "*Частини використаних матеріалів є товарними знаками та/або захищеними авторським правом творами Epic Games, Inc. Усі права захищені Epic. Цей матеріал не є офіційним і не схвалений Epic.",
-        "help.hello.legal.view": "[Політика конфіденційності]({0}) [Умови використання]({1})*",
+        "help.hello.legal.view": "[Політика конфіденційності]({0})  •  [Умови використання]({1})*",
         "dailyxp.error.verbiage": "отримати інформацію про щоденні XP",
         "dailyxp.embed.title": "Щоденні XP",
         "dailyxp.embed.error.description": "Сталася помилка під час спроби отримати інформацію про щоденні XP: {0}",

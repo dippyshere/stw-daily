@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Per controllare i miei comandi, usa:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Importante:",
         "help.hello.epic.fancontentdisclaimer.value": "*Parti dei materiali utilizzati sono marchi e/o opere protette da copyright di Epic Games, Inc. Tutti i diritti riservati da Epic. Questo materiale non è ufficiale e non è approvato da Epic.",
-        "help.hello.legal.view": "[Norme sulla privacy]({0}) [Termini di servizio]({1})*",
+        "help.hello.legal.view": "[Norme sulla privacy]({0})  •  [Termini di servizio]({1})*",
         "dailyxp.error.verbiage": "ottieni informazioni sugli XP giornalieri",
         "dailyxp.embed.title": "XP giornalieri",
         "dailyxp.embed.error.description": "Si è verificato un errore durante il tentativo di ottenere le informazioni sugli XP giornalieri: {0}",

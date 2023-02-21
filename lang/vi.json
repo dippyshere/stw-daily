@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Để kiểm tra các lệnh của tôi, hãy sử dụng:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Quan trọng:",
         "help.hello.epic.fancontentdisclaimer.value": "*Các phần của tài liệu được sử dụng là nhãn hiệu và/hoặc tác phẩm có bản quyền của Epic Games, Inc. Mọi quyền thuộc về Epic. Tài liệu này không chính thức và không được Epic xác nhận.",
-        "help.hello.legal.view": "[Chính sách bảo mật]({0}) [Điều khoản dịch vụ]({1})*",
+        "help.hello.legal.view": "[Chính sách bảo mật]({0})  •  [Điều khoản dịch vụ]({1})*",
         "dailyxp.error.verbiage": "lấy thông tin XP hàng ngày",
         "dailyxp.embed.title": "XP hàng ngày",
         "dailyxp.embed.error.description": "Đã xảy ra lỗi khi cố lấy thông tin xp hàng ngày của bạn: {0}",

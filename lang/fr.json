@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Pour consulter mes commandes, utilisez :",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Important :",
         "help.hello.epic.fancontentdisclaimer.value": "* Des parties du matériel utilisé sont des marques commerciales et/ou des œuvres protégées par le droit d'auteur d'Epic Games, Inc. Tous droits réservés par Epic. Ce matériel n'est pas officiel et n'est pas approuvé par Epic.",
-        "help.hello.legal.view": "[Politique de confidentialité]({0}) [Conditions d'utilisation]({1})*",
+        "help.hello.legal.view": "[Politique de confidentialité]({0})  •  [Conditions d'utilisation]({1})*",
         "dailyxp.error.verbiage": "obtenir des informations XP quotidiennes",
         "dailyxp.embed.title": "XP quotidiennes",
         "dailyxp.embed.error.description": "Une erreur s'est produite lors de la tentative d'obtention de vos informations XP quotidiennes : {0}",

@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} За да проверите моите команди, използвайте:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Важно:",
         "help.hello.epic.fancontentdisclaimer.value": "*Части от използваните материали са търговски марки и/или произведения, защитени с авторски права на Epic Games, Inc. Всички права запазени от Epic. Този материал не е официален и не е одобрен от Epic.",
-        "help.hello.legal.view": "[Декларация за поверителност]({0}) [Условия за ползване]({1})*",
+        "help.hello.legal.view": "[Декларация за поверителност]({0})  •  [Условия за ползване]({1})*",
         "dailyxp.error.verbiage": "получете дневна информация за XP",
         "dailyxp.embed.title": "Дневен XP",
         "dailyxp.embed.error.description": "Възникна грешка при опит да получите дневна информация за XP: {0}",

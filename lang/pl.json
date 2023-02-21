@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Aby sprawdzić moje polecenia, użyj:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Ważne:",
         "help.hello.epic.fancontentdisclaimer.value": "*Części użytych materiałów są znakami towarowymi i/lub dziełami chronionymi prawami autorskimi firmy Epic Games, Inc. Wszelkie prawa zastrzeżone przez firmę Epic. Ten materiał nie jest oficjalny i nie jest zatwierdzony przez firmę Epic.",
-        "help.hello.legal.view": "[Polityka prywatności]({0}) [Warunki korzystania z usługi]({1})*",
+        "help.hello.legal.view": "[Polityka prywatności]({0})  •  [Warunki korzystania z usługi]({1})*",
         "dailyxp.error.verbiage": "otrzymuj dzienne informacje o PD",
         "dailyxp.embed.title": "Dzienne PD",
         "dailyxp.embed.error.description": "Wystąpił błąd podczas próby uzyskania dziennych informacji o PD: {0}",

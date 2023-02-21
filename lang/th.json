@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} หากต้องการดูคำสั่งของฉัน ให้ใช้:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} สำคัญ:",
         "help.hello.epic.fancontentdisclaimer.value": "*เนื้อหาบางส่วนที่ใช้เป็นเครื่องหมายการค้าและ/หรืองานลิขสิทธิ์ของ Epic Games, Inc. สงวนลิขสิทธิ์โดย Epic เนื้อหานี้ไม่เป็นทางการและไม่ได้รับการรับรองจาก Epic",
-        "help.hello.legal.view": "[นโยบายความเป็นส่วนตัว]({0}) [ข้อกำหนดในการให้บริการ]({1})*",
+        "help.hello.legal.view": "[นโยบายความเป็นส่วนตัว]({0})  •  [ข้อกำหนดในการให้บริการ]({1})*",
         "dailyxp.error.verbiage": "รับข้อมูล XP รายวัน",
         "dailyxp.embed.title": "XP รายวัน",
         "dailyxp.embed.error.description": "เกิดข้อผิดพลาดขณะพยายามรับข้อมูล XP รายวันของคุณ: {0}",

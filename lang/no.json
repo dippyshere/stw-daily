@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} For å sjekke ut kommandoene mine, bruk:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Viktig:",
         "help.hello.epic.fancontentdisclaimer.value": "*Deler av materialet som brukes er varemerker og/eller opphavsrettsbeskyttede verk fra Epic Games, Inc. Alle rettigheter forbeholdt Epic. Dette materialet er ikke offisielt og er ikke godkjent av Epic.",
-        "help.hello.legal.view": "[Personvernregler]({0}) [Vilkår for bruk]({1})*",
+        "help.hello.legal.view": "[Personvernregler]({0})  •  [Vilkår for bruk]({1})*",
         "dailyxp.error.verbiage": "få daglig XP-informasjon",
         "dailyxp.embed.title": "Daglig XP",
         "dailyxp.embed.error.description": "Det oppstod en feil under forsøk på å få din daglige xp-informasjon: {0}",

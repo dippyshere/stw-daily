@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Da provjerite moje naredbe, upotrijebite:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Važno:",
         "help.hello.epic.fancontentdisclaimer.value": "*Dijelovi upotrijebljenih materijala zaštitni su znaci i/ili djela zaštićena autorskim pravima tvrtke Epic Games, Inc. Sva prava pridržava Epic. Ovaj materijal nije službeni i Epic ga ne podržava.",
-        "help.hello.legal.view": "[Pravila o privatnosti]({0}) [Uvjeti usluge]({1})*",
+        "help.hello.legal.view": "[Pravila o privatnosti]({0})  •  [Uvjeti usluge]({1})*",
         "dailyxp.error.verbiage": "dohvatite podatke o dnevnom XP",
         "dailyxp.embed.title": "Dnevni XP",
         "dailyxp.embed.error.description": "Došlo je do pogreške prilikom pokušaja dobivanja informacija o vašem dnevnom XP: {0}",

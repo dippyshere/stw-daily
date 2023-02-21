@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Om my opdragte na te gaan, gebruik:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Belangrik:",
         "help.hello.epic.fancontentdisclaimer.value": "*Gedeeltes van die materiaal wat gebruik word, is handelsmerke en/of kopieregbeskermde werke van Epic Games, Inc. Alle regte voorbehou deur Epic. Hierdie materiaal is nie amptelik nie en word nie deur Epic onderskryf nie.",
-        "help.hello.legal.view": "[Privaatheidsbeleid]({0}) [Diensbepalings]({1})*",
+        "help.hello.legal.view": "[Privaatheidsbeleid]({0})  •  [Diensbepalings]({1})*",
         "dailyxp.error.verbiage": "kry daaglikse XP-inligting",
         "dailyxp.embed.title": "Daaglikse XP",
         "dailyxp.embed.error.description": "'n Fout het voorgekom tydens die poging om jou daaglikse xp-inligting te kry: {0}",

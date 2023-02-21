@@ -265,7 +265,7 @@
         "help.hello.description4": "{0} Um meine Befehle zu überprüfen, verwenden Sie:",
         "help.hello.epic.fancontentdisclaimer.title": "{0} Wichtig:",
         "help.hello.epic.fancontentdisclaimer.value": "*Teile der verwendeten Materialien sind Warenzeichen und/oder urheberrechtlich geschützte Werke von Epic Games, Inc. Alle Rechte sind Epic vorbehalten. Dieses Material ist nicht offiziell und wird nicht von Epic unterstützt.",
-        "help.hello.legal.view": "[Datenschutzerklärung]({0}) [Nutzungsbedingungen]({1})*",
+        "help.hello.legal.view": "[Datenschutzerklärung]({0})  •  [Nutzungsbedingungen]({1})*",
         "dailyxp.error.verbiage": "tägliche XP-Informationen abrufen",
         "dailyxp.embed.title": "tägliche XP",
         "dailyxp.embed.error.description": "Beim Versuch, Ihre täglichen XP-Informationen abzurufen, ist ein Fehler aufgetreten: {0}",
