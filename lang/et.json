@@ -541,7 +541,7 @@
         "util.error.auth.devauth.expired.description2": "Proovige {0}, seejärel {1} ja **EEMALDAGE oma lingitud kontod**, seejärel lisage need uuesti",
         "util.error.auth.devauth.expired.description3": "Kui lubasite automaatse nõude, peate võib-olla selle uuesti lubama",
         "util.error.auth.cabined.description1": "**Peate kinnitama oma sünnikuupäeva**",
-        "util.error.auth.cabined.description2": "Käivitage Fortnite või logige sisse teenusesse [Epic Games] ({0}) ja proovige uuesti",
+        "util.error.auth.cabined.description2": "Käivitage Fortnite või logige sisse teenusesse [Epic Games]({0}) ja proovige uuesti",
         "util.error.auth.nostw.description1": "**Teil pole Save the World**",
         "util.error.auth.nostw.description2": "{0} nõuab STW-d",
         "util.error.auth.nostw.description3": "Kui see on vale konto, proovige alloleva lingi abil kontot vahetada",

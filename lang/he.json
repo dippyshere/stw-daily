@@ -457,7 +457,7 @@
         "settings.pagination.showing": "מציג דף הגדרות {0} מתוך {1}",
         "settings.change": "*שונה **{0}** ל**{1}***",
         "settings.change1": "*שונתה הגדרה ל**{0}***",
-        "settings.change1.invalid": "* הוזן ערך לא חוקי! בבקשה נסה שוב*",
+        "settings.change1.invalid": "*הוזן ערך לא חוקי! בבקשה נסה שוב*",
         "settings.change2": "שונתה הגדרה **{0}**",
         "settings.change2.1": "בפרופיל **{0}**",
         "settings.change2.2": "ל**{0}**",

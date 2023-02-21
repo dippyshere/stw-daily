@@ -571,7 +571,7 @@
         "util.error.embed.promptnewcode": "*તમને નવા કોડની જરૂર છે __દરેક વખતે__ તમે પ્રમાણિત કરો*",
         "util.error.createsession.nocode.title": "કોઈ ઓથ કોડ નથી",
         "util.error.createsession.nocode.description1": "**ઓથ કોડ મેળવવા માટે:**",
-        "util.error.createsession.nocode.description2": "[આ લિંક] ({0}) પર જાઓ",
+        "util.error.createsession.nocode.description2": "[આ લિંક]({0}) પર જાઓ",
         "util.error.createsession.nocode.description3": "તમારો ઓથ કોડ કૉપિ કરો",
         "util.error.createsession.nocode.description4": "{0} ચલાવો",
         "util.error.createsession.knownid.description1": "**આ ઓથકોડ URL પરથી છે, મુખ્ય ભાગનો નહીં**",

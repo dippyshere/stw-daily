@@ -219,7 +219,7 @@
         "how2.embed.title": "نحوه استفاده از STW Daily",
         "how2.embed.description1": "برای برخی از دستورات (مانند [daily]({0}))، باید **[تأیید هویت]({1})** را انجام دهید.",
         "how2.embed.description2": "**دریافت کد احراز هویت**",
-        "how2.embed.description3": "به [این پیوند] ({0}) بروید و کد تأیید خود را کپی کنید.",
+        "how2.embed.description3": "به [این پیوند]({0}) بروید و کد تأیید خود را کپی کنید.",
         "how2.embed.description4": "**مطالبه روزانه خود**",
         "how2.embed.description5": "دو راه برای مطالبه روزانه وجود دارد:",
         "how2.embed.description6": "{0} استفاده از {1}",
@@ -352,7 +352,7 @@
         "devauth.embed.title": "احراز هویت دستگاه",
         "devauth.embed.noprofile.descripton2": "برای ایجاد یکی از دستور پروفایل استفاده کنید",
         "devauth.embed.preauth.description": "**شما هنوز احراز هویت دستگاه را در این نمایه تنظیم نکرده اید**",
-        "devauth.embed.preauth.description.nosession1": "**برای شروع، یک کد احراز هویت از [اینجا] ({0})** دریافت کنید",
+        "devauth.embed.preauth.description.nosession1": "**برای شروع، یک کد احراز هویت از [اینجا]({0})** دریافت کنید",
         "devauth.embed.preauth.description.nosession2": "سپس به سادگی کد مجوز خود را کپی کنید، دکمه **{0} احراز هویت** را در زیر فشار دهید، و کد خود را در فرمان قرار دهید.",
         "devauth.embed.preauth.description.activesession1": "شما از قبل یک جلسه احراز هویت فعال دارید! با فشار دادن **{0} Auth With Session** می توانید با این حساب شروع به کار کنید.",
         "devauth.embed.preauth.description.activesession2": "اگر می‌خواهید حساب‌ها را تغییر دهید، می‌توانید از [این پیوند]({0}) استفاده کنید و پس از فشار دادن دکمه **{1} احراز هویت**، به سادگی کد مجوز خود را وارد کنید.",
@@ -388,8 +388,8 @@
         "profile.embed.noprofiles.description1": "**بدون پروفایل :(**",
         "profile.embed.noprofiles.description2": "ایجاد یک نمایه جدید با استفاده از 'نمایه جدید' دکمه! :دی",
         "profile.embed.currentlyselected": "**نمایه انتخابی فعلی {0}**",
-        "profile.embed.start.settings": "* دستور تنظیمات شروع شد. لطفا برای ادامه دوباره اجرا کنید*",
-        "profile.embed.start.auth": "* دستور احراز هویت شروع شد. لطفا برای ادامه دوباره اجرا کنید*",
+        "profile.embed.start.settings": "*دستور تنظیمات شروع شد. لطفا برای ادامه دوباره اجرا کنید*",
+        "profile.embed.start.auth": "*دستور احراز هویت شروع شد. لطفا برای ادامه دوباره اجرا کنید*",
         "profile.embed.changename": "*نام نمایه را تغییر داد **{0}***",
         "profile.embed.create": "*نمایه ایجاد شد **{0}***",
         "profile.embed.delete": "*نمایه حذف شده **{0}***",
@@ -541,7 +541,7 @@
         "util.error.auth.devauth.expired.description2": "لطفاً {0}، سپس {1} را امتحان کنید و **حساب های پیوند شده خود را حذف کنید**، سپس آنها را دوباره اضافه کنید",
         "util.error.auth.devauth.expired.description3": "اگر ادعای خودکار را فعال کرده اید، ممکن است لازم باشد دوباره آن را فعال کنید",
         "util.error.auth.cabined.description1": "**شما باید تاریخ تولد خود را تأیید کنید**",
-        "util.error.auth.cabined.description2": "لطفاً Fortnite را راه‌اندازی کنید یا به [Epic Games] ({0}) وارد شوید و دوباره امتحان کنید",
+        "util.error.auth.cabined.description2": "لطفاً Fortnite را راه‌اندازی کنید یا به [Epic Games]({0}) وارد شوید و دوباره امتحان کنید",
         "util.error.auth.nostw.description1": "**شما Save the World را ندارید**",
         "util.error.auth.nostw.description2": "{0} به STW نیاز دارد",
         "util.error.auth.nostw.description3": "اگر این حساب اشتباه است، سعی کنید حساب‌ها را با پیوند زیر تغییر دهید",
@@ -557,21 +557,21 @@
         "util.battlebreakers.deprecation.embed.description2.bbdump": "**با عرض پوزش... BB Dump دیگر موجود نیست 😢**",
         "util.battlebreakers.deprecation.embed.description2.bbdaily": "**ببخشید... BB Daily دیگر در دسترس نیست 😢**",
         "util.battlebreakers.deprecation.embed.description3": "از تاریخ {0}، Battle Breakers توسط Epic Games تعطیل شد.",
-        "util.battlebreakers.deprecation.embed.description4": "اگر علاقه دارید، پروژه [Battle Breakers Private Server] ({0}) را بررسی کنید.",
+        "util.battlebreakers.deprecation.embed.description4": "اگر علاقه دارید، پروژه [Battle Breakers Private Server]({0}) را بررسی کنید.",
         "util.vbucks.sources.bp": "پاس نبرد",
         "util.vbucks.sources.purchased": "خریداری شده است",
         "util.vbucks.sources.purchased.bonus": "پاداش خرید",
         "util.vbucks.sources.debt": "بدهی",
-        "util.error.embed.promptauth.strong1": "شما باید [یک کد جدید] ({0}) دریافت کنید و دوباره امتحان کنید",
-        "util.error.embed.promptauth.strong1.auth": "شما باید [یک کد جدید] ({0}) دریافت کنید و دوباره احراز هویت کنید",
-        "util.error.embed.promptauth.strong2": "برای تغییر حساب، از [این پیوند] ({0}) استفاده کنید",
+        "util.error.embed.promptauth.strong1": "شما باید [یک کد جدید]({0}) دریافت کنید و دوباره امتحان کنید",
+        "util.error.embed.promptauth.strong1.auth": "شما باید [یک کد جدید]({0}) دریافت کنید و دوباره احراز هویت کنید",
+        "util.error.embed.promptauth.strong2": "برای تغییر حساب، از [این پیوند]({0}) استفاده کنید",
         "util.error.embed.promptauth.weak1": "اگر به کد جدیدی نیاز دارید، می‌توانید [از اینجا یکی دریافت کنید]({0})",
         "util.error.embed.prompthelp": "**در صورت نیاز به کمک، بررسی کنید:**",
         "util.error.embed.prompthelp.1": "[سرور پشتیبانی]({0})",
         "util.error.embed.promptnewcode": "*هر بار که احراز هویت می کنید به کد جدیدی نیاز دارید*",
         "util.error.createsession.nocode.title": "بدون کد احراز هویت",
         "util.error.createsession.nocode.description1": "**برای دریافت کد احراز هویت:**",
-        "util.error.createsession.nocode.description2": "به [این پیوند] ({0}) بروید",
+        "util.error.createsession.nocode.description2": "به [این پیوند]({0}) بروید",
         "util.error.createsession.nocode.description3": "کد اعتبار خود را کپی کنید",
         "util.error.createsession.nocode.description4": "اجرای {0}",
         "util.error.createsession.knownid.description1": "**این کد اعتباری از URL است، نه بدنه**",
@@ -591,8 +591,8 @@
         "util.createsession.welcome": "خوش آمدید، {0}",
         "util.createsession.welcome.expiry": "{0} جلسه شما منقضی می شود {1}",
         "util.createsession.welcome.optout": "{0} جلسه احراز هویت شروع نشد",
-        "util.createsession.welcome.nonfounder": "به جای {1} V-Bucks، {0} بلیط X-Ray دریافت خواهید کرد. [بیشتر بیاموزید] ({2})",
-        "util.createsession.welcome.nostw": "شما Save the World را ندارید. [بیشتر بیاموزید] ({0})",
+        "util.createsession.welcome.nonfounder": "به جای {1} V-Bucks، {0} بلیط X-Ray دریافت خواهید کرد. [بیشتر بیاموزید]({2})",
+        "util.createsession.welcome.nostw": "شما Save the World را ندارید. [بیشتر بیاموزید]({0})",
         "util.error.posterrors.verbiage": "عمل انجام دهد",
         "util.error.posterrors.title": "تلاش برای {0} برای نمایه:",
         "util.error.posterrors.title.generic": "تلاش برای انجام عمل برای حساب:",
