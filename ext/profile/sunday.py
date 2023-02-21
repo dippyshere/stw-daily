@@ -272,7 +272,7 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.desired_lang = desired_lang
 
         logger.debug(f"Setting information: {setting_information}")
-        super().__init__(title=stw.I18n.get(setting_information["modal_title"], desired_lang))
+        super().__init__(title=stw.I18n.get(setting_information["modal_title"], desired_lang), timeout=480.0)
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
@@ -389,7 +389,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
 
     def __init__(self, selected_setting, user_document, client, page, ctx, settings, selected_setting_index,
                  pass_message=None, desired_lang=None):
-        super().__init__()
+        super().__init__(timeout=480.0)
 
         if pass_message is not None:
             self.message = pass_message
@@ -572,7 +572,7 @@ class MainPageProfileSettingsView(discord.ui.View):
     """
 
     def __init__(self, user_document, client, page, ctx, settings, pass_message=None, desired_lang=None):
-        super().__init__()
+        super().__init__(timeout=480.0)
 
         if pass_message is not None:
             self.message = pass_message

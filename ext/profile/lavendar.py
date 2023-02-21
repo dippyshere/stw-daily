@@ -120,7 +120,7 @@ class ProfileMainView(discord.ui.View):
 
     def __init__(self, ctx, client, profile_options, current_selected_profile, user_document, previous_message=None,
                  desired_lang=None):
-        super().__init__()
+        super().__init__(timeout=240.0)
 
         self.client = client
         self.children[0].options = profile_options
@@ -383,7 +383,7 @@ class ChangeNameModal(discord.ui.Modal):
         self.desired_lang = desired_lang
 
         self.user_document = user_document
-        super().__init__(title=stw.I18n.get('profile.modal.changename.title', desired_lang, self.cur_profile_id))
+        super().__init__(title=stw.I18n.get('profile.modal.changename.title', desired_lang, self.cur_profile_id), timeout=360.0)
 
         # Add the required items into this modal for entering
 
@@ -443,7 +443,7 @@ class NewProfileModal(discord.ui.Modal):
         self.view = view
         self.desired_lang = desired_lang
         self.user_document = user_document
-        super().__init__(title=stw.I18n.get('profile.modal.create.title', desired_lang, self.cur_profile_id))
+        super().__init__(title=stw.I18n.get('profile.modal.create.title', desired_lang, self.cur_profile_id), timeout=360.0)
 
         # Add the required items into this modal for entering
 

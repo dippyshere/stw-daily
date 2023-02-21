@@ -22,7 +22,7 @@ class HelpView(discord.ui.View):
     """
 
     def __init__(self, ctx, help_options, client, desired_lang):
-        super().__init__()
+        super().__init__(timeout=480.0)
         self.ctx = ctx
         self.author = ctx.author
         self.children[0].options = help_options

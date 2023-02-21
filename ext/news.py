@@ -21,7 +21,7 @@ class NewsView(discord.ui.View):
 
     def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode, og_msg,
                  desired_lang):
-        super().__init__()
+        super().__init__(timeout=480.0)
         self.client = client
         self.ctx = ctx
         self.author = author

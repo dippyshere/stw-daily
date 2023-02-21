@@ -263,7 +263,7 @@ class ResearchView(discord.ui.View):
     # creo kinda fire though ngl
     def __init__(self, client, ctx, auth_info, author, total_points, current_levels, research_token_guid, og_msg,
                  desired_lang):
-        super().__init__()
+        super().__init__(timeout=360.0)
         self.client = client
         self.ctx = ctx
         self.auth_info = auth_info

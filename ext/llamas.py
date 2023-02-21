@@ -23,7 +23,7 @@ class LlamasView(discord.ui.View):
 
     def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, llama_options, auth_info,
                  desired_lang):
-        super().__init__()
+        super().__init__(timeout=360.0)
         self.ctx = ctx
         self.client = client
         self.message = message
@@ -135,7 +135,7 @@ class LlamasPurchaseView(discord.ui.View):
 
     def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, offer_id, auth_info,
                  desired_lang):
-        super().__init__()
+        super().__init__(timeout=360.0)
         self.ctx = ctx
         self.client = client
         self.message = message

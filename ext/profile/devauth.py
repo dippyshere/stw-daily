@@ -334,7 +334,7 @@ class EnslaveAndStealUserAccount(discord.ui.View):
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, response_json, interaction=None,
                  extra_message=None, error_embed=None, desired_lang=None):
 
-        super().__init__()
+        super().__init__(timeout=480.0)
         self.currently_selected_profile_id = currently_selected_profile_id
         self.client = client
         self.user_document = user_document
@@ -468,7 +468,7 @@ class StolenAccountView(discord.ui.View):
 
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, embed=None,
                  desired_lang=None):
-        super().__init__()
+        super().__init__(timeout=360.0)
 
         self.currently_selected_profile_id = currently_selected_profile_id
         self.client = client
@@ -668,7 +668,7 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
     """
 
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, desired_lang=None):
-        super().__init__()
+        super().__init__(timeout=480.0)
 
         self.currently_selected_profile_id = currently_selected_profile_id
         self.client = client
@@ -996,7 +996,7 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         self.currently_selected_profile_id = currently_selected_profile_id
         self.desired_lang = desired_lang
 
-        super().__init__(title=stw.I18n.get('devauth.modal.authcode.title', self.desired_lang))
+        super().__init__(title=stw.I18n.get('devauth.modal.authcode.title', self.desired_lang), timeout=480.0)
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
