@@ -453,7 +453,7 @@
         "settings.select": "*Valitud seade: **{0}***",
         "settings.select1": "{0} Valitud seade: {1}",
         "settings.return": "*Tagasi peamenüüsse*",
-        "settings.pagination.changepage": "*Muudetud lehele **{0}***",
+        "settings.pagination.changepage": "*Muudetud lehele* ***{0}***",
         "settings.pagination.showing": "Kuvatud on seadete leht {0}/{1}",
         "settings.change": "*Muudetud **{0}** väärtuseks **{1}***",
         "settings.change1": "*Muudeti seadeks **{0}***",

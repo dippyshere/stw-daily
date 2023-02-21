@@ -453,7 +453,7 @@
         "settings.select": "*Geselecteerde instelling: **{0}***",
         "settings.select1": "{0} Geselecteerde instelling: {1}",
         "settings.return": "*Terug naar hoofdmenu*",
-        "settings.pagination.changepage": "*Gewijzigd in pagina **{0}***",
+        "settings.pagination.changepage": "*Gewijzigd in pagina* ***{0}***",
         "settings.pagination.showing": "Instellingen weergeven Pagina {0} van {1}",
         "settings.change": "***{0}** gewijzigd in **{1}***",
         "settings.change1": "*Instelling gewijzigd in ***{0}***",

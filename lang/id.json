@@ -453,7 +453,7 @@
         "settings.select": "*Setelan Terpilih: **{0}***",
         "settings.select1": "{0} Setelan Terpilih: {1}",
         "settings.return": "*Kembali ke menu utama*",
-        "settings.pagination.changepage": "*Diubah menjadi halaman **{0}***",
+        "settings.pagination.changepage": "*Diubah menjadi halaman* ***{0}***",
         "settings.pagination.showing": "Menampilkan Halaman Pengaturan {0} dari {1}",
         "settings.change": "*Diubah **{0}** menjadi **{1}***",
         "settings.change1": "*Mengubah Pengaturan menjadi **{0}***",

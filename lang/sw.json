@@ -453,7 +453,7 @@
         "settings.select": "*Mpangilio Uliochaguliwa: **{0}***",
         "settings.select1": "{0} Mipangilio Iliyochaguliwa: {1}",
         "settings.return": "*Imerejeshwa kwenye menyu kuu*",
-        "settings.pagination.changepage": "*Imebadilishwa kuwa ukurasa **{0}***",
+        "settings.pagination.changepage": "*Imebadilishwa kuwa ukurasa* ***{0}***",
         "settings.pagination.showing": "Inaonyesha Ukurasa wa Mipangilio wa {0} kati ya {1}",
         "settings.change": "*Imebadilishwa **{0}** kuwa **{1}***",
         "settings.change1": "*Imebadilisha Mipangilio kuwa **{0}***",

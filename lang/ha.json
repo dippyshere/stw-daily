@@ -453,7 +453,7 @@
         "settings.select": "*Saitin da aka zaɓa: **{0}***",
         "settings.select1": "{0} Saitin da aka zaɓa: {1}",
         "settings.return": "*Komawa zuwa babban menu*",
-        "settings.pagination.changepage": "*An canza zuwa shafi **{0}***",
+        "settings.pagination.changepage": "*An canza zuwa shafi* ***{0}***",
         "settings.pagination.showing": "Nuna Saitunan Shafi {0} na {1}",
         "settings.change": "*An canza **{0}** zuwa **{1}***",
         "settings.change1": "*An Canza Saitin Zuwa **{0}***",

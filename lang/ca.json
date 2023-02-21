@@ -453,7 +453,7 @@
         "settings.select": "*Configuració seleccionada: **{0}***",
         "settings.select1": "{0} Configuració seleccionada: {1}",
         "settings.return": "*Va tornar al menú principal*",
-        "settings.pagination.changepage": "*S'ha canviat a la pàgina **{0}***",
+        "settings.pagination.changepage": "*S'ha canviat a la pàgina* ***{0}***",
         "settings.pagination.showing": "Es mostra la pàgina de configuració {0} de {1}",
         "settings.change": "*S'ha canviat **{0}** a **{1}***",
         "settings.change1": "*S'ha canviat la configuració a **{0}***",

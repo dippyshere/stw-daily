@@ -453,7 +453,7 @@
         "settings.select": "*การตั้งค่าที่เลือก: **{0}***",
         "settings.select1": "{0} การตั้งค่าที่เลือก: {1}",
         "settings.return": "*กลับสู่เมนูหลัก*",
-        "settings.pagination.changepage": "*เปลี่ยนเป็น หน้า **{0}***",
+        "settings.pagination.changepage": "*เปลี่ยนเป็น หน้า* ***{0}***",
         "settings.pagination.showing": "กำลังแสดงหน้าการตั้งค่า {0} จาก {1}",
         "settings.change": "*เปลี่ยน **{0}** เป็น **{1}***",
         "settings.change1": "*เปลี่ยนการตั้งค่าเป็น **{0}***",

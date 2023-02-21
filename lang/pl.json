@@ -453,7 +453,7 @@
         "settings.select": "*Wybrane ustawienie: **{0}***",
         "settings.select1": "{0} Wybrane ustawienie: {1}",
         "settings.return": "*Powrót do menu głównego*",
-        "settings.pagination.changepage": "*Zmieniono na strona **{0}***",
+        "settings.pagination.changepage": "*Zmieniono na strona* ***{0}***",
         "settings.pagination.showing": "Wyświetlanie strony ustawień {0} z {1}",
         "settings.change": "*Zmieniono **{0}** na **{1}***",
         "settings.change1": "*Zmieniono ustawienie na **{0}***",

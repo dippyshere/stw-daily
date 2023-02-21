@@ -453,7 +453,7 @@
         "settings.select": "*Vybrané nastavení: **{0}***",
         "settings.select1": "{0} Vybrané nastavení: {1}",
         "settings.return": "*Návrat do hlavní nabídky*",
-        "settings.pagination.changepage": "*Změněno na stránku ***{0}***",
+        "settings.pagination.changepage": "*Změněno na stránku* ***{0}***",
         "settings.pagination.showing": "Zobrazuje se stránka nastavení {0} z {1}",
         "settings.change": "*Změněno **{0}** na **{1}***",
         "settings.change1": "*Nastavení změněno na **{0}***",

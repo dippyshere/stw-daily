@@ -804,7 +804,7 @@ async def main_page(page_number, client, ctx, user_profile, settings, desired_la
     page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
     page_embed.add_field(name="",
-                         value=f"**{stw.I18n.get('settings.pagination.showing', desired_lang, page_number, pages)}**"
+                         value=f"{stw.I18n.get('settings.pagination.showing', desired_lang, page_number, pages)}"
                                f"```md", inline=False)
     for setting in current_slice:
         page_embed = await add_field_to_page_embed(page_embed, setting, client, selected_profile_data, desired_lang)

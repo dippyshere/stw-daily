@@ -453,7 +453,7 @@
         "settings.select": "*निवडलेली सेटिंग: **{0}***",
         "settings.select1": "{0} निवडलेली सेटिंग: {1}",
         "settings.return": "*मुख्य मेनूवर परतलो*",
-        "settings.pagination.changepage": "*पृष्ठावर बदलले **{0}***",
+        "settings.pagination.changepage": "*पृष्ठावर बदलले* ***{0}***",
         "settings.pagination.showing": "{1} पैकी {0} सेटिंग्ज पृष्ठ दाखवत आहे",
         "settings.change": "*बदलले **{0}** ते **{1}****",
         "settings.change1": "*सेटिंग बदलली **{0}***",

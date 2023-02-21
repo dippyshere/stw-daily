@@ -453,7 +453,7 @@
         "settings.select": "*Vald inställning: **{0}***",
         "settings.select1": "{0} Vald inställning: {1}",
         "settings.return": "*Återvänd till huvudmenyn*",
-        "settings.pagination.changepage": "*Ändrad till sida **{0}***",
+        "settings.pagination.changepage": "*Ändrad till sida* ***{0}***",
         "settings.pagination.showing": "Visar inställningssida {0} av {1}",
         "settings.change": "*Ändrade **{0}** till **{1}***",
         "settings.change1": "*Ändrade inställning till **{0}***",

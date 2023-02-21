@@ -453,7 +453,7 @@
         "settings.select": "*הגדרה שנבחרה: **{0}***",
         "settings.select1": "{0} הגדרה שנבחרה: {1}",
         "settings.return": "*חזרה לתפריט הראשי*",
-        "settings.pagination.changepage": "*השתנה לדף **{0}***",
+        "settings.pagination.changepage": "*השתנה לדף* ***{0}***",
         "settings.pagination.showing": "מציג דף הגדרות {0} מתוך {1}",
         "settings.change": "*שונה **{0}** ל**{1}***",
         "settings.change1": "*שונתה הגדרה ל**{0}***",

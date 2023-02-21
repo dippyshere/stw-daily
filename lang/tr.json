@@ -453,7 +453,7 @@
         "settings.select": "*Seçilen Ayar: **{0}***",
         "settings.select1": "{0} Seçilen Ayar: {1}",
         "settings.return": "*Ana menüye döndü*",
-        "settings.pagination.changepage": "*Sayfa olarak değiştirildi **{0}***",
+        "settings.pagination.changepage": "*Sayfa olarak değiştirildi* ***{0}***",
         "settings.pagination.showing": "{1} Sayfadan {0} Ayarlar Sayfası gösteriliyor",
         "settings.change": "***{0}**, **{1}*** olarak değiştirildi",
         "settings.change1": "*Ayar **{0}*** olarak değiştirildi",

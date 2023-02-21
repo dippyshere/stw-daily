@@ -453,7 +453,7 @@
         "settings.select": "*تنظیمات انتخاب شده: **{0}***",
         "settings.select1": "{0} تنظیمات انتخاب شده: {1}",
         "settings.return": "*بازگشت به منوی اصلی*",
-        "settings.pagination.changepage": "*به صفحه تغییر کرد **{0}***",
+        "settings.pagination.changepage": "*به صفحه تغییر کرد* ***{0}***",
         "settings.pagination.showing": "نمایش صفحه تنظیمات {0} از {1}",
         "settings.change": "********** به **{1}*** تغییر کرد",
         "settings.change1": "*تنظیمات را به **{0}*** تغییر داد",

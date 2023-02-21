@@ -453,7 +453,7 @@
         "settings.select": "*所选设置：**{0}***",
         "settings.select1": "{0} 所选设置：{1}",
         "settings.return": "*返回主菜单*",
-        "settings.pagination.changepage": "*已更改为页面 **{0}***",
+        "settings.pagination.changepage": "*已更改为页面* ***{0}***",
         "settings.pagination.showing": "显示设置页面 {0} of {1}",
         "settings.change": "*将 **{0}** 更改为 **{1}***",
         "settings.change1": "*将设置更改为 **{0}***",

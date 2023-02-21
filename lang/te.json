@@ -453,7 +453,7 @@
         "settings.select": "*ఎంచుకున్న సెట్టింగ్: **{0}***",
         "settings.select1": "{0} ఎంచుకున్న సెట్టింగ్: {1}",
         "settings.return": "*ప్రధాన మెనూకు తిరిగి వచ్చింది*",
-        "settings.pagination.changepage": "*పేజీకి మార్చబడింది **{0}***",
+        "settings.pagination.changepage": "*పేజీకి మార్చబడింది* ***{0}***",
         "settings.pagination.showing": "{1}లో సెట్టింగ్‌ల పేజీ {0}ని చూపుతోంది",
         "settings.change": "***{0}**కి **{1}***కి మార్చబడింది",
         "settings.change1": "***{0}***కి సెట్టింగ్ మార్చబడింది",

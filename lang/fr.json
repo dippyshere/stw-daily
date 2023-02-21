@@ -453,7 +453,7 @@
         "settings.select": "*Paramètre sélectionné : **{0}***",
         "settings.select1": "{0} Paramètre sélectionné : {1}",
         "settings.return": "*Retour au menu principal*",
-        "settings.pagination.changepage": "*Changement en page **{0}***",
+        "settings.pagination.changepage": "*Changement en page* ***{0}***",
         "settings.pagination.showing": "Affichage des paramètres Page {0} sur {1}",
         "settings.change": "* ** Changement de **{0}** en **{1}***",
         "settings.change1": "*Changement de paramètre en **{0}***",

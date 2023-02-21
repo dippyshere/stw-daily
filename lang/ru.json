@@ -452,7 +452,7 @@
         "settings.requirement": "*Выбранный параметр: **{0}***",
         "settings.select": "{0} Выбранный параметр: {1}",
         "settings.select1": "*Возврат в главное меню*",
-        "settings.return": "*Изменен на страница **{0}***",
+        "settings.return": "*Изменен на страница* ***{0}***",
         "settings.pagination.changepage": "Отображение страницы настроек {0} из {1}",
         "settings.pagination.showing": "*Изменен **{0}** на **{1}***",
         "settings.change": "*Изменен параметр на **{0}***",

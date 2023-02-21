@@ -453,7 +453,7 @@
         "settings.select": "*선택한 설정: **{0}***",
         "settings.select1": "{0} 선택한 설정: {1}",
         "settings.return": "*기본 메뉴로 돌아감*",
-        "settings.pagination.changepage": "*다음으로 변경됨 페이지 **{0}***",
+        "settings.pagination.changepage": "*다음으로 변경됨 페이지* ***{0}***",
         "settings.pagination.showing": "표시 설정 페이지 {0}/{1}",
         "settings.change": "***{0}**에서 **{1}***로 변경됨",
         "settings.change1": "*설정이 다음으로 변경됨 **{0}***",

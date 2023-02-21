@@ -453,7 +453,7 @@
         "settings.select": "*Odabrana postavka: **{0}***",
         "settings.select1": "{0} Odabrana postavka: {1}",
         "settings.return": "*Vraćeno na glavni izbornik*",
-        "settings.pagination.changepage": "*Promijenjeno u stranica **{0}***",
+        "settings.pagination.changepage": "*Promijenjeno u stranica* ***{0}***",
         "settings.pagination.showing": "Prikaz stranice s postavkama {0} od {1}",
         "settings.change": "*Promijenjeno **{0}** u **{1}***",
         "settings.change1": "*Promijenjeno u postavku **{0}***",
