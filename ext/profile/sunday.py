@@ -702,13 +702,21 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
     """
     setting_info = client.default_settings[setting]
     setting_type = str(type(setting_info["default"]).__name__)  # unused but cool
-    try:
-        current_value = f"{profile['settings'][setting]} " \
-                        f"- {stw.I18n.get('lang.{0}'.format(profile['settings'][setting]), desired_lang)} " \
-                        f"({client.config['valid_locales'][profile['settings'][setting]][1]})"
-    except:
+    if setting == "language":
         try:
+            current_value = f"{profile['settings'][setting]} " \
+                            f"- {stw.I18n.get('lang.{0}'.format(profile['settings'][setting]), 'en')} " \
+                            f"({client.config['valid_locales'][profile['settings'][setting]][1]})"
+        except:
             current_value = profile['settings'][setting]
+    else:
+        try:
+            if profile['settings'][setting] is True:
+                current_value = stw.I18n.get('generic.enabled', desired_lang)
+            elif profile['settings'][setting] is False:
+                current_value = stw.I18n.get('generic.disabled', desired_lang)
+            else:
+                current_value = profile['settings'][setting]
         except:
             current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     page_embed.fields[0].value += f"""\n\n# {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n> {current_value}\n{stw.I18n.get(setting_info['short_description'], desired_lang)}"""
@@ -836,13 +844,21 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
     page_embed = await stw.set_thumbnail(client, page_embed, "settings_cog")
     page_embed = await stw.add_requested_footer(ctx, page_embed, desired_lang)
 
-    try:
-        current_value = f"{selected_profile_data['settings'][setting]} " \
-                        f"- {stw.I18n.get('lang.{0}'.format(selected_profile_data['settings'][setting]), desired_lang)} " \
-                        f"({client.config['valid_locales'][selected_profile_data['settings'][setting]][1]})"
-    except:
+    if setting == "language":
         try:
+            current_value = f"{selected_profile_data['settings'][setting]} " \
+                            f"- {stw.I18n.get('lang.{0}'.format(selected_profile_data['settings'][setting]), 'en')} " \
+                            f"({client.config['valid_locales'][selected_profile_data['settings'][setting]][1]})"
+        except:
             current_value = selected_profile_data['settings'][setting]
+    else:
+        try:
+            if selected_profile_data['settings'][setting] is True:
+                current_value = stw.I18n.get('generic.enabled', desired_lang)
+            elif selected_profile_data['settings'][setting] is False:
+                current_value = stw.I18n.get('generic.disabled', desired_lang)
+            else:
+                current_value = selected_profile_data['settings'][setting]
         except:
             current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
 
