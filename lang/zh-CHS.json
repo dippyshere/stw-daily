@@ -316,7 +316,7 @@
         "auth.meta.description2": "认证真的很简单！",
         "auth.meta.description3": "登录到[此页面]({0})",
         "auth.meta.description4": "从页面复制您的令牌（如果您不确定，请复制整个页面）",
-        "auth.meta.description5": "输入‘**{0} **’；并在之后粘贴您的令牌",
+        "auth.meta.description5": "输入‘**{0}**’；并在之后粘贴您的令牌",
         "auth.meta.description6": "发送！",
         "auth.meta.description7": "大功告成！您现在可以使用需要身份验证的命令",
         "auth.meta.description8": "该页面将包含以下内容：",
