@@ -421,9 +421,9 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "devauth") & await timeout_check_processing(self,
-                                                                                                               self.client,
-                                                                                                               interaction)
+        return await stw.view_interaction_check(self, interaction, "device") & await timeout_check_processing(self,
+                                                                                                              self.client,
+                                                                                                              interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Authenticate", emoji="locked")
     async def enter_your_account_to_be_stolen_button(self, button, interaction):
@@ -556,9 +556,9 @@ class StolenAccountView(discord.ui.View):
         Returns:
             bool: True if the interaction is created by the view author, False if notifying the user
         """
-        return await stw.view_interaction_check(self, interaction, "devauth") & await timeout_check_processing(self,
-                                                                                                               self.client,
-                                                                                                               interaction)
+        return await stw.view_interaction_check(self, interaction, "device") & await timeout_check_processing(self,
+                                                                                                              self.client,
+                                                                                                              interaction)
 
     @discord.ui.button(style=discord.ButtonStyle.danger, label="Remove Link", emoji="library_trashcan")
     async def regain_soul_button(self, button, interaction):
@@ -603,7 +603,7 @@ class StolenAccountView(discord.ui.View):
             child.disabled = True
         await interaction.response.edit_message(view=self)
 
-        auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "devauth", "", True, False, True,
+        auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "device", "", True, False, True,
                                                           desired_lang=self.desired_lang)
         try:
             await stw.slash_send_embed(self.ctx, embeds=auth_stuff[2])
