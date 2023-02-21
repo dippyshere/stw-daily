@@ -304,16 +304,16 @@ class Help(ext.Cog):
             if len(options) < 24:
                 try:
                     if not command.extras["dev"]:
-                        options.append(
-                            discord.SelectOption(
-                                label=stw.I18n.get(command.name, desired_lang) if '.' in command.name else command.name,
-                                value=command.name,
-                                description=stw.truncate(stw.I18n.get(command.brief,
-                                                                      desired_lang) if '.' in command.brief else command.brief),
-                                emoji=self.emojis[command.extras['emoji']])
-                        )
-                    else:
-                        if ctx.author.id in self.client.config["devs"]:
+                        try:
+                            options.append(
+                                discord.SelectOption(
+                                    label=stw.I18n.get(command.extras['name_key'], desired_lang) if '.' in command.extras['name_key'] else command.name,
+                                    value=command.name,
+                                    description=stw.truncate(stw.I18n.get(command.brief,
+                                                                          desired_lang) if '.' in command.brief else command.brief),
+                                    emoji=self.emojis[command.extras['emoji']])
+                            )
+                        except:
                             options.append(
                                 discord.SelectOption(
                                     label=stw.I18n.get(command.name,
@@ -323,16 +323,50 @@ class Help(ext.Cog):
                                                                           desired_lang) if '.' in command.brief else command.brief),
                                     emoji=self.emojis[command.extras['emoji']])
                             )
-                except KeyError:
-                    options.append(
-                        discord.SelectOption(
-                            label=stw.I18n.get(command.name,
-                                               desired_lang) if '.' in command.name else command.name,
-                            value=command.name,
-                            description=stw.truncate(stw.I18n.get(command.brief,
-                                                                  desired_lang) if '.' in command.brief else command.brief),
-                            emoji=self.emojis[command.extras['emoji']])
-                    )
+                    else:
+                        if ctx.author.id in self.client.config["devs"]:
+                            try:
+                                options.append(
+                                    discord.SelectOption(
+                                        label=stw.I18n.get(command.extras['name_key'], desired_lang) if '.' in
+                                                                                                        command.extras[
+                                                                                                            'name_key'] else command.name,
+                                        value=command.name,
+                                        description=stw.truncate(stw.I18n.get(command.brief,
+                                                                              desired_lang) if '.' in command.brief else command.brief),
+                                        emoji=self.emojis[command.extras['emoji']])
+                                )
+                            except:
+                                options.append(
+                                    discord.SelectOption(
+                                        label=stw.I18n.get(command.name,
+                                                           desired_lang) if '.' in command.name else command.name,
+                                        value=command.name,
+                                        description=stw.truncate(stw.I18n.get(command.brief,
+                                                                              desired_lang) if '.' in command.brief else command.brief),
+                                        emoji=self.emojis[command.extras['emoji']])
+                                )
+                except:
+                    try:
+                        options.append(
+                            discord.SelectOption(
+                                label=stw.I18n.get(command.extras['name_key'], desired_lang) if '.' in command.extras[
+                                    'name_key'] else command.name,
+                                value=command.name,
+                                description=stw.truncate(stw.I18n.get(command.brief,
+                                                                      desired_lang) if '.' in command.brief else command.brief),
+                                emoji=self.emojis[command.extras['emoji']])
+                        )
+                    except:
+                        options.append(
+                            discord.SelectOption(
+                                label=stw.I18n.get(command.name,
+                                                   desired_lang) if '.' in command.name else command.name,
+                                value=command.name,
+                                description=stw.truncate(stw.I18n.get(command.brief,
+                                                                      desired_lang) if '.' in command.brief else command.brief),
+                                emoji=self.emojis[command.extras['emoji']])
+                        )
                 finally:
                     if selected is not None:
                         if selected == command.name:
