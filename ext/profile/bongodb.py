@@ -7,10 +7,15 @@ This file is the cog for mongodb database interaction.
 """
 
 import asyncio
+import re
+
 import discord
 import stwutil as stw
 import copy
 import inspect
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 async def insert_default_document(client, user_snowflake):
@@ -151,7 +156,8 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
             default=False,
             emoji=client.config["emojis"]["error"]
         ))
-
+    # sort the profiles by the int of the id
+    user_document["profiles"] = dict(sorted(user_document["profiles"].items(), key=lambda item: int(item[0])))
     for profile in user_document["profiles"]:
 
         profile = user_document["profiles"][profile]
@@ -284,5 +290,6 @@ async def command_counter(client, user_snowflake):
             await old_view.on_timeout()
         del client.active_profile_command[user_snowflake]
     except Exception as e:
-        print(f"command counter error: {e}")
-        pass
+        if re.match(r"^[0-9]{15,21}$", str(e)):
+            return None
+        logger.warning(f"Error in command_counter: {e}")
