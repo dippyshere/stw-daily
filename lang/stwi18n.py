@@ -102,11 +102,15 @@ class I18n:
                 # if string not found in english, return the key
                 logger.warning(f"Key {key} not found in language {lang} or en")
                 return key
+        try:
+            args_fmt = [self.fmt_num(arg, lang) if isinstance(arg, int) else arg for arg in args]
+        except:
+            args_fmt = args
 
         try:
             # format the string with arguments
-            logger.debug(f"Returning {string.format(*args)} for key {key} in language {lang} (args: {args})")
-            return string.format(*args)
+            logger.debug(f"Returning {string.format(*args_fmt)} for key {key} in language {lang} (args: {args_fmt})")
+            return string.format(*args_fmt)
         except IndexError:
             # if the string has no arguments but arguments were given, just return the string
             logger.debug(f"Returning {string} for key {key} in language {lang} (key: {key}), error occurred: {IndexError}")
@@ -137,6 +141,21 @@ class I18n:
         # get the string of available languages
         logger.debug(f"Returning {', '.join(self.get_langs())} for get_langs_str")
         return ", ".join(self.get_langs())
+
+    def fmt_num(self, num: int, lang: str) -> str:
+        """
+        Formats a number to a string
+
+        Args:
+            num (int): The number to format
+            lang (str): The language to format the number in
+
+        Returns:
+            str: The formatted number
+        """
+        # format the number to a string
+        logger.debug(f"Returning {babel.numbers.format_decimal(num, locale=lang)} for fmt_num({num}, {lang})")
+        return babel.numbers.format_decimal(num, locale=lang)
 
     def is_lang(self, lang: str) -> bool:
         """
