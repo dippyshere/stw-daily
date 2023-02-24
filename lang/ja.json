@@ -568,7 +568,7 @@
         "util.error.embed.promptauth.weak1": "新しいコードが必要な場合は、[ここで入手]({0})できます。",
         "util.error.embed.prompthelp": "**ヘルプが必要な場合は、こちらをご覧ください:**",
         "util.error.embed.prompthelp.1": "[サポートサーバー]({0})",
-        "util.error.embed.promptnewcode": "*認証するたびに新しいコードが必要です*",
+        "util.error.embed.promptnewcode": "*認証するたびに新しいコードが__必要__です*",
         "util.error.createsession.nocode.title": "認証コードなし",
         "util.error.createsession.nocode.description1": "**認証コードを取得するには:**",
         "util.error.createsession.nocode.description2": "[このリンク]({0}) に移動",

@@ -568,7 +568,7 @@
         "util.error.embed.promptauth.weak1": "Idan kuna buƙatar sabuwar lamba, zaku iya [samu ɗaya anan]({0})",
         "util.error.embed.prompthelp": "**Idan kuna buƙatar taimako, duba:**",
         "util.error.embed.prompthelp.1": "[Sabar Tallafi]({0})",
-        "util.error.embed.promptnewcode": "*Kuna buƙatar sabon lambar __ kowane lokaci__ kun inganta*",
+        "util.error.embed.promptnewcode": "*Kuna buƙatar sabon lambar __kowane lokaci__ kun inganta*",
         "util.error.createsession.nocode.title": "Babu Ƙididdiga",
         "util.error.createsession.nocode.description1": "**Don samun lambar auth:**",
         "util.error.createsession.nocode.description2": "Je zuwa [wannan mahaɗin]({0})",

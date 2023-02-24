@@ -568,7 +568,7 @@
         "util.error.embed.promptauth.weak1": "새 코드가 필요한 경우 [여기에서 받을 수 있습니다]({0})",
         "util.error.embed.prompthelp": "**도움이 필요하면 다음을 확인하세요.**",
         "util.error.embed.prompthelp.1": "[지원 서버]({0})",
-        "util.error.embed.promptnewcode": "*인증할 때마다 __새 코드가 필요합니다*",
+        "util.error.embed.promptnewcode": "*인증할 때마다 새 코드가 __필요__합니다*",
         "util.error.createsession.nocode.title": "인증 코드 없음",
         "util.error.createsession.nocode.description1": "**인증 코드를 받으려면:**",
         "util.error.createsession.nocode.description2": "[이 링크]({0})로 이동합니다.",

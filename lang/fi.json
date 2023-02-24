@@ -568,7 +568,7 @@
         "util.error.embed.promptauth.weak1": "Jos tarvitset uuden koodin, voit [saa sellaisen täältä]({0})",
         "util.error.embed.prompthelp": "**Jos tarvitset apua, katso:**",
         "util.error.embed.prompthelp.1": "[Tukipalvelin]({0})",
-        "util.error.embed.promptnewcode": "*Tarvitset uuden koodin __joka kerta, kun todennat__*",
+        "util.error.embed.promptnewcode": "*Tarvitset uuden koodin __joka kerta__ kun todennat*",
         "util.error.createsession.nocode.title": "Ei todennuskoodia",
         "util.error.createsession.nocode.description1": "**Todennuskoodin saaminen:**",
         "util.error.createsession.nocode.description2": "Siirry [tähän linkkiin]({0})",

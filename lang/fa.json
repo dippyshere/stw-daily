@@ -568,7 +568,7 @@
         "util.error.embed.promptauth.weak1": "اگر به کد جدیدی نیاز دارید، می‌توانید [از اینجا یکی دریافت کنید]({0})",
         "util.error.embed.prompthelp": "**در صورت نیاز به کمک، بررسی کنید:**",
         "util.error.embed.prompthelp.1": "[سرور پشتیبانی]({0})",
-        "util.error.embed.promptnewcode": "*هر بار که احراز هویت می کنید به کد جدیدی نیاز دارید*",
+        "util.error.embed.promptnewcode": "*شما به یک کد جدید نیاز دارید __هر بار__ احراز هویت می کنید*",
         "util.error.createsession.nocode.title": "بدون کد احراز هویت",
         "util.error.createsession.nocode.description1": "**برای دریافت کد احراز هویت:**",
         "util.error.createsession.nocode.description2": "به [این پیوند]({0}) بروید",

@@ -568,7 +568,7 @@
         "util.error.embed.promptauth.weak1": "إذا كنت بحاجة إلى رمز جديد ، يمكنك [الحصول على واحد هنا]({0})",
         "util.error.embed.prompthelp": "**إذا كنت بحاجة إلى مساعدة ، فاطلع على:**",
         "util.error.embed.prompthelp.1": "[خادم الدعم]({0})",
-        "util.error.embed.promptnewcode": "*أنت بحاجة إلى رمز جديد __ كل مرة__ تصادق عليها*",
+        "util.error.embed.promptnewcode": "*شما به یک کد جدید نیاز دارید __هر بار که__ احراز هویت می کنید*",
         "util.error.createsession.nocode.title": "لا يوجد رمز مصادقة",
         "util.error.createsession.nocode.description1": "**للحصول على رمز المصادقة:**",
         "util.error.createsession.nocode.description2": "انتقل إلى [هذا الرابط]({0})",
