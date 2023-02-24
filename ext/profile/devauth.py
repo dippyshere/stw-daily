@@ -210,7 +210,8 @@ async def no_profiles_page(client, ctx, desired_lang):
     return no_profiles_embed
 
 
-async def existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang):
+async def existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang,
+                                  user_document):
     """
     This is the function that is called when the user has device authed
 
@@ -220,11 +221,20 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
         current_profile: The current profile
         currently_selected_profile_id: The currently selected profile id
         desired_lang: The desired lang
+        user_document: The user document
 
     Returns:
         The embed
     """
     embed_colour = client.colours["profile_lavendar"]
+
+    try:
+        if user_document["auto_claim"]["enabled"]:
+            flow_key = 'devauth.embed.existing.description4.disable'
+        else:
+            flow_key = 'devauth.embed.existing.description4.enable'
+    except:
+        flow_key = 'devauth.embed.existing.description4.enable'
 
     happy_embed = discord.Embed(
         title=await stw.add_emoji_title(client, stw.I18n.get('devauth.embed.title', desired_lang), "pink_link"),
@@ -234,7 +244,7 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
                      f"{stw.I18n.get('devauth.embed.existing.description1', desired_lang)}\n\u200b\n "
                      f"{stw.I18n.get('devauth.embed.existing.description2', desired_lang, client.config['emojis']['library_trashcan'])}\n\u200b\n"
                      f"{stw.I18n.get('devauth.embed.existing.description3', desired_lang, client.config['emojis']['library_floppydisc'])}\n\u200b\n"
-                     f"{stw.I18n.get('devauth.embed.existing.description4.enable', desired_lang, client.config['emojis']['library_clock'])}\n\u200b\n"
+                     f"{stw.I18n.get(flow_key, desired_lang, client.config['emojis']['library_clock'])}\n\u200b\n"
                      f"{stw.I18n.get('devauth.embed.existing.description5', desired_lang)}\n"
                      f"```{current_profile['authentication']['displayName']}```\u200b"
                      ),
@@ -315,7 +325,8 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
             await interaction.edit_original_response(embed=embed, view=account_stealing_view)
 
     elif current_profile["authentication"] is not None:
-        embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang)
+        embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang,
+                                              user_document)
         stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction,
                                                 embed, desired_lang=desired_lang)
         await active_view(client, ctx.author.id, stolen_account_view)
@@ -506,7 +517,8 @@ class StolenAccountView(discord.ui.View):
             None
         """
         timeout_embed = await existing_dev_auth_embed(self.client, self.ctx, self.user_document["profiles"][
-            str(self.currently_selected_profile_id)], self.currently_selected_profile_id, self.desired_lang)
+            str(self.currently_selected_profile_id)], self.currently_selected_profile_id, self.desired_lang,
+                                                      self.user_document)
 
         timeout_embed.description += f"\u200b\n{stw.I18n.get('generic.embed.timeout', self.desired_lang)}\n\u200b"
 
@@ -630,21 +642,21 @@ class StolenAccountView(discord.ui.View):
                 self.user_document["auto_claim"] = None
                 button.label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
                 button.style = discord.ButtonStyle.green
-                result = "devauth.embed.existing.processed.success.disable", "devauth.embed.existing.description4.disable"
+                result = "devauth.embed.existing.processed.success.disable", "devauth.embed.existing.description4.enable"
             else:
                 self.user_document["auto_claim"] = {
                     "enabled": True,
                 }
                 button.label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
                 button.style = discord.ButtonStyle.red
-                result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.enable"
+                result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.disable"
         except:
             self.user_document["auto_claim"] = {
                 "enabled": True,
             }
             button.label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
             button.style = discord.ButtonStyle.red
-            result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.enable"
+            result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.disable"
         await replace_user_document(self.client, self.user_document)
         del self.client.processing_queue[self.ctx.author.id]
         self.embed.description = (
