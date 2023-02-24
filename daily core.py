@@ -283,10 +283,11 @@ async def on_message(message: discord.Message) -> None:
     Returns:
         None
     """
+    logger.debug(f"Message received: {message.content}")
     if message.content.startswith(tuple(client.command_prefix(client, message))):
         message.content = " ".join(message.content.split())
         # determine if there is a space after the prefix using regex, if there is, remove it
-        message.content = re.sub(r"^<@.\d*> ", f"{client.command_prefix(client, message)[0]}", message.content)
+        message.content = re.sub(r"^<@[0-9]{15,21}> ", f"{client.command_prefix(client, message)[0]}", message.content)
 
         # now = time.perf_counter_ns()
         if set(message.content) & stw.global_quotes:
@@ -295,8 +296,9 @@ async def on_message(message: discord.Message) -> None:
             # print(time.perf_counter_ns() - now)
         # pro watch me i am the real github copilot
         # make epic auth system thing
+        logger.debug(f"Message content after processing: {message.content}")
         try:
-            if re.match(r'<@.*>( |)(\w|\d){32,}', message.content):
+            if re.match(r'^<@[0-9]{15,21}>.*([0-9a-f]{32})(?![^ ]*\")', message.content) and ' ' not in message.content:
                 await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
                 return  # what song are u listening to rn? youtube.com youtube.com what~? homepage oh nothing~ :3
         except IndexError:
