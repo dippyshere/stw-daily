@@ -59,7 +59,8 @@ class LlamasView(discord.ui.View):
                 self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True,
                                                                                    desired_lang=self.desired_lang)
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang), "llama"),
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang),
+                                            "pinatastandardpackupgrade"),
             description=f"\u200b\n",
             colour=self.client.colours["generic_blue"])
         for entry in self.llama_store["catalogEntries"]:
@@ -240,7 +241,7 @@ class LlamasPurchaseView(discord.ui.View):
         """
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang),
-                                            "llama"),
+                                            "pinatastandardpackupgrade"),
             description=f"\u200b\n",
             colour=self.client.colours["generic_blue"])
         for entry in self.llama_store["catalogEntries"]:
@@ -286,7 +287,7 @@ class LlamasPurchaseView(discord.ui.View):
         except:
             embed = discord.Embed(
                 title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang),
-                                                "llama"),
+                                                "pinatastandardpackupgrade"),
                 description=f"\u200b\n{stw.I18n.get('llamas.purchase.description', self.desired_lang)}\n"
                             f"{stw.I18n.get('llamas.purchase.description.get', self.desired_lang) + ' ' + self.contents if self.contents != '' else ''}\n{stw.I18n.get('util.error.posterrors.purchase.returning', self.desired_lang, f'<t:{int(time.time()) + 6}:R>')}\n\u200b",
                 colour=self.client.colours["generic_blue"])
@@ -402,7 +403,8 @@ class Llamas(ext.Cog):
             The embed.
         """
         embed = discord.Embed(
-            title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", desired_lang), "llama"),
+            title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", desired_lang),
+                                            "pinatastandardpackupgrade"),
             description=f"\u200b\n{stw.I18n.get('llamas.embed.description', desired_lang)}\u200b\n\u200b",
             colour=self.client.colours["generic_blue"])
         if free_llama[0] > 0:
@@ -581,7 +583,7 @@ class Llamas(ext.Cog):
                           'xrsay', 'xrasy', 'xrxay', 'xraxy', 'xrzay', 'xrazy', 'xraty', 'xrayt', 'xra6y', 'xray6',
                           'xra7y', 'xray7', 'xrauy', 'xrayu', 'xrajy', 'xrayj', 'xrahy', 'xrayh', 'xragy', 'xrayg',
                           'l', 'ahoura', '🙄'],
-                 extras={'emoji': "llama", "args": {
+                 extras={'emoji': "pinatastandardpackupgrade", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
                          'dev': False, "description_keys": ['llamas.meta.description'], "name_key": "llamas.slash.name",
