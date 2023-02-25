@@ -279,9 +279,9 @@ async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Em
 
     if isinstance(ctx, discord.Message):
         if view is not None:
-            return await ctx.channel.send(embeds=embeds, view=view, silent=True)
+            return await ctx.channel.send(embeds=embeds, view=view, silent=False)
         else:
-            return await ctx.channel.send(embeds=embeds, silent=True)
+            return await ctx.channel.send(embeds=embeds, silent=False)
     elif isinstance(ctx, discord.Interaction):
         if view is not None:
             return await ctx.response.send_message(embeds=embeds, view=view)
@@ -305,9 +305,9 @@ async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Em
                 return await ctx.send_message(embeds=embeds)
     else:
         if view is not None:
-            return await ctx.send(embeds=embeds, view=view, silent=True)
+            return await ctx.send(embeds=embeds, view=view, silent=False)
         else:
-            return await ctx.send(embeds=embeds, silent=True)
+            return await ctx.send(embeds=embeds, silent=False)
 
 
 async def retrieve_shard(client: Client, shard_id: int) -> int | str:
