@@ -113,10 +113,10 @@ class Power(ext.Cog):
             title=await stw.add_emoji_title(self.client, stw.I18n.get('power.embed.title', desired_lang),
                                             "power_level"),
             description=f"\u200b\n{stw.I18n.get('power.embed.description', desired_lang, f'{power_level_emoji}{round(power_level, 2)}')}\u200b\n"
-                        f"\u200b\n{self.emojis['fortitude']}{stw.I18n.get('research.button.fortitude', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['fortitude']))}\n"
-                        f"{self.emojis['offense']}{stw.I18n.get('research.button.offense', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['offense']))}\n"
-                        f"{self.emojis['resistance']}{stw.I18n.get('research.button.resistance', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['resistance']))}\n"
-                        f"{self.emojis['technology']}{stw.I18n.get('research.button.technology', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['technology']))}\u200b\n\u200b",
+                        f"\u200b\n{self.emojis['fortitude']} {stw.I18n.get('research.button.fortitude', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['fortitude']), desired_lang)}\n"
+                        f"{self.emojis['offense']} {stw.I18n.get('research.button.offense', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['offense']), desired_lang)}\n"
+                        f"{self.emojis['resistance']} {stw.I18n.get('research.button.resistance', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['resistance']), desired_lang)}\n"
+                        f"{self.emojis['technology']} {stw.I18n.get('research.button.technology', desired_lang)}: {stw.I18n.fmt_num(int(total_stats['technology']), desired_lang)}\u200b\n\u200b",
             colour=vbucc_colour)
         try:
             embed, file = await stw.generate_power(self.client, embed, power_level, ctx.author.id)
