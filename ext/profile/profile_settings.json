@@ -249,6 +249,7 @@
             "silent"
         ],
         "default": false,
+        "disabled": true,
         "emoji": "library_bell",
         "localised_name": "settings.config.silent.name",
         "short_description": "settings.config.silent.description.short",
@@ -266,6 +267,7 @@
             "hidden_mode_ephemeral"
         ],
         "default": false,
+        "disabled": true,
         "emoji": "hidden",
         "localised_name": "settings.config.ephemeral.name",
         "short_description": "settings.config.ephemeral.description.short",

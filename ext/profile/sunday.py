@@ -441,8 +441,19 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
                 self.children[5].disabled = True
             else:
                 self.children[6].disabled = True
+            try:
+                if self.client.default_settings[selected_setting]["disabled"]:
+                    self.children[5].disabled = True
+                    self.children[6].disabled = True
+            except:
+                pass
 
         else:
+            try:
+                if self.client.default_settings[selected_setting]["disabled"]:
+                    self.children[5].disabled = True
+            except:
+                pass
             self.children = self.children[:-2]
         self.timed_out = False
 
