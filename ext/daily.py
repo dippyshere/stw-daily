@@ -171,7 +171,7 @@ class Daily(ext.Cog):
                     except:
                         pass
 
-                embed.add_field(name=stw.I18n.get('daily.embed.claimed.field.name', desired_lang, reward[1]),
+                embed.add_field(name=stw.I18n.get('daily.embed.claimed.field.name', desired_lang, reward[1], day),
                                 value=f"```{reward_quantity}{reward[0]}```",
                                 inline=True)
 
