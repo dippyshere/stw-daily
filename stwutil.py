@@ -21,12 +21,13 @@ import aiohttp.client_reqrep
 import blendmodes.blend
 import deprecation
 from Crypto.Cipher import AES
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 import asyncio
 import io
 import orjson
 
 import discord
+from PIL.ImageFont import FreeTypeFont
 from discord import Client
 from discord.ext import commands
 from discord.ext.commands import Command, Context
@@ -39,7 +40,7 @@ from ext.profile.bongodb import get_user_document, replace_user_document
 logger = logging.getLogger(__name__)
 
 
-async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, int, dict, dict, dict]:
+async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, int, dict, dict, dict, FreeTypeFont]:
     """
     Loads the item data from the item data file
 
@@ -71,11 +72,13 @@ async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, in
         stwDailyRewards: dict = orjson.loads(await f.read())
     async with aiofiles.open('ext/DataTables/DailyFoundersRewards.json') as f:
         stwFounderDailyRewards: dict = orjson.loads(await f.read())
+    async with aiofiles.open('res/burbank-big-condensed-black.otf', 'rb') as f:
+        burbank: FreeTypeFont = ImageFont.truetype(io.BytesIO(await f.read()), 90)
     return bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
-        BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards
+        BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards, burbank
 
 
-bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards = asyncio.get_event_loop().run_until_complete(
+bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards, burbank = asyncio.get_event_loop().run_until_complete(
     load_item_data())
 logger.debug("Loaded item data")
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
@@ -2310,7 +2313,7 @@ def calculate_homebase_rating(profile: dict[Any]) -> Tuple[float, int, dict[str,
         The power level of the profile's homebase, total FORT stats, and dict of FORT stats by type
     """
     # ROOT.profileChanges[0].profile.items
-    logger.info("Calculating homebase rating")
+    logger.debug("Calculating homebase rating")
     logger.debug(f"Profile: {profile}")
     workers = extract_profile_item(profile, "Worker:")
     survivors = {}
@@ -3248,8 +3251,9 @@ async def validate_homebase_name(string: str) -> Tuple[bool, list[str]]:
     return True, list_of_invalid_chars_used
 
 
-async def generate_banner(client: discord.Client, embed: discord.Embed, homebase_icon: discord.Asset,
-                          homebase_colour: discord.Colour, author_id: discord.User.id) -> discord.Embed:
+async def generate_banner(client: discord.Client, embed: discord.Embed, homebase_icon: str,
+                          homebase_colour: str, author_id: int | str) -> tuple[
+    discord.Embed, discord.File]:
     """
     Generates a banner thumbnail for the embed
 
@@ -3286,7 +3290,46 @@ async def generate_banner(client: discord.Client, embed: discord.Embed, homebase
     return embed, file
 
 
-async def research_stat_rating(stat: str, level: int) -> int:
+async def generate_power(client: discord.Client, embed: discord.Embed, power_level: int | float,
+                         author_id: int | str) -> tuple[discord.Embed, discord.File]:
+    """
+    Generates a banner thumbnail for the embed
+
+    Args:
+        client: discord client
+        embed: embed to add the banner to
+        power_level: power level to use
+        author_id: author id to use for the banner
+
+    Returns:
+        Embed with thumbnail set to the banner, discord attachment of file generated
+
+    Example:
+        >>> embed = discord.Embed()
+        >>> embed = await generate_banner(client, embed, "ot7banner", "defaultcolor15", 123456789)
+        >>> embed.thumbnail.url
+        'attachment://banner.png'
+    """
+    power_level_float, power_level_int = math.modf(power_level)
+    width, height = (200, 200)
+    power_level_str = str(int(power_level_int))
+    power_level_display = Image.new(mode="RGBA", size=(width, height), color=(30, 30, 1, 1))
+    draw_image = ImageDraw.Draw(power_level_display, 'RGBA')
+    _, _, w, _ = draw_image.textbbox((0, 0), power_level_str, font=burbank)
+    draw_image.text(((width - w) / 2, 40), power_level_str, fill=(255, 255, 255), font=burbank)
+    draw_image.rounded_rectangle((20, 130, 180, 170), radius=3, outline=(255, 255, 255), width=4)
+    percentage = 180 * power_level_float
+    draw_image.rounded_rectangle((20, 130, percentage, 170), radius=3, fill=(255, 255, 255), outline=(255, 255, 255),
+                                 width=4)
+    arr = io.BytesIO()
+    power_level_display.save(arr, format='PNG')
+    arr.seek(0)
+    file = discord.File(arr, filename=f"{author_id}power.png")
+    embed.set_thumbnail(url=f"attachment://{author_id}power.png")
+    return embed, file
+
+
+async def research_stat_rating(stat: str, level: int) -> tuple[float, float, float]:
     """
     Calculates the % stat buff given to player + team from a research level
 
@@ -3308,7 +3351,7 @@ async def research_stat_rating(stat: str, level: int) -> int:
     return personal_rating + team_rating, personal_rating, team_rating
 
 
-def research_stat_cost(stat: str, level: int) -> int:
+def research_stat_cost(stat: str, level: int) -> float:
     """
     Calculates the cost to upgrade a research stat
     I'm not sure if the level given is the current level, or the next level, assume the next level
