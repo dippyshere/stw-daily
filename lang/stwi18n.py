@@ -13,6 +13,7 @@ import discord.client
 import discord.ext.commands
 import orjson
 import babel
+from babel.numbers import format_decimal
 from ext.profile.bongodb import get_user_document
 
 logger = logging.getLogger(__name__)
