@@ -90,3 +90,18 @@ def check_localisation(client, ctx, value) -> tuple[bool | str, bool]:
         if similarity > 0.5:
             return client.localisation[outcome], True
         return False, False
+
+
+def check_default(client, ctx, value) -> tuple[bool, bool]:
+    """
+    Always returns true.
+
+    Args:
+        client: The bot client. (unused)
+        ctx: The context of the command. (unused)
+        value: The value to check. (unused)
+
+    Returns:
+        bool: True.
+    """
+    return True, True

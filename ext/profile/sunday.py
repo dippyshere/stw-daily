@@ -217,6 +217,45 @@ async def edit_current_setting(view, interaction, desired_lang):
     await interaction.response.send_modal(modal)
 
 
+async def edit_current_setting_select(view, select, interaction, desired_lang):
+    """
+    This is the function that is called when the user selects the edit button on the sub page.
+
+    Args:
+        view: The view that the user is currently on.
+        select: The select menu that the user selected.
+        interaction: The interaction that the user did.
+        desired_lang: The desired language
+    """
+    selected_setting = view.selected_setting
+    setting_information = view.client.default_settings[selected_setting]
+
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
+
+    for child in view.children:
+        child.disabled = True
+    await interaction.response.edit_message(view=view)
+    view.stop()
+
+    view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting] = select.values[0]
+    await replace_user_document(view.client, view.user_document)
+
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
+
+    current_value = view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting]
+
+    embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
+
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change', desired_lang, view.selected_setting, current_value)}\n\u200b"
+    sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
+                                                                  view.client, view.page, view.ctx, view.settings,
+                                                                  view.selected_setting_index, view.message,
+                                                                  desired_lang=desired_lang)
+
+    await active_view(view.client, view.ctx.author.id, sub_view)
+    await interaction.edit_original_response(embed=embed, view=sub_view)
+
+
 async def edit_current_setting_bool(view, interaction, set_value, desired_lang):
     """
     This is the function that is called when the user selects the edit button on the sub page.
@@ -382,6 +421,39 @@ async def settings_view_timeout(view, sub=False, desired_lang=None):
     await view.message.edit(embed=embed, view=view)
 
 
+def generate_setting_options(client, options, user_document, selected_setting, desired_lang):
+    """
+    This function generates the options for a setting.
+
+    Args:
+        client: The client.
+        options: The options to generate.
+        user_document: The user document.
+        selected_setting: The selected setting.
+        desired_lang: The desired language.
+
+    Returns:
+        The generated options.
+    """
+    select_options = []
+
+    try:
+        current = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][selected_setting]
+    except:
+        current = client.default_settings[selected_setting]["default"]
+
+    for attr, val in options.items():
+        logger.debug(f"Generating select menu for option: {attr}, {val}")
+        select_options.append(discord.SelectOption(
+            label=stw.I18n.get(val['name'], desired_lang),
+            description=stw.truncate(stw.I18n.get(val['description'], desired_lang)) if '.' not in stw.I18n.get(val['description'], desired_lang) else None,
+            value=attr,
+            emoji=client.config["emojis"][val["emoji"]],
+            default=True if current == attr else False))
+
+    return select_options if len(select_options) > 0 else [discord.SelectOption(label="placeholder")]
+
+
 class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # what the hell
     """
     This is the view that is used to display the settings of a setting.
@@ -425,7 +497,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
                                                                    user_document, desired_lang)
         self.children[1].options = settings_options
 
-        self.children[2:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:]))
+        self.children[2:8] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:8]))
 
         if math.ceil(len(self.client.default_settings) / settings_per_page) == 1:
             self.children[2].disabled = True
@@ -436,6 +508,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
 
         if isinstance(self.client.default_settings[selected_setting]["default"], bool):
             self.children.pop(5)
+            self.children.pop(7)
 
             if user_document["profiles"][str(self.selected_profile)]["settings"][selected_setting]:
                 self.children[5].disabled = True
@@ -452,9 +525,21 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             try:
                 if self.client.default_settings[selected_setting]["disabled"]:
                     self.children[5].disabled = True
+                    self.children[6].disabled = True
             except:
                 pass
-            self.children = self.children[:-2]
+            try:
+                if self.client.default_settings[selected_setting]["options"]:
+                    self.children = self.children[:5] + self.children[8:]
+                    self.children[5].placeholder = stw.I18n.get(self.client.default_settings[selected_setting]["placeholder"], self.desired_lang)
+                    self.children[5].options = generate_setting_options(self.client,
+                                                                        self.client.default_settings[selected_setting]["options"],
+                                                                        user_document, selected_setting,
+                                                                        self.desired_lang)
+                else:
+                    raise Exception
+            except:
+                self.children = self.children[:-3]
         self.timed_out = False
 
     async def on_timeout(self):
@@ -575,6 +660,17 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             interaction: The interaction that the user did.
         """
         await edit_current_setting_bool(self, interaction, False, self.desired_lang)
+
+    @discord.ui.select(placeholder="Choose a new setting", options=[discord.SelectOption(label="placeholder")], row=4)
+    async def edit_setting_select(self, select, interaction):
+        """
+        This is the function that is called when the user selects a setting.
+
+        Args:
+            select: The select that the user selected.
+            interaction: The interaction that the user did.
+        """
+        await edit_current_setting_select(self, select, interaction, self.desired_lang)
 
 
 class MainPageProfileSettingsView(discord.ui.View):
@@ -884,12 +980,19 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
                   f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.requirement', desired_lang)}:: {stw.I18n.get('settings.type.bool', desired_lang)}```",
             inline=False)
     else:
-        requirement_string = stw.I18n.get(setting_info['req_string'], desired_lang)
-        page_embed.add_field(
-            name="",
-            value=f"**{stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']], setting_name)}**"
-                  f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.type', desired_lang)}:: {stw.I18n.get('settings.type.{}'.format(type(setting_info['default']).__name__), desired_lang)}\n{stw.I18n.get('settings.requirement', desired_lang)}:: {requirement_string}```",
-            inline=False)
+        try:
+            requirement_string = stw.I18n.get(setting_info['req_string'], desired_lang)
+            page_embed.add_field(
+                name="",
+                value=f"**{stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']], setting_name)}**"
+                      f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}\n\n\n{stw.I18n.get('settings.type', desired_lang)}:: {stw.I18n.get('settings.type.{}'.format(type(setting_info['default']).__name__), desired_lang)}\n{stw.I18n.get('settings.requirement', desired_lang)}:: {requirement_string}```",
+                inline=False)
+        except:
+            page_embed.add_field(
+                name="",
+                value=f"**{stw.I18n.get('settings.select1', desired_lang, client.config['emojis'][setting_info['emoji']], setting_name)}**"
+                      f"```asciidoc\n== {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n\n{stw.I18n.get('settings.currentvalue', desired_lang)}:: {current_value}\n\n{stw.I18n.get(setting_info['long_description'], desired_lang)}```",
+                inline=False)
 
     return page_embed
 
@@ -1026,7 +1129,10 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             if isinstance(client.default_settings[setting]['default'], bool):
                 check_function = check_bool
             else:
-                check_function = globals()[client.default_settings[setting]['check_function']]
+                try:
+                    check_function = globals()[client.default_settings[setting]['check_function']]
+                except:
+                    check_function = globals()['check_default']
 
             check_result = check_function(client, ctx, value)
 
