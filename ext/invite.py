@@ -67,7 +67,7 @@ class Invite(ext.Cog):
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
         invite_view = InviteView(self.client, ctx.author, ctx, desired_lang)
-        await stw.slash_send_embed(ctx, embed, invite_view)
+        await stw.slash_send_embed(ctx, self.client, embed, invite_view)
         return
 
     @ext.command(name='invite',

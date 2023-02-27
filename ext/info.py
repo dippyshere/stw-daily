@@ -43,10 +43,11 @@ class Information(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        load_msg = await stw.slash_send_embed(ctx, await stw.processing_embed(self.client, ctx, desired_lang,
-                                                                              stw.I18n.get(
-                                                                                  "info.processing.title",
-                                                                                  desired_lang)))
+        load_msg = await stw.slash_send_embed(ctx, self.client,
+                                              await stw.processing_embed(self.client, ctx, desired_lang,
+                                                                         stw.I18n.get(
+                                                                             "info.processing.title",
+                                                                             desired_lang)))
         shard_ping = shard_name = shard_id = shards = stw.I18n.get("info.entry.notavailable", desired_lang)
         try:
             shards = str(len(self.client.shards))

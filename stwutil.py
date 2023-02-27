@@ -259,11 +259,14 @@ def process_quotes_in_message(message_content: str) -> str:
     return message_content
 
 
-async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Embed], view: discord.ui.View = None, interaction: discord.Interaction = False) -> Union[discord.Message, None]:
+async def slash_send_embed(ctx: Context, client: discord.Client, embeds: discord.Embed | list[discord.Embed],
+                           view: discord.ui.View = None,
+                           interaction: discord.Interaction = False) -> Union[discord.Message, None]:
     """
     A small bridging function to send embeds to a slash, view, normal command, or interaction
 
     Args:
+        client:
         ctx: the context
         embeds: the embeds to send
         view: the view to send the embeds with
@@ -279,28 +282,41 @@ async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Em
         embeds[0]
     except:
         embeds = [embeds]
-
+    try:
+        user_document = await get_user_document(ctx, client, ctx.author.id)
+        currently_selected_profile_id = user_document["global"]["selected_profile"]
+        try:
+            silent = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["silent"]
+        except:
+            silent = False
+        try:
+            ephemeral = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["ephemeral"]
+        except:
+            ephemeral = False
+    except:
+        silent = False
+        ephemeral = False
     if isinstance(ctx, discord.Message):
         if view is not None:
-            return await ctx.channel.send(embeds=embeds, view=view, silent=False)
+            return await ctx.channel.send(embeds=embeds, view=view, silent=silent)
         else:
-            return await ctx.channel.send(embeds=embeds, silent=False)
+            return await ctx.channel.send(embeds=embeds, silent=silent)
     elif isinstance(ctx, discord.Interaction):
         if view is not None:
-            return await ctx.response.send_message(embeds=embeds, view=view)
+            return await ctx.response.send_message(embeds=embeds, view=view, ephemeral=ephemeral)
         else:
-            return await ctx.response.send_message(embeds=embeds)
+            return await ctx.response.send_message(embeds=embeds, ephemeral=ephemeral)
     elif isinstance(ctx, discord.ApplicationContext):
         if view is not None:
-            return await ctx.respond(embeds=embeds, view=view)
+            return await ctx.respond(embeds=embeds, view=view, ephemeral=ephemeral)
         else:
-            return await ctx.respond(embeds=embeds)
+            return await ctx.respond(embeds=embeds, ephemeral=ephemeral)
     elif interaction:
         try:
             if view is not None:
-                return await ctx.response.send_message(embeds=embeds, view=view)
+                return await ctx.response.send_message(embeds=embeds, view=view, ephemeral=ephemeral)
             else:
-                return await ctx.response.send_message(embeds=embeds)
+                return await ctx.response.send_message(embeds=embeds, ephemeral=ephemeral)
         except:
             if view is not None:
                 return await ctx.send_message(embeds=embeds, view=view)
@@ -308,9 +324,9 @@ async def slash_send_embed(ctx: Context, embeds: discord.Embed | list[discord.Em
                 return await ctx.send_message(embeds=embeds)
     else:
         if view is not None:
-            return await ctx.send(embeds=embeds, view=view, silent=False)
+            return await ctx.send(embeds=embeds, view=view, silent=silent)
         else:
-            return await ctx.send(embeds=embeds, silent=False)
+            return await ctx.send(embeds=embeds, silent=silent)
 
 
 async def retrieve_shard(client: Client, shard_id: int) -> int | str:
@@ -2610,7 +2626,7 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
             # Send the logging in & processing if given-
             if processing and not dont_send_embeds:
                 proc_embed = await processing_embed(client, ctx, desired_lang)
-                return [await slash_send_embed(ctx, proc_embed),
+                return [await slash_send_embed(ctx, client, proc_embed),
                         existing_auth,
                         embeds]
 
@@ -2700,14 +2716,14 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
 
     if error_embed is not None:
         if not dont_send_embeds:
-            await slash_send_embed(ctx, error_embed)
+            await slash_send_embed(ctx, client, error_embed)
             return [False]
         else:
             return error_embed
 
     if not dont_send_embeds:
         proc_embed = await processing_embed(client, ctx, desired_lang)
-        message = await slash_send_embed(ctx, proc_embed)
+        message = await slash_send_embed(ctx, client, proc_embed)
     else:
         message = None
 

@@ -540,7 +540,7 @@ class Profile(ext.Cog):
                                        desired_lang=desired_lang)
         # brb back gtg soonish
         await active_view(self.client, ctx.author.id, profile_view)
-        await stw.slash_send_embed(ctx, embed, profile_view)
+        await stw.slash_send_embed(ctx, self.client, embed, profile_view)
 
     @ext.command(name='profile',
                  aliases=['rofile', 'pofile', 'prfile', 'proile', 'profle', 'profie', 'profil', 'pprofile', 'prrofile',

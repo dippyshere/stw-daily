@@ -64,7 +64,7 @@ class BBReward(ext.Cog):
                                                              f"⦾ {stw.I18n.get('reward.error.noday3', desired_lang, await stw.mention_string(self.client, 'bbreward 336'))}",
                                                  error_level=0, command="bbreward", prompt_help=True,
                                                  prompt_authcode=False, desired_lang=desired_lang)
-            await stw.slash_send_embed(ctx, embed)
+            await stw.slash_send_embed(ctx, self.client, embed)
             return
 
         else:
@@ -76,7 +76,7 @@ class BBReward(ext.Cog):
                                                                  f"⦾ {stw.I18n.get('reward.error.invalidday2', desired_lang)}",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
                                                      command="bbreward", desired_lang=desired_lang)
-                await stw.slash_send_embed(ctx, embed)
+                await stw.slash_send_embed(ctx, self.client, embed)
                 return
             try:
                 limit = int(limit)
@@ -86,7 +86,7 @@ class BBReward(ext.Cog):
                                                                  f"⦾ {stw.I18n.get('reward.error.invalidlimit2', desired_lang)}",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
                                                      command="bbreward", desired_lang=desired_lang)
-                await stw.slash_send_embed(ctx, embed)
+                await stw.slash_send_embed(ctx, self.client, embed)
                 return
             if limit < 0:
                 limit = 7
@@ -122,7 +122,7 @@ class BBReward(ext.Cog):
                                                                  f"⦾ {stw.I18n.get('reward.error.general2', desired_lang)}",
                                                      prompt_help=True, prompt_authcode=False, command="bbreward",
                                                      desired_lang=desired_lang)
-                await stw.slash_send_embed(ctx, embed)
+                await stw.slash_send_embed(ctx, self.client, embed)
                 print(f"Error when getting bbreward for day {day} - {e}")
                 return
             reward_quantity = f"{reward[4]:,} " if reward[4] != 1 else ""
@@ -182,7 +182,7 @@ class BBReward(ext.Cog):
             embed = await stw.set_thumbnail(self.client, embed, "Shared2")
             embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
-            await stw.slash_send_embed(ctx, embed)
+            await stw.slash_send_embed(ctx, self.client, embed)
 
     @ext.command(name='bbreward',
                  aliases=['bbr', 'bbrwrd', 'battlebreakersreward', 'breward', 'bbeward', 'bbrward', 'bbreard',

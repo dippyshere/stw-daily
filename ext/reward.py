@@ -73,7 +73,7 @@ class Reward(ext.Cog):
                                                              f"⦾ {stw.I18n.get('reward.error.noday3', desired_lang, await stw.mention_string(self.client, 'reward 336'))}",
                                                  error_level=0, command="reward", prompt_help=True,
                                                  prompt_authcode=False, desired_lang=desired_lang)
-            await stw.slash_send_embed(ctx, embed)
+            await stw.slash_send_embed(ctx, self.client, embed)
             return
 
         else:
@@ -85,7 +85,7 @@ class Reward(ext.Cog):
                                                                  f"⦾ {stw.I18n.get('reward.error.invalidday2', desired_lang)}",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
                                                      command="reward", desired_lang=desired_lang)
-                await stw.slash_send_embed(ctx, embed)
+                await stw.slash_send_embed(ctx, self.client, embed)
                 return
             try:
                 limit = int(limit)
@@ -95,7 +95,7 @@ class Reward(ext.Cog):
                                                                  f"⦾ {stw.I18n.get('reward.error.invalidlimit2', desired_lang)}",
                                                      error_level=0, prompt_help=True, prompt_authcode=False,
                                                      command="reward", desired_lang=desired_lang)
-                await stw.slash_send_embed(ctx, embed)
+                await stw.slash_send_embed(ctx, self.client, embed)
                 return
             if limit < 0:
                 limit = 7
@@ -130,7 +130,7 @@ class Reward(ext.Cog):
                                                                  f"⦾ {stw.I18n.get('reward.error.general2', desired_lang)}",
                                                      prompt_help=True, prompt_authcode=False, command="reward",
                                                      desired_lang=desired_lang)
-                await stw.slash_send_embed(ctx, embed)
+                await stw.slash_send_embed(ctx, self.client, embed)
                 logger.warning(f"Error when getting reward for day {day} - {e}")
                 return
 
@@ -208,7 +208,7 @@ class Reward(ext.Cog):
             embed = await stw.set_thumbnail(self.client, embed, "stormbottle")
             embed = await stw.add_requested_footer(ctx, embed, desired_lang)
 
-            await stw.slash_send_embed(ctx, embed)
+            await stw.slash_send_embed(ctx, self.client, embed)
 
     @ext.command(name='reward',
                  aliases=['reqward', 'it4ms', 'i6tems', 'geward', 'rewarrd', 'rewwrd', 'rewared', 'feward', 'iteems',

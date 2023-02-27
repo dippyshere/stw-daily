@@ -99,7 +99,7 @@ class HowTo(ext.Cog):
         #     f"{ctx.author.mention} I've updated the how to use embed in <#758561253156847629> and <#757768833946877992>.")
 
         invite_view = HowToUseView(self.client, ctx.author, ctx, desired_lang)
-        await stw.slash_send_embed(ctx, embed, invite_view)
+        await stw.slash_send_embed(ctx, self.client, embed, invite_view)
         return
 
     @ext.command(name='how2',

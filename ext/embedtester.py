@@ -107,7 +107,7 @@ class EmbedTester(ext.Cog):
                                              prompt_newcode, command, error_level, title_emoji, thumbnail, colour,
                                              add_auth_gif)
         view = ViewTest(ctx, self.client)
-        return await stw.slash_send_embed(ctx, embed, view=view)
+        return await stw.slash_send_embed(ctx, self.client, embed, view=view)
 
     @ext.command(name='embedtester',
                  aliases=['et'],

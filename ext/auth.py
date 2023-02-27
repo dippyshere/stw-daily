@@ -115,7 +115,7 @@ class Auth(ext.Cog):
 
         embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
-        await stw.slash_send_embed(ctx, embed)
+        await stw.slash_send_embed(ctx, self.client, embed)
 
     @ext.command(name='auth',
                  aliases=['login', 'authenticate', "uth", "ath", "auh", "aut", "aauth", "auuth", "autth", "authh",

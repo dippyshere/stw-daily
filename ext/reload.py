@@ -51,7 +51,7 @@ class Reload(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, "en")
 
-        await stw.slash_send_embed(ctx, embed)
+        await stw.slash_send_embed(ctx, self.client, embed)
 
     @ext.command(name='rlcg',
                  aliases=['rl', 'reload', '/rlcg'],
@@ -100,7 +100,7 @@ class Reload(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, "en")
 
-        await stw.slash_send_embed(ctx, embed)
+        await stw.slash_send_embed(ctx, self.client, embed)
 
     @ext.command(name='lcg',
                  aliases=['lc', 'load', '/lcg'],
@@ -155,7 +155,7 @@ class Reload(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, "en")
 
-        await stw.slash_send_embed(ctx, embed)
+        await stw.slash_send_embed(ctx, self.client, embed)
         self.client.watch_module.changed = set(())
 
     @ext.command(name='rlstwwatch',

@@ -138,7 +138,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
 
                 message = None
                 if interaction is None:
-                    message = await stw.slash_send_embed(ctx, embeds=embed)
+                    message = await stw.slash_send_embed(ctx, client, embeds=embed)
                 else:
                     await interaction.edit_original_response(embed=embed)
 
@@ -287,7 +287,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         current_profile = user_document["profiles"][str(currently_selected_profile_id)]
     except:
         embed = await no_profiles_page(client, ctx, desired_lang)
-        await stw.slash_send_embed(ctx, embeds=embed)
+        await stw.slash_send_embed(ctx, client, embeds=embed)
         return False
 
     if current_profile["statistics"]["tos_accepted_version"] != TOS_VERSION:
@@ -298,7 +298,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         await active_view(client, ctx.author.id, button_accept_view)
 
         if interaction is None:
-            await stw.slash_send_embed(ctx, embeds=embed, view=button_accept_view)
+            await stw.slash_send_embed(ctx, client, embeds=embed, view=button_accept_view)
         else:
             await interaction.edit_original_response(embed=embed, view=button_accept_view)
 
@@ -320,7 +320,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
             return
 
         if interaction is None:
-            await stw.slash_send_embed(ctx, embeds=embed, view=account_stealing_view)
+            await stw.slash_send_embed(ctx, client, embeds=embed, view=account_stealing_view)
         else:
             await interaction.edit_original_response(embed=embed, view=account_stealing_view)
 
@@ -332,7 +332,7 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         await active_view(client, ctx.author.id, stolen_account_view)
 
         if interaction is None:
-            await stw.slash_send_embed(ctx, embeds=embed, view=stolen_account_view)
+            await stw.slash_send_embed(ctx, client, embeds=embed, view=stolen_account_view)
         else:
             await interaction.edit_original_response(embed=embed, view=stolen_account_view)
 
@@ -618,9 +618,9 @@ class StolenAccountView(discord.ui.View):
         auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "device", "", True, False, True,
                                                           desired_lang=self.desired_lang)
         try:
-            await stw.slash_send_embed(self.ctx, embeds=auth_stuff[2])
+            await stw.slash_send_embed(self.ctx, self.client, embeds=auth_stuff[2])
         except:
-            await stw.slash_send_embed(self.ctx, embeds=auth_stuff)
+            await stw.slash_send_embed(self.ctx, self.client, embeds=auth_stuff)
 
         if not self.timed_out:
             for child in self.children:

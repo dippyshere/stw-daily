@@ -93,7 +93,7 @@ class Internationalisation(ext.Cog):
         embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed, "en")
 
-        await stw.slash_send_embed(ctx, embed)
+        await stw.slash_send_embed(ctx, self.client, embed)
 
     @ext.slash_command(name='i18n',
                        description='Test internationalisation',

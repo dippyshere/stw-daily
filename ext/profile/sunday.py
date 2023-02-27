@@ -1054,7 +1054,7 @@ async def default_page_profile_settings(client, ctx, user_profile, settings, mes
 
     settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings, desired_lang=desired_lang)
     await active_view(client, ctx.author.id, settings_view)
-    await stw.slash_send_embed(ctx, embeds=main_page_embed, view=settings_view)
+    await stw.slash_send_embed(ctx, client, embeds=main_page_embed, view=settings_view)
 
 
 async def no_profiles_page(client, ctx, desired_lang):
@@ -1111,7 +1111,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
         user_profile["profiles"]["0"]
     except:
         embed = await no_profiles_page(client, ctx, desired_lang)
-        await stw.slash_send_embed(ctx, embeds=embed)
+        await stw.slash_send_embed(ctx, client, embeds=embed)
         return
 
     if setting is not None or profile is not None or value is not None:
@@ -1219,7 +1219,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                 await active_view(client, ctx.author.id, sub_view)
 
                 embed.fields[0].value += happy_message + "*\n\u200b\n"
-                await stw.slash_send_embed(ctx, embeds=embed, view=sub_view)
+                await stw.slash_send_embed(ctx, client, embeds=embed, view=sub_view)
                 return
 
         elif value is not None:
@@ -1262,7 +1262,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             await active_view(client, ctx.author.id, sub_view)
 
             embed.fields[0].value += base_error_message
-            await stw.slash_send_embed(ctx, embeds=embed, view=sub_view)
+            await stw.slash_send_embed(ctx, client, embeds=embed, view=sub_view)
             return
         else:
             await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message, desired_lang)

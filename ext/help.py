@@ -397,7 +397,7 @@ class Help(ext.Cog):
         help_view = HelpView(ctx, help_options, self.client, desired_lang)
         help_view.help = self
 
-        await stw.slash_send_embed(ctx, embed, help_view)
+        await stw.slash_send_embed(ctx, self.client, embed, help_view)
 
     @ext.command(name='help',
                  aliases=['/h', '/how', '/?', '/help', '/commands', '/command', '/cmds', '/cmd', '/what', '/list',
