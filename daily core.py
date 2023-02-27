@@ -77,6 +77,7 @@ class ColourLogger(logging.Logger):
 logging.setLoggerClass(ColourLogger)
 logging.getLogger('discord.gateway').setLevel(logging.WARNING)
 logging.getLogger('watchfiles').setLevel(logging.WARNING)
+logging.getLogger('discord.shard').setLevel(logging.WARNING)
 # [logging.getLogger(name) for name in logging.root.manager.loggerDict]
 logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.DEBUG)
