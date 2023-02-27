@@ -42,9 +42,6 @@ class Auth(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        white = self.client.colours["auth_white"]
-        error_colour = self.client.colours["error_red"]
-
         auth_info = await stw.get_or_create_auth_session(self.client, ctx, "auth", token, True, True,
                                                          desired_lang=desired_lang)
         if not auth_info[0]:
@@ -57,6 +54,13 @@ class Auth(ext.Cog):
         except:
             pass
 
+        try:
+            user_document = await stw.get_user_document(ctx, self.client, ctx.author.id, desired_lang=desired_lang)
+            currently_selected_profile_id = user_document["global"]["selected_profile"]
+            keycard = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["keycard"]
+        except:
+            keycard = "keycard"
+
         # what is this black magic???????? I totally forgot what any of this is
         if auth_info[0] is not None and ainfo3 != "logged_in_processing" and auth_info[2] != []:
             await stw.slash_edit_original(ctx, auth_info[0], auth_info[2])
@@ -66,7 +70,7 @@ class Auth(ext.Cog):
                                                  f"{stw.I18n.get('auth.embed.currentauth.description1', desired_lang)}\n"
                                                  f"```{auth_info[1]['account_name']}```\n"
                                                  f"{stw.I18n.get('auth.embed.currentauth.description2', desired_lang, self.emojis['stopwatch_anim'], '<t:{0}:R>'.format(math.floor(auth_info[1]['expiry'])))}",
-                                                 prompt_newcode=True, title_emoji="whitekey", thumbnail="keycard",
+                                                 prompt_newcode=True, title_emoji="whitekey", thumbnail=keycard,
                                                  colour="auth_white", auth_push_strong=False,
                                                  desired_lang=desired_lang)
             await stw.slash_edit_original(ctx, auth_info[0], embed)
@@ -90,6 +94,12 @@ class Auth(ext.Cog):
         """
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
         white = self.client.colours["auth_white"]
+        try:
+            user_document = await stw.get_user_document(ctx, self.client, ctx.author.id, desired_lang=desired_lang)
+            currently_selected_profile_id = user_document["global"]["selected_profile"]
+            keycard = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["keycard"]
+        except:
+            keycard = "keycard"
         if await stw.manslaughter_session(self.client, ctx.author.id, "override"):
             embed = discord.Embed(
                 title=await stw.add_emoji_title(self.client, stw.I18n.get('auth.kill.embed.title', desired_lang),
@@ -103,7 +113,7 @@ class Auth(ext.Cog):
                 description=f"```{stw.I18n.get('auth.kill.missing.embed.description', desired_lang)}```\n",
                 colour=white)
 
-        embed = await stw.set_thumbnail(self.client, embed, "keycard")
+        embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         await stw.slash_send_embed(ctx, embed)
 

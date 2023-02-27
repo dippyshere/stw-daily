@@ -2828,7 +2828,12 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
     #     except:
     #         pass
 
-    embed = await set_thumbnail(client, embed, "keycard")
+    try:
+        keycard = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["keycard"]
+    except:
+        keycard = "keycard"
+
+    embed = await set_thumbnail(client, embed, keycard)
     embed = await add_requested_footer(ctx, embed, desired_lang)
 
     embeds.append(embed)

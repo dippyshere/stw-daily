@@ -105,3 +105,22 @@ def check_default(client, ctx, value) -> tuple[bool, bool]:
         bool: True.
     """
     return True, True
+
+
+def check_keycard(client, ctx, value) -> tuple[bool, bool]:
+    """
+    Always returns true.
+
+    Args:
+        client: The bot client. (unused)
+        ctx: The context of the command. (unused)
+        value: The value to check. (unused)
+
+    Returns:
+        bool: True.
+    """
+    if value.lower() in ['donut_keycard', 'hightower_date_keycard', 'mountainbase_keycard', 'junkyard_keycard',
+                         'alter_keycard', 'hightower_tomato_keycard', 'ego_keycard', 'island_keycard', 'oilrig_keycard',
+                         'sleek_keycard']:
+        return value.lower(), True
+    return False, False

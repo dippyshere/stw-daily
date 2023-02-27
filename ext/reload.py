@@ -30,6 +30,12 @@ class Reload(ext.Cog):
             extension: The cog to reload.
         """
         try:
+            user_document = await stw.get_user_document(ctx, self.client, ctx.author.id)
+            currently_selected_profile_id = user_document["global"]["selected_profile"]
+            keycard = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["keycard"]
+        except:
+            keycard = "keycard"
+        try:
             self.client.reload_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Reload cog", "experimental"),
@@ -42,7 +48,7 @@ class Reload(ext.Cog):
                                   color=embed_colour)
             embed.add_field(name="Error:", value=f"```{e}```", inline=False)
 
-        embed = await stw.set_thumbnail(self.client, embed, "keycard")
+        embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, "en")
 
         await stw.slash_send_embed(ctx, embed)
@@ -73,6 +79,12 @@ class Reload(ext.Cog):
             extension: The cog to load.
         """
         try:
+            user_document = await stw.get_user_document(ctx, self.client, ctx.author.id)
+            currently_selected_profile_id = user_document["global"]["selected_profile"]
+            keycard = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["keycard"]
+        except:
+            keycard = "keycard"
+        try:
             self.client.load_extension(f"ext.{extension}")
             embed_colour = self.client.colours["auth_white"]
             embed = discord.Embed(title=await stw.add_emoji_title(self.client, "Load cog", "experimental"),
@@ -85,7 +97,7 @@ class Reload(ext.Cog):
                                   color=embed_colour)
             embed.add_field(name="Error:", value=f"```{e}```", inline=False)
 
-        embed = await stw.set_thumbnail(self.client, embed, "keycard")
+        embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, "en")
 
         await stw.slash_send_embed(ctx, embed)
@@ -118,7 +130,12 @@ class Reload(ext.Cog):
             None
         """
         description = "\u200b\n**Reloaded:**```asciidoc\n"
-
+        try:
+            user_document = await stw.get_user_document(ctx, self.client, ctx.author.id)
+            currently_selected_profile_id = user_document["global"]["selected_profile"]
+            keycard = user_document["profiles"][str(currently_selected_profile_id)]["settings"]["keycard"]
+        except:
+            keycard = "keycard"
         if len(self.client.watch_module.changed) == 0:
             description = "\u200b\n```No files were marked by STW Watch"
 
@@ -135,7 +152,7 @@ class Reload(ext.Cog):
                               description=description,
                               color=embed_colour)
 
-        embed = await stw.set_thumbnail(self.client, embed, "keycard")
+        embed = await stw.set_thumbnail(self.client, embed, keycard)
         embed = await stw.add_requested_footer(ctx, embed, "en")
 
         await stw.slash_send_embed(ctx, embed)

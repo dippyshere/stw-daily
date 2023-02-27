@@ -444,9 +444,14 @@ def generate_setting_options(client, options, user_document, selected_setting, d
 
     for attr, val in options.items():
         logger.debug(f"Generating select menu for option: {attr}, {val}")
+        try:
+            description = stw.I18n.get(val['description'], desired_lang)
+            description = stw.truncate(description) if '.' not in description else None
+        except:
+            description = None
         select_options.append(discord.SelectOption(
             label=stw.I18n.get(val['name'], desired_lang),
-            description=stw.truncate(stw.I18n.get(val['description'], desired_lang)) if '.' not in stw.I18n.get(val['description'], desired_lang) else None,
+            description=description,
             value=attr,
             emoji=client.config["emojis"][val["emoji"]],
             default=True if current == attr else False))
@@ -816,6 +821,11 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
                             f"({client.config['valid_locales'][profile['settings'][setting]][1]})"
         except:
             current_value = profile['settings'][setting]
+    elif setting == "keycard":
+        try:
+            current_value = stw.I18n.get(setting_info['options'][profile['settings'][setting]]['name'], desired_lang)
+        except:
+            current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     else:
         try:
             if profile['settings'][setting] is True:
@@ -958,6 +968,12 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
                             f"({client.config['valid_locales'][selected_profile_data['settings'][setting]][1]})"
         except:
             current_value = selected_profile_data['settings'][setting]
+    elif setting == "keycard":
+        try:
+            current_value = stw.I18n.get(setting_info['options'][selected_profile_data['settings'][setting]]['name'],
+                                         desired_lang)
+        except:
+            current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     else:
         try:
             if selected_profile_data['settings'][setting] is True:

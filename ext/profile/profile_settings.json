@@ -282,64 +282,54 @@
         "default": "ego_keycard",
         "disabled": false,
         "emoji": "keycard",
+        "check_function": "check_keycard",
         "localised_name": "settings.config.keycard.name",
         "short_description": "settings.config.keycard.description.short",
         "long_description": "settings.config.keycard.description.long",
         "options": {
             "donut_keycard": {
-                "name": "Donut Keycard",
-                "emoji": "donut_keycard",
-                "description": "settings.config.keycard.donut.description"
+                "name": "settings.config.keycards.donut",
+                "emoji": "donut_keycard"
             },
             "hightower_date_keycard": {
-                "name": "Hightower Date Keycard",
-                "emoji": "hightower_date_keycard",
-                "description": "settings.config.keycard.hightower_date.description"
+                "name": "settings.config.keycards.hightowerdate",
+                "emoji": "hightower_date_keycard"
             },
             "mountainbase_keycard": {
-                "name": "Mountain Base Keycard",
-                "emoji": "mountainbase_keycard",
-                "description": "settings.config.keycard.mountainbase.description"
+                "name": "settings.config.keycards.mountainbase",
+                "emoji": "mountainbase_keycard"
             },
             "junkyard_keycard": {
-                "name": "Junkyard Keycard",
-                "emoji": "junkyard_keycard",
-                "description": "settings.config.keycard.junkyard.description"
+                "name": "settings.config.keycards.junkyard",
+                "emoji": "junkyard_keycard"
             },
             "alter_keycard": {
-                "name": "Alter Keycard",
-                "emoji": "alter_keycard",
-                "description": "settings.config.keycard.alter.description"
+                "name": "settings.config.keycards.alter",
+                "emoji": "alter_keycard"
             },
             "hightower_tomato_keycard": {
-                "name": "Hightower Tomato Keycard",
-                "emoji": "hightower_tomato_keycard",
-                "description": "settings.config.keycard.hightower_tomato.description"
+                "name": "settings.config.keycards.hightowertomato",
+                "emoji": "hightower_tomato_keycard"
             },
             "ego_keycard": {
-                "name": "Ego Keycard",
-                "emoji": "ego_keycard",
-                "description": "settings.config.keycard.ego.description"
+                "name": "settings.config.keycards.ego",
+                "emoji": "ego_keycard"
             },
             "island_keycard": {
-                "name": "Island Keycard",
-                "emoji": "island_keycard",
-                "description": "settings.config.keycard.island.description"
+                "name": "settings.config.keycards.island",
+                "emoji": "island_keycard"
             },
             "io_keycard": {
-                "name": "IO Keycard",
-                "emoji": "io_keycard",
-                "description": "settings.config.keycard.io.description"
+                "name": "settings.config.keycards.io",
+                "emoji": "io_keycard"
             },
             "oilrig_keycard": {
-                "name": "Oilrig Keycard",
-                "emoji": "oilrig_keycard",
-                "description": "settings.config.keycard.oilrig.description"
+                "name": "settings.config.keycards.oilrig",
+                "emoji": "oilrig_keycard"
             },
             "sleek_keycard": {
-                "name": "Sleek Keycard",
-                "emoji": "sleek_keycard",
-                "description": "settings.config.keycard.sleek.description"
+                "name": "settings.config.keycards.sleek",
+                "emoji": "sleek_keycard"
             }
         },
         "placeholder": "settings.config.keycard.placeholder"
