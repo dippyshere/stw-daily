@@ -250,7 +250,7 @@ class ResearchView(discord.ui.View):
 
         embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
         embed.add_field(name=f"\u200b",
-                        value=f"{stw.I18n.get('research.embed.purchasestat', self.desired_lang, f'{spent_points:,}', stw.I18n.get('research.button.{0}'.format(stat)))}\n\u200b")
+                        value=f"{stw.I18n.get('research.embed.purchasestat', self.desired_lang, f'{spent_points:,}', stw.I18n.get('research.button.{0}'.format(stat), self.desired_lang))}\n\u200b")
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(interaction, embed, self.desired_lang)
         self.total_points = research_points_item
