@@ -1223,7 +1223,7 @@ async def get_llama_datatable(client: Client, path: str, desired_lang: str = 'en
             llama_file["Rarity"].split("::")[-1]
     except Exception as e:
         logger.warning(f"Could not find DataTable for {path}, using default llama values. Error: {e}")
-        return I18n.get("stw.item.CardPack_Bronze.name", desired_lang), \
+        return I18n.get("stw.item.CardPack_Bronze.name.singular", desired_lang), \
             I18n.get("stw.item.CardPack_Bronze.desc", desired_lang), "<:PinataStandardPack:947728062739542036>", \
             "<:T_CardPack_Upgrade_IconMask:1055049365426819092>", \
             "Rare"
