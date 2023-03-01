@@ -156,8 +156,15 @@ class I18n:
             str: The formatted number
         """
         # format the number to a string
+        lang = lang.replace('-', '_')
         logger.debug(f"Returning {babel.numbers.format_decimal(num, locale=lang)} for fmt_num({num}, {lang})")
-        return babel.numbers.format_decimal(num, locale=lang)
+        try:
+            return babel.numbers.format_decimal(num, locale=lang)
+        except:
+            try:
+                return babel.numbers.format_decimal(num, locale=lang.split('_')[0])
+            except:
+                return str(num)
 
     def is_lang(self, lang: str) -> bool:
         """
