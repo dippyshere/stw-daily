@@ -340,7 +340,7 @@
         "auth.kill.embed.description": "அங்கீகார அமர்வு வெற்றிகரமாக முடிந்தது",
         "auth.kill.missing.embed.title": "கில் அங்கீகார அமர்வு",
         "auth.kill.missing.embed.description": "கொல்ல உங்களுக்கு அமர்வுகள் இல்லை",
-        "devauth.modal.authcode.label": "உங்கள் அங்கீகாரக் குறியீட்டை இங்கே உள்ளிடவும்",
+        "devauth.modal.authcode.label": "உங்கள் குறியீட்டை இங்கே உள்ளிடவும்",
         "devauth.modal.authcode.title": "அங்கீகார குறியீடு",
         "devauth.view.button.agreement": "ஒப்பந்தத்தை ஏற்கவும்",
         "devauth.view.button.autoclaim.enable": "தானியங்கு உரிமைகோரலை இயக்கு",

@@ -340,7 +340,7 @@
         "auth.kill.embed.description": "Authentifizierungssitzung erfolgreich beendet",
         "auth.kill.missing.embed.title": "Authentifizierungssitzung beenden",
         "auth.kill.missing.embed.description": "Sie haben keine Sitzungen zum Beenden",
-        "devauth.modal.authcode.label": "Geben Sie hier Ihren Authentifizierungscode ein",
+        "devauth.modal.authcode.label": "Geben Sie hier Ihren Code ein",
         "devauth.modal.authcode.title": "Autorisierungscode",
         "devauth.view.button.agreement": "Vereinbarung akzeptieren",
         "devauth.view.button.autoclaim.enable": "Auto aktivieren Beanspruchen",
