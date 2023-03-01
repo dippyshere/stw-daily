@@ -2686,6 +2686,10 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
 
     elif len(extracted_auth_code) != 32:
         try:
+            try:
+                extracted_auth_code = extracted_auth_code.replace("token:", "")
+            except:
+                pass
             user_document = await get_user_document(ctx, client, ctx.author.id, desired_lang=desired_lang)
             current_profile = user_document["profiles"][str(extracted_auth_code)]
             currently_selected_profile_id = int(extracted_auth_code)
