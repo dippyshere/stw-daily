@@ -248,7 +248,12 @@ class Reward(ext.Cog):
                           'i5m', 'i6m', 'iym', 'ihm', 'igm', 'ifm', 'itn', 'itj', 'itk', 'uitm', 'iutm', '8itm', 'i8tm',
                           '9itm', 'i9tm', 'oitm', 'iotm', 'litm', 'iltm', 'kitm', 'iktm', 'jitm', 'ijtm', 'irtm',
                           'itrm', 'i5tm', 'it5m', 'i6tm', 'it6m', 'iytm', 'itym', 'ihtm', 'ithm', 'igtm', 'itgm',
-                          'iftm', 'itfm', 'itnm', 'itmn', 'itjm', 'itmj', 'itkm', 'itmk'],
+                          'iftm', 'itfm', 'itnm', 'itmn', 'itjm', 'itmj', 'itkm', 'itmk', 'beloning', 'المكافأة',
+                          'награда', 'পুরস্কার', 'recompensa', 'odměna', 'belønning', 'Prämie', 'ανταμοιβή', 'premio',
+                          'auhind', 'جایزه', 'palkinto', 'récompense', 'પુરસ્કાર', 'lada', 'פרס', 'इनाम', 'nagrada',
+                          'jutalom', 'hadiah', '褒美', '보상', 'atlygis', 'atlīdzība', 'प्रतिफळ भरून पावले', 'ganjaran',
+                          'ਇਨਾਮ', 'nagroda', 'Răsplată', 'odmena', 'belöning', 'zawadi', 'வெகுமதி', 'బహుమతి',
+                          'รางวัล', 'ödül', 'винагорода', 'انعام', 'phần thưởng', '报酬', '報酬'],
                  extras={'emoji': "stormeye", "args": {
                      'reward.meta.args.day': ['reward.meta.args.day.description', False],
                      'reward.meta.args.limit': ['reward.meta.args.limit.description', True]},

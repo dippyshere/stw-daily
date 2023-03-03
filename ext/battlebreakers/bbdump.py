@@ -308,7 +308,8 @@ class BBDump(ext.Cog):
                           'battlebreakersdjump', 'battlebreakersdujmp', 'battlebreakersdhump', 'battlebreakersduhmp',
                           'battlebreakersdunmp', 'battlebreakersdumnp', 'battlebreakersdumjp', 'battlebreakersdumkp',
                           'battlebreakersdumop', 'battlebreakersdumpo', 'battlebreakersdum0p', 'battlebreakersdump0',
-                          'battlebreakersdumlp', 'battlebreakersdumpl'],
+                          'battlebreakersdumlp', 'battlebreakersdumpl', 'volcado', 'ббдумп', 'bb dökümü', 'بی بی ڈمپ',
+                          '转储', '轉儲'],
                  extras={'emoji': "library_floppydisc", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},

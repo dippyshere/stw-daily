@@ -234,7 +234,11 @@ class Power(ext.Cog):
                           'plw', 'pkw', 'poq', 'po2', 'po3', 'poe', 'pod', 'pos', 'poa', 'opow', '0pow', 'p0ow', 'lpow',
                           'plow', 'piow', 'poiw', 'p9ow', 'po9w', 'po0w', 'popw', 'polw', 'pkow', 'pokw', 'poqw',
                           'powq', 'po2w', 'pow2', 'po3w', 'pow3', 'poew', 'podw', 'powd', 'posw', 'pows', 'poaw',
-                          'powa', '/pow', '/level', '/homebaserating', 'homebaserating', '/power', '/powerlevel'],
+                          'powa', '/pow', '/level', '/homebaserating', 'homebaserating', '/power', '/powerlevel',
+                          'krag', 'мощност', 'ক্ষমতা', 'Napájení', 'strøm', 'εξουσία', 'fuerza', 'võimsus',
+                          'قدرت', 'tehoa', 'શક્તિ', 'iko', 'כּוֹחַ', 'शक्ति', 'snaga', 'erő', 'kekuatan', '力', 'galia',
+                          'jauda', 'शक्ती', 'kuasa', 'vermogen', 'ਤਾਕਤ', 'putere', 'мощность', 'moc', 'снага', 'effekt',
+                          'nguvu', 'சக்தி', 'శక్తి', 'güç', 'потужність', 'طاقت', '力量'],
                  extras={'emoji': "power_level", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},

@@ -233,7 +233,7 @@ class Vbucks(ext.Cog):
                           'balancve', 'balancwe', 'balancew', 'balanc3e', 'balance3', 'balanc4e', 'balance4',
                           'balancre', 'balancer', 'balancef', 'balanced', 'balancse', 'balances', '/v', '/vb',
                           '/vbucks', '/v-bucks', 'chucks', '/chucks', '/balance', 'money', 'currency', 'cash', 'vbu',
-                          'vbucks\\', 'vbuck\\', 'v\\'],
+                          'vbucks\\', 'vbuck\\', 'v\\', 'monedas', 'ビーバックス', 'vdolce', 'вбуцкс', '雄鹿队', '雄鹿隊'],
                  extras={'emoji': "vbuck_book", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.slash.optout', True]

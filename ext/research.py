@@ -672,8 +672,13 @@ class Research(ext.Cog):
                           'researcb', 'ree', 'resz', 'reseacrh', 'red', 'resdearch', 'reseawrch', '5es', 'rese',
                           'reseafrch', 'reaearch', 'researh', 'tesearch', 'researxh', 'r5esearch', 'resrarch',
                           'researvch', 'res3arch', 'resewrch', 'rezs', 're4search', 'tes', 'resedarch', '/res', '/r',
-                          '/research', 'resea', 'resear', 'lab', 'fortitude', 'fort', 'upgrade',
-                          'skill', 'tree'],
+                          '/research', 'resea', 'resear', 'lab', 'fortitude', 'fort', 'upgrade', 'skill', 'tree',
+                          'navorsing', 'بحث', 'изследвания', 'গবেষণা', 'recerca', 'výzkum', 'forskning', 'Forschung',
+                          'έρευνα', 'investigación', 'uurimine', 'پژوهش', 'tutkimusta', 'recherche', 'સંશોધન',
+                          'bincike', 'מחקר', 'शोध करना', 'istraživanje', 'kutatás', 'penelitian', 'ricerca', 'リサーチ',
+                          '연구', 'tyrimai', 'pētījumiem', 'संशोधन', 'penyelidikan', 'onderzoek', 'ਖੋਜ', 'badania',
+                          'pesquisa', 'cercetare', 'исследование', 'výskumu', 'истраживања', 'utafiti', 'ஆராய்ச்சி',
+                          'పరిశోధన', 'วิจัย', 'araştırma', 'дослідження', 'تحقیق', 'nghiên cứu', '研究'],
                  extras={'emoji': "research_point", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.slash.optout', True]

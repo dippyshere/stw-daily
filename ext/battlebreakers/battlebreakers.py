@@ -159,7 +159,10 @@ class BattleBreakersDaily(ext.Cog):
                           'bbdailoy', 'bbdaiply', 'bbdailpy', 'bbdailty', 'bbdailyt', 'bbdail6y', 'bbdaily6',
                           'bbdail7y', 'bbdaily7', 'bbdailuy', 'bbdailyu', 'bbdailjy', 'bbdailyj', 'bbdailhy',
                           'bbdailyh', 'bbdailgy', 'bbdailyg', '/bbd', 'battlebreakers', '/battlebreakers', '/wex',
-                          '/bd', '/bbdaily'],
+                          '/bd', '/bbdaily', 'বিডি প্রতিদিন', 'bb diàriament', 'bb denně', 'bb καθημερινά',
+                          'bbdiariamente', 'દરરોજ', 'כל יום', 'bb zilnic', 'bb denne', 'ббдаили', 'bb kila siku',
+                          'தினமும்', 'ప్రతిరోజు', 'bbgünlük',
+                          'بی بی ڈیلی'],
                  extras={'emoji': "T_MTX_Gem_Icon", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},

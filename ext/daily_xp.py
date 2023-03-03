@@ -232,7 +232,10 @@ class DailyXP(ext.Cog):
                           'stw2xp', 'st3wxp', 'stw3xp', 'stewxp', 'stwexp', 'stdwxp', 'stwdxp', 'stswxp', 'stwsxp',
                           'stawxp', 'stwaxp', 'stwzxp', 'stwxzp', 'stwxsp', 'stwxdp', 'stwcxp', 'stwxcp', 'stwxop',
                           'stwxpo', 'stwx0p', 'stwxp0', 'stwxlp', 'stwxpl', 'xpcap', 'dailycap', 'stwxp', '/xpcap',
-                          '/dailycap', '/stwxp', 'sharedxp'],
+                          '/dailycap', '/stwxp', 'sharedxp', 'diarixp', 'καθημερινάxp', 'diarioxp', 'igapäevanexp',
+                          'päivittäinxp', 'kullumxp', 'डेलीएक्सपी', 'デイリーXP', 'kasdien xp', 'ਡੇਲੀਐਕਸਪੀ',
+                          'zilnicxp', 'даиликп', 'kila sikuxp', 'தினசரிஎக்ஸ்பி', 'రోజువారీxp', 'günlük xp', '每日经验',
+                          '每日經驗', 'kasdienxp'],
                  extras={'emoji': "xp_everywhere", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},

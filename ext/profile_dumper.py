@@ -417,7 +417,12 @@ class ProfileDump(ext.Cog):
                           'archilve', 'archkive', 'archikve', 'archijve', 'archicve', 'archivce', 'archifve',
                           'archivfe', 'archigve', 'archivge', 'archibve', 'archivbe', 'archivwe', 'archivew',
                           'archiv3e', 'archive3', 'archiv4e', 'archive4', 'archivre', 'archiver', 'archivef',
-                          'archivde', 'archived', 'archivse', 'archives', '/dump', '/profiledump'],
+                          'archivde', 'archived', 'archivse', 'archives', '/dump', '/profiledump', 'الملف الشخصي',
+                          'প্রোফাইলডাম্প', 'abocament de perfils', 'volcado de perfil', 'پروفایل دامپ',
+                          'profiilikaappi', 'પ્રોફાઇલડમ્પ', 'app', 'プロファイルダンプ', 'profilio dump',
+                          'profilizgāzējs', 'प्रोफाइलडंप', 'zrzut profilu', 'профиледумп', 'utupaji wa wasifu',
+                          'சுயவிவரத் திணிப்பு', 'ప్రొఫైల్ డంప్', 'profil dökümü', 'پروفائل ڈمپ', '配置文件转储',
+                          '配置文件轉儲', 'dumperprofile', 'profiliodump', 'utupajiwasifu', 'utupajiwawasifu'],
                  extras={'emoji': "library_floppydisc", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.slash.optout', True]

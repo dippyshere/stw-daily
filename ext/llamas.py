@@ -582,7 +582,11 @@ class Llamas(ext.Cog):
                           'xrtay', 'xgray', 'xrgay', 'xfray', 'xrfay', 'xrday', 'xrqay', 'xraqy', 'xrway', 'xrawy',
                           'xrsay', 'xrasy', 'xrxay', 'xraxy', 'xrzay', 'xrazy', 'xraty', 'xrayt', 'xra6y', 'xray6',
                           'xra7y', 'xray7', 'xrauy', 'xrayu', 'xrajy', 'xrayj', 'xrahy', 'xrayh', 'xragy', 'xrayg',
-                          'l', 'ahoura', '🙄'],
+                          'l', 'ahoura', '🙄', 'اللاما', 'лами', 'লামাস', 'llames', 'lamy', 'lamaer', 'λάμα', 'laamad',
+                          'لاماها', 'laamat', 'લામા', 'lmas', 'לאמות', 'लामास', 'ljama', 'lámák', 'ラマ', '야마',
+                          'lamos', 'लामा', "lama's", 'ਲਾਮਾਸ', 'lhamas', 'lame', 'лам', 'ламе', 'lamor',
+                          'லாமாக்கள்', 'లామాస్', 'ลามะ', 'lamalar', 'لاما', 'lạc đà không bướu', '美洲驼', '美洲駝',
+                          'lạcđàkhôngbướu', 'khôngbướu', 'lạcđàkhông'],
                  extras={'emoji': "pinatastandardpackupgrade", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},

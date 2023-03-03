@@ -639,7 +639,12 @@ class Profile(ext.Cog):
                           'sessionws', 'sessionsw', 'sessiones', 'sessionse', 'sessionds', 'sessionsd', 'sessionxs',
                           'sessionsx', 'sessionzs', 'sessionsz', '/profile', '/profiles', '/session', '/sessions',
                           '/account', '/accounts', '/essions', 'accounts', 'p', '/p', '.accounts', '.saved', '.p',
-                          'pro', 'prof'],
+                          'pro', 'prof', 'ملف تعريف', 'профил', 'প্রোফাইল', 'Προφίλ', 'perfil', 'profiil', 'مشخصات',
+                          'profiili', 'પ્રોફાઇલ', 'bayanin martaba', 'פּרוֹפִיל', 'प्रोफ़ाइल', 'profilo', 'プロフィール',
+                          '프로필', 'profilį', 'प्रोफाइल', 'ਪ੍ਰੋਫਾਈਲ', 'профиль', 'profilu', 'wasifu',
+                          'சுயவிவரம்', 'ప్రొఫైల్', 'โปรไฟล์', 'профіль', 'پروفائل', 'hồ sơ', '轮廓', '輪廓',
+                          'rabin fuska', 'rabinfuska', 'bayaninmartaba', 'trắc diện', 'trắcdiện', 'hồsơ',
+                          'trắcđồ', 'trắc đồ'],
                  extras={'emoji': "stormshard", "args": {
                      'profile.meta.args.profile': ['profile.meta.args.profile.description', True]},
                          "dev": False,
