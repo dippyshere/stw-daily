@@ -409,7 +409,7 @@
         "profile.modal.create.title": "Skapa profil {0}",
         "profile.modal.create.input.label": "Ange ett namn för den här profilen",
         "profile.modal.create.input.placeholder": "Cool Profile 123",
-        "profile.slash.name": "-profil",
+        "profile.slash.name": "profil",
         "profile.slash.description": "Hantera din olika STW Daily profiler",
         "profile.meta.description1": "Med det här kommandot kan du hantera dina olika STW Daily-profiler. Varje profil kommer att ha sina egna inställningar och autentiseringsinformation.",
         "profile.meta.description2": "När du växlar hing profiler, kom ihåg att köra kommandot {0}, så att nästa gång du autentiseras kommer den att använda den valda profilens autentiseringsinformation.",

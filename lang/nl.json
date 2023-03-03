@@ -472,7 +472,7 @@
         "settings.error.missing.profile": "Ontbrekend profiel om instelling te wijzigen op",
         "settings.error.base": "*Kan niet instelling wijzigen:",
         "settings.view.select.setting.placeholder": "Selecteer een instelling om",
-        "settings.slash.name": "instellingen te beheren",
+        "settings.slash.name": "keuze",
         "settings.view.button.changevalue": "Waarde wijzigen",
         "settings.slash.description": "Beheer instellingen voor STW Daily per profiel",
         "settings.meta.description1": "Met deze opdracht kunt u STW Daily-instellingen wijzigen die specifiek zijn voor jouw profiel.",

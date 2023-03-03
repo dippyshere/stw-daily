@@ -150,7 +150,7 @@
         "news.embed.processing.title": "Buscando as últimas notícias",
         "news.meta.args.page": "página",
         "news.meta.args.page.description": "O número da página para visualizar o modo",
-        "news.meta.args.mode": "",
+        "news.meta.args.mode": "modo",
         "news.meta.args.mode.description": "O modo de jogo para ver notícias de (stw/br)",
         "news.meta.description": "Este comando irá buscar e exibir as últimas notícias do jogo. Você pode alternar entre visualizar as notícias do Salve o Mundo ou do Battle Royale pressionando os botões correspondentes. Percorra as páginas pressionando os botões de seta para a esquerda/direita.",
         "llamas.embed.title": "Loja",

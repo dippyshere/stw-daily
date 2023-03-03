@@ -413,7 +413,7 @@
         "profile.slash.description": "Administrer din forskjellige STW Daily profiler",
         "profile.meta.description1": "Denne kommandoen lar deg administrere de forskjellige STW Daily-profilene dine. Hver profil vil ha sine egne innstillinger og autentiseringsinformasjon.",
         "profile.meta.description2": "Når du bytter heng profiler, husk å kjøre {0}-kommandoen, slik at neste gang du autentiserer, vil den bruke den valgte profilens autentiseringsinformasjon.",
-        "profile.meta.args.profile": "-profil",
+        "profile.meta.args.profile": "profil",
         "profile.meta.args.profile.description": "ID-en til profilen som skal byttes til (f.eks. 0)",
         "settings.embed.title": "Innstillinger",
         "settings.config.upcomingdisplaydays.name": "Kommende dager som skal vises",

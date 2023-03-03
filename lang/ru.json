@@ -165,7 +165,7 @@
         "llamas.purchase.error.verbiage": "купите ламу",
         "llamas.purchase.description": "**Успешная покупка ламы!**",
         "llamas.purchase.description.get": "Вы получили:",
-        "llamas.article.a": "",
+        "llamas.article.a": "a",
         "llamas.article.an": "и",
         "llamas.confirmation.description.consonant": "**Вы уверены, что хотите приобрести {0} за {1} {2}?**",
         "llamas.confirmation.description.vowel": "**Вы уверены, что хотите приобрести {0} за {1} {2}?**",

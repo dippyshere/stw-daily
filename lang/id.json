@@ -150,7 +150,7 @@
         "news.embed.processing.title": "Mengambil berita terbaru",
         "news.meta.args.page": "halaman",
         "news.meta.args.page.description": "Nomor halaman untuk melihat mode",
-        "news.meta.args.mode": "",
+        "news.meta.args.mode": "mode",
         "news.meta.args.mode.description": "Mode game untuk melihat berita dari (stw/br)",
         "news.meta.description": "Perintah ini akan mengambil dan menampilkan berita terbaru dari game. Anda dapat beralih antara melihat berita Save the World atau Battle Royale dengan menekan tombol yang sesuai. Beralih antar halaman dengan menekan tombol panah kiri/kanan.",
         "llamas.embed.title": "Toko",
