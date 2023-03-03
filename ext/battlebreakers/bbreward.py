@@ -6,6 +6,8 @@ https://github.com/dippyshere/stw-daily
 This file is the cog for the battle breakers version of the reward command
 """
 
+import logging
+
 import discord
 import discord.ext.commands as ext
 from discord import Option
@@ -15,6 +17,7 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 
 import stwutil as stw
 
+logger = logging.getLogger(__name__)
 
 class BBReward(ext.Cog):
     """
@@ -123,7 +126,7 @@ class BBReward(ext.Cog):
                                                      prompt_help=True, prompt_authcode=False, command="bbreward",
                                                      desired_lang=desired_lang)
                 await stw.slash_send_embed(ctx, self.client, embed)
-                print(f"Error when getting bbreward for day {day} - {e}")
+                logger.error(f"Error when getting bbreward for day {day}: {e}")
                 return
             reward_quantity = f"{reward[4]:,} " if reward[4] != 1 else ""
             embed.add_field(name=stw.I18n.get("reward.embed.field1", desired_lang, reward[2]),

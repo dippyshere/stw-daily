@@ -7,6 +7,7 @@ This file is the cog for the homebase command. renames homebase / displays curre
 """
 import asyncio
 import time
+import logging
 
 import discord
 import discord.ext.commands as ext
@@ -14,6 +15,8 @@ from discord import Option, SelectOption, OptionChoice
 import orjson
 
 import stwutil as stw
+
+logger = logging.getLogger(__name__)
 
 
 class LlamasView(discord.ui.View):
@@ -283,7 +286,13 @@ class LlamasPurchaseView(discord.ui.View):
             acc_name = self.auth_info["account_name"]
             embed = await stw.post_error_possibilities(ctx, self.client, "llamas", acc_name, error_code,
                                                        verbiage_action="buyllama", desired_lang=self.desired_lang)
-            print("Error:", purchase)
+            try:
+                if purchase['errorCode'] == "errors.com.epicgames.modules.gamesubcatalog.cannot_afford_purchase":
+                    logger.debug(f"User {ctx.author.id} cannot afford llama. | {purchase}")
+                else:
+                    logger.info(f"User {ctx.author.id} could not buy llama. | {purchase}")
+            except:
+                logger.warning(f"User {ctx.author.id} could not buy llama. | {purchase}")
         except:
             embed = discord.Embed(
                 title=await stw.add_emoji_title(self.client, stw.I18n.get("llamas.embed.title", self.desired_lang),

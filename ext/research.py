@@ -7,8 +7,9 @@ This file is the cog for the research command. collect and spend research points
 """
 
 import asyncio
-import orjson
+import logging
 
+import orjson
 import discord
 import discord.ext.commands as ext
 from discord import Option, OptionChoice
@@ -18,6 +19,7 @@ from discord.commands import (  # Importing the decorator that makes slash comma
 
 import stwutil as stw
 
+logger = logging.getLogger(__name__)
 
 async def add_fort_fields(client, embed, current_levels, desired_lang, extra_white_space=False):
     """
@@ -208,7 +210,7 @@ class ResearchView(discord.ui.View):
             research_points_item = purchased_json['profileChanges'][0]['profile']['items'][self.research_token_guid]
         except Exception as e:
             # this can be entered if there is an error during purchase
-            print(e, "\nError during purchase:\n", stw.truncate(purchased_json))
+            logger.warning(f"Error during purchase: {e} | {stw.truncate(str(purchased_json))}")
             try:
                 error_code = json_response["errorCode"]
                 acc_name = self.auth_info[1]["account_name"]
@@ -379,8 +381,10 @@ async def research_query(ctx, client, auth_info, final_embeds, json_response, de
         try:
             # check if account has daily reward stats, if not, then account doesn't have stw
             check_stw = json_response['profileChanges'][0]['profile']['stats']['attributes']['daily_rewards']
-            print(e, "\nno research stat, but daily reward; must have zero research stats.\n",
-                  stw.truncate(json_response))
+            try:
+                logger.warning(f"Error: {e} | no research stat, but daily reward; assuming zero research stats. | {stw.truncate(json_response['profileChanges'][0]['profile']['stats']['attributes'])}")
+            except:
+                logger.warning(f"Error: {e} | no research stat, but daily reward; assuming zero research stats. | {stw.truncate(json_response)}")
             # assume all stats are at 0 because idk it cant be max surely not, the stats are here for max so...
             # dippy note here - after some investigation, this condition is entered when the stats are missing (due to being level 0 / not unlocked yet)
             # it should be when all stats are missing, but this is entered when 1 stat is missing, we should check which stats are missing and assign to level 0
@@ -534,7 +538,7 @@ class Research(ext.Cog):
         research_guid_check = await asyncio.gather(asyncio.to_thread(self.check_for_research_guid_key, json_response))
         # print("research guid: ", research_guid_check)
         if research_guid_check[0] is None:
-            print("errors.stwdaily.failed_guid_research encountered:", stw.truncate(json_response))
+            logger.warning("errors.stwdaily.failed_guid_research encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_guid_research"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
                                                        verbiage_action="res", desired_lang=desired_lang)
@@ -562,7 +566,7 @@ class Research(ext.Cog):
         # Get total points
         total_points_check = await asyncio.gather(asyncio.to_thread(self.check_for_research_points_item, json_response))
         if total_points_check[0] is None:
-            print("errors.stwdaily.failed_total_points encountered:", stw.truncate(json_response))
+            logger.warning("errors.stwdaily.failed_total_points encountered:", stw.truncate(json_response))
             error_code = "errors.stwdaily.failed_total_points"
             embed = await stw.post_error_possibilities(ctx, self.client, "research", acc_name, error_code,
                                                        verbiage_action="res", desired_lang=desired_lang)
@@ -611,7 +615,10 @@ class Research(ext.Cog):
             # this variable might be referenced before assignment hmm
             research_points_claimed = research_item['quantity']
         except Exception as e:
-            print(e)
+            if e == 'notifications':
+                logger.debug("No notifications found in json_response")
+            else:
+                logger.info("Error in research_points_claimed: ", e)
 
         # Create the embed for displaying nyaa~
 

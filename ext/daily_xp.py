@@ -5,14 +5,17 @@ https://github.com/dippyshere/stw-daily
 
 This file is the cog for the daily xp command. Returns info about the stw accolade daily xp system for the authenticated player.
 """
-import orjson
 import asyncio
+import logging
 
+import orjson
 import discord
 import discord.ext.commands as ext
 from discord import Option, OptionChoice
 
 import stwutil as stw
+
+logger = logging.getLogger(__name__)
 
 
 class DailyXP(ext.Cog):
@@ -101,10 +104,10 @@ class DailyXP(ext.Cog):
                 asyncio.to_thread(stw.extract_profile_item, profile_json=profile_json_response,
                                   item_string='Token:stw_accolade_tracker'))
             daily_xp = daily_xp[0][0]
-            print(daily_xp)
+            logger.debug(f"Daily XP: {daily_xp}")
         except Exception as e:
             # TODO: debug and fix this case
-            print(e)
+            logger.error(e.with_traceback(e.__traceback__))
             embed = discord.Embed(title=stw.I18n.get('dailyxp.embed.title', desired_lang),
                                   description=stw.I18n.get('dailyxp.embed.error.description', desired_lang,
                                                            f'```{e}```'),

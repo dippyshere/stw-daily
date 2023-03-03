@@ -344,13 +344,13 @@ async def retrieve_shard(client: Client, shard_id: int) -> int | str:
         Exception: If the shard id is greater than the number of shards
     """
     if shard_id > len(client.config["shard_names"]):
-        print("Shard id {} is out of range".format(shard_id))
+        logger.warning(f"Shard {shard_id} is out of range")
         return shard_id
 
     try:
         return client.config["shard_names"][shard_id]
     except (KeyError, IndexError):
-        print("Unable to find shard name for shard id {}".format(shard_id))
+        logger.warning(f"Unable to find shard name for shard {shard_id}")
         return shard_id
 
 
