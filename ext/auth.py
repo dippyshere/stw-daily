@@ -146,7 +146,7 @@ class Auth(ext.Cog):
                           'exchange', '/login', '/code', '/a', '/authcode', '/gettoken', '.login', '.code', '.a',
                           '.authcode', '.gettoken', 'المصادقة', 'প্রমাণ', 'autenticación', 'اعتبار', 'tod',
                           'પ્રમાણીકરણ', 'אישור', 'प्रमाणन', '認証', 'प्रमाणीकरण', 'ਪ੍ਰਮਾਣਿਕਤਾ', 'аутх', 'mwandishi',
-                          'அங்கீகாரம்', 'รับรองความถูกต้อง', 'yetki', 'تصنیف', '授权', '授權'],
+                          'அங்கீகாரம்', 'รับรองความถูกต้อง', 'yetki', 'تصنیف', '授权', '授權', 'token'],
                  extras={'emoji': "keycard", 'args': {
                      'generic.meta.args.authcode': ['auth.slash.token', True]},
                          "dev": False, "description_keys": ['auth.meta.description1', 'auth.meta.description2',
