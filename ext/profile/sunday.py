@@ -418,7 +418,33 @@ async def settings_view_timeout(view, sub=False, desired_lang=None):
 
     embed.fields[0].value += f"\u200b\n{stw.I18n.get('generic.embed.timeout', desired_lang)}\n\u200b"
     # TODO: This has a none type error
-    await view.message.edit(embed=embed, view=view)
+    # await view.message.edit(embed=embed, view=view)
+    if isinstance(view.message, discord.Interaction):
+        method = view.message.edit_original_response
+    else:
+        method = view.message.edit
+    try:
+        if isinstance(view.ctx, discord.ApplicationContext):
+            try:
+                return await method(embed=embed, view=view)
+            except:
+                try:
+                    return await view.ctx.edit(embed=embed, view=view)
+                except:
+                    return await method(embed=embed, view=view)
+        else:
+            return await method(embed=embed, view=view)
+    except:
+        if isinstance(view.ctx, discord.ApplicationContext):
+            try:
+                return await method(view=view)
+            except:
+                try:
+                    return await view.ctx.edit(view=view)
+                except:
+                    return await method(view=view)
+        else:
+            return await method(view=view)
 
 
 def generate_setting_options(client, options, user_document, selected_setting, desired_lang):

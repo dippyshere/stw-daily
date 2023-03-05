@@ -286,8 +286,11 @@ async def command_counter(client, user_snowflake):
     """
     try:
         old_view = client.active_profile_command[user_snowflake]
-        if not old_view.timed_out:
-            await old_view.on_timeout()
+        try:
+            if not old_view.timed_out:
+                await old_view.on_timeout()
+        except Exception as e:
+            logger.info(f"Command counter timeout error: {e}")
         del client.active_profile_command[user_snowflake]
     except Exception as e:
         if re.match(r"^[0-9]{15,21}$", str(e)):

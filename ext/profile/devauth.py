@@ -398,13 +398,31 @@ class EnslaveAndStealUserAccount(discord.ui.View):
         for child in self.children:
             child.disabled = True
         self.stop()
-
-        if self.interaction is None:
-            await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
-        else:
-            await self.interaction.edit_original_response(embed=timeout_embed, view=self)
-
         self.timed_out = True
+
+        try:
+            if self.interaction is None:
+                return await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
+            else:
+                return await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+        except:
+            try:
+                if isinstance(self.message, discord.Interaction):
+                    method = self.message.edit_original_response
+                else:
+                    method = self.message.edit
+                if isinstance(self.ctx, discord.ApplicationContext):
+                    try:
+                        return await method(view=self)
+                    except:
+                        try:
+                            return await self.ctx.edit(view=self)
+                        except:
+                            return await method(view=self)
+                else:
+                    return await method(view=self)
+            except:
+                return await self.ctx.edit(view=self)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -525,21 +543,30 @@ class StolenAccountView(discord.ui.View):
         for child in self.children:
             child.disabled = True
         self.stop()
+        self.timed_out = True
         try:
             if self.interaction is None:
-                await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
+                return await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
             else:
-                await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+                return await self.interaction.edit_original_response(embed=timeout_embed, view=self)
         except:
             try:
                 if isinstance(self.message, discord.Interaction):
                     method = self.message.edit_original_response
                 else:
                     method = self.message.edit
-                await method(view=self)
+                if isinstance(self.ctx, discord.ApplicationContext):
+                    try:
+                        return await method(view=self)
+                    except:
+                        try:
+                            return await self.ctx.edit(view=self)
+                        except:
+                            return await method(view=self)
+                else:
+                    return await method(view=self)
             except:
-                await self.ctx.edit(view=self)
-        self.timed_out = True
+                return await self.ctx.edit(view=self)
 
     @discord.ui.select(
         placeholder="Select another profile here",
@@ -728,12 +755,31 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         for child in self.children:
             child.disabled = True
         self.stop()
-
-        if self.interaction is None:
-            await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
-        else:
-            await self.interaction.edit_original_response(embed=timeout_embed, view=self)
         self.timed_out = True
+
+        try:
+            if self.interaction is None:
+                return await stw.slash_edit_original(self.ctx, self.message, embeds=timeout_embed, view=self)
+            else:
+                return await self.interaction.edit_original_response(embed=timeout_embed, view=self)
+        except:
+            try:
+                if isinstance(self.message, discord.Interaction):
+                    method = self.message.edit_original_response
+                else:
+                    method = self.message.edit
+                if isinstance(self.ctx, discord.ApplicationContext):
+                    try:
+                        return await method(view=self)
+                    except:
+                        try:
+                            return await self.ctx.edit(view=self)
+                        except:
+                            return await method(view=self)
+                else:
+                    return await method(view=self)
+            except:
+                return await self.ctx.edit(view=self)
 
     async def interaction_check(self, interaction):
         """
