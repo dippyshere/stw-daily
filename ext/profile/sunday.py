@@ -422,7 +422,10 @@ async def settings_view_timeout(view, sub=False, desired_lang=None):
     if isinstance(view.message, discord.Interaction):
         method = view.message.edit_original_response
     else:
-        method = view.message.edit
+        try:
+            method = view.message.edit
+        except:
+            method = view.ctx.edit
     try:
         if isinstance(view.ctx, discord.ApplicationContext):
             try:

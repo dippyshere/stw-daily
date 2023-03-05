@@ -176,7 +176,10 @@ class ProfileMainView(discord.ui.View):
                 if isinstance(self.message, discord.Interaction):
                     method = self.message.edit_original_response
                 else:
-                    method = self.message.edit
+                    try:
+                        method = self.message.edit
+                    except:
+                        method = self.ctx.edit
                 if isinstance(self.ctx, discord.ApplicationContext):
                     try:
                         return await method(view=self)

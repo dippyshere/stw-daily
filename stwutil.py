@@ -996,7 +996,10 @@ async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Inter
     if isinstance(msg, discord.Interaction):
         method = msg.edit_original_response
     else:
-        method = msg.edit
+        try:
+            method = msg.edit
+        except:
+            method = ctx.edit
 
     if isinstance(ctx, discord.ApplicationContext):
         if view is not None and files is not None:
