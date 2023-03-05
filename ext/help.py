@@ -71,13 +71,28 @@ class HelpView(discord.ui.View):
         """
         for child in self.children:
             child.disabled = True
+        # if isinstance(self.ctx, discord.ApplicationContext):
+        #     try:
+        #         return await self.message.edit_original_response(view=self)
+        #     except:
+        #         return await self.ctx.edit(view=self)
+        # else:
+        #     return await self.message.edit(view=self)
+
+        if isinstance(self.message, discord.Interaction):
+            method = self.message.edit_original_response
+        else:
+            method = self.message.edit
         if isinstance(self.ctx, discord.ApplicationContext):
             try:
-                return await self.message.edit_original_response(view=self)
+                return await method(view=self)
             except:
-                return await self.ctx.edit(view=self)
+                try:
+                    return await self.ctx.edit(view=self)
+                except:
+                    return await method(view=self)
         else:
-            return await self.message.edit(view=self)
+            return await method(view=self)
 
 
 class Help(ext.Cog):
