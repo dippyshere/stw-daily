@@ -25,8 +25,10 @@ class ModalTest(discord.ui.Modal):
         self.ctx = ctx
         self.client = client
         setting_input = discord.ui.InputText(placeholder="placeholder", label="label", value="value")
-        setting_input2 = discord.ui.InputText(placeholder="placeholder2", label="label2", required=False, value="value2")
-        setting_input3 = discord.ui.InputText(placeholder="placeholder3", label="label3", required=False, value="value3", style=discord.InputTextStyle.long)
+        setting_input2 = discord.ui.InputText(placeholder="placeholder2", label="label2", required=False,
+                                              value="value2")
+        setting_input3 = discord.ui.InputText(placeholder="placeholder3", label="label3", required=False,
+                                              value="value3", style=discord.InputTextStyle.long)
         self.add_item(setting_input)
         self.add_item(setting_input2)
         self.add_item(setting_input3)
@@ -82,7 +84,7 @@ class EmbedTester(ext.Cog):
         self.emojis = client.config["emojis"]
 
     async def et_command(self, ctx, title, desc, prompt_help, prompt_authcode, prompt_newcode, command, error_level,
-                         title_emoji, thumbnail, colour, add_auth_gif):
+                         title_emoji, thumbnail, colour, add_auth_gif, auth_push_strong, desired_lang, promptauth_key):
         """
         The embed tester command
 
@@ -99,13 +101,21 @@ class EmbedTester(ext.Cog):
             thumbnail: The thumbnail of the embed
             colour: The colour of the embed
             add_auth_gif: Whether to add the auth gif to the embed
+            auth_push_strong: Whether to push the authcode strong
+            desired_lang: The desired language of the embed
+            promptauth_key: The promptauth key of the embed
 
         Returns:
             None
         """
+        prompt_help = prompt_help == "True"
+        prompt_authcode = prompt_authcode == "True"
+        prompt_newcode = prompt_newcode == "True"
+        add_auth_gif = add_auth_gif == "True"
+        auth_push_strong = auth_push_strong == "True"
         embed = await stw.create_error_embed(self.client, ctx, title, desc, prompt_help, prompt_authcode,
                                              prompt_newcode, command, error_level, title_emoji, thumbnail, colour,
-                                             add_auth_gif)
+                                             add_auth_gif, auth_push_strong, desired_lang, promptauth_key)
         view = ViewTest(ctx, self.client)
         return await stw.slash_send_embed(ctx, self.client, embed, view=view)
 
@@ -121,7 +131,11 @@ class EmbedTester(ext.Cog):
                      'error_level': 'Error level of the embed (Optional)',
                      'title_emoji': 'Emoji to be used in the title (Optional)',
                      'thumbnail': 'Thumbnail of the embed (Optional)',
-                     'colour': 'Colour of the embed (Optional)'},
+                     'colour': 'Colour of the embed (Optional)',
+                     'add_auth_gif': 'Whether to add the auth tutorial gif to the embed (Optional)',
+                     'auth_push_strong': 'Whether to strongly advise usor to get code (Optional)',
+                     'desired_lang': 'Desired language of the embed (Optional)',
+                     'promptauth_key': 'language key to use for prompt auth (Optional)'},
                          "dev": True},
                  brief="Construct and send an error embed from provided arguments",
                  description=(
@@ -130,7 +144,8 @@ class EmbedTester(ext.Cog):
                          "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"))
     async def embedtester(self, ctx, title=None, desc=None, prompt_help=False, prompt_authcode=True,
                           prompt_newcode=False, command="", error_level=1, title_emoji=None, thumbnail=None,
-                          colour=None, add_auth_gif=False):
+                          colour=None, add_auth_gif=False, auth_push_strong=False, desired_lang="en",
+                          promptauth_key="util.error.embed.promptauth.strong1"):
         """
         This function is the entry point for the embedtest command when called traditionally
 
@@ -147,10 +162,14 @@ class EmbedTester(ext.Cog):
             thumbnail: The thumbnail of the embed
             colour: The colour of the embed
             add_auth_gif: Whether to add the auth gif to the embed
+            auth_push_strong: Whether to push the authcode strong
+            desired_lang: The desired language of the embed
+            promptauth_key: The promptauth key of the embed
         """
 
-        await self.et_command(ctx, title, desc, bool(prompt_help), bool(prompt_authcode), bool(prompt_newcode), command,
-                              int(error_level), title_emoji, thumbnail, colour, bool(add_auth_gif))
+        await self.et_command(ctx, title, desc, prompt_help, prompt_authcode, prompt_newcode, command,
+                              int(error_level), title_emoji, thumbnail, colour, add_auth_gif, auth_push_strong,
+                              desired_lang, promptauth_key)
 
 
 def setup(client):
