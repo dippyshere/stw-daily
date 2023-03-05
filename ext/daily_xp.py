@@ -175,7 +175,7 @@ class DailyXP(ext.Cog):
             token: Your Epic Games authcode. Required unless you have an active session.
             auth_opt_out: Opt out of starting an authentication session
         """
-        await self.daily_xp_command(ctx, token, not bool(auth_opt_out))
+        await self.daily_xp_command(ctx, token, not eval(auth_opt_out))
 
     @ext.command(name='dailyxp',
                  aliases=['dxp', '/dxp', '/dailyxp', 'daily_xp', '/daily_xp', 'ailyxp', 'dilyxp', 'dalyxp', 'daiyxp',

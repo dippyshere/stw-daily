@@ -534,7 +534,7 @@ class Llamas(ext.Cog):
             token: Your Epic Games authcode. Required unless you have an active session.
             auth_opt_out: Opt out of starting an authentication session
         """
-        await self.llamas_command(ctx, token, not bool(auth_opt_out))
+        await self.llamas_command(ctx, token, not eval(auth_opt_out))
 
     @ext.command(name='llamas',
                  aliases=['lama', 'llma', 'llaa', 'llam', 'lllama', 'llaama', 'llamma', 'llamaa', 'lalma', 'llmaa',

@@ -480,7 +480,7 @@ class ProfileDump(ext.Cog):
     #         token: The authcode to use for authentication.
     #         auth_opt_out: Whether to opt out of starting an authentication session.
     #     """
-    #     await self.profile_dump_command(ctx, token, not bool(auth_opt_out))
+    #     await self.profile_dump_command(ctx, token, not eval(auth_opt_out))
 
 
 def setup(client):

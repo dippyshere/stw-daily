@@ -160,7 +160,7 @@ class Power(ext.Cog):
             token: The authcode of the user
             auth_opt_out: Whether the user has opted out of auth
         """
-        await self.power_command(ctx, token, not bool(auth_opt_out))
+        await self.power_command(ctx, token, not eval(auth_opt_out))
 
     @ext.command(name='power',
                  aliases=['pow', 'powerlevel', 'rating', 'level', 'pwr', 'ower', 'pwer', 'poer', 'powr', 'powe',

@@ -740,7 +740,7 @@ class Research(ext.Cog):
             token: The authcode of the user
             auth_opt_out: Whether or not the user wants to opt out of starting a session
         """
-        await self.research_command(ctx, token, not bool(auth_opt_out))
+        await self.research_command(ctx, token, not eval(auth_opt_out))
 
 
 def setup(client):

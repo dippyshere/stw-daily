@@ -287,7 +287,7 @@ class Homebase(ext.Cog):
             token: Your Epic Games authcode. Required unless you have an active session.
             auth_opt_out: Opt out of starting an authentication session
         """
-        await self.hbrename_command(ctx, name, token, not bool(auth_opt_out))
+        await self.hbrename_command(ctx, name, token, not eval(auth_opt_out))
 
     @ext.command(name='homebase',
                  aliases=['hbrename', 'hbrn', 'rename', 'changehomebase', 'homebasename', 'hbname', 'hb', 'brn', 'hrn',

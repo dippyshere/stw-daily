@@ -275,7 +275,7 @@ class Daily(ext.Cog):
             token: The authcode of the user
             auth_opt_out: Whether the user wants to opt out of starting an authentication session
         """
-        await self.daily_command(ctx, token, not bool(auth_opt_out))
+        await self.daily_command(ctx, token, not eval(auth_opt_out))
 
     @ext.command(name='daily',
                  aliases=['daxily', 'clllect', 'deaily', 'clailm', 'c9llect', 'claimm', 'dai9ly', 'claiom', 'collfct',
