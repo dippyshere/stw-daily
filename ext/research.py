@@ -615,10 +615,10 @@ class Research(ext.Cog):
             # this variable might be referenced before assignment hmm
             research_points_claimed = research_item['quantity']
         except Exception as e:
-            if e == 'notifications':
+            if 'notifications' in str(e):
                 logger.debug("No notifications found in json_response")
             else:
-                logger.info("Error in research_points_claimed: ", e)
+                logger.info("Error in research_points_claimed: ", str(e))
 
         # Create the embed for displaying nyaa~
 
