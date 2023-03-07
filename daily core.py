@@ -306,7 +306,7 @@ async def on_message(message: discord.Message) -> None:
         # make epic auth system thing
         logger.debug(f"Message content after processing: {message.content}")
         try:
-            if re.match(r'^<@[0-9]{15,21}>.*([0-9a-f]{32})(?![^ ]*\")', message.content) and ' ' not in message.content:
+            if re.match(r'^<@[0-9]{15,21}>.*([0-9a-f]{32})', message.content) and ' ' not in message.content:
                 await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
                 return  # what song are u listening to rn? youtube.com youtube.com what~? homepage oh nothing~ :3
         except IndexError:
