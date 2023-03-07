@@ -26,7 +26,7 @@ class LlamasView(discord.ui.View):
 
     def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, llama_options, auth_info,
                  desired_lang):
-        super().__init__(timeout=360.0)
+        super().__init__(timeout=360.0, disable_on_timeout=True)
         self.ctx = ctx
         self.client = client
         self.message = message
@@ -98,20 +98,6 @@ class LlamasView(discord.ui.View):
         """
         return await stw.view_interaction_check(self, interaction, "llamas")
 
-    async def on_timeout(self):
-        """
-        Called when the view times out.
-        """
-        for child in self.children:
-            child.disabled = True
-        if isinstance(self.ctx, discord.ApplicationContext):
-            try:
-                return await self.message.edit_original_response(view=self)
-            except:
-                return await self.ctx.edit(view=self)
-        else:
-            return await self.message.edit(view=self)
-
     @discord.ui.select(
         placeholder="Choose a Llama to purchase",
         options=[],
@@ -139,7 +125,7 @@ class LlamasPurchaseView(discord.ui.View):
 
     def __init__(self, ctx, client, message, author, llama_store, free_llama, preroll_data, offer_id, auth_info,
                  desired_lang):
-        super().__init__(timeout=360.0)
+        super().__init__(timeout=360.0, disable_on_timeout=True)
         self.ctx = ctx
         self.client = client
         self.message = message
@@ -160,20 +146,6 @@ class LlamasPurchaseView(discord.ui.View):
         self.children[1].label = stw.I18n.get("generic.view.button.cancel", self.desired_lang)
 
         # self.children[0].options = await self.llamas.select_options_llamas(self.llama_store, True)
-
-    async def on_timeout(self):
-        """
-        Called when the view times out.
-        """
-        for child in self.children:
-            child.disabled = True
-        if isinstance(self.ctx, discord.ApplicationContext):
-            try:
-                return await self.message.edit_original_response(view=self)
-            except:
-                return await self.ctx.edit(view=self)
-        else:
-            return await self.message.edit(view=self)
 
     async def interaction_check(self, interaction):
         """

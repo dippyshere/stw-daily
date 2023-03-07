@@ -22,7 +22,7 @@ class HelpView(discord.ui.View):
     """
 
     def __init__(self, ctx, help_options, client, desired_lang):
-        super().__init__(timeout=480.0)
+        super().__init__(timeout=480.0, disable_on_timeout=True)
         self.ctx = ctx
         self.author = ctx.author
         self.children[0].options = help_options
@@ -64,38 +64,6 @@ class HelpView(discord.ui.View):
             self.children[0].options = await self.help.select_options_commands(self.ctx, selected=select.values[0],
                                                                                desired_lang=self.desired_lang)
         await interaction.response.edit_message(embed=embed, view=self)
-
-    async def on_timeout(self):
-        """
-        Called when the view times out.
-        """
-        for child in self.children:
-            child.disabled = True
-        # if isinstance(self.ctx, discord.ApplicationContext):
-        #     try:
-        #         return await self.message.edit_original_response(view=self)
-        #     except:
-        #         return await self.ctx.edit(view=self)
-        # else:
-        #     return await self.message.edit(view=self)
-
-        if isinstance(self.message, discord.Interaction):
-            method = self.message.edit_original_response
-        else:
-            try:
-                method = self.message.edit
-            except:
-                method = self.ctx.edit
-        if isinstance(self.ctx, discord.ApplicationContext):
-            try:
-                return await method(view=self)
-            except:
-                try:
-                    return await self.ctx.edit(view=self)
-                except:
-                    return await method(view=self)
-        else:
-            return await method(view=self)
 
 
 class Help(ext.Cog):
