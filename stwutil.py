@@ -2827,9 +2827,15 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
 
     if add_entry:
         expiry = f"<t:{math.floor(client.config['auth_expire_time'] + time.time())}:R>"
-        embed.description += f"{I18n.get('util.createsession.welcome.expiry', desired_lang, client.config['emojis']['stopwatch_anim'], expiry)}\n\u200b\n"
+        if auth_with_devauth:
+            embed.description += f"{I18n.get('util.createsession.welcome.expiry.devauth', desired_lang, client.config['emojis']['stopwatch_anim'], expiry)}\n\u200b\n"
+        else:
+            embed.description += f"{I18n.get('util.createsession.welcome.expiry', desired_lang, client.config['emojis']['stopwatch_anim'], expiry)}\n\u200b\n"
     else:
         embed.description += f"{I18n.get('util.createsession.welcome.optout', desired_lang, client.config['emojis']['cross'])}\n\u200b\n"
+
+    if auth_with_devauth:
+        embed.description += f"{I18n.get('util.createsession.welcome.devauth', desired_lang, client.config['emojis']['link_icon'], 'https://github.com/dippyshere/stw-daily/wiki')}\n\u200b\n"
 
     if not entry['vbucks']:
         embed.description += f"• {I18n.get('util.createsession.welcome.nonfounder', desired_lang, client.config['emojis']['xray'], client.config['emojis']['vbucks'], 'https://github.com/dippyshere/stw-daily/wiki')}\n\u200b"
