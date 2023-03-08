@@ -43,30 +43,23 @@ ___
 
 ## Commands <a id="commands2"></a>
 
-<details open>
-    <summary><b>Information</b></summary>
-    <ul>
-    <span>There are two ways to use commands with STW Daily:</span>
-        <ol>
-            <li>Mentioning the bot:</li>
-        <div>
-            <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>{command} {parameters}</sup>
-        <li>
-            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
-        </li>
-        <kbd>/{command}</kbd>
-        </div>
-        </ol>
-        <br>
-        <p>To use a command you want, replace {command} with the name of the command, and {parameters} with any parameters needed.
-        <br>When mentioning the bot to invoke a command, a single space is required between the mention and the command. This is usually added for you.</p>
-        <p><b>Click on the names of commands below to see examples of how to use them.</b></p>
-    </ul>
-</details>
+<span>There are two ways to use most commands with STW Daily:</span>
+<ol>
+    <li>Mentioning the bot:</li>
+<div>
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+      <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+      <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+    </picture> <sup>{command} {parameters}</sup>
+<li>
+    Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+</li>
+<kbd>/{command}</kbd>
+</div>
+</ol>
+<p>To use a command you want, replace {command} with the name of the command, and {parameters} with any parameters needed.
+<p><b>Click on the names of commands below to see examples of how to use them.</b></p>
 
 <details>
     <summary><b>Daily</b></summary>
@@ -150,6 +143,32 @@ ___
 </details>
 
 <details>
+    <summary><b>Kill</b></summary>
+    <ul>
+    <p>This command will end your active authentication session. If you have setup <a href="#device">device</a>, this will not remove your linked accounts.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>kill</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/kill</kbd>
+        </div>
+        <br>
+        </ol>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Kill command example" width="640">
+<p><em>Sorry, an image is not available yet.</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
     <summary><b>Help</b></summary>
     <ul>
     <p>This command provides an interactive interface to view all available commands, and help for how to use each command.</p>
@@ -165,7 +184,7 @@ ___
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/help {command}</kbd>
+        <kbd>/help command:{command}</kbd>
         </div>
         <br>
         </ol>
@@ -300,16 +319,135 @@ ___
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
         </picture> <sup>res</sup>
-        <br><span> This will claim your available research points, and then allow you to spend them, if you are authenticated. If not, the bot will provide you with links to authenticate.</span>
+        <br><span> This will claim your available research points and then allow you to spend them, if you are authenticated. If not, the bot will provide you with links to authenticate.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
         </picture> <sup>research a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will This will claim your available research points, and then allow you to spend them. An authentication session will not be created</span>
+        <br><span> This will claim your available research points and then allow you to spend them. An authentication session will not be created</span>
     </ul>
     <img src="res/research.png" alt="Research command example" width="640">
 <p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Power</b></summary>
+    <ul>
+    <p>This command allows you to view your current power level, and individual FORT stats.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>power {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/power token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>pow</sup>
+        <br><span> This will display your current power level and FORT stats, if you are authenticated. If not, the bot will provide you with links to authenticate.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>power a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will display your current power level and FORT stats. An authentication session will not be created</span>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Power level command example" width="640">
+<p><em>This command is still experimental, and does not support supercharged survivors.</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Daily XP</b></summary>
+    <ul>
+    <p>This command allows you to view your shared STW & BR daily XP cap.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>dailyxp {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/dailyxp token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>dxp</sup>
+        <br><span> This will display your current daily XP usage, if you are authenticated. If not, the bot will provide you with links to authenticate.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>power a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will display your current daily XP usage. An authentication session will not be created</span>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Power level command example" width="640">
+<p><em>This command is still experimental, and may be inaccurate.</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Llamas</b></summary>
+    <ul>
+    <p>This command allows you to view the current X-Ray Llama store, the items you'll receive, and allows you to purchase Llamas.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>llamas {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/llamas token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>llamas</sup>
+        <br><span> This will display the current Llama store and allow you to choose a llama to purchase, if you are authenticated. If not, the bot will provide you with links to authenticate.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>llamas a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will display the current Llama store and allow you to choose a llama to purchase. An authentication session will not be created</span>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Llamas command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -394,46 +532,6 @@ ___
 </details>
 
 <details>
-    <summary><b>Battle Breakers Daily</b></summary>
-    <ul>
-    <p>This command will claim your daily reward in Battle Breakers (until it's shutdown).</p>
-    <span>There are two ways to use this command:</span>
-        <ol>
-            <li>Mentioning the bot:</li>
-        <div>
-            <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>bbd {token} {opt-out}</sup>
-        <li>
-            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
-        </li>
-        <kbd>/bbdaily token:{token} auth_opt_out:{opt-out}</kbd>
-        </div>
-        <br>
-        </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
-        <p><b>Examples:</b></p>
-        <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>bbdaily a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will claim your Battle Breakers daily reward, and will create an authentication session.</span>
-        <br><br><picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>bbd</sup>
-        <br><span> This will claim your Battle Breakers daily reward if authenticated, otherwise it will prompt you to authenticate.  </span>
-    </ul>
-    <img src="res/bbdaily.png" alt="Battle Breakers Daily command example" width="640">
-<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
-<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
-</details>
-
-<details>
     <summary><b>Battle Breakers Reward</b></summary>
     <ul>
     <p>This command returns information about a specific day's reward, and the rewards that follow for Battle Breakers.</p>
@@ -474,46 +572,6 @@ ___
 </details>
 
 <details>
-    <summary><b>Battle Breakers Profile Dump</b></summary>
-    <ul>
-    <p>This command will create a complete dump of your Battle Breakers profile in JSON format, so you can save your profile before the game is shutdown forever on 30th December 2022. The files you save with this command may allow you to continue playing on a private server in the future.</p>
-    <span>There are two ways to use this command:</span>
-        <ol>
-            <li>Mentioning the bot:</li>
-        <div>
-            <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>bbdump {token} {opt-out}</sup>
-        <li>
-            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
-        </li>
-        <kbd>/bbdump token:{token} auth_opt_out:{opt-out}</kbd>
-        </div>
-        <br>
-        </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
-        <p><b>Examples:</b></p>
-        <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>bbdump a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will dump your Battle Breakers profile, and will create an authentication session.</span>
-        <br><br><picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>bbdump</sup>
-        <br><span> This will dump your Battle Breakers profile if authenticated, otherwise it will prompt you to authenticate.  </span>
-    </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Batle breakers profile dump command example" width="640">
-<p><em>Sorry, this command is too new - an image is not available yet.</em></p>
-<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
-</details>
-
-<details>
     <summary><b>Info</b></summary>
     <ul>
     <p>This command will return various bits of information about the bot, which you may find interesting as a developer.</p>
@@ -541,42 +599,225 @@ ___
 </details>
 
 <details>
+    <summary><b>Invite</b></summary>
+    <ul>
+    <p>This command will return links that can be used to <a href="https://canary.discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147798080&scope=applications.commands%20bot" target="_blank">invite STW Daily</a>, or to join our <a href="https://discord.gg/Mt7SgUu" target="_blank">support server</a>.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>info</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/info</kbd>
+        </div>
+        <br>
+        </ol>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Invite command example" width="640">
+<p><em>Sorry, an image is not available yet.</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Profile</b></summary>
+    <ul>
+    <p>This command allows you to manage your STW Daily profiles. These profiles allow you to have multiple accounts / preferences that you can quickly switch between</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>profile {profile}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/profile profile:{profile}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {profile} with the ID (number) of the profile you want to switch to. This parameter is optional—not providing one will start the profile command as normal.</p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>p</sup>
+        <br><span> This will start the profile command, and allow you to switch / manage your profiles.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>profile 3</sup>
+        <br><span> This will start the profile command as normal, but will switch your active profile to profile 3.</span>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Profile command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Settings</b></summary>
+    <ul>
+    <p>This command allows you to manage your STW Daily settings. These settings are specific to your active profile.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>settings {profile}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/profile profile:{profile}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {profile} with the ID (number) of the profile you want to switch to. This parameter is optional—not providing one will start the profile command as normal.</p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>p</sup>
+        <br><span> This will start the profile command, and allow you to switch / manage your profiles.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>profile 3</sup>
+        <br><span> This will start the profile command as normal, but will switch your active profile to profile 3.</span>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Profile command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<br>
+
+<details>
     <summary><b>Upcoming commands</b></summary>
     <ul>
-    <span>This is a list of commands coming to STW Daily in future updates:</span>
+    <span>This is a partial list of potential commands coming to STW Daily in future updates:</span>
         <ul>
-            <li>Llamas</li>
+            <li>Daily Quests</li>
             <ul>
-                <li>This command will allow you to purchase llamas in the shop, and claim free llamas.</li>
+                <li>View, get and re-roll your daily quests</li>
             </ul>
-            <li>Daily XP</li>
+            <li>Survivor Squad Management</li>
             <ul>
-                <li>This command will allow you to view your remaining shared XP in STW for BR.</li>
+                <li>View your survivors, and create presets to switch between at any time</li>
             </ul>
-            <li>Power Level</li>
+            <li>Item Shop</li>
             <ul>
-                <li>This command will allow you to view your homebase FORT stats, and power level.</li>
+                <li>View the current BR Item shop</li>
             </ul>
-            <li>Profile Dumper</li>
+            <li>Llama store</li>
             <ul>
-                <li>This command will allow you to dump your Fortnite profiles.</li>
+                <li>View the current llama store / weekly shop</li>
             </ul>
-            <li>Profile</li>
+            <li>Collection Book</li>
             <ul>
-                <li>This command will allow you to view, edit and manage your STW Daily profiles.</li>
+                <li>View your collection book</li>
             </ul>
-            <li>Device Auth</li>
+            <li>Expeditions</li>
             <ul>
-                <li>This command will allow you to save a special type of authentication with STW Daily that lasts much longer than authentication sessions.</li>
-            </ul>
-            <li>Settings</li>
-            <ul>
-                <li>This command will allow you to change STW Daily settings on your active profile.</li>
+                <li>View and manage your expeditions</li>
             </ul>
         </ul>
-        <br>
-        <p>Please note that this information is subject to change without notice at anytime. Some or all of these features may already be present and/or functional on STW Daily.</p>
+        <p>Please note that this information is subject to change without notice at anytime. Some or all of these features may already be present and/or functional on STW Daily, or may be removed at any time. For a more detailed list, check out our <a href="https://trello.com/b/BbfX8IPj/stw-daily" target="_blank">trello board.</a></p>
     </ul>
+</details>
+
+### Disabled Commands
+
+<details>
+    <summary><b>Battle Breakers Daily</b></summary>
+    <ul>
+    <p>This command would have claimed your daily reward in Battle Breakers.</p>
+    <span>There were two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>bbd {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/bbdaily token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>bbdaily a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This would have claimed your Battle Breakers daily reward, and created an authentication session.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>bbd</sup>
+        <br><span> This would have claimed your Battle Breakers daily reward if authenticated, otherwise it would have prompted you to authenticate.  </span>
+    </ul>
+    <img src="res/bbdaily.png" alt="Battle Breakers Daily command example" width="640">
+<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Battle Breakers Profile Dump</b></summary>
+    <ul>
+    <p>This command allowed you to create a complete dump of your Battle Breakers profile in JSON format, so you could save your profile before the game shut down on 30th December 2022. The files you saved with this command may allow you to continue playing on a <a href="https://www.github.com/dippyshere/battle-breakers-private-server">private server</a> in the future.</p>
+    <span>There were two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>bbdump {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/bbdump token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>bbdump a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This would have dumped your Battle Breakers profile, and created an authentication session.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>bbdump</sup>
+        <br><span> This would have dumped your Battle Breakers profile if authenticated, otherwise it would have prompted you to authenticate.  </span>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Batle breakers profile dump command example" width="640">
+<p><em>Sorry, this command is too new - an image is not available yet.</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
 ___
