@@ -274,8 +274,9 @@ class I18n:
         """
         # construct the slash dict
         slash_dict = {}
+        from stwutil import truncate
         for lang in self.get_langs():
-            if re.match(r"\w+\.slash.name|\w+.\.meta.args\.\w+(?!^description$)", key):
+            if re.match(r"\w+\.slash.name|\w+.\.meta.args\.\w+(?!^description$)", key) and 'description' not in key:
                 if lang == "en":
                     slash_dict["en-US"] = self.get(key, lang).lower()
                     slash_dict["en-GB"] = self.get(key, lang).lower()
@@ -288,7 +289,6 @@ class I18n:
                 else:
                     continue
                 return slash_dict
-            from stwutil import truncate
             if lang == "en":
                 slash_dict["en-US"] = truncate(self.get(key, lang))
                 slash_dict["en-GB"] = truncate(self.get(key, lang))
