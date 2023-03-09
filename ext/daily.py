@@ -184,7 +184,7 @@ class Daily(ext.Cog):
                     if itemtype == 'CardPack:cardpack_event_founders':
                         display_itemtype = stw.I18n.get('stw.item.CardPack_Event_Founders.name', desired_lang)
                     elif itemtype == 'CardPack:cardpack_bronze':
-                        display_itemtype = stw.I18n.get('stw.item.CardPack_Bronze.name', desired_lang)
+                        display_itemtype = stw.I18n.get('stw.item.CardPack_Bronze.name.singular', desired_lang)
                     else:
                         display_itemtype = itemtype
 
