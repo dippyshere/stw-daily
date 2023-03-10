@@ -10,8 +10,11 @@ import discord
 import discord.ext.commands as ext
 from discord import Option, OptionChoice
 import orjson
+import logging
 
 import stwutil as stw
+
+logger = logging.getLogger(__name__)
 
 
 class Homebase(ext.Cog):
@@ -52,22 +55,22 @@ class Homebase(ext.Cog):
         except:
             try:
                 # if there is a homebase name, continue with command
-                check_hbname = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
-                    "homebase_name"]
+                # check_hbname = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"][
+                #     "homebase_name"]
                 return False, False
             except:
                 # trying to check homebase with no stw or homebase, assume error
-                if name == "":
-                    acc_name = auth_info[1]["account_name"]
-                    error_code = "errors.com.epicgames.fortnite.check_access_failed"
-                    embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
-                                                               verbiage_action="hbrn",
-                                                               desired_lang=desired_lang)
-                    final_embeds.append(embed)
-                    await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-                    return error_code, True
+                # if name == "":
+                #     acc_name = auth_info[1]["account_name"]
+                #     error_code = "errors.com.epicgames.fortnite.check_access_failed"
+                #     embed = await stw.post_error_possibilities(ctx, self.client, "homebase", acc_name, error_code,
+                #                                                verbiage_action="hbrn",
+                #                                                desired_lang=desired_lang)
+                #     final_embeds.append(embed)
+                #     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+                #     return error_code, True
                 # allow name change for no stw because it works somehow
-                return "errors.stwdaily.no_stw", False
+                return False, False
 
     async def hbrename_command(self, ctx, name, authcode, auth_opt_out):
         """
@@ -110,8 +113,10 @@ class Homebase(ext.Cog):
         public_request = await stw.profile_request(self.client, "query_public", auth_info[1],
                                                    profile_id="common_public")
         public_json_response = orjson.loads(await public_request.read())
-        stw_request = await stw.profile_request(self.client, "query_public", auth_info[1])
-        stw_json_response = orjson.loads(await stw_request.read())
+        logger.debug(f"Query Public response: {public_json_response}")
+
+        # stw_request = await stw.profile_request(self.client, "query_public", auth_info[1])
+        # stw_json_response = orjson.loads(await stw_request.read())
         # ROOT.profileChanges[0].profile.stats.attributes.homebase_name
 
         file = None
@@ -135,7 +140,10 @@ class Homebase(ext.Cog):
             stw_request = await stw.profile_request(self.client, "query", auth_info[1])
             stw_json_response = orjson.loads(await stw_request.read())
             # extract info from response
-            current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+            try:
+                current = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["homebase_name"]
+            except:
+                current = " "
             try:
                 homebase_icon = stw_json_response["profileChanges"][0]["profile"]["items"][stw_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_icon_template"]
                 try:
@@ -243,9 +251,11 @@ class Homebase(ext.Cog):
                 embed = await stw.set_thumbnail(self.client, embed, "check")
         else:
             embed = await stw.set_thumbnail(self.client, embed, "check")
-
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
+        if file is not None:
+            await stw.slash_edit_original(ctx, auth_info[0], final_embeds, files=file)
+            return
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
         return
 
