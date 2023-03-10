@@ -12,7 +12,7 @@
 
 ___
 
-<h6 align=center> Auto-claim daily rewards, research points, llamas, and more!</h6>
+<h6 align=center> Auto-claim daily rewards, manage research points, llamas, and more!</h6>
 <div align=center>
 <a href="https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Invite-STW Daily-5865F2.svg?style=for-the-badge&logo=Discord" alt="Invite Bot"></a>
 <a href="https://discord.gg/stw-dailies-757765475823517851"><img src="https://img.shields.io/badge/Join-STW Dailies-5865F2.svg?style=for-the-badge&logo=Discord" alt="Join STW Dailies"></a>
@@ -675,30 +675,77 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>settings {profile}</sup>
+            </picture> <sup>settings {setting} {value} {profile}</sup>
         <li>
             Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
         </li>
-        <kbd>/profile profile:{profile}</kbd>
+        <kbd>/settings setting:{setting} value:{value} profile:{profile}</kbd>
         </div>
         <br>
         </ol>
-        <p>Replace {profile} with the ID (number) of the profile you want to switch to. This parameter is optional—not providing one will start the profile command as normal.</p> 
+        <p>Replace {setting} with the name of the setting you want to change. This parameter is optional—not providing one will start the settings command as normal.</p>
+        <p>Replace {value} with the value you want to change the setting to. This parameter is optional—not providing one will start the settings command on the specified setting / as normal.</p>
+        <p>Replace {profile} with the ID (number) of the profile you want to change the setting on. This parameter is optional—not providing one will change the setting on your current profile / start the command as normal.</p> 
         <p><b>Examples:</b></p>
         <picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>p</sup>
-        <br><span> This will start the profile command, and allow you to switch / manage your profiles.</span>
+        </picture> <sup>settings</sup>
+        <br><span> This will start the settings command, and allow you to view / change your settings.</span>
         <br><br><picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>profile 3</sup>
-        <br><span> This will start the profile command as normal, but will switch your active profile to profile 3.</span>
+        </picture> <sup>settings lang</sup>
+        <br><span> This will start the settings command on the language setting.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>settings lang spanish</sup>
+        <br><span> This will start the settings command on the language setting, and change STW Daily's language to spanish for your current profile.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>settings lang spanish 2</sup>
+        <br><span> This will start the settings command on the language setting, and change STW Daily's language to spanish for profile 2.</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Profile command example" width="640">
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Settings command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <a id="device"></a>
+    <summary><b>Device</b></summary>
+    <ul>
+    <p>This command allows you to link an Epic games account to a STW Daily profile. Once you complete setup, you'll never need to manually authenticate with a new code again.<br>This command also allows you to opt in to our Auto-claim trial period, where we're testing Auto-claim. This trial will last until approximately April 2023, after which we'll announce how we plan to continue on our <a href="https://discord.gg/Mt7SgUu" target="_blank">support server</a>.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>device</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/device</kbd>
+        </div>
+        <br>
+        </ol> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>device</sup>
+        <br><span> This will start the device command, and allow prompt you to set up and link an account. If you already have an authentication session, you can use this to link your account.</span>
+    </ul>
+    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Device command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -888,12 +935,18 @@ to get a new code.
 ![Auth Code GIF](res/stw%20daily%20noob%20tutorial%20render%202%20hd.gif)
 
 ### Authentication Sessions:
+
 Your authentication session will be saved for ~8 hours, allowing you to claim a daily, claim your research points and
 spend them without needing a new code each time. You will still need to provide a new code when the authentication
 session expires.
 
 You can opt out of automatically starting an authentication session by specifying any text after your auth code,
 e.g. `@STW Daily d a51c1f4d35b1457c8e34a1f6026faa35 no`. You can end an authentication session with `@STW Daily kill`
+
+### Linking accounts:
+
+Linking your accounts allows you to automatically authenticate, without needing to get an auth code each time.
+To get started, check out the [device](#device) command.
 
 ## Self hosting the bot
 

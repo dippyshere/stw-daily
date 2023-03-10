@@ -7,7 +7,7 @@
                 -->
                 @font-face {
                 font-family: google-sans;
-                src: url(https://raw.githubusercontent.com/dippyshere/stw-daily/mango/res/GoogleSans-Bold.ttf);
+                src: url(https://raw.githubusercontent.com/dippyshere/stw-daily/master/res/Google-Sans-Bold.ttf);
                 font-weight: bold;
                 }
 
