@@ -26,7 +26,7 @@ wait_on_user_messages = [
     "messages.waiting.6",
     "messages.waiting.7",
     "messages.waiting.8",
-    "messages.waiting.9",
+    # "messages.waiting.9",
     "messages.waiting.10",
     "messages.waiting.11",
     "messages.waiting.12",
@@ -397,6 +397,7 @@ island_keycard = "<:TTIconBRKeyCardsIslandL:1078926503288508416>"
 io_keycard = "<:TTIconBRIOKeycardItemL:1078926489824792648>"
 oilrig_keycard = "<:TTIconBRKeyCardOilRigL:1078926506887237633>"
 sleek_keycard = "<:TTIconBRGadgetVaultKeycardSleekL:1078926509206683760>"
+midmatch_keycard = "<:TTIconBRGadgetKeyCardMidMatchL:1084074626335916052>"
 
 [profile_settings]
 max_friendly_name_length = 100
@@ -430,6 +431,7 @@ island_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/107
 io_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484731546566666/T-T-Icon-BR-IOKeycardItem-L.png"
 oilrig_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484731789848676/T-T-Icon-BR-KeyCard-OilRig-L.png"
 sleek_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078485034207547443/T-T-Icon-BR-Gadget-VaultKeycard-Sleek-L.png"
+midmatch_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1084074362178654270/T-T-Icon-BR-Gadget-KeyCard-MidMatch-L.png"
 stormbottle = "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png"
 crown = "https://cdn.discordapp.com/attachments/1042781227767312384/1054046016048992306/crown_1f451.png"
 placeholder = "https://cdn.discordapp.com/attachments/643743040372080653/1028186514510839878/T_UI_Challenge_MysteryReward-L.png"

@@ -330,6 +330,10 @@
             "sleek_keycard": {
                 "name": "settings.config.keycards.sleek",
                 "emoji": "sleek_keycard"
+            },
+            "midmatch_keycard": {
+                "name": "settings.config.keycards.midmatch",
+                "emoji": "midmatch_keycard"
             }
         },
         "placeholder": "settings.config.keycard.placeholder"
