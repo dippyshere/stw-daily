@@ -398,6 +398,12 @@ io_keycard = "<:TTIconBRIOKeycardItemL:1078926489824792648>"
 oilrig_keycard = "<:TTIconBRKeyCardOilRigL:1078926506887237633>"
 sleek_keycard = "<:TTIconBRGadgetVaultKeycardSleekL:1078926509206683760>"
 midmatch_keycard = "<:TTIconBRGadgetKeyCardMidMatchL:1084074626335916052>"
+rubbish_bin = "<:Delete_Normalrealesrganx4plus:1084079903571447808>"
+detonate = "<:Detonate_Normalrealesrganx4plus:1084079901725958217>"
+backpack = "<:Inventory_Normalrealesrganx4plus:1084079910831804446>"
+download_alt = "<:Stomp_Normalrealesrganx4plus:1084079906260000768>"
+lock = "<:T_UI_ICON_SINGLE_LOCKrealesrganx:1084079908986290306>"
+keycard2 = "<:EventKeycardrealesrganx4plus:1084080116008751127>"
 
 [profile_settings]
 max_friendly_name_length = 100

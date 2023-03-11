@@ -919,7 +919,7 @@ class Auth(ext.Cog):
                           'r2move', 'r$move', 'r#move', 'r@move', 're,ove', 're<ove', 'rem8ve', 'rem9ve', 'rem0ve',
                           'rem;ve', 'rem*ve', 'rem(ve', 'rem)ve', 'remov4', 'remov3', 'remov2', 'remov$', 'remov#',
                           'remov@', '/skull', '/signout', '/remove'],
-                 extras={'emoji': "whitekey", "args": {}, "dev": False,
+                 extras={'emoji': "detonate", "args": {}, "dev": False,
                          "description_keys": ['auth.kill.meta.description1', 'auth.kill.meta.description2'],
                          "name_key": "auth.kill.slash.name"},
                  brief="auth.kill.slash.description",

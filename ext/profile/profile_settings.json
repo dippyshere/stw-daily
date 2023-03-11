@@ -281,7 +281,7 @@
         ],
         "default": "ego_keycard",
         "disabled": false,
-        "emoji": "keycard",
+        "emoji": "keycard2",
         "check_function": "check_keycard",
         "localised_name": "settings.config.keycard.name",
         "short_description": "settings.config.keycard.description.short",
