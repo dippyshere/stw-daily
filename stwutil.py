@@ -15,6 +15,7 @@ import math
 from difflib import SequenceMatcher
 import logging
 from typing import Tuple, Union, Any, Optional
+import functools
 
 import aiofiles
 import aiohttp.client_reqrep
@@ -25,6 +26,7 @@ from PIL import Image, ImageDraw, ImageFont
 import asyncio
 import io
 import orjson
+from cache import AsyncLRU
 
 import discord
 from PIL.ImageFont import FreeTypeFont
@@ -87,8 +89,7 @@ logger.debug("Loaded banner textures")
 
 I18n = I18n()
 
-# TODO: make this None (not a list)
-guild_ids = [757765475823517851]
+guild_ids = None
 
 
 def reverse_dict_with_list_keys(dictionary: dict[str, list[str]]) -> dict[str, str]:
@@ -187,7 +188,7 @@ async def view_interaction_check(view, interaction: discord.Interaction, command
             logger.debug("Interaction check failed, user already notified")
             return False
 
-
+@functools.cache
 def edit_emoji_button(client: Client, button: discord.ui.Button) -> discord.ui.Button:
     """
     Adds an emoji to a button
@@ -466,6 +467,7 @@ async def add_requested_footer(ctx: Context | discord.ApplicationContext, embed:
     return embed
 
 
+@AsyncLRU(maxsize=8192)
 async def add_emoji_title(client: Client, title: str, emoji: str) -> str:
     """
     Adds emojis surrounding the title of an embed
@@ -489,6 +491,7 @@ async def add_emoji_title(client: Client, title: str, emoji: str) -> str:
     return f"{emoji}  {title}  {emoji}"
 
 
+@AsyncLRU(maxsize=8192)
 async def split_emoji_title(client: Client, title: str, emoji_1: str, emoji_2: str) -> str:
     """
     Adds two separate emojis surrounding the title of an embed
@@ -518,6 +521,7 @@ async def split_emoji_title(client: Client, title: str, emoji_1: str, emoji_2: s
     return f"{emoji_1}  {title}  {emoji_2}"
 
 
+@AsyncLRU(maxsize=8192)
 async def set_thumbnail(client: discord.Client, embed: discord.Embed, thumb_type: str) -> discord.Embed:
     """
     sets the thunbnail of an embed from the config key
@@ -557,7 +561,7 @@ def get_reward(client: discord.Client, day: int | str, vbucks: bool = True, desi
     Raises:
         Exception: If the reward is not found in the item dictionary
 
-    Todo:
+    Notes:
         * Get rewards from the DataTables
         * Localise rewards
     """
@@ -645,6 +649,7 @@ def get_bb_reward_data(client: Client, response: Optional[dict] = None, error: b
     return [day, name, emoji_text, description, quantity]
 
 
+@functools.cache
 def get_game_headers(game: str) -> dict[str, str]:
     """
     gets the http auth headers for the given game/context
@@ -1871,6 +1876,7 @@ async def set_embed_image(embed: discord.Embed, image_url: str) -> discord.Embed
     return embed.set_image(url=image_url)
 
 
+@AsyncLRU(maxsize=8192)
 async def resolve_vbuck_source(vbuck_source: str, desired_lang: str) -> Tuple[str, str]:
     """
     Resolves the vbuck source to a user friendly name and emoji
@@ -1919,6 +1925,7 @@ async def calculate_vbucks(item: dict) -> int:
     return vbucks
 
 
+@AsyncLRU(maxsize=8192)
 async def get_banner_colour(colour: str, colour_format: str = "hex", colour_type: str = "Primary") -> str | tuple[int, ...] | None:
     """
     Gets the banner colour from the banner name
@@ -1983,6 +1990,7 @@ def get_tomorrow_midnight_epoch() -> int:
     return int(time.time() + 86400 - time.time() % 86400)
 
 
+@functools.cache
 def get_item_icon_emoji(client: Client, template_id: str) -> str:
     """
     Gets the emoji for the item icon
@@ -2045,6 +2053,7 @@ def llama_contents_render(client: Client, llama_items: dict) -> str:
     return string
 
 
+@functools.cache
 def get_rating(data_table: dict = SurvivorItemRating, row: str = "Default_C_T01", time_input: float = 0) -> float:
     """
     Calculates the power level of an item in stw
@@ -2080,6 +2089,7 @@ def get_rating(data_table: dict = SurvivorItemRating, row: str = "Default_C_T01"
                     row_data['Keys'][i + 1]['Value'] - row_data['Keys'][i]['Value'])
 
 
+@functools.cache
 def parse_survivor_template_id(template_id: str) -> Tuple[str, str, str, str]:
     """
     Parses the template id of a survivor
@@ -2229,6 +2239,7 @@ def get_survivor_rating(survivor: dict) -> Tuple[float, Tuple[str | Any, ...]]:
 # print(get_survivor_rating(leader))
 # print(get_survivor_rating(worker))
 
+@functools.cache
 def get_survivor_bonus(leader_personality: str, survivor_personality: str, leader_rarity: str, survivor_rating: float | int) -> int:
     """
     Gets the bonus to the powerlevel of a survivor based on the leader's personality and rarity, and the survivor's personality and rating
@@ -2262,6 +2273,7 @@ def get_survivor_bonus(leader_personality: str, survivor_personality: str, leade
     return 0
 
 
+@functools.cache
 def get_lead_bonus(lead_synergy: str, squad_name: str, rating: float | int) -> float:
     """
     Gets the bonus to the power level of a lead survivor based on the leader's synergy, squad and rating
@@ -3120,6 +3132,7 @@ async def strip_string(string: str) -> str:
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
 
+@AsyncLRU(maxsize=8192)
 async def slash_name(client: Client, command: Command) -> str | Command:
     """
     Tries to find the name of a slash command from the command's normal name
@@ -3141,6 +3154,7 @@ async def slash_name(client: Client, command: Command) -> str | Command:
     return command
 
 
+@AsyncLRU(maxsize=8192)
 async def slash_mention_string(client: Client, command: Command, return_placeholder: bool = False) -> str | None:
     """
     Returns a string with the slash command and mention
@@ -3285,6 +3299,7 @@ async def validate_homebase_name(string: str) -> Tuple[bool, list[str]]:
     return True, list_of_invalid_chars_used
 
 
+@functools.lru_cache(maxsize=8)
 async def generate_banner(client: discord.Client, embed: discord.Embed, homebase_icon: str,
                           homebase_colour: str, author_id: int | str) -> tuple[
     discord.Embed, discord.File]:
@@ -3324,6 +3339,7 @@ async def generate_banner(client: discord.Client, embed: discord.Embed, homebase
     return embed, file
 
 
+@functools.lru_cache(maxsize=8)
 async def generate_power(client: discord.Client, embed: discord.Embed, power_level: int | float,
                          author_id: int | str) -> tuple[discord.Embed, discord.File]:
     """
@@ -3363,6 +3379,7 @@ async def generate_power(client: discord.Client, embed: discord.Embed, power_lev
     return embed, file
 
 
+@AsyncLRU(maxsize=8192)
 async def research_stat_rating(stat: str, level: int) -> tuple[float, float, float]:
     """
     Calculates the % stat buff given to player + team from a research level
@@ -3385,6 +3402,7 @@ async def research_stat_rating(stat: str, level: int) -> tuple[float, float, flo
     return personal_rating + team_rating, personal_rating, team_rating
 
 
+@functools.cache
 def research_stat_cost(stat: str, level: int) -> float:
     """
     Calculates the cost to upgrade a research stat
@@ -3428,6 +3446,7 @@ def convert_iso_to_unix(iso_timestamp: str) -> int:
     return round(datetime.datetime.fromisoformat(iso_timestamp).timestamp())
 
 
+@functools.lru_cache(maxsize=8)
 def get_progress_bar(start: int, end: int, length: int) -> str:
     """
     Generates a progress bar

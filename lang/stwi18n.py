@@ -8,6 +8,7 @@ This file is a custom system for i18n (internationalisation) for STW Daily using
 import re
 from typing import List
 import logging
+import functools
 
 import discord.client
 import discord.ext.commands
@@ -122,6 +123,7 @@ class I18n:
             logger.debug(f"Returning {string} for key {key} in language {lang} (key: {key}), error occurred: {KeyError}")
             return string
 
+    @functools.cache
     def get_langs(self) -> List[str]:
         """
         Gets a list of the available languages
@@ -133,6 +135,7 @@ class I18n:
         logger.debug(f"Returning {list(self.i18n_json.keys())} for get_langs")
         return list(self.i18n_json.keys())
 
+    @functools.cache
     def get_langs_str(self) -> str:
         """
         Gets a string of the available languages
@@ -166,6 +169,7 @@ class I18n:
             except:
                 return str(num)
 
+    @functools.cache
     def is_lang(self, lang: str) -> bool:
         """
         Checks if a language is valid
