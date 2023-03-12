@@ -8,12 +8,138 @@ This file is the cog for the vbucks command. Displays total v-bucks count, break
 
 import asyncio
 import orjson
+import logging
 
 import discord
 import discord.ext.commands as ext
 from discord import Option, OptionChoice
 
 import stwutil as stw
+
+logger = logging.getLogger(__name__)
+
+
+class VbucksCalculatorModal(discord.ui.Modal):
+    """
+    The modal for the calculator button command.
+    """
+
+    def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry, view):
+        super().__init__(title=stw.I18n.get("vbucks.modal.title", desired_lang), timeout=480)
+        self.client = client
+        self.ctx = ctx
+        self.desired_lang = desired_lang
+        self.current_total = current_total
+        self.message = message
+        self.embeds = embeds
+        self.auth_entry = auth_entry
+        self.view = view
+        self.calculator_embed = None
+        setting_input = discord.ui.InputText(placeholder=stw.I18n.get("vbucks.modal.placeholder", desired_lang,
+                                                                      current_total),
+                                             label=stw.I18n.get("vbucks.modal.label", desired_lang),
+                                             min_length=len(str(current_total)))
+        self.add_item(setting_input)
+
+    async def callback(self, interaction: discord.Interaction):
+        """
+        This is the function that is called when the user submits the modal.
+
+        Args:
+            interaction: The interaction that the user did.
+        """
+        value = self.children[0].value
+
+        if value == "" or not value.isnumeric():
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
+                                                "library_banknotes"),
+                description=f"\u200b\n{stw.I18n.get('vbucks.modal.error.description', self.desired_lang, self.client.config['emojis']['warning'])}\u200b\n",
+                colour=self.client.colours["warning_yellow"])
+        elif int(value) <= self.current_total:
+            embed = discord.Embed(
+                title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
+                                                "library_banknotes"),
+                description=f"\u200b\n{stw.I18n.get('vbucks.modal.error.description1', self.desired_lang, self.client.config['emojis']['warning'], self.current_total)}\u200b\n",
+                colour=self.client.colours["warning_yellow"])
+        else:
+            # total, days = stw.calculate_vbuck_goals(self.current_total, 0 if self.auth_entry['day'] is None else self.auth_entry['day'], int(value))
+            total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, self.current_total, 0 if self.auth_entry['day'] is None else self.auth_entry['day'], int(value))))[0]
+            if self.auth_entry['vbucks']:
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
+                                                    "library_banknotes"),
+                    description=f"\u200b\n{stw.I18n.get('vbucks.modal.success.description', self.desired_lang, total, self.client.config['emojis']['vbucks'], days)}\u200b\n",
+                    colour=self.client.colours["vbuck_blue"])
+            else:
+                embed = discord.Embed(
+                    title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
+                                                    "library_banknotes"),
+                    description=f"\u200b\n{stw.I18n.get('vbucks.modal.success.description.nonfounder', self.desired_lang, self.client.config['emojis']['stw_box'], total, self.client.config['emojis']['vbucks'], days)}\u200b\n",
+                    colour=self.client.colours["vbuck_blue"])
+        embed = await stw.set_thumbnail(self.client, embed, "catnerd")
+        embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
+        try:
+            self.embeds[0]
+            send_embed = self.embeds + [embed]
+        except:
+            send_embed = [self.embeds, embed]
+        logger.debug(f"Sending embed: {send_embed}")
+        return await interaction.response.edit_message(embeds=send_embed, view=self.view)
+
+
+# view for the invite command.
+class VbucksCalculatorView(discord.ui.View):
+    """
+    discord UI View for the invite command.
+    """
+
+    def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry):
+        super().__init__(timeout=480, disable_on_timeout=True)
+        self.client = client
+        self.ctx = ctx
+        self.desired_lang = desired_lang
+        self.current_total = current_total
+        self.message = message
+        self.embeds = embeds
+        self.auth_entry = auth_entry
+        self.calculator_embed = None
+
+        self.button_emojis = {
+            'library_banknotes': self.client.config["emojis"]["library_banknotes"]
+        }
+
+        self.children = list(map(self.map_button_emojis, self.children))
+        self.children[0].label = stw.I18n.get('vbucks.button.calculator', self.desired_lang)
+
+    def map_button_emojis(self, button):
+        """
+        Map the button emojis to the buttons.
+
+        Args:
+            button: The button to map the emoji to.
+
+        Returns:
+            The button with the emoji mapped.
+        """
+        button.emoji = self.button_emojis[button.emoji.name]
+        return button
+
+    @discord.ui.button(label="Calculator", style=discord.ButtonStyle.blurple, emoji="library_banknotes")
+    async def calculate(self, button: discord.ui.Button, interaction: discord.Interaction):
+        """
+        Button to open the vbucks calculator.
+
+        Args:
+            button: The button that was pressed.
+            interaction: The interaction object.
+
+        Returns:
+            None
+        """
+        modal = VbucksCalculatorModal(self.client, self.ctx, self.desired_lang, self.current_total, self.message,
+                                      self.embeds, self.auth_entry, self)
+        await interaction.response.send_modal(modal)
 
 
 class Vbucks(ext.Cog):
@@ -145,10 +271,13 @@ class Vbucks(ext.Cog):
             embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
-        await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+        vbuck_view = VbucksCalculatorView(self.client, ctx, desired_lang, vbucks_total, auth_info[0], final_embeds,
+                                          auth_info[1])
+        await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=vbuck_view)
         return
 
-    @ext.slash_command(name='vbucks', name_localizations=stw.I18n.construct_slash_dict("vbucks.slash.name"),  # yay (say yay if you're yay yay) 😱
+    @ext.slash_command(name='vbucks', name_localizations=stw.I18n.construct_slash_dict("vbucks.slash.name"),
+                       # yay (say yay if you're yay yay) 😱
                        description='View your V-Bucks and X-Ray Tickets balance',
                        description_localizations=stw.I18n.construct_slash_dict("vbucks.slash.description"),
                        guild_ids=stw.guild_ids)
@@ -166,8 +295,10 @@ class Vbucks(ext.Cog):
                                                name_localizations=stw.I18n.construct_slash_dict(
                                                    "generic.meta.args.optout"),
                                                choices=[OptionChoice("Do not start an authentication session", "True",
-                                                                     stw.I18n.construct_slash_dict("generic.slash.optout.true")),
-                                                        OptionChoice("Start an authentication session (Default)", "False",
+                                                                     stw.I18n.construct_slash_dict(
+                                                                         "generic.slash.optout.true")),
+                                                        OptionChoice("Start an authentication session (Default)",
+                                                                     "False",
                                                                      stw.I18n.construct_slash_dict(
                                                                          "generic.slash.optout.false"))]) = "False"):
         """

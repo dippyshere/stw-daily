@@ -3470,3 +3470,50 @@ def get_progress_bar(start: int, end: int, length: int) -> str:
         "[==========]"
     """
     return f"[{'=' * round((start / end) * length)}{'-' * (length - round((start / end) * length))}]"
+
+
+@functools.cache
+def get_vbucks(current_day: int) -> int:
+    """
+    Gets the vbucks for a given day
+
+    Args:
+        current_day: The current day
+
+    Returns:
+        int: The vbucks for the given day
+    """
+    day_mod = int(current_day) % 336
+    if day_mod == 0:
+        day_mod = 336
+    elif day_mod > 336:
+        day_mod -= 336
+
+    if stwDailyRewards[0]["Rows"][str(day_mod - 1)]["ItemDefinition"]["AssetPathName"] == "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap":
+        return stwDailyRewards[0]['Rows'][str(day_mod - 1)]['ItemCount']
+    return 0
+
+
+def calculate_vbuck_goals(current_total: int, current_day: int, target: int) -> tuple[int, str]:
+    """
+    Calculates how many days it will take to reach a target vbuck total from a current total and day.
+    Returns what the actual total will be, and a unix timestamp of when the target will be reached
+    (rounded to the nearest day)
+
+    Args:
+        current_total: The current total vbucks
+        current_day: The current day
+        target: The target vbucks
+
+    Returns:
+        tuple: The total of vbucks, timestamp of when the target will be reached
+    """
+    if target < current_total:
+        return current_total, "<t:0:R>"
+    day_delta = -1
+    while current_total < target:
+        current_day += 1
+        day_delta += 1
+        current_total += get_vbucks(current_day)
+    logger.info(f"Vbucks goal: {target} (reached in {day_delta + 1} days, total: {current_total}, day: {current_day}, time: {round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)})")
+    return current_total, f"<t:{round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)}:R>"
