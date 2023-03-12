@@ -16,12 +16,14 @@ from discord import Option, OptionChoice
 from discord.commands import (  # Importing the decorator that makes slash commands.
     slash_command,
 )
+from cache import AsyncLRU
 
 import stwutil as stw
 
 logger = logging.getLogger(__name__)
 
 
+@AsyncLRU()
 async def add_fort_fields(client, embed, current_levels, desired_lang, extra_white_space=False):
     """
     Add the fields to the embed for the fort stats.

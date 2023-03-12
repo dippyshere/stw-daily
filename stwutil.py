@@ -2053,7 +2053,6 @@ def llama_contents_render(client: Client, llama_items: dict) -> str:
     return string
 
 
-@functools.cache
 def get_rating(data_table: dict = SurvivorItemRating, row: str = "Default_C_T01", time_input: float = 0) -> float:
     """
     Calculates the power level of an item in stw
