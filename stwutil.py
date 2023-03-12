@@ -3515,5 +3515,5 @@ def calculate_vbuck_goals(current_total: int, current_day: int, target: int) -> 
         current_day += 1
         day_delta += 1
         current_total += get_vbucks(current_day)
-    logger.info(f"Vbucks goal: {target} (reached in {day_delta + 1} days, total: {current_total}, day: {current_day}, time: {round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)})")
+    logger.debug(f"Vbucks goal: {target} (reached in {day_delta + 1} days, total: {current_total}, day: {current_day}, time: {round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)})")
     return current_total, f"<t:{round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)}:R>"
