@@ -102,8 +102,9 @@ class Power(ext.Cog):
         # check for le error code
         if await self.check_errors(ctx, stw_json_response, auth_info, final_embeds, desired_lang):
             return
-        # TODO: Fix this calculation being slightly off
+        # DONE: Fix this calculation being slightly off
         # TODO: Fix some stats being missing
+        # TODO: Fix superchage not being calculated
         # https://canary.discord.com/channels/757765475823517851/757768833946877992/1058604927557050438
         # https://canary.discord.com/channels/757765475823517851/1042781227767312384/1071340105035423775
         power_level, total, total_stats = stw.calculate_homebase_rating(stw_json_response)
