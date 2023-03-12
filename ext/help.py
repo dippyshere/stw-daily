@@ -14,7 +14,6 @@ from discord import Option
 from discord.commands import (  # Importing the decorator that makes slash commands.
     slash_command,
 )
-import functools
 from cache import AsyncLRU
 
 
