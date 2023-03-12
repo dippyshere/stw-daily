@@ -66,6 +66,7 @@ class I18n:
         with open(f"lang/i18n.json", "rb") as f:
             self.i18n_json = orjson.loads(f.read())
 
+    @functools.lru_cache(maxsize=1024)
     def get(self, key: str, lang: str, *args) -> str:  # hiiiiiiiiiiiiiiiii
         """
         Gets a string from the i18n json file

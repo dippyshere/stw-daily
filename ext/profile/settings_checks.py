@@ -8,13 +8,14 @@ This file validates inputs for the settings command
 """
 from difflib import SequenceMatcher
 import logging
+import functools
 
 logger = logging.getLogger(__name__)
 
 
 # ---- CHECK FUNCTIONS ----
 
-
+@functools.lru_cache()
 def check_upcoming_display_days(client, ctx, value) -> tuple[bool | int, bool]:
     """
     Checks if the value is a valid number of days to display upcoming events for.
@@ -41,6 +42,7 @@ boolean_string_representation = {'true': True, 't': True, '1': True, 'yes': True
                                  'false': False, 'f': False, '0': False, 'no': False, 'n': False, 'off': False, 'disable': False, 'disabled': False, 'x': False, 'inactive': False, 'none': False, '✖️': False, '❌': False, '❎': False, 'na': True, 'nah': False}
 
 
+@functools.lru_cache()
 def check_bool(client, ctx, value) -> tuple[bool, bool]:
     """
     Checks if the value is a valid boolean.
@@ -61,6 +63,7 @@ def check_bool(client, ctx, value) -> tuple[bool, bool]:
         return False, False
 
 
+@functools.lru_cache()
 def check_localisation(client, ctx, value) -> tuple[bool | str, bool]:
     """
     Checks if the value is a valid localisation.
@@ -92,6 +95,7 @@ def check_localisation(client, ctx, value) -> tuple[bool | str, bool]:
         return False, False
 
 
+@functools.lru_cache()
 def check_default(client, ctx, value) -> tuple[bool, bool]:
     """
     Always returns true.
@@ -107,6 +111,7 @@ def check_default(client, ctx, value) -> tuple[bool, bool]:
     return True, True
 
 
+@functools.lru_cache()
 def check_keycard(client, ctx, value) -> tuple[bool, bool]:
     """
     Always returns true.
