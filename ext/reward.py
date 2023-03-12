@@ -139,32 +139,37 @@ class Reward(ext.Cog):
                             value=f'```{reward_quantity}{reward[0]}```\u200b')
             for row in stw.stwDailyRewards[0]['Rows']:
                 if 'Currency_MtxSwap' in stw.stwDailyRewards[0]['Rows'][row]['ItemDefinition']['AssetPathName']:
-                    if int(day) % 336 < int(row):
+                    day_mod = int(day) % 336
+                    if day_mod == 0:
+                        day_mod = 336
+                    elif day_mod > 336:
+                        day_mod -= 336
+                    if day_mod - 1 < int(row):
                         if vbucks:
-                            if int(row) - int(day) % 336 == 1:
+                            if int(row) - day_mod + 1 == 1:
                                 embed.add_field(
                                     name=stw.I18n.get("reward.embed.field2.founder", desired_lang,
                                                       self.client.config["emojis"]["mtxswap_combined"]),
-                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - int(day) % 336)}'
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - day_mod + 1)}'
                                           f'```\u200b', inline=False)
                             else:
                                 embed.add_field(
                                     name=stw.I18n.get("reward.embed.field2.founder", desired_lang,
                                                       self.client.config["emojis"]["mtxswap_combined"]),
-                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - int(day) % 336)}'
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - day_mod + 1)}'
                                           f'```\u200b', inline=False)
                         else:
-                            if int(row) - int(day) % 336 == 1:
+                            if int(row) - day_mod + 1 == 1:
                                 embed.add_field(
                                     name=stw.I18n.get("reward.embed.field2.nonfounder", desired_lang,
                                                       self.client.config["emojis"]["xray"]),
-                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - int(day) % 336)}'
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.singular", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - day_mod + 1)}'
                                           f'```\u200b', inline=False)
                             else:
                                 embed.add_field(
                                     name=stw.I18n.get("reward.embed.field2.nonfounder", desired_lang,
                                                       self.client.config["emojis"]["xray"]),
-                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - int(day) % 336)}'
+                                    value=f'```{stw.I18n.get("reward.embed.field2.mtxupcoming.plural", desired_lang, f"{stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[-1]:,} {stw.get_reward(self.client, int(row) + 1, vbucks, desired_lang)[0]}", int(row) - day_mod + 1)}'
                                           f'```\u200b', inline=False)
                         break
             if limit >= 1:
