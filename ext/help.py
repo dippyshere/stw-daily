@@ -14,6 +14,8 @@ from discord import Option
 from discord.commands import (  # Importing the decorator that makes slash commands.
     slash_command,
 )
+import functools
+from cache import AsyncLRU
 
 
 class HelpView(discord.ui.View):
@@ -75,6 +77,7 @@ class Help(ext.Cog):
         self.client = client
         self.emojis = client.config["emojis"]
 
+    @AsyncLRU(maxsize=1024)
     async def add_brief_command_info(self, embed, command, desired_lang):
         """
         Adds a brief description of a command to an embed.
@@ -105,6 +108,7 @@ class Help(ext.Cog):
                         inline=False)
         return embed
 
+    @AsyncLRU()
     async def add_big_command_info(self, ctx, embed, command, desired_lang):
         """
         Adds a detailed description of a command to an embed.
@@ -208,6 +212,7 @@ class Help(ext.Cog):
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         return embed
 
+    @AsyncLRU()
     async def add_default_page(self, ctx, embed_colour, desired_lang="en"):
         """
         Adds the default help page to an embed.
@@ -239,6 +244,7 @@ class Help(ext.Cog):
                 embed = await self.add_brief_command_info(embed, command, desired_lang)
         return embed
 
+    @AsyncLRU()
     async def help_embed(self, ctx, inputted_command, desired_lang="en"):
         """
         Creates an embed with the help page for a command.
@@ -266,6 +272,7 @@ class Help(ext.Cog):
 
         return embed
 
+    @AsyncLRU()
     async def select_options_commands(self, ctx, add_return=True, selected=None, desired_lang="en"):
         """
         Creates the options for the select menu for the help command.
@@ -639,6 +646,7 @@ class Help(ext.Cog):
         """
         await self.help_command(ctx, str(command).lower())
 
+    @AsyncLRU()
     async def get_bot_commands(self, actx: discord.AutocompleteContext):
         """
         Gets the list of commands for the autocomplete function of the help command.
