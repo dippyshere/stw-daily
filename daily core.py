@@ -202,7 +202,8 @@ def main() -> None:
         "profile_dumper",
         "daily_xp",
         "battlebreakers.bbdump",
-        "embedtester"
+        "embedtester",
+        "emojidump"
     ]  # why no ext.bongodb :( doot doot doot doot
 
     for extension in extensions:
