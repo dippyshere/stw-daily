@@ -185,8 +185,10 @@ async def view_interaction_check(view, interaction: discord.Interaction, command
             logger.debug("Interaction check failed, user notified")
             return False
         else:
+            await interaction.response.defer()
             logger.debug("Interaction check failed, user already notified")
             return False
+
 
 @functools.cache
 def edit_emoji_button(client: Client, button: discord.ui.Button) -> discord.ui.Button:
