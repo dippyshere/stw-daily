@@ -126,6 +126,18 @@ class VbucksCalculatorView(discord.ui.View):
         button.emoji = self.button_emojis[button.emoji.name]
         return button
 
+    async def interaction_check(self, interaction):
+        """
+        This is the function that is called when the user interacts with the view.
+
+        Args:
+            interaction: The interaction that the user did.
+
+        Returns:
+            bool: True if the interaction is created by the view author, False if notifying the user
+        """
+        return await stw.view_interaction_check(self, interaction, "vbucks")
+
     @discord.ui.button(label="Calculator", style=discord.ButtonStyle.blurple, emoji="library_banknotes")
     async def calculate(self, button: discord.ui.Button, interaction: discord.Interaction):
         """
