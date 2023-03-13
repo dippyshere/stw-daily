@@ -35,6 +35,7 @@ class VbucksCalculatorModal(discord.ui.Modal):
         self.auth_entry = auth_entry
         self.view = view
         self.calculator_embed = None
+        self.interaction_check_done = {}
         setting_input = discord.ui.InputText(placeholder=stw.I18n.get("vbucks.modal.placeholder", desired_lang,
                                                                       current_total),
                                              label=stw.I18n.get("vbucks.modal.label", desired_lang),
@@ -50,7 +51,7 @@ class VbucksCalculatorModal(discord.ui.Modal):
         """
         value = self.children[0].value
         if int(value) >= 10000:
-            await interaction.response.defer()
+            await interaction.response.defer(invisible=False)
         if value == "" or not value.isnumeric():
             embed = discord.Embed(
                 title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
@@ -105,6 +106,7 @@ class VbucksCalculatorView(discord.ui.View):
         self.embeds = embeds
         self.auth_entry = auth_entry
         self.calculator_embed = None
+        self.interaction_check_done = {}
 
         self.button_emojis = {
             'library_banknotes': self.client.config["emojis"]["library_banknotes"]
