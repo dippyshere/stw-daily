@@ -245,9 +245,9 @@ class News(ext.Cog):
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
         load_msg = await stw.slash_send_embed(ctx, self.client, await stw.processing_embed(self.client, ctx, desired_lang,
-                                                                                      stw.I18n.get(
-                                                                                          "news.embed.processing.title",
-                                                                                          desired_lang)))
+                                                                         stw.I18n.get(
+                                                                             "news.embed.processing.title",
+                                                                             desired_lang)))
         stw_news_req = await stw.get_stw_news(self.client, desired_lang)
         stw_news_json = await stw_news_req.json(content_type=None)
         stw_news = stw_news_json["news"]["messages"]
