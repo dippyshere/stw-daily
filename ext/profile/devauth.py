@@ -640,25 +640,33 @@ class StolenAccountView(discord.ui.View):
             interaction: The interaction
         """
         try:
+            user_profile = await get_user_document(self.ctx, self.client, interaction.user.id,
+                                                   desired_lang=self.desired_lang)
+            ephemeral = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"][
+                "ephemeral"]
+        except:
+            ephemeral = False
+        await interaction.response.defer(ephemeral=ephemeral, invisible=False)
+        try:
             del self.client.temp_auth[self.ctx.author.id]
         except:
             pass
 
-        for child in self.children:
-            child.disabled = True
-        await interaction.response.edit_message(view=self)
+        # for child in self.children:
+        #     child.disabled = True
+        # await interaction.response.edit_message(view=self)
 
         auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "device", "", True, False, True,
                                                           desired_lang=self.desired_lang)
         try:
-            await stw.slash_send_embed(self.ctx, self.client, embeds=auth_stuff[2])
+            return await interaction.edit_original_response(embeds=auth_stuff[2])
         except:
-            await stw.slash_send_embed(self.ctx, self.client, embeds=auth_stuff)
+            return await interaction.edit_original_response(embeds=auth_stuff)
 
-        if not self.timed_out:
-            for child in self.children:
-                child.disabled = False
-            await interaction.edit_original_response(view=self)
+        # if not self.timed_out:
+        #     for child in self.children:
+        #         child.disabled = False
+        #     await interaction.edit_original_response(view=self)
 
     @discord.ui.button(style=discord.ButtonStyle.green, label="Enable Auto Claim", emoji="library_clock")
     async def temp_auto_claim_button(self, button, interaction):
