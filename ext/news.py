@@ -21,7 +21,7 @@ class NewsView(discord.ui.View):
 
     def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode, og_msg,
                  desired_lang):
-        super().__init__(timeout=480.0, disable_on_timeout=True)
+        super().__init__(timeout=480.0)
         self.client = client
         self.ctx = ctx
         self.author = author
@@ -74,6 +74,27 @@ class NewsView(discord.ui.View):
         """
         button.emoji = self.button_emojis[button.emoji.name]
         return button
+
+    async def on_timeout(self):
+        """
+        Called when the view times out
+
+        Returns:
+            None
+        """
+        if self.mode in ["stw", "Save the World"]:
+            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
+                                               self.desired_lang)
+            embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
+        else:
+            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
+                                               self.desired_lang)
+            embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
+        for button in self.children:
+            button.disabled = True
+        return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
 
     async def change_page(self, interaction, action):
         """
