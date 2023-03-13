@@ -104,13 +104,15 @@ class LlamasView(discord.ui.View):
         """
         for child in self.children:
             child.disabled = True
-        if isinstance(self.ctx, discord.ApplicationContext):
-            try:
-                return await self.message.edit_original_response(view=self)
-            except:
-                return await self.ctx.edit(view=self)
-        else:
-            return await self.message.edit(view=self)
+        # if isinstance(self.ctx, discord.ApplicationContext):
+        #     try:
+        #         return await self.message.edit_original_response(view=self)
+        #     except:
+        #         return await self.ctx.edit(view=self)
+        # else:
+        #     return await self.message.edit(view=self)
+
+        return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
     @discord.ui.select(
         placeholder="Choose a Llama to purchase",
@@ -167,13 +169,15 @@ class LlamasPurchaseView(discord.ui.View):
         """
         for child in self.children:
             child.disabled = True
-        if isinstance(self.ctx, discord.ApplicationContext):
-            try:
-                return await self.message.edit_original_response(view=self)
-            except:
-                return await self.ctx.edit(view=self)
-        else:
-            return await self.message.edit(view=self)
+        # if isinstance(self.ctx, discord.ApplicationContext):
+        #     try:
+        #         return await self.message.edit_original_response(view=self)
+        #     except:
+        #         return await self.ctx.edit(view=self)
+        # else:
+        #     return await self.message.edit(view=self)
+
+        return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
     async def interaction_check(self, interaction):
         """

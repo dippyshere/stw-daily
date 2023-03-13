@@ -80,23 +80,25 @@ class HelpView(discord.ui.View):
         # else:
         #     return await self.message.edit(view=self)
 
-        if isinstance(self.message, discord.Interaction):
-            method = self.message.edit_original_response
-        else:
-            try:
-                method = self.message.edit
-            except:
-                method = self.ctx.edit
-        if isinstance(self.ctx, discord.ApplicationContext):
-            try:
-                return await method(view=self)
-            except:
-                try:
-                    return await self.ctx.edit(view=self)
-                except:
-                    return await method(view=self)
-        else:
-            return await method(view=self)
+        # if isinstance(self.message, discord.Interaction):
+        #     method = self.message.edit_original_response
+        # else:
+        #     try:
+        #         method = self.message.edit
+        #     except:
+        #         method = self.ctx.edit
+        # if isinstance(self.ctx, discord.ApplicationContext):
+        #     try:
+        #         return await method(view=self)
+        #     except:
+        #         try:
+        #             return await self.ctx.edit(view=self)
+        #         except:
+        #             return await method(view=self)
+        # else:
+        #     return await method(view=self)
+
+        return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
 
 class Help(ext.Cog):

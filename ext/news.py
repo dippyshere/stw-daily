@@ -82,19 +82,19 @@ class NewsView(discord.ui.View):
         Returns:
             None
         """
-        if self.mode in ["stw", "Save the World"]:
-            embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
-                                               self.desired_lang)
-            embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
-        else:
-            embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
-                                               self.desired_lang)
-            embed = await stw.set_thumbnail(self.client, embed, "newspaper")
-            embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
+        # if self.mode in ["stw", "Save the World"]:
+        #     embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
+        #                                        self.desired_lang)
+        #     embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+        #     embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
+        # else:
+        #     embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
+        #                                        self.desired_lang)
+        #     embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+        #     embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
         for button in self.children:
             button.disabled = True
-        return await stw.slash_edit_original(self.ctx, msg=self.message, embeds=embed, view=self)
+        return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
     async def change_page(self, interaction, action):
         """
