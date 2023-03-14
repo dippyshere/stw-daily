@@ -70,12 +70,12 @@ class VbucksCalculatorModal(discord.ui.Modal):
                                                 self.auth_entry['vbucks'], value, self.desired_lang)
         try:
             self.embeds[0]
-            send_embed = self.embeds + [embed]
-        except:
             if self.goal:
-                send_embed = [self.embeds, embed[:-1]]
+                send_embed = self.embeds[:-1] + [embed]
             else:
                 send_embed = [self.embeds, embed]
+        except:
+            send_embed = [self.embeds, embed]
         logger.debug(f"Sending embed: {send_embed}")
         try:
             return await interaction.edit_original_response(embeds=send_embed, view=self.view) if int(value) >= 10000 else await interaction.response.edit_message(embeds=send_embed, view=self.view)
@@ -147,7 +147,7 @@ class VbucksCalculatorView(discord.ui.View):
             None
         """
         modal = VbucksCalculatorModal(self.client, self.ctx, self.desired_lang, self.current_total, self.message,
-                                      self.embeds, self.auth_entry, self, False)
+                                      self.embeds, self.auth_entry, self, self.goal)
         await interaction.response.send_modal(modal)
 
 
