@@ -15,6 +15,7 @@ import discord.ext.commands as ext
 from discord import Option, OptionChoice
 
 import stwutil as stw
+from ext.profile.bongodb import get_user_document
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class VbucksCalculatorModal(discord.ui.Modal):
     The modal for the calculator button command.
     """
 
-    def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry, view):
+    def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry, view, goal):
         super().__init__(title=stw.I18n.get("vbucks.modal.title", desired_lang), timeout=480)
         self.client = client
         self.ctx = ctx
@@ -34,6 +35,7 @@ class VbucksCalculatorModal(discord.ui.Modal):
         self.embeds = embeds
         self.auth_entry = auth_entry
         self.view = view
+        self.goal = goal
         self.calculator_embed = None
         self.interaction_check_done = {}
         setting_input = discord.ui.InputText(placeholder=stw.I18n.get("vbucks.modal.placeholder", desired_lang,
@@ -70,7 +72,10 @@ class VbucksCalculatorModal(discord.ui.Modal):
             self.embeds[0]
             send_embed = self.embeds + [embed]
         except:
-            send_embed = [self.embeds, embed]
+            if self.goal:
+                send_embed = [self.embeds, embed[:-1]]
+            else:
+                send_embed = [self.embeds, embed]
         logger.debug(f"Sending embed: {send_embed}")
         try:
             return await interaction.edit_original_response(embeds=send_embed, view=self.view) if int(value) >= 10000 else await interaction.response.edit_message(embeds=send_embed, view=self.view)
@@ -84,7 +89,7 @@ class VbucksCalculatorView(discord.ui.View):
     discord UI View for the invite command.
     """
 
-    def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry):
+    def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry, goal):
         super().__init__(timeout=480, disable_on_timeout=True)
         self.client = client
         self.ctx = ctx
@@ -93,6 +98,7 @@ class VbucksCalculatorView(discord.ui.View):
         self.message = message
         self.embeds = embeds
         self.auth_entry = auth_entry
+        self.goal = goal
         self.calculator_embed = None
         self.interaction_check_done = {}
 
@@ -141,7 +147,7 @@ class VbucksCalculatorView(discord.ui.View):
             None
         """
         modal = VbucksCalculatorModal(self.client, self.ctx, self.desired_lang, self.current_total, self.message,
-                                      self.embeds, self.auth_entry, self)
+                                      self.embeds, self.auth_entry, self, False)
         await interaction.response.send_modal(modal)
 
 
@@ -274,8 +280,29 @@ class Vbucks(ext.Cog):
             embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
+        try:
+            user_document = await get_user_document(ctx, self.client, ctx.author.id)
+            try:
+                goal = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"]["mtxgoal"]
+            except:
+                goal = 0
+        except:
+            goal = 0
+        if goal > 0:
+            if goal == "" or not goal.isnumeric():
+                embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
+            elif int(goal) <= self.current_total:
+                embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
+                                                    desired_lang=desired_lang, goal=True)
+            else:
+                total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
+                                                                      0 if auth_info[1]['day'] is None else
+                                                                      auth_info[1]['day'], int(goal))))[0]
+                embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
+                                                    auth_info[1]['vbucks'], goal, desired_lang, True)
+            final_embeds.append(embed)
         vbuck_view = VbucksCalculatorView(self.client, ctx, desired_lang, vbucks_total, auth_info[0], final_embeds,
-                                          auth_info[1])
+                                          auth_info[1], True if goal > 0 else False)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=vbuck_view)
         return
 
