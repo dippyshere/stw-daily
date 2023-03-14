@@ -454,7 +454,7 @@
         "settings.select1": "{0} Kiválasztott beállítás: {1}",
         "settings.return": "*Vissza a főmenübe*",
         "settings.pagination.changepage": "*A következő oldalra változott:* ***{0}***",
-        "settings.pagination.showing": "{1}/{0}. beállítási oldal megjelenítése",
+        "settings.pagination.showing": "**{1}**/**{0}**. beállítási oldal megjelenítése",
         "settings.change": "*Módosítva **{0}** erre **{1}***",
         "settings.change1": "*A beállítás a következőre módosult: **{0}***",
         "settings.change1.invalid": "*Érvénytelen érték van megadva! Kérlek próbáld újra*",

@@ -454,7 +454,7 @@
         "settings.select1": "{0} Pasirinktas nustatymas: {1}",
         "settings.return": "*Grįžta į pagrindinį meniu*",
         "settings.pagination.changepage": "*Pakeistas į puslapį* ***{0}***",
-        "settings.pagination.showing": "Rodomas nustatymų puslapis {0} iš {1}",
+        "settings.pagination.showing": "Rodomas nustatymų puslapis **{0}** iš **{1}**",
         "settings.change": "*Pakeista **{0}** į **{1}***",
         "settings.change1": "*Nustatymas pakeistas į **{0}***",
         "settings.change1.invalid": "*Įvesta neteisinga vertė! Prašau, pabandykite dar kartą*",

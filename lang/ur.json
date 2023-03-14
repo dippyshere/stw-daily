@@ -454,7 +454,7 @@
         "settings.select1": "{0} منتخب ترتیب: {1}",
         "settings.return": "*مین مینو پر واپس*",
         "settings.pagination.changepage": "*صفحہ میں تبدیل کر دیا گیا* ***{0}***",
-        "settings.pagination.showing": "ترتیبات کا صفحہ {0} از {1} دکھا رہا ہے",
+        "settings.pagination.showing": "ترتیبات کا صفحہ **{0}** از **{1}** دکھا رہا ہے",
         "settings.change": "*تبدیل کر دیا گیا **{0}** سے **{1}***",
         "settings.change1": "*ترتیب کو **{0}*** میں تبدیل کر دیا گیا",
         "settings.change1.invalid": "*غلط قدر درج کی گئی! دوبارہ کوشش کریں*",

@@ -454,7 +454,7 @@
         "settings.select1": "{0} Ausgewählte Einstellung: {1}",
         "settings.return": "*Zurück zum Hauptmenü*",
         "settings.pagination.changepage": "*Geändert zu Seite* ***{0}***",
-        "settings.pagination.showing": "Zeigt Einstellungen an Seite {0} von {1}",
+        "settings.pagination.showing": "Zeigt Einstellungen an Seite **{0}** von **{1}**",
         "settings.change": "*Geändert **{0}** in **{1}***",
         "settings.change1": "*Geänderte Einstellung in **{0}***",
         "settings.change1.invalid": "*Ungültiger Wert eingegeben! Bitte versuchen Sie es erneut*",

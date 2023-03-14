@@ -454,7 +454,7 @@
         "settings.select1": "{0} Vybraté nastavenie: {1}",
         "settings.return": "*Návrat do hlavnej ponuky*",
         "settings.pagination.changepage": "*Zmenené na stranu* ***{0}***",
-        "settings.pagination.showing": "Zobrazuje sa stránka nastavení {0} z {1}",
+        "settings.pagination.showing": "Zobrazuje sa stránka nastavení **{0}** z **{1}**",
         "settings.change": "*Zmenené **{0}** na **{1}***",
         "settings.change1": "*Nastavenie sa zmenilo na **{0}***",
         "settings.change1.invalid": "*Zadaná neplatná hodnota! Prosím skúste znova*",

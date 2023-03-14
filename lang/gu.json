@@ -454,7 +454,7 @@
         "settings.select1": "{0} પસંદ કરેલ સેટિંગ: {1}",
         "settings.return": "*મુખ્ય મેનુ પર પાછા ફર્યા*",
         "settings.pagination.changepage": "*પૃષ્ઠમાં બદલ્યું* ***{0}***",
-        "settings.pagination.showing": "{1} માંથી {0} સેટિંગ્સ પૃષ્ઠ બતાવી રહ્યું છે",
+        "settings.pagination.showing": "**{1} માંથી **{0}** સેટિંગ્સ પૃષ્ઠ બતાવી રહ્યું છે",
         "settings.change": "**{0}** થી **{1}**** બદલાઈ",
         "settings.change1": "*સેટિંગ બદલીને **{0}***",
         "settings.change1.invalid": "*અમાન્ય મૂલ્ય દાખલ કર્યું! મહેરબાની કરીને ફરીથી પ્રયતન કરો*",

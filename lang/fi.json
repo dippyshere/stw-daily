@@ -454,7 +454,7 @@
         "settings.select1": "{0} Valittu asetus: {1}",
         "settings.return": "*Palasin päävalikkoon*",
         "settings.pagination.changepage": "*Vaihdettu sivulle* ***{0}***",
-        "settings.pagination.showing": "Näytetään asetussivu {0}/{1}",
+        "settings.pagination.showing": "Näytetään asetussivu **{0}**/**{1}**",
         "settings.change": "*Muutettu **{0}** muotoon **{1}***",
         "settings.change1": "*Asetukseksi muutettu **{0}***",
         "settings.change1.invalid": "*Syötetty arvo on virheellinen! Yritä uudelleen*",

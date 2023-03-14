@@ -454,7 +454,7 @@
         "settings.select1": "{0} Atlasītais iestatījums: {1}",
         "settings.return": "*Atgriezies galvenajā izvēlnē*",
         "settings.pagination.changepage": "*Mainīts uz lapu* ***{0}***",
-        "settings.pagination.showing": "Tiek rādīta iestatījumu lapa {0} no {1}",
+        "settings.pagination.showing": "Tiek rādīta iestatījumu lapa **{0}** no **{1}**",
         "settings.change": "*Mainīts **{0}** uz **{1}***",
         "settings.change1": "*Iestatījums mainīts uz **{0}***",
         "settings.change1.invalid": "*Ievadīta nederīga vērtība! Lūdzu mēģiniet vēlreiz*",

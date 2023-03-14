@@ -478,7 +478,7 @@
         "settings.select1": "{0} Selected Setting: {1}",
         "settings.return": "*Returned to main menu*",
         "settings.pagination.changepage": "*Changed to page* ***{0}***",
-        "settings.pagination.showing": "Showing Settings Page {0} of {1}",
+        "settings.pagination.showing": "Showing Settings Page **{0}** of **{1}**",
         "settings.change": "*Changed **{0}** to **{1}***",
         "settings.change1": "*Changed Setting to **{0}***",
         "settings.change1.invalid": "*Invalid value entered! Please try again*",

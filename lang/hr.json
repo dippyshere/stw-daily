@@ -454,7 +454,7 @@
         "settings.select1": "{0} Odabrana postavka: {1}",
         "settings.return": "*Vraćeno na glavni izbornik*",
         "settings.pagination.changepage": "*Promijenjeno u stranica* ***{0}***",
-        "settings.pagination.showing": "Prikaz stranice s postavkama {0} od {1}",
+        "settings.pagination.showing": "Prikaz stranice s postavkama **{0}** od **{1}**",
         "settings.change": "*Promijenjeno **{0}** u **{1}***",
         "settings.change1": "*Promijenjeno u postavku **{0}***",
         "settings.change1.invalid": "*Unesena nevažeća vrijednost! Pokušajte ponovo*",

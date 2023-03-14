@@ -454,7 +454,7 @@
         "settings.select1": "{0} 選択された設定: {1}",
         "settings.return": "*メインメニューに戻りました*",
         "settings.pagination.changepage": "*ページ* ***{0}*** に変更",
-        "settings.pagination.showing": "{1} の {0} の設定ページを表示しています",
+        "settings.pagination.showing": "**{1}** の **{0}** の設定ページを表示しています",
         "settings.change": "***{0}** を **{1}*** に変更",
         "settings.change1": "*設定を **{0}*** に変更しました",
         "settings.change1.invalid": "*無効な値が入力されました!もう一度お試しください*",

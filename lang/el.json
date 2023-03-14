@@ -454,7 +454,7 @@
         "settings.select1": "{0} Επιλεγμένη ρύθμιση: {1}",
         "settings.return": "*Επέστρεψε στο κύριο μενού*",
         "settings.pagination.changepage": "*Άλλαξε σε σελίδα* ***{0}***",
-        "settings.pagination.showing": "Εμφάνιση σελίδας ρυθμίσεων {0} από {1}",
+        "settings.pagination.showing": "Εμφάνιση σελίδας ρυθμίσεων **{0}** από **{1}**",
         "settings.change": "*Άλλαξε **{0}** σε **{1}***",
         "settings.change1": "*Άλλαξε τη ρύθμιση σε **{0}***",
         "settings.change1.invalid": "*Εισάγατε μη έγκυρη τιμή! ΠΑΡΑΚΑΛΩ προσπαθησε ξανα*",

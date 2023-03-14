@@ -454,7 +454,7 @@
         "settings.select1": "{0} Выбранный параметр: {1}",
         "settings.return": "*Возврат в главное меню*",
         "settings.pagination.changepage": "*Изменен на страница* ***{0}***",
-        "settings.pagination.showing": "Отображение страницы настроек {0} из {1}",
+        "settings.pagination.showing": "Отображение страницы настроек **{0}** из **{1}**",
         "settings.change": "*Изменен **{0}** на **{1}***",
         "settings.change1": "*Изменен параметр на **{0}***",
         "settings.change1.invalid": "*Введено неверное значение! Повторите попытку*",

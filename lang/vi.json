@@ -454,7 +454,7 @@
         "settings.select1": "{0} Cài đặt đã chọn: {1}",
         "settings.return": "*Quay lại menu chính*",
         "settings.pagination.changepage": "*Đã thay đổi thành trang* ***{0}***",
-        "settings.pagination.showing": "Hiển thị trang cài đặt {0}/{1}",
+        "settings.pagination.showing": "Hiển thị trang cài đặt **{0}**/**{1}**",
         "settings.change": "*Đã thay đổi **{0}** thành **{1}***",
         "settings.change1": "*Đã thay đổi cài đặt thành **{0}***",
         "settings.change1.invalid": "*Giá trị đã nhập không hợp lệ! Vui lòng thử lại*",

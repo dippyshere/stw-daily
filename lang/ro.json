@@ -454,7 +454,7 @@
         "settings.select1": "{0} Setarea selectată: {1}",
         "settings.return": "*S-a întors la meniul principal*",
         "settings.pagination.changepage": "*Schimbat la pagina* ***{0}***",
-        "settings.pagination.showing": "Se afișează pagina de setări {0} din {1}",
+        "settings.pagination.showing": "Se afișează pagina de setări **{0}** din **{1}**",
         "settings.change": "*Schimbat **{0}** în **{1}***",
         "settings.change1": "*Setarea s-a schimbat la **{0}***",
         "settings.change1.invalid": "*Valoare introdusă nevalidă! Vă rugăm să încercați din nou*",

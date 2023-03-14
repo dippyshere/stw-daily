@@ -454,7 +454,7 @@
         "settings.select1": "{0} Gekose instelling: {1}",
         "settings.return": "*Teruggekeer na hoofkieslys*",
         "settings.pagination.changepage": "*Verander na bladsy* ***{0}***",
-        "settings.pagination.showing": "Wys instellingsbladsy {0} van {1}",
+        "settings.pagination.showing": "Wys instellingsbladsy **{0}** van **{1}**",
         "settings.change": "*Verander **{0}** na **{1}***",
         "settings.change1": "*Verander instelling na **{0}***",
         "settings.change1.invalid": "*Ongeldige waarde ingevoer! Probeer asseblief weer*",

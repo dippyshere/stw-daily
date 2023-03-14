@@ -454,7 +454,7 @@
         "settings.select1": "{0} নির্বাচিত সেটিং: {1}",
         "settings.return": "*প্রধান মেনুতে ফিরে এসেছে*",
         "settings.pagination.changepage": "*পৃষ্ঠায় পরিবর্তন করা হয়েছে* ***{0}***",
-        "settings.pagination.showing": "{1} এর মধ্যে {0} সেটিংস পৃষ্ঠা দেখানো হচ্ছে",
+        "settings.pagination.showing": "**{1}** এর মধ্যে **{0}** সেটিংস পৃষ্ঠা দেখানো হচ্ছে",
         "settings.change": "*পরিবর্তিত **{0}** থেকে **{1}****",
         "settings.change1": "*সেটিং পরিবর্তন করে **{0}***",
         "settings.change1.invalid": "*অবৈধ মান প্রবেশ করানো হয়েছে! অনুগ্রহপূর্বক আবার চেষ্টা করুন*",
