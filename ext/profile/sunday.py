@@ -306,7 +306,10 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.view = view
         self.user_document = user_document
         self.ctx = ctx
-        self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        try:
+            self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+        except:
+            self.current_setting_value = ""
         self.default_value = str(setting_information["default"])
         self.desired_lang = desired_lang
 
