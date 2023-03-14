@@ -3604,7 +3604,7 @@ async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationCont
     elif int(target) <= current_total:
         embed = discord.Embed(
             title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "checkmark"),
-            description=f"\u200b\n{I18n.get('vbucks.modal.success.description.goalreached', desired_lang, client.config['emojis']['celebrate'], client.config['emojis']['celebrate'], target)}\n\u200b",
+            description=f"\u200b\n{I18n.get('vbucks.modal.success.description.goalreached', desired_lang, client.config['emojis']['celebrate'], client.config['emojis']['celebrate'], current_total)}\n\u200b",
             colour=client.colours["success_green"])
         return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
     if vbucks:
