@@ -603,3 +603,11 @@ logout_login_fortnite_pc = "https://www.epicgames.com/id/logout?redirectUrl=http
 logout_login_fortnite_ios = "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D3446cd72694c4a4485d81b77adbb2141%2526responseType%253Dcode"
 logged_in_fortnite_pc = "https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code"
 logged_in_fortnite_ios = "https://www.epicgames.com/id/api/redirect?clientId=3446cd72694c4a4485d81b77adbb2141&responseType=code"
+
+[help_definitions]
+general = ["help.category.common", "common", "help.category.common.description.brief", "help.category.common.description"]
+stw = ["help.category.stw", "stwbox", "help.category.stw.description.brief", "help.category.stw.description"]
+br = ["help.category.br", "bp_icon", "help.category.br.description.brief", "help.category.br.description"]
+stwdaily = ["help.category.stwdaily", "calendar", "help.category.stwdaily.description.brief", "help.category.stwdaily.description"]
+info = ["help.category.info", "blueinfo", "help.category.info.description.brief", "help.category.info.description"]
+dev = ["help.category.dev", ["sparkle", "championleague", "sparkle"], "help.category.dev.description.brief", "help.category.dev.description"]
