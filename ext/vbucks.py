@@ -50,8 +50,11 @@ class VbucksCalculatorModal(discord.ui.Modal):
             interaction: The interaction that the user did.
         """
         value = self.children[0].value
-        if int(value) >= 10000:
-            await interaction.response.defer(invisible=False)
+        try:
+            if int(value) >= 10000:
+                await interaction.response.defer()
+        except:
+            pass
         if value == "" or not value.isnumeric():
             embed = await stw.vbucks_goal_embed(self.client, self.ctx, desired_lang=self.desired_lang)
         elif int(value) <= self.current_total:
