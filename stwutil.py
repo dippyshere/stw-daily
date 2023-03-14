@@ -3566,3 +3566,56 @@ def calculate_vbuck_goals(current_total: int, current_day: int, target: int) -> 
         current_total += get_vbucks(0 if current_day % 336 == 0 else current_day % 336, True)
     logger.debug(f"Vbucks goal: {target} (reached in {day_delta + 1} days, total: {current_total}, day: {current_day}, time: {round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)})")
     return current_total, f"<t:{round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)}:R>"
+
+
+@AsyncLRU(maxsize=1024)
+async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationContext, total: int = 0, timestamp: str = "<t:0:R>", assert_value: bool = True, current_total: int = None, vbucks: bool = True, target: str = "", desired_lang: str = "en", goal: bool = False) -> discord.Embed:
+    """
+    Generates an embed for the vbucks goal command
+
+    Args:
+        client: discord client
+        ctx: discord context
+        total: The total vbucks
+        timestamp: The timestamp of when the target will be reached
+        assert_value: Whether to assert the value of the total
+        current_total: The current total vbucks
+        vbucks: Whether the user is a founder
+        target: The target vbucks
+        desired_lang: The desired language
+        goal: Whether to use goal or not
+
+    Returns:
+        discord.Embed: The embed
+    """
+    if assert_value:
+        if target == "" or not target.isnumeric():
+            embed = discord.Embed(
+                title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+                description=f"\u200b\n{I18n.get('vbucks.modal.error.description', desired_lang, client.config['emojis']['warning'])}\n\u200b",
+                colour=client.colours["warning_yellow"])
+            return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
+        elif int(target) <= current_total:
+            embed = discord.Embed(
+                title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+                description=f"\u200b\n{I18n.get('vbucks.modal.error.description1', desired_lang, client.config['emojis']['warning'], current_total)}\n\u200b",
+                colour=client.colours["warning_yellow"])
+            return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
+    elif int(target) <= current_total:
+        embed = discord.Embed(
+            title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "checkmark"),
+            description=f"\u200b\n{I18n.get('vbucks.modal.success.description.goalreached', desired_lang, client.config['emojis']['celebrate'], client.config['emojis']['celebrate'], target)}\n\u200b",
+            colour=client.colours["success_green"])
+        return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
+    if vbucks:
+        embed = discord.Embed(
+            title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+            description=f"\u200b\n{I18n.get('vbucks.modal.success.description', desired_lang, total, client.config['emojis']['vbucks'], timestamp)}\n\u200b",
+            colour=client.colours["vbuck_blue"])
+        return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
+    else:
+        embed = discord.Embed(
+            title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+            description=f"\u200b\n{I18n.get('vbucks.modal.success.description.nonfounder', desired_lang, client.config['emojis']['stw_box'], total, client.config['emojis']['vbucks'], timestamp)}\n\u200b",
+            colour=client.colours["vbuck_blue"])
+        return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)

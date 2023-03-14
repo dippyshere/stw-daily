@@ -53,41 +53,26 @@ class VbucksCalculatorModal(discord.ui.Modal):
         if int(value) >= 10000:
             await interaction.response.defer(invisible=False)
         if value == "" or not value.isnumeric():
-            embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
-                                                "library_banknotes"),
-                description=f"\u200b\n{stw.I18n.get('vbucks.modal.error.description', self.desired_lang, self.client.config['emojis']['warning'])}\u200b\n",
-                colour=self.client.colours["warning_yellow"])
+            embed = await stw.vbucks_goal_embed(self.client, self.ctx, desired_lang=self.desired_lang)
         elif int(value) <= self.current_total:
-            embed = discord.Embed(
-                title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
-                                                "library_banknotes"),
-                description=f"\u200b\n{stw.I18n.get('vbucks.modal.error.description1', self.desired_lang, self.client.config['emojis']['warning'], self.current_total)}\u200b\n",
-                colour=self.client.colours["warning_yellow"])
+            embed = await stw.vbucks_goal_embed(self.client, self.ctx, current_total=self.current_total,
+                                                desired_lang=self.desired_lang)
         else:
-            # total, days = stw.calculate_vbuck_goals(self.current_total, 0 if self.auth_entry['day'] is None else self.auth_entry['day'], int(value))
-            total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, self.current_total, 0 if self.auth_entry['day'] is None else self.auth_entry['day'], int(value))))[0]
-            if self.auth_entry['vbucks']:
-                embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
-                                                    "library_banknotes"),
-                    description=f"\u200b\n{stw.I18n.get('vbucks.modal.success.description', self.desired_lang, total, self.client.config['emojis']['vbucks'], days)}\u200b\n",
-                    colour=self.client.colours["vbuck_blue"])
-            else:
-                embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, stw.I18n.get("vbucks.modal.title", self.desired_lang),
-                                                    "library_banknotes"),
-                    description=f"\u200b\n{stw.I18n.get('vbucks.modal.success.description.nonfounder', self.desired_lang, self.client.config['emojis']['stw_box'], total, self.client.config['emojis']['vbucks'], days)}\u200b\n",
-                    colour=self.client.colours["vbuck_blue"])
-        embed = await stw.set_thumbnail(self.client, embed, "catnerd")
-        embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
+            total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, self.current_total,
+                                                                  0 if self.auth_entry['day'] is None else
+                                                                  self.auth_entry['day'], int(value))))[0]
+            embed = await stw.vbucks_goal_embed(self.client, self.ctx, total, days, True, self.current_total,
+                                                self.auth_entry['vbucks'], value, self.desired_lang)
         try:
             self.embeds[0]
             send_embed = self.embeds + [embed]
         except:
             send_embed = [self.embeds, embed]
         logger.debug(f"Sending embed: {send_embed}")
-        return await interaction.edit_original_response(embeds=send_embed, view=self.view) if int(value) >= 10000 else await interaction.response.edit_message(embeds=send_embed, view=self.view)
+        try:
+            return await interaction.edit_original_response(embeds=send_embed, view=self.view) if int(value) >= 10000 else await interaction.response.edit_message(embeds=send_embed, view=self.view)
+        except:
+            return await interaction.response.edit_message(embeds=send_embed, view=self.view)
 
 
 # view for the invite command.
