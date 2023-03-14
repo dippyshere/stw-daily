@@ -340,7 +340,7 @@ class ProfileMainView(discord.ui.View):
             _button: The button.
             interaction: The interaction.
         """
-        # TODO: This has a timeout related bug
+        await command_counter(self.client, self.author.id)
         await settings_command(self.client, self.ctx)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,
@@ -361,6 +361,7 @@ class ProfileMainView(discord.ui.View):
             _button: The button.
             interaction: The interaction.
         """
+        await command_counter(self.client, self.author.id)
         await handle_dev_auth(self.client, self.ctx, desired_lang=self.desired_lang)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,
