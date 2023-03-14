@@ -3589,7 +3589,7 @@ async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationCont
         discord.Embed: The embed
     """
     if assert_value:
-        if target == "" or not target.isnumeric():
+        if target == "" or not str(target).isnumeric():
             embed = discord.Embed(
                 title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
                 description=f"\u200b\n{I18n.get('vbucks.modal.error.description', desired_lang, client.config['emojis']['warning'])}\n\u200b",

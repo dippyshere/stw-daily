@@ -57,7 +57,7 @@ class VbucksCalculatorModal(discord.ui.Modal):
                 await interaction.response.defer()
         except:
             pass
-        if value == "" or not value.isnumeric():
+        if value == "" or not str(value).isnumeric():
             embed = await stw.vbucks_goal_embed(self.client, self.ctx, desired_lang=self.desired_lang)
         elif int(value) <= self.current_total:
             embed = await stw.vbucks_goal_embed(self.client, self.ctx, current_total=self.current_total,
@@ -289,9 +289,9 @@ class Vbucks(ext.Cog):
         except:
             goal = 0
         if goal > 0:
-            if goal == "" or not goal.isnumeric():
+            if goal == "" or not str(goal).isnumeric():
                 embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
-            elif int(goal) <= self.current_total:
+            elif int(goal) <= vbucks_total:
                 embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
                                                     desired_lang=desired_lang, goal=True)
             else:
