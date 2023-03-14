@@ -226,8 +226,7 @@
         "input_type": "short",
         "min_length": 2,
         "max_length": 0,
-        "req_string": "settings.config.lang.requirement",
-        "url": "https://github.com/dippyshere/stw-daily/wiki"
+        "req_string": "settings.config.lang.requirement"
     },
     "silent": {
         "aliases": [
@@ -277,7 +276,8 @@
         "aliases": [
             "keycard",
             "icon",
-            "thumbnail"
+            "thumbnail",
+            "image"
         ],
         "default": "ego_keycard",
         "disabled": false,
@@ -337,5 +337,39 @@
             }
         },
         "placeholder": "settings.config.keycard.placeholder"
+    },
+    "mtxgoal": {
+        "aliases": [
+            "vbucksgoal",
+            "vbucks goal",
+            "vbucks_goal",
+            "goal",
+            "mtx_goal",
+            "mtxgoal",
+            "vbucks",
+            "vbuck",
+            "vbuck_goal",
+            "vbuckgoal",
+            "vbuck goal",
+            "goals",
+            "vbuck-goal",
+            "vbuck-goals",
+            "vbuck-goals",
+            "mtx-goals",
+            "mtx-goal"
+        ],
+        "default": 0,
+        "emoji": "library_banknotes",
+        "localised_name": "settings.config.mtxgoal.name",
+        "short_description": "settings.config.mtxgoal.description.short",
+        "long_description": "settings.config.mtxgoal.description.long",
+        "modal_title": "settings.config.mtxgoal.name",
+        "input_placeholder": "settings.config.mtxgoal.modal.placeholder",
+        "input_label": "vbucks.modal.label",
+        "check_function": "check_number_goal",
+        "input_type": "short",
+        "min_length": 1,
+        "max_length": 8,
+        "req_string": "settings.config.mtxgoal.requirement"
     }
 }

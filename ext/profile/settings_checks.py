@@ -129,3 +129,26 @@ def check_keycard(client, ctx, value) -> tuple[bool, bool]:
                          'sleek_keycard']:
         return value.lower(), True
     return False, False
+
+
+@functools.lru_cache()
+def check_number_goal(client, ctx, value) -> tuple[bool | int, bool]:
+    """
+    Checks if the value is a valid number for mtx goals.
+
+    Args:
+        client (discord.ext.commands.Bot): The bot client. (unused)
+        ctx: The context of the command. (unused)
+        value: The value to check.
+
+    Returns:
+        bool: True if the value is valid, False otherwise.
+    """
+    try:
+        integer_value = int(value)
+        if 99999999 >= integer_value >= 0:
+            return integer_value, True
+        else:
+            return False, False
+    except:
+        return False, False
