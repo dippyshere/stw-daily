@@ -369,7 +369,6 @@
         "check_function": "check_number_goal",
         "input_type": "short",
         "min_length": 1,
-        "max_length": 8,
-        "req_string": "settings.config.mtxgoal.requirement"
+        "max_length": 8
     }
 }
