@@ -73,7 +73,7 @@ class VbucksCalculatorModal(discord.ui.Modal):
             if self.goal:
                 send_embed = self.embeds[:-1] + [embed]
             else:
-                send_embed = [self.embeds, embed]
+                send_embed = self.embeds + [embed]
         except:
             send_embed = [self.embeds, embed]
         logger.debug(f"Sending embed: {send_embed}")
