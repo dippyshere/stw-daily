@@ -90,7 +90,7 @@ class VbucksCalculatorView(discord.ui.View):
     """
 
     def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry, goal):
-        super().__init__(timeout=480, disable_on_timeout=True)
+        super().__init__(timeout=480)
         self.client = client
         self.ctx = ctx
         self.desired_lang = desired_lang
@@ -121,6 +121,17 @@ class VbucksCalculatorView(discord.ui.View):
         """
         button.emoji = self.button_emojis[button.emoji.name]
         return button
+
+    async def on_timeout(self):
+        """
+        Called when the view times out
+
+        Returns:
+            None
+        """
+        for button in self.children:
+            button.disabled = True
+        return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
     async def interaction_check(self, interaction):
         """
