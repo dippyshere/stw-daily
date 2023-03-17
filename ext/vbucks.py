@@ -304,7 +304,8 @@ class Vbucks(ext.Cog):
                 embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
             elif int(goal) <= vbucks_total:
                 embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                    desired_lang=desired_lang, goal=True)
+                                                    desired_lang=desired_lang, goal=True, assert_value=False,
+                                                    target=goal)
             else:
                 total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
                                                                       0 if auth_info[1]['day'] is None else
