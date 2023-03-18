@@ -35,7 +35,7 @@ wait_on_user_messages = [
 
 logging_level = "INFO" # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
-support_url = "https://discord.gg/QYgABPDqzH"
+support_url = "https://discord.gg/QYgABPDqzH" # 🖕 skidders
 
 # list of known codes, like client id's that appear in the URL which are automatically invalidated
 known_client_ids = [
@@ -534,7 +534,7 @@ theater2 = "theater2" # stw ventures data
 bin = "recycle_bin" # stw recycle bin
 
 [mango]
-uri_env_var = "STW_MONGO_URI" # added the env var mongodb://localhost:27017
+uri_env_var = "STW_MONGO_URI"
 database = "stw_dailies"
 collection = "user_info"
 
