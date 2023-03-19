@@ -52,6 +52,7 @@ class Information(ext.Cog):
         try:
             shards = str(len(self.client.shards))
             shard_id = ctx.guild.shard_id
+            shard_name = await stw.retrieve_shard(self.client, shard_id)
             shard_info = self.client.get_shard(shard_id)
             shard_ping = int(shard_info.latency * 100)
             shard_id = str(shard_info.id + 1)
