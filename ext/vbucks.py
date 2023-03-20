@@ -90,7 +90,7 @@ class VbucksCalculatorView(discord.ui.View):
     """
 
     def __init__(self, client, ctx, desired_lang, current_total, message, embeds, auth_entry, goal):
-        super().__init__(timeout=480, disable_on_timeout=True)
+        super().__init__(timeout=480)
         self.client = client
         self.ctx = ctx
         self.desired_lang = desired_lang
@@ -121,6 +121,17 @@ class VbucksCalculatorView(discord.ui.View):
         """
         button.emoji = self.button_emojis[button.emoji.name]
         return button
+
+    async def on_timeout(self):
+        """
+        Called when the view times out
+
+        Returns:
+            None
+        """
+        for button in self.children:
+            button.disabled = True
+        return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
     async def interaction_check(self, interaction):
         """
@@ -293,7 +304,8 @@ class Vbucks(ext.Cog):
                 embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
             elif int(goal) <= vbucks_total:
                 embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                    desired_lang=desired_lang, goal=True)
+                                                    desired_lang=desired_lang, goal=True, assert_value=False,
+                                                    target=goal)
             else:
                 total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
                                                                       0 if auth_info[1]['day'] is None else
