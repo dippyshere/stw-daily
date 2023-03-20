@@ -273,7 +273,8 @@ async def active_view(client, user_snowflake, view):
         user_snowflake: The user snowflake to check.
         view: The view to check for.
     """
-    logger.debug(f"Active view: {user_snowflake} {view}")
+    logger.debug(f"Setting active view: {user_snowflake} {view}")
+    logger.debug(f"Active views: {client.active_profile_command}")
     client.active_profile_command[user_snowflake] = view
 
 

@@ -979,7 +979,7 @@ class Research(ext.Cog):
                           'trie', 'trede', 'tbree', 'trte', 'tiee', 'twree', 'kree', '4ree', '5ree', '6ree', '$ree',
                           '%ree', '^ree', 't3ee', 't4ee', 't5ee', 't#ee', 't$ee', 't%ee', 'tr4e', 'tr3e', 'tr2e',
                           'tr$e', 'tr#e', 'tr@e', 'tre4', 'tre3', 'tre2', 'tre$', 'tre#', 'tre@', '/rsrch', '/lab',
-                          '/fortitude', '/fort', '/upgrade', '/skill', '/tree'],
+                          '/fortitude', '/fort', '/upgrade', '/skill', '/tree', 'r'],
                  extras={'emoji': "research_point", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.slash.optout', True]
