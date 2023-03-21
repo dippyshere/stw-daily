@@ -1,1 +1,1 @@
-worker: python "daily core.py"
+worker: python -OO "daily core.py"
