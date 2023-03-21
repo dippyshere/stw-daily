@@ -852,12 +852,21 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
                             f"- {stw.I18n.get('lang.{0}'.format(profile['settings'][setting]), 'en')} " \
                             f"({client.config['valid_locales'][profile['settings'][setting]][1]})"
         except:
-            current_value = profile['settings'][setting]
+            try:
+                current_value = profile['settings'][setting]
+            except:
+                try:
+                    current_value = stw.I18n.get(f'lang.{setting_info["default"]}', desired_lang)
+                except:
+                    current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     elif setting == "keycard":
         try:
             current_value = stw.I18n.get(setting_info['options'][profile['settings'][setting]]['name'], desired_lang)
         except:
-            current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
+            try:
+                current_value = stw.I18n.get(setting_info['options'][profile['settings'][setting_info['default']]]['name'], desired_lang)
+            except:
+                current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     else:
         try:
             if profile['settings'][setting] is True:
@@ -867,7 +876,14 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
             else:
                 current_value = profile['settings'][setting]
         except:
-            current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
+            try:
+                current_value = setting_info["default"]
+            except:
+                current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
+    try:
+        current_value = stw.I18n.fmt_num(int(current_value), desired_lang)
+    except:
+        pass
     page_embed.fields[0].value += f"""\n\n# {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n> {current_value}\n{stw.I18n.get(setting_info['short_description'], desired_lang)}"""
     return page_embed
 
@@ -1015,8 +1031,11 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
             else:
                 current_value = selected_profile_data['settings'][setting]
         except:
-            current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
-
+            current_value = setting_info['default']
+    try:
+        current_value = stw.I18n.fmt_num(int(current_value), desired_lang)
+    except:
+        pass
     try:
         setting_name = f"[{stw.I18n.get(setting_info['localised_name'], desired_lang)}]({setting_info['url']})"
     except:

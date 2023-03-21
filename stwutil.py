@@ -27,6 +27,8 @@ import asyncio
 import io
 import orjson
 from cache import AsyncLRU
+import owoify
+from owoify.owoify import Owoness
 
 import discord
 from PIL.ImageFont import FreeTypeFont
@@ -1806,6 +1808,8 @@ async def get_stw_news(client: Client, locale: str = "en") -> aiohttp.client_req
         locale = "zh-CN"
     elif locale == "zh-CHT":
         locale = "zh-CN"  # no traditional unfortunately
+    elif locale == "en-UwU":
+        locale = "en"
     # if locale not in ["ar", "de", "en", "es", "es-419", "fr", "it", "ja", "ko", "pl", "pt-BR", "ru", "tr", "zh-CN", "zh-Hant"]:
     #     locale = "en"
     return await client.stw_session.get(endpoint.format(locale))
@@ -1866,8 +1870,8 @@ async def create_news_page(self, ctx: Context, news_json: dict, current: int, to
         embed = discord.Embed(
             title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
             description=f"\u200b\n{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n"
-                        f"**{news_json[current - 1]['title']}**"
-                        f"\n{news_json[current - 1]['body']}",
+                        f"**{news_json[current - 1]['title'] if not desired_lang == 'en-UwU' else owoify_text(news_json[current - 1]['title'])}**"
+                        f"\n{news_json[current - 1]['body'] if not desired_lang == 'en-UwU' else owoify_text(news_json[current - 1]['body'])}",
             colour=generic)
     except:
         logger.warning(f"News page {current} is missing from the news json")
@@ -3623,3 +3627,25 @@ async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationCont
             description=f"\u200b\n{I18n.get('vbucks.modal.success.description.nonfounder', desired_lang, client.config['emojis']['stw_box'], total, client.config['emojis']['vbucks'], timestamp)}\n\u200b",
             colour=client.colours["vbuck_blue"])
         return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
+
+
+@functools.lru_cache(maxsize=256)
+def owoify_text(text: str, level: int = 2) -> str:
+    """
+    Owoifies text
+
+    Args:
+        text: The text to owoify
+        level: The level of owoification
+
+    Returns:
+        str: The owoified text
+    """
+    if level == 0:
+        return text
+    if level == 1:
+        return owoify.owoify(text, Owoness.Owo)
+    if level == 2:
+        return owoify.owoify(text, Owoness.Uwu)
+    if level >= 3:
+        return owoify.owoify(text, Owoness.Uvu)

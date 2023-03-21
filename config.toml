@@ -590,6 +590,8 @@ ms = ["Malay", "Bahasa Melayu", "may", "mal", "msa", "ms", "بهاس ملايو"
 et = ["Estonian", "eesti keel", "est", "et"]
 lv = ["Latvian", "latviešu valoda", "lav", "Lettish", "lv"]
 sw = ["Swahili", "Kiswahili", "swa", "sw", "كِيْسْوَاحِيْلِيْ"]
+# goofy gober languages
+en-UwU = ["owo", "o･ω･o", "uwu", "uvu", "umu", "nya", "nya~", "nyaa", "engwish"]
 
 
 [entry_token_key_for_game]

@@ -29,3 +29,5 @@ colorama>=0.4.6
 # localisation
 babel>=2.12.1
 pytz>=2022.7.1
+# troll
+owoify-py>=2.0.0
