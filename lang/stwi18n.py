@@ -106,11 +106,19 @@ class I18n:
                 # if string not found in english, return the key
                 logger.warning(f"Key {key} not found in language {lang} or en")
                 return key
-        try:
-            args_fmt = [self.fmt_num(arg, lang) if isinstance(arg, int) else arg for arg in args]
-        except:
-            args_fmt = args
-
+        # try:
+        #     args_fmt = [self.fmt_num(arg, lang) if isinstance(arg, int) else arg for arg in args]
+        # except:
+        #     args_fmt = args
+        args_fmt = list(args)
+        for i, arg in enumerate(args):
+            try:
+                args_fmt[i] = self.fmt_num(int(arg), lang)
+                logger.debug(f"Formatted {arg} to {args_fmt[i]}")
+            except:
+                logger.debug(f"Failed to format {arg} to {args_fmt[i]}")
+                pass
+        args_fmt = tuple(args_fmt)
         try:
             # format the string with arguments
             logger.debug(f"Returning {string.format(*args_fmt)} for key {key} in language {lang} (args: {args_fmt})")
