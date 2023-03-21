@@ -380,9 +380,13 @@ def time_until_end_of_day() -> str:
         fmt += '{h} hours, '
     if minutes == 1:
         fmt += '{m} minute'
-    else:
+    elif minutes > 1:
         fmt += '{m} minutes'
-    return fmt.format(h=hours, m=minutes)
+    else:
+        fmt = fmt[:-2]
+    if minutes >= 1:
+        return fmt.format(h=hours, m=minutes)
+    return fmt.format(h=hours)
 
 
 async def processing_queue_error_check(client: Client, ctx: discord.Message, user_snowflake: int, desired_lang: str) -> discord.Embed | bool:
