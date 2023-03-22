@@ -1011,7 +1011,10 @@ async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Inter
         try:
             method = msg.edit_original_response
         except:
-            method = msg.response.edit_message
+            if isinstance(msg, discord.InteractionMessage):
+                method = msg.edit
+            else:
+                method = msg.response.edit_message
     else:
         try:
             method = msg.edit
