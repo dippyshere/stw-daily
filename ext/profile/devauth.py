@@ -202,7 +202,7 @@ async def no_profiles_page(client, ctx, desired_lang):
         title=await stw.add_emoji_title(client, stw.I18n.get('devauth.embed.title', desired_lang), "pink_link"),
         description=(f"\u200b\n"
                      f"{stw.I18n.get('profile.embed.noprofiles.description1', desired_lang)}\n"
-                     f"```{stw.I18n.get('devauth.embed.noprofile.description2', desired_lang)}```\u200b\n"),
+                     f"```{stw.I18n.get('devauth.embed.noprofile.descripton2', desired_lang)}```\u200b\n"),
         color=embed_colour)
     no_profiles_embed = await stw.set_thumbnail(client, no_profiles_embed, "pink_link")
     no_profiles_embed = await stw.add_requested_footer(ctx, no_profiles_embed, desired_lang)
