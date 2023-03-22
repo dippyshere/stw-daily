@@ -1808,7 +1808,7 @@ async def get_stw_news(client: Client, locale: str = "en") -> aiohttp.client_req
         locale = "zh-CN"
     elif locale == "zh-CHT":
         locale = "zh-CN"  # no traditional unfortunately
-    elif locale == "en-UwU":
+    elif locale == "en-UwU" or locale == "en-TwT":
         locale = "en"
     # if locale not in ["ar", "de", "en", "es", "es-419", "fr", "it", "ja", "ko", "pl", "pt-BR", "ru", "tr", "zh-CN", "zh-Hant"]:
     #     locale = "en"
@@ -1870,8 +1870,8 @@ async def create_news_page(self, ctx: Context, news_json: dict, current: int, to
         embed = discord.Embed(
             title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
             description=f"\u200b\n{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n"
-                        f"**{news_json[current - 1]['title'] if not desired_lang == 'en-UwU' else owoify_text(news_json[current - 1]['title'])}**"
-                        f"\n{news_json[current - 1]['body'] if not desired_lang == 'en-UwU' else owoify_text(news_json[current - 1]['body'])}",
+                        f"**{news_json[current - 1]['title'] if not desired_lang == 'en-UwU' or not desired_lang == 'en-TwT' else owoify_text(news_json[current - 1]['title'])}**"
+                        f"\n{news_json[current - 1]['body'] if not desired_lang == 'en-UwU' or not desired_lang == 'en-TwT' else owoify_text(news_json[current - 1]['body'])}",
             colour=generic)
     except:
         logger.warning(f"News page {current} is missing from the news json")

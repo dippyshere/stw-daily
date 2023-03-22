@@ -169,7 +169,7 @@ class I18n:
         """
         # format the number to a string
         lang = lang.replace('-', '_')
-        if lang == 'en_UwU':
+        if lang == 'en_UwU' or lang == 'en_TwT':
             lang = 'en'
         logger.debug(f"Returning {babel.numbers.format_decimal(num, locale=lang)} for fmt_num({num}, {lang})")
         try:
