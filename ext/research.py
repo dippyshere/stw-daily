@@ -213,9 +213,9 @@ class ResearchView(discord.ui.View):
             research_points_item = purchased_json['profileChanges'][0]['profile']['items'][self.research_token_guid]
         except Exception as e:
             # this can be entered if there is an error during purchase
-            logger.warning(f"Error during purchase: {e} | {stw.truncate(str(purchased_json))}")
             try:
                 error_code = json_response["errorCode"]
+                logger.warning(f"Error during purchase: {e} | {stw.truncate(str(purchased_json))}")
                 acc_name = self.auth_info[1]["account_name"]
                 embed = await stw.post_error_possibilities(self.ctx, self.client, "research", acc_name, error_code,
                                                            verbiage_action="resitem",
