@@ -341,7 +341,6 @@ class ProfileMainView(discord.ui.View):
             interaction: The interaction.
         """
         await command_counter(self.client, self.author.id)
-        # TODO: This still has a timeout related bug with slash only
         await settings_command(self.client, self.ctx)
 
         embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,

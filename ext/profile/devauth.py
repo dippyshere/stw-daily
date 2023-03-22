@@ -287,54 +287,62 @@ async def handle_dev_auth(client, ctx, interaction=None, user_document=None, exc
         current_profile = user_document["profiles"][str(currently_selected_profile_id)]
     except:
         embed = await no_profiles_page(client, ctx, desired_lang)
-        await stw.slash_send_embed(ctx, client, embeds=embed)
-        return False
+        return await stw.slash_send_embed(ctx, client, embeds=embed)
 
     if current_profile["statistics"]["tos_accepted_version"] != TOS_VERSION:
         embed = await tos_acceptance_embed(user_document, client, currently_selected_profile_id, ctx, desired_lang)
         button_accept_view = EnslaveUserLicenseAgreementButton(user_document, client, ctx,
-                                                               currently_selected_profile_id, interaction,
+                                                               currently_selected_profile_id, interaction, message,
                                                                desired_lang=desired_lang)
         await active_view(client, ctx.author.id, button_accept_view)
 
+        if message is not None:
+            return await stw.slash_edit_original(ctx, message, embeds=embed, view=button_accept_view)
+
         if interaction is None:
-            await stw.slash_send_embed(ctx, client, embeds=embed, view=button_accept_view)
+            message = await stw.slash_send_embed(ctx, client, embeds=embed, view=button_accept_view)
+            button_accept_view.message = message
+            return message
         else:
-            await interaction.edit_original_response(embed=embed, view=button_accept_view)
+            return await interaction.edit_original_response(embed=embed, view=button_accept_view)
 
     elif current_profile["authentication"] is None:
 
         embed = await pre_authentication_time(user_document, client, currently_selected_profile_id, ctx, interaction,
                                               exchange_auth_session, desired_lang=desired_lang)
-
         if not embed:
             return
-
         account_stealing_view = EnslaveAndStealUserAccount(user_document, client, ctx, currently_selected_profile_id,
                                                            exchange_auth_session, interaction, message,
                                                            desired_lang=desired_lang)
         await active_view(client, ctx.author.id, account_stealing_view)
 
         if message is not None:
-            await stw.slash_edit_original(ctx, message, embeds=embed, view=account_stealing_view)
-            return
+            return await stw.slash_edit_original(ctx, message, embeds=embed, view=account_stealing_view)
 
         if interaction is None:
-            await stw.slash_send_embed(ctx, client, embeds=embed, view=account_stealing_view)
+            message = await stw.slash_send_embed(ctx, client, embeds=embed, view=account_stealing_view)
+            account_stealing_view.message = message
+            return message
         else:
-            await interaction.edit_original_response(embed=embed, view=account_stealing_view)
+            return await interaction.edit_original_response(embed=embed, view=account_stealing_view)
 
     elif current_profile["authentication"] is not None:
         embed = await existing_dev_auth_embed(client, ctx, current_profile, currently_selected_profile_id, desired_lang,
                                               user_document)
         stolen_account_view = StolenAccountView(user_document, client, ctx, currently_selected_profile_id, interaction,
-                                                embed, desired_lang=desired_lang)
+                                                embed, message, desired_lang=desired_lang)
         await active_view(client, ctx.author.id, stolen_account_view)
 
+        if message is not None:
+            return await stw.slash_edit_original(ctx, message, embeds=embed, view=stolen_account_view)
+
         if interaction is None:
-            await stw.slash_send_embed(ctx, client, embeds=embed, view=stolen_account_view)
+            message = await stw.slash_send_embed(ctx, client, embeds=embed, view=stolen_account_view)
+            stolen_account_view.message = message
+            return message
         else:
-            await interaction.edit_original_response(embed=embed, view=stolen_account_view)
+            return await interaction.edit_original_response(embed=embed, view=stolen_account_view)
 
 
 class EnslaveAndStealUserAccount(discord.ui.View):
@@ -499,7 +507,7 @@ class StolenAccountView(discord.ui.View):
     """
 
     def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, embed=None,
-                 desired_lang=None):
+                 extra_message=None, desired_lang=None):
         super().__init__(timeout=360.0)
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -511,7 +519,8 @@ class StolenAccountView(discord.ui.View):
         self.embed = embed
         self.desired_lang = desired_lang
         self.current_profile = user_document["profiles"][str(currently_selected_profile_id)]
-
+        if extra_message is not None:
+            self.message = extra_message
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document, self.desired_lang)
         self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)
@@ -720,7 +729,8 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
     This class is the view for the EULA
     """
 
-    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None, desired_lang=None):
+    def __init__(self, user_document, client, ctx, currently_selected_profile_id, interaction=None,
+                 extra_message=None, desired_lang=None):
         super().__init__(timeout=480.0)
 
         self.currently_selected_profile_id = currently_selected_profile_id
@@ -731,7 +741,8 @@ class EnslaveUserLicenseAgreementButton(discord.ui.View):
         self.interaction = interaction
         self.desired_lang = desired_lang
         self.timed_out = False
-
+        if extra_message is not None:
+            self.message = extra_message
         self.children[0].options = generate_profile_select_options(client, int(self.currently_selected_profile_id),
                                                                    user_document, self.desired_lang)
         self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder', self.desired_lang)

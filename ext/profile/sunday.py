@@ -1105,7 +1105,9 @@ async def default_page_profile_settings(client, ctx, user_profile, settings, mes
 
     settings_view = MainPageProfileSettingsView(user_profile, client, page, ctx, settings, desired_lang=desired_lang)
     await active_view(client, ctx.author.id, settings_view)
-    await stw.slash_send_embed(ctx, client, embeds=main_page_embed, view=settings_view)
+    message = await stw.slash_send_embed(ctx, client, embeds=main_page_embed, view=settings_view)
+    settings_view.message = message
+    return message
 
 
 async def no_profiles_page(client, ctx, desired_lang):
@@ -1162,8 +1164,7 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
         user_profile["profiles"]["0"]
     except:
         embed = await no_profiles_page(client, ctx, desired_lang)
-        await stw.slash_send_embed(ctx, client, embeds=embed)
-        return
+        return await stw.slash_send_embed(ctx, client, embeds=embed)
 
     if setting is not None or profile is not None or value is not None:
         if profile is None:
@@ -1270,8 +1271,9 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                 await active_view(client, ctx.author.id, sub_view)
 
                 embed.fields[0].value += happy_message + "*\n\u200b\n"
-                await stw.slash_send_embed(ctx, client, embeds=embed, view=sub_view)
-                return
+                message = await stw.slash_send_embed(ctx, client, embeds=embed, view=sub_view)
+                sub_view.message = message
+                return message
 
         elif value is not None:
             value = False
@@ -1313,11 +1315,11 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             await active_view(client, ctx.author.id, sub_view)
 
             embed.fields[0].value += base_error_message
-            await stw.slash_send_embed(ctx, client, embeds=embed, view=sub_view)
-            return
+            message = await stw.slash_send_embed(ctx, client, embeds=embed, view=sub_view)
+            sub_view.message = message
+            return message
         else:
-            await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message, desired_lang)
-            return
+            return await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message, desired_lang)
 
     await default_page_profile_settings(client, ctx, user_profile, settings,
                                         f"\u200b\n*{stw.random_waiting_message(client, desired_lang)}*\n\u200b\n",
