@@ -99,7 +99,7 @@ class I18n:
         except KeyError:
             # if string not found, first try to get the string in english
             try:
-                if 'keycard' not in key:
+                if 'keycard' not in key and 'generic.uefn' not in key:
                     logger.warning(f"Key {key} not found in language {lang}, trying en")
                 string = self.i18n_json["en"][key]
             except KeyError:

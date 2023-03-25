@@ -979,7 +979,7 @@ async def check_for_auth_errors(client: Client, request: dict, ctx: Context, mes
 
 
 # hi?
-async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Interaction, embeds: discord.Embed | list[discord.Embed], view: discord.ui.View = None, files: list[discord.File] = None):
+async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Interaction, embeds: discord.Embed | list[discord.Embed] | None, view: discord.ui.View = None, files: list[discord.File] = None):
     """
     Edits the original message sent by the bot
 
@@ -1847,8 +1847,39 @@ async def get_br_news(client: Client, locale: str = "en") -> aiohttp.client_reqr
     """
     # TODO: This should be changed to use the epic games api
     # We can't use the epic games api as it requires a personalised request
-    endpoint = client.config["endpoints"]["br_news"]
+    endpoint = client.config["endpoints"]["br_news_alt"]
     if locale not in ["en", "de", "it", "fr", "es", "ru", "ja", "pt-BR", "pl", "tr", "ar", "ko", "es-419"]:
+        locale = "en"
+    try:
+        news = await client.stw_session.get(endpoint.format(locale), headers={"Authorization": os.environ["STW_FORTAPI_KEY"]})
+        if news.status != 200 or (await news.json())["result"] is True:
+            return news
+        else:
+            endpoint = client.config["endpoints"]["br_news"]
+            return await client.stw_session.get(endpoint.format(locale))
+    except:
+        endpoint = client.config["endpoints"]["br_news"]
+        return await client.stw_session.get(endpoint.format(locale))
+
+
+async def get_uefn_news(client: Client, locale: str = "en") -> aiohttp.client_reqrep.ClientResponse:
+    """
+    Gets the news for uefn from epic games
+
+    Args:
+        client: The client
+        locale: The locale to get the news for
+
+    Returns:
+        The news for uefn from epic games
+    """
+    logger.debug(f"Getting UEFN news for {locale}")
+    endpoint = client.config["endpoints"]["uefn_news"]
+    if locale == "zh-CHS":
+        locale = "zh-CN"
+    elif locale == "zh-CHT":
+        locale = "zh-CN"  # no traditional unfortunately
+    elif locale == "en-UwU" or locale == "en-TwT":
         locale = "en"
     return await client.stw_session.get(endpoint.format(locale))
 
@@ -1870,11 +1901,12 @@ async def create_news_page(self, ctx: Context, news_json: dict, current: int, to
     """
     generic = self.client.colours["generic_blue"]
     try:
+        nel = '\n'
         embed = discord.Embed(
             title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
             description=f"\u200b\n{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n"
-                        f"**{news_json[current - 1]['title'] if not desired_lang == 'en-UwU' or not desired_lang == 'en-TwT' else owoify_text(news_json[current - 1]['title'])}**"
-                        f"\n{news_json[current - 1]['body'] if not desired_lang == 'en-UwU' or not desired_lang == 'en-TwT' else owoify_text(news_json[current - 1]['body'])}",
+                        f"**{news_json[current - 1]['title'] if not desired_lang in ['en-TwT', 'en-UwU'] else owoify_text(news_json[current - 1]['title'])}**"
+                        f"{((nel + news_json[current - 1]['body']) if not desired_lang in ['en-TwT', 'en-UwU'] else owoify_text(nel + news_json[current - 1]['body'])) if (news_json[current - 1]['body'].lower() != news_json[current - 1]['title'].lower()) else ''}",
             colour=generic)
     except:
         logger.warning(f"News page {current} is missing from the news json")

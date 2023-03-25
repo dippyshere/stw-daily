@@ -20,7 +20,7 @@ class NewsView(discord.ui.View):
     """
 
     def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode, og_msg,
-                 desired_lang):
+                 desired_lang, uefn_news, uefn_pages_length):
         super().__init__(timeout=480.0)
         self.client = client
         self.ctx = ctx
@@ -34,12 +34,15 @@ class NewsView(discord.ui.View):
         self.br_pages_length = br_pages_length
         self.message = og_msg
         self.desired_lang = desired_lang
+        self.uefn_news = uefn_news
+        self.uefn_pages_length = uefn_pages_length
 
         self.button_emojis = {
             'prev': self.client.config["emojis"]["left_icon"],
             'next': self.client.config["emojis"]['right_icon'],
             'stw': self.client.config["emojis"]['stw_box'],
-            'br': self.client.config["emojis"]['bp_icon']
+            'br': self.client.config["emojis"]['bp_icon'],
+            'uefn': self.client.config["emojis"]['uefn']
         }
 
         self.children = list(map(self.map_button_emojis, self.children))
@@ -47,10 +50,12 @@ class NewsView(discord.ui.View):
         self.children[1].label = stw.I18n.get('generic.view.button.next', self.desired_lang)
         self.children[2].label = stw.I18n.get("news.view.button.stw", self.desired_lang)
         self.children[3].label = stw.I18n.get("news.view.button.br", self.desired_lang)
+        self.children[4].label = stw.I18n.get("news.view.button.uefn", self.desired_lang)
 
         if self.mode in ["stw", "Save the World"]:
             self.children[2].disabled = True
             self.children[3].disabled = False
+            self.children[4].disabled = False
             if self.stw_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
@@ -58,7 +63,16 @@ class NewsView(discord.ui.View):
         if self.mode in ["br", "Battle Royale"]:
             self.children[2].disabled = False
             self.children[3].disabled = True
+            self.children[4].disabled = False
             if self.br_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+
+        if self.mode in ["uefn", "Unreal Editor Fortnite", "Unreal Editor for Fortnite", "Creative 2.0"]:
+            self.children[2].disabled = False
+            self.children[3].disabled = False
+            self.children[4].disabled = True
+            if self.uefn_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
 
@@ -93,7 +107,11 @@ class NewsView(discord.ui.View):
         #     embed = await stw.set_thumbnail(self.client, embed, "newspaper")
         #     embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
         for button in self.children:
-            button.disabled = True
+            try:
+                if button.link is None:
+                    button.disabled = True
+            except:
+                button.disabled = True
         return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
     async def change_page(self, interaction, action):
@@ -124,6 +142,51 @@ class NewsView(discord.ui.View):
                 self.children[1].disabled = False
             embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
                                                self.desired_lang)
+            try:
+                if self.stw_news[self.page - 1]["link"] is not None:
+                    try:
+                        self.remove_item(self.children[5])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=self.stw_news[self.page - 1]["link"], row=3))
+                else:
+                    self.remove_item(self.children[5])
+            except:
+                try:
+                    self.remove_item(self.children[5])
+                except:
+                    pass
+        elif self.mode in ["uefn", "Unreal Editor Fortnite", "Unreal Editor for Fortnite", "Creative 2.0"]:
+            try:
+                self.page = ((self.page - 1) % self.uefn_pages_length) + 1
+            except:
+                self.page = 1
+            if self.uefn_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.uefn_news, self.page, self.uefn_pages_length,
+                                               self.desired_lang)
+            try:
+                if self.uefn_news[self.page - 1]["link"] is not None:
+                    try:
+                        self.remove_item(self.children[5])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=self.uefn_news[self.page - 1]["link"], row=3))
+                else:
+                    self.remove_item(self.children[5])
+            except:
+                try:
+                    self.remove_item(self.children[5])
+                except:
+                    pass
         else:
             try:
                 self.page = ((self.page - 1) % self.br_pages_length) + 1
@@ -137,6 +200,22 @@ class NewsView(discord.ui.View):
                 self.children[1].disabled = False
             embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
                                                self.desired_lang)
+            try:
+                if self.br_news[self.page - 1]["link"] is not None:
+                    try:
+                        self.remove_item(self.children[5])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=self.br_news[self.page - 1]["link"], row=3))
+                else:
+                    self.remove_item(self.children[5])
+            except:
+                try:
+                    self.remove_item(self.children[5])
+                except:
+                    pass
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
@@ -162,10 +241,59 @@ class NewsView(discord.ui.View):
                 self.children[1].disabled = False
             embed = await stw.create_news_page(self, self.ctx, self.stw_news, self.page, self.stw_pages_length,
                                                self.desired_lang)
+            try:
+                if self.stw_news[self.page - 1]["link"] is not None:
+                    try:
+                        self.remove_item(self.children[5])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=self.stw_news[self.page - 1]["link"], row=3))
+                else:
+                    self.remove_item(self.children[5])
+            except:
+                try:
+                    self.remove_item(self.children[5])
+                except:
+                    pass
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             # embed = await stw.add_requested_footer(self.ctx, embed)
             self.children[2].disabled = True
             self.children[3].disabled = False
+            self.children[4].disabled = False
+        elif mode in ["uefn", "Unreal Editor Fortnite", "Unreal Editor for Fortnite", "Creative 2.0"]:
+            self.mode = "uefn"
+            self.page = 1
+            if self.uefn_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.uefn_news, self.page, self.uefn_pages_length,
+                                               self.desired_lang)
+            try:
+                if self.uefn_news[self.page - 1]["link"] is not None:
+                    try:
+                        self.remove_item(self.children[5])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=self.uefn_news[self.page - 1]["link"], row=3))
+                else:
+                    self.remove_item(self.children[5])
+            except:
+                try:
+                    self.remove_item(self.children[5])
+                except:
+                    pass
+            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            # embed = await stw.add_requested_footer(self.ctx, embed)
+            self.children[2].disabled = False
+            self.children[3].disabled = False
+            self.children[4].disabled = True
         else:
             self.mode = "br"
             self.page = 1
@@ -177,10 +305,27 @@ class NewsView(discord.ui.View):
                 self.children[1].disabled = False
             embed = await stw.create_news_page(self, self.ctx, self.br_news, self.page, self.br_pages_length,
                                                self.desired_lang)
+            try:
+                if self.br_news[self.page - 1]["link"] is not None:
+                    try:
+                        self.remove_item(self.children[5])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=self.br_news[self.page - 1]["link"], row=3))
+                else:
+                    self.remove_item(self.children[5])
+            except:
+                try:
+                    self.remove_item(self.children[5])
+                except:
+                    pass
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
             # embed = await stw.add_requested_footer(self.ctx, embed)
             self.children[2].disabled = False
             self.children[3].disabled = True
+            self.children[4].disabled = False
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
@@ -240,6 +385,17 @@ class NewsView(discord.ui.View):
         """
         await self.change_mode(interaction, "br")
 
+    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="uefn", row=1, label="Switch to UEFN")
+    async def uefn_button(self, _button, interaction):
+        """
+        The UEFN button
+
+        Args:
+            _button: The button that was pressed
+            interaction: The interaction that called the function
+        """
+        await self.change_mode(interaction, "uefn")
+
 
 class News(ext.Cog):
     """
@@ -269,23 +425,92 @@ class News(ext.Cog):
                                                                          stw.I18n.get(
                                                                              "news.embed.processing.title",
                                                                              desired_lang)))
-        stw_news_req = await stw.get_stw_news(self.client, desired_lang)
-        stw_news_json = await stw_news_req.json(content_type=None)
-        stw_news = stw_news_json["news"]["messages"]
-        stw_pages_length = len(stw_news)
-        br_news_req = await stw.get_br_news(self.client, desired_lang)
-        br_news_json = await br_news_req.json(content_type=None)
-        br_news = br_news_json["data"]["motds"]
-        br_pages_length = len(br_news)
+        try:
+            stw_news_req = await stw.get_stw_news(self.client, desired_lang)
+            stw_news_json = await stw_news_req.json(content_type=None)
+            stw_news = stw_news_json["news"]["messages"]
+            stw_pages_length = len(stw_news)
+        except:
+            stw_news = {}
+            stw_pages_length = 0
+        try:
+            br_news_req = await stw.get_br_news(self.client, desired_lang)
+            br_news_json = await br_news_req.json(content_type=None)
+            try:
+                br_news = br_news_json["news"]
+            except:
+                br_news = br_news_json["data"]["motds"]
+            br_pages_length = len(br_news)
+        except:
+            br_news = {}
+            br_pages_length = 0
+        try:
+            uefn_news_req = await stw.get_uefn_news(self.client, desired_lang)
+            uefn_news_json = await uefn_news_req.json(content_type=None)
+            uefn_news = uefn_news_json["mainInfo"]["news"]["tileMessages"]
+            uefn_pages_length = len(uefn_news)
+        except:
+            uefn_news = {}
+            uefn_pages_length = 0
 
+        news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
+                             mode, load_msg, desired_lang, uefn_news, uefn_pages_length)
         if mode in ["br", "Battle Royale"]:
             embed = await stw.create_news_page(self, ctx, br_news, page, br_pages_length, desired_lang)
+            try:
+                if br_news[page - 1]["link"] is not None:
+                    try:
+                        news_view.remove_item(news_view.children[5])
+                    except:
+                        pass
+                    news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
+                                                         style=discord.ButtonStyle.link,
+                                                         url=br_news[page - 1]["link"], row=3))
+                else:
+                    news_view.remove_item(news_view.children[5])
+            except:
+                try:
+                    news_view.remove_item(news_view.children[5])
+                except:
+                    pass
+        elif mode in ["uefn", "Unreal Editor Fortnite", "Unreal Editor for Fortnite", "Creative 2.0"]:
+            embed = await stw.create_news_page(self, ctx, uefn_news, page, uefn_pages_length, desired_lang)
+            try:
+                if uefn_news[page - 1]["link"] is not None:
+                    try:
+                        news_view.remove_item(news_view.children[5])
+                    except:
+                        pass
+                    news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
+                                                         style=discord.ButtonStyle.link,
+                                                         url=uefn_news[page - 1]["link"], row=3))
+                else:
+                    news_view.remove_item(news_view.children[5])
+            except:
+                try:
+                    news_view.remove_item(news_view.children[5])
+                except:
+                    pass
         else:
             embed = await stw.create_news_page(self, ctx, stw_news, page, stw_pages_length, desired_lang)
+            try:
+                if stw_news[page - 1]["link"] is not None:
+                    try:
+                        news_view.remove_item(news_view.children[5])
+                    except:
+                        pass
+                    news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
+                                                         style=discord.ButtonStyle.link,
+                                                         url=stw_news[page - 1]["link"], row=3))
+                else:
+                    news_view.remove_item(news_view.children[5])
+            except:
+                try:
+                    news_view.remove_item(news_view.children[5])
+                except:
+                    pass
         embed = await stw.set_thumbnail(self.client, embed, "newspaper")
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
-        news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
-                             mode, load_msg, desired_lang)
         await asyncio.sleep(0.25)
         await stw.slash_edit_original(ctx, load_msg, embed, news_view)
         return
@@ -306,7 +531,9 @@ class News(ext.Cog):
                                      choices=[OptionChoice("Save the World", "stw",
                                                            stw.I18n.construct_slash_dict("generic.stw")),
                                               OptionChoice("Battle Royale", "br",
-                                                           stw.I18n.construct_slash_dict("generic.br"))]) = "stw"):
+                                                           stw.I18n.construct_slash_dict("generic.br")),
+                                              OptionChoice("Unreal Editor for Fortnite", "uefn",
+                                                           stw.I18n.construct_slash_dict("generic.uefn"))]) = "stw"):
         """
         This function is the entry point for the news command when called via slash
 
@@ -402,7 +629,7 @@ class News(ext.Cog):
                          "dev": False, "description_keys": ['news.meta.description'], "name_key": 'news.slash.name'},
                  brief="news.slash.description",
                  description="{0}")
-    async def news(self, ctx, page=1, mode="stw"):
+    async def news(self, ctx, page="1", mode="stw"):
         """
         This function is the entry point for the news command when called traditionally
 
@@ -411,6 +638,13 @@ class News(ext.Cog):
             page: The page to start on
             mode: The mode to start on
         """
+        if page is None:
+            page = 1
+        else:
+            try:
+                page = int(page)
+            except:
+                page = 1
         await self.news_command(ctx, page, mode)
 
 

@@ -407,6 +407,7 @@ download_alt = "<:Stomp_Normalrealesrganx4plus:1084079906260000768>"
 lock = "<:T_UI_ICON_SINGLE_LOCKrealesrganx:1084079908986290306>"
 keycard2 = "<:EventKeycardrealesrganx4plus:1084080116008751127>"
 uhmactually = "<:stwuhmactually:1084406386177364030>"
+uefn = "<:uefn:1089089854903697438>"
 
 [profile_settings]
 max_friendly_name_length = 100
@@ -463,6 +464,7 @@ upgrade_llama = "https://cdn.discordapp.com/attachments/1042781227767312384/1059
 fleming = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263956910110/T_CardPack_Fleming_IconMask.png"
 floppy = "https://cdn.discordapp.com/attachments/1042781227767312384/1059456356492525679/T_UI_IconLibrary_FloppyDisc_128.png"
 disconnected = "https://cdn.discordapp.com/attachments/1042781227767312384/1059460908763586620/T_UI_IconLibrary_Disconnected_128.png"
+uefn = "https://cdn.discordapp.com/attachments/1042781227767312384/1089090105081335898/uefn-1.png"
 
 
 # Different colours for commands
@@ -493,6 +495,8 @@ store = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/st
 news = "https://prm-dialogue-public-api-prod.edea.live.use1a.on.epicgames.com/api/v1/fortnite-br/surfaces/motd/target"
 stw_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews?lang={0}"
 br_news = "https://fortnite-api.com/v2/news/br?language={0}"
+br_news_alt = "https://fortniteapi.io/v1/news?lang={0}&type=br"
+uefn_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-editor?lang={0}"
 pve_info = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
 bb_profile = "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId={}" # this is so sad 😿
 
