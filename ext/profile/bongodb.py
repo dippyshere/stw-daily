@@ -221,7 +221,7 @@ async def get_user_document(ctx, client, user_snowflake, silent_error=False, des
     if error_check is not True:
 
         if not silent_error:
-            await stw.slash_send_embed(ctx, client, embeds=error_check)
+            await stw.slash_send_embed(ctx, client, embeds=error_check, devauth_error=True)
         # print(f"{user_snowflake} STUCK IN PROCESSING USER DOCUMENT?")
         return False
 

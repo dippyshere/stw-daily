@@ -266,7 +266,7 @@ def process_quotes_in_message(message_content: str) -> str:
 
 async def slash_send_embed(ctx: Context, client: discord.Client, embeds: discord.Embed | list[discord.Embed],
                            view: discord.ui.View = None,
-                           interaction: discord.Interaction = False) -> Union[discord.Message, None]:
+                           interaction: discord.Interaction = False, devauth_error: bool = False) -> Union[discord.Message, None]:
     """
     A small bridging function to send embeds to a slash, view, normal command, or interaction
 
@@ -276,6 +276,7 @@ async def slash_send_embed(ctx: Context, client: discord.Client, embeds: discord
         embeds: the embeds to send
         view: the view to send the embeds with
         interaction: whether or not the embeds are being sent to an interaction
+        devauth_error: whether or not the embeds are being sent to a devauth error
 
     Returns:
         The message sent
@@ -288,6 +289,8 @@ async def slash_send_embed(ctx: Context, client: discord.Client, embeds: discord
     except:
         embeds = [embeds]
     try:
+        if devauth_error:
+            raise Exception
         user_document = await get_user_document(ctx, client, ctx.author.id)
         currently_selected_profile_id = user_document["global"]["selected_profile"]
         try:
