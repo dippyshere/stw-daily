@@ -16,7 +16,7 @@ from discord.ext import tasks
 from orjson import orjson
 
 import stwutil as stw
-from ext.profile.bongodb import get_autoclaim_user_cursor
+from ext.profile.bongodb import get_autoclaim_user_cursor, replace_user_document
 
 claimed_account_ids = []
 logger = logging.getLogger(__name__)
@@ -36,12 +36,19 @@ async def auto_authenticate(client, auth_entry):
     """
     # TODO: with time, we can optimise / add more features to this function
     snowflake = auth_entry['user_snowflake']
+    current_selected_profile = auth_entry["global"]["selected_profile"]
     logger.info(f"Auto authenticating for: {snowflake}")
 
     for profile in auth_entry["profiles"]:
         current_profile = auth_entry["profiles"][profile]
         if current_profile["authentication"] is not None:
             auth_entry["global"]["selected_profile"] = profile
+
+            try:
+                if auth_entry["profiles"][profile]["authentication"]["hasExpired"]:
+                    continue
+            except:
+                pass
 
             auth_info_thread = await asyncio.gather(
                 asyncio.to_thread(stw.decrypt_user_data, snowflake, current_profile["authentication"]))
@@ -80,6 +87,16 @@ async def auto_authenticate(client, auth_entry):
                         logger.info(
                             f"Success for profile {profile} on day {json_response['notifications'][0]['daysLoggedIn']}")
                 except Exception as E:
+                    try:
+                        if response["errorCode"] == "errors.com.epicgames.account.invalid_account_credentials":
+                            if len(auth_entry["profiles"]) <= 1:
+                                auth_entry["auto_claim"] = None
+                            auth_entry["profiles"][profile]["authentication"]["hasExpired"] = True
+                            auth_entry["global"]["selected_profile"] = current_selected_profile
+                            await replace_user_document(client, auth_entry)
+                            logger.warning(f"Auto-Claim authentication expired for profile {profile}")
+                    except:
+                        pass
                     logger.warning(f"Failed to authenticate for profile {profile}: Epic: {response} | Python: {E}")
 
 

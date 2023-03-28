@@ -2845,14 +2845,25 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
 
     response = orjson.loads(await token_req.read())
 
+    try:
+        if response["errorCode"] == "errors.com.epicgames.account.invalid_account_credentials":
+            user_document["auto_claim"] = None
+            user_document["profiles"][str(currently_selected_profile_id)]["authentication"]["hasExpired"] = True
+            client.processing_queue[ctx.author.id] = True
+            await replace_user_document(client, user_document)
+            del client.processing_queue[ctx.author.id]
+            logger.warning(f"Auth for {ctx.author.id} has expired, removing auto claim and setting flag")
+    except:
+        pass
+
     if auth_with_devauth:
         try:
             display_name = response["displayName"]
             if display_name != user_document["profiles"][str(currently_selected_profile_id)]["authentication"][
                 "displayName"]:
-                client.processing_queue[ctx.author.id] = True
                 user_document["profiles"][str(currently_selected_profile_id)]["authentication"][
                     "displayName"] = display_name
+                client.processing_queue[ctx.author.id] = True
                 await replace_user_document(client, user_document)
                 del client.processing_queue[ctx.author.id]
         except:
@@ -2864,6 +2875,16 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
     try:
         success, auth_token, account_id = check_auth_error_result
     except:
+        try:
+            if auth_with_devauth:
+                user_document["auto_claim"] = None
+                user_document["profiles"][str(currently_selected_profile_id)]["authentication"]["hasExpired"] = True
+                client.processing_queue[ctx.author.id] = True
+                await replace_user_document(client, user_document)
+                del client.processing_queue[ctx.author.id]
+                logger.warning(f"Auth for {ctx.author.id} has expired, removing auto claim and setting flag")
+        except:
+            pass
         return check_auth_error_result
 
     if not success:

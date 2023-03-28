@@ -406,6 +406,7 @@
         "devauth.embed.existing.description4.enable": "To enable auto-claim for all your accounts, press the {0} **Enable Auto Claim** button",
         "devauth.embed.existing.description4.disable": "To disable auto-claim for all your accounts, press the {0} **Disable Auto Claim** button",
         "devauth.embed.existing.description5": "**Auth-Linked to:**",
+        "devauth.embed.existing.hasexpired.description": "{0} **This linked account has expired. Please unlink and relink to continue using this account.**",
         "devauth.embed.existing.processed.success.enable": "*Successfully enabled auto-claim*",
         "devauth.embed.existing.processed.success.disable": "*Successfully disabled auto-claim*",
         "devauth.slash.name": "device",

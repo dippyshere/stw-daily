@@ -236,19 +236,30 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
     except:
         flow_key = 'devauth.embed.existing.description4.enable'
 
+    try:
+        if current_profile["authentication"]["hasExpired"]:
+            expired = True
+        else:
+            expired = False
+    except:
+        expired = False
+
     happy_embed = discord.Embed(
         title=await stw.add_emoji_title(client, stw.I18n.get('devauth.embed.title', desired_lang), "pink_link"),
-        description=(f"\u200b\n"
-                     f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, currently_selected_profile_id)}\n"
-                     f"```{current_profile['friendly_name']}```\u200b\n"
-                     f"{stw.I18n.get('devauth.embed.existing.description1', desired_lang)}\n\u200b\n "
-                     f"{stw.I18n.get('devauth.embed.existing.description2', desired_lang, client.config['emojis']['library_trashcan'])}\n\u200b\n"
-                     f"{stw.I18n.get('devauth.embed.existing.description3', desired_lang, client.config['emojis']['library_floppydisc'])}\n\u200b\n"
-                     f"{stw.I18n.get(flow_key, desired_lang, client.config['emojis']['library_clock'])}\n\u200b\n"
-                     f"{stw.I18n.get('devauth.embed.existing.description5', desired_lang)}\n"
-                     f"```{current_profile['authentication']['displayName']}```\u200b"
-                     ),
+        description=f"\u200b\n"
+                    f"{stw.I18n.get('profile.embed.currentlyselected', desired_lang, currently_selected_profile_id)}\n"
+                    f"```{current_profile['friendly_name']}```\u200b\n"
+                    f"{stw.I18n.get('devauth.embed.existing.description1', desired_lang)}\n\u200b\n "
+                    f"{stw.I18n.get('devauth.embed.existing.description2', desired_lang, client.config['emojis']['library_trashcan'])}\n\u200b\n"
+                    f"{stw.I18n.get('devauth.embed.existing.description3', desired_lang, client.config['emojis']['library_floppydisc'])}\n\u200b\n"
+                    f"{stw.I18n.get(flow_key, desired_lang, client.config['emojis']['library_clock'])}\n\u200b\n",
         color=embed_colour)
+
+    if expired:
+        happy_embed.description += f"{stw.I18n.get('devauth.embed.existing.hasexpired.description', desired_lang, client.config['emojis']['warning'])}\n\u200b\n"
+    happy_embed.description += f"{stw.I18n.get('devauth.embed.existing.description5', desired_lang)}\n" \
+                               f"```{current_profile['authentication']['displayName']}```\u200b"
+
     sad_embed = await stw.set_thumbnail(client, happy_embed, "pink_link")
     neutral_embed = await stw.add_requested_footer(ctx, sad_embed, desired_lang)
 
@@ -538,6 +549,13 @@ class StolenAccountView(discord.ui.View):
         except:
             self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
             self.children[3].style = discord.ButtonStyle.green
+        try:
+            if self.user_document["profiles"][str(self.currently_selected_profile_id)]["authentication"]["hasExpired"]:
+                self.children[3].disabled = True
+            else:
+                self.children[3].disabled = False
+        except:
+            self.children[3].disabled = False
 
     async def on_timeout(self):
         """
@@ -672,6 +690,10 @@ class StolenAccountView(discord.ui.View):
                 embeds = auth_stuff[2][0]
             except:
                 embeds = [auth_stuff[2]]
+            try:
+                self.children[3].disabled = False
+            except:
+                pass
             return await interaction.edit_original_response(embeds=embeds)
         except:
             try:
