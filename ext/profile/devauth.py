@@ -686,9 +686,9 @@ class StolenAccountView(discord.ui.View):
         auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "device", "", True, False, True,
                                                           desired_lang=self.desired_lang)
         try:
-            try:
-                embeds = auth_stuff[2][0]
-            except:
+            if isinstance(auth_stuff[2], list):
+                embeds = auth_stuff[2]
+            else:
                 embeds = [auth_stuff[2]]
             try:
                 self.children[2].disabled = False
@@ -697,10 +697,10 @@ class StolenAccountView(discord.ui.View):
                 pass
             return await interaction.edit_original_response(embeds=embeds)
         except:
-            try:
-                embeds = auth_stuff[0]
-            except:
-                embeds = [auth_stuff]
+            if isinstance(auth_stuff[2], list):
+                embeds = auth_stuff[2]
+            else:
+                embeds = [auth_stuff[2]]
             return await interaction.edit_original_response(embeds=embeds)
 
         # if not self.timed_out:
