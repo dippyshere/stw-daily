@@ -2666,7 +2666,7 @@ async def create_error_embed(client: Client, ctx: Context, title: str = None, de
     return embed
 
 
-async def get_or_create_auth_session(client: Client, ctx: Context, command: str, original_auth_code: str, add_entry: bool = False, processing: bool = True, dont_send_embeds: bool = False, desired_lang: str = None) -> list[discord.Message | None, dict, list]:  # hi bye
+async def get_or_create_auth_session(client: Client, ctx: Context, command: str, original_auth_code: str, add_entry: bool = False, processing: bool = True, dont_send_embeds: bool = False, desired_lang: str = None) -> list[discord.Message | discord.Embed | None, dict, list]:  # hi bye
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 

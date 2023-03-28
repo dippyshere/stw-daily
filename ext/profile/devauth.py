@@ -668,9 +668,17 @@ class StolenAccountView(discord.ui.View):
         auth_stuff = await stw.get_or_create_auth_session(self.client, self.ctx, "device", "", True, False, True,
                                                           desired_lang=self.desired_lang)
         try:
-            return await interaction.edit_original_response(embeds=auth_stuff[2])
+            try:
+                embeds = auth_stuff[2][0]
+            except:
+                embeds = [auth_stuff[2]]
+            return await interaction.edit_original_response(embeds=embeds)
         except:
-            return await interaction.edit_original_response(embeds=auth_stuff)
+            try:
+                embeds = auth_stuff[0]
+            except:
+                embeds = [auth_stuff]
+            return await interaction.edit_original_response(embeds=embeds)
 
         # if not self.timed_out:
         #     for child in self.children:
