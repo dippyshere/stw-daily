@@ -47,7 +47,7 @@ class ColourFormatter(logging.Formatter):
         if colour:
             record.name = colour + record.name
             record.levelname = colour + record.levelname
-            record.msg = colour + record.msg
+            record.msg = colour + str(record.msg)
         return logging.Formatter.format(self, record)
 
 

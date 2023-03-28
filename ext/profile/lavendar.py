@@ -234,14 +234,14 @@ class ProfileMainView(discord.ui.View):
             select: The select menu.
             interaction: The interaction.
         """
-        self.client.processing_queue[self.user_document["user_snowflake"]] = True
-
         new_profile_selected = int(select.values[0])
         self.user_document["global"]["selected_profile"] = new_profile_selected
 
         for child in self.children:
             child.disabled = True
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         await interaction.response.edit_message(view=self)
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
         self.stop()
 
         await replace_user_document(self.client, self.user_document)
@@ -253,8 +253,6 @@ class ProfileMainView(discord.ui.View):
         profile_view = ProfileMainView(self.ctx, self.client, select_options, new_profile_selected, self.user_document,
                                        self.message, desired_lang=self.desired_lang)
         await active_view(self.client, self.ctx.author.id, profile_view)
-
-        del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
     @discord.ui.button(style=discord.ButtonStyle.grey, label="Change Name", emoji="library_person", row=1)
@@ -291,7 +289,6 @@ class ProfileMainView(discord.ui.View):
             interaction: The interaction.
         """
         # TODO: Add confirmation to this action
-        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         del self.user_document["profiles"][str(self.current_selected_profile)]
 
         for child in self.children:
@@ -317,8 +314,9 @@ class ProfileMainView(discord.ui.View):
                 self.user_document["profiles"][profile]["id"] = profile_int - 1
                 self.user_document["profiles"][str(profile_int - 1)] = self.user_document["profiles"][profile]
                 del self.user_document["profiles"][profile]
-
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         await replace_user_document(self.client, self.user_document)
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
         embed = await create_main_embed(self.ctx, self.client, new_selected, self.user_document,
                                         self.desired_lang)
         embed.description += f"\n{stw.I18n.get('profile.embed.delete', self.desired_lang, self.current_selected_profile)}\n\u200b"
@@ -328,7 +326,6 @@ class ProfileMainView(discord.ui.View):
                                        self.message, desired_lang=self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
-        del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
     @discord.ui.button(label="Edit Settings", emoji="library_gear", row=2)
@@ -431,7 +428,6 @@ class ChangeNameModal(discord.ui.Modal):
         Args:
             interaction: The interaction.
         """
-        self.client.processing_queue[self.user_document["user_snowflake"]] = True
 
         for child in self.view.children:
             child.disabled = True
@@ -440,8 +436,9 @@ class ChangeNameModal(discord.ui.Modal):
 
         # there is probably a better way to do this
         self.user_document["profiles"][str(self.cur_profile_id)]["friendly_name"] = self.children[0].value
-
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         await replace_user_document(self.client, self.user_document)
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
         embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document,
                                         self.desired_lang)
         embed.description += f"\n{stw.I18n.get('profile.embed.changename', self.desired_lang, self.cur_profile_id)}\n\u200b"
@@ -451,7 +448,6 @@ class ChangeNameModal(discord.ui.Modal):
                                        self.message, desired_lang=self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
-        del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
 
@@ -491,7 +487,6 @@ class NewProfileModal(discord.ui.Modal):
         Args:
             interaction: The interaction.
         """
-        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         self.user_document["global"]["selected_profile"] = self.cur_profile_id
 
         for child in self.view.children:
@@ -503,8 +498,9 @@ class NewProfileModal(discord.ui.Modal):
         self.user_document["profiles"][str(self.cur_profile_id)] = self.client.user_default["profiles"]["0"].copy()
         self.user_document["profiles"][str(self.cur_profile_id)]["friendly_name"] = self.children[0].value
         self.user_document["profiles"][str(self.cur_profile_id)]["id"] = self.cur_profile_id
-
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         await replace_user_document(self.client, self.user_document)
+        del self.client.processing_queue[self.user_document["user_snowflake"]]
         embed = await create_main_embed(self.ctx, self.client, self.cur_profile_id, self.user_document,
                                         self.desired_lang)
         embed.description += f"\n{stw.I18n.get('profile.embed.create', self.desired_lang, self.cur_profile_id)}\n\u200b"
@@ -514,7 +510,6 @@ class NewProfileModal(discord.ui.Modal):
                                        self.message, desired_lang=self.desired_lang)
 
         await active_view(self.client, self.ctx.author.id, profile_view)
-        del self.client.processing_queue[self.user_document["user_snowflake"]]
         await interaction.edit_original_response(embed=embed, view=profile_view)
 
 
@@ -547,12 +542,11 @@ class Profile(ext.Cog):
             if new_profile not in list(user_document["profiles"].keys()):
                 current_command = f"\n{stw.I18n.get('profile.embed.switch.nonexistent', desired_lang)}\n\u200b"
             else:
-                self.client.processing_queue[user_document["user_snowflake"]] = True
-
                 user_document["global"]["selected_profile"] = int(new_profile)
+                self.client.processing_queue[user_document["user_snowflake"]] = True
                 await replace_user_document(self.client, user_document)
-                current_command = f"\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile)}\n\u200b"
                 del self.client.processing_queue[user_document["user_snowflake"]]
+                current_command = f"\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile)}\n\u200b"
 
         current_selected_profile = user_document["global"]["selected_profile"]
 

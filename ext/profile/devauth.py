@@ -78,8 +78,6 @@ async def add_enslaved_user_accepted_license(view, interaction):
         view: The view
         interaction: The interaction
     """
-    view.client.processing_queue[view.user_document["user_snowflake"]] = True
-
     view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"]["tos_accepted"] = True
     view.user_document["profiles"][str(view.currently_selected_profile_id)]["statistics"][
         "tos_accepted_date"] = time.time_ns()  # how to get unix timestamp i forgor time.time is unix
@@ -91,6 +89,7 @@ async def add_enslaved_user_accepted_license(view, interaction):
     await interaction.response.edit_message(view=view)
     view.stop()
 
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
     await replace_user_document(view.client, view.user_document)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
@@ -644,9 +643,6 @@ class StolenAccountView(discord.ui.View):
             button: The button
             interaction: The interaction
         """
-
-        self.client.processing_queue[self.user_document["user_snowflake"]] = True
-
         for child in self.children:
             child.disabled = True
         await interaction.response.edit_message(view=self)
@@ -655,6 +651,7 @@ class StolenAccountView(discord.ui.View):
         self.currently_selected_profile_id = str(self.currently_selected_profile_id)
         self.user_document["profiles"][self.currently_selected_profile_id]["authentication"] = None
 
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         await replace_user_document(self.client, self.user_document)
         del self.client.processing_queue[self.user_document["user_snowflake"]]
 
@@ -720,7 +717,6 @@ class StolenAccountView(discord.ui.View):
             button: The button
             interaction: The interaction
         """
-        self.client.processing_queue[self.ctx.author.id] = True
         try:
             if self.user_document["auto_claim"]["enabled"]:
                 self.user_document["auto_claim"] = None
@@ -741,6 +737,7 @@ class StolenAccountView(discord.ui.View):
             button.label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
             button.style = discord.ButtonStyle.red
             result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.disable"
+        self.client.processing_queue[self.ctx.author.id] = True
         await replace_user_document(self.client, self.user_document)
         del self.client.processing_queue[self.ctx.author.id]
         self.embed.description = (
@@ -1867,8 +1864,6 @@ async def select_change_profile(view, select, interaction, desired_lang):
         interaction: The interaction
         desired_lang: The desired language
     """
-    view.client.processing_queue[view.user_document["user_snowflake"]] = True
-
     new_profile_selected = int(select.values[0])
     view.user_document["global"]["selected_profile"] = new_profile_selected
 
@@ -1877,6 +1872,7 @@ async def select_change_profile(view, select, interaction, desired_lang):
     await interaction.response.edit_message(view=view)
     view.stop()
 
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
     await replace_user_document(view.client, view.user_document)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
@@ -1918,8 +1914,6 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
         response_json: The response json
         desired_lang: The desired language
     """
-
-    client.processing_queue[user_document["user_snowflake"]] = True
     currently_selected_profile_id = user_document["global"]["selected_profile"]
 
     stolen_account = await stw.device_auth_request(client, response_json["account_id"], response_json["access_token"])
@@ -1932,9 +1926,11 @@ async def dont_sue_me_please_im_sorry_forgive_me(client, interaction, user_docum
         asyncio.to_thread(encrypt_user_data, current_authentication, user_information, user_document))
 
     user_document["profiles"][str(currently_selected_profile_id)]["authentication"] = user_information[0]
-    await replace_user_document(client, user_document)
 
+    client.processing_queue[user_document["user_snowflake"]] = True
+    await replace_user_document(client, user_document)
     del client.processing_queue[user_document["user_snowflake"]]
+
     await handle_dev_auth(client, ctx, interaction, user_document, desired_lang=desired_lang)
 
 

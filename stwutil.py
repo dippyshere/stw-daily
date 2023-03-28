@@ -759,11 +759,12 @@ async def get_token_devauth(client: discord.Client, user_document: dict, game: s
         Exception: If the game is not found
     """
 
-    client.processing_queue[user_document["user_snowflake"]] = True
     currently_selected_profile_id = user_document["global"]["selected_profile"]
     snowflake = user_document["user_snowflake"]
 
     h = get_game_headers(game)
+
+    client.processing_queue[user_document["user_snowflake"]] = True
 
     if auth_info_thread is None:
         auth_info_thread = await asyncio.gather(asyncio.to_thread(decrypt_user_data, snowflake,
@@ -772,6 +773,7 @@ async def get_token_devauth(client: discord.Client, user_document: dict, game: s
                                                                       "authentication"]))
 
     del client.processing_queue[user_document["user_snowflake"]]
+
     dev_auth = auth_info_thread[0]
     d = {
         "grant_type": "device_auth",

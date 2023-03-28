@@ -148,8 +148,6 @@ async def sub_settings_profile_select_change(view, select, interaction, desired_
         interaction: The interaction that the user did.
         desired_lang: The desired language.
     """
-    view.client.processing_queue[view.user_document["user_snowflake"]] = True
-
     new_profile_selected = int(select.values[0])
     view.user_document["global"]["selected_profile"] = new_profile_selected
 
@@ -157,8 +155,9 @@ async def sub_settings_profile_select_change(view, select, interaction, desired_
         child.disabled = True
     await interaction.response.edit_message(view=view)
     view.stop()
-
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
     await replace_user_document(view.client, view.user_document)
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
     embed.fields[0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
@@ -166,8 +165,6 @@ async def sub_settings_profile_select_change(view, select, interaction, desired_
                                                                   view.selected_setting_index, view.message,
                                                                   desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, sub_view)
-
-    del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=sub_view)
 
 
@@ -181,8 +178,6 @@ async def settings_profile_select_change(view, select, interaction, desired_lang
         interaction: The interaction that the user did.
         desired_lang: The desired language.
     """
-    view.client.processing_queue[view.user_document["user_snowflake"]] = True
-
     new_profile_selected = int(select.values[0])
     view.user_document["global"]["selected_profile"] = new_profile_selected
 
@@ -191,13 +186,14 @@ async def settings_profile_select_change(view, select, interaction, desired_lang
     await interaction.response.edit_message(view=view)
     view.stop()
 
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
     await replace_user_document(view.client, view.user_document)
+    del view.client.processing_queue[view.user_document["user_snowflake"]]
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
     embed.fields[0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
                                            view.message, desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, new_view)
-    del view.client.processing_queue[view.user_document["user_snowflake"]]
     await interaction.edit_original_response(embed=embed, view=new_view)
 
 
@@ -230,16 +226,14 @@ async def edit_current_setting_select(view, select, interaction, desired_lang):
     selected_setting = view.selected_setting
     setting_information = view.client.default_settings[selected_setting]
 
-    view.client.processing_queue[view.user_document["user_snowflake"]] = True
-
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
     view.stop()
 
     view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting] = select.values[0]
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
     await replace_user_document(view.client, view.user_document)
-
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
     current_value = view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting]
@@ -269,16 +263,14 @@ async def edit_current_setting_bool(view, interaction, set_value, desired_lang):
     selected_setting = view.selected_setting
     setting_information = view.client.default_settings[selected_setting]
 
-    view.client.processing_queue[view.user_document["user_snowflake"]] = True
-
     for child in view.children:
         child.disabled = True
     await interaction.response.edit_message(view=view)
     view.stop()
 
     view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting] = set_value
+    view.client.processing_queue[view.user_document["user_snowflake"]] = True
     await replace_user_document(view.client, view.user_document)
-
     del view.client.processing_queue[view.user_document["user_snowflake"]]
 
     current_value = view.user_document["profiles"][str(view.selected_profile)]["settings"][view.selected_setting]
@@ -335,7 +327,6 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         Args:
             interaction: The interaction that the user did.
         """
-        self.client.processing_queue[self.user_document["user_snowflake"]] = True
 
         for child in self.view.children:
             child.disabled = True
@@ -351,7 +342,9 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         if check_result[1] is not False:
             selected_profile = self.user_document["global"]["selected_profile"]
             self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = check_result[0]
+            self.client.processing_queue[self.user_document["user_snowflake"]] = True
             await replace_user_document(view.client, view.user_document)
+            del view.client.processing_queue[view.user_document["user_snowflake"]]
             if self.view.selected_setting == "language" and stw.I18n.is_lang(check_result[0]):
                 self.desired_lang = self.user_document["profiles"][str(selected_profile)]["settings"]["language"]
             if self.view.selected_setting == "language" and check_result[0] == "auto":
@@ -383,8 +376,6 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
                 except:
                     guild_language = None
                 self.desired_lang = interaction_language or guild_language or "en"
-
-        del view.client.processing_queue[view.user_document["user_snowflake"]]
 
         embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document,
                                        self.desired_lang)
@@ -1180,20 +1171,16 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             setting = False
 
         if str(profile) in list(user_profile["profiles"].keys()):
-            client.processing_queue[user_snowflake] = True
-
             new_profile_selected = int(profile)
             user_profile["global"]["selected_profile"] = new_profile_selected
+            client.processing_queue[user_snowflake] = True
             await replace_user_document(client, user_profile)
-
             del client.processing_queue[user_snowflake]
             happy_message += stw.I18n.get('settings.change2.1', desired_lang, profile)
         elif profile is not None:
             profile = False
 
         if value is not None and value is not False and profile is not None and profile is not False and setting is not None and setting is not False:
-            client.processing_queue[user_snowflake] = True
-
             if isinstance(client.default_settings[setting]['default'], bool):
                 check_function = check_bool
             else:
@@ -1246,15 +1233,14 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                         except:
                             guild_language = None
                         desired_lang = interaction_language or guild_language or "en"
-
+                client.processing_queue[user_snowflake] = True
                 await replace_user_document(client, user_profile)
+                del client.processing_queue[user_snowflake]
 
             if check_result[1] is not False:
                 happy_message += stw.I18n.get('settings.change2.2', desired_lang, str(check_result[0]))
             else:
                 value = False
-
-            del client.processing_queue[user_snowflake]
 
             if value is not False:
                 embed = await sub_setting_page(setting, client, ctx, user_profile, desired_lang)
