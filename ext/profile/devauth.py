@@ -551,10 +551,13 @@ class StolenAccountView(discord.ui.View):
             self.children[3].style = discord.ButtonStyle.green
         try:
             if self.user_document["profiles"][str(self.currently_selected_profile_id)]["authentication"]["hasExpired"]:
+                self.children[2].disabled = True
                 self.children[3].disabled = True
             else:
+                self.children[2].disabled = False
                 self.children[3].disabled = False
         except:
+            self.children[2].disabled = False
             self.children[3].disabled = False
 
     async def on_timeout(self):
@@ -691,6 +694,7 @@ class StolenAccountView(discord.ui.View):
             except:
                 embeds = [auth_stuff[2]]
             try:
+                self.children[2].disabled = False
                 self.children[3].disabled = False
             except:
                 pass
