@@ -497,6 +497,8 @@ stw_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/
 br_news = "https://fortnite-api.com/v2/news/br?language={0}"
 br_news_alt = "https://fortniteapi.io/v1/news?lang={0}&type=br"
 uefn_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-editor?lang={0}"
+cr_blog_news = "https://create.fortnite.com/_next/data/{0}/{1}/news.json?team=personal"
+fn_blog_news = "https://www.fortnite.com/api/blog/getPosts?category=&postsPerPage=0&offset=0&locale={0}&rootPageSlug=blog"
 pve_info = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
 bb_profile = "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId={}" # this is so sad 😿
 

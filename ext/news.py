@@ -452,6 +452,22 @@ class News(ext.Cog):
         except:
             uefn_news = {}
             uefn_pages_length = 0
+        try:
+            crblog_news_req = await stw.get_cr_blogpost_news(self.client, desired_lang)
+            crblog_news_json = await crblog_news_req.json(content_type=None)
+            crblog_news = crblog_news_json["pageProps"]["blogs"]
+            crblog_pages_length = len(crblog_news)
+        except:
+            crblog_news = {}
+            crblog_pages_length = 0
+        try:
+            fnblog_news_req = await stw.get_fn_blogpost_news(self.client, desired_lang)
+            fnblog_news_json = await fnblog_news_req.json(content_type=None)
+            fnblog_news = fnblog_news_json["blogList"]
+            fnblog_pages_length = len(fnblog_news)
+        except:
+            fnblog_news = {}
+            fnblog_pages_length = 0
 
         news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
                              mode, load_msg, desired_lang, uefn_news, uefn_pages_length)

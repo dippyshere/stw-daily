@@ -1889,6 +1889,55 @@ async def get_uefn_news(client: Client, locale: str = "en") -> aiohttp.client_re
     return await client.stw_session.get(endpoint.format(locale))
 
 
+async def get_cr_blogpost_news(client: Client, locale: str = "en") -> aiohttp.client_reqrep.ClientResponse:
+    """
+    Gets the news for create.fortnite.com blogs
+
+    Args:
+        client: The client
+        locale: The locale to get the news for
+
+    Returns:
+        The news for uefn from epic games
+    """
+    logger.debug(f"Getting create.fortnite.com blogposts for {locale}")
+    endpoint = client.config["endpoints"]["cr_blog_news"]
+    key = os.environ["STW_CRBLOG_KEY"]
+    if locale == "zh-CHS":
+        locale = "zh-CN"
+    elif locale == "zh-CHT":
+        locale = "zh-CN"  # no traditional unfortunately
+    elif locale == "en-UwU" or locale == "en-TwT":
+        locale = "en"
+    if locale == "en":
+        locale = "en-US"
+    return await client.stw_session.get(endpoint.format(key, locale))
+
+
+async def get_fn_blogpost_news(client: Client, locale: str = "en") -> aiohttp.client_reqrep.ClientResponse:
+    """
+    Gets the news for fortnite.com blogs
+
+    Args:
+        client: The client
+        locale: The locale to get the news for
+
+    Returns:
+        The news for uefn from epic games
+    """
+    logger.debug(f"Getting create.fortnite.com blogposts for {locale}")
+    endpoint = client.config["endpoints"]["fn_blog_news"]
+    if locale == "zh-CHS":
+        locale = "zh-CN"
+    elif locale == "zh-CHT":
+        locale = "zh-CN"  # no traditional unfortunately
+    elif locale == "en-UwU" or locale == "en-TwT":
+        locale = "en"
+    if locale == "en":
+        locale = "en-US"
+    return await client.stw_session.get(endpoint.format(locale))
+
+
 async def create_news_page(self, ctx: Context, news_json: dict, current: int, total: int, desired_lang: str = "en") -> discord.Embed:
     """
     Creates a news page embed
