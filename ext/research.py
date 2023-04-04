@@ -23,7 +23,7 @@ import stwutil as stw
 logger = logging.getLogger(__name__)
 
 
-@AsyncLRU()
+@AsyncLRU(maxsize=16)
 async def add_fort_fields(client, embed, current_levels, desired_lang, extra_white_space=False):
     """
     Add the fields to the embed for the fort stats.

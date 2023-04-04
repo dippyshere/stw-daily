@@ -20,6 +20,7 @@ from ext.profile.bongodb import get_user_document
 logger = logging.getLogger(__name__)
 
 
+@functools.lru_cache(maxsize=16)
 def get_plural_form(count: int) -> str:
     """
     Gets the plural form of a language
@@ -66,7 +67,7 @@ class I18n:
         with open(f"lang/i18n.json", "rb") as f:
             self.i18n_json = orjson.loads(f.read())
 
-    @functools.lru_cache(maxsize=1024)
+    @functools.lru_cache(maxsize=64)
     def get(self, key: str, lang: str, *args) -> str:  # hiiiiiiiiiiiiiiiii
         """
         Gets a string from the i18n json file
@@ -132,7 +133,7 @@ class I18n:
             logger.debug(f"Returning {string} for key {key} in language {lang} (key: {key}), error occurred: {KeyError}")
             return string
 
-    @functools.cache
+    @functools.lru_cache(maxsize=16)
     def get_langs(self) -> List[str]:
         """
         Gets a list of the available languages
@@ -144,7 +145,7 @@ class I18n:
         logger.debug(f"Returning {list(self.i18n_json.keys())} for get_langs")
         return list(self.i18n_json.keys())
 
-    @functools.cache
+    @functools.lru_cache(maxsize=16)
     def get_langs_str(self) -> str:
         """
         Gets a string of the available languages
@@ -156,6 +157,7 @@ class I18n:
         logger.debug(f"Returning {', '.join(self.get_langs())} for get_langs_str")
         return ", ".join(self.get_langs())
 
+    @functools.lru_cache(maxsize=16)
     def fmt_num(self, num: int, lang: str) -> str:
         """
         Formats a number to a string
@@ -180,7 +182,7 @@ class I18n:
             except:
                 return str(num)
 
-    @functools.cache
+    @functools.lru_cache(maxsize=16)
     def is_lang(self, lang: str) -> bool:
         """
         Checks if a language is valid
