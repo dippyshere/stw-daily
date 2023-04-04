@@ -5,6 +5,7 @@ https://github.com/dippyshere/stw-daily
 
 This file is a custom system for i18n (internationalisation) for STW Daily using a single JSON file
 """
+import datetime
 import re
 from typing import List
 import logging
@@ -274,6 +275,10 @@ class I18n:
                 profile_language = None
         except:
             profile_language = None
+
+        if profile_language is None:
+            if datetime.datetime.utcnow().month == 4 and datetime.datetime.utcnow().day == 1:
+                return "en-TwT"
 
         # return the desired language
         logger.debug(f"Returning {profile_language or interaction_language or guild_language or 'en'} for get_desired_lang (profile_language: {profile_language}, interaction_language: {interaction_language}, guild_language: {guild_language})")
