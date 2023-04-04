@@ -237,8 +237,8 @@ class Daily(ext.Cog):
             else:
                 embed = discord.Embed(
                     title=await stw.add_emoji_title(self.client, stw.I18n.get('generic.success', desired_lang), "checkmark"),
-                    description=f"\u200b\n{stw.I18n.get('daily.embed.claimed.umpcoming.channelalert1.plural' if len(items) > 1 else 'daily.embed.claimed.umpcoming.channelalert1.singular', desired_lang, '<:Check:812201301843902474>')}"
-                                f"\n\u200b\n{self.emojis['check_mark']} {stw.I18n.get('daily.embed.claimed.umpcoming.channelalert2', desired_lang, '<#757768833946877992>')}\n\u200b",
+                    description=f"\u200b\n{stw.I18n.get('daily.embed.claimed.upcoming.channelalert1.plural' if len(items) > 1 else 'daily.embed.claimed.upcoming.channelalert1.singular', desired_lang, '<:Check:812201301843902474>')}"
+                                f"\n\u200b\n{self.emojis['check_mark']} {stw.I18n.get('daily.embed.claimed.upcoming.channelalert2', desired_lang, '<#757768833946877992>')}\n\u200b",
                     colour=succ_colour)
 
             if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
