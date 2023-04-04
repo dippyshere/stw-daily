@@ -26,7 +26,7 @@ from PIL import Image, ImageDraw, ImageFont
 import asyncio
 import io
 import orjson
-from cache import AsyncLRU
+# from cache import AsyncLRU
 import owoify
 from owoify.owoify import Owoness
 
@@ -483,7 +483,7 @@ async def add_requested_footer(ctx: Context | discord.ApplicationContext, embed:
     return embed
 
 
-@AsyncLRU(maxsize=32)
+# @AsyncLRU(maxsize=32)
 async def add_emoji_title(client: Client, title: str, emoji: str) -> str:
     """
     Adds emojis surrounding the title of an embed
@@ -507,7 +507,7 @@ async def add_emoji_title(client: Client, title: str, emoji: str) -> str:
     return f"{emoji}  {title}  {emoji}"
 
 
-@AsyncLRU(maxsize=32)
+# @AsyncLRU(maxsize=32)
 async def split_emoji_title(client: Client, title: str, emoji_1: str, emoji_2: str) -> str:
     """
     Adds two separate emojis surrounding the title of an embed
@@ -537,7 +537,6 @@ async def split_emoji_title(client: Client, title: str, emoji_1: str, emoji_2: s
     return f"{emoji_1}  {title}  {emoji_2}"
 
 
-@AsyncLRU(maxsize=4)
 async def set_thumbnail(client: discord.Client, embed: discord.Embed, thumb_type: str) -> discord.Embed:
     """
     sets the thunbnail of an embed from the config key
@@ -2108,7 +2107,7 @@ async def set_embed_image(embed: discord.Embed, image_url: str) -> discord.Embed
     return embed.set_image(url=image_url)
 
 
-@AsyncLRU(maxsize=32)
+# @AsyncLRU(maxsize=32)
 async def resolve_vbuck_source(vbuck_source: str, desired_lang: str) -> Tuple[str, str]:
     """
     Resolves the vbuck source to a user friendly name and emoji
@@ -2157,7 +2156,7 @@ async def calculate_vbucks(item: dict) -> int:
     return vbucks
 
 
-@AsyncLRU(maxsize=32)
+# @AsyncLRU(maxsize=32)
 async def get_banner_colour(colour: str, colour_format: str = "hex", colour_type: str = "Primary") -> str | tuple[
     int, ...] | None:
     """
@@ -3398,7 +3397,7 @@ async def strip_string(string: str) -> str:
     return re.sub("[^0-9a-zA-Z]+", "", string)
 
 
-@AsyncLRU(maxsize=16)
+# @AsyncLRU(maxsize=16)
 async def slash_name(client: Client, command: Command) -> str | Command:
     """
     Tries to find the name of a slash command from the command's normal name
@@ -3420,7 +3419,7 @@ async def slash_name(client: Client, command: Command) -> str | Command:
     return command
 
 
-@AsyncLRU(maxsize=32)
+# @AsyncLRU(maxsize=32)
 async def slash_mention_string(client: Client, command: Command, return_placeholder: bool = False) -> str | None:
     """
     Returns a string with the slash command and mention
@@ -3645,7 +3644,7 @@ async def generate_power(client: discord.Client, embed: discord.Embed, power_lev
     return embed, file
 
 
-@AsyncLRU(maxsize=64)
+# @AsyncLRU(maxsize=64)
 async def research_stat_rating(stat: str, level: int) -> tuple[float, float, float]:
     """
     Calculates the % stat buff given to player + team from a research level
@@ -3788,7 +3787,7 @@ def calculate_vbuck_goals(current_total: int, current_day: int, target: int) -> 
     return current_total, f"<t:{round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)}:R>"
 
 
-@AsyncLRU(maxsize=8)
+# @AsyncLRU(maxsize=8)
 async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationContext, total: int = 0,
                             timestamp: str = "<t:0:R>", assert_value: bool = True, current_total: int = None,
                             vbucks: bool = True, target: str = "", desired_lang: str = "en",
