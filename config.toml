@@ -408,6 +408,8 @@ lock = "<:T_UI_ICON_SINGLE_LOCKrealesrganx:1084079908986290306>"
 keycard2 = "<:EventKeycardrealesrganx4plus:1084080116008751127>"
 uhmactually = "<:stwuhmactually:1084406386177364030>"
 uefn = "<:uefn:1089089854903697438>"
+crblog = "<:crblog:1092728119632347176>"
+fnblog = "<:fortfavicon:1092728116130095245>"
 
 [profile_settings]
 max_friendly_name_length = 100
@@ -485,21 +487,21 @@ profile_lavendar = [217, 146, 255]
 # endpoints for requests to be sent to
 [endpoints]
 token = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token"
-profile = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId={}"
+profile = "https://fngw-mcp-gc-livefn.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId={}"
 account = "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}"
 kill_token = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/sessions/kill/{}"
 exchange = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
 device_auth = "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
 verify = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/verify"
-store = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
+store = "https://fngw-mcp-gc-livefn.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
 news = "https://prm-dialogue-public-api-prod.edea.live.use1a.on.epicgames.com/api/v1/fortnite-br/surfaces/motd/target"
 stw_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews?lang={0}"
 br_news = "https://fortnite-api.com/v2/news/br?language={0}"
 br_news_alt = "https://fortniteapi.io/v1/news?lang={0}&type=br"
 uefn_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-editor?lang={0}"
-cr_blog_news = "https://create.fortnite.com/_next/data/{0}/{1}/news.json?team=personal"
-fn_blog_news = "https://www.fortnite.com/api/blog/getPosts?category=&postsPerPage=0&offset=0&locale={0}&rootPageSlug=blog"
-pve_info = "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
+cr_blog_news = "https://create.fortnite.com/api/cms/v1/articles"
+fn_blog_news = "https://www.fortnite.com/api/blog/getPosts?category=&postsPerPage=2000&offset=0&locale={0}&rootPageSlug=blog"
+pve_info = "https://fngw-mcp-gc-livefn.ol.epicgames.com/fortnite/api/game/v2/world/info"
 bb_profile = "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId={}" # this is so sad 😿
 
 

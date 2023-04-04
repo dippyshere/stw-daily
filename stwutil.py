@@ -1986,14 +1986,54 @@ async def create_news_page(self, ctx: Context, news_json: dict, current: int, to
         the constructed news embed
     """
     generic = self.client.colours["generic_blue"]
+    embed = discord.Embed(
+        title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
+        description="",
+        colour=generic)
     try:
-        nel = '\n'
-        embed = discord.Embed(
-            title=await add_emoji_title(self.client, I18n.get("util.news.embed.title", desired_lang), "bang"),
-            description=f"\u200b\n{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n"
-                        f"**{news_json[current - 1]['title'] if not desired_lang in ['en-TwT', 'en-UwU'] else owoify_text(news_json[current - 1]['title'])}**"
-                        f"{((nel + news_json[current - 1]['body']) if not desired_lang in ['en-TwT', 'en-UwU'] else owoify_text(nel + news_json[current - 1]['body'])) if (news_json[current - 1]['body'].lower() != news_json[current - 1]['title'].lower()) else ''}",
-            colour=generic)
+        try:
+            if news_json[current - 1]["body"].lower() != news_json[current - 1]["title"].lower():
+                if desired_lang not in ['en-TwT', 'en-UwU']:
+                    embed.description = f"\u200b\n" \
+                                        f"{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n" \
+                                        f"**{news_json[current - 1]['title']}**\n" \
+                                        f"{news_json[current - 1]['body']}"
+                else:
+                    embed.description = f"\u200b\n" \
+                                        f"{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n" \
+                                        f"**{owoify_text(news_json[current - 1]['title'])}**\n" \
+                                        f"{owoify_text(news_json[current - 1]['body'])}"
+            else:
+                raise Exception
+        except:
+            try:
+                meta_tags = news_json[current - 1]["_metaTags"]
+                og_description = meta_tags[meta_tags.index("og:description"):]
+                og_description = og_description[og_description.index("content"):]
+                og_description = og_description[og_description.index('"') + 1:]
+                og_description = og_description[:og_description.index('"')]
+                if og_description.lower() != news_json[current - 1]["title"].lower():
+                    if desired_lang not in ['en-TwT', 'en-UwU']:
+                        embed.description = f"\u200b\n" \
+                                            f"{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n" \
+                                            f"**{news_json[current - 1]['title']}**\n" \
+                                            f"{og_description}"
+                    else:
+                        embed.description = f"\u200b\n" \
+                                            f"{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n" \
+                                            f"**{owoify_text(news_json[current - 1]['title'])}**\n" \
+                                            f"{owoify_text(og_description)}"
+                else:
+                    raise Exception
+            except:
+                if desired_lang not in ['en-TwT', 'en-UwU']:
+                    embed.description = f"\u200b\n" \
+                                        f"{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n" \
+                                        f"**{news_json[current - 1]['title']}**"
+                else:
+                    embed.description = f"\u200b\n" \
+                                        f"{I18n.get('util.news.embed.description', desired_lang, current, total)}\u200b\n" \
+                                        f"**{owoify_text(news_json[current - 1]['title'])}**"
     except:
         logger.warning(f"News page {current} is missing from the news json")
         embed = discord.Embed(
@@ -2005,7 +2045,10 @@ async def create_news_page(self, ctx: Context, news_json: dict, current: int, to
 
     # set embed image
     try:
-        embed = await set_embed_image(embed, news_json[current - 1]["image"])
+        try:
+            embed = await set_embed_image(embed, news_json[current - 1]["shareImage"])
+        except:
+            embed = await set_embed_image(embed, news_json[current - 1]["image"])
     except:
         logger.warning(f"News page {current} is missing an image from the news json")
         embed = await set_embed_image(embed, self.client.config["thumbnails"]["placeholder"])

@@ -20,7 +20,8 @@ class NewsView(discord.ui.View):
     """
 
     def __init__(self, client, author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length, mode, og_msg,
-                 desired_lang, uefn_news, uefn_pages_length):
+                 desired_lang, uefn_news, uefn_pages_length, crblog_news, crblog_pages_length, fnblog_news,
+                 fnblog_pages_length):
         super().__init__(timeout=480.0)
         self.client = client
         self.ctx = ctx
@@ -36,13 +37,19 @@ class NewsView(discord.ui.View):
         self.desired_lang = desired_lang
         self.uefn_news = uefn_news
         self.uefn_pages_length = uefn_pages_length
+        self.crblog_news = crblog_news
+        self.crblog_pages_length = crblog_pages_length
+        self.fnblog_news = fnblog_news
+        self.fnblog_pages_length = fnblog_pages_length
 
         self.button_emojis = {
             'prev': self.client.config["emojis"]["left_icon"],
             'next': self.client.config["emojis"]['right_icon'],
             'stw': self.client.config["emojis"]['stw_box'],
             'br': self.client.config["emojis"]['bp_icon'],
-            'uefn': self.client.config["emojis"]['uefn']
+            'uefn': self.client.config["emojis"]['uefn'],
+            'crblog': self.client.config["emojis"]['crblog'],
+            'fnblog': self.client.config["emojis"]['fnblog']
         }
 
         self.children = list(map(self.map_button_emojis, self.children))
@@ -51,11 +58,15 @@ class NewsView(discord.ui.View):
         self.children[2].label = stw.I18n.get("news.view.button.stw", self.desired_lang)
         self.children[3].label = stw.I18n.get("news.view.button.br", self.desired_lang)
         self.children[4].label = stw.I18n.get("news.view.button.uefn", self.desired_lang)
+        self.children[5].label = stw.I18n.get("news.view.button.crblog", self.desired_lang)
+        self.children[6].label = stw.I18n.get("news.view.button.fnblog", self.desired_lang)
 
         if self.mode in ["stw", "Save the World"]:
             self.children[2].disabled = True
             self.children[3].disabled = False
             self.children[4].disabled = False
+            self.children[5].disabled = False
+            self.children[6].disabled = False
             if self.stw_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
@@ -64,6 +75,8 @@ class NewsView(discord.ui.View):
             self.children[2].disabled = False
             self.children[3].disabled = True
             self.children[4].disabled = False
+            self.children[5].disabled = False
+            self.children[6].disabled = False
             if self.br_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
@@ -72,7 +85,30 @@ class NewsView(discord.ui.View):
             self.children[2].disabled = False
             self.children[3].disabled = False
             self.children[4].disabled = True
+            self.children[5].disabled = False
+            self.children[6].disabled = False
             if self.uefn_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+
+        if self.mode in ["cr", "creative", "create", "create.fortnite.com", "crblog", "cr blog", "creative blog",
+                         "Fortnite Creative Blogposts"]:
+            self.children[2].disabled = False
+            self.children[3].disabled = False
+            self.children[4].disabled = False
+            self.children[5].disabled = True
+            self.children[6].disabled = False
+            if self.crblog_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+
+        if self.mode in ["fn", "fnblog", "fn blog", "fortnite blog", "Fortnite Blogposts", "fortnite.com"]:
+            self.children[2].disabled = False
+            self.children[3].disabled = False
+            self.children[4].disabled = False
+            self.children[5].disabled = False
+            self.children[6].disabled = True
+            if self.fnblog_pages_length == 0:
                 self.children[0].disabled = True
                 self.children[1].disabled = True
 
@@ -108,7 +144,7 @@ class NewsView(discord.ui.View):
         #     embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
         for button in self.children:
             try:
-                if button.link is None:
+                if button.emoji is None:
                     button.disabled = True
             except:
                 button.disabled = True
@@ -145,17 +181,17 @@ class NewsView(discord.ui.View):
             try:
                 if self.stw_news[self.page - 1]["link"] is not None:
                     try:
-                        self.remove_item(self.children[5])
+                        self.remove_item(self.children[7])
                     except:
                         pass
                     self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
                                                     style=discord.ButtonStyle.link,
                                                     url=self.stw_news[self.page - 1]["link"], row=3))
                 else:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
             except:
                 try:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
                 except:
                     pass
         elif self.mode in ["uefn", "Unreal Editor Fortnite", "Unreal Editor for Fortnite", "Creative 2.0"]:
@@ -174,17 +210,78 @@ class NewsView(discord.ui.View):
             try:
                 if self.uefn_news[self.page - 1]["link"] is not None:
                     try:
-                        self.remove_item(self.children[5])
+                        self.remove_item(self.children[7])
                     except:
                         pass
                     self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
                                                     style=discord.ButtonStyle.link,
                                                     url=self.uefn_news[self.page - 1]["link"], row=3))
                 else:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
             except:
                 try:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
+                except:
+                    pass
+        elif self.mode in ["cr", "creative", "create", "create.fortnite.com", "crblog", "cr blog", "creative blog",
+                           "Fortnite Creative Blogposts"]:
+            try:
+                self.page = ((self.page - 1) % self.crblog_pages_length) + 1
+            except:
+                self.page = 1
+            if self.crblog_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.crblog_news, self.page, self.crblog_pages_length,
+                                               self.desired_lang)
+            try:
+                if self.crblog_news[self.page - 1]["slug"] is not None:
+                    try:
+                        self.remove_item(self.children[7])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=f'https://create.fortnite.com/news/{self.crblog_news[self.page - 1]["slug"]}?team=personal',
+                                                    row=3))
+                else:
+                    self.remove_item(self.children[7])
+            except:
+                try:
+                    self.remove_item(self.children[7])
+                except:
+                    pass
+        elif self.mode in ["fn", "fnblog", "fn blog", "fortnite blog", "Fortnite Blogposts", "fortnite.com"]:
+            try:
+                self.page = ((self.page - 1) % self.fnblog_pages_length) + 1
+            except:
+                self.page = 1
+            if self.fnblog_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.fnblog_news, self.page, self.fnblog_pages_length,
+                                               self.desired_lang)
+            try:
+                if self.fnblog_news[self.page - 1]["slug"] is not None:
+                    try:
+                        self.remove_item(self.children[7])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=f'https://www.fortnite.com/news/{self.fnblog_news[self.page - 1]["slug"]}',
+                                                    row=3))
+                else:
+                    self.remove_item(self.children[7])
+            except:
+                try:
+                    self.remove_item(self.children[7])
                 except:
                     pass
         else:
@@ -203,17 +300,17 @@ class NewsView(discord.ui.View):
             try:
                 if self.br_news[self.page - 1]["link"] is not None:
                     try:
-                        self.remove_item(self.children[5])
+                        self.remove_item(self.children[7])
                     except:
                         pass
                     self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
                                                     style=discord.ButtonStyle.link,
                                                     url=self.br_news[self.page - 1]["link"], row=3))
                 else:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
             except:
                 try:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
                 except:
                     pass
         await interaction.response.edit_message(embed=embed, view=self)
@@ -244,17 +341,17 @@ class NewsView(discord.ui.View):
             try:
                 if self.stw_news[self.page - 1]["link"] is not None:
                     try:
-                        self.remove_item(self.children[5])
+                        self.remove_item(self.children[7])
                     except:
                         pass
                     self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
                                                     style=discord.ButtonStyle.link,
                                                     url=self.stw_news[self.page - 1]["link"], row=3))
                 else:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
             except:
                 try:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
                 except:
                     pass
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
@@ -262,6 +359,8 @@ class NewsView(discord.ui.View):
             self.children[2].disabled = True
             self.children[3].disabled = False
             self.children[4].disabled = False
+            self.children[5].disabled = False
+            self.children[6].disabled = False
         elif mode in ["uefn", "Unreal Editor Fortnite", "Unreal Editor for Fortnite", "Creative 2.0"]:
             self.mode = "uefn"
             self.page = 1
@@ -276,17 +375,17 @@ class NewsView(discord.ui.View):
             try:
                 if self.uefn_news[self.page - 1]["link"] is not None:
                     try:
-                        self.remove_item(self.children[5])
+                        self.remove_item(self.children[7])
                     except:
                         pass
                     self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
                                                     style=discord.ButtonStyle.link,
                                                     url=self.uefn_news[self.page - 1]["link"], row=3))
                 else:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
             except:
                 try:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
                 except:
                     pass
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
@@ -294,6 +393,79 @@ class NewsView(discord.ui.View):
             self.children[2].disabled = False
             self.children[3].disabled = False
             self.children[4].disabled = True
+            self.children[5].disabled = False
+            self.children[6].disabled = False
+        elif mode in ["cr", "creative", "create", "create.fortnite.com", "crblog", "cr blog", "creative blog",
+                      "Fortnite Creative Blogposts"]:
+            self.mode = "crblog"
+            self.page = 1
+            if self.crblog_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.crblog_news, self.page, self.crblog_pages_length,
+                                               self.desired_lang)
+            try:
+                if self.crblog_news[self.page - 1]["slug"] is not None:
+                    try:
+                        self.remove_item(self.children[7])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=f'https://create.fortnite.com/news/{self.crblog_news[self.page - 1]["slug"]}?team=personal',
+                                                    row=3))
+                else:
+                    self.remove_item(self.children[7])
+            except:
+                try:
+                    self.remove_item(self.children[7])
+                except:
+                    pass
+            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            # embed = await stw.add_requested_footer(self.ctx, embed)
+            self.children[2].disabled = False
+            self.children[3].disabled = False
+            self.children[4].disabled = False
+            self.children[5].disabled = True
+            self.children[6].disabled = False
+        elif mode in ["fn", "fnblog", "fn blog", "fortnite blog", "Fortnite Blogposts", "fortnite.com"]:
+            self.mode = "fnblog"
+            self.page = 1
+            if self.fnblog_pages_length == 0:
+                self.children[0].disabled = True
+                self.children[1].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.children[1].disabled = False
+            embed = await stw.create_news_page(self, self.ctx, self.fnblog_news, self.page, self.fnblog_pages_length,
+                                               self.desired_lang)
+            try:
+                if self.fnblog_news[self.page - 1]["slug"] is not None:
+                    try:
+                        self.remove_item(self.children[7])
+                    except:
+                        pass
+                    self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
+                                                    style=discord.ButtonStyle.link,
+                                                    url=f'https://www.fortnite.com/news/{self.fnblog_news[self.page - 1]["slug"]}',
+                                                    row=3))
+                else:
+                    self.remove_item(self.children[7])
+            except:
+                try:
+                    self.remove_item(self.children[7])
+                except:
+                    pass
+            # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
+            # embed = await stw.add_requested_footer(self.ctx, embed)
+            self.children[2].disabled = False
+            self.children[3].disabled = False
+            self.children[4].disabled = False
+            self.children[5].disabled = False
+            self.children[6].disabled = True
         else:
             self.mode = "br"
             self.page = 1
@@ -308,17 +480,17 @@ class NewsView(discord.ui.View):
             try:
                 if self.br_news[self.page - 1]["link"] is not None:
                     try:
-                        self.remove_item(self.children[5])
+                        self.remove_item(self.children[7])
                     except:
                         pass
                     self.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", self.desired_lang),
                                                     style=discord.ButtonStyle.link,
                                                     url=self.br_news[self.page - 1]["link"], row=3))
                 else:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
             except:
                 try:
-                    self.remove_item(self.children[5])
+                    self.remove_item(self.children[7])
                 except:
                     pass
             # embed = await stw.set_thumbnail(self.client, embed, "newspaper")
@@ -326,6 +498,8 @@ class NewsView(discord.ui.View):
             self.children[2].disabled = False
             self.children[3].disabled = True
             self.children[4].disabled = False
+            self.children[5].disabled = False
+            self.children[6].disabled = False
         await interaction.response.edit_message(embed=embed, view=self)
         return
 
@@ -396,6 +570,28 @@ class NewsView(discord.ui.View):
         """
         await self.change_mode(interaction, "uefn")
 
+    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="crblog", row=1, label="Switch to CR Blog")
+    async def crblog_button(self, _button, interaction):
+        """
+        The UEFN button
+
+        Args:
+            _button: The button that was pressed
+            interaction: The interaction that called the function
+        """
+        await self.change_mode(interaction, "crblog")
+
+    @discord.ui.button(style=discord.ButtonStyle.secondary, emoji="fnblog", row=1, label="Switch to FN Blog")
+    async def fnblog_button(self, _button, interaction):
+        """
+        The UEFN button
+
+        Args:
+            _button: The button that was pressed
+            interaction: The interaction that called the function
+        """
+        await self.change_mode(interaction, "fnblog")
+
 
 class News(ext.Cog):
     """
@@ -421,7 +617,8 @@ class News(ext.Cog):
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
 
-        load_msg = await stw.slash_send_embed(ctx, self.client, await stw.processing_embed(self.client, ctx, desired_lang,
+        load_msg = await stw.slash_send_embed(ctx, self.client,
+                                              await stw.processing_embed(self.client, ctx, desired_lang,
                                                                          stw.I18n.get(
                                                                              "news.embed.processing.title",
                                                                              desired_lang)))
@@ -455,7 +652,7 @@ class News(ext.Cog):
         try:
             crblog_news_req = await stw.get_cr_blogpost_news(self.client, desired_lang)
             crblog_news_json = await crblog_news_req.json(content_type=None)
-            crblog_news = crblog_news_json["pageProps"]["blogs"]
+            crblog_news = crblog_news_json["blogList"]
             crblog_pages_length = len(crblog_news)
         except:
             crblog_news = {}
@@ -470,23 +667,24 @@ class News(ext.Cog):
             fnblog_pages_length = 0
 
         news_view = NewsView(self.client, ctx.author, ctx, page, stw_news, stw_pages_length, br_news, br_pages_length,
-                             mode, load_msg, desired_lang, uefn_news, uefn_pages_length)
+                             mode, load_msg, desired_lang, uefn_news, uefn_pages_length, crblog_news,
+                             crblog_pages_length, fnblog_news, fnblog_pages_length)
         if mode in ["br", "Battle Royale"]:
             embed = await stw.create_news_page(self, ctx, br_news, page, br_pages_length, desired_lang)
             try:
                 if br_news[page - 1]["link"] is not None:
                     try:
-                        news_view.remove_item(news_view.children[5])
+                        news_view.remove_item(news_view.children[7])
                     except:
                         pass
                     news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
                                                          style=discord.ButtonStyle.link,
                                                          url=br_news[page - 1]["link"], row=3))
                 else:
-                    news_view.remove_item(news_view.children[5])
+                    news_view.remove_item(news_view.children[7])
             except:
                 try:
-                    news_view.remove_item(news_view.children[5])
+                    news_view.remove_item(news_view.children[7])
                 except:
                     pass
         elif mode in ["uefn", "Unreal Editor Fortnite", "Unreal Editor for Fortnite", "Creative 2.0"]:
@@ -494,17 +692,54 @@ class News(ext.Cog):
             try:
                 if uefn_news[page - 1]["link"] is not None:
                     try:
-                        news_view.remove_item(news_view.children[5])
+                        news_view.remove_item(news_view.children[7])
                     except:
                         pass
                     news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
                                                          style=discord.ButtonStyle.link,
                                                          url=uefn_news[page - 1]["link"], row=3))
                 else:
-                    news_view.remove_item(news_view.children[5])
+                    news_view.remove_item(news_view.children[7])
             except:
                 try:
-                    news_view.remove_item(news_view.children[5])
+                    news_view.remove_item(news_view.children[7])
+                except:
+                    pass
+        elif mode in ["cr", "creative", "create", "create.fortnite.com", "crblog", "cr blog", "creative blog",
+                      "Fortnite Creative Blogposts"]:
+            embed = await stw.create_news_page(self, ctx, crblog_news, page, crblog_pages_length, desired_lang)
+            try:
+                if crblog_news[page - 1]["link"] is not None:
+                    try:
+                        news_view.remove_item(news_view.children[7])
+                    except:
+                        pass
+                    news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
+                                                         style=discord.ButtonStyle.link,
+                                                         url=crblog_news[page - 1]["link"], row=3))
+                else:
+                    news_view.remove_item(news_view.children[7])
+            except:
+                try:
+                    news_view.remove_item(news_view.children[7])
+                except:
+                    pass
+        elif mode in ["fn", "fnblog", "fn blog", "fortnite blog", "Fortnite Blogposts", "fortnite.com"]:
+            embed = await stw.create_news_page(self, ctx, fnblog_news, page, fnblog_pages_length, desired_lang)
+            try:
+                if fnblog_news[page - 1]["link"] is not None:
+                    try:
+                        news_view.remove_item(news_view.children[7])
+                    except:
+                        pass
+                    news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
+                                                         style=discord.ButtonStyle.link,
+                                                         url=fnblog_news[page - 1]["link"], row=3))
+                else:
+                    news_view.remove_item(news_view.children[7])
+            except:
+                try:
+                    news_view.remove_item(news_view.children[7])
                 except:
                     pass
         else:
@@ -512,17 +747,17 @@ class News(ext.Cog):
             try:
                 if stw_news[page - 1]["link"] is not None:
                     try:
-                        news_view.remove_item(news_view.children[5])
+                        news_view.remove_item(news_view.children[7])
                     except:
                         pass
                     news_view.add_item(discord.ui.Button(label=stw.I18n.get("news.view.button.link", desired_lang),
                                                          style=discord.ButtonStyle.link,
                                                          url=stw_news[page - 1]["link"], row=3))
                 else:
-                    news_view.remove_item(news_view.children[5])
+                    news_view.remove_item(news_view.children[7])
             except:
                 try:
-                    news_view.remove_item(news_view.children[5])
+                    news_view.remove_item(news_view.children[7])
                 except:
                     pass
         embed = await stw.set_thumbnail(self.client, embed, "newspaper")
@@ -539,17 +774,23 @@ class News(ext.Cog):
                         page: Option(int, min_value=1, max_value=100, default=1,
                                      name_localizations=stw.I18n.construct_slash_dict("news.meta.args.page"),
                                      description="The page number to view",
-                                     description_localizations=stw.I18n.construct_slash_dict("news.meta.args.page.description")) = 1,
+                                     description_localizations=stw.I18n.construct_slash_dict(
+                                         "news.meta.args.page.description")) = 1,
                         mode: Option(default="stw",
                                      name_localizations=stw.I18n.construct_slash_dict("news.meta.args.mode"),
                                      description="Choose a game mode to see news from",
-                                     description_localizations=stw.I18n.construct_slash_dict("news.slash.mode.description"),
+                                     description_localizations=stw.I18n.construct_slash_dict(
+                                         "news.slash.mode.description"),
                                      choices=[OptionChoice("Save the World", "stw",
                                                            stw.I18n.construct_slash_dict("generic.stw")),
                                               OptionChoice("Battle Royale", "br",
                                                            stw.I18n.construct_slash_dict("generic.br")),
                                               OptionChoice("Unreal Editor for Fortnite", "uefn",
-                                                           stw.I18n.construct_slash_dict("generic.uefn"))]) = "stw"):
+                                                           stw.I18n.construct_slash_dict("generic.uefn")),
+                                              OptionChoice("Creative Blogposts", "crblog",
+                                                           stw.I18n.construct_slash_dict("generic.crblog")),
+                                              OptionChoice("Fortnite Blogposts", "fnblog",
+                                                           stw.I18n.construct_slash_dict("generic.fnblog"))]) = "stw"):
         """
         This function is the entry point for the news command when called via slash
 
@@ -639,7 +880,7 @@ class News(ext.Cog):
                           'fepd', 'fleed', 'afeed', 'yeed', 'feded', 'fjeed', 'feezd', 'feedm', 'ofeed', 'fned',
                           'fueed', 'feeud', 'fged', 'feked', 'feedy', 'tfeed', 'feeq', 'feped', 'fezed', 'fered',
                           'feedv', 'f4ed', 'f3ed', 'f2ed', 'f$ed', 'f#ed', 'f@ed', 'fe4d', 'fe3d', 'fe2d', 'fe$d',
-                          'fe#d', 'fe@d', '/motd', '/feed'],
+                          'fe#d', 'fe@d', '/motd', '/feed', 'blog', 'blogs', 'blogposts'],
                  extras={'emoji': "bang", "args": {'news.meta.args.page': ['news.meta.args.page.description', True],
                                                    "news.meta.args.mode": ['news.meta.args.mode.description', True]},
                          "dev": False, "description_keys": ['news.meta.description'], "name_key": 'news.slash.name'},
