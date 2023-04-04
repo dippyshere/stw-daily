@@ -165,29 +165,37 @@ class Daily(ext.Cog):
                     except:
                         goal = 0
                     logger.debug(f"mtxgoal: {goal}")
-                    if goal > 0:
-                        core_request = await stw.profile_request(self.client, "query", auth_info[1],
-                                                                 profile_id="common_core")
-                        vbucks_item = await asyncio.gather(
-                            asyncio.to_thread(stw.extract_profile_item,
-                                              profile_json=orjson.loads(await core_request.read()),
-                                              item_string="Currency:Mtx"))
-                        vbucks_total = await stw.calculate_vbucks(vbucks_item)
-                        logger.debug(f"vbucks_total: {vbucks_total}")
-                        if goal == "" or not str(goal).isnumeric():
-                            embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
-                        elif int(goal) <= vbucks_total:
-                            embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                                desired_lang=desired_lang, goal=True)
-                        else:
-                            total, days = \
-                                (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
-                                                                        0 if auth_info[1]['day'] is None else
-                                                                        auth_info[1]['day'], int(goal))))[0]
-                            logger.debug(f"total: {total}, days: {days}")
-                            embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
-                                                                auth_info[1]['vbucks'], goal, desired_lang, True)
-                        final_embeds.append(embed)
+                    try:
+                        if goal > 0:
+                            core_request = await stw.profile_request(self.client, "query", auth_info[1],
+                                                                     profile_id="common_core")
+                            vbucks_item = await asyncio.gather(
+                                asyncio.to_thread(stw.extract_profile_item,
+                                                  profile_json=orjson.loads(await core_request.read()),
+                                                  item_string="Currency:Mtx"))
+                            vbucks_total = await stw.calculate_vbucks(vbucks_item)
+                            try:
+                                _ = int(goal)
+                            except:
+                                goal = ""
+                            if goal == "":
+                                embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang,
+                                                                    goal=True)
+                            elif int(goal) <= vbucks_total:
+                                embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
+                                                                    desired_lang=desired_lang, goal=True,
+                                                                    assert_value=False, target=goal)
+                            else:
+                                total, days = \
+                                    (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
+                                                                            0 if auth_info[1]['day'] is None else
+                                                                            auth_info[1]['day'], int(goal))))[0]
+                                logger.debug(f"total: {total}, days: {days}")
+                                embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
+                                                                    auth_info[1]['vbucks'], goal, desired_lang, True)
+                            final_embeds.append(embed)
+                    except:
+                        pass
                     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
                     return
 
@@ -287,30 +295,37 @@ class Daily(ext.Cog):
                         goal = 0
                 except:
                     goal = 0
-                logger.debug(f"mtxgoal: {goal}")
-                if goal > 0:
-                    core_request = await stw.profile_request(self.client, "query", auth_info[1],
-                                                             profile_id="common_core")
-                    vbucks_item = await asyncio.gather(
-                        asyncio.to_thread(stw.extract_profile_item,
-                                          profile_json=orjson.loads(await core_request.read()),
-                                          item_string="Currency:Mtx"))
-                    vbucks_total = await stw.calculate_vbucks(vbucks_item)
-                    logger.debug(f"vbucks_total: {vbucks_total}")
-                    if goal == "" or not str(goal).isnumeric():
-                        embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
-                    elif int(goal) <= vbucks_total:
-                        embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                            desired_lang=desired_lang, goal=True, assert_value=False,
-                                                            target=goal)
-                    else:
-                        total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
-                                                                              0 if auth_info[1]['day'] is None else
-                                                                              auth_info[1]['day'], int(goal))))[0]
-                        logger.debug(f"total: {total}, days: {days}")
-                        embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
-                                                            auth_info[1]['vbucks'], goal, desired_lang, True)
-                    final_embeds.append(embed)
+                try:
+                    logger.debug(f"mtxgoal: {goal}")
+                    if goal > 0:
+                        core_request = await stw.profile_request(self.client, "query", auth_info[1],
+                                                                 profile_id="common_core")
+                        vbucks_item = await asyncio.gather(
+                            asyncio.to_thread(stw.extract_profile_item,
+                                              profile_json=orjson.loads(await core_request.read()),
+                                              item_string="Currency:Mtx"))
+                        vbucks_total = await stw.calculate_vbucks(vbucks_item)
+                        try:
+                            _ = int(goal)
+                        except:
+                            goal = ""
+                        if goal == "":
+                            embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True,
+                                                                target=goal, current_total=vbucks_total)
+                        elif int(goal) <= vbucks_total:
+                            embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
+                                                                desired_lang=desired_lang, goal=True,
+                                                                assert_value=False, target=goal)
+                        else:
+                            total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
+                                                                    0 if auth_info[1]['day'] is None else
+                                                                    auth_info[1]['day'], int(goal))))[0]
+                            logger.debug(f"total: {total}, days: {days}")
+                            embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
+                                                                auth_info[1]['vbucks'], goal, desired_lang, True)
+                        final_embeds.append(embed)
+                except:
+                    pass
             else:
                 final_embeds = embed
             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)

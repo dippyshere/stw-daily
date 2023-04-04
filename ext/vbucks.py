@@ -299,20 +299,27 @@ class Vbucks(ext.Cog):
                 goal = 0
         except:
             goal = 0
-        if goal > 0:
-            if goal == "" or not str(goal).isnumeric():
-                embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
-            elif int(goal) <= vbucks_total:
-                embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                    desired_lang=desired_lang, goal=True, assert_value=False,
-                                                    target=goal)
-            else:
-                total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
-                                                                      0 if auth_info[1]['day'] is None else
-                                                                      auth_info[1]['day'], int(goal))))[0]
-                embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
-                                                    auth_info[1]['vbucks'], goal, desired_lang, True)
-            final_embeds.append(embed)
+        try:
+            if goal > 0:
+                try:
+                    _ = int(goal)
+                except:
+                    goal = ""
+                if goal == "":
+                    embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
+                elif int(goal) <= vbucks_total:
+                    embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
+                                                        desired_lang=desired_lang, goal=True, assert_value=False,
+                                                        target=goal)
+                else:
+                    total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
+                                                                          0 if auth_info[1]['day'] is None else
+                                                                          auth_info[1]['day'], int(goal))))[0]
+                    embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
+                                                        auth_info[1]['vbucks'], goal, desired_lang, True)
+                final_embeds.append(embed)
+        except:
+            pass
         vbuck_view = VbucksCalculatorView(self.client, ctx, desired_lang, vbucks_total, auth_info[0], final_embeds,
                                           auth_info[1], True if goal > 0 else False)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=vbuck_view)
