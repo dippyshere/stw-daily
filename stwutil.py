@@ -1044,80 +1044,88 @@ async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Inter
             method = msg.edit
         except:
             method = ctx.edit
-
-    if isinstance(ctx, discord.ApplicationContext):
-        if view is not None and files is not None and embeds is not None:
-            try:
-                return await method(embeds=embeds, view=view, files=files)
-            except:
+    try:
+        if isinstance(ctx, discord.ApplicationContext):
+            if view is not None and files is not None and embeds is not None:
                 try:
-                    return await msg.response.edit_message(embeds=embeds, view=view, files=files)
-                except:
-                    return await ctx.edit(embeds=embeds, view=view, files=files)
-        if view is not None and embeds is not None:
-            if view is not None:
-                try:
-                    return await method(embeds=embeds, view=view)
+                    return await method(embeds=embeds, view=view, files=files)
                 except:
                     try:
-                        return await msg.response.edit_message(embeds=embeds, view=view)
+                        return await msg.response.edit_message(embeds=embeds, view=view, files=files)
                     except:
-                        return await ctx.edit(embeds=embeds, view=view)
-        if view is not None and files is not None:
-            try:
+                        return await ctx.edit(embeds=embeds, view=view, files=files)
+            if view is not None and embeds is not None:
+                if view is not None:
+                    try:
+                        return await method(embeds=embeds, view=view)
+                    except:
+                        try:
+                            return await msg.response.edit_message(embeds=embeds, view=view)
+                        except:
+                            return await ctx.edit(embeds=embeds, view=view)
+            if view is not None and files is not None:
+                try:
+                    return await method(view=view, files=files)
+                except:
+                    try:
+                        return await msg.response.edit_message(view=view, files=files)
+                    except:
+                        return await ctx.edit(view=view, files=files)
+            if view is not None:
+                try:
+                    return await method(view=view)
+                except:
+                    try:
+                        return await msg.response.edit_message(view=view)
+                    except:
+                        return await ctx.edit(view=view)
+            if files is not None and embeds is not None:
+                try:
+                    return await method(embeds=embeds, files=files)
+                except:
+                    try:
+                        return await msg.response.edit_message(embeds=embeds, files=files)
+                    except:
+                        return await ctx.edit(embeds=embeds, files=files)
+            if files is not None:
+                try:
+                    return await method(files=files)
+                except:
+                    try:
+                        return await msg.response.edit_message(files=files)
+                    except:
+                        return await ctx.edit(files=files)
+            else:
+                try:
+                    return await method(embeds=embeds)
+                except:
+                    try:
+                        return await msg.response.edit_message(embeds=embeds)
+                    except:
+                        return await ctx.edit(embeds=embeds)
+        else:
+            if view is not None and files is not None and embeds is not None:
+                return await method(embeds=embeds, view=view, files=files)
+            if view is not None and embeds is not None:
+                return await method(embeds=embeds, view=view)
+            if view is not None and files is not None:
                 return await method(view=view, files=files)
-            except:
-                try:
-                    return await msg.response.edit_message(view=view, files=files)
-                except:
-                    return await ctx.edit(view=view, files=files)
-        if view is not None:
-            try:
+            if view is not None:
                 return await method(view=view)
-            except:
-                try:
-                    return await msg.response.edit_message(view=view)
-                except:
-                    return await ctx.edit(view=view)
-        if files is not None and embeds is not None:
-            try:
+            if files is not None and embeds is not None:
                 return await method(embeds=embeds, files=files)
-            except:
-                try:
-                    return await msg.response.edit_message(embeds=embeds, files=files)
-                except:
-                    return await ctx.edit(embeds=embeds, files=files)
-        if files is not None:
-            try:
+            if files is not None:
                 return await method(files=files)
-            except:
-                try:
-                    return await msg.response.edit_message(files=files)
-                except:
-                    return await ctx.edit(files=files)
-        else:
-            try:
+            else:
                 return await method(embeds=embeds)
-            except:
-                try:
-                    return await msg.response.edit_message(embeds=embeds)
-                except:
-                    return await ctx.edit(embeds=embeds)
-    else:
-        if view is not None and files is not None and embeds is not None:
-            return await method(embeds=embeds, view=view, files=files)
-        if view is not None and embeds is not None:
-            return await method(embeds=embeds, view=view)
-        if view is not None and files is not None:
-            return await method(view=view, files=files)
-        if view is not None:
-            return await method(view=view)
-        if files is not None and embeds is not None:
-            return await method(embeds=embeds, files=files)
-        if files is not None:
-            return await method(files=files)
+    except Exception as e:
+        if Exception == discord.errors.NotFound:
+            # suppress 404 errors as this could probably be ephemeral/deleted messages
+            logger.debug(f"Message not found: \n{e.with_traceback(e.__traceback__)}")
+            return None
         else:
-            return await method(embeds=embeds)
+            logger.error(f"Error editing message: \n{e.with_traceback(e.__traceback__)}")
+            return None
 
 
 async def device_auth_request(client: Client, account_id: str, token: str) -> aiohttp.client_reqrep.ClientResponse:
