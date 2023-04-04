@@ -7,6 +7,7 @@ This file is the cog for the server extensions. Currently: reminder + trading na
 """
 
 import datetime
+import functools
 
 import discord
 import discord.ext.commands as ext
@@ -36,6 +37,7 @@ class Reminder(ext.Cog):
         # TODO: change channel back to 956006055282896976
         channel = self.client.get_channel(956006055282896976)
 
+        @functools.lru_cache(maxsize=16)
         def is_me(m):
             """
             Checks if the message is from the bot
@@ -55,17 +57,17 @@ class Reminder(ext.Cog):
                               description=f'You can now claim today\'s daily reward. \n '
                                           f'Next daily reminder <t:{stw.get_tomorrow_midnight_epoch()}:R>.',
                               colour=discord.Colour.blue())
-        embed.add_field(name='Item shop:', value='[fnbr.co/shop](https://fnbr.co/shop)', inline=True)
+        embed.add_field(name='Item Shop:', value='[fnbr.co/shop](https://fnbr.co/shop)', inline=True)
         embed.add_field(name='\u200b', value='\u200b')
-        embed.add_field(name='Mission alerts:', value='[seebot.dev/missions.php](https://seebot.dev/missions.php)',
+        embed.add_field(name='Mission Alerts:', value='[seebot.dev/missions](https://seebot.dev/missions.php)',
                         inline=True)
-        embed.add_field(name='Auth code link:',
-                        value='[epicgames.com/id/api/redirect...]('
-                              'https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6'
-                              '&responseType=code)',
+        embed.add_field(name='Get an Auth Code:',
+                        value='[epicgames.com/id/...]('
+                              'https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid'
+                              '%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode)',
                         inline=True)
         embed.add_field(name='\u200b', value='\u200b')
-        embed.add_field(name='Claiming channel:', value='<#757768833946877992>', inline=True)
+        embed.add_field(name='Claim in:', value='<#757768833946877992>', inline=True)
         embed.set_thumbnail(
             url='https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png')
         embed.set_footer(text=f"This is an automated daily reminder from {self.client.user.name}",
@@ -97,6 +99,7 @@ class TradingNag(ext.Cog):
         channel = self.client.get_channel(997924614548226078)
         succ_colour = self.client.colours["success_green"]
 
+        @functools.lru_cache(maxsize=16)
         def is_me(m):
             """
             Checks if the message is from the bot
