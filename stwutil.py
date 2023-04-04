@@ -175,12 +175,14 @@ async def view_interaction_check(view, interaction: discord.Interaction, command
             try:
                 user_profile = await get_user_document(view.ctx, view.client, interaction.user.id,
                                                        desired_lang=interaction_language or guild_language or "en")
-                profile_language = user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"]["language"]
+                profile_language = \
+                    user_profile["profiles"][str(user_profile["global"]["selected_profile"])]["settings"]["language"]
                 if profile_language == "auto" or not I18n.is_lang(profile_language):
                     profile_language = None
             except:
                 profile_language = None
-            logger.debug(f"Interaction check notify languages: interaction={interaction_language}, guild={guild_language}, profile={profile_language}")
+            logger.debug(
+                f"Interaction check notify languages: interaction={interaction_language}, guild={guild_language}, profile={profile_language}")
             embed = await post_error_possibilities(interaction, view.client, command, acc_name, error_code,
                                                    desired_lang=profile_language or interaction_language or guild_language or "en")
             await interaction.response.send_message(embed=embed, ephemeral=True)
@@ -266,7 +268,8 @@ def process_quotes_in_message(message_content: str) -> str:
 
 async def slash_send_embed(ctx: Context, client: discord.Client, embeds: discord.Embed | list[discord.Embed],
                            view: discord.ui.View = None,
-                           interaction: discord.Interaction = False, devauth_error: bool = False) -> Union[discord.Message, None]:
+                           interaction: discord.Interaction = False, devauth_error: bool = False) -> Union[
+    discord.Message, None]:
     """
     A small bridging function to send embeds to a slash, view, normal command, or interaction
 
@@ -394,7 +397,8 @@ def time_until_end_of_day() -> str:
     return fmt.format(h=hours)
 
 
-async def processing_queue_error_check(client: Client, ctx: discord.Message, user_snowflake: int, desired_lang: str) -> discord.Embed | bool:
+async def processing_queue_error_check(client: Client, ctx: discord.Message, user_snowflake: int,
+                                       desired_lang: str) -> discord.Embed | bool:
     """
     Checks if a user is in the processing queue
 
@@ -449,7 +453,8 @@ async def mention_string(client: Client, prompt: str = "") -> str:
         return f"@STW Daily {prompt}"
 
 
-async def add_requested_footer(ctx: Context | discord.ApplicationContext, embed: discord.Embed, desired_lang: str) -> discord.Embed:
+async def add_requested_footer(ctx: Context | discord.ApplicationContext, embed: discord.Embed,
+                               desired_lang: str) -> discord.Embed:
     """
     Adds the requested by user to the footer of the embed
 
@@ -592,7 +597,8 @@ def get_reward(client: discord.Client, day: int | str, vbucks: bool = True, desi
     emoji, name, description = items.LootTable[asset_path_name]
 
     try:
-        if asset_path_name.split('.')[1] in ["Voucher_BasicPack", "Reagent_C_T01", "SmallXpBoost", "CardPack_Bronze", "SmallXpBoost_Gift"]:
+        if asset_path_name.split('.')[1] in ["Voucher_BasicPack", "Reagent_C_T01", "SmallXpBoost", "CardPack_Bronze",
+                                             "SmallXpBoost_Gift"]:
             if quantity != 1:
                 name = I18n.get(f"stw.item.{asset_path_name.split('.')[1]}.name.plural", desired_lang)
             else:
@@ -603,12 +609,14 @@ def get_reward(client: discord.Client, day: int | str, vbucks: bool = True, desi
     except:
         logger.warning(f"Could not find translation for {asset_path_name}")
 
-    emoji_text = f"{client.config['emojis']['celebrate']} {client.config['emojis'][emoji]} {client.config['emojis']['celebrate']}" if quantity == 1000 else client.config['emojis'][emoji]
+    emoji_text = f"{client.config['emojis']['celebrate']} {client.config['emojis'][emoji]} {client.config['emojis']['celebrate']}" if quantity == 1000 else \
+        client.config['emojis'][emoji]
     logger.debug(f"Returning reward info: {name}, {emoji_text}, {description}, {quantity}")
     return [name, emoji_text, description, quantity]
 
 
-def get_bb_reward_data(client: Client, response: Optional[dict] = None, error: bool = False, pre_calc_day: int = 0, desired_lang: str = "en") -> list[int | str | Any]:
+def get_bb_reward_data(client: Client, response: Optional[dict] = None, error: bool = False, pre_calc_day: int = 0,
+                       desired_lang: str = "en") -> list[int | str | Any]:
     """
     gets the reward data for battle breakers rewards
 
@@ -742,7 +750,8 @@ def decrypt_user_data(user_snowflake: int | str, authentication_information: dic
     return decrypted_json
 
 
-async def get_token_devauth(client: discord.Client, user_document: dict, game: str = "ios", auth_info_thread: Optional[Tuple[BaseException]] = None) -> aiohttp.client_reqrep.ClientResponse:
+async def get_token_devauth(client: discord.Client, user_document: dict, game: str = "ios", auth_info_thread: Optional[
+    Tuple[BaseException]] = None) -> aiohttp.client_reqrep.ClientResponse:
     """
     gets an access token for the given game/context
 
@@ -787,7 +796,8 @@ async def get_token_devauth(client: discord.Client, user_document: dict, game: s
 
 
 # hi
-async def exchange_games(client: discord.Client, auth_token: str, game: str = "fn") -> aiohttp.client_reqrep.ClientResponse:
+async def exchange_games(client: discord.Client, auth_token: str,
+                         game: str = "fn") -> aiohttp.client_reqrep.ClientResponse:
     """
     exchanges the given auth token for the given game
 
@@ -822,7 +832,8 @@ async def exchange_games(client: discord.Client, auth_token: str, game: str = "f
     return await client.stw_session.post(url, headers=h, data=d)
 
 
-async def processing_embed(client: discord.Client, ctx: discord.ext.commands.Context, desired_lang: str, title: str | None = None, description: str | None = None) -> discord.Embed:
+async def processing_embed(client: discord.Client, ctx: discord.ext.commands.Context, desired_lang: str,
+                           title: str | None = None, description: str | None = None) -> discord.Embed:
     """
     Constructs the processing embed
 
@@ -882,7 +893,13 @@ def random_waiting_message(client: Client, desired_lang: str = "en") -> str:
     return I18n.get(random.choice(client.config["wait_on_user_messages"]), desired_lang)
 
 
-async def check_for_auth_errors(client: Client, request: dict, ctx: Context, message: discord.Message, command: str, auth_code: str, send_error_message: bool = True, desired_lang: str = None) -> Tuple[bool, Optional[str], Optional[str]] | discord.Embed:
+async def check_for_auth_errors(client: Client, request: dict, ctx: Context, message: discord.Message, command: str,
+                                auth_code: str, send_error_message: bool = True, desired_lang: str = None) -> Tuple[
+                                                                                                                  bool,
+                                                                                                                  Optional[
+                                                                                                                      str],
+                                                                                                                  Optional[
+                                                                                                                      str]] | discord.Embed:
     """
     Checks for auth errors and sends the appropriate message
 
@@ -984,7 +1001,9 @@ async def check_for_auth_errors(client: Client, request: dict, ctx: Context, mes
 
 
 # hi?
-async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Interaction, embeds: discord.Embed | list[discord.Embed] | None, view: discord.ui.View = None, files: list[discord.File] = None):
+async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Interaction,
+                              embeds: discord.Embed | list[discord.Embed] | None, view: discord.ui.View = None,
+                              files: list[discord.File] = None):
     """
     Edits the original message sent by the bot
 
@@ -1125,7 +1144,9 @@ async def device_auth_request(client: Client, account_id: str, token: str) -> ai
     return await client.stw_session.post(url, headers=header, json="")
 
 
-async def profile_request(client: Client, req_type: str, auth_entry: dict[str, str | bool | float | None | list[str]], data: str | dict | bytes = "{}", json: dict = None, profile_id: str = "stw", game: str = "fn", profile_type: str = "profile0") -> aiohttp.client_reqrep.ClientResponse:
+async def profile_request(client: Client, req_type: str, auth_entry: dict[str, str | bool | float | None | list[str]],
+                          data: str | dict | bytes = "{}", json: dict = None, profile_id: str = "stw", game: str = "fn",
+                          profile_type: str = "profile0") -> aiohttp.client_reqrep.ClientResponse:
     """
     Request a profile from epic api
     Args:
@@ -1227,7 +1248,9 @@ async def free_llama_count(store: dict) -> Tuple[int, list]:
     return len(free_llamas), free_llamas
 
 
-async def purchase_llama(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], offer_id: str, currency: str = "GameItem", currencySubType: str = "AccountResource:currency_xrayllama", expectedTotalPrice: int = 0) -> dict:
+async def purchase_llama(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], offer_id: str,
+                         currency: str = "GameItem", currencySubType: str = "AccountResource:currency_xrayllama",
+                         expectedTotalPrice: int = 0) -> dict:
     """
     Purchases a llama from the store
 
@@ -1300,7 +1323,8 @@ async def get_llama_datatable(client: Client, path: str, desired_lang: str = 'en
             "Rare"
 
 
-async def claim_free_llamas(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], store: dict, prerolled_offers: dict[str, ...]) -> None:
+async def claim_free_llamas(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], store: dict,
+                            prerolled_offers: dict[str, ...]) -> None:
     """
     Claims the free llamas in the store
 
@@ -1392,7 +1416,9 @@ async def claim_free_llamas(client: Client, auth_entry: dict[str, str | bool | f
                 logger.info("opening failed")
 
 
-async def recycle_free_llama_loot(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], items_from_llamas: dict | list, already_opened_free_llamas: int, free_llamas_count: int, recycle_config: Optional[dict] = None) -> None:
+async def recycle_free_llama_loot(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]],
+                                  items_from_llamas: dict | list, already_opened_free_llamas: int,
+                                  free_llamas_count: int, recycle_config: Optional[dict] = None) -> None:
     """
     Recycles the free llama loot
 
@@ -1597,7 +1623,8 @@ async def manslaughter_session(client: Client, account_id: int, kill_stamp: int 
         # now they know :D
 
 
-async def entry_profile_req(client: Client, entry: dict[str, str | bool | float | None | list[str]], game: str) -> dict[str, str | bool | float | None | list[str]]:
+async def entry_profile_req(client: Client, entry: dict[str, str | bool | float | None | list[str]], game: str) -> dict[
+    str, str | bool | float | None | list[str]]:
     """
     Gets the profile of the user for an auth session entry
 
@@ -1628,7 +1655,8 @@ async def entry_profile_req(client: Client, entry: dict[str, str | bool | float 
     return entry
 
 
-async def add_other_game_entry(client: Client, user_id: int, entry: dict[str, str | bool | float | None | list[str]], game: str, other_games: list) -> dict[str, str | bool | float | None | list[str]]:
+async def add_other_game_entry(client: Client, user_id: int, entry: dict[str, str | bool | float | None | list[str]],
+                               game: str, other_games: list) -> dict[str, str | bool | float | None | list[str]]:
     """
     Adds an entry for another game to the user's auth session
 
@@ -1658,7 +1686,9 @@ async def add_other_game_entry(client: Client, user_id: int, entry: dict[str, st
     return entry
 
 
-async def add_temp_entry(client: Client, ctx: Context, auth_token: str, account_id: str, response: dict, add_entry: bool, bb_token: str = None, game: str = "fn", original_token: str = "") -> dict[str, str | bool | float | None | list[str]]:
+async def add_temp_entry(client: Client, ctx: Context, auth_token: str, account_id: str, response: dict,
+                         add_entry: bool, bb_token: str = None, game: str = "fn", original_token: str = "") -> dict[
+    str, str | bool | float | None | list[str]]:
     """
     Adds a temporary authentication session entry for the user
 
@@ -1739,7 +1769,8 @@ def bb_day_query_check(profile_text: dict) -> str | int | None:
         return None
 
 
-def extract_profile_item(profile_json: dict, item_string: str = "Currency:Mtx") -> dict[int, dict[str, Union[str, int]]]:
+def extract_profile_item(profile_json: dict, item_string: str = "Currency:Mtx") -> dict[
+    int, dict[str, Union[str, int]]]:
     """
     Extracts an item from the profile json
 
@@ -1856,7 +1887,8 @@ async def get_br_news(client: Client, locale: str = "en") -> aiohttp.client_reqr
     if locale not in ["en", "de", "it", "fr", "es", "ru", "ja", "pt-BR", "pl", "tr", "ar", "ko", "es-419"]:
         locale = "en"
     try:
-        news = await client.stw_session.get(endpoint.format(locale), headers={"Authorization": os.environ["STW_FORTAPI_KEY"]})
+        news = await client.stw_session.get(endpoint.format(locale),
+                                            headers={"Authorization": os.environ["STW_FORTAPI_KEY"]})
         if news.status != 200 or (await news.json())["result"] is True:
             return news
         else:
@@ -1902,7 +1934,6 @@ async def get_cr_blogpost_news(client: Client, locale: str = "en") -> aiohttp.cl
     """
     logger.debug(f"Getting create.fortnite.com blogposts for {locale}")
     endpoint = client.config["endpoints"]["cr_blog_news"]
-    key = os.environ["STW_CRBLOG_KEY"]
     if locale == "zh-CHS":
         locale = "zh-CN"
     elif locale == "zh-CHT":
@@ -1911,7 +1942,7 @@ async def get_cr_blogpost_news(client: Client, locale: str = "en") -> aiohttp.cl
         locale = "en"
     if locale == "en":
         locale = "en-US"
-    return await client.stw_session.get(endpoint.format(key, locale))
+    return await client.stw_session.get(endpoint)
 
 
 async def get_fn_blogpost_news(client: Client, locale: str = "en") -> aiohttp.client_reqrep.ClientResponse:
@@ -1938,7 +1969,8 @@ async def get_fn_blogpost_news(client: Client, locale: str = "en") -> aiohttp.cl
     return await client.stw_session.get(endpoint.format(locale))
 
 
-async def create_news_page(self, ctx: Context, news_json: dict, current: int, total: int, desired_lang: str = "en") -> discord.Embed:
+async def create_news_page(self, ctx: Context, news_json: dict, current: int, total: int,
+                           desired_lang: str = "en") -> discord.Embed:
     """
     Creates a news page embed
 
@@ -1982,7 +2014,9 @@ async def create_news_page(self, ctx: Context, news_json: dict, current: int, to
     return embed
 
 
-async def battle_breakers_deprecation(client: discord.Client, ctx: commands.Context, command_key: str = "util.battlebreakers.deprecation.embed.description2.generic", desired_lang: str = "en") -> discord.Embed:
+async def battle_breakers_deprecation(client: discord.Client, ctx: commands.Context,
+                                      command_key: str = "util.battlebreakers.deprecation.embed.description2.generic",
+                                      desired_lang: str = "en") -> discord.Embed:
     """
     Creates a warning embed for deprecated battle breakers commands
 
@@ -1997,7 +2031,8 @@ async def battle_breakers_deprecation(client: discord.Client, ctx: commands.Cont
     """
     generic = client.colours["generic_blue"]
     embed = discord.Embed(
-        title=await add_emoji_title(client, I18n.get('util.battlebreakers.deprecation.embed.title', desired_lang), "broken_heart"),
+        title=await add_emoji_title(client, I18n.get('util.battlebreakers.deprecation.embed.title', desired_lang),
+                                    "broken_heart"),
         description=f"\u200b\n{I18n.get(command_key, desired_lang)}\u200b\n"
                     f"\n{I18n.get('util.battlebreakers.deprecation.embed.description3', desired_lang, '<t:1672425127:R>')}\n"
                     f"{I18n.get('util.battlebreakers.deprecation.embed.description4', desired_lang, 'https://github.com/dippyshere/battle-breakers-private-server')}",
@@ -2072,7 +2107,8 @@ async def calculate_vbucks(item: dict) -> int:
 
 
 @AsyncLRU(maxsize=8192)
-async def get_banner_colour(colour: str, colour_format: str = "hex", colour_type: str = "Primary") -> str | tuple[int, ...] | None:
+async def get_banner_colour(colour: str, colour_format: str = "hex", colour_type: str = "Primary") -> str | tuple[
+    int, ...] | None:
     """
     Gets the banner colour from the banner name
 
@@ -2385,7 +2421,8 @@ def get_survivor_rating(survivor: dict) -> Tuple[float, Tuple[str | Any, ...]]:
 # print(get_survivor_rating(worker))
 
 @functools.cache
-def get_survivor_bonus(leader_personality: str, survivor_personality: str, leader_rarity: str, survivor_rating: float | int) -> int:
+def get_survivor_bonus(leader_personality: str, survivor_personality: str, leader_rarity: str,
+                       survivor_rating: float | int) -> int:
     """
     Gets the bonus to the powerlevel of a survivor based on the leader's personality and rarity, and the survivor's personality and rating
 
@@ -2649,7 +2686,12 @@ async def check_devauth_user_auth_input(client: Client, ctx: Context, desired_la
         return False
 
 
-async def create_error_embed(client: Client, ctx: Context, title: str = None, description: str = None, prompt_help: bool = False, prompt_authcode: bool = True, prompt_newcode: bool = False, command: str = "", error_level: int = 1, title_emoji: str = None, thumbnail: str = None, colour: str = None, add_auth_gif: bool = False, auth_push_strong: bool = True, desired_lang: str = "en", promptauth_key: str = "util.error.embed.promptauth.strong1") -> discord.Embed:
+async def create_error_embed(client: Client, ctx: Context, title: str = None, description: str = None,
+                             prompt_help: bool = False, prompt_authcode: bool = True, prompt_newcode: bool = False,
+                             command: str = "", error_level: int = 1, title_emoji: str = None, thumbnail: str = None,
+                             colour: str = None, add_auth_gif: bool = False, auth_push_strong: bool = True,
+                             desired_lang: str = "en",
+                             promptauth_key: str = "util.error.embed.promptauth.strong1") -> discord.Embed:
     """
     Creates an embed with the error colour and the error emoji
 
@@ -2720,7 +2762,10 @@ async def create_error_embed(client: Client, ctx: Context, title: str = None, de
     return embed
 
 
-async def get_or_create_auth_session(client: Client, ctx: Context, command: str, original_auth_code: str, add_entry: bool = False, processing: bool = True, dont_send_embeds: bool = False, desired_lang: str = None) -> list[discord.Message | discord.Embed | None, dict, list]:  # hi bye
+async def get_or_create_auth_session(client: Client, ctx: Context, command: str, original_auth_code: str,
+                                     add_entry: bool = False, processing: bool = True, dont_send_embeds: bool = False,
+                                     desired_lang: str = None) -> list[
+    discord.Message | discord.Embed | None, dict, list]:  # hi bye
     """
     I no longer understand this function, its ways of magic are beyond me, but to the best of my ability this is what it returns
 
@@ -3184,7 +3229,8 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
                                                      f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[2])}\n"
                                                      f"```{reward[4]} {reward[1]}```\n"
                                                      f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, f'<t:{get_tomorrow_midnight_epoch()}:R>')}",
-                                         prompt_authcode=False, command=command, error_level=0, desired_lang=desired_lang)
+                                         prompt_authcode=False, command=command, error_level=0,
+                                         desired_lang=desired_lang)
 
     # STW Daily Error Codes
     elif error_code == "errors.stwdaily.failed_guid_research":
@@ -3656,7 +3702,8 @@ def get_vbucks(current_day: int, mod: bool = False) -> int:
             current_day = 336
         elif current_day > 336:
             current_day -= 336
-    if stwDailyRewards[0]["Rows"][str(current_day - 1)]["ItemDefinition"]["AssetPathName"] == "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap":
+    if stwDailyRewards[0]["Rows"][str(current_day - 1)]["ItemDefinition"][
+        "AssetPathName"] == "/Game/Items/PersistentResources/Currency_MtxSwap.Currency_MtxSwap":
         return stwDailyRewards[0]['Rows'][str(current_day - 1)]['ItemCount']
     return 0
 
@@ -3682,12 +3729,16 @@ def calculate_vbuck_goals(current_total: int, current_day: int, target: int) -> 
         current_day += 1
         day_delta += 1
         current_total += get_vbucks(0 if current_day % 336 == 0 else current_day % 336, True)
-    logger.debug(f"Vbucks goal: {target} (reached in {day_delta + 1} days, total: {current_total}, day: {current_day}, time: {round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)})")
+    logger.debug(
+        f"Vbucks goal: {target} (reached in {day_delta + 1} days, total: {current_total}, day: {current_day}, time: {round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)})")
     return current_total, f"<t:{round(get_tomorrow_midnight_epoch()) + (day_delta * 86400)}:R>"
 
 
 @AsyncLRU(maxsize=1024)
-async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationContext, total: int = 0, timestamp: str = "<t:0:R>", assert_value: bool = True, current_total: int = None, vbucks: bool = True, target: str = "", desired_lang: str = "en", goal: bool = False) -> discord.Embed:
+async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationContext, total: int = 0,
+                            timestamp: str = "<t:0:R>", assert_value: bool = True, current_total: int = None,
+                            vbucks: bool = True, target: str = "", desired_lang: str = "en",
+                            goal: bool = False) -> discord.Embed:
     """
     Generates an embed for the vbucks goal command
 
@@ -3713,31 +3764,41 @@ async def vbucks_goal_embed(client: discord.Client, ctx: discord.ApplicationCont
             target = ""
         if target == "":
             embed = discord.Embed(
-                title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+                title=await add_emoji_title(client,
+                                            I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title",
+                                                     desired_lang), "library_banknotes"),
                 description=f"\u200b\n{I18n.get('vbucks.modal.error.description', desired_lang, client.config['emojis']['warning'])}\n\u200b",
                 colour=client.colours["warning_yellow"])
             return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
         elif int(target) <= current_total:
             embed = discord.Embed(
-                title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+                title=await add_emoji_title(client,
+                                            I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title",
+                                                     desired_lang), "library_banknotes"),
                 description=f"\u200b\n{I18n.get('vbucks.modal.error.description1', desired_lang, client.config['emojis']['warning'], current_total)}\n\u200b",
                 colour=client.colours["warning_yellow"])
             return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
     elif int(target) <= current_total:
         embed = discord.Embed(
-            title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "checkmark"),
+            title=await add_emoji_title(client,
+                                        I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title",
+                                                 desired_lang), "checkmark"),
             description=f"\u200b\n{I18n.get('vbucks.modal.success.description.goalreached', desired_lang, client.config['emojis']['celebrate'], client.config['emojis']['vbucks'], current_total)}\n\u200b",
             colour=client.colours["success_green"])
         return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
     if vbucks:
         embed = discord.Embed(
-            title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+            title=await add_emoji_title(client,
+                                        I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title",
+                                                 desired_lang), "library_banknotes"),
             description=f"\u200b\n{I18n.get('vbucks.modal.success.description', desired_lang, total, client.config['emojis']['vbucks'], timestamp)}\n\u200b",
             colour=client.colours["vbuck_blue"])
         return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
     else:
         embed = discord.Embed(
-            title=await add_emoji_title(client, I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title", desired_lang), "library_banknotes"),
+            title=await add_emoji_title(client,
+                                        I18n.get("settings.config.mtxgoal.name" if goal else "vbucks.modal.title",
+                                                 desired_lang), "library_banknotes"),
             description=f"\u200b\n{I18n.get('vbucks.modal.success.description.nonfounder', desired_lang, client.config['emojis']['stw_box'], total, client.config['emojis']['vbucks'], timestamp)}\n\u200b",
             colour=client.colours["vbuck_blue"])
         return await add_requested_footer(ctx, (await set_thumbnail(client, embed, "catnerd")), desired_lang)
