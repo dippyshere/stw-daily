@@ -82,7 +82,7 @@ logging.getLogger('discord.shard').setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 # logging.basicConfig(level=logging.DEBUG)
 
-logger.info("Starting STW Daily")
+logger.debug("Starting STW Daily")
 
 import orjson
 import os
@@ -207,7 +207,7 @@ def main() -> None:
     ]  # why no ext.bongodb :( doot doot doot doot
 
     for extension in extensions:
-        logger.info(f"Loading extension {client.load_extension(f'ext.{extension}')[0]}")
+        logger.debug(f"Loading extension {client.load_extension(f'ext.{extension}')[0]}")
 
     # set_client_modules(client)
     update_status.start()
@@ -234,7 +234,7 @@ async def create_http_session() -> aiohttp.ClientSession:
     Returns:
         aiohttp.ClientSession: The aiohttp session
     """
-    headers = {"User-Agent": "Fortnite/++Fortnite+Release-24.01-CL-24657810 Windows/10.0.25267.1.256.64bit"}  # idk
+    headers = {"User-Agent": "Fortnite/++Fortnite+Release-24.10-CL-24850983 Windows/10.0.22621.1.256.64bit"}  # idk
     logger.debug("Creating aiohttp session")
     return aiohttp.ClientSession(json_serialize=lambda x: orjson.dumps(x).decode())
 
@@ -257,7 +257,7 @@ async def on_ready() -> None:
                                                                ".com/fortnite/api/version")).read())
     client.stw_session._default_headers = client.stw_session._prepare_headers(
         {
-            "User-Agent": f"Fortnite/++Fortnite+Release-{version['version']}-CL-{version['cln']} Windows/10.0.25267.1"
+            "User-Agent": f"Fortnite/++Fortnite+Release-{version['version']}-CL-{version['cln']} Windows/10.0.22621.1"
                           f".256.64bit"}
     )
     for command in client.commands:
