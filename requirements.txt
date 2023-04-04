@@ -1,6 +1,6 @@
 # literally everything this bot does lmao
 aiohttp<3.9.0,>=3.8.4
-py-cord>=2.4.0
+py-cord>=2.4.1
 # for python 3.11
 # git+https://github.com/Pycord-Development/pycord
 # info command
@@ -9,25 +9,25 @@ py-cpuinfo>=9.0.0
 # python <3.10 compatibility
 tomli>=2.0.1
 # speedup
-Cython==3.0.0b1
+Cython==3.0.0b2
 aiodns>=3.0.0
 brotlipy>=0.7.0
 faust-cchardet>=2.1.18
-orjson>=3.8.8
+orjson>=3.8.9
 aiofiles>=23.1.0
 PyNaCl>=1.5.0
 async-cache>=1.1.1
 # database
-motor>=3.1.1
+motor>=3.1.2
 # for banner rendering
 blendmodes>=2022
-Pillow>=9.4.0
+Pillow>=9.5.0
 # development
-watchfiles>=0.18.1
-pycryptodome>=3.17.0
+watchfiles>=0.19.0
+pycryptodome>=3.17
 colorama>=0.4.6
 # localisation
 babel>=2.12.1
-pytz>=2022.7.1
+pytz>=2023.3
 # troll
 owoify-py>=2.0.0
