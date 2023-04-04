@@ -144,10 +144,10 @@ class NewsView(discord.ui.View):
         #     embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
         for button in self.children:
             try:
-                if button.emoji is None:
+                if button.emoji is not None:
                     button.disabled = True
             except:
-                button.disabled = True
+                button.disabled = False
         return await stw.slash_edit_original(self.ctx, self.message, embeds=None, view=self)
 
     async def change_page(self, interaction, action):
