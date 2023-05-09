@@ -929,7 +929,11 @@ async def check_for_auth_errors(client: Client, request: dict, ctx: Context, mes
         auth_code = "[saved session]"  # hell o hi
 
     logger.debug(f"Epic Error code: {error_code}")
-    if error_code == 'errors.com.epicgames.account.oauth.authorization_code_not_found':
+    if error_code in ['errors.com.epicgames.account.oauth.authorization_code_not_found',
+                      'errors.com.epicgames.common.authentication.authentication_failed',
+                      'errors.com.epicgames.common.authentication.token_verification_failed',
+                      'errors.com.epicgames.common.oauth.invalid_token', 'epic.common.sso.missing_bearer_token',
+                      'epic.common.sso.session_invalid']:
         # login error
         embed = await create_error_embed(client, ctx,
                                          description=f"{I18n.get('util.error.auth.title', desired_lang)}\n"
