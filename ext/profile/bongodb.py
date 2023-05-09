@@ -65,7 +65,7 @@ async def get_autoclaim_user_cursor(client):
     Returns:
         pymongo.cursor.Cursor: The autoclaim user cursor.
     """
-    return client.stw_database.find({"auto_claim": {"$ne": None}}, no_cursor_timeout=True)
+    return client.stw_database.find({"auto_claim": {"$ne": None}}, batch_size=25)
 
 
 async def get_accounts_with_auth_data_cursor(client):
