@@ -115,7 +115,10 @@ async def get_auto_claim(client):
         except Exception as e:
             logger.error(f"Auto-Claim authentication error: {e}")
             pass
-    user_cursor.close()
+    try:
+        await user_cursor.close()
+    except:
+        pass
     claimed_accs = len(claimed_account_ids)
     claimed_account_ids.clear()
     return claimed_accs
