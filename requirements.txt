@@ -4,7 +4,7 @@ py-cord>=2.4.1
 # for python 3.11
 # git+https://github.com/Pycord-Development/pycord
 # info command
-psutil>=5.9.4
+psutil>=5.9.5
 py-cpuinfo>=9.0.0
 # python <3.10 compatibility
 tomli>=2.0.1
@@ -13,10 +13,10 @@ Cython==3.0.0b2
 aiodns>=3.0.0
 brotlipy>=0.7.0
 faust-cchardet>=2.1.18
-orjson>=3.8.9
+orjson>=3.8.12
 aiofiles>=23.1.0
 PyNaCl>=1.5.0
-async-cache>=1.1.1
+# async-cache>=1.1.1
 # database
 motor>=3.1.2
 # for banner rendering
