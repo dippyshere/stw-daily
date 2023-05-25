@@ -3,7 +3,7 @@
     <a id="back-to-top"></a>
     <div align="center">
         <a href="https://github.com/dippyshere/stw-daily">
-            <img src='res/stwdaily snow2048.png' width='79' alt="" />
+            <img src='res/stwdaily2023year 2048.png' width='79' alt="" />
         <img src="res/stwdailyh1.svg" alt="STW Daily" />
         </a>
     </div>
@@ -97,7 +97,6 @@ ___
         <br><span> This will claim your daily reward, and will not create an authentication session.</span>
     </ul>
     <img src="res/daily.png" alt="Daily command example" width="640">
-<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -138,7 +137,6 @@ ___
         <br><span> This will log you in and authenticate you for ~8 hours.</span>
     </ul>
     <img src="res/auth.png" alt="Auth command example" width="640">
-<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -163,8 +161,7 @@ ___
         <br>
         </ol>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Kill command example" width="640">
-<p><em>Sorry, an image is not available yet.</em></p>
+    <img src="res/kill.png" alt="Kill command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -210,7 +207,7 @@ ___
         <br><span> This will return an easy to understand quick tutorial on getting an auth code, along with a GIF.</span>
     </ul>
     <img src="res/help.png" alt="Help command example" width="640">
-<p><em>This image does not represent all available commands. It also uses outdated text.</em></p>
+<p><em>This image does not represent all available commands</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -249,7 +246,7 @@ ___
         </picture> <sup>hbrn "cool name" a51c1f4d35b1457c8e34a1f6026faa35</sup>
         <br><span> This will change your homebase name to <kbd>cool name</kbd>, and start an authentication session</span>
     </ul>
-    <img src="res/homebase.png" alt="Homebase rename command example" width="640">
+    <img src="res/homebase1.png" alt="Homebase rename command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -328,7 +325,6 @@ ___
         <br><span> This will claim your available research points and then allow you to spend them. An authentication session will not be created</span>
     </ul>
     <img src="res/research.png" alt="Research command example" width="640">
-<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -367,7 +363,7 @@ ___
         </picture> <sup>power a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
         <br><span> This will display your current power level and FORT stats. An authentication session will not be created</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Power level command example" width="640">
+    <img src="res/power.png" alt="Power level command example" width="640">
 <p><em>This command is still experimental, and does not support supercharged survivors.</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
@@ -404,10 +400,10 @@ ___
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
               <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
               <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>power a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        </picture> <sup>dailyxp a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
         <br><span> This will display your current daily XP usage. An authentication session will not be created</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Power level command example" width="640">
+    <img src="res/dailyxp.png" alt="Daily XP command example" width="640">
 <p><em>This command is still experimental, and may be inaccurate.</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
@@ -447,7 +443,8 @@ ___
         </picture> <sup>llamas a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
         <br><span> This will display the current Llama store and allow you to choose a llama to purchase. An authentication session will not be created</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Llamas command example" width="640">
+    <img src="res/llamas.png" alt="Llamas command example" width="640">
+<p><em>This command is still experimental, and may display incorrect item emojis.</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -527,7 +524,6 @@ ___
         <br><span> This will display the reward for day 336, and additionally the rewards for day 337-358 (21 days).</span>
     </ul>
     <img src="res/reward.png" alt="Reward command example" width="640">
-<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -566,8 +562,47 @@ ___
         </picture> <sup>bbr 336 21</sup>
         <br><span> This will display the reward for day 336, and additionally the rewards for day 337-358 (21 days).</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Batle breakers reward command example" width="640">
-<p><em>Sorry, this command is too new - an image is not available yet.</em></p>
+    <img src="res/bbreward.png" alt="Batle breakers reward command example" width="640">
+<p><em>Battle Breakers was shut down on 30th December 2022. To continue playing after the shutdown, check out the <a href="https://www.github.com/dippyshere/battle-breakers-private-server">Battle Breakers private server</a> project</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Profile Dump</b></summary>
+    <ul>
+    <p>This command allows you to create a complete dump of your Fortnite profiles in JSON format, so you can have a backup of your game data and progression.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>profiledump {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/profiledump token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>profiledump a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This will dump your Fortnite profiles, and create an authentication session.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>profiledump</sup>
+        <br><span> This will dump your Fortnite profiles if authenticated, otherwise it will prompt you to authenticate.</span>
+    </ul>
+    <img src="res/profiledump.png" alt="Profile dump command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -593,8 +628,7 @@ ___
         </ol>
         <p>The info command also provides a convenient way to verify the authenticity of the bot you are using. If the bot does <b>not</b> have a verified bot tag, or contains a message other than "✅Official Verified Deployment", DO NOT use that bot. The bot may have been tampered with, or may be a skid. Use of that bot may put your account at risk/inhibit the development of STW Daily. Learn more <a>here.</a></p>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Info command example" width="640">
-<p><em>Sorry, an image is not available yet.</em></p>
+    <img src="res/info.png" alt="Info command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -619,8 +653,7 @@ ___
         <br>
         </ol>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Invite command example" width="640">
-<p><em>Sorry, an image is not available yet.</em></p>
+    <img src="res/invite.png" alt="Invite command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -659,7 +692,7 @@ ___
         </picture> <sup>profile 3</sup>
         <br><span> This will start the profile command as normal, but will switch your active profile to profile 3.</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Profile command example" width="640">
+    <img src="res/profile.png" alt="Profile command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -712,7 +745,7 @@ ___
         </picture> <sup>settings lang spanish 2</sup>
         <br><span> This will start the settings command on the language setting, and change STW Daily's language to spanish for profile 2.</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Settings command example" width="640">
+    <img src="res/settings.png" alt="Settings command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -745,7 +778,7 @@ ___
         </picture> <sup>device</sup>
         <br><span> This will start the device command, and allow prompt you to set up and link an account. If you already have an authentication session, you can use this to link your account.</span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Device command example" width="640">
+    <img src="res/device.png" alt="Device command example" width="640">
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -768,10 +801,6 @@ ___
             <ul>
                 <li>View the current BR Item shop</li>
             </ul>
-            <li>Llama store</li>
-            <ul>
-                <li>View the current llama store / weekly shop</li>
-            </ul>
             <li>Collection Book</li>
             <ul>
                 <li>View your collection book</li>
@@ -786,6 +815,8 @@ ___
 </details>
 
 ### Disabled Commands
+
+<a href="https://www.github.com/dippyshere/battle-breakers-private-server"><img src="res/unavailable.png" alt="Battle Breakers Daily command example" width="360"></a>
 
 <details>
     <summary><b>Battle Breakers Daily</b></summary>
@@ -807,7 +838,7 @@ ___
         </div>
         <br>
         </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter was optional—if you did not give an auth code the bot would have returned links needed for getting an auth code.<br><br>Replacing {opt-out} with any text would have opted you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
         <p><b>Examples:</b></p>
         <picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
@@ -823,7 +854,7 @@ ___
         <br><span> This would have claimed your Battle Breakers daily reward if authenticated, otherwise it would have prompted you to authenticate.  </span>
     </ul>
     <img src="res/bbdaily.png" alt="Battle Breakers Daily command example" width="640">
-<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
+<p><em>Battle Breakers was shut down on 30th December 2022. To continue playing after the shutdown, check out the <a href="https://www.github.com/dippyshere/battle-breakers-private-server">Battle Breakers private server</a> project</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -847,7 +878,7 @@ ___
         </div>
         <br>
         </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter was optional—if you did not give an auth code the bot would have returned links needed for getting an auth code.<br><br>Replacing {opt-out} with any text would have opted you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
         <p><b>Examples:</b></p>
         <picture>
               <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
@@ -862,8 +893,8 @@ ___
         </picture> <sup>bbdump</sup>
         <br><span> This would have dumped your Battle Breakers profile if authenticated, otherwise it would have prompted you to authenticate.  </span>
     </ul>
-    <img src="res/T_UI_Challenge_MysteryReward-L-realesrgan-x4plus.png" alt="Batle breakers profile dump command example" width="640">
-<p><em>Sorry, this command is too new - an image is not available yet.</em></p>
+    <img src="res/bbdump.png" alt="Batle breakers profile dump command example" width="640">
+<p><em>Battle Breakers was shut down on 30th December 2022. To continue playing after the shutdown, check out the <a href="https://www.github.com/dippyshere/battle-breakers-private-server">Battle Breakers private server</a> project</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
@@ -871,14 +902,14 @@ ___
 
 ## How to use STW Daily <a id="how-to-use"></a>
 
-### Adding the bot:
+### Adding the bot
 
 You
 can [invite STW Daily](https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands)
 to your server, or join the [STW Daily Discord server](https://discord.gg/stw-dailies-757765475823517851) to use the
 bot. Please ensure you only invite the bot if it is verified.
 
-### Running commands:
+### Running commands
 
 #### @STW Daily {command} method
 
@@ -898,7 +929,7 @@ You can learn more about all the new features and interactions STW Daily can pro
 To get started with slash commands, start by typing `/`. You can learn more about slash
 commands [here](https://discord.com/blog/slash-commands-are-here).
 
-### Getting an Auth Code: <a id="authcode"></a>
+### Getting an Auth Code <a id="authcode"></a>
 
 To get an auth code,
 just [visit this link](https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode).
@@ -934,7 +965,7 @@ to get a new code.
 
 ![Auth Code GIF](res/stw%20daily%20noob%20tutorial%20render%202%20hd.gif)
 
-### Authentication Sessions:
+### Authentication Sessions
 
 Your authentication session will be saved for ~8 hours, allowing you to claim a daily, claim your research points and
 spend them without needing a new code each time. You will still need to provide a new code when the authentication
@@ -943,18 +974,18 @@ session expires.
 You can opt out of automatically starting an authentication session by specifying any text after your auth code,
 e.g. `@STW Daily d a51c1f4d35b1457c8e34a1f6026faa35 no`. You can end an authentication session with `@STW Daily kill`
 
-### Linking accounts:
+### Linking accounts
 
 Linking your accounts allows you to automatically authenticate, without needing to get an auth code each time.
 To get started, check out the [device](#device) command.
 
 ## Self hosting the bot
 
-### Skids:
+### Skids
 
 [Super easy 1-click hosting method](https://media.tenor.com/AKkrwSZSpZ0AAAPo/talking-ben.mp4)
 
-### Normal people:
+### Normal people
 
 Self hosting the bot is not recommended, as it requires a lot of setup and configuration. Instructions for self hosting
 will be provided in the future.
@@ -983,15 +1014,15 @@ the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-a
   <img src="https://contrib.rocks/image?repo=dippyshere/stw-daily&anon=1"  alt="Contributors to STW Daily - Dippyshere, jean1398reborn, PRO100KatYT, Meiniac, TeaDoc"/>
 </a>
 
-| Name                                                       | Contribution                                                                                          |
-|:-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| [Dippyshere](https://github.com/dippyshere)                | STW Daily Dev Team                                                                                    |
-| [jean1398reborn](https://github.com/jean1398reborn)        | STW Daily Dev Team                                                                                    |
-| [PRO100KatYT](https://github.com/P100KatYT)                | Maintaining items.py :D                                                                               |
-| [Meiniac](https://github.com/Meiniac)                      | Reminder embed + Mod                                                                                  |
-| [FF-TeaDoc](https://github.com/FF-TeaDoc)                  | Homebase rename endpoint                                                                              |
-| [Londiuh](https://github.com/Londiuh)                      | [Inspiration, Original auth + claim script](https://github.com/Londiuh/fstwrc)                        |
-| [MivV2](https://github.com/MixV2)                          | [Epic Research](https://github.com/MixV2/EpicResearch/)                                               |
+| Name                                                       | Contribution                                                                                           |
+|:-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| [Dippyshere](https://github.com/dippyshere)                | STW Daily Dev Team                                                                                     |
+| [jean1398reborn](https://github.com/jean1398reborn)        | STW Daily Dev Team                                                                                     |
+| [PRO100KatYT](https://github.com/P100KatYT)                | Maintaining items.py :D                                                                                |
+| [Meiniac](https://github.com/Meiniac)                      | Reminder embed + Mod                                                                                   |
+| [FF-TeaDoc](https://github.com/FF-TeaDoc)                  | Homebase rename endpoint                                                                               |
+| [Londiuh](https://github.com/Londiuh)                      | [Inspiration, Original auth + claim script](https://github.com/Londiuh/fstwrc)                         |
+| [MivV2](https://github.com/MixV2)                          | [Epic Research](https://github.com/MixV2/EpicResearch/)                                                |
 | [LeleDerGrasshalmi](https://github.com/LeleDerGrasshalmi/) | [FortniteEndpointsDocumentation](https://github.com/LeleDerGrasshalmi/FortniteEndpointsDocumentation/) |
 
 
