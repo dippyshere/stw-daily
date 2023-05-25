@@ -1,0 +1,58 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_2019_Season9",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Event_2019_Season9",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_RetroScifi_IconMask.T_CardPack_RetroScifi_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.464813,
+                "B": 0.063542,
+                "A": 1.0,
+                "Hex": "FFFFB647"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Space_PersonalityPack.Llama_Space_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "33D2F5AF458F739F230C55B5AC66292E",
+                "SourceString": "Sci-Fi Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "2E0CD5B44322ECA4784A529825CB642E",
+                "SourceString": "Guarantees at least one Epic or better limited time Sci-Fi weapon or Hero!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataRetroSciFiEventPack_128.PinataRetroSciFiEventPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataRetroSciFiEventPack.PinataRetroSciFiEventPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_ResourceRun_Metal_Medium",
+        "Properties": {
+            "ExpeditionDuration_Minutes": 960.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 65,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "ResourceRun_Metal_Medium"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "B71EA5514B4B1DD32A4BEFAAE5CD5ABA",
+                "SourceString": "Heavy Metal"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "4C5C28934D15CF2342491A9C2B7FB087",
+                "SourceString": "Assemble a scavenging team to collect some heavy metals. "
+            }
+        }
+    }
+]

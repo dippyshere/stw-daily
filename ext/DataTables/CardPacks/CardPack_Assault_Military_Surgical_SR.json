@@ -1,0 +1,46 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Assault_Military_Surgical_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Assault_Military_Surgical_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_BlockbusterEvent_IconMask.T_CardPack_BlockbusterEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "AB3753C74E4C88CE649147A9BF87A05E",
+                "SourceString": "Tiger Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "B4E5244A43103702E7EFB2B4F2CA97D2",
+                "SourceString": "Tiger Schematic"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Military-M4A1.T-Icon-Weapons-SK-Military-M4A1",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Military-M4A1-L.T-Icon-Weapons-SK-Military-M4A1-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

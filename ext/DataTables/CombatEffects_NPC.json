@@ -1,0 +1,984 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "CombatEffects_NPC",
+        "Rows": {
+            "Miniboss.All.KnockbackThreshold": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5000.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husk.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 58.18
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 58.18
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husk.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husk.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 12.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 12.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husk.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 116.36
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 116.36
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husky.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 12.44
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 12.44
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husky.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.57
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.57
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husky.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.4
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.4
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Husky.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 24.88
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 24.88
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Smasher.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.84
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.84
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Smasher.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.25
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.25
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Smasher.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Smasher.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.68
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.68
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Taker.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 9.33
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 9.33
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Taker.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.14
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.14
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Taker.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 6.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Taker.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 18.66
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 18.66
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Flinger.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 17.78
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 17.78
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Flinger.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.73
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.73
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Flinger.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.Flinger.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 35.56
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 35.56
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husk.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 155.15
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 155.15
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husk.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husk.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 12.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 12.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husk.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 310.3
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 310.3
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husky.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 33.19
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 33.19
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husky.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.57
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.57
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husky.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.4
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.4
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Husky.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 66.38
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 66.38
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Smasher.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 7.59
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 7.59
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Smasher.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.25
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.25
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Smasher.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Smasher.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.18
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 15.18
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Taker.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 24.89
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 24.89
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Taker.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.14
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.14
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Taker.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 6.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Taker.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 49.78
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 49.78
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Flinger.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 47.41
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 47.41
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Flinger.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.73
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.73
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Flinger.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.Flinger.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 94.82
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 94.82
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.DamageResist.Default": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.DamageResist.VsWeakElement": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.25
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.25
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.DamageResist.VsMatchingElement": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": -0.17
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": -0.17
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.DamageResist.VsStrongElement": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": -0.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": -0.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.DamageResist.VsEnergyElement": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": -0.25
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": -0.25
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.FreezeDurationMult.Weak": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.25
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.25
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.FreezeDurationMult.Neutral": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Elemental.FreezeDurationMult.Strong": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.75
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.75
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.DUDEBRO.Smasher.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.69
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.69
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.DUDEBRO.Smasher.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.25
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.25
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.DUDEBRO.Smasher.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.DUDEBRO.Smasher.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.68
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.68
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.StarlightSciBoss.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.91
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 2.91
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.StarlightSciBoss.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.StarlightSciBoss.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.1P.StarlightSciBoss.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.68
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.68
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.StarlightSciBoss.Health": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 7.76
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 7.76
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.StarlightSciBoss.DamageVsPawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.StarlightSciBoss.DamageVsEnv": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Miniboss.4P.StarlightSciBoss.Control": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.18
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 15.18
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

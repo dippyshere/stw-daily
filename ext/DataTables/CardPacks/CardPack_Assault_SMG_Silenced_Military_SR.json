@@ -1,0 +1,46 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Assault_SMG_Silenced_Military_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Assault_SMG_Silenced_Military_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_BlockbusterEvent_IconMask.T_CardPack_BlockbusterEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "BA8CDBE64EDF0CF2E761CFB5D1C4619B",
+                "SourceString": "Silenced Specter Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "EB00834C4D46467404FD2CA462AFC6C4",
+                "SourceString": "Silenced Specter Schematic"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-MilitarySMG-Silenced.T-Icon-Weapons-SK-MilitarySMG-Silenced",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-MilitarySMG-Silenced-L.T-Icon-Weapons-SK-MilitarySMG-Silenced-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

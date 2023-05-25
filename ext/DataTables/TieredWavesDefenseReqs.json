@@ -1,0 +1,200 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "TieredWavesDefenseReqs",
+        "Rows": {
+            "LegacyOutpostWaveLength": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "LegacyOutpostNumKills": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "LegacyOutpostNumKillPoints": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 20.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "HordeNumKills": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 150.0
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 150.0
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 200.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 200.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 250.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 250.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "HordeWaveLength": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 120.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 120.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "HordeNumKillPoints": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 2000.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 2000.0
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 3000.0
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 3000.0
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 4000.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 4000.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 5000.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 5000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "EndlessWaveLength": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "EndlessNumKills": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "EndlessNumKillPoints": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 104.0,
+                        "Value": 20.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

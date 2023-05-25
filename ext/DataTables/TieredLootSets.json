@@ -1,0 +1,266 @@
+[
+    {
+        "Type": "DataTable",
+        "Name": "TieredLootSets",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class TieredWaveCollectionLootSet",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "Theater01_Difficulty05": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T01_D01.Building",
+                            "HordeTG.Combat.Start.T01_D01.Crafting",
+                            "HordeTG.Combat.Start.T01_D01.TieredCrafting",
+                            "HordeTG.Combat.Start.T01_D01.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T01_D01.Building",
+                            "HordeTG.Combat.Wave.T01_D01.Crafting",
+                            "HordeTG.Combat.Wave.T01_D01.TieredCrafting",
+                            "HordeTG.Combat.Wave.T01_D01.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater01_Difficulty07": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T01_D02.Building",
+                            "HordeTG.Combat.Start.T01_D02.Crafting",
+                            "HordeTG.Combat.Start.T01_D02.TieredCrafting",
+                            "HordeTG.Combat.Start.T01_D02.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T01_D02.Building",
+                            "HordeTG.Combat.Wave.T01_D02.Crafting",
+                            "HordeTG.Combat.Wave.T01_D02.TieredCrafting",
+                            "HordeTG.Combat.Wave.T01_D02.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater01_Difficulty10": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T01_D03.Building",
+                            "HordeTG.Combat.Start.T01_D03.Crafting",
+                            "HordeTG.Combat.Start.T01_D03.TieredCrafting",
+                            "HordeTG.Combat.Start.T01_D03.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T01_D03.Building",
+                            "HordeTG.Combat.Wave.T01_D03.Crafting",
+                            "HordeTG.Combat.Wave.T01_D03.TieredCrafting",
+                            "HordeTG.Combat.Wave.T01_D03.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater02_Difficulty12": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T02_D01.Building",
+                            "HordeTG.Combat.Start.T02_D01.Crafting",
+                            "HordeTG.Combat.Start.T02_D01.TieredCrafting",
+                            "HordeTG.Combat.Start.T02_D01.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T02_D01.Building",
+                            "HordeTG.Combat.Wave.T02_D01.Crafting",
+                            "HordeTG.Combat.Wave.T02_D01.TieredCrafting",
+                            "HordeTG.Combat.Wave.T02_D01.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater02_Difficulty14": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T02_D02.Building",
+                            "HordeTG.Combat.Start.T02_D02.Crafting",
+                            "HordeTG.Combat.Start.T02_D02.TieredCrafting",
+                            "HordeTG.Combat.Start.T02_D02.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T02_D02.Building",
+                            "HordeTG.Combat.Wave.T02_D02.Crafting",
+                            "HordeTG.Combat.Wave.T02_D02.TieredCrafting",
+                            "HordeTG.Combat.Wave.T02_D02.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater02_Difficulty16": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T02_D03.Building",
+                            "HordeTG.Combat.Start.T02_D03.Crafting",
+                            "HordeTG.Combat.Start.T02_D03.TieredCrafting",
+                            "HordeTG.Combat.Start.T02_D03.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T02_D03.Building",
+                            "HordeTG.Combat.Wave.T02_D03.Crafting",
+                            "HordeTG.Combat.Wave.T02_D03.TieredCrafting",
+                            "HordeTG.Combat.Wave.T02_D03.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater02_Difficulty18": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T02_D04.Building",
+                            "HordeTG.Combat.Start.T02_D04.Crafting",
+                            "HordeTG.Combat.Start.T02_D04.TieredCrafting",
+                            "HordeTG.Combat.Start.T02_D04.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T02_D04.Building",
+                            "HordeTG.Combat.Wave.T02_D04.Crafting",
+                            "HordeTG.Combat.Wave.T02_D04.TieredCrafting",
+                            "HordeTG.Combat.Wave.T02_D04.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater02_Difficulty20": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T02_D05.Building",
+                            "HordeTG.Combat.Start.T02_D05.Crafting",
+                            "HordeTG.Combat.Start.T02_D05.TieredCrafting",
+                            "HordeTG.Combat.Start.T02_D05.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T02_D05.Building",
+                            "HordeTG.Combat.Wave.T02_D05.Crafting",
+                            "HordeTG.Combat.Wave.T02_D05.TieredCrafting",
+                            "HordeTG.Combat.Wave.T02_D05.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater03_Difficulty22": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T03_D01.Building",
+                            "HordeTG.Combat.Start.T03_D01.Crafting",
+                            "HordeTG.Combat.Start.T03_D01.TieredCrafting",
+                            "HordeTG.Combat.Start.T03_D01.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T03_D01.Building",
+                            "HordeTG.Combat.Wave.T03_D01.Crafting",
+                            "HordeTG.Combat.Wave.T03_D01.TieredCrafting",
+                            "HordeTG.Combat.Wave.T03_D01.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater03_Difficulty24": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T03_D02.Building",
+                            "HordeTG.Combat.Start.T03_D02.Crafting",
+                            "HordeTG.Combat.Start.T03_D02.TieredCrafting",
+                            "HordeTG.Combat.Start.T03_D02.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T03_D02.Building",
+                            "HordeTG.Combat.Wave.T03_D02.Crafting",
+                            "HordeTG.Combat.Wave.T03_D02.TieredCrafting",
+                            "HordeTG.Combat.Wave.T03_D02.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater03_Difficulty26": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T03_D03.Building",
+                            "HordeTG.Combat.Start.T03_D03.Crafting",
+                            "HordeTG.Combat.Start.T03_D03.TieredCrafting",
+                            "HordeTG.Combat.Start.T03_D03.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T03_D03.Building",
+                            "HordeTG.Combat.Wave.T03_D03.Crafting",
+                            "HordeTG.Combat.Wave.T03_D03.TieredCrafting",
+                            "HordeTG.Combat.Wave.T03_D03.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater03_Difficulty28": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T03_D04.Building",
+                            "HordeTG.Combat.Start.T03_D04.Crafting",
+                            "HordeTG.Combat.Start.T03_D04.TieredCrafting",
+                            "HordeTG.Combat.Start.T03_D04.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T03_D04.Building",
+                            "HordeTG.Combat.Wave.T03_D04.Crafting",
+                            "HordeTG.Combat.Wave.T03_D04.TieredCrafting",
+                            "HordeTG.Combat.Wave.T03_D04.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater03_Difficulty30": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T03_D05.Building",
+                            "HordeTG.Combat.Start.T03_D05.Crafting",
+                            "HordeTG.Combat.Start.T03_D05.TieredCrafting",
+                            "HordeTG.Combat.Start.T03_D05.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T03_D05.Building",
+                            "HordeTG.Combat.Wave.T03_D05.Crafting",
+                            "HordeTG.Combat.Wave.T03_D05.TieredCrafting",
+                            "HordeTG.Combat.Wave.T03_D05.Ammo"
+                        ]
+                    }
+                ]
+            },
+            "Theater04_Endless": {
+                "LootSetData": [
+                    {
+                        "StartOfCollectionItemTierGroups": [
+                            "HordeTG.Combat.Start.T04_D01.Building",
+                            "HordeTG.Combat.Start.T04_D01.Crafting",
+                            "HordeTG.Combat.Start.T04_D01.TieredCrafting",
+                            "HordeTG.Combat.Start.T04_D01.Ammo"
+                        ],
+                        "SuccessfulWaveItemTierGroups": [
+                            "HordeTG.Combat.Wave.T04_D01.Building",
+                            "HordeTG.Combat.Wave.T04_D01.Crafting",
+                            "HordeTG.Combat.Wave.T04_D01.TieredCrafting",
+                            "HordeTG.Combat.Wave.T04_D01.Ammo"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+]

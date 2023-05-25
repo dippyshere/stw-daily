@@ -1,0 +1,59 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Gold_XP",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Gold_XP",
+            "DisplayRarityLevel": 2,
+            "PackImage": {
+                "AssetPathName": "/SaveTheWorld/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_CandyXP_IconMask.T_CardPack_CandyXP_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.023529,
+                "B": 0.0,
+                "A": 1.0,
+                "Hex": "FFFF2A00"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Mob_PersonalityPack.Llama_Mob_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "7AAD378F4D192605C1A489A6011745D6",
+                "SourceString": "Gold XP Candy Pack"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "31E2A96943116B77689557879929C4C8",
+                "SourceString": "A pack that's completely brimming with crew and schematic XP!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

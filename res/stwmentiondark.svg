@@ -1,0 +1,95 @@
+<svg fill="none" viewBox="0 0 96 20" width="96" height="20" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                <!--
+                    Made by Dippyshere - https://github.com/dippyshere
+                    style copied from discord client
+                -->
+                .mention {
+                background-attachment: scroll;
+                background-clip: border-box;
+                background-color: rgba(88, 101, 242, 0.3);
+                background-image: none;
+                background-origin: padding-box;
+                background-position-x: 0%;
+                background-position-y: 0%;
+                background-repeat-x: ;
+                background-repeat-y: ;
+                background-size: auto;
+                border-bottom-color: rgb(222, 224, 252);
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+                border-bottom-style: none;
+                border-bottom-width: 0px;
+                border-image-outset: 0;
+                border-image-repeat: stretch;
+                border-image-slice: 100%;
+                border-image-source: none;
+                border-image-width: 1;
+                border-left-color: rgb(222, 224, 252);
+                border-left-style: none;
+                border-left-width: 0px;
+                border-right-color: rgb(222, 224, 252);
+                border-right-style: none;
+                border-right-width: 0px;
+                border-top-color: rgb(222, 224, 252);
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                border-top-style: none;
+                border-top-width: 0px;
+                color: rgb(222, 224, 252);
+                cursor: pointer;
+                display: inline;
+                font-family: Whitney, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                forced-color-adjust: none;
+                height: auto;
+                line-height: 20px;
+                list-style-image: none;
+                list-style-position: outside;
+                list-style-type: none;
+                margin-bottom: 0px;
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 0px;
+                outline-color: rgb(222, 224, 252);
+                outline-style: none;
+                outline-width: 0px;
+                overflow-wrap: break-word;
+                padding-bottom: 0px;
+                padding-left: 2px;
+                padding-right: 2px;
+                padding-top: 0px;
+                position: relative;
+                text-align: left;
+                text-indent: 0px;
+                text-rendering: optimizelegibility;
+                transition-delay: 0s, 0s;
+                transition-duration: 0.05s, 0.05s;
+                transition-property: background-color, color;
+                transition-timing-function: ease-out, ease-out;
+                unicode-bidi: plaintext;
+                user-select: text;
+                vertical-align: baseline;
+                white-space: break-spaces;
+                width: auto;
+                -webkit-box-direction: normal;
+                }
+
+                .mention:hover {
+                color: rgb(255, 255, 255);
+                background-color: rgb(88, 101, 242);
+                border-bottom-color: rgb(255, 255, 255);
+                border-left-color: rgb(255, 255, 255);
+                border-right-color: rgb(255, 255, 255);
+                border-top-color: rgb(255, 255, 255);
+                outline-color: rgb(255, 255, 255);
+                }
+            </style>
+            <span class="mention">@STW Daily</span>
+        </div>
+    </foreignObject>
+</svg>

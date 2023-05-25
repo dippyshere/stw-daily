@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Sea_SurvivorScouting_Medium_T03",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T03",
+            "ExpeditionDuration_Minutes": 960.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 295,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Sea_SurvivorScouting_Medium_T03"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "A077E00A4B393C4009B354AB646AC78A",
+                "SourceString": "Hope Floats"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "6EAE7A304E406C70F5A60BB7036A7981",
+                "SourceString": "A small boat capsized in a nearby lake. See if there are any survivors!"
+            }
+        }
+    }
+]

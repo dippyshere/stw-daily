@@ -1,0 +1,61 @@
+[
+    {
+        "Type": "StWFortAccoladeItemDefinition",
+        "Name": "Accoladeid_STW_HitTheRoad_Prog_BugHunt",
+        "Properties": {
+            "AccoladeType": "EFortAccoladeType::Accolade",
+            "Priority": "EXPEventPriorityType::Feed",
+            "XpRewardAmount": {
+                "Value": 1.0,
+                "Curve": {
+                    "CurveTable": {
+                        "ObjectName": "CurveTable STWAccoladeXP",
+                        "ObjectPath": "/SaveTheWorld/Items/STWAccolades/Datatables/STWAccoladeXP.0"
+                    },
+                    "RowName": "HitTheRoad_Progress"
+                }
+            },
+            "AwardedSoundCue": {
+                "ObjectName": "SoundCue Fort_XP_Splash_Cue",
+                "ObjectPath": "/Game/Sounds/Fort_UI_Sounds/Gameplay/XP/Fort_XP_Splash_Cue.0"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "57A81234485AEC72C91D5F8497B8D729",
+                "SourceString": "Hit the Road: Infestation"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "E55E8B8648F5E5068C7D629BECDF8797",
+                "SourceString": "Battle Pass XP Earned"
+            },
+            "FrontendPreviewScale": 1.4,
+            "GameplayTags": [
+                "Accolade.Metadata.Survival"
+            ],
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_S.T_UI_FNBR_XPeverywhere_S",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_L.T_UI_FNBR_XPeverywhere_L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Common",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

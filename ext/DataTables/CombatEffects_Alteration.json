@@ -1,0 +1,2992 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "CombatEffects_Alteration",
+        "Rows": {
+            "Alteration.Weapon.Ranged.IsTargetting.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 1.18
+                    },
+                    {
+                        "Time": 6.0,
+                        "Value": 1.36
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 1.42
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 1.6
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 1.66
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 1.84
+                    },
+                    {
+                        "Time": 15.0,
+                        "Value": 1.9
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 2.08
+                    },
+                    {
+                        "Time": 19.0,
+                        "Value": 2.14
+                    },
+                    {
+                        "Time": 22.0,
+                        "Value": 2.32
+                    },
+                    {
+                        "Time": 27.0,
+                        "Value": 2.62
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 2.68
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 2.86
+                    },
+                    {
+                        "Time": 35.0,
+                        "Value": 3.1
+                    },
+                    {
+                        "Time": 36.0,
+                        "Value": 3.16
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 3.34
+                    },
+                    {
+                        "Time": 43.0,
+                        "Value": 3.58
+                    },
+                    {
+                        "Time": 44.0,
+                        "Value": 3.64
+                    },
+                    {
+                        "Time": 47.0,
+                        "Value": 3.82
+                    },
+                    {
+                        "Time": 54.0,
+                        "Value": 4.24
+                    },
+                    {
+                        "Time": 62.0,
+                        "Value": 4.72
+                    },
+                    {
+                        "Time": 63.0,
+                        "Value": 4.78
+                    },
+                    {
+                        "Time": 70.0,
+                        "Value": 5.2
+                    },
+                    {
+                        "Time": 79.0,
+                        "Value": 5.74
+                    },
+                    {
+                        "Time": 87.0,
+                        "Value": 6.22
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 6.28
+                    },
+                    {
+                        "Time": 95.0,
+                        "Value": 6.7
+                    },
+                    {
+                        "Time": 105.0,
+                        "Value": 7.3
+                    },
+                    {
+                        "Time": 110.0,
+                        "Value": 7.6
+                    },
+                    {
+                        "Time": 115.0,
+                        "Value": 7.9
+                    },
+                    {
+                        "Time": 135.0,
+                        "Value": 9.1
+                    },
+                    {
+                        "Time": 160.0,
+                        "Value": 10.6
+                    },
+                    {
+                        "Time": 185.0,
+                        "Value": 12.1
+                    },
+                    {
+                        "Time": 210.0,
+                        "Value": 13.6
+                    },
+                    {
+                        "Time": 235.0,
+                        "Value": 15.1
+                    },
+                    {
+                        "Time": 240.0,
+                        "Value": 15.4
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 601.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.SpecificTarget.RareTarget.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 1.2
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 1.7
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 2.1
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 2.2
+                    },
+                    {
+                        "Time": 13.0,
+                        "Value": 2.3
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 2.8
+                    },
+                    {
+                        "Time": 23.0,
+                        "Value": 3.3
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 3.8
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 4.2
+                    },
+                    {
+                        "Time": 37.0,
+                        "Value": 4.7
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 5.2
+                    },
+                    {
+                        "Time": 47.0,
+                        "Value": 5.7
+                    },
+                    {
+                        "Time": 52.0,
+                        "Value": 6.2
+                    },
+                    {
+                        "Time": 57.0,
+                        "Value": 6.7
+                    },
+                    {
+                        "Time": 62.0,
+                        "Value": 7.2
+                    },
+                    {
+                        "Time": 67.0,
+                        "Value": 7.7
+                    },
+                    {
+                        "Time": 71.0,
+                        "Value": 8.1
+                    },
+                    {
+                        "Time": 72.0,
+                        "Value": 8.2
+                    },
+                    {
+                        "Time": 73.0,
+                        "Value": 8.3
+                    },
+                    {
+                        "Time": 78.0,
+                        "Value": 8.8
+                    },
+                    {
+                        "Time": 83.0,
+                        "Value": 9.3
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 9.8
+                    },
+                    {
+                        "Time": 93.0,
+                        "Value": 10.3
+                    },
+                    {
+                        "Time": 98.0,
+                        "Value": 10.8
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1001.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.SpecificTarget.CommonTarget.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 1.225
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 1.525
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 1.6
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 1.9
+                    },
+                    {
+                        "Time": 13.0,
+                        "Value": 1.975
+                    },
+                    {
+                        "Time": 17.0,
+                        "Value": 2.275
+                    },
+                    {
+                        "Time": 22.0,
+                        "Value": 2.65
+                    },
+                    {
+                        "Time": 27.0,
+                        "Value": 3.025
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 3.4
+                    },
+                    {
+                        "Time": 37.0,
+                        "Value": 3.775
+                    },
+                    {
+                        "Time": 41.0,
+                        "Value": 4.075
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 4.15
+                    },
+                    {
+                        "Time": 43.0,
+                        "Value": 4.225
+                    },
+                    {
+                        "Time": 48.0,
+                        "Value": 4.6
+                    },
+                    {
+                        "Time": 53.0,
+                        "Value": 4.975
+                    },
+                    {
+                        "Time": 58.0,
+                        "Value": 5.35
+                    },
+                    {
+                        "Time": 63.0,
+                        "Value": 5.725
+                    },
+                    {
+                        "Time": 68.0,
+                        "Value": 6.1
+                    },
+                    {
+                        "Time": 73.0,
+                        "Value": 6.475
+                    },
+                    {
+                        "Time": 78.0,
+                        "Value": 6.85
+                    },
+                    {
+                        "Time": 83.0,
+                        "Value": 7.225
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 7.6
+                    },
+                    {
+                        "Time": 93.0,
+                        "Value": 7.975
+                    },
+                    {
+                        "Time": 97.0,
+                        "Value": 8.275
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 751.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.SteamCloud.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 29.38
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 29.38
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.SteamCloud.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 23.26
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 23.26
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.HeadshotDamage.OnSwordCritBuffPistolHeadshotDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 1.15
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 1.4
+                    },
+                    {
+                        "Time": 13.0,
+                        "Value": 1.65
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 1.9
+                    },
+                    {
+                        "Time": 22.0,
+                        "Value": 2.1
+                    },
+                    {
+                        "Time": 27.0,
+                        "Value": 2.35
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 2.6
+                    },
+                    {
+                        "Time": 37.0,
+                        "Value": 2.85
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 3.1
+                    },
+                    {
+                        "Time": 47.0,
+                        "Value": 3.35
+                    },
+                    {
+                        "Time": 52.0,
+                        "Value": 3.6
+                    },
+                    {
+                        "Time": 57.0,
+                        "Value": 3.85
+                    },
+                    {
+                        "Time": 61.0,
+                        "Value": 4.05
+                    },
+                    {
+                        "Time": 62.0,
+                        "Value": 4.1
+                    },
+                    {
+                        "Time": 63.0,
+                        "Value": 4.15
+                    },
+                    {
+                        "Time": 68.0,
+                        "Value": 4.4
+                    },
+                    {
+                        "Time": 73.0,
+                        "Value": 4.65
+                    },
+                    {
+                        "Time": 78.0,
+                        "Value": 4.9
+                    },
+                    {
+                        "Time": 83.0,
+                        "Value": 5.15
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 5.4
+                    },
+                    {
+                        "Time": 93.0,
+                        "Value": 5.65
+                    },
+                    {
+                        "Time": 98.0,
+                        "Value": 5.9
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 501.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.Duration.OnSwordCritBuffPistolHeadshotDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 15.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.CritRating.OnPistolHeadshotBuffSwordCritRating": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 3.25
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 6.25
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 9.5
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 12.5
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 15.75
+                    },
+                    {
+                        "Time": 6.0,
+                        "Value": 18.75
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 22.0
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 25.0
+                    },
+                    {
+                        "Time": 9.0,
+                        "Value": 28.25
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 31.25
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 34.5
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 37.5
+                    },
+                    {
+                        "Time": 13.0,
+                        "Value": 40.75
+                    },
+                    {
+                        "Time": 14.0,
+                        "Value": 43.75
+                    },
+                    {
+                        "Time": 15.0,
+                        "Value": 47.0
+                    },
+                    {
+                        "Time": 16.0,
+                        "Value": 50.0
+                    },
+                    {
+                        "Time": 17.0,
+                        "Value": 53.25
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 56.25
+                    },
+                    {
+                        "Time": 19.0,
+                        "Value": 59.5
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 62.5
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 65.75
+                    },
+                    {
+                        "Time": 22.0,
+                        "Value": 68.75
+                    },
+                    {
+                        "Time": 23.0,
+                        "Value": 72.0
+                    },
+                    {
+                        "Time": 24.0,
+                        "Value": 75.0
+                    },
+                    {
+                        "Time": 25.0,
+                        "Value": 78.25
+                    },
+                    {
+                        "Time": 26.0,
+                        "Value": 81.25
+                    },
+                    {
+                        "Time": 27.0,
+                        "Value": 84.5
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 87.5
+                    },
+                    {
+                        "Time": 29.0,
+                        "Value": 90.75
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 93.75
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 97.0
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 100.0
+                    },
+                    {
+                        "Time": 33.0,
+                        "Value": 103.25
+                    },
+                    {
+                        "Time": 34.0,
+                        "Value": 106.25
+                    },
+                    {
+                        "Time": 35.0,
+                        "Value": 109.5
+                    },
+                    {
+                        "Time": 36.0,
+                        "Value": 112.5
+                    },
+                    {
+                        "Time": 37.0,
+                        "Value": 115.75
+                    },
+                    {
+                        "Time": 38.0,
+                        "Value": 118.75
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 122.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 125.0
+                    },
+                    {
+                        "Time": 41.0,
+                        "Value": 128.25
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 131.25
+                    },
+                    {
+                        "Time": 43.0,
+                        "Value": 134.5
+                    },
+                    {
+                        "Time": 44.0,
+                        "Value": 137.5
+                    },
+                    {
+                        "Time": 45.0,
+                        "Value": 140.75
+                    },
+                    {
+                        "Time": 46.0,
+                        "Value": 143.75
+                    },
+                    {
+                        "Time": 47.0,
+                        "Value": 147.0
+                    },
+                    {
+                        "Time": 48.0,
+                        "Value": 150.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 153.25
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 156.25
+                    },
+                    {
+                        "Time": 51.0,
+                        "Value": 159.5
+                    },
+                    {
+                        "Time": 52.0,
+                        "Value": 162.5
+                    },
+                    {
+                        "Time": 53.0,
+                        "Value": 165.75
+                    },
+                    {
+                        "Time": 54.0,
+                        "Value": 168.75
+                    },
+                    {
+                        "Time": 55.0,
+                        "Value": 172.0
+                    },
+                    {
+                        "Time": 56.0,
+                        "Value": 175.0
+                    },
+                    {
+                        "Time": 57.0,
+                        "Value": 178.25
+                    },
+                    {
+                        "Time": 58.0,
+                        "Value": 181.25
+                    },
+                    {
+                        "Time": 59.0,
+                        "Value": 184.5
+                    },
+                    {
+                        "Time": 60.0,
+                        "Value": 187.5
+                    },
+                    {
+                        "Time": 61.0,
+                        "Value": 190.75
+                    },
+                    {
+                        "Time": 62.0,
+                        "Value": 193.75
+                    },
+                    {
+                        "Time": 63.0,
+                        "Value": 197.0
+                    },
+                    {
+                        "Time": 64.0,
+                        "Value": 200.0
+                    },
+                    {
+                        "Time": 65.0,
+                        "Value": 203.25
+                    },
+                    {
+                        "Time": 66.0,
+                        "Value": 206.25
+                    },
+                    {
+                        "Time": 67.0,
+                        "Value": 209.5
+                    },
+                    {
+                        "Time": 68.0,
+                        "Value": 212.5
+                    },
+                    {
+                        "Time": 69.0,
+                        "Value": 215.75
+                    },
+                    {
+                        "Time": 70.0,
+                        "Value": 218.75
+                    },
+                    {
+                        "Time": 71.0,
+                        "Value": 222.0
+                    },
+                    {
+                        "Time": 72.0,
+                        "Value": 225.0
+                    },
+                    {
+                        "Time": 73.0,
+                        "Value": 228.25
+                    },
+                    {
+                        "Time": 74.0,
+                        "Value": 231.25
+                    },
+                    {
+                        "Time": 75.0,
+                        "Value": 234.5
+                    },
+                    {
+                        "Time": 76.0,
+                        "Value": 237.5
+                    },
+                    {
+                        "Time": 77.0,
+                        "Value": 240.75
+                    },
+                    {
+                        "Time": 78.0,
+                        "Value": 243.75
+                    },
+                    {
+                        "Time": 79.0,
+                        "Value": 247.0
+                    },
+                    {
+                        "Time": 80.0,
+                        "Value": 250.0
+                    },
+                    {
+                        "Time": 81.0,
+                        "Value": 253.25
+                    },
+                    {
+                        "Time": 82.0,
+                        "Value": 256.25
+                    },
+                    {
+                        "Time": 83.0,
+                        "Value": 259.5
+                    },
+                    {
+                        "Time": 84.0,
+                        "Value": 262.5
+                    },
+                    {
+                        "Time": 85.0,
+                        "Value": 265.75
+                    },
+                    {
+                        "Time": 86.0,
+                        "Value": 268.75
+                    },
+                    {
+                        "Time": 87.0,
+                        "Value": 272.0
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 275.0
+                    },
+                    {
+                        "Time": 89.0,
+                        "Value": 278.25
+                    },
+                    {
+                        "Time": 90.0,
+                        "Value": 281.25
+                    },
+                    {
+                        "Time": 91.0,
+                        "Value": 284.5
+                    },
+                    {
+                        "Time": 92.0,
+                        "Value": 287.5
+                    },
+                    {
+                        "Time": 93.0,
+                        "Value": 290.75
+                    },
+                    {
+                        "Time": 94.0,
+                        "Value": 293.75
+                    },
+                    {
+                        "Time": 95.0,
+                        "Value": 297.0
+                    },
+                    {
+                        "Time": 96.0,
+                        "Value": 300.0
+                    },
+                    {
+                        "Time": 97.0,
+                        "Value": 303.25
+                    },
+                    {
+                        "Time": 98.0,
+                        "Value": 306.25
+                    },
+                    {
+                        "Time": 99.0,
+                        "Value": 309.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 312.5
+                    },
+                    {
+                        "Time": 105.0,
+                        "Value": 328.25
+                    },
+                    {
+                        "Time": 110.0,
+                        "Value": 343.75
+                    },
+                    {
+                        "Time": 115.0,
+                        "Value": 359.5
+                    },
+                    {
+                        "Time": 120.0,
+                        "Value": 375.0
+                    },
+                    {
+                        "Time": 125.0,
+                        "Value": 390.75
+                    },
+                    {
+                        "Time": 130.0,
+                        "Value": 406.25
+                    },
+                    {
+                        "Time": 135.0,
+                        "Value": 422.0
+                    },
+                    {
+                        "Time": 140.0,
+                        "Value": 437.5
+                    },
+                    {
+                        "Time": 145.0,
+                        "Value": 453.25
+                    },
+                    {
+                        "Time": 150.0,
+                        "Value": 468.75
+                    },
+                    {
+                        "Time": 155.0,
+                        "Value": 484.5
+                    },
+                    {
+                        "Time": 160.0,
+                        "Value": 500.0
+                    },
+                    {
+                        "Time": 165.0,
+                        "Value": 515.75
+                    },
+                    {
+                        "Time": 170.0,
+                        "Value": 531.25
+                    },
+                    {
+                        "Time": 175.0,
+                        "Value": 547.0
+                    },
+                    {
+                        "Time": 180.0,
+                        "Value": 562.5
+                    },
+                    {
+                        "Time": 185.0,
+                        "Value": 578.25
+                    },
+                    {
+                        "Time": 190.0,
+                        "Value": 593.75
+                    },
+                    {
+                        "Time": 195.0,
+                        "Value": 609.5
+                    },
+                    {
+                        "Time": 200.0,
+                        "Value": 625.0
+                    },
+                    {
+                        "Time": 205.0,
+                        "Value": 640.75
+                    },
+                    {
+                        "Time": 210.0,
+                        "Value": 656.25
+                    },
+                    {
+                        "Time": 215.0,
+                        "Value": 672.0
+                    },
+                    {
+                        "Time": 220.0,
+                        "Value": 687.5
+                    },
+                    {
+                        "Time": 225.0,
+                        "Value": 703.25
+                    },
+                    {
+                        "Time": 230.0,
+                        "Value": 718.75
+                    },
+                    {
+                        "Time": 235.0,
+                        "Value": 734.5
+                    },
+                    {
+                        "Time": 240.0,
+                        "Value": 750.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 31250.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.Duration.OnPistolHeadshotBuffSwordCritRating": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 15.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.OnKillDance.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.2
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.2
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.OnKillDance.Duration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.6
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.OnKillDance.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.OnImpactBreakDance.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.2
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.2
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.OnImpactBreakDance.Duration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.6
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.OnImpactBreakDance.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakDance.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.2
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.2
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakDance.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakDance.RequiredHitCount": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakDance.StackDuration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDance.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.2
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.2
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDance.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDance.RequiredHitCount": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 6.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDance.StackDuration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Shared.OnHitStreakDance.Duration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.6
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDanceAfflict.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.2
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.2
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDanceAfflict.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDanceAfflict.RequiredHitCount": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDanceAfflict.StackDuration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Shared.OnHitStreakDanceAfflict.Duration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.6
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDanceAfflict.TickDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 8.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 8.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Shared.OnHitStreakDanceAfflict.TickPeriod": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHitStreakDanceAfflict.ChanceToTrigger": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.034
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.034
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnKillSpawnSparkBurst.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnKillSpawnSparkBurst.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 256.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 256.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnKillSpawnSparkBurst.PlayerDmgPctCurrentHP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.08
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.08
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnKillSpawnSparkBurst.MinHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 25.66
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 25.66
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnKillSpawnSparkBurst.MaxHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 150.94
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 150.94
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReloadSpawnSparkBurst.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReloadSpawnSparkBurst.PlayerDmgPctCurrentHP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.125
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.125
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReloadSpawnSparkBurst.MinHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 28.6
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 28.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReloadSpawnSparkBurst.MaxHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 131.93
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 131.93
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReloadSpawnSparkBurst.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnKillStreakSpawnSparkBurst.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnKillStreakSpawnSparkBurst.PlayerDmgPctCurrentHP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.125
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.125
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnKillStreakSpawnSparkBurst.MinHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 28.59
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 28.59
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnKillStreakSpawnSparkBurst.MaxHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 129.09
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 129.09
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnKillStreakSpawnSparkBurst.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.034
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.034
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnImpactBreakSpawnSparkBurst.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnImpactBreakSpawnSparkBurst.PlayerDmgPctCurrentHP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.125
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.125
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnImpactBreakSpawnSparkBurst.MinHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 28.6
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 28.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnImpactBreakSpawnSparkBurst.MaxHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 126.61
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 126.61
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnImpactBreakSpawnSparkBurst.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 6.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnImpactBreakSpawnSparkBurst.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnImpactBreakSpawnSparkBurst.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 256.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 256.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnImpactBreakSpawnSparkBurst.PlayerDmgPctCurrentHP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.08
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.08
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnImpactBreakSpawnSparkBurst.MinHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 25.67
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 25.67
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnImpactBreakSpawnSparkBurst.MaxHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 148.86
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 148.86
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakSpawnSparkBurst.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakSpawnSparkBurst.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 256.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 256.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakSpawnSparkBurst.PlayerDmgPctCurrentHP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.08
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.08
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakSpawnSparkBurst.MinHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 25.66
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 25.66
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakSpawnSparkBurst.MaxHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 150.94
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 150.94
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnHitStreakSpawnSparkBurst.HitsToTriggerThreshold": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHeadshotSpawnSparkBurst.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 384.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 384.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHeadshotSpawnSparkBurst.PlayerDmgPctCurrentHP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.125
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.125
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHeadshotSpawnSparkBurst.MinHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 28.6
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 28.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHeadshotSpawnSparkBurst.MaxHuskDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 133.4
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 133.4
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHeadshotSpawnSparkBurst.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 6.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnHeadshotSpawnSparkBurst.HitsToTriggerThreshold": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.Bow.OnKill.ChainLightning.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.Bow.OnKill.ChainLightning.Bounces": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 6.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.Bow.OnKill.ChainLightning.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 34.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 34.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.MeleeOnImpactBreak.DealDamage.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 11.81
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 11.81
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.BunkerDown.DamageBuff.Stack": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 1.44
+                    },
+                    {
+                        "Time": 9.0,
+                        "Value": 1.99
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 2.32
+                    },
+                    {
+                        "Time": 13.0,
+                        "Value": 2.43
+                    },
+                    {
+                        "Time": 17.0,
+                        "Value": 2.87
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 3.2
+                    },
+                    {
+                        "Time": 23.0,
+                        "Value": 3.53
+                    },
+                    {
+                        "Time": 24.0,
+                        "Value": 3.64
+                    },
+                    {
+                        "Time": 26.0,
+                        "Value": 3.86
+                    },
+                    {
+                        "Time": 27.0,
+                        "Value": 3.97
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 4.3
+                    },
+                    {
+                        "Time": 37.0,
+                        "Value": 5.07
+                    },
+                    {
+                        "Time": 38.0,
+                        "Value": 5.18
+                    },
+                    {
+                        "Time": 41.0,
+                        "Value": 5.51
+                    },
+                    {
+                        "Time": 48.0,
+                        "Value": 6.28
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 6.39
+                    },
+                    {
+                        "Time": 51.0,
+                        "Value": 6.61
+                    },
+                    {
+                        "Time": 52.0,
+                        "Value": 6.72
+                    },
+                    {
+                        "Time": 55.0,
+                        "Value": 7.05
+                    },
+                    {
+                        "Time": 62.0,
+                        "Value": 7.82
+                    },
+                    {
+                        "Time": 63.0,
+                        "Value": 7.93
+                    },
+                    {
+                        "Time": 68.0,
+                        "Value": 8.48
+                    },
+                    {
+                        "Time": 71.0,
+                        "Value": 8.81
+                    },
+                    {
+                        "Time": 73.0,
+                        "Value": 9.03
+                    },
+                    {
+                        "Time": 74.0,
+                        "Value": 9.14
+                    },
+                    {
+                        "Time": 76.0,
+                        "Value": 9.36
+                    },
+                    {
+                        "Time": 77.0,
+                        "Value": 9.47
+                    },
+                    {
+                        "Time": 79.0,
+                        "Value": 9.69
+                    },
+                    {
+                        "Time": 80.0,
+                        "Value": 9.8
+                    },
+                    {
+                        "Time": 84.0,
+                        "Value": 10.24
+                    },
+                    {
+                        "Time": 90.0,
+                        "Value": 10.9
+                    },
+                    {
+                        "Time": 95.0,
+                        "Value": 11.45
+                    },
+                    {
+                        "Time": 96.0,
+                        "Value": 11.56
+                    },
+                    {
+                        "Time": 98.0,
+                        "Value": 11.78
+                    },
+                    {
+                        "Time": 99.0,
+                        "Value": 11.89
+                    },
+                    {
+                        "Time": 135.0,
+                        "Value": 15.85
+                    },
+                    {
+                        "Time": 140.0,
+                        "Value": 16.4
+                    },
+                    {
+                        "Time": 165.0,
+                        "Value": 19.15
+                    },
+                    {
+                        "Time": 190.0,
+                        "Value": 21.9
+                    },
+                    {
+                        "Time": 215.0,
+                        "Value": 24.65
+                    },
+                    {
+                        "Time": 450.0,
+                        "Value": 50.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 999.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.BunkerDown.DamageBuff.Mist.Stack": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 1.17
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 1.34
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 1.68
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 1.85
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 2.36
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 2.7
+                    },
+                    {
+                        "Time": 16.0,
+                        "Value": 3.72
+                    },
+                    {
+                        "Time": 17.0,
+                        "Value": 3.89
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 4.57
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 5.76
+                    },
+                    {
+                        "Time": 29.0,
+                        "Value": 5.93
+                    },
+                    {
+                        "Time": 34.0,
+                        "Value": 6.78
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 7.8
+                    },
+                    {
+                        "Time": 41.0,
+                        "Value": 7.97
+                    },
+                    {
+                        "Time": 43.0,
+                        "Value": 8.31
+                    },
+                    {
+                        "Time": 56.0,
+                        "Value": 10.52
+                    },
+                    {
+                        "Time": 57.0,
+                        "Value": 10.69
+                    },
+                    {
+                        "Time": 68.0,
+                        "Value": 12.56
+                    },
+                    {
+                        "Time": 81.0,
+                        "Value": 14.77
+                    },
+                    {
+                        "Time": 82.0,
+                        "Value": 14.94
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 15.96
+                    },
+                    {
+                        "Time": 110.0,
+                        "Value": 19.7
+                    },
+                    {
+                        "Time": 135.0,
+                        "Value": 23.95
+                    },
+                    {
+                        "Time": 160.0,
+                        "Value": 28.2
+                    },
+                    {
+                        "Time": 190.0,
+                        "Value": 33.3
+                    },
+                    {
+                        "Time": 215.0,
+                        "Value": 37.55
+                    },
+                    {
+                        "Time": 450.0,
+                        "Value": 77.5
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 999.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.BunkerDown.GrantPct.Shield": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.1
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 0.1
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 0.2
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 0.4
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 0.7
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 0.8
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 1.2
+                    },
+                    {
+                        "Time": 17.0,
+                        "Value": 1.7
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 2.1
+                    },
+                    {
+                        "Time": 22.0,
+                        "Value": 2.2
+                    },
+                    {
+                        "Time": 23.0,
+                        "Value": 2.3
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 2.8
+                    },
+                    {
+                        "Time": 33.0,
+                        "Value": 3.3
+                    },
+                    {
+                        "Time": 38.0,
+                        "Value": 3.8
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 4.2
+                    },
+                    {
+                        "Time": 47.0,
+                        "Value": 4.7
+                    },
+                    {
+                        "Time": 52.0,
+                        "Value": 5.2
+                    },
+                    {
+                        "Time": 57.0,
+                        "Value": 5.7
+                    },
+                    {
+                        "Time": 62.0,
+                        "Value": 6.2
+                    },
+                    {
+                        "Time": 67.0,
+                        "Value": 6.7
+                    },
+                    {
+                        "Time": 72.0,
+                        "Value": 7.2
+                    },
+                    {
+                        "Time": 77.0,
+                        "Value": 7.7
+                    },
+                    {
+                        "Time": 81.0,
+                        "Value": 8.1
+                    },
+                    {
+                        "Time": 82.0,
+                        "Value": 8.2
+                    },
+                    {
+                        "Time": 83.0,
+                        "Value": 8.3
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 8.8
+                    },
+                    {
+                        "Time": 93.0,
+                        "Value": 9.3
+                    },
+                    {
+                        "Time": 98.0,
+                        "Value": 9.8
+                    },
+                    {
+                        "Time": 450.0,
+                        "Value": 45.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 999.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReload.DamageBuff": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.017
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.017
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReload.DamageBuffStack": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.16
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.16
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReload.ReloadBuff": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.01
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.01
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnFire.DamageBuffStack": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.15
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.15
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReload.Explode.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.65
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.65
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnReload.Explode.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 256.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 256.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.BonusDamageVersusElement": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.44
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.44
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.BonusDamageVersusElement": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.44
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.44
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.OnKillReal.ChainLightning.Bounces": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 6.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Ranged.OnKillReal.ChainLightning.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 19.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 19.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnKillReal.ChainLightning.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 19.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 19.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnCrit.Explode.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 43.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 43.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Melee.OnCrit.Explode.Radius": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 256.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 256.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Woosh.KillStreakCount": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Woosh.MovementSpeedBonusPercent": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.28
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.28
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Woosh.DamageBonusPercent": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.52
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.52
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Woosh.Duration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 8.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 8.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.KillStreak.FirePool.Damage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 41.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 41.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.KillStreak.FirePool.Cooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.SlowToFreeze.SlowDuration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.SlowToFreeze.FreezeDuration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.SlowToFreeze.SlowStacksReq": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 10.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.SlowToFreeze.SlowIntensity": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.75
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.75
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.ShieldRegenAndMaxShield.DamageMult": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.03
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.03
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.ShieldRegenAndMaxShield.MaxShieldDuration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 8.0
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 8.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.ShieldRegenAndMaxShield.MaxShieldMagnitude": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.2
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 1.2
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.Execute.HealthThreshold": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.15
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.15
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Alteration.Weapon.Hit.SlowToFreeze.HitCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.4
+                    },
+                    {
+                        "Time": 10000.0,
+                        "Value": 0.4
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Air_SupplyRun_Long_T02",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
+            "ExpeditionDuration_Minutes": 1200.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 255,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Air_SupplyRun_Long_T02"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "A0E7331C4CD3A75C59174C99187C78ED",
+                "SourceString": "The Hills Have Supplies"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "39F9A3B54E1D6FCDFFAB028ECB3198AA",
+                "SourceString": "Send a team on a scavenging mission to the Black Hills. "
+            }
+        }
+    }
+]

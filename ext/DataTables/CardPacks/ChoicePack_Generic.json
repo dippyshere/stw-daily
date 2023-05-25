@@ -1,0 +1,48 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "ChoicePack_Generic",
+        "Properties": {
+            "bIsLlama": true,
+            "bIsChoicePack": true,
+            "LootTierGroup": "CardPack_Bronze",
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "638AB5C244E855EFFCB2F09BA4AADA71",
+                "SourceString": "Choice Pack"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "DC1C19FE437ED2B89505DC8AE7774ACA",
+                "SourceString": "Decisions, decisions..."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Rare",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

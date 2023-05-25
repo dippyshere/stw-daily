@@ -1,0 +1,1352 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "NPCMiscCurves",
+        "Rows": {
+            "HuskBeehiveCloudDuration": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 8.333333
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 11.666667
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 12.777778
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 15.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "HuskPitcherTargetPacingCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.75
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 1.75
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 1.3333334
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 0.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "HuskZapperTargetPacingCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.75
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 1.75
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 1.3928572
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 0.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "HuskPitcherProjectileSpeedMultiplier": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.8
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 0.8
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "ShielderShieldStrengthMultiplier": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 2.8333333
+                    },
+                    {
+                        "Time": 6.0,
+                        "Value": 3.1666667
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 4.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 4.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "SuperShielderShieldStrengthMultiplier": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 4.5
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 7.2
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 11.7
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 13.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 13.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "MiniBossPhoenixUses": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "PhoenixBlockbusterEventUses": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 15.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 16.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 19.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 23.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 24.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 27.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 9.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 9.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROChanceToSelectPlayerPawnAsGoal": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.75
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.75
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROChanceToSelectAIPawnAsGoal": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROChanceToSelectBuildingAsGoal": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRONumWeakpointsDestroyedToGoDBNO": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROWeakpointRevealTimerBetweenDestroyedPoints": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 15.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROWeakpointRevealTimerAfterLoad": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 15.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROWeakpointRevealTimerAfterDBNO": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 20.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROWeakpointShuffleTimerAfterReveal": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 10.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROWeakpointShuffleTimerBeforeNewReveal": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROWeakpointRevealTimerAfterInitialDamage": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 15.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROAutomaticWipeTimer": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 900.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 900.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 600.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 600.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 510.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 510.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRODBNOTimer": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 40.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 40.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 25.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 25.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROPressYourLuckTimerMin": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROPressYourLuckTimerMax": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 10.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRODBNOSummonDelayTime": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 0.01
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.01
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRODBNOHeadHeightMultiplierMin": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRODBNOHeadHeightMultiplierMax": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 20.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROMeteorBehaviorHeightOffset": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2000.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 2000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRONumberOfHomingProjectilesToSpawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRONumberOfMeteorSpawnWaves": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 5.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRONumberOfMeteorSpawnWavesPhase2": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 10.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRONumberOfMeteorSpawnWavesFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": -1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": -1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROTimeBetweenMeteorSpawnWaves": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORandomXYRangeAroundPlayersForMeteorSpawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 512.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 512.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 2048.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 2048.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 5500.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 5500.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORandomAdditionalMeteorsToSpawn": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 10.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORandomProjectileSpeedVariance": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 250.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 250.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORandomAdditionalMeteorBaseSpeed": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1000.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORandomAdditionalMeteorSpawnRange": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 12000.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 12000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROAOECooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 120.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 120.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 60.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROAOECooldownFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 1000.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROMeleeCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROMeleeCooldownChance": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.4
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.4
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedCooldownChance": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.6
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedMultiTargetCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 45.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 45.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedMultiTargetCooldownChance": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.9
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 0.9
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedMultiTargetCooldownFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 1000.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedMultiTargetCooldownChanceFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.9
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 0.9
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedSweepCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 20.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedSweepCooldownChance": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.9
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.9
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedSweepCooldownFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 10.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 10.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedSweepCooldownChanceFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.9
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.9
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBRORangedSweepAbilityRotationRate": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 30.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 31.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 39.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 40.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROSummonCooldown": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 30.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 30.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROSummonCooldownChance": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.75
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 0.75
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROSummonCooldownFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 49.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 50.0,
+                        "Value": 1000.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "DUDEBROSummonCooldownChanceFinalPhase": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 0.75
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.75
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

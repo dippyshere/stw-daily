@@ -1,0 +1,239 @@
+[
+    {
+        "Type": "DataTable",
+        "Name": "IronCityDifficultyTable",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class FortIronCityDifficultyData",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "6": {
+                "DifficultyLevel": 1,
+                "LootLevel": 1,
+                "SuggestedStatClamp": "StatClamps_T1.H1",
+                "MissionRewards": "WarGames_Select_Theater1",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "17": {
+                "DifficultyLevel": 3,
+                "LootLevel": 2,
+                "SuggestedStatClamp": "StatClamps_T1.H2",
+                "MissionRewards": "WarGames_Select_Theater1",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "28": {
+                "DifficultyLevel": 5,
+                "LootLevel": 3,
+                "SuggestedStatClamp": "StatClamps_T1.H3",
+                "MissionRewards": "WarGames_Select_Theater1",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "39": {
+                "DifficultyLevel": 7,
+                "LootLevel": 4,
+                "SuggestedStatClamp": "StatClamps_T1.H4",
+                "MissionRewards": "WarGames_Select_Theater1",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "50": {
+                "DifficultyLevel": 10,
+                "LootLevel": 5,
+                "SuggestedStatClamp": "StatClamps_T1.H5",
+                "MissionRewards": "WarGames_Select_Theater1",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "64": {
+                "DifficultyLevel": 12,
+                "LootLevel": 6,
+                "SuggestedStatClamp": "StatClamps_T2.H1",
+                "MissionRewards": "WarGames_Select_Theater2",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "79": {
+                "DifficultyLevel": 14,
+                "LootLevel": 7,
+                "SuggestedStatClamp": "StatClamps_T2.H2",
+                "MissionRewards": "WarGames_Select_Theater2",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "94": {
+                "DifficultyLevel": 16,
+                "LootLevel": 8,
+                "SuggestedStatClamp": "StatClamps_T2.H3",
+                "MissionRewards": "WarGames_Select_Theater2",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "109": {
+                "DifficultyLevel": 18,
+                "LootLevel": 9,
+                "SuggestedStatClamp": "StatClamps_T2.H4",
+                "MissionRewards": "WarGames_Select_Theater2",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "125": {
+                "DifficultyLevel": 20,
+                "LootLevel": 10,
+                "SuggestedStatClamp": "StatClamps_T2.H5",
+                "MissionRewards": "WarGames_Select_Theater2",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "142": {
+                "DifficultyLevel": 22,
+                "LootLevel": 11,
+                "SuggestedStatClamp": "StatClamps_T3.H1",
+                "MissionRewards": "WarGames_Select_Theater3",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "161": {
+                "DifficultyLevel": 24,
+                "LootLevel": 12,
+                "SuggestedStatClamp": "StatClamps_T3.H2",
+                "MissionRewards": "WarGames_Select_Theater3",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "179": {
+                "DifficultyLevel": 26,
+                "LootLevel": 13,
+                "SuggestedStatClamp": "StatClamps_T3.H3",
+                "MissionRewards": "WarGames_Select_Theater3",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "197": {
+                "DifficultyLevel": 28,
+                "LootLevel": 14,
+                "SuggestedStatClamp": "StatClamps_T3.H4",
+                "MissionRewards": "WarGames_Select_Theater3",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "214": {
+                "DifficultyLevel": 30,
+                "LootLevel": 15,
+                "SuggestedStatClamp": "StatClamps_T3.H5",
+                "MissionRewards": "WarGames_Select_Theater3",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "227": {
+                "DifficultyLevel": 32,
+                "LootLevel": 16,
+                "SuggestedStatClamp": "StatClamps_T4.H1",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "235": {
+                "DifficultyLevel": 34,
+                "LootLevel": 17,
+                "SuggestedStatClamp": "StatClamps_T4.H2",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "244": {
+                "DifficultyLevel": 36,
+                "LootLevel": 18,
+                "SuggestedStatClamp": "StatClamps_T4.H3",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "253": {
+                "DifficultyLevel": 38,
+                "LootLevel": 19,
+                "SuggestedStatClamp": "StatClamps_T4.H4",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "262": {
+                "DifficultyLevel": 40,
+                "LootLevel": 20,
+                "SuggestedStatClamp": "StatClamps_T4.H5",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "270": {
+                "DifficultyLevel": 42,
+                "LootLevel": 21,
+                "SuggestedStatClamp": "StatClamps_T5.H5",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "278": {
+                "DifficultyLevel": 44,
+                "LootLevel": 22,
+                "SuggestedStatClamp": "StatClamps_T5.H5",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "288": {
+                "DifficultyLevel": 46,
+                "LootLevel": 23,
+                "SuggestedStatClamp": "StatClamps_T5.H5",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "297": {
+                "DifficultyLevel": 48,
+                "LootLevel": 24,
+                "SuggestedStatClamp": "StatClamps_T5.H5",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            },
+            "306": {
+                "DifficultyLevel": 50,
+                "LootLevel": 25,
+                "SuggestedStatClamp": "StatClamps_T5.H5",
+                "MissionRewards": "WarGames_Select_Theater4",
+                "RewardBadgeTag": {
+                    "TagName": "MissionReward.Badge.IronCity.Mission"
+                }
+            }
+        }
+    }
+]

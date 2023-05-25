@@ -1,0 +1,256 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "HomebaseRatingMapping",
+        "Rows": {
+            "UIMonsterRating": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 75.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 165.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 245.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 395.0,
+                        "Value": 5.0
+                    },
+                    {
+                        "Time": 525.0,
+                        "Value": 6.0
+                    },
+                    {
+                        "Time": 780.0,
+                        "Value": 7.0
+                    },
+                    {
+                        "Time": 1020.0,
+                        "Value": 8.0
+                    },
+                    {
+                        "Time": 1280.0,
+                        "Value": 11.0
+                    },
+                    {
+                        "Time": 1600.0,
+                        "Value": 15.0
+                    },
+                    {
+                        "Time": 1965.0,
+                        "Value": 18.0
+                    },
+                    {
+                        "Time": 2540.0,
+                        "Value": 20.0
+                    },
+                    {
+                        "Time": 3155.0,
+                        "Value": 22.0
+                    },
+                    {
+                        "Time": 3765.0,
+                        "Value": 24.0
+                    },
+                    {
+                        "Time": 4310.0,
+                        "Value": 25.0
+                    },
+                    {
+                        "Time": 5095.0,
+                        "Value": 26.0
+                    },
+                    {
+                        "Time": 6060.0,
+                        "Value": 29.0
+                    },
+                    {
+                        "Time": 6980.0,
+                        "Value": 32.0
+                    },
+                    {
+                        "Time": 8140.0,
+                        "Value": 36.0
+                    },
+                    {
+                        "Time": 9440.0,
+                        "Value": 41.0
+                    },
+                    {
+                        "Time": 10695.0,
+                        "Value": 46.0
+                    },
+                    {
+                        "Time": 11890.0,
+                        "Value": 49.0
+                    },
+                    {
+                        "Time": 12990.0,
+                        "Value": 53.0
+                    },
+                    {
+                        "Time": 13615.0,
+                        "Value": 54.0
+                    },
+                    {
+                        "Time": 14285.0,
+                        "Value": 55.0
+                    },
+                    {
+                        "Time": 15335.0,
+                        "Value": 57.0
+                    },
+                    {
+                        "Time": 16845.0,
+                        "Value": 60.0
+                    },
+                    {
+                        "Time": 18445.0,
+                        "Value": 63.0
+                    },
+                    {
+                        "Time": 22255.0,
+                        "Value": 73.0
+                    },
+                    {
+                        "Time": 24030.0,
+                        "Value": 78.0
+                    },
+                    {
+                        "Time": 25260.0,
+                        "Value": 81.0
+                    },
+                    {
+                        "Time": 26480.0,
+                        "Value": 84.0
+                    },
+                    {
+                        "Time": 27145.0,
+                        "Value": 86.0
+                    },
+                    {
+                        "Time": 27870.0,
+                        "Value": 87.0
+                    },
+                    {
+                        "Time": 29230.0,
+                        "Value": 89.0
+                    },
+                    {
+                        "Time": 31500.0,
+                        "Value": 93.0
+                    },
+                    {
+                        "Time": 33410.0,
+                        "Value": 96.0
+                    },
+                    {
+                        "Time": 35640.0,
+                        "Value": 102.0
+                    },
+                    {
+                        "Time": 37840.0,
+                        "Value": 107.0
+                    },
+                    {
+                        "Time": 39840.0,
+                        "Value": 113.0
+                    },
+                    {
+                        "Time": 41500.0,
+                        "Value": 116.0
+                    },
+                    {
+                        "Time": 43055.0,
+                        "Value": 120.0
+                    },
+                    {
+                        "Time": 43870.0,
+                        "Value": 121.0
+                    },
+                    {
+                        "Time": 44590.0,
+                        "Value": 123.0
+                    },
+                    {
+                        "Time": 46050.0,
+                        "Value": 124.0
+                    },
+                    {
+                        "Time": 47685.0,
+                        "Value": 126.0
+                    },
+                    {
+                        "Time": 48780.0,
+                        "Value": 127.0
+                    },
+                    {
+                        "Time": 49550.0,
+                        "Value": 128.0
+                    },
+                    {
+                        "Time": 51500.0,
+                        "Value": 130.0
+                    },
+                    {
+                        "Time": 52125.0,
+                        "Value": 131.0
+                    },
+                    {
+                        "Time": 52590.0,
+                        "Value": 133.0
+                    },
+                    {
+                        "Time": 52990.0,
+                        "Value": 134.0
+                    },
+                    {
+                        "Time": 53455.0,
+                        "Value": 136.0
+                    },
+                    {
+                        "Time": 53855.0,
+                        "Value": 137.0
+                    },
+                    {
+                        "Time": 54320.0,
+                        "Value": 139.0
+                    },
+                    {
+                        "Time": 54720.0,
+                        "Value": 140.0
+                    },
+                    {
+                        "Time": 55180.0,
+                        "Value": 142.0
+                    },
+                    {
+                        "Time": 55615.0,
+                        "Value": 143.0
+                    },
+                    {
+                        "Time": 56095.0,
+                        "Value": 145.0
+                    },
+                    {
+                        "Time": 92765.0,
+                        "Value": 225.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

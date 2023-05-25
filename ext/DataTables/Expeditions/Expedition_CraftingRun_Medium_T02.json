@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_CraftingRun_Medium_T02",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T02",
+            "ExpeditionDuration_Minutes": 960.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 120,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "CraftingRun_Medium_T02"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "45DC962C46648E4E30DBB1A98BDA969F",
+                "SourceString": "Smash and Grab"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "85EF1AAA48CA0A44A78C16B041BA183D",
+                "SourceString": "Assemble a powerful team to search the area for resources. "
+            }
+        }
+    }
+]

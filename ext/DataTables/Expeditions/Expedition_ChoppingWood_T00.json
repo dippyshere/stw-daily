@@ -1,0 +1,30 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_ChoppingWood_T00",
+        "Properties": {
+            "ExpeditionDuration_Minutes": 240.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 5,
+            "TierFactor": 100,
+            "MaxTargetPowerClamp": 40,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "ChoppingWood_T00"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "66D5AC7744ED38D9483C49B8939FA121",
+                "SourceString": "Chop Wood, Carry Wood"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "E00F9A93426B30210FEA1AB2F65BA9AC",
+                "SourceString": "Deploy a crack team of loggers to gather the finest lumber in the land. "
+            }
+        }
+    }
+]

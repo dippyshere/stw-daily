@@ -1,0 +1,70 @@
+[
+    {
+        "Type": "DataTable",
+        "Name": "CollectionSlotWeightTable",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class FortCollectionBookSlotXPWeightData",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "Default": {
+                "ConstantWeight": 0.0,
+                "RarityWeight": 0.0,
+                "PremiumTierWeight": 1.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 1.0
+            },
+            "Ranged": {
+                "ConstantWeight": 300.0,
+                "RarityWeight": 36.0,
+                "PremiumTierWeight": 2.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 150.0
+            },
+            "Melee": {
+                "ConstantWeight": 300.0,
+                "RarityWeight": 36.0,
+                "PremiumTierWeight": 2.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 150.0
+            },
+            "Survivor": {
+                "ConstantWeight": 250.0,
+                "RarityWeight": 16.0,
+                "PremiumTierWeight": 1.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 150.0
+            },
+            "Hero": {
+                "ConstantWeight": 3500.0,
+                "RarityWeight": 64.0,
+                "PremiumTierWeight": 1.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 325.0
+            },
+            "Lead": {
+                "ConstantWeight": 100.0,
+                "RarityWeight": 16.0,
+                "PremiumTierWeight": 1.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 250.0
+            },
+            "Trap": {
+                "ConstantWeight": 500.0,
+                "RarityWeight": 36.0,
+                "PremiumTierWeight": 1.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 300.0
+            },
+            "Defender": {
+                "ConstantWeight": 600.0,
+                "RarityWeight": 49.0,
+                "PremiumTierWeight": 1.0,
+                "ItemLevelWeight": 0.0,
+                "ItemRatingWeight": 300.0
+            }
+        }
+    }
+]

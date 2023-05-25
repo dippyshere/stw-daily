@@ -1,0 +1,50 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Event_Scavenger_Melee_VR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Event_Scavenger_Melee_VR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Weapon_IconMask.T_CardPack_Weapon_IconMask",
+                "SubPathString": ""
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_Default_PersonalityPack.Llama_Default_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "2656F2DB43F78F124CD218A6B9460729",
+                "SourceString": "Epic Scavenger Melee Weapon Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "ACD94B244499EBA53EFC9C88A8021EC0",
+                "SourceString": "One random Scavenger melee weapon schematic."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Transform/T-Icon-Transform-Scavenger-Melee-128.T-Icon-Transform-Scavenger-Melee-128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Transform/T-Icon-Transform-Scavenger-Melee-L.T-Icon-Transform-Scavenger-Melee-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Epic",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

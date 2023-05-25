@@ -1,0 +1,1790 @@
+[
+    {
+        "Type": "DataTable",
+        "Name": "CollectionBookPages",
+        "Properties": {
+            "RowStruct": {
+                "ObjectName": "Class FortCollectionBookPageData",
+                "ObjectPath": "/Script/FortniteGame"
+            }
+        },
+        "Rows": {
+            "pageHeroes_Commando": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageHeroes_Commando_PageNameText",
+                    "SourceString": "Soldiers"
+                },
+                "CategoryId": "Core_Heroes",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Commando_1",
+                    "section_Heroes_Commando_2",
+                    "section_Heroes_Commando_3",
+                    "section_Heroes_Commando_4",
+                    "section_Heroes_Commando_5",
+                    "section_Heroes_Commando_6",
+                    "section_Heroes_Commando_7",
+                    "section_Heroes_Commando_8",
+                    "section_Heroes_Commando_9",
+                    "section_Heroes_Commando_10",
+                    "section_Heroes_Campaign_Soldiers_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageHeroes_Constructor": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageHeroes_Constructor_PageNameText",
+                    "SourceString": "Constructors"
+                },
+                "CategoryId": "Core_Heroes",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Constructor_1",
+                    "section_Heroes_Constructor_2",
+                    "section_Heroes_Constructor_3",
+                    "section_Heroes_Constructor_4",
+                    "section_Heroes_Constructor_5",
+                    "section_Heroes_Constructor_6",
+                    "section_Heroes_Constructor_7",
+                    "section_Heroes_Constructor_8",
+                    "section_Heroes_Constructor_9",
+                    "section_Heroes_Constructor_10",
+                    "section_Heroes_Campaign_Constructors_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageHeroes_Ninja": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageHeroes_Ninja_PageNameText",
+                    "SourceString": "Ninjas"
+                },
+                "CategoryId": "Core_Heroes",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Ninja_1",
+                    "section_Heroes_Ninja_2",
+                    "section_Heroes_Ninja_3",
+                    "section_Heroes_Ninja_4",
+                    "section_Heroes_Ninja_5",
+                    "section_Heroes_Ninja_6",
+                    "section_Heroes_Ninja_7",
+                    "section_Heroes_Ninja_8",
+                    "section_Heroes_Ninja_9",
+                    "section_Heroes_Ninja_10",
+                    "section_Heroes_Campaign_Ninjas_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageHeroes_Outlander": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageHeroes_Outlander_PageNameText",
+                    "SourceString": "Outlanders"
+                },
+                "CategoryId": "Core_Heroes",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Outlander_1",
+                    "section_Heroes_Outlander_2",
+                    "section_Heroes_Outlander_3",
+                    "section_Heroes_Outlander_4",
+                    "section_Heroes_Outlander_5",
+                    "section_Heroes_Outlander_6",
+                    "section_Heroes_Outlander_7",
+                    "section_Heroes_Outlander_8",
+                    "section_Heroes_Outlander_9",
+                    "section_Heroes_Outlander_10",
+                    "section_Heroes_Campaign_Outlanders_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pagePeople_Defenders": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pagePeople_Defenders_PageNameText",
+                    "SourceString": "Defenders"
+                },
+                "CategoryId": "Core_Personnel",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "people_Defenders_1",
+                    "people_Defenders_2",
+                    "people_Defenders_3",
+                    "people_Defenders_4",
+                    "people_Defenders_5",
+                    "people_Defenders_6",
+                    "people_Defenders_7",
+                    "people_Defenders_8",
+                    "people_Defenders_9",
+                    "people_Defenders_10"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pagePeople_Survivors": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pagePeople_Survivors_PageNameText",
+                    "SourceString": "Survivors"
+                },
+                "CategoryId": "Core_Personnel",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Survivors_Common_1",
+                    "section_Survivors_Common_2",
+                    "section_Survivors_Uncommon_1",
+                    "section_Survivors_Uncommon_2",
+                    "section_Survivors_Rare_1",
+                    "section_Survivors_Rare_2",
+                    "section_Survivors_VeryRare_1",
+                    "section_Survivors_VeryRare_2",
+                    "section_Survivors_SuperRare_1",
+                    "section_Survivors_SuperRare_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pagePeople_Leads": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pagePeople_Leads_PageNameText",
+                    "SourceString": "Lead Survivors"
+                },
+                "CategoryId": "Core_Personnel",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "people_Survivors_Leads_1",
+                    "people_Survivors_Leads_2",
+                    "people_Survivors_Leads_3",
+                    "people_Survivors_Leads_4",
+                    "people_Survivors_Leads_5",
+                    "people_Survivors_Leads_6",
+                    "people_Survivors_Leads_7",
+                    "people_Survivors_Leads_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pagePeople_UniqueLeads": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pagePeople_UniqueLeads_PageNameText",
+                    "SourceString": "Unique Leads"
+                },
+                "CategoryId": "Core_Personnel",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "people_Survivors_Unique_1",
+                    "people_Survivors_Unique_2",
+                    "people_Survivors_Unique_3",
+                    "people_Survivors_Unique_4",
+                    "people_Survivors_Unique_5",
+                    "people_Survivors_Unique_6",
+                    "people_Survivors_Unique_7",
+                    "people_Survivors_Unique_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageMelee_Axes_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageMelee_Axes_Weapons_PageNameText",
+                    "SourceString": "Axes"
+                },
+                "CategoryId": "Core_Schematics_Melee",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Melee_Axes_1",
+                    "weapons_Melee_Axes_2",
+                    "weapons_Melee_Axes_3",
+                    "weapons_Melee_Axes_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageMelee_Clubs_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageMelee_Clubs_Weapons_PageNameText",
+                    "SourceString": "Clubs"
+                },
+                "CategoryId": "Core_Schematics_Melee",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Melee_Clubs_1",
+                    "weapons_Melee_Clubs_2",
+                    "weapons_Melee_Clubs_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageMelee_Scythes_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageMelee_Scythes_Weapons_PageNameText",
+                    "SourceString": "Scythes"
+                },
+                "CategoryId": "Core_Schematics_Melee",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Melee_Scythes_1",
+                    "weapons_Melee_Scythes_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageMelee_Spears_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageMelee_Spears_Weapons_PageNameText",
+                    "SourceString": "Spears"
+                },
+                "CategoryId": "Core_Schematics_Melee",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Melee_Spears_1",
+                    "weapons_Melee_Spears_2",
+                    "weapons_Melee_Spears_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageMelee_Swords_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageMelee_Swords_Weapons_PageNameText",
+                    "SourceString": "Swords"
+                },
+                "CategoryId": "Core_Schematics_Melee",
+                "SortPriority": 4,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Melee_Swords_1",
+                    "weapons_Melee_Swords_2",
+                    "weapons_Melee_Swords_3",
+                    "weapons_Melee_Swords_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageMelee_Tools_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageMelee_Tools_Weapons_PageNameText",
+                    "SourceString": "Hardware"
+                },
+                "CategoryId": "Core_Schematics_Melee",
+                "SortPriority": 5,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Melee_Tools_1",
+                    "weapons_Melee_Tools_2",
+                    "weapons_Melee_Tools_3",
+                    "weapons_Melee_Tools_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageRanged_Assault_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageRanged_Assault_Weapons_PageNameText",
+                    "SourceString": "Assault Rifles"
+                },
+                "CategoryId": "Core_Schematics_Ranged",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Ranged_Assault_1",
+                    "weapons_Ranged_Assault_2",
+                    "weapons_Ranged_Assault_3",
+                    "weapons_Ranged_Assault_4",
+                    "weapons_Ranged_Assault_5",
+                    "weapons_Ranged_Assault_6",
+                    "weapons_Ranged_Assault_7",
+                    "weapons_Ranged_Assault_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageRanged_Shotgun_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageRanged_Shotgun_Weapons_PageNameText",
+                    "SourceString": "Shotguns"
+                },
+                "CategoryId": "Core_Schematics_Ranged",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Ranged_Shotguns_1",
+                    "weapons_Ranged_Shotguns_2",
+                    "weapons_Ranged_Shotguns_3",
+                    "weapons_Ranged_Shotguns_4",
+                    "weapons_Ranged_Shotguns_5",
+                    "weapons_Ranged_Shotguns_6",
+                    "weapons_Ranged_Shotguns_7",
+                    "weapons_Ranged_Shotguns_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "page_Ranged_Pistols_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_page_Ranged_Pistols_Weapons_PageNameText",
+                    "SourceString": "Pistols"
+                },
+                "CategoryId": "Core_Schematics_Ranged",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Ranged_Pistols_1",
+                    "weapons_Ranged_Pistols_2",
+                    "weapons_Ranged_Pistols_3",
+                    "weapons_Ranged_Pistols_4",
+                    "weapons_Ranged_Pistols_5",
+                    "weapons_Ranged_Pistols_6",
+                    "weapons_Ranged_Pistols_7",
+                    "weapons_Ranged_Pistols_8",
+                    "weapons_Ranged_Pistols_9"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "page_Ranged_SMGs_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_page_Ranged_SMGs_Weapons_PageNameText",
+                    "SourceString": "SMGs"
+                },
+                "CategoryId": "Core_Schematics_Ranged",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Ranged_SMGs_1",
+                    "weapons_Ranged_SMGs_2",
+                    "weapons_Ranged_SMGs_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageRanged_Snipers_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageRanged_Snipers_Weapons_PageNameText",
+                    "SourceString": "Sniper Rifles"
+                },
+                "CategoryId": "Core_Schematics_Ranged",
+                "SortPriority": 4,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Ranged_Snipers_1",
+                    "weapons_Ranged_Snipers_2",
+                    "weapons_Ranged_Snipers_3",
+                    "weapons_Ranged_Snipers_4",
+                    "weapons_Ranged_Snipers_5",
+                    "weapons_Ranged_Snipers_6",
+                    "weapons_Ranged_Snipers_7",
+                    "weapons_Ranged_Snipers_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageRanged_Explosive_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageRanged_Explosive_Weapons_PageNameText",
+                    "SourceString": "Explosive Weapons"
+                },
+                "CategoryId": "Core_Schematics_Ranged",
+                "SortPriority": 5,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "weapons_Ranged_Explosive_1",
+                    "weapons_Ranged_Explosive_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageTraps_Wall": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageTraps_Wall_PageNameText",
+                    "SourceString": "Wall Traps"
+                },
+                "CategoryId": "Core_Schematics_Traps",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "traps_Wall_1",
+                    "traps_Wall_2",
+                    "traps_Wall_3",
+                    "traps_Wall_4",
+                    "traps_Wall_5",
+                    "traps_Wall_6",
+                    "traps_Wall_7"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageTraps_Ceiling": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageTraps_Ceiling_PageNameText",
+                    "SourceString": "Ceiling Traps"
+                },
+                "CategoryId": "Core_Schematics_Traps",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "traps_Ceiling_1",
+                    "traps_Ceiling_2",
+                    "traps_Ceiling_3",
+                    "traps_Ceiling_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "pageTraps_Floor": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_pageTraps_Floor_PageNameText",
+                    "SourceString": "Floor Traps"
+                },
+                "CategoryId": "Core_Schematics_Traps",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "traps_Floor_1",
+                    "traps_Floor_2",
+                    "traps_Floor_3",
+                    "traps_Floor_4",
+                    "traps_Floor_5",
+                    "traps_Floor_6",
+                    "traps_Floor_7",
+                    "traps_Floor_8",
+                    "traps_Floor_9"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Wild_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Wild_Heroes_PageNameText",
+                    "SourceString": "Wild Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Wild_1",
+                    "section_Heroes_Wild_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Birthday_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Birthday_Heroes_PageNameText",
+                    "SourceString": "Birthday Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Birthday_1",
+                    "section_Heroes_Birthday_2",
+                    "section_Heroes_Birthday_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_HomeBase_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_HomeBase_Heroes_PageNameText",
+                    "SourceString": "Homebase Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_HomeBase_1",
+                    "section_Heroes_HomeBase_2",
+                    "section_Heroes_HomeBase_3",
+                    "section_Heroes_HomeBase_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_SteelWool_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_SteelWool_Heroes_PageNameText",
+                    "SourceString": "Steel Wool"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_SteelWool_1",
+                    "section_Heroes_SteelWool_2",
+                    "section_Heroes_SteelWool_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Dinosaurs_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Dinosaurs_Heroes_PageNameText",
+                    "SourceString": "Historic Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 4,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Dinosaurs_5",
+                    "section_Heroes_Dinosaurs_3",
+                    "section_Heroes_Dinosaurs_6",
+                    "section_Heroes_Dinosaurs_1",
+                    "section_Heroes_Dinosaurs_7",
+                    "section_Heroes_Dinosaurs_2",
+                    "section_Heroes_Dinosaurs_4",
+                    "section_Heroes_Knights_1",
+                    "section_Heroes_Dinosaurs_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_ArtDeco_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_ArtDeco_Heroes_PageNameText",
+                    "SourceString": "Art Deco Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 5,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_ArtDeco_1",
+                    "section_Heroes_ArtDeco_2",
+                    "section_Heroes_ArtDeco_3",
+                    "section_Heroes_ArtDeco_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Rad_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Rad_Heroes_PageNameText",
+                    "SourceString": "Rad Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 6,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Rad_Commando",
+                    "section_Heroes_Rad_Constructor",
+                    "section_Heroes_Rad_Ninja",
+                    "section_Heroes_Rad_Outlander",
+                    "section_Heroes_Rad_Bonus"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_RoadTrip2018_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_RoadTrip2018_Heroes_PageNameText",
+                    "SourceString": "Road Trip Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 7,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Roadtrip_1",
+                    "section_Heroes_Roadtrip_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Pirates_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Pirates_Heroes_PageNameText",
+                    "SourceString": "Pirate Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 8,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_PirateCrew_2",
+                    "section_Heroes_Pirate_1",
+                    "section_Heroes_Pirate_2",
+                    "section_Heroes_PirateCrew_1",
+                    "section_Heroes_Pirate_3",
+                    "section_Heroes_PirateCrew_3",
+                    "section_Heroes_PirateCrew_4",
+                    "section_Heroes_PirateCrew_6",
+                    "section_Heroes_PirateCrew_5"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Blockbuster2018_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Blockbuster2018_Heroes_PageNameText",
+                    "SourceString": "Blockbuster Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 9,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Blockbuster_Storefront_2018_1",
+                    "section_Heroes_Blockbuster_Storefront_2018_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Heroes_Spy": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Heroes_Spy_PageNameText",
+                    "SourceString": "Spy Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 10,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Spy_3",
+                    "section_Heroes_Spy_1",
+                    "section_Heroes_Spy_4",
+                    "section_Heroes_Spy_5",
+                    "section_Heroes_Spy_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_SpringItOn2018_People": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_SpringItOn2018_People_PageNameText",
+                    "SourceString": "Springtime Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 11,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_ValentinesDay_2020_1",
+                    "Section_People_Spring_1",
+                    "Section_People_Spring_2",
+                    "Section_People_Spring_3",
+                    "Section_Heroes_Spring_Special"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_ChineseNewYear2018_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_ChineseNewYear2018_Heroes_PageNameText",
+                    "SourceString": "Chinese New Year Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 12,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "Section_Heroes_ChineseNewYear_1",
+                    "Section_Heroes_ChineseNewYear_2",
+                    "Section_Heroes_ChineseNewYear_3",
+                    "Section_Heroes_ChineseNewYear_4",
+                    "Section_Heroes_ChineseNewYear_5"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Winter2017_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Winter2017_Heroes_PageNameText",
+                    "SourceString": "Holiday Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 13,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Winter2020_1",
+                    "section_Heroes_Winter2019_Commando_1",
+                    "section_Heroes_Winter2019_Constructor_1",
+                    "section_Heroes_Winter2019_Ninja_1",
+                    "section_Heroes_Winter2019_Outlander_1",
+                    "section_Heroes_Winter2018_Special_1",
+                    "section_Heroes_Winter2018_Special_2",
+                    "section_Heroes_Winter2017_Commando",
+                    "section_Heroes_Winter2018_Commando_1",
+                    "section_Heroes_Winter2018_Commando_2",
+                    "section_Heroes_Winter2017_Constructor",
+                    "section_Heroes_Winter2017_Ninja",
+                    "section_Heroes_Winter2017_Outlander",
+                    "section_Heroes_Winter_Outlander_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_WildWest_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_WildWest_Heroes_PageNameText",
+                    "SourceString": "Wild West Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 14,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_WildWest_1",
+                    "section_Heroes_WildWest_2",
+                    "section_Heroes_WildWest_3",
+                    "section_Heroes_WildWest_4",
+                    "section_Heroes_WildWest_5"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Halloween2017_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Halloween2017_Heroes_PageNameText",
+                    "SourceString": "Fortnitemares Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 15,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Fortnitemares_1",
+                    "section_Heroes_Fortnitemares_2",
+                    "section_Heroes_Fortnitemares_3",
+                    "section_Heroes_Fortnitemares_4",
+                    "section_Heroes_Fortnitemares_5",
+                    "section_Heroes_Fortnitemares_6",
+                    "section_Heroes_Fortnitemares_2018_Promotional",
+                    "section_Heroes_Fortnitemares_7",
+                    "section_Heroes_Fortnitemares_8",
+                    "section_Heroes_Fortnitemares_9",
+                    "section_Heroes_Fortnitemares_10",
+                    "section_Heroes_Fortnitemares_11",
+                    "section_Heroes_Fortnitemares_12"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Halloween2017_Workers": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Halloween2017_Workers_PageNameText",
+                    "SourceString": "Costume Party 'Attendees'"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 16,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Workers_Halloween2017_Common",
+                    "section_Workers_Halloween2017_Uncommon",
+                    "section_Workers_Halloween2017_Rare",
+                    "section_Workers_Halloween2017_VeryRare",
+                    "section_Workers_Halloween2017_SuperRare"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [
+                        {
+                            "Rewards": [
+                                {
+                                    "ItemPrimaryAssetId": {
+                                        "PrimaryAssetType": {
+                                            "Name": "Hero"
+                                        },
+                                        "PrimaryAssetName": "HID_Commando_GunHeadshotHW_SR_T01"
+                                    },
+                                    "Quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "Rewards": [
+                                {
+                                    "ItemPrimaryAssetId": {
+                                        "PrimaryAssetType": {
+                                            "Name": "Hero"
+                                        },
+                                        "PrimaryAssetName": "HID_Constructor_BaseHyperHW_SR_T01"
+                                    },
+                                    "Quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "Rewards": [
+                                {
+                                    "ItemPrimaryAssetId": {
+                                        "PrimaryAssetType": {
+                                            "Name": "Hero"
+                                        },
+                                        "PrimaryAssetName": "HID_Ninja_StarsRainHW_SR_T01"
+                                    },
+                                    "Quantity": 1
+                                }
+                            ]
+                        },
+                        {
+                            "Rewards": [
+                                {
+                                    "ItemPrimaryAssetId": {
+                                        "PrimaryAssetType": {
+                                            "Name": "Hero"
+                                        },
+                                        "PrimaryAssetName": "HID_Outlander_ZonePistolHW_SR_T01"
+                                    },
+                                    "Quantity": 1
+                                }
+                            ]
+                        }
+                    ],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecila_RetroSciFi_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecila_RetroSciFi_Heroes_PageNameText",
+                    "SourceString": "Retro SciFi Heroes"
+                },
+                "CategoryId": "Event_People",
+                "SortPriority": 17,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_RetroScifi_1",
+                    "section_Heroes_RetroScifi_2",
+                    "section_Heroes_RetroScifi_3",
+                    "section_Heroes_RetroScifi_4",
+                    "section_Heroes_RetroScifi_5"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_ArtDeco_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_ArtDeco_Weapons_PageNameText",
+                    "SourceString": "Art Deco Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_ArtDeco_1",
+                    "section_Weapons_ArtDeco_2",
+                    "section_Weapons_ArtDeco_3",
+                    "section_Weapons_ArtDeco_4",
+                    "section_Weapons_ArtDeco_5",
+                    "section_Weapons_ArtDeco_6",
+                    "section_Weapons_ArtDeco_7",
+                    "section_Weapons_ArtDeco_8",
+                    "section_Weapons_ArtDeco_9"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Boombox_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Boombox_Weapons_PageNameText",
+                    "SourceString": "Boombox Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Ranged_Boombox_1",
+                    "section_Ranged_Boombox_2",
+                    "section_Ranged_Boombox_3",
+                    "section_Ranged_Boombox_4",
+                    "section_Ranged_Boombox_5",
+                    "section_Ranged_Boombox_6",
+                    "section_Melee_Boombox_1",
+                    "section_Melee_Boombox_2",
+                    "section_Melee_Boombox_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_RoadTrip2018_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_RoadTrip2018_Weapons_PageNameText",
+                    "SourceString": "Pirate Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Ranged_Roadtrip_Flintlock_1",
+                    "section_Ranged_Roadtrip_Flintlock_2",
+                    "section_Ranged_Roadtrip_Flintlock_3",
+                    "section_Ranged_Roadtrip_Flintlock_4",
+                    "section_Ranged_Roadtrip_Flintlock_5",
+                    "section_Ranged_Roadtrip_Flintlock_6",
+                    "section_Melee_Roadtrip_Flintlock_1",
+                    "section_Melee_Roadtrip_Flintlock_2",
+                    "section_Melee_Roadtrip_Flintlock_3",
+                    "section_Weapons_Pirate_1",
+                    "section_Weapons_Pirate_2",
+                    "section_Weapons_Pirate_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Weapons_Spy": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Weapons_Spy_PageNameText",
+                    "SourceString": "Spy Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_Spy_1",
+                    "section_Weapons_Spy_2",
+                    "section_Weapons_Spy_3",
+                    "section_Weapons_Spy_4",
+                    "section_Weapons_Spy_5",
+                    "section_Weapons_Spy_6",
+                    "section_Weapons_Spy_7",
+                    "section_Weapons_Spy_8",
+                    "section_Weapons_Spy_9"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Weapons_ChineseNewYear2018": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Weapons_ChineseNewYear2018_PageNameText",
+                    "SourceString": "Dragon Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 4,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "Section_Ranged_ChineseNewYear_1",
+                    "Section_Ranged_ChineseNewYear_3",
+                    "section_Weapons_Dragon_2",
+                    "Section_Ranged_ChineseNewYear_4",
+                    "Section_Ranged_ChineseNewYear_2",
+                    "Secton_Melee_ChineseNewYear_2",
+                    "Secton_Melee_ChineseNewYear_1",
+                    "section_Weapons_Dragon_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Winter2017_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Winter2017_Weapons_PageNameText",
+                    "SourceString": "Holiday Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 5,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_Winter2017_Ranged_5",
+                    "section_Weapons_Winter2019_1",
+                    "section_Weapons_Winter2017_Ranged_3",
+                    "section_Weapons_Winter2018_Ranged_6",
+                    "section_Weapons_Winter2019_2",
+                    "section_Weapons_Winter2018_Ranged_5",
+                    "section_Weapons_Winter2017_Ranged_2",
+                    "section_Weapons_Winter2017_Ranged_1",
+                    "section_Weapons_Winter2019_5",
+                    "section_Weapons_Winter2017_Ranged_4",
+                    "section_Weapons_Winter_Snowball_Launcher",
+                    "section_Weapons_ValentinesDay_1",
+                    "section_Weapons_ValentinesDay_2",
+                    "section_Weapons_Easter_1",
+                    "section_Weapons_Winter2019_3",
+                    "section_Weapons_Winter2019_4",
+                    "section_Weapons_Winter2017_Melee_1",
+                    "section_Weapons_Summer_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_BlackMetal_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_BlackMetal_Weapons_PageNameText",
+                    "SourceString": "Black Metal Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 6,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_BlackMetal_1",
+                    "section_Weapons_BlackMetal_2",
+                    "section_Weapons_BlackMetal_5",
+                    "section_Weapons_BlackMetal_3",
+                    "section_Weapons_BlackMetal_9",
+                    "section_Weapons_BlackMetal_10",
+                    "section_Weapons_BlackMetal_8",
+                    "section_Weapons_BlackMetal_7",
+                    "section_Weapons_BlackMetal_4",
+                    "section_Weapons_BlackMetal_6"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Weapons_FortNitemares": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Weapons_FortNitemares_PageNameText",
+                    "SourceString": "Fortnitemares Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 7,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_weapons_Fortnitemares_Ranged_1",
+                    "section_weapons_Fortnitemares_Ranged_2",
+                    "section_weapons_Fortnitemares_Ranged_3",
+                    "section_weapons_Fortnitemares_Ranged_4",
+                    "section_weapons_Fortnitemares_Melee_1",
+                    "section_weapons_Fortnitemares_Melee_2",
+                    "section_weapons_Fortnitemares_Ranged_5",
+                    "section_weapons_Fortnitemares_Ranged_6",
+                    "section_weapons_Fortnitemares_Ranged_7",
+                    "section_weapons_Fortnitemares_Ranged_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_RatRod_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_RatRod_Weapons_PageNameText",
+                    "SourceString": "Rat Rod Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 8,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Melee_RatRod_1",
+                    "section_Melee_RatRod_2",
+                    "section_Melee_RatRod_3",
+                    "section_Ranged_RatRod_1",
+                    "section_Ranged_RatRod_2",
+                    "section_Ranged_RatRod_3",
+                    "section_Ranged_RatRod_4",
+                    "section_Ranged_RatRod_5",
+                    "section_Ranged_RatRod_6",
+                    "section_Ranged_RatRod_7"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_RetroSciFi_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_RetroSciFi_Weapons_PageNameText",
+                    "SourceString": "Retro SciFi Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 9,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_RetroScifi_1",
+                    "section_Weapons_RetroScifi_2",
+                    "section_Weapons_RetroScifi_3",
+                    "section_Weapons_RetroScifi_4",
+                    "section_Weapons_RetroScifi_5",
+                    "section_Weapons_RetroScifi_6",
+                    "section_Weapons_RetroScifi_7",
+                    "section_Weapons_RetroScifi_8",
+                    "section_Weapons_RetroScifi_9"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Steampunk_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Steampunk_Weapons_PageNameText",
+                    "SourceString": "Steampunk Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 10,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_Steampunk_1",
+                    "section_Weapons_Steampunk_2",
+                    "section_Weapons_Steampunk_3",
+                    "section_Weapons_Steampunk_4",
+                    "section_Weapons_Steampunk_10",
+                    "section_Weapons_Steampunk_5",
+                    "section_Weapons_Steampunk_6",
+                    "section_Weapons_Steampunk_7",
+                    "section_Weapons_Steampunk_8",
+                    "section_Weapons_Steampunk_9"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Weapons_Medieval": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Weapons_Medieval_PageNameText",
+                    "SourceString": "Medieval Weapons"
+                },
+                "CategoryId": "Event_Schematics",
+                "SortPriority": 11,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_Winter2018_Ranged_1",
+                    "section_Weapons_Winter2018_Ranged_2",
+                    "section_Weapons_Winter2018_Ranged_3",
+                    "section_Weapons_Winter2018_Ranged_4",
+                    "section_Weapons_Winter2018_Melee_1",
+                    "section_Weapons_Winter2018_Melee_2",
+                    "section_Weapons_Medieval_1",
+                    "section_Weapons_Medieval_2",
+                    "section_Weapons_Medieval_3",
+                    "section_Weapons_Medieval_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_ShadowOps_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_ShadowOps_Heroes_PageNameText",
+                    "SourceString": "ShadowOps Heroes"
+                },
+                "CategoryId": "Expansion_People",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_ShadowOps_Commando_1",
+                    "section_Heroes_ShadowOps_Commando_2",
+                    "section_Heroes_ShadowOps_Constructor_1",
+                    "section_Heroes_ShadowOps_Constructor_2",
+                    "section_Heroes_ShadowOps_Ninja_1",
+                    "section_Heroes_ShadowOps_Ninja_2",
+                    "section_Heroes_ShadowOps_Outlander_1",
+                    "section_Heroes_ShadowOps_Outlander_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StormZoneCyber_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StormZoneCyber_Heroes_PageNameText",
+                    "SourceString": "CyberPunk Heroes"
+                },
+                "CategoryId": "Expansion_People",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_CyberPunk_Commando",
+                    "section_Heroes_CyberPunk_Constructor",
+                    "section_Heroes_CyberPunk_Ninja",
+                    "section_Heroes_CyberPunk_Outlander"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StormZone_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StormZone_Heroes_PageNameText",
+                    "SourceString": "Storm Zone Heroes"
+                },
+                "CategoryId": "Expansion_People",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_StormZone_Commando",
+                    "section_Heroes_StormZone_Ninja",
+                    "section_Heroes_StormZone_Outlander",
+                    "section_Heroes_StormZone_Constructor"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Scavenger_Heroes": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Scavenger_Heroes_PageNameText",
+                    "SourceString": "Scavenger Heroes"
+                },
+                "CategoryId": "Expansion_People",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Scavenger_Commando",
+                    "section_Heroes_Scavenger_Ninja",
+                    "section_Heroes_Scavenger_Outlander",
+                    "section_Heroes_Scavenger_Constructor"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StormKing_Weapons": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StormKing_Weapons_PageNameText",
+                    "SourceString": "Storm King Weapons"
+                },
+                "CategoryId": "Expansion_Schematics",
+                "SortPriority": 0,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Weapons_StormKing_1",
+                    "section_Weapons_StormKing_2",
+                    "section_Weapons_StormKing_3",
+                    "section_Weapons_StormKing_4",
+                    "section_Weapons_StormKing_5"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Weapons_VacuumTube": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Weapons_VacuumTube_PageNameText",
+                    "SourceString": "Vacuum Tube Weapons"
+                },
+                "CategoryId": "Expansion_Schematics",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Ranged_VacuumTube_1",
+                    "section_Ranged_VacuumTube_2",
+                    "section_Ranged_VacuumTube_3",
+                    "section_Ranged_VacuumTube_4",
+                    "section_Ranged_VacuumTube_5",
+                    "section_Ranged_VacuumTube_6",
+                    "section_Melee_VacuumTube_1",
+                    "section_Melee_VacuumTube_2",
+                    "section_Melee_VacuumTube_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Blockbuster2018_Ranged": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Blockbuster2018_Ranged_PageNameText",
+                    "SourceString": "Military Weapons"
+                },
+                "CategoryId": "Expansion_Schematics",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Ranged_Military_1",
+                    "section_Ranged_Military_2",
+                    "section_Ranged_Military_3",
+                    "section_Ranged_Military_4",
+                    "section_Ranged_Military_5",
+                    "section_Ranged_Military_6",
+                    "section_Ranged_Military_7",
+                    "section_Ranged_Military_8",
+                    "section_Ranged_Military_9",
+                    "section_Ranged_Military_10",
+                    "section_Ranged_Military_11",
+                    "section_Ranged_Military_12",
+                    "section_Ranged_Military_13"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Weapons_Neon": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Weapons_Neon_PageNameText",
+                    "SourceString": "Neon Weapons"
+                },
+                "CategoryId": "Expansion_Schematics",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Ranged_CyberPunk_1",
+                    "section_Ranged_CyberPunk_2",
+                    "section_Ranged_CyberPunk_3",
+                    "section_Ranged_CyberPunk_4",
+                    "section_Ranged_CyberPunk_5",
+                    "section_Ranged_CyberPunk_6",
+                    "section_Melee_CyberPunk_1",
+                    "section_Melee_CyberPunk_2",
+                    "section_Melee_CyberPunk_3",
+                    "section_Weapons_Neon_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Weapons_VinderTech": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Weapons_VinderTech_PageNameText",
+                    "SourceString": "VinderTech Weapons"
+                },
+                "CategoryId": "Expansion_Schematics",
+                "SortPriority": 4,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "section_Ranged_VinderTech_1",
+                    "section_Ranged_VinderTech_2",
+                    "section_Ranged_VinderTech_3",
+                    "section_Ranged_VinderTech_4",
+                    "section_Ranged_VinderTech_5",
+                    "section_Ranged_VinderTech_6",
+                    "section_Ranged_VinderTech_7",
+                    "section_Melee_VinderTech_1",
+                    "section_Melee_VinderTech_2",
+                    "section_Melee_VinderTech_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Hydraulic": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Hydraulic_PageNameText",
+                    "SourceString": "Hydraulic Weapons"
+                },
+                "CategoryId": "Expansion_Schematics",
+                "SortPriority": 5,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "Weapons_Ranged_Hydraulic_1",
+                    "Weapons_Ranged_Hydraulic_2",
+                    "Weapons_Ranged_Hydraulic_3",
+                    "Weapons_Ranged_Hydraulic_4",
+                    "Weapons_Ranged_Hydraulic_5",
+                    "Weapons_Ranged_Hydraulic_6",
+                    "Weapons_Melee_Hydraulic_1",
+                    "Weapons_Melee_Hydraulic_2",
+                    "Weapons_Melee_Hydraulic_3"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_Scavenger": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_Scavenger_PageNameText",
+                    "SourceString": "Scavenger Weapons"
+                },
+                "CategoryId": "Expansion_Schematics",
+                "SortPriority": 6,
+                "ProfileId": "collection_Book_schematics0",
+                "SectionRowNames": [
+                    "Weapons_Ranged_Scavenger_1",
+                    "Weapons_Ranged_Scavenger_2",
+                    "Weapons_Ranged_Scavenger_3",
+                    "Weapons_Ranged_Scavenger_4",
+                    "Weapons_Ranged_Scavenger_5",
+                    "Weapons_Ranged_Scavenger_6",
+                    "Weapons_Melee_Scavenger_1",
+                    "Weapons_Melee_Scavenger_2",
+                    "Weapons_Melee_Scavenger_3",
+                    "section_Weapons_Scavenger_1"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PagePromo_Heroes_BBPromo": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PagePromo_Heroes_BBPromo_PageNameText",
+                    "SourceString": "Battle Breakers!!"
+                },
+                "CategoryId": "Promo_People",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_Heroes_Promotional_BBPromo",
+                    "section_Heroes_Promotional_BBPromo_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPack_Kevin": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPack_Kevin_PageNameText",
+                    "SourceString": "Robo-Kevin"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 1,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_12"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPack_Lars": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPack_Lars_PageNameText",
+                    "SourceString": "Lars"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 2,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_11"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPack_LokBot": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPack_LokBot_PageNameText",
+                    "SourceString": "Lok-Bot"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 3,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_10"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPacks_RoboRay": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPacks_RoboRay_PageNameText",
+                    "SourceString": "Robo-Ray"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 4,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_9"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPacks_MachinistMina": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPacks_MachinistMina_PageNameText",
+                    "SourceString": "Machinist Mina"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 5,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_7",
+                    "section_StarterPack_8"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPacks_Powerhouse": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPacks_Powerhouse_PageNameText",
+                    "SourceString": "Powerhouse"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 6,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_5",
+                    "section_StarterPack_6"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPacks_SamuraiScrapper": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPacks_SamuraiScrapper_PageNameText",
+                    "SourceString": "Samurai Scrapper"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 7,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_3",
+                    "section_StarterPack_4"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            },
+            "PageSpecial_StarterPacks_MetalTeamLeader": {
+                "Name": {
+                    "Namespace": "FortCollectionBookPageData:CollectionBookPages",
+                    "Key": "CollectionBookPages_PageSpecial_StarterPacks_MetalTeamLeader_PageNameText",
+                    "SourceString": "Metal Team Leader"
+                },
+                "CategoryId": "Starter_Packs",
+                "SortPriority": 8,
+                "ProfileId": "collection_Book_people0",
+                "SectionRowNames": [
+                    "section_StarterPack_1",
+                    "section_StarterPack_2"
+                ],
+                "Rewards": {
+                    "SelectableRewards": [],
+                    "StandardRewards": [],
+                    "HiddenRewards": []
+                }
+            }
+        }
+    }
+]

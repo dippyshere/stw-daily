@@ -1,0 +1,42 @@
+<svg fill="none" viewBox="0 0 180 72" width="180" height="72" xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+            <style>
+                <!--
+                    Made by Dippyshere - https://github.com/dippyshere
+                -->
+                @font-face {
+                font-family: google-sans;
+                src: url(https://raw.githubusercontent.com/dippyshere/stw-daily/master/res/Google-Sans-Bold.ttf);
+                font-weight: bold;
+                }
+
+                h1 {
+                font-family: google-sans, sans-serif;
+                background: linear-gradient(125deg, rgba(0,146,255,1) 39%, rgba(0,211,255,1) 40%, rgba(0,146,255,1) 41%, rgba(0,146,255,1) 59%, rgba(0,211,255,1) 60%, rgba(0,146,255,1) 61%, rgba(0,146,255,1) 100%);
+                background-size: 1000% 5000%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                filter: drop-shadow(0 0 0.5rem rgba(0,116,255,1));
+                animation: gradient 5s ease-in-out infinite;
+                margin: 0;
+                padding: 10px;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+                }
+
+                @keyframes gradient {
+                0% {
+                background-position: 0% 50%;
+                }
+                100% {
+                background-position: 100% 50%;
+                }
+                }
+            </style>
+            <h1 align="center">STW Daily</h1>
+        </div>
+    </foreignObject>
+</svg>

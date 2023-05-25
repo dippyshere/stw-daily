@@ -1,0 +1,39 @@
+{
+    "auto_claim": null,
+    "global": {
+        "profiles_ver": 971,
+        "rewrite_older": false,
+        "selected_profile": 0,
+        "banned": false,
+        "banned_reason": null,
+        "banned_by": null,
+        "banned_date": null,
+        "banned_duration": null,
+        "isServerBoosting": false,
+        "isServerBoostingSince": null,
+        "isServerBoostingUntil": null,
+        "isServerMember": null,
+        "isServerMemberSince": null,
+        "donation_source": null,
+        "donation_tier": 0,
+        "auto_trial_claimed": false
+    },
+    "profiles": {
+        "0": {
+            "id": 0,
+            "friendly_name": "Automatically Generated Profile",
+            "statistics": {
+                "total_times_claimed_manual": 0,
+                "total_times_claimed_auto": 0,
+                "vbucks_claimed": 0,
+                "first_claimed": null,
+                "tos_accepted": false,
+                "tos_accepted_date": null,
+                "tos_accepted_version": null
+            },
+            "settings": {
+            },
+            "authentication": null
+        }
+    }
+}

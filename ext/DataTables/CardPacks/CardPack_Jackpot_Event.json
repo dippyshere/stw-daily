@@ -1,0 +1,59 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Jackpot_Event",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Jackpot_Event",
+            "DisplayRarityLevel": 2,
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_JackPot_IconMask.T_CardPack_JackPot_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.964971,
+                "B": 0.042817,
+                "A": 1.0,
+                "Hex": "FFFFFC3A"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_OlTimey_PersonalityPack.Llama_OlTimey_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "D83CA6A944B6E57587D0B48AEE4CEEDF",
+                "SourceString": "Legendary Troll Stash Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "6B48C58E442DF74869D9A99464903B5B",
+                "SourceString": "An entire suite of goodies, direct from your local troll's stash! Contains at least 8 definitely-not-stolen items."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

@@ -1,285 +1,623 @@
-
-# This document allows you to configure Save The World Daily
+# STW Daily Discord bot Copyright 2023 by the STW Daily team.
+# Please do not skid our hard work.
 # https://github.com/dippyshere/stw-daily
 
+# This document is used to configure many things about the bot. DO NOT EDIT 🖕 skidders
+
 # A list of error messages the bot can pick from for the error embeds.
+# This can be done more efficiently, but this allows for other keys to be used
 error_messages = [
-	"That wasn't supposed to happen",
-	"Whoops!",
-	"We hit a roadblock",
-	"Not the llama you're looking for",
-	"Uh-oh! Something goofed"
-	]
+    "messages.error.1",
+    "messages.error.2",
+    "messages.error.3",
+    "messages.error.4",
+    "messages.error.5",
+    "messages.error.6",
+    "messages.error.7",
+    "messages.error.8"
+]
 
-support_url = "https://discord.gg/QYgABPDqzH"
+wait_on_user_messages = [
+    "messages.waiting.1",
+    "messages.waiting.2",
+    "messages.waiting.3",
+    "messages.waiting.4",
+    "messages.waiting.5",
+    "messages.waiting.6",
+    "messages.waiting.7",
+    "messages.waiting.8",
+    # "messages.waiting.9",
+    "messages.waiting.10",
+    "messages.waiting.11",
+    "messages.waiting.12",
+]
 
-# list of known auth codes which are automatically invalidated
-known_auth_codes = [
-	"ec684b8c687f479fadea3cb2ad83f5c6","3446cd72694c4a4485d81b77adbb2141","3f69e56c7649492c8cc29f1af08a8a12","efe3cbb938804c74b20e109d0efc1548",
-	"cfaa14c4bf8744e3a5ef9a5d6c34558d","3e13c5c57f594a578abe516eecb673fe","5b685653b9904c1d92495ee8859dcb00","61d2f70175e84a6bba80a5089e597e1c",
-	"FbiZv3wbiKpvVKrAeMxiR6WhxZWVbrvA","0716a69cb8b2422fbb2a8b0879501471","xyza7891343Fr4ZSPkQZ3kaL3I2sX8B5","34a02cf8f4414e29b15921876da36f9a",
-	"38dbfc3196024d5980386a37b7c792bb","f3e80378aed4462498774a7951cd263f","1252412dc7704a9690f6ea4611bc81ee","ec813099a59f48d4a338f1901c1609db",
-	"ad8def9ae6b84360b6c9b358aba06262","e0aca23dfb7348d6bad648bbe175a6e6","fa39ae1203b5438280f515f38a50f08e","9427129c087d4049886d3b47349d1aad",
-	"b31a9e178ab84b21ad7435a53e4da4af","bc742d26f8314469aa997373f39c876e","875a3b57d3a640a6b7f9b4e883463ab4","cd2b7c19c9734a2ab98dc251868d7724",
-	"4d9a4e9e568a40faa77b9757b4fac210","a472abd3e5ad4d90a0549213906dcf3f","7de9f4b799d3470984093b218287dc72","3cf78cd3b00b439a8755a878b160c7ad",
-	"b070f20729f84693b5d621c904fc5bc2","f2f868d1259e4b128e5b7e8a3732cb1a","8f50327ba00d4ebeb81991ee04a42fc1","4b6c700c72c44e178b12070f2719af1a",
-	"8df415b848c74affb682907405f7a52b","c4c02c7c99e94ed9870a9dbeafab2c3f","8e873617d81d4caf89bae28a4b74bbfe","43e2dea89b054198a703f6199bee6d5b",
-	"24a1bff3f90749efbfcbc576c626a282","5a6fcd3b82e04f8fa0065253835c5221","f0b883ba7d3646bba4aa11bf1d71c071","1e2da690d4914a72a26be4d09862c559",
-	"932e595bedb643d9ba56d3e1089a5c4b","8522af44af194836a532884e84d2b6e2","d7c956d5f1de46088dc2f5b8fccae940","8e889dadbfaf4145b3a806f51d1e3fee",
-	"319e1527d0be4457a1067829fc0ad86e","0a4056c60cfd4e1f9f28795e529cd0c3","02612880aa774fb28e3741d3e01501fd","ba517836005c460eb18d368fa35eb002",
-	"c1b81c9ba24e4b6ab3e99ad00320ffd2","9a06a69c0c8a458caab330d48badb877","0fa561666d6e41cb95b2a357a8b4a6f3","e7d1a3ee19ac4173b80a53006dc53be3",
-	"189f729a313e415db0876a2091fecd8f","17ce2d2864834898ab71847859286c81","3adb22b897e24666971f9a273b1c15e8","f65082b48b504eb88f73961b0131cda7",
-	"1412c33087cc452283d371665a8e5fbc","82f0e5faa90c4c209136870c50ae5642","1483ba7d6c0247828c26cc8a74a9a183","9fe4a9e4584c43a0bca6bd22a52f2f40",
-	"a510a43d1fcc4636bc9c99a46a7cd50c","63f198487c8646f192a59be02ce0d14c","7f7b1f9ac72440408d65115cd49d0184","6ff43e743edc4d1dbac3594877b4bed9",
-	"26c2c1eeeb9141a08d2e52afdda30fde","876dbf395577470794c0a43ca63abde4","d978d5ac4e1545d59e4e93a05ce77e26","8a438c1717d340429d5be1d6ce01f415",
-	"74554a19f3674cb094a467237d174c16","xyza7891qtrmoYLr86we6DlfCA1RRsp8","72f83226ab664739b635b1e318a635bc"
-	]
 
-# permitted time for an auth session to run for (keep it below 5 hours)
-auth_expire_time 	= 28800
+logging_level = "INFO" # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+support_url = "https://discord.gg/QYgABPDqzH" # 🖕 skidders
+
+# list of known codes, like client id's that appear in the URL which are automatically invalidated
+known_client_ids = [
+    "ec684b8c687f479fadea3cb2ad83f5c6", "3446cd72694c4a4485d81b77adbb2141", "3f69e56c7649492c8cc29f1af08a8a12", "efe3cbb938804c74b20e109d0efc1548",
+    "cfaa14c4bf8744e3a5ef9a5d6c34558d", "3e13c5c57f594a578abe516eecb673fe", "5b685653b9904c1d92495ee8859dcb00", "61d2f70175e84a6bba80a5089e597e1c",
+    "FbiZv3wbiKpvVKrAeMxiR6WhxZWVbrvA", "0716a69cb8b2422fbb2a8b0879501471", "xyza7891343Fr4ZSPkQZ3kaL3I2sX8B5", "34a02cf8f4414e29b15921876da36f9a",
+    "38dbfc3196024d5980386a37b7c792bb", "f3e80378aed4462498774a7951cd263f", "1252412dc7704a9690f6ea4611bc81ee", "ec813099a59f48d4a338f1901c1609db",
+    "ad8def9ae6b84360b6c9b358aba06262", "e0aca23dfb7348d6bad648bbe175a6e6", "fa39ae1203b5438280f515f38a50f08e", "9427129c087d4049886d3b47349d1aad",
+    "b31a9e178ab84b21ad7435a53e4da4af", "bc742d26f8314469aa997373f39c876e", "875a3b57d3a640a6b7f9b4e883463ab4", "cd2b7c19c9734a2ab98dc251868d7724",
+    "4d9a4e9e568a40faa77b9757b4fac210", "a472abd3e5ad4d90a0549213906dcf3f", "7de9f4b799d3470984093b218287dc72", "3cf78cd3b00b439a8755a878b160c7ad",
+    "b070f20729f84693b5d621c904fc5bc2", "f2f868d1259e4b128e5b7e8a3732cb1a", "8f50327ba00d4ebeb81991ee04a42fc1", "4b6c700c72c44e178b12070f2719af1a",
+    "8df415b848c74affb682907405f7a52b", "c4c02c7c99e94ed9870a9dbeafab2c3f", "8e873617d81d4caf89bae28a4b74bbfe", "43e2dea89b054198a703f6199bee6d5b",
+    "24a1bff3f90749efbfcbc576c626a282", "5a6fcd3b82e04f8fa0065253835c5221", "f0b883ba7d3646bba4aa11bf1d71c071", "1e2da690d4914a72a26be4d09862c559",
+    "932e595bedb643d9ba56d3e1089a5c4b", "8522af44af194836a532884e84d2b6e2", "d7c956d5f1de46088dc2f5b8fccae940", "8e889dadbfaf4145b3a806f51d1e3fee",
+    "319e1527d0be4457a1067829fc0ad86e", "0a4056c60cfd4e1f9f28795e529cd0c3", "02612880aa774fb28e3741d3e01501fd", "ba517836005c460eb18d368fa35eb002",
+    "c1b81c9ba24e4b6ab3e99ad00320ffd2", "9a06a69c0c8a458caab330d48badb877", "0fa561666d6e41cb95b2a357a8b4a6f3", "e7d1a3ee19ac4173b80a53006dc53be3",
+    "189f729a313e415db0876a2091fecd8f", "17ce2d2864834898ab71847859286c81", "3adb22b897e24666971f9a273b1c15e8", "f65082b48b504eb88f73961b0131cda7",
+    "1412c33087cc452283d371665a8e5fbc", "82f0e5faa90c4c209136870c50ae5642", "1483ba7d6c0247828c26cc8a74a9a183", "9fe4a9e4584c43a0bca6bd22a52f2f40",
+    "a510a43d1fcc4636bc9c99a46a7cd50c", "63f198487c8646f192a59be02ce0d14c", "7f7b1f9ac72440408d65115cd49d0184", "6ff43e743edc4d1dbac3594877b4bed9",
+    "26c2c1eeeb9141a08d2e52afdda30fde", "876dbf395577470794c0a43ca63abde4", "d978d5ac4e1545d59e4e93a05ce77e26", "8a438c1717d340429d5be1d6ce01f415",
+    "74554a19f3674cb094a467237d174c16", "xyza7891qtrmoYLr86we6DlfCA1RRsp8", "72f83226ab664739b635b1e318a635bc"
+]
+
+# permitted time for an auth session to run for (keep it below ~8 hours)
+auth_expire_time = 28800
 
 # Names for the different shards
 shard_names = [
-	"Athena", "Apollo", "Artemis",
-   "Demeter", "Zeus", "Hera",
-   "Poseidon", "Ares", "Hephaestus",
-   "Aphrodite", "Hermes", "Hestia",
-   "Dionysus", "Hades", "Cronus",
-   "Themis", "Rhea", "Hyperion",
-   "Ouranos", "Helios", "Eos",
-   "Prometheus", "Styx", "Atlas"
-   ]
+    "Athena", "Apollo", "Artemis",
+    "Demeter", "Zeus", "Hera",
+    "Poseidon", "Ares", "Hephaestus",
+    "Aphrodite", "Hermes", "Hestia",
+    "Dionysus", "Hades", "Cronus",
+    "Themis", "Rhea", "Hyperion",
+    "Ouranos", "Helios", "Eos",
+    "Prometheus", "Styx", "Atlas"
+]
+
+
+devs = [
+    349076896266452994, 237465974545055744, 563988053962653696, 260047769228541952
+]
 
 # a list of emojis the bot utilises throughout (please do not change the keys.)
 [emojis]
-info				= "<:helpstwdaily:925648230488883230>"
-hard_drive  		= "<:TIconHardDriveL:812201309591175168>"
-electric_plug		= "🔌"
-research_point		= "<:TIconResearchPoint128:812201303781408828>"
-error				= "<:errorstwdaily:925648230753107999>"
-skill_point			= "<:TIconSkillPoint128:812201303505764373>"
-warning				= "<:warningstwdaily:925648230736347158>"
-vbucks				= "<:TItemsMTXL:812201307786969128>"
-bulb				= "💡"
-processing			= "<a:stwloading:947844940594044948>"
-checkmark			= "<:checkmarkstwdaily:925648230912524338>"
-founders			= "<:TIconFoundersBadge512:812201305736085524>"
-calendar			= "<:TDestroyTheWorld:947752260295872532>"
-blueinfo			= "<:infostwdaily:947807681404608532>"
-xray				= "<:TItemsCurrencyXRayLlamaL:812201308286091264>"
-keycard				= "<:ghostkeycard:956678535093813340>"
-whitekey			= "<:librarykey:956794272412233730>"
-llama				= "<:PinataStandardPack:947728062739542036>"
-gold				= "<:TItemGoldBarsL:947728044448153611>"
-stormeye			= "<:TItemsReagentCT03L:947728066984157214>"
-bottlelightning 	= "<:TItemsReagentCT02L:947728059795120179>"
-heroxp 				= "<:THeroXPL:947728056326422528>"
-minillama_full		= "<:PinataMiniRewardPack:947728056334819328>"
-minillama			= "<:TItemsVoucherBasicLrealesrganx4p:1028513525137674241>"
-herogeneric			= "<:TIconHeroGeneric:947792566454210592>"
-rangedgeneric		= "<:TIconRangedCARD:947728032045600788>"
-meleegeneric		= "<:TIconMeleeCARD:947728031764611132>"
-pdor				= "<:TItemsReagentCT01L:947728041596059718>"
-freedoms_herald		= "<:TIconWeaponsSKFireCrackerGunL:947728057895125052>"
-trapgeneric			= "<:TIconTrapsCARD:947728032813183076>"
-defendergeneric 	= "<:TIconDefenders_CARD:947728018657390632>"
-leadsurvivor		= "<:TIconSurvivorLeaderCARD:947728019450126356>"
-xpboost				= "<:IconXPXL:812201307133313044>"
-fortitude 			= "<:TIconFortitude:1000217972549357568>"
-technology			= "<:TIconTech:1000217968560578600>"
-offense 			= "<:TIconOffense:1000217970552877086>"
-resistance 			= "<:TIconResistance:1000217966618615828>"
-survivorgeneric		= "<:GenericWorkercopy:947728015683616778>"
-teammatexpboost 	= "<:IconGiftXPXL:812201304670601227>"
-crown 				= "👑"
-celebrate 			= "🎉"
-stopwatch_anim		= "<a:stwstopwatch2:1028520039596445757>"
-experimental		= "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"
-broken_heart		= "<:TBannersIconsLightningHeartLreal:1028513513364271145>"
-vbuck_book			= "<:TIconVBuckChallengesLrealesrganx:1028513533366898748>"
-storm_shield		= "<:TIconOutpost256realesrganx4plus:1028513536483274803>"
-mtxswap_combined	= "<:TItemsCurrencyMTXXRayLlamaLreale:1028513530753847327>"
-library_cal			= "<:T_UI_IconLibrary_Calendar_128rea:1028513523128614932>"
-vbuck_icon			= "<:T_UI_icon_vbucks_128realesrganx4:1028828835002720286>"
-stormshard			= "<:TItemsReagentCT04Lrealesrganx4pl:1028513528375689366>"
-bp_icon				= "<:BPIcon:1028828256658534503>"
-placeholder			= "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
-LMAO				= "😂"
-spongebob			= "<a:sadspongebob:1028829840977182770>"
-megamind			= "<:megamind:1028829842776526868>"
-cross				= "<:Cross:812201302041427969>"
-right_icon			= "<:right_stw:1032194337783697419>"
-left_icon			= "<:left_stw:1032194339398488064>"
+info = "<:helpstwdaily:925648230488883230>"  # who named this????? 🤦
+hard_drive = "<:TIconHardDriveL:812201309591175168>"
+electric_plug = "<:electricplug_teams:1030710464776245268>"
+research_point = "<:TIconResearchPoint128:812201303781408828>"
+error = "<:errorstwdaily:925648230753107999>"
+skill_point = "<:TIconSkillPoint128:812201303505764373>"
+warning = "<:warningstwdaily:925648230736347158>"
+vbucks = "<:TItemsMTXL:812201307786969128>"
+bulb = "<:lightbulb_teams:1030710463274684467>"
+processing = "<a:stwloading:947844940594044948>"
+checkmark = "<:checkmarkstwdaily:925648230912524338>"
+founders = "<:TIconFoundersBadge512:812201305736085524>"
+calendar = "<:TDestroyTheWorld:947752260295872532>"
+blueinfo = "<:infostwdaily:947807681404608532>"
+xray = "<:TItemsCurrencyXRayLlamaL:812201308286091264>"
+keycard = "<:ghostkeycard:956678535093813340>"
+whitekey = "<:librarykey:956794272412233730>"
+llama = "<:PinataStandardPack:947728062739542036>"
+gold = "<:TItemGoldBarsL:947728044448153611>"
+stormeye = "<:TItemsReagentCT03L:947728066984157214>"
+bottlelightning = "<:TItemsReagentCT02L:947728059795120179>"
+heroxp = "<:THeroXPL:947728056326422528>"
+schematicxp = "<:SchematicXP:812201306982711297>"
+survivorxp = "<:SurvivorXP:812201303102980106>"
+venturexp = "<:VentureXP:812201308228026409>"
+minillama_full = "<:PinataMiniRewardPack:947728056334819328>"
+minillama = "<:TItemsVoucherBasicLrealesrganx4p:1028513525137674241>"
+herogeneric = "<:TIconHeroGeneric:947792566454210592>"
+rangedgeneric = "<:TIconRangedCARD:947728032045600788>"
+meleegeneric = "<:TIconMeleeCARD:947728031764611132>"
+pdor = "<:TItemsReagentCT01L:947728041596059718>"
+freedoms_herald = "<:TIconWeaponsSKFireCrackerGunL:947728057895125052>"
+trapgeneric = "<:TIconTrapsCARD:947728032813183076>"
+defendergeneric = "<:TIconDefenders_CARD:947728018657390632>"
+leadsurvivor = "<:TIconSurvivorLeaderCARD:947728019450126356>"
+xpboost = "<:IconXPXL:812201307133313044>"
+fortitude = "<:TIconFortitude:1000217972549357568>"
+technology = "<:TIconTech:1000217968560578600>"
+offense = "<:TIconOffense:1000217970552877086>"
+resistance = "<:TIconResistance:1000217966618615828>"
+survivorgeneric = "<:GenericWorkercopy:947728015683616778>"
+teammatexpboost = "<:IconGiftXPXL:812201304670601227>"
+crown = "<:crown_teams2:1054045734925770782>"
+celebrate = "<a:tada_teams:1030710460078633010>"
+stopwatch_anim = "<a:stwstopwatch2:1028520039596445757>"
+experimental = "<:TBannersIconsBeakerLrealesrganx4:1028513516589682748>"
+broken_heart = "<:TBannersIconsLightningHeartLreal:1028513513364271145>"
+vbuck_book = "<:TIconVBuckChallengesLrealesrganx:1028513533366898748>"
+storm_shield = "<:TIconOutpost256realesrganx4plus:1028513536483274803>"
+mtxswap_combined = "<:TItemsCurrencyMTXXRayLlamaLreale:1028513530753847327>"
+library_cal = "<:T_UI_IconLibrary_Calendar_128rea:1028513523128614932>"
+vbuck_icon = "<:T_UI_icon_vbucks_128realesrganx4:1028828835002720286>"
+stormshard = "<:TItemsReagentCT04Lrealesrganx4pl:1028513528375689366>"
+bp_icon = "<:BPIcon:1028828256658534503>"
+epic_games = "<:TEpicGamesLogo:1075297557372219512>"
+placeholder = "<:T_UI_Challenge_MysteryRewardLrea:1028513520167428161>"
+LMAO = "😂"
+spongebob = "<a:sadspongebob:1028829840977182770>"
+megamind = "<:megamind:1028829842776526868>"
+cal_anim = "<a:cal_teams:1030710470493085798> "
+cross = "<:Cross:812201302041427969>"
+left_delta = "<:left_delta:1030665031257432084>"
+right_delta = "<:right_delta:1030665032985485484>"
+right_icon = "<:right_stw:1032194337783697419>"
+left_icon = "<:left_stw:1032194339398488064>"
+0 = "<:zero_stw:1030710720607834182>"
+1 = "<:one_stw:1030710718934302780>"
+2 = "<:two_stw:1030710717252374578>"
+3 = "<:three_stw:1030710715272658956>"
+4 = "<:four_stw:1030710713959841902>"
+5 = "<:five_stw:1030710712055627808> "
+6 = "<:six_stw:1030710710608601138>"
+7 = "<:seven_stw:1030710708972830750>"
+8 = "<:eight_stw:1030710707097968670>"
+9 = "<:nine_stw:1030710705495744572>"
+10 = "<:ten_stw:1030710703574765568>"
+11 = "<:eleven_stw:1030719414233993276>"
+12 = "<:twelve_stw:1030719410996002826>"
+13 = "<:thirteen_stw:1030719409079201792>"
+14 = "<:fourteen_stw:1030719407258877992>"
+15 = "<:fifteen_stw:1030719405551783967>"
+16 = "<:sixteen_stw:1030719403773407322>"
+17 = "<:seventeen_stw:1030719401684652062>"
+18 = "<:eighteen_stw:1030719399545548801>"
+19 = "<:nineteen_stw:1030719398102712370>"
+20 = "<:twenty_stw:1030719386924884078>"
+21 = "<:twentyone_stw:1030719396315930727>"
+22 = "<:twentytwo_stw:1030719394550136882>"
+23 = "<:twentythree_stw:1030719392645918790>"
+24 = "<:twentyfour_stw:1030719390938832956>"
+25 = "<:twentyfive_stw:1030719388774580295>"
+locked = "<:Locked:812201301848358923>"
+championleague = "<:championleague:1032854538484453467>"
+add_acc = "<:T_UI_Icon_AddFriends_128:1032861023507599450>"
+link_acc = "<:T_UI_Icon_ChainPerson_Pinkish:1035115729764237352>"
+link_acc_old = "<:T_UI_Icon_ChainPerson_White:1035117130892455946>"
+pink_link = "<:T_Icon_ChainLink_Purple:1035115632171163709>"
+settings = "<:settingsstwdaily:1041658146655051816>"
+multi_acc = "<:T_UI_Icon_SocialPanel_64:1032861026309373962>"
+bang = "<:T_UI_Icon_TextureBang:1032862760905736262>"
+check_empty = "<:TIconConfirmation_Empty76realesr:1032865763498930196>"
+check_checked = "<:CheckedBox:812201301869461544>"
+power_level = "<:TIconPower128realesrganx4plus:1032865765667381341>"
+recycle = "<:TSlotIconRecycle128realesrganx4p:1032865761254973501>"
+bp_icon2 = "<:t_icon_nav_mobile_battlepass_128:1032865768041361500>"
+newspaper = "<:newspaper_1f4f0:1032867588029562980>"
+stw_box = "<:FortniteGamebox:812201311570886666>"
+expedition_all = "<:TIconExpeditionAll512:1034006500043141171>"
+expedition_airplane = "<:TIconSTAirplane128:1034006497945993216>"
+expedition_dirtbike = "<:TIconSTDirtbike128:1034006495345520671>"
+expedition_glider = "<:TIconSTHangGlider128:1034006492854112296>"
+expedition_helicopter = "<:TIconSTHelicopter128:1034006490543034418>"
+expedition_rowboat = "<:TIconSTRowboat128:1034006488626253824>"
+expedition_speedboat = "<:TIconSTSpeedboat128:1034006486080294913>"
+expedition_truck = "<:TIconSTStruck128:1034006484490661888>"
+left_arrow = "<:LeftArrow:1042410589810589727>"
+right_arrow = "<:RightArrow:1042410587700854784>"
+link_icon = "<:LinkIcon:1042410822682550282>"
+world_globe = "<:globewithmeridians_teams:1042715257371623464>"
+# one second
+library_bell = "<:T_UI_IconLibrary_Bell_128:1042715212639371284>"
+library_chat = "<:T_UI_IconLibrary_Chat_128:1042715214296129556>"
+library_banknotes = "<:T_UI_IconLibrary_BankNotes_128:1042715210923917332>"
+library_clipboard = "<:T_UI_IconLibrary_Clipboard_128:1042715215793491988>"
+library_clock = "<:T_UI_IconLibrary_Clock_128:1042715217332813894>"
+library_cogs = "<:T_UI_IconLibrary_Cogs_128:1042715218909876234>"
+library_disconnected = "<:T_UI_IconLibrary_Disconnected_12:1042715220516282368>"
+library_electrical = "<:T_UI_IconLibrary_Electrical_128:1042715224295342080>"
+library_fingerprint = "<:T_UI_IconLibrary_Fingerprint_128:1042715225864024064>"
+library_floppydisc = "<:T_UI_IconLibrary_FloppyDisc_128:1042715227453669396>"
+library_folder = "<:T_UI_IconLibrary_Folder_128:1042715228833591297>"
+library_gear = "<:T_UI_IconLibrary_Gear_128:1042715230712643594>"
+library_globe = "<:T_UI_IconLibrary_Globe_128:1042715255224160258>"
+library_hammer = "<:T_UI_IconLibrary_Hammer_128:1042715231807348789>"
+library_handshake = "<:T_UI_IconLibrary_Handshake_128:1042715233447313480>"
+library_hourglass = "<:T_UI_IconLibrary_Hourglass_128:1042715235393486858>"
+library_input = "<:T_UI_IconLibrary_Input_128:1042715236874063932>"
+library_list = "<:T_UI_IconLibrary_List_128:1042715238371442728>"
+library_message = "<:T_UI_IconLibrary_Message_128:1042715239914942544>"
+library_paperclip = "<:T_UI_IconLibrary_PaperClip_128:1042715241257107560>"
+library_people = "<:T_UI_IconLibrary_People_128:1042715242943225907>"
+library_pin = "<:T_UI_IconLibrary_Pin_128:1042715244214112258>"
+library_reset = "<:T_UI_IconLibrary_Reset_128:1042715246160253069>"
+library_robotarm = "<:T_UI_IconLibrary_RobotArm_128:1042715247418548245>"
+library_scissors = "<:T_UI_IconLibrary_Scissors_128:1042715249394065449>"
+library_stop = "<:T_UI_IconLibrary_Stop_128:1042717703057707089>"
+library_store = "<:T_UI_IconLibrary_Store_128:1042715250954358784>"
+library_tape = "<:T_UI_IconLibrary_Tape_128:1042715252082618387>"
+library_trashcan = "<:T_UI_IconLibrary_TrashCan_128:1042715254049738752>"
+library_person = "<:T_UI_IconLibrary_Person_128:1042718229971349555>"
+library_add_person = "<:T_UI_IconLibrary_PlusPerson_128:1042718227207307324>"
+library_alarm_clock = "<:T_UI_IconLibrary_AlarmClock_128:1042721308380774460>"
+library_shopping_bag = "<:T_UI_IconLibrary_ShoppingBag_128:1084322429389770782>"
+library_cloud = "<:T_UI_IconLibrary_Cloud_128:1084322427519123548>"
+shield_normal = "<:GunnerShield_Normal:1042721306715631677>"
+look_disabled_normal = "<:Look_Disabled_Normal:1042721270493626398>"
+look_normal = "<:Look_Normal:1042721268778147850>"
+hidden = "<:THLTHidden:1046072772113215590>"
+incoming_envelope = "<:incomingenvelope_1f4e8:1046073568900939838>"
+check_mark = "<:Check:812201301843902474>"
+xp_everywhere = "<:T_UI_FNBR_XPeverywhere_L:1051183876048949401>"
+# battle breakers emojis :sob:
+Cleric_VR2_Dark_TerrRifle_T04_Icon = "<:Cleric_VR2_Dark_TerrRifle_T04_Ic:1033295042086973450>"
+CoinIcon = "<:CoinIcon:1033294973942120448>"
+Crystal_Normal = "<:Crystal_Normal:1033295001997815888>"
+Dark5 = "<:Dark5:1033295019014107157>"
+Fire5 = "<:Fire5:1033295016254259231>"
+Icon_ProximityLocator = "<:Icon_ProximityLocator:1033294995458883664>"
+Icon_TreasureMap_01 = "<:Icon_TreasureMap_01:1033294955910803466>"
+Icon_TreasureMap_03 = "<:Icon_TreasureMap_03:1033294949988438047>"
+Icon_TreasureMap_05 = "<:Icon_TreasureMap_05:1033294953142566942>"
+Icon_TreasureMap_Piece = "<:Icon_TreasureMap_Piece:1033294958494490645>"
+Icon_TreasureMap_Piece_elemental = "<:Icon_TreasureMap_Piece_elemental:1033294993378525224>"
+Iron_Normal = "<:Iron_Normal:1033294989993721906>"
+Light5 = "<:Light5:1033295013611851816>"
+Nature5 = "<:Nature5:1033295010143150100>"
+Platinum_Normal = "<:Platinum_Normal:1033294987296768010>"
+Shared2 = "<:Shared2:1033294997124026438>"
+T_Ceremonial_Armor = "<:T_Ceremonial_Armor:1033294961136898141>"
+T_Ceremonial_Sheild = "<:T_Ceremonial_Sheild:1033294964005814352>"
+T_Ceremonial_Sword = "<:T_Ceremonial_Sword:1033294965872267335>"
+T_Chest_Full = "<:T_Chest_Full:1033295037095739445>"
+T_Elixir_Defense_Major = "<:T_Elixir_Defense_Major:1033294975431090218>"
+T_Elixir_Defense_Minor = "<:T_Elixir_Defense_Minor:1033295003834912788>"
+T_Elixir_Mana_Minor = "<:T_Elixir_Mana_Minor:1033294983131824128>"
+T_Elixir_Offense_Major = "<:T_Elixir_Offense_Major:1033294978560032849>"
+T_Elixir_Offense_Minor = "<:T_Elixir_Offense_Minor:1033294970691518486>"
+T_HammerTime_Hammer = "<:T_HammerTime_Hammer:1033294985476448266>"
+T_Key_Icon = "<:T_Key_Icon:1033295038832193568>"
+T_MTX_Gem_Icon = "<:T_MTX_Gem_Icon:1033295044104441896>"
+T_Mystery_Goo = "<:T_Mystery_Goo:1033294999997136927>"
+T_Pet_UC1_Painguin_Water_T03_Icon = "<:T_Pet_UC1_Painguin_Water_T03_Ico:1033295026949726310>"
+T_Pet_VR1_Light_Spry_T04_Icon = "<:T_Pet_VR1_Light_Spry_T04_Icon:1033295022587658310>"
+WEX_HeroToken_Dark = "<:WEX_HeroToken_Dark:1033295029113995285>"
+WEX_HeroToken_Diamond = "<:WEX_HeroToken_Diamond:1033294945613774878>"
+WEX_HeroToken_Fire = "<:WEX_HeroToken_Fire:1033295034461728780>"
+WEX_HeroToken_Gold = "<:WEX_HeroToken_Gold:1033294947253755945>"
+WEX_HeroToken_Light = "<:WEX_HeroToken_Light:1033295024470904892>"
+WEX_HeroToken_Nature = "<:WEX_HeroToken_Nature:1033295032498794607>"
+WEX_HeroToken_Water = "<:WEX_HeroToken_Water:1033295030544236655>"
+Water5 = "<:Water5:1033295006276001864>"
+icon_xp_skill = "<:icon_xp_skill:1033294968925720678>"
+# item icons
+sid_assault = "<:TIconAssaultCARD:1054300391594008667>"
+sid_edged_axe = "<:TIconAxe64:1054300393380773928>"
+blank = "<:TIconBlank:1054300394580349000>"
+sid_blunt = "<:TIconBlunt128:1054300396308406272>"
+bow = "<:TIconBow128:1054300397889654894>"
+sid_blunt_club = "<:TIconClub64:1054300399487684699>"
+consumable = "<:TIconConsumable128:1054301098749472800>"
+sid_core_smg = "<:TIconCoreSMG128:1054300402239160350>"
+sid_dmr = "<:TIconDMR128:1054301100645294141>"
+sid_edged = "<:TIconEdged128:1054300404948684832>"
+sid_explosive = "<:TIconExplosive128:1054301102218154024>"
+sid_launcher = "<:TIconExplosive128:1054301102218154024>"
+hid_constructor = "<:TIconHeroConstructorCARD:1054301103740690483>"
+hid_ninja = "<:TIconHeroNinjaCARD:1054300408958427147>"
+hid_outlander = "<:TIconHeroOutlanderCARD:1054301105514881064>"
+hid_soldier = "<:TIconHeroSoldierCARD:1054300411919618078>"
+impact = "<:TIconImpact64:1054301106827710506>"
+sid_piercing = "<:TIconPiercing128:1054301108593512499>"
+sid_pistol = "<:TIconPistol128:1054300415715455066>"
+sid_smg = "<:TIconSMG128:1054300419557441587>"
+sid_edged_scythe = "<:TIconScythe64:1054301110011166730>"
+sid_shotgun = "<:TIconShotgun128:1054301111495966730>"
+sid_sniper = "<:TIconSniper128:1054301337346654268>"
+sid_piercing_spear = "<:TIconSpear128:1054301114138374195>"
+workerbasic = "<:TIconSurvivor128:1054300423391035432>"
+did_defenderassault = "<:TIconSurvivorAssaultCARD:1054301339020173342>"
+manager = "<:TIconSurvivorLeaderCARD:1054300426213789738>"
+manager_ = "<:TIconSurvivorLeaderCARD:1054300426213789738>"
+did_defendermelee = "<:TIconSurvivorMeleeCARD:1054301116805959710>"
+did_defenderpistol = "<:TIconSurvivorPistolCARD:1054301340295237634>"
+did_defendershotgun = "<:TIconSurvivorShotgunCARD:1054300430248722483>"
+did_defendersniper = "<:TIconSurvivorSniperCARD:1054301342501449738>"
+sid_edged_sword = "<:TIconSword128:1054300432966623252>"
+sid_blunt_tool = "<:TIconTool64:1054301120664703046>"
+sid_ceiling = "<:TIconTrapCeiling64:1054300387374542898>"
+sid_floor = "<:TIconTrapFloor64:1054300388850933821>"
+sid_wall = "<:TIconTrapWall64:1054300390151163926>"
+utility = "<:TIconUtility128:1054301407425081344>"
+# event currency
+eventcurrency_pumpkinwarhead = "<:TIconpumpkin:1054379916218601512>"
+eventcurrency_blockbuster = "<:TItemsEventCurrencyBlockbusterL:1054379935776657458>"
+eventcurrency_candy = "<:TItemsEventCurrencyCandyL:1054379929422286898>"
+eventcurrency_scavenger = "<:TItemsEventCurrencyScavengerL:1054379909222518865>"
+eventcurrency_roadtrip = "<:TItemsEventCurrencySeason5HordeL:1054379913983037440>"
+eventcurrency_snowballs = "<:TItemsEventCurrencySnowballsL:1054379904705245264>"
+eventcurrency_spring = "<:TItemsEventCurrencySpring2019_L:1054379922002554880>"
+eventcurrency_lunar = "<:TItemsEventCurrencySpring2019_L:1054379922002554880>"
+eventcurrency_stormzone = "<:TItemsEventCurrencyStormL:1054379897482653718>"
+eventcurrency_summer = "<:TItemsEventCurrencySummerL:1054379941099225199>"
+eventcurrency_adventure = "<:TItemsEventCurrencySummerL:1054379941099225199>"
+eventcurrency_scaling = "<:TItemGoldBarsL:947728044448153611>"
+currency_xrayllama = "<:TItemsCurrencyXRayLlamaL:812201308286091264>"
+voucher_cardpack_bronze = "<:PinataStandardPack:947728062739542036>"
+xpboost_gift = "<:XPGift:812201304670601227>"
+T_cardpack_choice_hero_iconmask = "<:TIconHeroGeneric:947792566454210592>"
+T_cardpack_choice_ranged_iconmask = "<:TIconRangedCARD:947728032045600788>"
+T_cardpack_choice_melee_iconmask = "<:TIconMeleeCARD:947728031764611132>"
+T_cardpack_choice_traps_iconmask = "<:TIconTrapsCARD:947728032813183076>"
+T_cardpack_artdeco_iconmask = "<:T_CardPack_ArtDeco:1055050167738445856>"
+T_cardpack_blockbuster_iconmask = "<:T_CardPack_BlockbusterEvent_Icon:1055050172960354365>"
+T_cardpack_crew_iconmask_iconmask = "<:T_CardPack_Crew_IconMask:1055050169672007700>"
+T_cardpack_deserthorde_iconmask = "<:T_CardPack_DesertHorde_IconMask:1055049384859021382>"
+T_cardpack_eventanniversary_iconmask = "<:T_CardPack_Event_Anniversary_Ico:1055049380773773372>"
+T_cardpack_eventhalloween_iconmask = "<:T_CardPack_Event_Halloween:1055050171286818816>"
+T_cardpack_eventwinter_iconmask = "<:T_CardPack_Event_Winter:1055049388713594900>"
+T_cardpack_fleming_iconmask = "<:T_CardPack_Fleming_IconMask:1055049373756706836>"
+T_cardpack_founderspack_iconmask = "<:T_CardPack_FoundersPack_IconMask:1055050162629783562>"
+T_cardpack_jackpot_iconmask = "<:T_CardPack_JackPot_IconMask:1055050164311691305>"
+T_cardpack_melee_iconmask = "<:T_CardPack_Melee_IconMask:1055049377858736128>"
+T_cardpack_neoncyberpunkevent_iconmask = "<:T_CardPack_NeonCyberpunkEvent_Ic:1055050165997809684>"
+T_cardpack_ranged_iconmask = "<:T_CardPack_Ranged_IconMask:1055049367112916992>"
+T_cardpack_retroscifi_iconmask = "<:T_CardPack_RetroScifi_IconMask:1055049368920653844>"
+T_cardpack_rewardllama_iconmask = "<:T_CardPack_RewardLlama_IconMask:1055049358938210304>"
+T_cardpack_scavengerevent_iconmask = "<:T_CardPack_ScavengerEvent_IconMa:1055049370879414363>"
+T_cardpack_speaker_iconmask = "<:T_CardPack_Speaker_IconMask:1055049497501253653>"
+T_cardpack_springevent_iconmask = "<:T_CardPack_SpringEvent_IconMask:1055049360448176138>"
+T_cardpack_springpirate_piratehook_iconmask = "<:T_CardPack_SpringPirate_PirateHo:1055049362088148992>"
+T_cardpack_stormevent_iconmask = "<:T_CardPack_StormEvent_IconMask:1055049363715530803>"
+T_cardpack_trap_iconmask = "<:T_CardPack_Trap_IconMask:1055049352487378984>"
+T_cardpack_upgrade_iconmask = "<:T_CardPack_Upgrade_IconMask:1055049365426819092>"
+T_cardpack_vindertechevent_iconmask = "<:T_CardPack_VindertechEvent_IconM:1055049354215444550>"
+T_cardpack_weapon_iconmask = "<:T_CardPack_Weapon_IconMask:1055049355880574977>"
+new_item_store = "<:TIconStoreNewItem:1055058589129134150>"
+sale_sticker_store = "<:StoreSaleSticker:1055058606204137482>"
+pinatayarrevent = "<:PinataYarrEventPack:1055058604463493170>"
+pinatawintereventpack2019 = "<:PinataWinterEventPack2019:1055058601212919818>"
+pinatawintereventpack = "<:PinataWinterEventPack:1055058598264311878>"
+pinatavindertechpack = "<:PinataVindertechPack:1055058595269574656>"
+pinatastormzonepack = "<:PinataStormZonePack:1055058592337776650>"
+pinatastandardpackupgrade = "<:PinataStandardPackUpgrade:1055058587531104266>"
+pinatastandardpack = "<:PinataStandardPack:1055058584808984587>"
+pinatasprinteventpack = "<:PinataSpringEventPack:1055058581902331935>"
+pinatascavengerpack = "<:PinataScavengerPack:1055058578945351790>"
+pinataroadtriphordepack = "<:PinataRoadTripHordePack:1055058576051286016>"
+pinataretroscifieventpack = "<:PinataRetroSciFiEventPack:1055058572943298621>"
+pinataneoncyberpunkpack = "<:PinataNeonCyberpunkPack:1055058569969537034>"
+pinataminirewardpack = "<:PinataMiniRewardPack:1055058566463107113>"
+pinatahalloweenpack = "<:PinataHalloweenPack:1055058563833270343>"
+pinatafounderspack = "<:PinataFoundersPack:1055058560595267584>"
+pinataflemingpack = "<:PinataFlemingPack:1055058555666968626>"
+pinataeightiespack = "<:PinataEightiesPack:1055058551787245578>"
+pinatablockbusterpack = "<:PinataBlockBusterPack:1055058548998029362>"
+pinataartdecopack = "<:PinataArtDecoPack2020512:1055058546196238356>"
+pinataanniversarpack = "<:PinataAnniversaryPackL:1055058543281176586>"
+donut_keycard = "<:TTIconBRDonutKeycardL:1078926518866157680>"
+hightower_date_keycard = "<:TTIconBRHightowerDateKeycardL:1078926516789973092>"
+mountainbase_keycard = "<:TTIconBRKeyCardsMountainBaseL:1078926513245802578> "
+junkyard_keycard = "<:TTIconBRJunkyardKeycardL:1078926493377368084>"
+alter_keycard = "<:TTIconBRKeyCardAlterL:1078926496938348584>"
+hightower_tomato_keycard = "<:TTIconBRHightowerTomatoKeycardL:1078926487123673118>"
+ego_keycard = "<:TTIconBRKeyCardsEgoL:1078926499190669435>"
+island_keycard = "<:TTIconBRKeyCardsIslandL:1078926503288508416>"
+io_keycard = "<:TTIconBRIOKeycardItemL:1078926489824792648>"
+oilrig_keycard = "<:TTIconBRKeyCardOilRigL:1078926506887237633>"
+sleek_keycard = "<:TTIconBRGadgetVaultKeycardSleekL:1078926509206683760>"
+midmatch_keycard = "<:TTIconBRGadgetKeyCardMidMatchL:1084074626335916052>"
+rubbish_bin = "<:Delete_Normalrealesrganx4plus:1084079903571447808>"
+detonate = "<:Detonate_Normalrealesrganx4plus:1084079901725958217>"
+backpack = "<:Inventory_Normalrealesrganx4plus:1084079910831804446>"
+download_alt = "<:Stomp_Normalrealesrganx4plus:1084079906260000768>"
+lock = "<:T_UI_ICON_SINGLE_LOCKrealesrganx:1084079908986290306>"
+keycard2 = "<:EventKeycardrealesrganx4plus:1084080116008751127>"
+uhmactually = "<:stwuhmactually:1084406386177364030>"
+uefn = "<:uefn:1089089854903697438>"
+crblog = "<:crblog:1092728119632347176>"
+fnblog = "<:fortfavicon:1092728116130095245>"
 
-#a list of links to thumbnails that the bot utilises for embeds
+[profile_settings]
+max_friendly_name_length = 100
+min_friendly_name_length = 1
+maximum_profiles = 25
+settings_per_page = 3
+default_settings_page = 1
+
+# a list of links to thumbnails that the bot utilises for embeds
 [thumbnails]
-error				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png"
-warn				= "https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png?size=4096"
-info				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png"
-help				= "https://cdn.discordapp.com/attachments/748078936424185877/924999902247936000/helpstwdaily.png"
-check				= "https://cdn.discordapp.com/attachments/748078936424185877/924999903116165120/checkmarkstwdaily.png"
-research			= "https://cdn.discordapp.com/attachments/767607876348018689/947812260724764712/T-Icon-ResearchPoint-128-realesrgan-x4plus.png"
-processing			= "https://cdn.discordapp.com/attachments/767607876348018689/947999234169397248/stwloading.gif"
-calendar			= "https://cdn.discordapp.com/attachments/767607876348018689/947752089549946930/Layer_4.png"
-urlauthcode			= "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png?size=4096"
-keycard				= "https://media.discordapp.net/attachments/643743040372080653/956798526149509120/Ghost_Keycard.PNG"
-stormbottle 		= "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png?width=410&height=410"
-crown 				= "https://cdn.discordapp.com/attachments/643743040372080653/1000266990272913448/discordW_3.png"
-placeholder			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186514510839878/T_UI_Challenge_MysteryReward-L.png"
-gold				= "https://cdn.discordapp.com/attachments/643743040372080653/1028186514976428032/T-Icon-S-Loot-GoldCurrency-L.png"
-vbuck_book			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186515773337640/T-Icon-VBuckChallenges-L.png"
-daily_coin			= "https://cdn.discordapp.com/attachments/643743040372080653/1028186636900646942/T-Items-DailyCoin-L.png"
-freedom_herald		= "https://cdn.discordapp.com/attachments/643743040372080653/1028186936613011456/WID_Pistol_FireCracker_R_Ore_T01.png"
-clown				= "https://cdn.discordapp.com/attachments/917697167102206022/998935319313404004/20220719_224839.jpg"
+error = "https://cdn.discordapp.com/attachments/748078936424185877/924999902851899452/errorstwdaily.png"
+warn = "https://cdn.discordapp.com/attachments/748078936424185877/924999901979508766/warningstwdaily.png"
+info = "https://cdn.discordapp.com/attachments/748078936424185877/924999902612815892/infostwdaily.png"
+help = "https://cdn.discordapp.com/attachments/748078936424185877/924999902247936000/helpstwdaily.png"
+check = "https://cdn.discordapp.com/attachments/748078936424185877/924999903116165120/checkmarkstwdaily.png"
+research = "https://cdn.discordapp.com/attachments/767607876348018689/947812260724764712/T-Icon-ResearchPoint-128-realesrgan-x4plus.png"
+processing = "https://cdn.discordapp.com/attachments/767607876348018689/947999234169397248/stwloading.gif"
+calendar = "https://cdn.discordapp.com/attachments/767607876348018689/947752089549946930/Layer_4.png"
+urlauthcode = "https://cdn.discordapp.com/attachments/757768833946877992/874560824482623568/unknown.png"
+auth_tutorial = "https://cdn.discordapp.com/attachments/757768060810559541/1050461779991474266/stw_daily_noob_tutorial_render_2_hd.gif"
+meme = "https://cdn.discordapp.com/attachments/917697167102206022/1039460868976541707/20221108_182205.jpg"
+catnerd = "https://cdn.discordapp.com/attachments/1042781227767312384/1084363434436612166/stwuhmactually.png"
+keycard = "https://media.discordapp.net/attachments/643743040372080653/956798526149509120/Ghost_Keycard.PNG"
+donut_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484729734627358/T-T-Icon-BR-DonutKeycard-L.png"
+hightower_date_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484729961132103/T-T-Icon-BR-HightowerDateKeycard-L.png"
+mountainbase_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484730183434250/T-T-Icon-BR-KeyCardsMountainBase-L.png"
+junkyard_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484730468630568/T-T-Icon-BR-JunkyardKeycard-L.png"
+alter_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484730682556486/T-T-Icon-BR-KeyCard-Alter-L.png"
+hightower_tomato_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484730913226752/T-T-Icon-BR-HightowerTomatoKeycard-L.png"
+ego_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484731114565753/T-T-Icon-BR-KeyCardsEgo-L.png"
+island_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484731324284998/T-T-Icon-BR-KeyCardsIsland-L.png"
+io_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484731546566666/T-T-Icon-BR-IOKeycardItem-L.png"
+oilrig_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078484731789848676/T-T-Icon-BR-KeyCard-OilRig-L.png"
+sleek_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1078485034207547443/T-T-Icon-BR-Gadget-VaultKeycard-Sleek-L.png"
+midmatch_keycard = "https://cdn.discordapp.com/attachments/1042781227767312384/1084074362178654270/T-T-Icon-BR-Gadget-KeyCard-MidMatch-L.png"
+stormbottle = "https://media.discordapp.net/attachments/767607876348018689/947705710295261284/T-Items-Reagent-C-T02-L.png"
+crown = "https://cdn.discordapp.com/attachments/1042781227767312384/1054046016048992306/crown_1f451.png"
+placeholder = "https://cdn.discordapp.com/attachments/643743040372080653/1028186514510839878/T_UI_Challenge_MysteryReward-L.png"
+gold = "https://cdn.discordapp.com/attachments/643743040372080653/1028186514976428032/T-Icon-S-Loot-GoldCurrency-L.png"
+vbuck_book = "https://cdn.discordapp.com/attachments/643743040372080653/1028186515773337640/T-Icon-VBuckChallenges-L.png"
+daily_coin = "https://cdn.discordapp.com/attachments/643743040372080653/1028186636900646942/T-Items-DailyCoin-L.png"
+freedom_herald = "https://cdn.discordapp.com/attachments/643743040372080653/1028186936613011456/WID_Pistol_FireCracker_R_Ore_T01.png"
+clown = "https://cdn.discordapp.com/attachments/767607876348018689/1032250365430738944/pensiveclown.png" # alexander hanson
+storm_shard = "https://media.discordapp.net/attachments/643743040372080653/1028186513730699274/T-Items-Reagent-C-T04-L.png"
+newspaper = "https://cdn.discordapp.com/attachments/859237140043137047/1032867800387178496/newspaper_1f4f0.png"
+expedition = "https://cdn.discordapp.com/attachments/767607876348018689/1034005649178239026/unknown.png"
+pink_link = "https://cdn.discordapp.com/attachments/859237140043137047/1035116393802252328/soryy.png"
+settings_cog = "https://cdn.discordapp.com/attachments/767607876348018689/1041654545928953887/settingsstwdaily.png"
+Shared2 = "https://cdn.discordapp.com/attachments/767607876348018689/1043844388498976829/Shared2.png"
+incoming_envelope = "https://cdn.discordapp.com/attachments/767607876348018689/1046074223690522716/incoming-envelope_1f4e8.png"
+xp_everywhere = "https://cdn.discordapp.com/attachments/1042781227767312384/1051183843165601852/T_UI_FNBR_XPeverywhere_L.png"
+salute = "https://cdn.discordapp.com/attachments/767607876348018689/1052869723634810900/saluting-face_1fae1.gif"
+upgrade_llama = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263659102218/PinataStandardPack-Upgrade.png"
+fleming = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263956910110/T_CardPack_Fleming_IconMask.png"
+floppy = "https://cdn.discordapp.com/attachments/1042781227767312384/1059456356492525679/T_UI_IconLibrary_FloppyDisc_128.png"
+disconnected = "https://cdn.discordapp.com/attachments/1042781227767312384/1059460908763586620/T_UI_IconLibrary_Disconnected_128.png"
+uefn = "https://cdn.discordapp.com/attachments/1042781227767312384/1089090105081335898/uefn-1.png"
 
 
 # Different colours for commands
 [colours]
-generic_blue 		= [11, 123, 185]
-error_red 			= [255,70,15]
-warning_yellow 		= [252,224,44]
-research_green 		= [114, 189, 134]
-reward_magenta 		= [255, 0, 255]
-success_green 		= [0, 210, 71]
-auth_white      	= [255, 255 ,255]
-crown_yellow		= [255, 204, 77]
-vbuck_blue			= [99, 240, 238]
+generic_blue = [11, 123, 185]
+error_red = [255, 70, 15]
+warning_yellow = [252, 224, 44]
+research_green = [114, 189, 134]
+reward_magenta = [255, 0, 255]
+success_green = [0, 210, 71]
+auth_white = [255, 255, 255]
+crown_yellow = [255, 176, 41]
+vbuck_blue = [99, 240, 238]
+profile_lavendar = [217, 146, 255]
 
-# Dont edit values beyond this point unless you know what you're doing!
+# Dont edit values ABOVE OR BELOW this point unless you know what you're doing! (🖕 skidders)
 
 # endpoints for requests to be sent to
 [endpoints]
-token 				= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token"
-profile 			= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId={}"
-account 			= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}"
-kill_token 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/sessions/kill/{}"
-exchange 			= "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
-device_auth 		= "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
-store				= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
-news				= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game"
-stw_news			= "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews"
-br_news				= "https://fortnite-api.com/v2/news/br"
-pve_info			= "https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/game/v2/world/info"
+token = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token"
+profile = "https://fngw-mcp-gc-livefn.ol.epicgames.com/fortnite/api/game/v2/profile/{}/client/{}?profileId={}"
+account = "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}"
+kill_token = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/sessions/kill/{}"
+exchange = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/exchange"
+device_auth = "https://account-public-service-prod.ol.epicgames.com/account/api/public/account/{}/deviceAuth"
+verify = "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/verify"
+store = "https://fngw-mcp-gc-livefn.ol.epicgames.com/fortnite/api/storefront/v2/catalog"
+news = "https://prm-dialogue-public-api-prod.edea.live.use1a.on.epicgames.com/api/v1/fortnite-br/surfaces/motd/target"
+stw_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/savetheworldnews?lang={0}"
+br_news = "https://fortnite-api.com/v2/news/br?language={0}"
+br_news_alt = "https://fortniteapi.io/v1/news?lang={0}&type=br"
+uefn_news = "https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-editor?lang={0}"
+cr_blog_news = "https://create.fortnite.com/api/cms/v1/articles?postsPerPage=500"
+fn_blog_news = "https://www.fortnite.com/api/blog/getPosts?category=&postsPerPage=2000&offset=0&locale={0}&rootPageSlug=blog"
+pve_info = "https://fngw-mcp-gc-livefn.ol.epicgames.com/fortnite/api/game/v2/world/info"
+bb_profile = "https://wex-public-service-live-prod.ol.epicgames.com/wex/api/game/v2/profile/{}/{}?profileId={}" # this is so sad 😿
+
 
 # different requests under profile
 [profile]
-query 				= "QueryProfile"
-query_public 		= "QueryPublicProfile"
-resources 			= "ClaimCollectedResources"
-daily				= "ClaimLoginReward"
-purchase_research 	= "PurchaseResearchStatUpgrade"
-llamas				= "PopulatePrerolledOffers"
-purchase			= "PurchaseCatalogEntry"
-batch_recycle		= "RecycleItemBatch"
-set_homebase		= "SetHomebaseName"
-# thanks github?
-set_banner			= "SetBanner"
-set_banner_colour	= "SetBannerColor"
-set_favourite		= "SetFavoriteHero"
-set_favourite_loadout = "SetFavoriteLoadout"
-set_favourite_schematic = "SetFavoriteSchematic"
-set_favourite_survivor = "SetFavoriteSurvivor"
-set_favourite_support = "SetFavoriteSupport"
-set_favourite_trap 	= "SetFavoriteTrap"
-set_favourite_weapon = "SetFavoriteWeapon"
-set_favourite_backpack = "SetFavoriteBackpack"
-set_favourite_pet 	= "SetFavoritePet"
-set_favourite_pickaxe = "SetFavoritePickaxe"
-set_favourite_glider = "SetFavoriteGlider"
-set_favourite_emote = "SetFavoriteEmote"
-set_favourite_skydive = "SetFavoriteSkydiveContrail"
-set_favourite_musicpack = "SetFavoriteMusicPack"
-set_favourite_loading = "SetFavoriteLoadingScreen"
-set_favourite_battlebus = "SetFavoriteBattleBus"
-set_favourite_battlepass = "SetFavoriteBattlePass"
-set_favourite_battlepass_tier = "SetFavoriteBattlePassTier"
-set_favourite_battlepass_star = "SetFavoriteBattlePassStar"
-set_favourite_battlepass_star_tier = "SetFavoriteBattlePassStarTier"
-set_favourite_battlepass_star_tier_reward = "SetFavoriteBattlePassStarTierReward"
-set_favourite_battlepass_star_tier_reward_type = "SetFavoriteBattlePassStarTierRewardType"
-set_favourite_battlepass_star_tier_reward_type_id = "SetFavoriteBattlePassStarTierRewardTypeId"
-set_favourite_battlepass_star_tier_reward_type_id_name = "SetFavoriteBattlePassStarTierRewardTypeIdName"
-set_favourite_battlepass_star_tier_reward_type_id_name_description = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescription"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImage"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackground"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColor"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorR"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorG"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorB"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorA"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHex"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlpha"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValue"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueR"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueG"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueB"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueA"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHex"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlpha"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValue"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_r = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueR"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_g = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueG"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_b = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueB"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_a = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueA"
-set_favourite_battlepass_star_tier_reward_type_id_name_description_image_background_color_hex_alpha_value_hex_alpha_value_hex = "SetFavoriteBattlePassStarTierRewardTypeIdNameDescriptionImageBackgroundColorHexAlphaValueHexAlphaValueHex"
+query = "QueryProfile"
+query_public = "QueryPublicProfile"
+resources = "ClaimCollectedResources"
+daily = "ClaimLoginReward"
+purchase_research = "PurchaseResearchStatUpgrade"
+llamas = "PopulatePrerolledOffers"
+purchase = "PurchaseCatalogEntry"
+batch_recycle = "RecycleItemBatch"
+set_homebase = "SetHomebaseName"
+set_banner = "SetHomebaseBanner"
+open_llama = "OpenCardPack"
+open_llamas = "OpenCardPackBatch"
+refresh_expeditions = "RefreshExpeditions"
+start_expedition = "StartExpedition"
+abandon_expedition = "AbandonExpedition"
+collect_expedition = "CollectExpedition"
 
 # different profile ids under some endpoints
 [profileid]
-common_core			= "common_core"
-common_public		= "common_public"
-stw					= "campaign"
-br					= "athena"
-# i dont actually know if these are real github just suggested it
-common_core_public	= "common_core_public"
-campaign_missions	= "campaign_missions"
-campaign_rewards	= "campaign_rewards"
-collection_book		= "collection_book"
-event_flags			= "event_flags"
-event_rewards		= "event_rewards"
-event_missions		= "event_missions"
+common_core = "common_core" # common info accross modes
+common_public = "common_public" # public user data
+stw = "campaign" # save the world
+br = "athena" # battle royale
+cr = "creative" # creative
+collections = "collections" # br collections (fishing/npc)
+metadata = "metadata" # stw homebase metadata (access)
+cbook_ppl = "collection_book_people0" # stw collection book (hero, survivor, defender)
+cbook_schm = "collection_book_schematics0" # stw collection book (schematics)
+outpost0 = "outpost0" # stw storage
+theater0 = "theater0" # stw backpack
+theater1 = "theater1" # stw event backpack
+theater2 = "theater2" # stw ventures data
+bin = "recycle_bin" # stw recycle bin
 
-[bannercolours]
-defaultcolor1 		= "#545454"
-defaultcolor2 		= "#c10000"
-defaultcolor3 		= "#e44b00"
-defaultcolor4 		= "#df7500"
-defaultcolor5 		= "#ffbd00"
-defaultcolor6 		= "#f7ce00"
-defaultcolor7 		= "#f1df00"
-defaultcolor8 		= "#bbe000"
-defaultcolor9 		= "#91ed00"
-defaultcolor10 		= "#00e28a"
-defaultcolor11 		= "#00d6b3"
-defaultcolor12 		= "#00f0f0"
-defaultcolor13 		= "#00e8e8"
-defaultcolor14 		= "#00bfe5"
-defaultcolor15 		= "#00a3ff"
-defaultcolor16 		= "#0000f8"
-defaultcolor17 		= "#9300f0"
-defaultcolor18 		= "#c800f0"
-defaultcolor19 		= "#ed00ed"
-defaultcolor20 		= "#f80098"
-defaultcolor21 		= "#df0088"
-defaultcolor22 		= "#191919"
-defaultcolor23 		= "#4c0000"
-defaultcolor24 		= "#5b2b00"
-defaultcolor25 		= "#5c4400"
-defaultcolor26 		= "#505d00"
-defaultcolor27 		= "#395f00"
-defaultcolor28 		= "#005b00"
-defaultcolor29 		= "#005c4f"
-defaultcolor30 		= "#003559"
-defaultcolor31 		= "#000059"
-defaultcolor32 		= "#3b0060"
-defaultcolor33 		= "#50005d"
-defaultcolor34 		= "#5f003a"
-defaultcolor35 		= "#e0e0e0"
-defaultcolor36 		= "#ff7f7f"
-defaultcolor37 		= "#ffc766"
-defaultcolor38 		= "#fff8a2"
-defaultcolor39 		= "#cdff6e"
-defaultcolor40 		= "#96ff96"
-defaultcolor41 		= "#814bff"
-defaultcolor42 		= "#9f9fff"
-defaultcolor43 		= "#dba4ff"
-defaultcolor44 		= "#ff97ff"
+[mango]
+uri_env_var = "STW_MONGO_URI"
+database = "stw_dailies"
+collection = "user_info"
+
+[valid_locales] # You can contribute additional values to a list to add locale aliases. For contributing text, see /lang
+id = ["Indonesian", "Bahasa Indonesia", "id", "id-ID", "id_ID", "idID", "indonesia", "bahasa", "bahasa, indonesia", "bahasa, id", "indonesia, bahasa", "indonesia, id", "ind", "bah"]
+da = ["Danish", "Dansk", "da", "da-DK", "da_DK", "daDK", "danmark", "dansk, danmark", "dansk, dk", "danmark, dansk", "danmark, dk", "dk", "dk, dansk", "dk, danmark", "danish, danmark", "danish, dk", "dan", "dan, dansk", "dan, danmark", "dan, dk", "dan, danish", "danish, dan", "danish, d", "danish, da"]
+de = ["German", "Deutsch", "de", "germany", "de-DE", "de_DE", "deDE", "deutschland", "deutsch, d", "deu", "ger", "deu, deutsch", "deu, germany", "ger, deutsch", "ger, germany", "deutsch, germany", "deutsch, de", "deutschland, deutsch", "deutschland, de", "deutschland, germany"]
+en = ["English UK", "English", "English, UK", "UK", "AU", "en-GB", "GB", "aus", "en", "en-au", "English US", "en-US", "US", "usa", "enUS", "en_AU", "enAU", "en_GB", "enGB", "en_US", "eng", "English AU", "English, AU", "English, CA", "English CA", "enCA", "en_CA", "default", "en-CA", "CA", "canada", "en, uk", "en, aus", "en, australia", "en, australian", "en, australien", "en, australie", "en, australasia", "en, australasian", "original"]
+# no american localisation >:(
+es-ES = ["Spanish", "Español", "Espanol", "es-ES", "spain", "es_ES", "esES", "españa", "espana", "es", "es-419", "es419", "es_419", "Castilian", "castellano", "castellano, es", "castellano, espana", "es, castellano", "es, espana", "espana, castellano", "espana, es", "españa, castellano", "españa, es", "spa", "spa, es", "spa, espana", "spa, españa", "spa, spain", "spain, es", "spain, espana", "spain, españa", "spain, spa", "es, spa", "es, spain", "espana, spa", "espana, spain", "españa, spa", "españa, spain", "spa, castellano", "spain, castellano"]
+fr = ["French", "Français", "Francais", "fr", "france", "fr-FR", "fr_FR", "frFR", "francaise", "française", "fra", "fre", "français, fr", "français, france", "fr, français", "fr, france", "france, français", "france, fr", "francaise, français", "francaise, fr", "francais, français", "francais, fr", "fra, français", "fra, france", "fre, français", "fre, france", "fr-FR, français", "fr-FR, france", "fr_FR, français", "fr_FR, france", "frFR, français", "frFR, france", "française, français", "française, fr", "français, français"]
+hr = ["Croatian", "Hrvatski", "hr", "croatia", "hr-HR", "hr_HR", "hrHR", "hrvatska", "hrvatski jezik", "hrvatski, hr", "hrvatski, hrvatska", "hr, hrvatski", "hr, hrvatska", "hrvatska, hrvatski", "hrvatska, hr", "hrvatski jezik, hr", "hrvatski jezik, hrvatska", "hr, hrvatski jezik", "hrvatska, hrvatski jezik", "hrvatski jezik, hrvatski", "hrvats", "hrv"]
+it = ["Itallian", "Italian", "Italiano", "it", "italy", "it-IT", "it_IT", "itIT", "italia", "lingua italiana", "lingua italiana, it", "lingua italiana, italia", "it, lingua italiana", "it, italia", "italia, lingua italiana", "italia, it", "ita"]
+lt = ["Lithuanian", "Lietuviškai", "lt", "lithuania", "lt-LT", "lt_LT", "ltLT", "lietuva", "skubby", "lietuvių kalba", "lietuvių", "kalba", "lit", "lithuani"]
+hu = ["Hungarian", "Magyar", "hu", "hungary", "hu-HU", "hu_HU", "huHU", "magyarorszag", "magyarország", "magyar nyelv", "nyelv", "hungaria"]
+nl = ["Dutch", "Nederlands", "nl", "netherlands", "nl-NL", "nl_NL", "nlNL", "nederland", "nederlandse", "Vlaams", "Flemish", "ndl", "dut", "nederlands, nl", "nederlands, nederland", "nl, nederlands", "nl, nederland", "nederland, nederlands", "nederland, nl", "nederlandse, nederlands", "nederlandse, nl", "ndl, nederlands", "ndl, nederland", "dut, nederlands", "dut, nederland", "Nederlands, Vlaams", "Nederlands, Flemish", "Nederlands, nl-NL", "Nederlands, nl_NL", "Nederlands, nlNL", "Nederlands, nederlandse", "Nederlands, ndl", "Nederlands, dut", "Nederlands, nederlands, nl", "Nederlands, nederlands, nederland", "Nederlands, nl, nederlands", "Nederlands, nl, nederland", "Nederlands, nederland, nederlands", "Nederlands, nederland, nl", "Nederlands, nederlandse, nederlands", "Nederlands, nederlandse, nl", "Nederlands, ndl, nederlands", "Nederlands, ndl, nederland", "Nederlands, dut, nederlands", "Nederlands, dut, nederland", "Nederlands, Vlaams, nl", "Nederlands, Vlaams, nederland", "Nederlands, Flemish, nl", "Nederlands, Flemish, nederland", "Nederlands, nl, Vlaams", "Nederlands, nl, Flemish", "Nederlands, nederland, Vlaams", "Nederlands, nederland, Flemish", "Nederlands, Vlaams, nederlands", "Nederlands, Flemish, nederlands", "Nederlands, nederlands, Vlaams", "Nederlands, nederlands, Flemish"]
+no = ["Norwegian", "Norsk", "Nork", "Norway", "no", "Nor", "Nynorsk", "Nordic", "Norse", "no-NO", "no_NO", "noNO", "norge", "bokmål", "bokmal", "norsk, no", "norsk, norge", "no, norsk", "no, norge", "norge, norsk", "norge, no", "nynorsk, norsk", "nynorsk, no", "nynorsk, norge", "norsk, nynorsk", "norsk, bokmål", "norsk, bokmal", "norsk, no, norge", "norsk, no, nynorsk", "norsk, no, bokmål", "norsk, no, bokmal", "norsk, norge, no", "norsk, norge, nynorsk", "norsk, norge, bokmål", "norsk, norge, bokmal", "norsk, nynorsk, no", "norsk, nynorsk, norge", "norsk, nynorsk, bokmål", "norsk, nynorsk, bokmal", "norsk, bokmål, no", "norsk, bokmål, norge", "norsk, bokmål, nynorsk", "norsk, bokmål, bokmal", "norsk, bokmal, no", "norsk, bokmal, norge", "norsk, bokmal, nynorsk", "norsk, bokmal, bokmål", "norsk, no, norge, nynorsk", "norsk, no, norge, bokmål", "norsk, no, norge, bokmal", "norsk, no, nynorsk, norge", "norsk, no, nynorsk, bokmål", "norsk, no, nynorsk, bokmal", "norsk, no, bokmål, norge", "norsk, no, bokmål, nynorsk", "norsk, no, bokmål, bokmal", "norsk, no, bokmal, norge", "norsk, no, bokmal, nynorsk", "norsk, no, bokmal, bokmål", "norsk, norge, no, nynorsk", "norsk, norge, no, bokmål", "norsk, norge, no, bokmal", "norsk, norge, nynorsk, no", "norsk, norge, nynorsk, bokmål", "norsk, norge, nynorsk, bokmal", "norsk, norge, bokmål, no"]
+pl = ["Polish", "Polski", "pl", "poland", "pl-PL", "pl_PL", "plPL", "polska", "Pol", "polski, pl", "polski, poland", "pl, polski", "pl, poland", "poland, polski", "poland, pl", "polska, polski", "polska, pl", "pol, polski", "pol, poland", "pol, polska", "Język", "jezyk", "Język polski", "język, polski", "język, pol", "język, pl", "język, poland", "język, polska"]
+pt-BR = ["Portuguese", "Português do Brasil", "Portugues", "pt-BR", "brazil", "pt_BR", "ptBR", "brazilian", "Portuguese, Brazilian", "Portugues do Brasil", "Português", "por", "pt", "pt, portugues", "pt, portugues do brasil", "pt, português", "pt, português do brasil", "portugues, pt", "portugues, portugues do brasil", "portugues, português", "portugues, português do brasil", "portugues do brasil, pt", "portugues do brasil, portugues", "portugues do brasil, português", "portugues do brasil, português do brasil", "português, pt", "português, portugues", "português, portugues do brasil", "português, português do brasil", "português do brasil, pt", "português do brasil, portugues", "português do brasil, português", "português do brasil, português do brasil", "por, portugues", "por, portugues do brasil", "por, português", "por, português do brasil", "pt-BR, portugues", "pt-BR, portugues do brasil", "pt-BR, português", "pt-BR, português do brasil", "pt_BR, portugues", "pt_BR, portugues do brasil", "pt_BR, português", "pt_BR, português do brasil", "ptBR, portugues", "ptBR, portugues do brasil", "ptBR, português", "ptBR, português do brasil", "brazil, portugues", "brazil, portugues do brasil", "brazil, português", "brazil, português do brasil", "brazilian, portugues", "brazilian, portugues do brasil", "brazilian, português", "brazilian, português do brasil"]
+ro = ["Romanian", "Română", "Roman", "ro", "romania", "ro-RO", "ro_RO", "roRO", "romana", "Romanian, Romania", "Moldavian", "Moldovan", "limba română", "limba", "romana, română", "romana, limba română", "romana, limba", "română, romana", "română, limba română", "română, limba", "română, română", "limba română, romana", "limba română, română", "limba, romana", "limba, română", "limba, limba română", "romana, romana"]  # the only reason i kept making new files was cos dumbass github kept stopping
+fi = ["Finnish", "Suomi", "fi", "finland", "finish", "suomen kieli", "finnic", "fin", "suomen"]
+sv-SE = ["Swedish", "Svenska", "sv-SE", "sweden", "sv_SE", "svSE", "svensk", "swe", "sv"]
+vi = ["Vietnamese", "Tiếng Việt", "Viet", "vi", "vietnam", "vi-VN", "vi_VN", "viVN", "tieng viet", "vie", "vietnam vietnamese", "vietnamese vietnam"]
+tr = ["Turkish", "Türkçe", "Turk", "tr", "turkey", "tr-TR", "tr_TR", "trTR", "turkce", "tur"]
+cs = ["Czech", "Čeština", "Cesky", "cs", "czech republic", "cs-CZ", "cs_CZ", "csCZ", "ceska", "cestina", "ces", "cze", "český jazyk", "český", "jazyk"]
+el = ["Greek", "Ελληνικά", "el", "greece", "el-GR", "el_GR", "elGR", "eyynvlka", "eaanvlka", "ellnvlka", "ell", "gre", "Νέα Ελληνικά", "Néa Ellêniká", "nea ellenika", "nea ellinika", "nea ellh nik a", "nea ellhnik", "nea ellhnik a"]
+bg = ["Bulgarian", "6barapckn", "bg", "bg-bg", "bg_bg", "bgbg", "bul", "bulgaria", "bulgarian", "bulgarian, bg", "bulgarian, bg-bg", "bulgarian, bg_bg", "bulgarian, bgbg", "bulgarian, bul", "bulgarian, bulgaria", "bulgarian, bulgarian", "bulgarian, bulgarian, bg", "bulgarian, bulgarian, bg-bg", "bulgarian, bulgarian, bg_bg", "bulgarian, bulgarian, bgbg", "bulgarian, bulgarian, bul", "bulgarian, bulgarian, bulgaria", "bulgarian, bulgarian, bulgarian", "bulgarian, bulgarian, bulgarian, bg", "bulgarian, bulgarian, bulgarian, bg-bg", "bulgarian, bulgarian, bulgarian, bg_bg", "bulgarian, bulgarian, bulgarian, bgbg", "bulgarian, bulgarian, bulgarian, bul", "bulgarian, bulgarian, bulgarian, bulgaria", "bulgarian, bulgarian, bulgarian, bulgarian", "bulgarian, bulgarian, bulgarian, bulgarian, bg", "bulgarian, bulgarian, bulgarian, bulgarian, bg-bg", "bulgarian, bulgarian, bulgarian, bulgarian, bg_bg", "bulgarian, bulgarian, bulgarian, bulgarian, bgbg", "bulgarian, bulgarian, bulgarian, bulgarian, bul", "bulgarian, bulgarian, bulgarian, bulgarian, bulgaria", "bulgarian, bulgarian, bulgarian, bulgarian, bulgarian", "bulgarian, bulgarian, bulgarian, bulgarian, bulgarian, bg", "bulgarian, bulgarian, bulgarian, bulgarian, bulgarian, bulgaria", "bălgarski", "ezik", "български", "български bălgarski", "български bălgarski ezik", "български език", "български език bălgarski", "български език bălgarski ezik", "език", "език bălgarski", "език bălgarski ezik"]
+ru = ["Russian", "Pусский", "ru", "russia", "ru-RU", "ru_RU", "ruRU", "pyccknn", "русский язык russkiĭ âzık", "язык russkiĭ âzık", "russkiĭ âzık", "russkiĭ", "âzık", "русский", "русский язык", "pyccknn russkiĭ âzık", "ruskii", "ruski"]
+uk = ["Ukrainian", "Українська", "uk", "ukraine", "uk-UA", "uk_UA", "ukUA", "ykpaihcbka", "Українс", "мова", "Українська мова", "moba"]
+hi = ["Hindi", "हिन्दी", "hi", "india", "hi-IN", "hi_IN", "hiIN", "indian", "Hindī", "हिन्दी Hindī", "हिन्दी hindi", "हिन्दी हिंदी", "हिन्दी हिंदी Hindī", "हिन्दी हिंदी hindi", "हिन्दी हिंदी हिंदी", "हिन्दी हिंदी हिंदी Hindī", "हिन्दी हिंदी हिंदी hindi", "हिन्दी हिंदी हिंदी हिंदी", "हिन्दी हिंदी हिंदी हिंदी Hindī", "हिन्दी हिंदी हिंदी हिंदी hindi", "हिन्दी हिंदी हिंदी हिंदी हिंदी", "हिन्दी हिंदी हिंदी हिंदी हिंदी Hindī", "हिन्दी हिंदी हिंदी हिंदी हिंदी hindi", "हिन्दी हिंदी हिंदी हिंदी हिंदी हिंदी", "हिन्दी हिंदी हिंदी हिंदी हिंदी हिंदी Hindī", "हिन्दी हिंदी हिंदी हिंदी हिंदी हिंदी hindi", "हिन्दी हिंदी हिंदी हिंदी हिंदी हिंदी हिंदी", "हिन्दी हिंदी हिंदी हिंदी हिंदी हिंदी हिंदी Hindī", "हिन"] # indian 💀
+th = ["Thai", "ไทย", "th", "thailand", "th-TH", "th_TH", "thTH", "lnu", "ภาษาไทย Phasathay", "ภาษาไทย", "Phasathay"]
+zh-CHS = ["Chinese, China", "中文", "zh-CN", "zh_CN", "zhCN", "zh-Hans", "zh_Hans", "zhHans", "simplified", "Chinese (simplified)", "Chinese", "People's Republic of China", "Peoples Republic of China", "cn", "chs", "cn s", "ch s", "singapore", "sg", "hans", "zh_chs", "zhchs", "zh_sg", "zh-sg", "zhsg", "zh-CHS", "中文 Zhōngwén; 汉语; 漢語 Hànyǔ", "中文 Zhōngwén", "Zhōngwén", "汉语", "漢語 Hànyǔ", "Hànyǔ", "漢語", "中文 Zhongwen", "zhongwen", "hanyu", "漢語 Hanyu", "zho"]
+ja = ["Japanese", "日本語", "ja", "ja-JP", "ja_JP", "jaJP", "ja-JP-mac", "ja_JP_mac", "jaJPmac", "jp", "jpn", "japan", "日本", "��", "nihongo", "nihon", "nihon-go", "nippon", "nippon-go", "nippongo"]
+zh-CHT = ["Chinese, Taiwan", "繁體中文", "zh-TW", "zh_TW", "zhTW", "zh-Hant", "zh_Hant", "zhHant", "traditional", "Chinese (traditional)", "hk", "hong kong", "cht", "ch t", "cn t", "Hong Kong S.A.R.", "Macau S.A.R.", "macau", "hant", "zh_cht", "zhcht", "zh-MO", "zhmo", "zh_mo", "zhhk", "zh_hk", "zh-hk", "zh-CHT"]
+ko = ["Korean", "한국어", "ko", "ko-KR", "ko_KR", "koKR", "ko-KP", "ko_KP", "koKP", "kor", "한국어 Han'gug'ô", "Han'gug'ô", "Han'gug'o", "한�", "Han gug o", "Hangugo"]
+# whats with tthe :sob: lmao what have you done oh you added more
+af = ["af", "Afrikaans", "afr", "af-ZA", "af_ZA", "afZA", "afrikaanse", "afrika"]
+ar = ["Arabic", "العَرَبِيَّة", "ar", "ar-EG", "ar_EG", "arEG", "العَرَبِيَّة al'Arabiyyeẗ", "al Arabiyyet", "ara", "al'arabiyyet", "al", "arab", "arabian", "ar ar"]
+ca = ["Catalan", "català", "ca", "valencià", "catala", "catalunya", "catalonia", "ca-ES", "ca_ES", "caES", "valencia", "valencian", "valenciano", "valenciana", "valencianes", "valencians", "valencianos", "valencianas", "valencianisme", "valencianism", "valencianismes", "valencianista", "valenciani", "cat"]
+sr = ["Serbian", "српски", "srpski", "srp", "serbia", "sr-RS", "sr_RS", "srRS", "sr"]
+bn = ["Bengali", "বাংলা", "ben", "Bengala", "bn"]
+ur = ["Urdu", "اردو", "urd", "ur"]
+pa = ["Punjabi", "ਪੰਜਾਬੀ", "pan", "پن٘جابی", "pakistan"]
+fa = ["Persian", "فارسی", "fas", "per", "Farsi", "fārsi", "forsī", "fa", "форсӣ", "فارسى", "پارسى", "پارسی", "پښتو"]
+mr = ["Marathi", "मराठी", "mar", "Marāṭhī", "mr"]
+te = ["Telugu", "తెలుగు", "tel", "te"]
+gu = ["Gujarati", "ગુજરાતી", "guj", "gu", "gujarati", "gujaratī", "gujarātī"]
+ta = ["Tamil", "தமிழ்", "tam", "Tamiḻ", "ta", "தமிழ் மொழி", "தமிழ் மொழி Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli Tamil Moli", "தமிழ் மொழி Tamil Moli Ta"]
+ha = ["Hausa", "هَرْشَن هَوْسَ", "hau", "ha", "Harshen", "Halshen Hausa"]
+he = ["Hebrew", "עִבְרִית‎", "heb", "he", "Ivrit"]
+sk = ["Slovak", "slovenčina", "slo", "slk", "slovakia", "sk", "slovenský", "slovenská", "slovenské", "slovenskí", "slovenským", "slovenských", "slovenský jazyk"]
+ms = ["Malay", "Bahasa Melayu", "may", "mal", "msa", "ms", "بهاس ملايو", "ꤷꥁꤼ ꤸꥍꤾꤿꥈ"]
+et = ["Estonian", "eesti keel", "est", "et"]
+lv = ["Latvian", "latviešu valoda", "lav", "Lettish", "lv"]
+sw = ["Swahili", "Kiswahili", "swa", "sw", "كِيْسْوَاحِيْلِيْ"]
+# goofy gober languages
+en-UwU = ["owo", "o･ω･o", "uwu", "uvu", "umu", "nya", "nya~", "nyaa", "engwish", "en-uwu"]
+en-TwT = ["god is dead", "TwT", "en-twt"]
+
+[entry_token_key_for_game]
+fn = "token"
+# bb = "bb_token"
+
+[login_links]
+login_fortnite_pc = "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3Dec684b8c687f479fadea3cb2ad83f5c6%26responseType%3Dcode"
+login_fortnite_ios = "https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect%3FclientId%3D3446cd72694c4a4485d81b77adbb2141%26responseType%3Dcode"
+logout_login_fortnite_pc = "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253Dec684b8c687f479fadea3cb2ad83f5c6%2526responseType%253Dcode"
+logout_login_fortnite_ios = "https://www.epicgames.com/id/logout?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Flogin%3FredirectUrl%3Dhttps%253A%252F%252Fwww.epicgames.com%252Fid%252Fapi%252Fredirect%253FclientId%253D3446cd72694c4a4485d81b77adbb2141%2526responseType%253Dcode"
+logged_in_fortnite_pc = "https://www.epicgames.com/id/api/redirect?clientId=ec684b8c687f479fadea3cb2ad83f5c6&responseType=code"
+logged_in_fortnite_ios = "https://www.epicgames.com/id/api/redirect?clientId=3446cd72694c4a4485d81b77adbb2141&responseType=code"
+
+[help_definitions]
+general = ["help.category.common", "common", "help.category.common.description.brief", "help.category.common.description"]
+stw = ["help.category.stw", "stwbox", "help.category.stw.description.brief", "help.category.stw.description"]
+br = ["help.category.br", "bp_icon", "help.category.br.description.brief", "help.category.br.description"]
+stwdaily = ["help.category.stwdaily", "calendar", "help.category.stwdaily.description.brief", "help.category.stwdaily.description"]
+info = ["help.category.info", "blueinfo", "help.category.info.description.brief", "help.category.info.description"]
+dev = ["help.category.dev", ["sparkle", "championleague", "sparkle"], "help.category.dev.description.brief", "help.category.dev.description"]

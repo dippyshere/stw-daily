@@ -1,0 +1,46 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Assault_LMG_NeonGlow_SR",
+        "Properties": {
+            "LootTierGroup": "CardPack_Assault_LMG_NeonGlow_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_NeonCyberpunkEvent_IconMask.T_CardPack_NeonCyberpunkEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "C07F8AC9423E20D91C0AFBBECAB949B4",
+                "SourceString": "Mercury LMG Schematic"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "203D567A46AFF0CC12BDAFB0962907D6",
+                "SourceString": "Mercury LMG Schematic."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Drum-Assault.T-Icon-Weapons-SK-Neon-Glow-Drum-Assault",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Neon-Glow-Drum-Assault-L.T-Icon-Weapons-SK-Neon-Glow-Drum-Assault-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

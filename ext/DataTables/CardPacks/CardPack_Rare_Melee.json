@@ -1,0 +1,59 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Rare_Melee",
+        "Properties": {
+            "bIsLlama": true,
+            "LootTierGroup": "CardPack_Rare_Melee",
+            "DisplayRarityLevel": 2,
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Melee_IconMask.T_CardPack_Melee_IconMask",
+                "SubPathString": ""
+            },
+            "PackColor": {
+                "R": 1.0,
+                "G": 0.968628,
+                "B": 0.039216,
+                "A": 1.0,
+                "Hex": "FFFFFC37"
+            },
+            "PackPersonality": {
+                "AssetPathName": "/Game/Characters/Feedback/Llama_OlTimey_PersonalityPack.Llama_OlTimey_PersonalityPack",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "5A0DC16F4199DB6C3F3CAA87D52CC7EB",
+                "SourceString": "Super Melee Llama"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "7DD3BAFD45B1228861313B8452ED1DB4",
+                "SourceString": "A special llama containing rare melee schematics including at least one Legendary! Contains 9 items. Not responsible for damage to shirt caused by drool."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack_128.PinataStandardPack_128",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Frontend/Store/Textures/PinataStandardPack.PinataStandardPack",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

@@ -1,0 +1,88 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "SessionXPCurves",
+        "Rows": {
+            "DefaultPvP": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": 1.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 2500.0
+                    },
+                    {
+                        "Time": 3.0,
+                        "Value": 4500.0
+                    },
+                    {
+                        "Time": 5.0,
+                        "Value": 9100.0
+                    },
+                    {
+                        "Time": 6.0,
+                        "Value": 12000.0
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 14500.0
+                    },
+                    {
+                        "Time": 8.0,
+                        "Value": 17250.0
+                    },
+                    {
+                        "Time": 9.0,
+                        "Value": 19500.0
+                    },
+                    {
+                        "Time": 10.0,
+                        "Value": 24000.0
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 29000.0
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 34500.0
+                    },
+                    {
+                        "Time": 13.0,
+                        "Value": 37500.0
+                    },
+                    {
+                        "Time": 15.0,
+                        "Value": 42500.0
+                    },
+                    {
+                        "Time": 16.0,
+                        "Value": 51000.0
+                    },
+                    {
+                        "Time": 17.0,
+                        "Value": 57000.0
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 64000.0
+                    },
+                    {
+                        "Time": 21.0,
+                        "Value": 74500.0
+                    },
+                    {
+                        "Time": 24.0,
+                        "Value": 121000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

@@ -1,0 +1,31 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_SurvivorScouting_Short_T01",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T01",
+            "ExpeditionDuration_Minutes": 480.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 55,
+            "TierFactor": 20,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "SurvivorScouting_Short_T01"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "AD37BF9F4E8FD519A3CAA386DE2EF6D9",
+                "SourceString": "Survivor Scouting"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "697C056D470BF7146553FD87BF5E400D",
+                "SourceString": "Scout out some workers from the survivors in your homebase!"
+            }
+        }
+    }
+]

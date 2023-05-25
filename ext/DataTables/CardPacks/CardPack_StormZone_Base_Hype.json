@@ -1,0 +1,46 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_StormZone_Base_Hype",
+        "Properties": {
+            "LootTierGroup": "CardPack_StormZone_Base_Hype_SR",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_StormEvent_IconMask.T_CardPack_StormEvent_IconMask",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "1A6A5A29400C402C831388BAC369E6B6",
+                "SourceString": "Copper Hydra"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "37E9DD8348448E43A2DF5B8C9E427150",
+                "SourceString": "Assault Weapon: Hydraulic. A hybrid weapon that fires a tight cluster of pellets, with considerably more knockback than an assault rifle, but better range and more focused damage than a shotgun."
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Hydra.T-Icon-Weapons-SK-Hydra",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/SaveTheWorld/UI/Foundation/Textures/Icons/Weapons/Items/T-Icon-Weapons-SK-Hydra-L.T-Icon-Weapons-SK-Hydra-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

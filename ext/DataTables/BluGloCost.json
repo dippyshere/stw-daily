@@ -1,0 +1,48 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "BluGloCost",
+        "Rows": {
+            "Pylon.Standard": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Constant",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 2.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "Pylon.Difficulty": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Constant",
+                "Keys": [
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 4.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

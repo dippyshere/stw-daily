@@ -1,0 +1,61 @@
+[
+    {
+        "Type": "StWFortAccoladeItemDefinition",
+        "Name": "Accoladeid_STW_Mission_RTD_Victory1",
+        "Properties": {
+            "AccoladeType": "EFortAccoladeType::Accolade",
+            "Priority": "EXPEventPriorityType::Feed",
+            "XpRewardAmount": {
+                "Value": 1.0,
+                "Curve": {
+                    "CurveTable": {
+                        "ObjectName": "CurveTable STWAccoladeXP",
+                        "ObjectPath": "/SaveTheWorld/Items/STWAccolades/Datatables/STWAccoladeXP.0"
+                    },
+                    "RowName": "Mission_RetrieveTheData_Bronze"
+                }
+            },
+            "AwardedSoundCue": {
+                "ObjectName": "SoundCue Fort_XP_Splash_Cue",
+                "ObjectPath": "/Game/Sounds/Fort_UI_Sounds/Gameplay/XP/Fort_XP_Splash_Cue.0"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "1BF1DDAF44FDF39739ACF99E4EC06596",
+                "SourceString": "Retrieve the Data: 25% Files Recovered"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "0DFD61E9436F550230BA3F89CB4E4B9E",
+                "SourceString": "Battle Pass XP Earned"
+            },
+            "FrontendPreviewScale": 1.4,
+            "GameplayTags": [
+                "Accolade.Metadata.Survival"
+            ],
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_S.T_UI_FNBR_XPeverywhere_S",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_L.T_UI_FNBR_XPeverywhere_L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Common",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

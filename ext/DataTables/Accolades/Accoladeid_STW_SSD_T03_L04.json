@@ -1,0 +1,61 @@
+[
+    {
+        "Type": "StWFortAccoladeItemDefinition",
+        "Name": "Accoladeid_STW_SSD_T03_L04",
+        "Properties": {
+            "AccoladeType": "EFortAccoladeType::Accolade",
+            "Priority": "EXPEventPriorityType::Feed",
+            "XpRewardAmount": {
+                "Value": 1.0,
+                "Curve": {
+                    "CurveTable": {
+                        "ObjectName": "CurveTable STWAccoladeXP",
+                        "ObjectPath": "/SaveTheWorld/Items/STWAccolades/Datatables/STWAccoladeXP.0"
+                    },
+                    "RowName": "StormShield_T03_Defense04"
+                }
+            },
+            "AwardedSoundCue": {
+                "ObjectName": "SoundCue Fort_XP_Splash_Cue",
+                "ObjectPath": "/Game/Sounds/Fort_UI_Sounds/Gameplay/XP/Fort_XP_Splash_Cue.0"
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "7D16889942F246230828D1B4F77B57C7",
+                "SourceString": "Storm Shield: Defense 4"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "B0ED1E6C410AE295A087A2B7B51D1E17",
+                "SourceString": "Battle Pass XP Earned"
+            },
+            "FrontendPreviewScale": 1.4,
+            "GameplayTags": [
+                "Accolade.Metadata.Survival"
+            ],
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_S.T_UI_FNBR_XPeverywhere_S",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Items/T_UI_FNBR_XPeverywhere_L.T_UI_FNBR_XPeverywhere_L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Common",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]

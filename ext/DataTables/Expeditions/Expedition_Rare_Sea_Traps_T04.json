@@ -1,0 +1,32 @@
+[
+    {
+        "Type": "FortExpeditionItemDefinition",
+        "Name": "Expedition_Rare_Sea_Traps_T04",
+        "Properties": {
+            "CriteriaRequirementsLootTier": "Expeditions_Criteria_T04",
+            "ExpeditionDuration_Minutes": 1320.0,
+            "ExpeditionExpirationDuration_Minutes": 90.0,
+            "BaseTargetPowerRating": 1200,
+            "TierFactor": 35,
+            "MaxTargetPowerClamp": 5000,
+            "ExpeditionRules": {
+                "DataTable": {
+                    "ObjectName": "DataTable ExpeditionRecipes",
+                    "ObjectPath": "/SaveTheWorld/Expeditions/ExpeditionRecipes.0"
+                },
+                "RowName": "Rare_Sea_Traps_T04"
+            },
+            "Rarity": "EFortRarity::Rare",
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "79C6C32644EBBF81FAA84D854B579360",
+                "SourceString": "Ghost Ship - RARE"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "82BA0CF942C153EBA946C7A6548EB4B3",
+                "SourceString": "Deploy a seaworthy crew to explore the abandoned ship for traps. "
+            }
+        }
+    }
+]

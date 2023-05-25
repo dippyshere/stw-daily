@@ -1,0 +1,768 @@
+[
+    {
+        "Type": "CurveTable",
+        "Name": "KeepPermanite",
+        "Rows": {
+            "BuildingExcessDamageRewardTimeout": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingBaseHealth_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 1000.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1000.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingConstructionTime_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 0.0,
+                        "Value": 2.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 4.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 4.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingCost_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 101.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingDeconCostMult_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "PlayerBuildingDeconCostMult_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 0.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingInitialHealthPercent_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 0.3
+                    },
+                    {
+                        "Time": 0.0,
+                        "Value": 0.3
+                    },
+                    {
+                        "Time": 1.0,
+                        "Value": 0.445
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 0.645
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.645
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingBreakAnimDuration_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingDestroyAnimDuration_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 1.5
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 1.5
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingPlaceAnimDuration_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 0.35
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.35
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingCritDamagePct_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 0.6
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.6
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingCritDestroyAnimScaleCap_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingRecentlyDamagedTimeout": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 3.0
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 3.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "BuildingRepairCostMult_Permanite": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 0.75
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 0.75
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            },
+            "KeepLevelDifference": {
+                "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
+                "Keys": [
+                    {
+                        "Time": -100.0,
+                        "Value": 0.09090909
+                    },
+                    {
+                        "Time": -99.0,
+                        "Value": 0.09174312
+                    },
+                    {
+                        "Time": -98.0,
+                        "Value": 0.09259259
+                    },
+                    {
+                        "Time": -97.0,
+                        "Value": 0.093457945
+                    },
+                    {
+                        "Time": -96.0,
+                        "Value": 0.094339624
+                    },
+                    {
+                        "Time": -95.0,
+                        "Value": 0.0952381
+                    },
+                    {
+                        "Time": -94.0,
+                        "Value": 0.09615385
+                    },
+                    {
+                        "Time": -93.0,
+                        "Value": 0.097087376
+                    },
+                    {
+                        "Time": -92.0,
+                        "Value": 0.09803922
+                    },
+                    {
+                        "Time": -91.0,
+                        "Value": 0.0990099
+                    },
+                    {
+                        "Time": -90.0,
+                        "Value": 0.1
+                    },
+                    {
+                        "Time": -89.0,
+                        "Value": 0.1010101
+                    },
+                    {
+                        "Time": -88.0,
+                        "Value": 0.10204081
+                    },
+                    {
+                        "Time": -87.0,
+                        "Value": 0.10309278
+                    },
+                    {
+                        "Time": -86.0,
+                        "Value": 0.104166664
+                    },
+                    {
+                        "Time": -85.0,
+                        "Value": 0.10526316
+                    },
+                    {
+                        "Time": -84.0,
+                        "Value": 0.10638298
+                    },
+                    {
+                        "Time": -83.0,
+                        "Value": 0.10752688
+                    },
+                    {
+                        "Time": -82.0,
+                        "Value": 0.10869565
+                    },
+                    {
+                        "Time": -81.0,
+                        "Value": 0.10989011
+                    },
+                    {
+                        "Time": -80.0,
+                        "Value": 0.11111111
+                    },
+                    {
+                        "Time": -79.0,
+                        "Value": 0.11235955
+                    },
+                    {
+                        "Time": -78.0,
+                        "Value": 0.11363637
+                    },
+                    {
+                        "Time": -77.0,
+                        "Value": 0.11494253
+                    },
+                    {
+                        "Time": -76.0,
+                        "Value": 0.11627907
+                    },
+                    {
+                        "Time": -75.0,
+                        "Value": 0.11764706
+                    },
+                    {
+                        "Time": -74.0,
+                        "Value": 0.11904762
+                    },
+                    {
+                        "Time": -73.0,
+                        "Value": 0.12048193
+                    },
+                    {
+                        "Time": -72.0,
+                        "Value": 0.12195122
+                    },
+                    {
+                        "Time": -71.0,
+                        "Value": 0.12345679
+                    },
+                    {
+                        "Time": -70.0,
+                        "Value": 0.125
+                    },
+                    {
+                        "Time": -69.0,
+                        "Value": 0.12658228
+                    },
+                    {
+                        "Time": -68.0,
+                        "Value": 0.12820512
+                    },
+                    {
+                        "Time": -67.0,
+                        "Value": 0.12987013
+                    },
+                    {
+                        "Time": -66.0,
+                        "Value": 0.13157895
+                    },
+                    {
+                        "Time": -65.0,
+                        "Value": 0.13333334
+                    },
+                    {
+                        "Time": -64.0,
+                        "Value": 0.13513513
+                    },
+                    {
+                        "Time": -63.0,
+                        "Value": 0.1369863
+                    },
+                    {
+                        "Time": -62.0,
+                        "Value": 0.1388889
+                    },
+                    {
+                        "Time": -61.0,
+                        "Value": 0.14084508
+                    },
+                    {
+                        "Time": -60.0,
+                        "Value": 0.14285715
+                    },
+                    {
+                        "Time": -59.0,
+                        "Value": 0.14492753
+                    },
+                    {
+                        "Time": -58.0,
+                        "Value": 0.14705883
+                    },
+                    {
+                        "Time": -57.0,
+                        "Value": 0.14925373
+                    },
+                    {
+                        "Time": -56.0,
+                        "Value": 0.15151516
+                    },
+                    {
+                        "Time": -55.0,
+                        "Value": 0.15384616
+                    },
+                    {
+                        "Time": -54.0,
+                        "Value": 0.15625
+                    },
+                    {
+                        "Time": -53.0,
+                        "Value": 0.15873016
+                    },
+                    {
+                        "Time": -52.0,
+                        "Value": 0.16129032
+                    },
+                    {
+                        "Time": -51.0,
+                        "Value": 0.16393442
+                    },
+                    {
+                        "Time": -50.0,
+                        "Value": 0.16666667
+                    },
+                    {
+                        "Time": -49.0,
+                        "Value": 0.16949153
+                    },
+                    {
+                        "Time": -48.0,
+                        "Value": 0.1724138
+                    },
+                    {
+                        "Time": -47.0,
+                        "Value": 0.1754386
+                    },
+                    {
+                        "Time": -46.0,
+                        "Value": 0.17857143
+                    },
+                    {
+                        "Time": -45.0,
+                        "Value": 0.18181819
+                    },
+                    {
+                        "Time": -44.0,
+                        "Value": 0.18518518
+                    },
+                    {
+                        "Time": -43.0,
+                        "Value": 0.18867925
+                    },
+                    {
+                        "Time": -42.0,
+                        "Value": 0.1923077
+                    },
+                    {
+                        "Time": -41.0,
+                        "Value": 0.19607843
+                    },
+                    {
+                        "Time": -40.0,
+                        "Value": 0.2
+                    },
+                    {
+                        "Time": -39.0,
+                        "Value": 0.20408164
+                    },
+                    {
+                        "Time": -38.0,
+                        "Value": 0.20833333
+                    },
+                    {
+                        "Time": -37.0,
+                        "Value": 0.21276596
+                    },
+                    {
+                        "Time": -36.0,
+                        "Value": 0.2173913
+                    },
+                    {
+                        "Time": -35.0,
+                        "Value": 0.22222222
+                    },
+                    {
+                        "Time": -34.0,
+                        "Value": 0.22727273
+                    },
+                    {
+                        "Time": -33.0,
+                        "Value": 0.23255815
+                    },
+                    {
+                        "Time": -32.0,
+                        "Value": 0.23809524
+                    },
+                    {
+                        "Time": -31.0,
+                        "Value": 0.24390244
+                    },
+                    {
+                        "Time": -30.0,
+                        "Value": 0.25
+                    },
+                    {
+                        "Time": -29.0,
+                        "Value": 0.25641024
+                    },
+                    {
+                        "Time": -28.0,
+                        "Value": 0.2631579
+                    },
+                    {
+                        "Time": -27.0,
+                        "Value": 0.27027026
+                    },
+                    {
+                        "Time": -26.0,
+                        "Value": 0.2777778
+                    },
+                    {
+                        "Time": -25.0,
+                        "Value": 0.2857143
+                    },
+                    {
+                        "Time": -24.0,
+                        "Value": 0.29411766
+                    },
+                    {
+                        "Time": -23.0,
+                        "Value": 0.3030303
+                    },
+                    {
+                        "Time": -22.0,
+                        "Value": 0.3125
+                    },
+                    {
+                        "Time": -21.0,
+                        "Value": 0.32258064
+                    },
+                    {
+                        "Time": -20.0,
+                        "Value": 0.33333334
+                    },
+                    {
+                        "Time": -19.0,
+                        "Value": 0.3448276
+                    },
+                    {
+                        "Time": -18.0,
+                        "Value": 0.35714287
+                    },
+                    {
+                        "Time": -17.0,
+                        "Value": 0.37037036
+                    },
+                    {
+                        "Time": -16.0,
+                        "Value": 0.3846154
+                    },
+                    {
+                        "Time": -15.0,
+                        "Value": 0.4
+                    },
+                    {
+                        "Time": -14.0,
+                        "Value": 0.41666666
+                    },
+                    {
+                        "Time": -13.0,
+                        "Value": 0.4347826
+                    },
+                    {
+                        "Time": -12.0,
+                        "Value": 0.45454547
+                    },
+                    {
+                        "Time": -11.0,
+                        "Value": 0.47619048
+                    },
+                    {
+                        "Time": -10.0,
+                        "Value": 0.5
+                    },
+                    {
+                        "Time": -9.0,
+                        "Value": 0.5263158
+                    },
+                    {
+                        "Time": -8.0,
+                        "Value": 0.5555556
+                    },
+                    {
+                        "Time": -7.0,
+                        "Value": 0.5882353
+                    },
+                    {
+                        "Time": -6.0,
+                        "Value": 0.625
+                    },
+                    {
+                        "Time": -5.0,
+                        "Value": 0.6666667
+                    },
+                    {
+                        "Time": -4.0,
+                        "Value": 0.71428573
+                    },
+                    {
+                        "Time": -3.0,
+                        "Value": 0.7692308
+                    },
+                    {
+                        "Time": -2.0,
+                        "Value": 0.8333333
+                    },
+                    {
+                        "Time": -1.0,
+                        "Value": 0.90909094
+                    },
+                    {
+                        "Time": 0.0,
+                        "Value": 1.0
+                    },
+                    {
+                        "Time": 2.0,
+                        "Value": 1.2
+                    },
+                    {
+                        "Time": 7.0,
+                        "Value": 1.7
+                    },
+                    {
+                        "Time": 11.0,
+                        "Value": 2.1
+                    },
+                    {
+                        "Time": 12.0,
+                        "Value": 2.2
+                    },
+                    {
+                        "Time": 13.0,
+                        "Value": 2.3
+                    },
+                    {
+                        "Time": 18.0,
+                        "Value": 2.8
+                    },
+                    {
+                        "Time": 23.0,
+                        "Value": 3.3
+                    },
+                    {
+                        "Time": 28.0,
+                        "Value": 3.8
+                    },
+                    {
+                        "Time": 32.0,
+                        "Value": 4.2
+                    },
+                    {
+                        "Time": 37.0,
+                        "Value": 4.7
+                    },
+                    {
+                        "Time": 42.0,
+                        "Value": 5.2
+                    },
+                    {
+                        "Time": 47.0,
+                        "Value": 5.7
+                    },
+                    {
+                        "Time": 52.0,
+                        "Value": 6.2
+                    },
+                    {
+                        "Time": 57.0,
+                        "Value": 6.7
+                    },
+                    {
+                        "Time": 62.0,
+                        "Value": 7.2
+                    },
+                    {
+                        "Time": 67.0,
+                        "Value": 7.7
+                    },
+                    {
+                        "Time": 71.0,
+                        "Value": 8.1
+                    },
+                    {
+                        "Time": 72.0,
+                        "Value": 8.2
+                    },
+                    {
+                        "Time": 73.0,
+                        "Value": 8.3
+                    },
+                    {
+                        "Time": 78.0,
+                        "Value": 8.8
+                    },
+                    {
+                        "Time": 83.0,
+                        "Value": 9.3
+                    },
+                    {
+                        "Time": 88.0,
+                        "Value": 9.8
+                    },
+                    {
+                        "Time": 93.0,
+                        "Value": 10.3
+                    },
+                    {
+                        "Time": 98.0,
+                        "Value": 10.8
+                    },
+                    {
+                        "Time": 100.0,
+                        "Value": 11.0
+                    }
+                ],
+                "DefaultValue": 3.4028235E+38,
+                "PreInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant",
+                "PostInfinityExtrap": "ERichCurveExtrapolation::RCCE_Constant"
+            }
+        }
+    }
+]

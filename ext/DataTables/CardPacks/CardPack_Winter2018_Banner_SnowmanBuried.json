@@ -1,0 +1,46 @@
+[
+    {
+        "Type": "FortCardPackItemDefinition",
+        "Name": "CardPack_Winter2018_Banner_SnowmanBuried",
+        "Properties": {
+            "LootTierGroup": "CardPack_Winter2018_Banner_SnowmanBuried",
+            "PackImage": {
+                "AssetPathName": "/Game/FrontEnd/Store/Pinata/Assets/CardPackTypeIcons/Texture/T_CardPack_Event_Winter.T_CardPack_Event_Winter",
+                "SubPathString": ""
+            },
+            "DisplayName": {
+                "Namespace": "",
+                "Key": "EA6A01E34D56776BFAC12185FC8AC2AA",
+                "SourceString": "Frostnite Event Banner"
+            },
+            "Description": {
+                "Namespace": "",
+                "Key": "FD363EAC4AFDD0ACCB0A0CB16E22ED05",
+                "SourceString": "An exclusive homebase banner!"
+            },
+            "SmallPreviewImage": {
+                "AssetPathName": "/Game/2dAssets/Banners/Season7/T-Banners-Icons-SnowmanBuriedTopHat.T-Banners-Icons-SnowmanBuriedTopHat",
+                "SubPathString": ""
+            },
+            "LargePreviewImage": {
+                "AssetPathName": "/Game/2dAssets/Banners/Season7/T-Banners-Icons-SnowmanBuriedTopHat-L.T-Banners-Icons-SnowmanBuriedTopHat-L",
+                "SubPathString": ""
+            },
+            "Rarity": "EFortRarity::Legendary",
+            "FrontendPreviewPivotOffset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -14.0
+            },
+            "FrontendPreviewInitialRotation": {
+                "Pitch": 0.0,
+                "Yaw": 83.20067,
+                "Roll": 0.0
+            },
+            "FrontendPreviewMeshOverride": {
+                "AssetPathName": "/Game/UI/Frontend/ItemInspect/Workers/S-WorkersPhotos.S-WorkersPhotos",
+                "SubPathString": ""
+            }
+        }
+    }
+]
