@@ -37,7 +37,7 @@ ___
 
 ___
 
-<img align=center src='res/commands2.png' alt="" />
+<img align=center src='res/commands.png' alt="" />
 
 ___
 
@@ -484,7 +484,6 @@ ___
         <br><span> This will show page 1 of the news for Battle Royale. Interact with the buttons to change pages / modes.</span>
     </ul>
     <img src="res/news.png" alt="News command example" width="640">
-<p><em>This image is out of date. It needs to be updated to reflect recent STW Daily changes</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
 
