@@ -540,6 +540,7 @@ theater0 = "theater0" # stw backpack
 theater1 = "theater1" # stw event backpack
 theater2 = "theater2" # stw ventures data
 bin = "recycle_bin" # stw recycle bin
+profile0 = "profile0" # old profile id
 
 [mango]
 uri_env_var = "STW_MONGO_URI"
