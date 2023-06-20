@@ -143,6 +143,9 @@ class ProfileDump(ext.Cog):
         bin_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="bin")
         bin_json_response = orjson.loads(await bin_request.read())
 
+        profile0_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="profile0")
+        profile0_json_response = orjson.loads(await profile0_request.read())
+
         # With all info extracted, create the output
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, stw.I18n.get('profiledumper.embed.title', desired_lang),
@@ -162,6 +165,7 @@ class ProfileDump(ext.Cog):
                         f"{stw.I18n.get('profiledumper.embed.description.key12', desired_lang, 'theater1')}\n"
                         f"{stw.I18n.get('profiledumper.embed.description.key13', desired_lang, 'theater2')}\n"
                         f"{stw.I18n.get('profiledumper.embed.description.key14', desired_lang, 'recycle_bin')}\n"
+                        f"{stw.I18n.get('profiledumper.embed.description.key15', desired_lang, 'profile0')}\n"
                         f"\u200b",
             colour=generic_colour)
 
@@ -221,6 +225,10 @@ class ProfileDump(ext.Cog):
         bin_file.write(orjson.dumps(bin_json_response, option=orjson.OPT_INDENT_2))
         bin_file.seek(0)
 
+        p0_file = io.BytesIO()
+        p0_file.write(orjson.dumps(profile0_json_response, option=orjson.OPT_INDENT_2))
+        p0_file.seek(0)
+
         json_file1 = discord.File(profile_file,
                                   filename=f"{auth_info[1]['account_name']}-common_core-"
                                            f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
@@ -251,21 +259,20 @@ class ProfileDump(ext.Cog):
         json_file10 = discord.File(op_file,
                                    filename=f"{auth_info[1]['account_name']}-outpost0-"
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
-
         json_file11 = discord.File(th0_file,
                                    filename=f"{auth_info[1]['account_name']}-theater0-"
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
-
         json_file12 = discord.File(th1_file,
                                    filename=f"{auth_info[1]['account_name']}-theater1-"
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
-
         json_file13 = discord.File(th2_file,
                                    filename=f"{auth_info[1]['account_name']}-theater2-"
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
-
         json_file14 = discord.File(bin_file,
                                    filename=f"{auth_info[1]['account_name']}-recycle_bin-"
+                                            f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
+        json_file15 = discord.File(p0_file,
+                                   filename=f"{auth_info[1]['account_name']}-profile0-"
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
 
         embed = await stw.set_thumbnail(self.client, embed, "floppy")
@@ -275,7 +282,7 @@ class ProfileDump(ext.Cog):
         await stw.slash_edit_original(ctx, load_msg, final_embeds,
                                       files=[json_file1, json_file2, json_file3, json_file4, json_file5, json_file6,
                                              json_file7, json_file8, json_file9, json_file10])
-        await ctx.send(files=[json_file11, json_file12, json_file13, json_file14])
+        await ctx.send(files=[json_file11, json_file12, json_file13, json_file14, json_file15])
         return
 
     @ext.command(name='profiledump',
@@ -731,40 +738,40 @@ class ProfileDump(ext.Cog):
 
         await self.profile_dump_command(ctx, authcode, not optout)
 
-    # @ext.slash_command(name='profiledump', name_localizations=stw.I18n.construct_slash_dict("profiledumper.slash.name"),  # yay (say yay if you're yay yay) 😱
-    #                    description='Dumps your Fortnite profiles as JSON attachments',
-    #                    description_localizations=stw.I18n.construct_slash_dict("profiledumper.slash.description"),
-    #                    guild_ids=stw.guild_ids)
-    # async def slashprofiledump(self, ctx: discord.ApplicationContext,
-    #                            token: Option(description="Your Epic Games authcode. Required unless you have an active "
-    #                                                      "session.",
-    #                                          description_localizations=stw.I18n.construct_slash_dict(
-    #                                              "generic.slash.token"),
-    #                                          name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
-    #                                          min_length=32) = "",
-    #                            auth_opt_out: Option(default="False",
-    #                                                 description="Opt out of starting an authentication session",
-    #                                                 description_localizations=stw.I18n.construct_slash_dict(
-    #                                                     "generic.slash.optout"),
-    #                                                 name_localizations=stw.I18n.construct_slash_dict(
-    #                                                     "generic.meta.args.optout"),
-    #                                                 choices=[
-    #                                                     OptionChoice("Do not start an authentication session", "True",
-    #                                                                  stw.I18n.construct_slash_dict(
-    #                                                                      "generic.slash.optout.true")),
-    #                                                     OptionChoice("Start an authentication session (Default)",
-    #                                                                  "False",
-    #                                                                  stw.I18n.construct_slash_dict(
-    #                                                                      "generic.slash.optout.false"))]) = "False"):
-    #     """
-    #     This function is the entry point for the profile dumper command when called via slash
-    #
-    #     Args:
-    #         ctx: The context of the command.
-    #         token: The authcode to use for authentication.
-    #         auth_opt_out: Whether to opt out of starting an authentication session.
-    #     """
-    #     await self.profile_dump_command(ctx, token, not eval(auth_opt_out))
+    @ext.slash_command(name='profiledump', name_localizations=stw.I18n.construct_slash_dict("profiledumper.slash.name"),  # yay (say yay if you're yay yay) 😱
+                       description='Dumps your Fortnite profiles as JSON attachments',
+                       description_localizations=stw.I18n.construct_slash_dict("profiledumper.slash.description"),
+                       guild_ids=stw.guild_ids)
+    async def slashprofiledump(self, ctx: discord.ApplicationContext,
+                               token: Option(description="Your Epic Games authcode. Required unless you have an active "
+                                                         "session.",
+                                             description_localizations=stw.I18n.construct_slash_dict(
+                                                 "generic.slash.token"),
+                                             name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                                             min_length=32) = "",
+                               auth_opt_out: Option(default="False",
+                                                    description="Opt out of starting an authentication session",
+                                                    description_localizations=stw.I18n.construct_slash_dict(
+                                                        "generic.slash.optout"),
+                                                    name_localizations=stw.I18n.construct_slash_dict(
+                                                        "generic.meta.args.optout"),
+                                                    choices=[
+                                                        OptionChoice("Do not start an authentication session", "True",
+                                                                     stw.I18n.construct_slash_dict(
+                                                                         "generic.slash.optout.true")),
+                                                        OptionChoice("Start an authentication session (Default)",
+                                                                     "False",
+                                                                     stw.I18n.construct_slash_dict(
+                                                                         "generic.slash.optout.false"))]) = "False"):
+        """
+        This function is the entry point for the profile dumper command when called via slash
+
+        Args:
+            ctx: The context of the command.
+            token: The authcode to use for authentication.
+            auth_opt_out: Whether to opt out of starting an authentication session.
+        """
+        await self.profile_dump_command(ctx, token, not eval(auth_opt_out))
 
 
 def setup(client):

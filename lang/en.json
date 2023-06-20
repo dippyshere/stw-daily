@@ -137,6 +137,7 @@
         "profiledumper.embed.description.key12": "{0} - STW Event Backpack ",
         "profiledumper.embed.description.key13": "{0} - STW Ventures Backpack",
         "profiledumper.embed.description.key14": "{0} - STW Recycle Bin",
+        "profiledumper.embed.description.key15": "{0} - Old Profile Data",
         "profiledumper.error.verbiage": "dump profiles",
         "profiledumper.slash.name": "profiledump",
         "profiledumper.slash.description": "Dumps your Fortnite profiles as JSON attachments",
