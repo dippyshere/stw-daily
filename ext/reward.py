@@ -360,10 +360,13 @@ class Reward(ext.Cog):
                  extras={'emoji': "stormeye", "args": {
                      'reward.meta.args.day': ['reward.meta.args.day.description', False],
                      'reward.meta.args.limit': ['reward.meta.args.limit.description', True]},
-                         "dev": False, "description_keys": ["reward.meta.description"],
+                         "dev": False, "description_keys": ["reward.meta.description",
+                                                            ["reward.meta.description2", "<t:1687244400:R>"],
+                                                            ["util.fortnite.deprecation.embed.description4",
+                                                             "https://www.fortnite.com/news/changes-coming-to-fortnite-save-the-worlds-daily-reward-system-in-v25-10"]],
                          "name_key": "reward.slash.name"},
                  brief="reward.slash.description",
-                 description="{0}")
+                 description="{0}\n\u200b\n⦾ {1}\n{2}")
     async def reward(self, ctx, day=None, limit=None):
         """
         This function is the entry point for the vbucks command when called traditionally

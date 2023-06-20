@@ -145,7 +145,7 @@ class VbucksCalculatorView(discord.ui.View):
         """
         return await stw.view_interaction_check(self, interaction, "vbucks")
 
-    @discord.ui.button(label="Calculator", style=discord.ButtonStyle.blurple, emoji="library_banknotes")
+    @discord.ui.button(label="Calculator", style=discord.ButtonStyle.blurple, emoji="library_banknotes", disabled=True)
     async def calculate(self, button: discord.ui.Button, interaction: discord.Interaction):
         """
         Button to open the vbucks calculator.
@@ -291,37 +291,37 @@ class Vbucks(ext.Cog):
             embed = await stw.set_thumbnail(self.client, embed, "clown")
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
         final_embeds.append(embed)
-        try:
-            user_document = await get_user_document(ctx, self.client, ctx.author.id)
-            try:
-                goal = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"]["mtxgoal"]
-            except:
-                goal = 0
-        except:
-            goal = 0
-        try:
-            if goal > 0:
-                try:
-                    _ = int(goal)
-                except:
-                    goal = ""
-                if goal == "":
-                    embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
-                elif int(goal) <= vbucks_total:
-                    embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                        desired_lang=desired_lang, goal=True, assert_value=False,
-                                                        target=goal)
-                else:
-                    total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
-                                                                          0 if auth_info[1]['day'] is None else
-                                                                          auth_info[1]['day'], int(goal))))[0]
-                    embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
-                                                        auth_info[1]['vbucks'], goal, desired_lang, True)
-                final_embeds.append(embed)
-        except:
-            pass
+        # try:
+        #     user_document = await get_user_document(ctx, self.client, ctx.author.id)
+        #     try:
+        #         goal = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"]["mtxgoal"]
+        #     except:
+        #         goal = 0
+        # except:
+        #     goal = 0
+        # try:
+        #     if goal > 0:
+        #         try:
+        #             _ = int(goal)
+        #         except:
+        #             goal = ""
+        #         if goal == "":
+        #             embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True)
+        #         elif int(goal) <= vbucks_total:
+        #             embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
+        #                                                 desired_lang=desired_lang, goal=True, assert_value=False,
+        #                                                 target=goal)
+        #         else:
+        #             total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
+        #                                                                   0 if auth_info[1]['day'] is None else
+        #                                                                   auth_info[1]['day'], int(goal))))[0]
+        #             embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
+        #                                                 auth_info[1]['vbucks'], goal, desired_lang, True)
+        #         final_embeds.append(embed)
+        # except:
+        #     pass
         vbuck_view = VbucksCalculatorView(self.client, ctx, desired_lang, vbucks_total, auth_info[0], final_embeds,
-                                          auth_info[1], True if goal > 0 else False)
+                                          auth_info[1], False)
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds, view=vbuck_view)
         return
 

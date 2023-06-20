@@ -359,6 +359,7 @@
             "mtx-goal"
         ],
         "default": 0,
+        "disabled": true,
         "emoji": "library_banknotes",
         "localised_name": "settings.config.mtxgoal.name",
         "short_description": "settings.config.mtxgoal.description.short",

@@ -71,10 +71,10 @@ class HowTo(ext.Cog):
                         f'{stw.I18n.get("how2.embed.description3", desired_lang, self.client.config["login_links"]["login_fortnite_pc"])}\n'
                         f'\n{stw.I18n.get("how2.embed.description4", desired_lang)}\n'
                         f'{stw.I18n.get("how2.embed.description5", desired_lang)}\n'
-                        f'{stw.I18n.get("how2.embed.description6", desired_lang, "  •", f"</daily:1080395214461620258> `{token_arg}`")}\n'
-                        f'{stw.I18n.get("how2.embed.description6", desired_lang, "  •", f"<@757776996418715651> daily `{token_arg}`")}\n'
+                        f'{stw.I18n.get("how2.embed.description6", desired_lang, "  •", f"</research:1080395214461620260> `{token_arg}`")}\n'
+                        f'{stw.I18n.get("how2.embed.description6", desired_lang, "  •", f"<@757776996418715651> res `{token_arg}`")}\n'
                         f'\n{stw.I18n.get("how2.embed.description7", desired_lang)}\n'
-                        f'*<@757776996418715651> `d a51c1f4d35b1457c8e34a1f6026faa35`*'
+                        f'*<@757776996418715651> `res a51c1f4d35b1457c8e34a1f6026faa35`*'
                         f'\n\u200b',
             color=embed_colour)
 

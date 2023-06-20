@@ -150,7 +150,7 @@ async def pre_authentication_time(user_document, client, currently_selected_prof
         elif exchange_auth_session:
             auth_session = True
 
-        auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.nosession1', desired_lang, client.config['login_links']['login_fortnite_pc'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.nosession2', desired_lang, client.config['emojis']['locked'])}"
+        auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.nosession1', desired_lang, client.config['login_links']['logout_login_fortnite_pc'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.nosession2', desired_lang, client.config['emojis']['locked'])}"
         if auth_session:
             auth_session_found_message = f"{stw.I18n.get('devauth.embed.preauth.description.activesession1', desired_lang, client.config['emojis']['library_input'])}\n\u200b\n{stw.I18n.get('devauth.embed.preauth.description.activesession2', desired_lang, client.config['login_links']['logout_login_fortnite_pc'], client.config['emojis']['locked'])}"
 
@@ -548,16 +548,14 @@ class StolenAccountView(discord.ui.View):
         except:
             self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
             self.children[3].style = discord.ButtonStyle.green
+        self.children[3].disabled = True
         try:
             if self.user_document["profiles"][str(self.currently_selected_profile_id)]["authentication"]["hasExpired"]:
                 self.children[2].disabled = True
-                self.children[3].disabled = True
             else:
                 self.children[2].disabled = False
-                self.children[3].disabled = False
         except:
             self.children[2].disabled = False
-            self.children[3].disabled = False
 
     async def on_timeout(self):
         """
@@ -708,7 +706,7 @@ class StolenAccountView(discord.ui.View):
         #         child.disabled = False
         #     await interaction.edit_original_response(view=self)
 
-    @discord.ui.button(style=discord.ButtonStyle.green, label="Enable Auto Claim", emoji="library_clock")
+    @discord.ui.button(style=discord.ButtonStyle.green, label="Enable Auto Claim", emoji="library_clock", disabled=True)
     async def temp_auto_claim_button(self, button, interaction):
         """
         This function handles the temporary auto claim button

@@ -187,7 +187,7 @@ def main() -> None:
         "profile.lavendar",  # hehe hiii
         "profile.devauth",
         "profile.sunday",
-        "profile.automatedfunctions",
+        # "profile.automatedfunctions",
         "admin_commands",
         "news",
         "battlebreakers.battlebreakers",  # why do you only call me when you're high

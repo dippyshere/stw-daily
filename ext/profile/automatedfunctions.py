@@ -131,7 +131,7 @@ class AutoFunction(ext.Cog):
 
     def __init__(self, client):
         self.client = client
-        self.autoclaim_task.start()  # hi
+        # self.autoclaim_task.start()  # hi
 
     @tasks.loop(time=datetime.time(0, 0, random.randint(11, 39), tzinfo=datetime.timezone.utc))
     async def autoclaim_task(self):

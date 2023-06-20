@@ -44,326 +44,330 @@ class Daily(ext.Cog):
         """
 
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+        embed = await stw.fortnite_command_deprecation(self.client, ctx, desired_lang=desired_lang)
+        return await stw.slash_send_embed(ctx, self.client, embed)
 
-        succ_colour = self.client.colours["success_green"]
-        yellow = self.client.colours["warning_yellow"]
+        # desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
+        #
+        # succ_colour = self.client.colours["success_green"]
+        # yellow = self.client.colours["warning_yellow"]
+        #
+        # auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True,
+        #                                                  desired_lang=desired_lang)
+        # if not auth_info[0]:
+        #     return
+        #
+        # final_embeds = []
+        #
+        # ainfo3 = ""
+        # try:
+        #     ainfo3 = auth_info[3]
+        # except:
+        #     pass
+        #
+        # # what is this black magic???????? I totally forgot what any of this is and how is there a third value to the auth_info??
+        # # okay I discovered what it is, it's basically the "welcome whoever" embed that is edited
+        # if ainfo3 != "logged_in_processing" and auth_info[2] != []:
+        #     final_embeds = auth_info[2]
+        #
+        # # ok now we have the authcode information stuff, so it's time to attempt to claim daily
+        # request = await stw.profile_request(self.client, "daily", auth_info[1])
+        # json_response = orjson.loads(await request.read())
+        # vbucks = auth_info[1]["vbucks"]
+        #
+        # # check for le error code
+        # try:
+        #     error_code = json_response["errorCode"]
+        #     acc_name = auth_info[1]["account_name"]
+        #     embed = await stw.post_error_possibilities(ctx, self.client, "daily", acc_name, error_code,
+        #                                                verbiage_action="daily", desired_lang=desired_lang)
+        #     final_embeds.append(embed)
+        #     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+        # except:
+        #     daily_feedback = json_response["notifications"]
+        #
+        #     for notification in daily_feedback:
+        #         if notification["type"] == "daily_rewards":
+        #             daily_feedback = notification
+        #             break
+        #
+        #     day = daily_feedback["daysLoggedIn"]
+        #
+        #     try:
+        #         self.client.temp_auth[ctx.author.id]["day"] = day
+        #     except:
+        #         pass
+        #
+        #     try:
+        #         user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True, desired_lang)
+        #         currently_selected_profile = str(user_document["global"]["selected_profile"])
+        #         limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"] + 1
+        #     except:
+        #         limit = 8
+        #
+        #     items = daily_feedback["items"]
+        #     if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
+        #         # Empty items means that daily was already claimed
+        #         if len(items) == 0:
+        #             reward = stw.get_reward(self.client, day, vbucks, desired_lang)
+        #             reward_quantity = f"{reward[-1]:,} " if reward[-1] != 1 else ""
+        #             rewards = ''
+        #             max_rewards_reached = False
+        #             if limit >= 2:
+        #                 if limit > 100:
+        #                     limit = 100
+        #                 for i in range(1, limit):
+        #                     if len(rewards) > 1000:
+        #                         rewards = stw.truncate(rewards, 1000)
+        #                         limit = i
+        #                         max_rewards_reached = True
+        #                         break
+        #                     data = stw.get_reward(self.client, i + int(day), vbucks, desired_lang)
+        #                     data_quantity = f"{data[-1]:,} " if data[-1] != 1 else ""
+        #                     rewards += f"{data_quantity}{data[0]}"
+        #                     if not (i + 1 == limit):
+        #                         rewards += ', '
+        #                     else:
+        #                         rewards += '.'
+        #                     if i % 7 == 0:
+        #                         rewards += '\n\n'
+        #
+        #             calendar = self.client.config["emojis"]["calendar"]
+        #
+        #             embed = discord.Embed(
+        #                 title=await stw.add_emoji_title(self.client, stw.random_error(self.client, desired_lang), "warning"),
+        #                 description=
+        #                 (f"\u200b\n"
+        #                  f"{stw.I18n.get('daily.embed.alreadyclaimed.description1', desired_lang, f'{day:,}')}\n"
+        #                  f"\u200b\n"
+        #                  f"{stw.I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[1])}\n"
+        #                  f"```{reward_quantity}{reward[0]}```\n"), colour=yellow)
+        #             if limit == 2:
+        #                 embed.description += (
+        #                     f"{stw.I18n.get('reward.embed.field3', desired_lang, calendar)}\n"
+        #                     f"```{rewards[:-1]}```\n"
+        #                     f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n")
+        #             elif limit > 2:
+        #                 approx = '~' if max_rewards_reached else ''
+        #                 embed.description += (
+        #                     f"**{stw.I18n.get('reward.embed.field4', desired_lang, calendar, f'{approx}{limit - 1:,}').replace('**', '')}**"
+        #                     f"\n ```{rewards}```\n"
+        #                     f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n")
+        #             else:
+        #                 embed.description += f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n"
+        #             embed = await stw.set_thumbnail(self.client, embed, "warn")
+        #             embed = await stw.add_requested_footer(ctx, embed, desired_lang)
+        #             final_embeds.append(embed)
+        #             try:
+        #                 user_document = await get_user_document(ctx, self.client, ctx.author.id)
+        #                 try:
+        #                     goal = \
+        #                         user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][
+        #                             "mtxgoal"]
+        #                 except:
+        #                     goal = 0
+        #             except:
+        #                 goal = 0
+        #             logger.debug(f"mtxgoal: {goal}")
+        #             try:
+        #                 if goal > 0:
+        #                     core_request = await stw.profile_request(self.client, "query", auth_info[1],
+        #                                                              profile_id="common_core")
+        #                     vbucks_item = await asyncio.gather(
+        #                         asyncio.to_thread(stw.extract_profile_item,
+        #                                           profile_json=orjson.loads(await core_request.read()),
+        #                                           item_string="Currency:Mtx"))
+        #                     vbucks_total = await stw.calculate_vbucks(vbucks_item)
+        #                     try:
+        #                         _ = int(goal)
+        #                     except:
+        #                         goal = ""
+        #                     if goal == "":
+        #                         embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang,
+        #                                                             goal=True)
+        #                     elif int(goal) <= vbucks_total:
+        #                         embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
+        #                                                             desired_lang=desired_lang, goal=True,
+        #                                                             assert_value=False, target=goal)
+        #                     else:
+        #                         total, days = \
+        #                             (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
+        #                                                                     0 if auth_info[1]['day'] is None else
+        #                                                                     auth_info[1]['day'], int(goal))))[0]
+        #                         logger.debug(f"total: {total}, days: {days}")
+        #                         embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
+        #                                                             auth_info[1]['vbucks'], goal, desired_lang, True)
+        #                     final_embeds.append(embed)
+        #             except:
+        #                 pass
+        #             await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+        #             return
+        #
+        #         # Initialise the claimed embed
+        #         embed = discord.Embed(
+        #             title=await stw.add_emoji_title(self.client, stw.I18n.get('generic.success', desired_lang),
+        #                                             "checkmark"),
+        #             description="\u200b",
+        #             colour=succ_colour)
+        #
+        #         # First item is the default daily reward, add it using the get_reward method
+        #         reward = stw.get_reward(self.client, day, vbucks, desired_lang)
+        #         reward_quantity = f"{reward[-1]:,} " if reward[-1] != 1 else ""
+        #
+        #         # Add any excess items + the default daily reward
+        #         for item in items[2:]:
+        #             try:
+        #                 amount = item["quantity"]
+        #                 itemtype = item["itemType"]
+        #                 reward[0] += f", {amount} {itemtype}"
+        #             except:
+        #                 pass
+        #
+        #         embed.add_field(name=stw.I18n.get('daily.embed.claimed.field.name', desired_lang, reward[1], day),
+        #                         value=f"```{reward_quantity}{reward[0]}```",
+        #                         inline=True)
+        #
+        #         # Second item is founders reward
+        #         try:
+        #             founders = items[1]
+        #             amount = founders["quantity"]
+        #             itemtype = founders["itemType"]
+        #
+        #             if itemtype == 'CardPack:cardpack_event_founders':
+        #                 display_itemtype = stw.I18n.get('stw.item.CardPack_Event_Founders.name', desired_lang)
+        #             elif itemtype == 'CardPack:cardpack_bronze':
+        #                 display_itemtype = stw.I18n.get('stw.item.CardPack_Bronze.name.singular', desired_lang)
+        #             else:
+        #                 display_itemtype = itemtype
+        #
+        #             embed.add_field(name=stw.I18n.get('daily.embed.claimed.founders.field.name', desired_lang,
+        #                                               self.client.config["emojis"]["founders"]),
+        #                             value=f"```{amount + ' ' if int(amount) != 1 else ''}{display_itemtype}```",
+        #                             inline=True)
+        #         except:
+        #             pass
+        #     else:
+        #         embed = discord.Embed(
+        #             title=await stw.add_emoji_title(self.client, stw.I18n.get('generic.success', desired_lang), "checkmark"),
+        #             description=f"\u200b\n{stw.I18n.get('daily.embed.claimed.upcoming.channelalert1.plural' if len(items) > 1 else 'daily.embed.claimed.upcoming.channelalert1.singular', desired_lang, '<:Check:812201301843902474>')}"
+        #                         f"\n\u200b\n{self.emojis['check_mark']} {stw.I18n.get('daily.embed.claimed.upcoming.channelalert2', desired_lang, '<#757768833946877992>')}\n\u200b",
+        #             colour=succ_colour)
+        #
+        #     if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
+        #         if limit >= 2:
+        #             rewards = ''
+        #             max_rewards_reached = False
+        #             if limit > 100:
+        #                 limit = 100
+        #             for i in range(1, limit):
+        #                 if len(rewards) > 1000:
+        #                     rewards = stw.truncate(rewards, 1000)
+        #                     limit = i
+        #                     max_rewards_reached = True
+        #                     break
+        #                 data = stw.get_reward(self.client, i + int(day), vbucks, desired_lang)
+        #                 data_quantity = f"{data[-1]:,} " if data[-1] != 1 else ""
+        #                 rewards += f"{data_quantity}{data[0]}"
+        #                 if not (i + 1 == limit):
+        #                     rewards += ', '
+        #                 else:
+        #                     rewards += '.'
+        #                 if i % 7 == 0:
+        #                     rewards += '\n\n'
+        #
+        #             calendar = self.client.config["emojis"]["calendar"]
+        #             if limit == 2:
+        #                 embed.add_field(name=f'\u200b\n{stw.I18n.get("reward.embed.field3", desired_lang, calendar)}',
+        #                                 value=f'```{rewards[:-1]}```\u200b',
+        #                                 inline=False)
+        #             elif limit > 2:
+        #                 approx = '~' if max_rewards_reached else ''
+        #                 embed.add_field(
+        #                     name=f'\u200b\n{stw.I18n.get("reward.embed.field4", desired_lang, calendar, f"{approx}{limit - 1:,}")}',
+        #                     value=f'```{rewards}```\u200b',
+        #                     inline=False)
+        #     embed = await stw.set_thumbnail(self.client, embed, "check")
+        #     embed = await stw.add_requested_footer(ctx, embed, desired_lang)
+        #     if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
+        #         final_embeds.append(embed)
+        #         try:
+        #             user_document = await get_user_document(ctx, self.client, ctx.author.id)
+        #             try:
+        #                 goal = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][
+        #                     "mtxgoal"]
+        #             except:
+        #                 goal = 0
+        #         except:
+        #             goal = 0
+        #         try:
+        #             logger.debug(f"mtxgoal: {goal}")
+        #             if goal > 0:
+        #                 core_request = await stw.profile_request(self.client, "query", auth_info[1],
+        #                                                          profile_id="common_core")
+        #                 vbucks_item = await asyncio.gather(
+        #                     asyncio.to_thread(stw.extract_profile_item,
+        #                                       profile_json=orjson.loads(await core_request.read()),
+        #                                       item_string="Currency:Mtx"))
+        #                 vbucks_total = await stw.calculate_vbucks(vbucks_item)
+        #                 try:
+        #                     _ = int(goal)
+        #                 except:
+        #                     goal = ""
+        #                 if goal == "":
+        #                     embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True,
+        #                                                         target=goal, current_total=vbucks_total)
+        #                 elif int(goal) <= vbucks_total:
+        #                     embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
+        #                                                         desired_lang=desired_lang, goal=True,
+        #                                                         assert_value=False, target=goal)
+        #                 else:
+        #                     total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
+        #                                                             0 if auth_info[1]['day'] is None else
+        #                                                             auth_info[1]['day'], int(goal))))[0]
+        #                     logger.debug(f"total: {total}, days: {days}")
+        #                     embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
+        #                                                         auth_info[1]['vbucks'], goal, desired_lang, True)
+        #                 final_embeds.append(embed)
+        #         except:
+        #             pass
+        #     else:
+        #         final_embeds = embed
+        #     await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
+        #     return
 
-        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "daily", authcode, auth_opt_out, True,
-                                                         desired_lang=desired_lang)
-        if not auth_info[0]:
-            return
-
-        final_embeds = []
-
-        ainfo3 = ""
-        try:
-            ainfo3 = auth_info[3]
-        except:
-            pass
-
-        # what is this black magic???????? I totally forgot what any of this is and how is there a third value to the auth_info??
-        # okay I discovered what it is, it's basically the "welcome whoever" embed that is edited
-        if ainfo3 != "logged_in_processing" and auth_info[2] != []:
-            final_embeds = auth_info[2]
-
-        # ok now we have the authcode information stuff, so it's time to attempt to claim daily
-        request = await stw.profile_request(self.client, "daily", auth_info[1])
-        json_response = orjson.loads(await request.read())
-        vbucks = auth_info[1]["vbucks"]
-
-        # check for le error code
-        try:
-            error_code = json_response["errorCode"]
-            acc_name = auth_info[1]["account_name"]
-            embed = await stw.post_error_possibilities(ctx, self.client, "daily", acc_name, error_code,
-                                                       verbiage_action="daily", desired_lang=desired_lang)
-            final_embeds.append(embed)
-            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-        except:
-            daily_feedback = json_response["notifications"]
-
-            for notification in daily_feedback:
-                if notification["type"] == "daily_rewards":
-                    daily_feedback = notification
-                    break
-
-            day = daily_feedback["daysLoggedIn"]
-
-            try:
-                self.client.temp_auth[ctx.author.id]["day"] = day
-            except:
-                pass
-
-            try:
-                user_document = await self.client.get_user_document(ctx, self.client, ctx.author.id, True, desired_lang)
-                currently_selected_profile = str(user_document["global"]["selected_profile"])
-                limit = user_document["profiles"][currently_selected_profile]["settings"]["upcoming_display_days"] + 1
-            except:
-                limit = 8
-
-            items = daily_feedback["items"]
-            if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
-                # Empty items means that daily was already claimed
-                if len(items) == 0:
-                    reward = stw.get_reward(self.client, day, vbucks, desired_lang)
-                    reward_quantity = f"{reward[-1]:,} " if reward[-1] != 1 else ""
-                    rewards = ''
-                    max_rewards_reached = False
-                    if limit >= 2:
-                        if limit > 100:
-                            limit = 100
-                        for i in range(1, limit):
-                            if len(rewards) > 1000:
-                                rewards = stw.truncate(rewards, 1000)
-                                limit = i
-                                max_rewards_reached = True
-                                break
-                            data = stw.get_reward(self.client, i + int(day), vbucks, desired_lang)
-                            data_quantity = f"{data[-1]:,} " if data[-1] != 1 else ""
-                            rewards += f"{data_quantity}{data[0]}"
-                            if not (i + 1 == limit):
-                                rewards += ', '
-                            else:
-                                rewards += '.'
-                            if i % 7 == 0:
-                                rewards += '\n\n'
-
-                    calendar = self.client.config["emojis"]["calendar"]
-
-                    embed = discord.Embed(
-                        title=await stw.add_emoji_title(self.client, stw.random_error(self.client, desired_lang), "warning"),
-                        description=
-                        (f"\u200b\n"
-                         f"{stw.I18n.get('daily.embed.alreadyclaimed.description1', desired_lang, f'{day:,}')}\n"
-                         f"\u200b\n"
-                         f"{stw.I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[1])}\n"
-                         f"```{reward_quantity}{reward[0]}```\n"), colour=yellow)
-                    if limit == 2:
-                        embed.description += (
-                            f"{stw.I18n.get('reward.embed.field3', desired_lang, calendar)}\n"
-                            f"```{rewards[:-1]}```\n"
-                            f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n")
-                    elif limit > 2:
-                        approx = '~' if max_rewards_reached else ''
-                        embed.description += (
-                            f"**{stw.I18n.get('reward.embed.field4', desired_lang, calendar, f'{approx}{limit - 1:,}').replace('**', '')}**"
-                            f"\n ```{rewards}```\n"
-                            f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n")
-                    else:
-                        embed.description += f"{stw.I18n.get('daily.embed.alreadyclaimed.description3', desired_lang, f'<t:{stw.get_tomorrow_midnight_epoch()}:R>')}\n\u200b\n"
-                    embed = await stw.set_thumbnail(self.client, embed, "warn")
-                    embed = await stw.add_requested_footer(ctx, embed, desired_lang)
-                    final_embeds.append(embed)
-                    try:
-                        user_document = await get_user_document(ctx, self.client, ctx.author.id)
-                        try:
-                            goal = \
-                                user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][
-                                    "mtxgoal"]
-                        except:
-                            goal = 0
-                    except:
-                        goal = 0
-                    logger.debug(f"mtxgoal: {goal}")
-                    try:
-                        if goal > 0:
-                            core_request = await stw.profile_request(self.client, "query", auth_info[1],
-                                                                     profile_id="common_core")
-                            vbucks_item = await asyncio.gather(
-                                asyncio.to_thread(stw.extract_profile_item,
-                                                  profile_json=orjson.loads(await core_request.read()),
-                                                  item_string="Currency:Mtx"))
-                            vbucks_total = await stw.calculate_vbucks(vbucks_item)
-                            try:
-                                _ = int(goal)
-                            except:
-                                goal = ""
-                            if goal == "":
-                                embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang,
-                                                                    goal=True)
-                            elif int(goal) <= vbucks_total:
-                                embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                                    desired_lang=desired_lang, goal=True,
-                                                                    assert_value=False, target=goal)
-                            else:
-                                total, days = \
-                                    (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
-                                                                            0 if auth_info[1]['day'] is None else
-                                                                            auth_info[1]['day'], int(goal))))[0]
-                                logger.debug(f"total: {total}, days: {days}")
-                                embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
-                                                                    auth_info[1]['vbucks'], goal, desired_lang, True)
-                            final_embeds.append(embed)
-                    except:
-                        pass
-                    await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-                    return
-
-                # Initialise the claimed embed
-                embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, stw.I18n.get('generic.success', desired_lang),
-                                                    "checkmark"),
-                    description="\u200b",
-                    colour=succ_colour)
-
-                # First item is the default daily reward, add it using the get_reward method
-                reward = stw.get_reward(self.client, day, vbucks, desired_lang)
-                reward_quantity = f"{reward[-1]:,} " if reward[-1] != 1 else ""
-
-                # Add any excess items + the default daily reward
-                for item in items[2:]:
-                    try:
-                        amount = item["quantity"]
-                        itemtype = item["itemType"]
-                        reward[0] += f", {amount} {itemtype}"
-                    except:
-                        pass
-
-                embed.add_field(name=stw.I18n.get('daily.embed.claimed.field.name', desired_lang, reward[1], day),
-                                value=f"```{reward_quantity}{reward[0]}```",
-                                inline=True)
-
-                # Second item is founders reward
-                try:
-                    founders = items[1]
-                    amount = founders["quantity"]
-                    itemtype = founders["itemType"]
-
-                    if itemtype == 'CardPack:cardpack_event_founders':
-                        display_itemtype = stw.I18n.get('stw.item.CardPack_Event_Founders.name', desired_lang)
-                    elif itemtype == 'CardPack:cardpack_bronze':
-                        display_itemtype = stw.I18n.get('stw.item.CardPack_Bronze.name.singular', desired_lang)
-                    else:
-                        display_itemtype = itemtype
-
-                    embed.add_field(name=stw.I18n.get('daily.embed.claimed.founders.field.name', desired_lang,
-                                                      self.client.config["emojis"]["founders"]),
-                                    value=f"```{amount + ' ' if int(amount) != 1 else ''}{display_itemtype}```",
-                                    inline=True)
-                except:
-                    pass
-            else:
-                embed = discord.Embed(
-                    title=await stw.add_emoji_title(self.client, stw.I18n.get('generic.success', desired_lang), "checkmark"),
-                    description=f"\u200b\n{stw.I18n.get('daily.embed.claimed.upcoming.channelalert1.plural' if len(items) > 1 else 'daily.embed.claimed.upcoming.channelalert1.singular', desired_lang, '<:Check:812201301843902474>')}"
-                                f"\n\u200b\n{self.emojis['check_mark']} {stw.I18n.get('daily.embed.claimed.upcoming.channelalert2', desired_lang, '<#757768833946877992>')}\n\u200b",
-                    colour=succ_colour)
-
-            if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
-                if limit >= 2:
-                    rewards = ''
-                    max_rewards_reached = False
-                    if limit > 100:
-                        limit = 100
-                    for i in range(1, limit):
-                        if len(rewards) > 1000:
-                            rewards = stw.truncate(rewards, 1000)
-                            limit = i
-                            max_rewards_reached = True
-                            break
-                        data = stw.get_reward(self.client, i + int(day), vbucks, desired_lang)
-                        data_quantity = f"{data[-1]:,} " if data[-1] != 1 else ""
-                        rewards += f"{data_quantity}{data[0]}"
-                        if not (i + 1 == limit):
-                            rewards += ', '
-                        else:
-                            rewards += '.'
-                        if i % 7 == 0:
-                            rewards += '\n\n'
-
-                    calendar = self.client.config["emojis"]["calendar"]
-                    if limit == 2:
-                        embed.add_field(name=f'\u200b\n{stw.I18n.get("reward.embed.field3", desired_lang, calendar)}',
-                                        value=f'```{rewards[:-1]}```\u200b',
-                                        inline=False)
-                    elif limit > 2:
-                        approx = '~' if max_rewards_reached else ''
-                        embed.add_field(
-                            name=f'\u200b\n{stw.I18n.get("reward.embed.field4", desired_lang, calendar, f"{approx}{limit - 1:,}")}',
-                            value=f'```{rewards}```\u200b',
-                            inline=False)
-            embed = await stw.set_thumbnail(self.client, embed, "check")
-            embed = await stw.add_requested_footer(ctx, embed, desired_lang)
-            if ctx.channel.id not in [762864224334381077, 996329452453769226, 1048251904913846272, 997924614548226078]:
-                final_embeds.append(embed)
-                try:
-                    user_document = await get_user_document(ctx, self.client, ctx.author.id)
-                    try:
-                        goal = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][
-                            "mtxgoal"]
-                    except:
-                        goal = 0
-                except:
-                    goal = 0
-                try:
-                    logger.debug(f"mtxgoal: {goal}")
-                    if goal > 0:
-                        core_request = await stw.profile_request(self.client, "query", auth_info[1],
-                                                                 profile_id="common_core")
-                        vbucks_item = await asyncio.gather(
-                            asyncio.to_thread(stw.extract_profile_item,
-                                              profile_json=orjson.loads(await core_request.read()),
-                                              item_string="Currency:Mtx"))
-                        vbucks_total = await stw.calculate_vbucks(vbucks_item)
-                        try:
-                            _ = int(goal)
-                        except:
-                            goal = ""
-                        if goal == "":
-                            embed = await stw.vbucks_goal_embed(self.client, ctx, desired_lang=desired_lang, goal=True,
-                                                                target=goal, current_total=vbucks_total)
-                        elif int(goal) <= vbucks_total:
-                            embed = await stw.vbucks_goal_embed(self.client, ctx, current_total=vbucks_total,
-                                                                desired_lang=desired_lang, goal=True,
-                                                                assert_value=False, target=goal)
-                        else:
-                            total, days = (await asyncio.gather(asyncio.to_thread(stw.calculate_vbuck_goals, vbucks_total,
-                                                                    0 if auth_info[1]['day'] is None else
-                                                                    auth_info[1]['day'], int(goal))))[0]
-                            logger.debug(f"total: {total}, days: {days}")
-                            embed = await stw.vbucks_goal_embed(self.client, ctx, total, days, True, vbucks_total,
-                                                                auth_info[1]['vbucks'], goal, desired_lang, True)
-                        final_embeds.append(embed)
-                except:
-                    pass
-            else:
-                final_embeds = embed
-            await stw.slash_edit_original(ctx, auth_info[0], final_embeds)
-            return
-
-    @ext.slash_command(name='daily', name_localizations=stw.I18n.construct_slash_dict("daily.slash.name"),
-                       description='Claim your Save The World daily reward',
-                       description_localizations=stw.I18n.construct_slash_dict("daily.slash.description"),
-                       guild_ids=stw.guild_ids)
-    async def slashdaily(self, ctx: discord.ApplicationContext,
-                         token: Option(
-                             description="Your Epic Games authcode. Required unless you have an active session.",
-                             description_localizations=stw.I18n.construct_slash_dict(
-                                 "generic.slash.token"),
-                             name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
-                             min_length=32) = "",
-                         auth_opt_out: Option(default="False",
-                                              description="Opt out of starting an authentication session",
-                                              description_localizations=stw.I18n.construct_slash_dict(
-                                                  "generic.slash.optout"),
-                                              name_localizations=stw.I18n.construct_slash_dict(
-                                                  "generic.meta.args.optout"),
-                                              choices=[OptionChoice("Do not start an authentication session", "True",
-                                                                    stw.I18n.construct_slash_dict(
-                                                                        "generic.slash.optout.true")),
-                                                       OptionChoice("Start an authentication session (Default)",
-                                                                    "False",
-                                                                    stw.I18n.construct_slash_dict(
-                                                                        "generic.slash.optout.false"))]) = "False"):
-        """
-        This function is the entry point for the daily command when called via slash
-
-        Args:
-            ctx: The context of the slash command
-            token: The authcode of the user
-            auth_opt_out: Whether the user wants to opt out of starting an authentication session
-        """
-        await self.daily_command(ctx, token, not eval(auth_opt_out))
+    # @ext.slash_command(name='daily', name_localizations=stw.I18n.construct_slash_dict("daily.slash.name"),
+    #                    description='Claim your Save The World daily reward',
+    #                    description_localizations=stw.I18n.construct_slash_dict("daily.slash.description"),
+    #                    guild_ids=stw.guild_ids)
+    # async def slashdaily(self, ctx: discord.ApplicationContext,
+    #                      token: Option(
+    #                          description="Your Epic Games authcode. Required unless you have an active session.",
+    #                          description_localizations=stw.I18n.construct_slash_dict(
+    #                              "generic.slash.token"),
+    #                          name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+    #                          min_length=32) = "",
+    #                      auth_opt_out: Option(default="False",
+    #                                           description="Opt out of starting an authentication session",
+    #                                           description_localizations=stw.I18n.construct_slash_dict(
+    #                                               "generic.slash.optout"),
+    #                                           name_localizations=stw.I18n.construct_slash_dict(
+    #                                               "generic.meta.args.optout"),
+    #                                           choices=[OptionChoice("Do not start an authentication session", "True",
+    #                                                                 stw.I18n.construct_slash_dict(
+    #                                                                     "generic.slash.optout.true")),
+    #                                                    OptionChoice("Start an authentication session (Default)",
+    #                                                                 "False",
+    #                                                                 stw.I18n.construct_slash_dict(
+    #                                                                     "generic.slash.optout.false"))]) = "False"):
+    #     """
+    #     This function is the entry point for the daily command when called via slash
+    #
+    #     Args:
+    #         ctx: The context of the slash command
+    #         token: The authcode of the user
+    #         auth_opt_out: Whether the user wants to opt out of starting an authentication session
+    #     """
+    #     await self.daily_command(ctx, token, not eval(auth_opt_out))
 
     @ext.command(name='daily',
                  aliases=['daxily', 'clllect', 'deaily', 'clailm', 'c9llect', 'claimm', 'dai9ly', 'claiom', 'collfct',
@@ -549,14 +553,15 @@ class Daily(ext.Cog):
                  extras={'emoji': "vbucks", "args": {
                      'generic.meta.args.authcode': ['generic.slash.token', True],
                      'generic.meta.args.optout': ['generic.meta.args.optout.description', True]},
-                         'dev': False, "description_keys": ['daily.meta.description.main',
-                                                            ['daily.meta.description.list.item1',
-                                                             f'<t:{stw.get_tomorrow_midnight_epoch()}:R>'],
-                                                            ['daily.meta.description.list.item2', '`device`'],
-                                                            ['daily.meta.description.list.item3', '`auth`', '`how2`']],
+                         'dev': True, "description_keys": ['daily.meta.description.main',
+                                                           'daily.meta.description.list.item1',
+                                                           ['daily.meta.description.list.item3', '`auth`', '`how2`'],
+                                                           ["reward.meta.description2", "<t:1687244400:R>"],
+                                                           ["util.fortnite.deprecation.embed.description4",
+                                                            "https://www.fortnite.com/news/changes-coming-to-fortnite-save-the-worlds-daily-reward-system-in-v25-10"]],
                          "name_key": "daily.slash.name"},
                  brief="daily.meta.brief",
-                 description="{0}\n\u200b\n⦾ {1}\n⦾ {2}\n⦾ {3}")
+                 description="{0}\n\u200b\n⦾ {1}\n⦾ {2}\n⦾ {3}\n{4}")
     async def daily(self, ctx, authcode='', optout=None):
         """
         This function is the entry point for the daily command when called traditionally

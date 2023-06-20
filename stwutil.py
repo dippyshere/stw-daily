@@ -2068,6 +2068,35 @@ async def create_news_page(self, ctx: Context, news_json: dict, current: int, to
     return embed
 
 
+async def fortnite_command_deprecation(client: discord.Client, ctx: commands.Context,
+                                       command_key: str = "util.fortnite.deprecation.embed.description2.daily",
+                                       desired_lang: str = "en") -> discord.Embed:
+    """
+    Creates a warning embed for deprecated fortnite commands
+
+    Args:
+        client: The client
+        ctx: The context
+        command_key: The language key to use for the first line of the embed
+        desired_lang: The desired language
+
+    Returns:
+        the constructed fn deprecation warning embed
+    """
+    generic = client.colours["generic_blue"]
+    embed = discord.Embed(
+        title=await add_emoji_title(client, I18n.get('util.battlebreakers.deprecation.embed.title', desired_lang),
+                                    "broken_heart"),
+        description=f"\u200b\n{I18n.get(command_key, desired_lang)}\u200b\n"
+                    f"\n{I18n.get('util.fortnite.deprecation.embed.description3', desired_lang, '<t:1687244400:R>')}\n"
+                    f"{I18n.get('util.fortnite.deprecation.embed.description4', desired_lang, 'https://www.fortnite.com/news/changes-coming-to-fortnite-save-the-worlds-daily-reward-system-in-v25-10')}",
+        colour=generic)
+    embed.description += "\u200b\n\u200b"
+    embed = await set_thumbnail(client, embed, "disconnected")
+    embed = await add_requested_footer(ctx, embed, desired_lang)
+    return embed
+
+
 async def battle_breakers_deprecation(client: discord.Client, ctx: commands.Context,
                                       command_key: str = "util.battlebreakers.deprecation.embed.description2.generic",
                                       desired_lang: str = "en") -> discord.Embed:
