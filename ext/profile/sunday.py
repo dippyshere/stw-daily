@@ -306,15 +306,19 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.desired_lang = desired_lang
 
         logger.debug(f"Setting information: {setting_information}")
-        super().__init__(title=stw.I18n.get(setting_information["modal_title"], desired_lang), timeout=480.0)
+        super().__init__(title=stw.truncate(stw.I18n.get(setting_information["modal_title"], desired_lang), 45),
+                         timeout=480.0)
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
         input_style = discord.InputTextStyle.long if setting_information["input_type"] == "long" else discord.InputTextStyle.short
         setting_input = discord.ui.InputText(style=input_style,
-                                             label=stw.I18n.get(setting_information["input_label"], self.desired_lang),
-                                             placeholder=stw.I18n.get(setting_information["input_placeholder"], self.desired_lang, self.default_value),
-                                             value=str(self.current_setting_value),
+                                             label=stw.truncate(stw.I18n.get(setting_information["input_label"],
+                                                                             self.desired_lang), 45),
+                                             placeholder=stw.truncate(
+                                                 stw.I18n.get(setting_information["input_placeholder"],
+                                                              self.desired_lang, self.default_value)),
+                                             value=stw.truncate(str(self.current_setting_value), 4000),
                                              min_length=setting_information["min_length"],
                                              max_length=setting_information["max_length"])
 

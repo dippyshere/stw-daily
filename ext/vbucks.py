@@ -38,10 +38,11 @@ class VbucksCalculatorModal(discord.ui.Modal):
         self.goal = goal
         self.calculator_embed = None
         self.interaction_check_done = {}
-        setting_input = discord.ui.InputText(placeholder=stw.I18n.get("vbucks.modal.placeholder", desired_lang,
-                                                                      current_total),
-                                             label=stw.I18n.get("vbucks.modal.label", desired_lang),
-                                             min_length=len(str(current_total)), max_length=8)
+        setting_input = discord.ui.InputText(
+            placeholder=stw.truncate(stw.I18n.get("vbucks.modal.placeholder", desired_lang,
+                                                  current_total)),
+            label=stw.truncate(stw.I18n.get("vbucks.modal.label", desired_lang), 45),
+            min_length=len(str(current_total)), max_length=8)
         self.add_item(setting_input)
 
     async def callback(self, interaction: discord.Interaction):

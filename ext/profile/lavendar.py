@@ -404,7 +404,9 @@ class ChangeNameModal(discord.ui.Modal):
         self.desired_lang = desired_lang
 
         self.user_document = user_document
-        super().__init__(title=stw.I18n.get('profile.modal.changename.title', desired_lang, self.cur_profile_id), timeout=360.0)
+        super().__init__(
+            title=stw.truncate(stw.I18n.get('profile.modal.changename.title', desired_lang, self.cur_profile_id), 45),
+            timeout=360.0)
 
         # Add the required items into this modal for entering
 
@@ -413,10 +415,10 @@ class ChangeNameModal(discord.ui.Modal):
         # The profile friendly name
         input_profile_name = discord.ui.InputText(
             style=discord.InputTextStyle.short,
-            label=stw.I18n.get('profile.modal.changename.input.label', desired_lang),
+            label=stw.truncate(stw.I18n.get('profile.modal.changename.input.label', desired_lang), 45),
             min_length=profile_settings["min_friendly_name_length"],
             max_length=profile_settings["max_friendly_name_length"],
-            placeholder=stw.I18n.get('profile.modal.changename.input.placeholder', desired_lang)
+            placeholder=stw.truncate(stw.I18n.get('profile.modal.changename.input.placeholder', desired_lang))
         )
         self.message = message
         self.add_item(input_profile_name)
@@ -463,7 +465,9 @@ class NewProfileModal(discord.ui.Modal):
         self.view = view
         self.desired_lang = desired_lang
         self.user_document = user_document
-        super().__init__(title=stw.I18n.get('profile.modal.create.title', desired_lang, self.cur_profile_id), timeout=360.0)
+        super().__init__(
+            title=stw.truncate(stw.I18n.get('profile.modal.create.title', desired_lang, self.cur_profile_id), 45),
+            timeout=360.0)
 
         # Add the required items into this modal for entering
 
@@ -472,10 +476,10 @@ class NewProfileModal(discord.ui.Modal):
         # The profile friendly name
         input_profile_name = discord.ui.InputText(
             style=discord.InputTextStyle.short,
-            label=stw.I18n.get('profile.modal.create.input.label', desired_lang),
+            label=stw.truncate(stw.I18n.get('profile.modal.create.input.label', desired_lang), 45),
             min_length=profile_settings["min_friendly_name_length"],
             max_length=profile_settings["max_friendly_name_length"],
-            placeholder=stw.I18n.get('profile.modal.create.input.placeholder', desired_lang)
+            placeholder=stw.truncate(stw.I18n.get('profile.modal.create.input.placeholder', desired_lang), 45)
         )
         self.message = message
         self.add_item(input_profile_name)

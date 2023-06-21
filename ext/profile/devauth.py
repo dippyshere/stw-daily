@@ -1945,13 +1945,15 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
         self.currently_selected_profile_id = currently_selected_profile_id
         self.desired_lang = desired_lang
 
-        super().__init__(title=stw.I18n.get('devauth.modal.authcode.title', self.desired_lang), timeout=480.0)
+        super().__init__(title=stw.truncate(stw.I18n.get('devauth.modal.authcode.title', self.desired_lang), 45),
+                         timeout=480.0)
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
         setting_input = discord.ui.InputText(style=discord.InputTextStyle.long,
-                                             label=stw.I18n.get('devauth.modal.authcode.label', self.desired_lang),
-                                             placeholder="a51c1f4d35b1457c8e34a1f6026faa35",
+                                             label=stw.truncate(
+                                                 stw.I18n.get('devauth.modal.authcode.label', self.desired_lang), 45),
+                                             placeholder=stw.truncate("a51c1f4d35b1457c8e34a1f6026faa35"),
                                              min_length=32)
 
         self.add_item(setting_input)
