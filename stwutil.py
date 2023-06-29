@@ -1655,7 +1655,7 @@ async def entry_profile_req(client: Client, entry: dict[str, str | bool | float 
 
     if game == "fn":
         vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile_stw.text()))
-        campaign_access = await asyncio.gather(asyncio.to_thread(campaign_access_query_check, await profile_stw.text()))
+        campaign_access = await asyncio.gather(asyncio.to_thread(campaign_access_query_check, await profile_common_core_json.text()))
         others = await asyncio.gather(asyncio.to_thread(json_query_check, profile_stw_json))
         if others[0] is not None:
             entry["day"] = others[0]
