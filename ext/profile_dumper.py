@@ -143,8 +143,8 @@ class ProfileDump(ext.Cog):
         bin_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="bin")
         bin_json_response = orjson.loads(await bin_request.read())
 
-        profile0_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="profile0")
-        profile0_json_response = orjson.loads(await profile0_request.read())
+        # profile0_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="profile0")
+        # profile0_json_response = orjson.loads(await profile0_request.read())
 
         # With all info extracted, create the output
         embed = discord.Embed(
@@ -165,7 +165,7 @@ class ProfileDump(ext.Cog):
                         f"{stw.I18n.get('profiledumper.embed.description.key12', desired_lang, 'theater1')}\n"
                         f"{stw.I18n.get('profiledumper.embed.description.key13', desired_lang, 'theater2')}\n"
                         f"{stw.I18n.get('profiledumper.embed.description.key14', desired_lang, 'recycle_bin')}\n"
-                        f"{stw.I18n.get('profiledumper.embed.description.key15', desired_lang, 'profile0')}\n"
+            # f"{stw.I18n.get('profiledumper.embed.description.key15', desired_lang, 'profile0')}\n"
                         f"\u200b",
             colour=generic_colour)
 
@@ -225,9 +225,9 @@ class ProfileDump(ext.Cog):
         bin_file.write(orjson.dumps(bin_json_response, option=orjson.OPT_INDENT_2))
         bin_file.seek(0)
 
-        p0_file = io.BytesIO()
-        p0_file.write(orjson.dumps(profile0_json_response, option=orjson.OPT_INDENT_2))
-        p0_file.seek(0)
+        # p0_file = io.BytesIO()
+        # p0_file.write(orjson.dumps(profile0_json_response, option=orjson.OPT_INDENT_2))
+        # p0_file.seek(0)
 
         json_file1 = discord.File(profile_file,
                                   filename=f"{auth_info[1]['account_name']}-common_core-"
@@ -271,9 +271,9 @@ class ProfileDump(ext.Cog):
         json_file14 = discord.File(bin_file,
                                    filename=f"{auth_info[1]['account_name']}-recycle_bin-"
                                             f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
-        json_file15 = discord.File(p0_file,
-                                   filename=f"{auth_info[1]['account_name']}-profile0-"
-                                            f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
+        # json_file15 = discord.File(p0_file,
+        #                            filename=f"{auth_info[1]['account_name']}-profile0-"
+        #                                     f"{datetime.datetime.now().strftime('%D-%M-%Y_%H-%M-%S')}.json")
 
         embed = await stw.set_thumbnail(self.client, embed, "floppy")
         embed = await stw.add_requested_footer(ctx, embed, desired_lang)
@@ -282,7 +282,7 @@ class ProfileDump(ext.Cog):
         await stw.slash_edit_original(ctx, load_msg, final_embeds,
                                       files=[json_file1, json_file2, json_file3, json_file4, json_file5, json_file6,
                                              json_file7, json_file8, json_file9, json_file10])
-        await ctx.send(files=[json_file11, json_file12, json_file13, json_file14, json_file15])
+        await ctx.send(files=[json_file11, json_file12, json_file13, json_file14])
         return
 
     @ext.command(name='profiledump',
