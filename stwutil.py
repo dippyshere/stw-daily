@@ -1651,11 +1651,11 @@ async def entry_profile_req(client: Client, entry: dict[str, str | bool | float 
     profile_stw_json = orjson.loads(await profile_stw.read())
 
     profile_common_core = await profile_request(client, "query", entry, game=game, profile_id="common_core")
-    profile_common_core_json = orjson.loads(await profile_common_core.read())
 
     if game == "fn":
         vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile_stw.text()))
-        campaign_access = await asyncio.gather(asyncio.to_thread(campaign_access_query_check, await profile_common_core_json.text()))
+        campaign_access = await asyncio.gather(
+            asyncio.to_thread(campaign_access_query_check, await profile_common_core.text()))
         others = await asyncio.gather(asyncio.to_thread(json_query_check, profile_stw_json))
         if others[0] is not None:
             entry["day"] = others[0]
