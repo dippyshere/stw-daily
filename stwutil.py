@@ -1647,19 +1647,25 @@ async def entry_profile_req(client: Client, entry: dict[str, str | bool | float 
     Returns:
         The entry of the user
     """
-    profile = await profile_request(client, "query", entry, game=game)
-    profile_json = orjson.loads(await profile.read())
+    profile_stw = await profile_request(client, "query", entry, game=game)
+    profile_stw_json = orjson.loads(await profile_stw.read())
+
+    profile_common_core = await profile_request(client, "query", entry, game=game, profile_id="common_core")
+    profile_common_core_json = orjson.loads(await profile_common_core.read())
 
     if game == "fn":
-        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile.text()))
-        others = await asyncio.gather(asyncio.to_thread(json_query_check, profile_json))
+        vbucks = await asyncio.gather(asyncio.to_thread(vbucks_query_check, await profile_stw.text()))
+        campaign_access = await asyncio.gather(asyncio.to_thread(campaign_access_query_check, await profile_stw.text()))
+        others = await asyncio.gather(asyncio.to_thread(json_query_check, profile_stw_json))
         if others[0] is not None:
             entry["day"] = others[0]
         if not vbucks[0]:
             entry["vbucks"] = False
+        if campaign_access[0]:
+            entry["campaign_access"] = True
 
     if game == "bb":
-        others = await asyncio.gather(asyncio.to_thread(bb_day_query_check, profile_json))
+        others = await asyncio.gather(asyncio.to_thread(bb_day_query_check, profile_stw_json))
         if others[0] is not None:
             entry["bb_day"] = others[0] - 1
 
@@ -1729,7 +1735,8 @@ async def add_temp_entry(client: Client, ctx: Context, auth_token: str, account_
         "bb_token": bb_token,
         "bb_day": None,
         "games": [game],
-        "original_token": original_token
+        "original_token": original_token,
+        "campaign_access": False
     }
     if add_entry:
         asyncio.get_event_loop().create_task(auto_stab_stab_session(client, ctx.author.id, entry['expiry']))
@@ -1743,6 +1750,25 @@ async def add_temp_entry(client: Client, ctx: Context, auth_token: str, account_
         client.temp_auth[ctx.author.id] = entry
     logger.debug(f"Added entry for {ctx.author.id}: {entry}")
     return entry
+
+
+def campaign_access_query_check(profile_text: str) -> bool:
+    """
+    Checks if the profile has the campaignaccess token
+
+    Args:
+        profile_text: The profile json object
+
+    Returns:
+        True if the profile has STW, otherwise False
+    """
+    # I know this looks weird and ugly, but its faster to just search for a string than actually serialise the json due
+    # to the size of the profile
+    if 'Token:campaignaccess' in profile_text:
+        logger.debug("Profile has STW")
+        return True
+    logger.debug("Profile doesn't have STW")
+    return False
 
 
 def json_query_check(profile_text: dict) -> str | int | None:
@@ -3148,9 +3174,9 @@ async def get_or_create_auth_session(client: Client, ctx: Context, command: str,
 
     if not entry['vbucks']:
         embed.description += f"• {I18n.get('util.createsession.welcome.nonfounder', desired_lang, client.config['emojis']['xray'], client.config['emojis']['vbucks'], 'https://github.com/dippyshere/stw-daily/wiki')}\n\u200b"
-    if not entry['vbucks'] and not entry['day']:
+    if not entry['vbucks'] and not entry['campaign_access']:
         embed.description += "\n"
-    if not entry['day']:
+    if not entry['campaign_access']:
         embed.description += f"• {I18n.get('util.createsession.welcome.nostw', desired_lang, 'https://github.com/dippyshere/stw-daily/wiki')}\n\u200b"
 
     # if add_entry and not auth_with_devauth and original_auth_code != "":
