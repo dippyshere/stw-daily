@@ -1016,8 +1016,8 @@ the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-a
 | Name                                                       | Contribution                                                                                           |
 |:-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | [Dippyshere](https://github.com/dippyshere)                | STW Daily Dev Team                                                                                     |
-| [jean1398reborn](https://github.com/jean1398reborn)        | STW Daily Dev Team                                                                                     |
-| [PRO100KatYT](https://github.com/P100KatYT)                | Maintaining items.py :D                                                                                |
+| [jean1398reborn](https://github.com/stellaurora)           | STW Daily Dev Team                                                                                     |
+| [PRO100KatYT](https://github.com/PRO100KatYT)              | Maintaining items.py :D                                                                                |
 | [Meiniac](https://github.com/Meiniac)                      | Reminder embed + Mod                                                                                   |
 | [FF-TeaDoc](https://github.com/FF-TeaDoc)                  | Homebase rename endpoint                                                                               |
 | [Londiuh](https://github.com/Londiuh)                      | [Inspiration, Original auth + claim script](https://github.com/Londiuh/fstwrc)                         |
