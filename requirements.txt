@@ -7,21 +7,23 @@ py-cord>=2.4.1
 psutil>=5.9.5
 py-cpuinfo>=9.0.0
 # python <3.10 compatibility
-tomli>=2.0.1
+tomli>=2.0.0
 # speedup
-Cython==3.0.0b3
+Cython>=3.0.0
 aiodns>=3.0.0
 brotlipy>=0.7.0
+brotli>=1.0.9
 faust-cchardet>=2.1.18
-orjson>=3.9.1
+orjson>=3.9.2
+msgspec>=0.17.0
 aiofiles>=23.1.0
 PyNaCl>=1.5.0
 # async-cache>=1.1.1
 # database
-motor>=3.1.2
+motor>=3.2.0
 # for banner rendering
 blendmodes>=2022
-Pillow>=9.5.0
+Pillow>=10.0.0
 # development
 watchfiles>=0.19.0
 pycryptodome>=3.18.0
