@@ -134,8 +134,8 @@ class DailyXP(ext.Cog):
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, stw.I18n.get('dailyxp.embed.title', desired_lang),
                                             "xp_everywhere"),
-            description=f"\u200b\n{stw.I18n.get('dailyxp.embed.description1', desired_lang, f'{dailyxp:,}')}\u200b\n"
-                        f"{stw.I18n.get('dailyxp.embed.description2', desired_lang, f'{stw.max_daily_stw_accolade_xp - dailyxp:,}')}\u200b\n"
+            description=f"\u200b\n{stw.I18n.get('dailyxp.embed.description1', desired_lang, dailyxp)}\u200b\n"
+                        f"{stw.I18n.get('dailyxp.embed.description2', desired_lang, stw.max_daily_stw_accolade_xp - dailyxp)}\u200b\n"
                         f"{progress_bar}\u200b\n"
                         f"{stw.I18n.get('dailyxp.embed.description3', desired_lang, f'<t:{last_reset}:R>')}\n\u200b",
             colour=generic_colour)

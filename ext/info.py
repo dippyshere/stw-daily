@@ -71,9 +71,9 @@ class Information(ext.Cog):
         msg = await stw.slash_edit_original(ctx, load_msg, embed)
         ping = (time.monotonic() - before) * 1000
         embed.set_field_at(-2, name=stw.I18n.get("info.embed.entry.latency", desired_lang),
-                           value=f'```yaml\n{stw.I18n.get("info.embed.entry.latency.websocket", desired_lang, f"{websocket_ping:,}")}\n'
-                                 f'{stw.I18n.get("info.embed.entry.latency.shard", desired_lang, f"{shard_ping:,}")}\n'
-                                 f'{stw.I18n.get("info.embed.entry.latency.actual", desired_lang, f"{int(ping):,}")}```\u200b',
+                           value=f'```yaml\n{stw.I18n.get("info.embed.entry.latency.websocket", desired_lang, websocket_ping)}\n'
+                                 f'{stw.I18n.get("info.embed.entry.latency.shard", desired_lang, shard_ping)}\n'
+                                 f'{stw.I18n.get("info.embed.entry.latency.actual", desired_lang, int(ping))}```\u200b',
                            inline=True)
         await asyncio.sleep(1.5)
         await stw.slash_edit_original(ctx, msg, embed)
@@ -122,11 +122,11 @@ class Information(ext.Cog):
                               f'{stw.I18n.get("info.embed.entry.statistics.shard", desired_lang, shard_name)}\n'
                               f'{stw.I18n.get("info.embed.entry.statistics.shard.id", desired_lang, shard_id)}\n'
                               f'{stw.I18n.get("info.embed.entry.statistics.shard.total", desired_lang, shards)}\n'
-                              f'{stw.I18n.get("info.embed.entry.statistics.guilds", desired_lang, f"{len(self.client.guilds):,}")}```\u200b')
+                              f'{stw.I18n.get("info.embed.entry.statistics.guilds", desired_lang, len(self.client.guilds))}```\u200b')
         websocket_ping = int(self.client.latency * 100)
         embed.add_field(name=stw.I18n.get("info.embed.entry.latency", desired_lang),
-                        value=f'```yaml\n{stw.I18n.get("info.embed.entry.latency.websocket", desired_lang, f"{websocket_ping:,}")}\n'
-                              f'{stw.I18n.get("info.embed.entry.latency.shard", desired_lang, f"{shard_ping:,}")}\n'
+                        value=f'```yaml\n{stw.I18n.get("info.embed.entry.latency.websocket", desired_lang, websocket_ping)}\n'
+                              f'{stw.I18n.get("info.embed.entry.latency.shard", desired_lang, shard_ping)}\n'
                               f'{stw.I18n.get("info.embed.entry.latency.actual", desired_lang, "...")}```\u200b',
                         inline=True)
         return embed, websocket_ping

@@ -141,7 +141,7 @@ class ResearchView(discord.ui.View):
             title=await stw.add_emoji_title(self.client, stw.I18n.get('research.embed.title', self.desired_lang),
                                             "crown" if proc_max else "research_point"),
             description=(f'\u200b\n{max_fort_string if proc_max else ""}'
-                         f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
+                         f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, total_points_quantity) if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
             colour=crown_yellow if proc_max else res_green
         )
 
@@ -187,7 +187,7 @@ class ResearchView(discord.ui.View):
                                                     stw.I18n.get('research.embed.title', self.desired_lang),
                                                     "research_point"),
                     description=(f'\u200b\n'
-                                 f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
+                                 f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, total_points_quantity) if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
                     colour=res_green
                 )
 
@@ -249,13 +249,13 @@ class ResearchView(discord.ui.View):
             title=await stw.add_emoji_title(self.client, stw.I18n.get('research.embed.title', self.desired_lang),
                                             "crown" if proc_max else "research_point"),
             description=(f'\u200b\n{max_fort_string if proc_max else ""}'
-                         f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
+                         f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, total_points_quantity) if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
             colour=crown_yellow if proc_max else res_green
         )
 
         embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
         embed.add_field(name=f"\u200b",
-                        value=f"{stw.I18n.get('research.embed.purchasestat', self.desired_lang, f'{spent_points:,}', stw.I18n.get('research.button.{0}'.format(stat), self.desired_lang))}\n\u200b")
+                        value=f"{stw.I18n.get('research.embed.purchasestat', self.desired_lang, spent_points, stw.I18n.get('research.button.{0}'.format(stat), self.desired_lang))}\n\u200b")
         embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
         embed = await stw.add_requested_footer(interaction, embed, self.desired_lang)
         self.total_points = research_points_item
@@ -627,9 +627,9 @@ class Research(ext.Cog):
 
         if research_points_claimed is not None:
             if research_points_claimed == 1:
-                claimed_text = f"{stw.I18n.get('research.embed.claim.claimed.singular', desired_lang, f'{research_points_claimed:,}')}\n\u200b"
+                claimed_text = f"{stw.I18n.get('research.embed.claim.claimed.singular', desired_lang, research_points_claimed)}\n\u200b"
             else:
-                claimed_text = f"{stw.I18n.get('research.embed.claim.claimed.plural', desired_lang, f'{research_points_claimed:,}')}\n\u200b"
+                claimed_text = f"{stw.I18n.get('research.embed.claim.claimed.plural', desired_lang, research_points_claimed)}\n\u200b"
         else:
             # TODO: add info about player's research storage limit / regen time (wallet)
             claimed_text = f"{stw.I18n.get('research.embed.claim.romania', desired_lang)}\n\u200b"
@@ -639,7 +639,7 @@ class Research(ext.Cog):
             title=await stw.add_emoji_title(self.client, stw.I18n.get('research.embed.title', desired_lang),
                                             "crown" if proc_max else "research_point"),
             description=(f'\u200b\n{max_fort_string if proc_max else ""}'
-                         f'{stw.I18n.get("research.embed.description.singular", desired_lang, f"{total_points_quantity:,}") if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
+                         f'{stw.I18n.get("research.embed.description.singular", desired_lang, total_points_quantity) if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
             colour=crown_yellow if proc_max else res_green
         )
 

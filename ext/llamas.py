@@ -373,7 +373,7 @@ class Llamas(ext.Cog):
                                                                 -1].split('.')[0], desired_lang)
             options.append(discord.SelectOption(label=llama_datatable[0], value=entry['offerId'],
                                                 description=stw.I18n.get("llamas.embed.description.price", desired_lang,
-                                                                         f"{entry['prices'][0]['finalPrice']:,}"),
+                                                                         entry['prices'][0]['finalPrice']),
                                                 emoji=llama_datatable[2]))
         return options
 

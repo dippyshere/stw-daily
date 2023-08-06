@@ -107,19 +107,19 @@ class Reward(ext.Cog):
                     embed = discord.Embed(
                         title=await stw.add_emoji_title(self.client, stw.I18n.get("reward.embed.title", desired_lang),
                                                         "stormeye"),
-                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.singular", desired_lang, day, limit)}\n\u200b',
                         color=embed_colour)
                 else:
                     embed = discord.Embed(
                         title=await stw.add_emoji_title(self.client, stw.I18n.get("reward.embed.title", desired_lang),
                                                         "stormeye"),
-                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                        description=f'\u200b\n{stw.I18n.get("reward.embed.description1.plural", desired_lang, day, limit)}\n\u200b',
                         color=embed_colour)
             else:
                 embed = discord.Embed(
                     title=await stw.add_emoji_title(self.client, stw.I18n.get("reward.embed.title", desired_lang),
                                                     "stormeye"),
-                    description=f'\u200b\n{stw.I18n.get("reward.embed.description1.skull", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b',
+                    description=f'\u200b\n{stw.I18n.get("reward.embed.description1.skull", desired_lang, day, limit)}\n\u200b',
                     color=embed_colour)
 
             try:
@@ -206,9 +206,9 @@ class Reward(ext.Cog):
                         value=f'```{rewards}```\u200b', inline=False)
                     if max_rewards_reached:
                         if limit == 1:  # this will never happen
-                            embed.description = f'\u200b\n{stw.I18n.get("reward.embed.description1.singular", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b'
+                            embed.description = f'\u200b\n{stw.I18n.get("reward.embed.description1.singular", desired_lang, day, limit)}\n\u200b'
                         else:
-                            embed.description = f'\u200b\n{stw.I18n.get("reward.embed.description1.plural", desired_lang, f"{day:,}", f"{limit:,}")}\n\u200b'
+                            embed.description = f'\u200b\n{stw.I18n.get("reward.embed.description1.plural", desired_lang, day, limit)}\n\u200b'
 
             embed = await stw.set_thumbnail(self.client, embed, "stormbottle")
             embed = await stw.add_requested_footer(ctx, embed, desired_lang)
