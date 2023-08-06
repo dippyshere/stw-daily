@@ -62,45 +62,6 @@ ___
 <p><b>Click on the names of commands below to see examples of how to use them.</b></p>
 
 <details>
-    <summary><b>Daily</b></summary>
-    <ul>
-    <p>This command will instantly claim your daily reward, if available. To use this command, you'll need Fortnite: Save the World on the account you will claim with.</p>
-    <span>There are two ways to use this command:</span>
-        <ol>
-            <li>Mentioning the bot:</li>
-        <div>
-            <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-            </picture> <sup>daily {token} {opt-out}</sup>
-        <li>
-            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
-        </li>
-        <kbd>/daily token:{token} auth_opt_out:{opt-out}</kbd>
-        </div>
-        <br>
-        </ol>
-        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
-        <p><b>Examples:</b></p>
-        <picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>daily a51c1f4d35b1457c8e34a1f6026faa35</sup>
-        <br><span> This will claim your daily reward, and will automatically start an authentication session.</span>
-        <br><br><picture>
-              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
-              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
-              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
-        </picture> <sup>d a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
-        <br><span> This will claim your daily reward, and will not create an authentication session.</span>
-    </ul>
-    <img src="res/daily.png" alt="Daily command example" width="640">
-<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
-</details>
-
-<details>
     <a id="auth"></a>
     <summary><b>Auth</b></summary>
     <ul>
@@ -818,6 +779,46 @@ ___
 <a href="https://www.github.com/dippyshere/battle-breakers-private-server"><img src="res/unavailable.png" alt="Battle Breakers Daily command example" width="360"></a>
 
 <details>
+    <summary><b>Daily</b></summary>
+    <ul>
+    <p>This command would have claimed your daily reward in Fortnite: Save the World, if available. To use this command, you needed Fortnite: Save the World on the account you wanted to claim with.</p>
+    <span>There were two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>daily {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/daily token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter was optional—if you did not give an auth code the bot would have returned links needed for getting an auth code.<br><br>Replacing {opt-out} with any text would have opted you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>daily a51c1f4d35b1457c8e34a1f6026faa35</sup>
+        <br><span> This would have claimed your daily reward, and would have automatically started an authentication session.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>d a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This would have claimed your daily reward, and would have not created an authentication session.</span>
+    </ul>
+    <img src="res/daily.png" alt="Daily command example" width="640">
+<p><em>The daily rewards system was removed from Fortnite in 25.10. Learn more about this change in Epic's <a href="https://www.fortnite.com/news/changes-coming-to-fortnite-save-the-worlds-daily-reward-system-in-v25-10">blog post.</a></em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
     <summary><b>Battle Breakers Daily</b></summary>
     <ul>
     <p>This command would have claimed your daily reward in Battle Breakers.</p>
@@ -1016,12 +1017,12 @@ the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-a
 | Name                                                       | Contribution                                                                                           |
 |:-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | [Dippyshere](https://github.com/dippyshere)                | STW Daily Dev Team                                                                                     |
-| [jean1398reborn](https://github.com/jean1398reborn)        | STW Daily Dev Team                                                                                     |
-| [PRO100KatYT](https://github.com/P100KatYT)                | Maintaining items.py :D                                                                                |
+| [jean1398reborn](https://github.com/stellaurora)           | STW Daily Dev Team                                                                                     |
+| [PRO100KatYT](https://github.com/PRO100KatYT)              | Maintaining items.py :D                                                                                |
 | [Meiniac](https://github.com/Meiniac)                      | Reminder embed + Mod                                                                                   |
 | [FF-TeaDoc](https://github.com/FF-TeaDoc)                  | Homebase rename endpoint                                                                               |
 | [Londiuh](https://github.com/Londiuh)                      | [Inspiration, Original auth + claim script](https://github.com/Londiuh/fstwrc)                         |
-| [MivV2](https://github.com/MixV2)                          | [Epic Research](https://github.com/MixV2/EpicResearch/)                                                |
+| [MixV2](https://github.com/MixV2)                          | [Epic Research](https://github.com/MixV2/EpicResearch/)                                                |
 | [LeleDerGrasshalmi](https://github.com/LeleDerGrasshalmi/) | [FortniteEndpointsDocumentation](https://github.com/LeleDerGrasshalmi/FortniteEndpointsDocumentation/) |
 
 
