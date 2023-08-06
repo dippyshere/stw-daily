@@ -109,7 +109,8 @@ class DailyXP(ext.Cog):
             # TODO: properly handle no daily xp token
             if str(e) == "0":
                 e = "You don't have any STW Daily XP yet."
-            logger.error(e.with_traceback(e.__traceback__))
+            if isinstance(e, BaseException):
+                logger.error(e.with_traceback(e.__traceback__))
             embed = discord.Embed(title=stw.I18n.get('dailyxp.embed.title', desired_lang),
                                   description=stw.I18n.get('dailyxp.embed.error.description', desired_lang,
                                                            f'```{e}```'),
