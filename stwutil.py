@@ -2517,6 +2517,8 @@ def get_survivor_rating(survivor: dict) -> Tuple[float, Tuple[str | Any, ...]]:
     survivor_info = parse_survivor_template_id(survivor["templateId"])
     if survivor_info[0] == "manager":
         survivor_type = "Manager"
+        if survivor_info[2] == "ur":
+            survivor_info = (survivor_info[0], survivor_info[1], "sr", survivor_info[3])
     else:
         survivor_type = "Default"
     logger.debug(
