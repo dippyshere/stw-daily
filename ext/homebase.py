@@ -135,7 +135,7 @@ class Homebase(ext.Cog):
             try:
                 homebase_colour = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
             except KeyError:
-                homebase_colour = "defaultcolor1"
+                homebase_colour = "DefaultColor1"
         else:
             stw_request = await stw.profile_request(self.client, "query", auth_info[1])
             stw_json_response = orjson.loads(await stw_request.read())
@@ -152,7 +152,7 @@ class Homebase(ext.Cog):
                     try:
                         homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
                     except:
-                        homebase_colour = "defaultcolor1"
+                        homebase_colour = "DefaultColor1"
             except KeyError:
                 try:
                     homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
@@ -167,7 +167,7 @@ class Homebase(ext.Cog):
                         try:
                             homebase_colour = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
                         except KeyError:
-                            homebase_colour = "defaultcolor1"
+                            homebase_colour = "DefaultColor1"
                     except:
                         homebase_icon = "placeholder"
 

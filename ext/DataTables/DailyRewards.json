@@ -2,9 +2,10 @@
     {
         "Type": "DataTable",
         "Name": "DailyRewards",
+        "Class": "UScriptClass'DataTable'",
         "Properties": {
             "RowStruct": {
-                "ObjectName": "Class FortLoginReward",
+                "ObjectName": "Class'FortLoginReward'",
                 "ObjectPath": "/Script/FortniteGame"
             }
         },

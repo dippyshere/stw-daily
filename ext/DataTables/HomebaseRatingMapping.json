@@ -2,6 +2,8 @@
     {
         "Type": "CurveTable",
         "Name": "HomebaseRatingMapping",
+        "Class": "UScriptClass'CurveTable'",
+        "CurveTableMode": "SimpleCurves",
         "Rows": {
             "UIMonsterRating": {
                 "InterpMode": "ERichCurveInterpMode::RCIM_Linear",

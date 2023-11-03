@@ -2,229 +2,230 @@
     {
         "Type": "DataTable",
         "Name": "BannerColors",
+        "Class": "UScriptClass'DataTable'",
         "Properties": {
             "RowStruct": {
-                "ObjectName": "Class HomebaseBannerColorData",
+                "ObjectName": "Class'HomebaseBannerColorData'",
                 "ObjectPath": "/Script/FortniteGame"
             }
         },
         "Rows": {
-            "defaultcolor1": {
+            "DefaultColor1": {
                 "ColorKeyName": "Gray666666FF",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor2": {
+            "DefaultColor2": {
                 "ColorKeyName": "RedH0",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor3": {
+            "DefaultColor3": {
                 "ColorKeyName": "OrangeH6",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor4": {
+            "DefaultColor4": {
                 "ColorKeyName": "OrangeYellowH18",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor5": {
+            "DefaultColor5": {
                 "ColorKeyName": "YellowH30",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor6": {
+            "DefaultColor6": {
                 "ColorKeyName": "YellowH40",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor7": {
+            "DefaultColor7": {
                 "ColorKeyName": "YellowH50",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor8": {
+            "DefaultColor8": {
                 "ColorKeyName": "GreenH80",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor9": {
+            "DefaultColor9": {
                 "ColorKeyName": "GreenH100",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor10": {
+            "DefaultColor10": {
                 "ColorKeyName": "GreenH120",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor11": {
+            "DefaultColor11": {
                 "ColorKeyName": "GreenH140",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor12": {
+            "DefaultColor12": {
                 "ColorKeyName": "GreenBlueH160",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor13": {
+            "DefaultColor13": {
                 "ColorKeyName": "BlueH180",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor14": {
+            "DefaultColor14": {
                 "ColorKeyName": "BlueH200",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor15": {
+            "DefaultColor15": {
                 "ColorKeyName": "BlueH220",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor16": {
+            "DefaultColor16": {
                 "ColorKeyName": "BlueH240",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor17": {
+            "DefaultColor17": {
                 "ColorKeyName": "PurpleH260",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor18": {
+            "DefaultColor18": {
                 "ColorKeyName": "PurpleH280",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor19": {
+            "DefaultColor19": {
                 "ColorKeyName": "PurplePinkH300",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor20": {
+            "DefaultColor20": {
                 "ColorKeyName": "PinkH320",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor21": {
+            "DefaultColor21": {
                 "ColorKeyName": "PinkH340",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 0
             },
-            "defaultcolor22": {
+            "DefaultColor22": {
                 "ColorKeyName": "Gray666666FFDark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor23": {
+            "DefaultColor23": {
                 "ColorKeyName": "Gray666666FFLight",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor24": {
+            "DefaultColor24": {
                 "ColorKeyName": "RedH0Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor25": {
+            "DefaultColor25": {
                 "ColorKeyName": "RedH0Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor26": {
+            "DefaultColor26": {
                 "ColorKeyName": "OrangeH6Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor27": {
+            "DefaultColor27": {
                 "ColorKeyName": "OrangeYellowH18Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor28": {
+            "DefaultColor28": {
                 "ColorKeyName": "OrangeYellowH18Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor29": {
+            "DefaultColor29": {
                 "ColorKeyName": "YellowH30Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor30": {
+            "DefaultColor30": {
                 "ColorKeyName": "GreenH80Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor31": {
+            "DefaultColor31": {
                 "ColorKeyName": "GreenH80Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor32": {
+            "DefaultColor32": {
                 "ColorKeyName": "GreenH100Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor33": {
+            "DefaultColor33": {
                 "ColorKeyName": "GreenH120Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor34": {
+            "DefaultColor34": {
                 "ColorKeyName": "GreenH120Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor35": {
+            "DefaultColor35": {
                 "ColorKeyName": "GreenH140Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor36": {
+            "DefaultColor36": {
                 "ColorKeyName": "GreenBlueH160Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor37": {
+            "DefaultColor37": {
                 "ColorKeyName": "BlueH220Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor38": {
+            "DefaultColor38": {
                 "ColorKeyName": "BlueH240Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor39": {
+            "DefaultColor39": {
                 "ColorKeyName": "BlueH240Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor40": {
+            "DefaultColor40": {
                 "ColorKeyName": "PurpleH260Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor41": {
+            "DefaultColor41": {
                 "ColorKeyName": "PurpleH260Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2
             },
-            "defaultcolor42": {
+            "DefaultColor42": {
                 "ColorKeyName": "PurpleH280Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor43": {
+            "DefaultColor43": {
                 "ColorKeyName": "PinkH340Dark",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 1
             },
-            "defaultcolor44": {
+            "DefaultColor44": {
                 "ColorKeyName": "PinkH340Light",
                 "CategoryRowName": "DefaultColorSet1",
                 "SubCategoryGroup": 2

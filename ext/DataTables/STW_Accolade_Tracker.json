@@ -4,7 +4,7 @@
         "Name": "STW_Accolade_Tracker",
         "Class": "UScriptClass'FortTrackingTokenType'",
         "Properties": {
-            "MaxDailyXP": 320000,
+            "MaxDailyXP": 385000,
             "MaxStackSize": {
                 "Value": 32767.0
             }

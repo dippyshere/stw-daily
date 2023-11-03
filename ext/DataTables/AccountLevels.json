@@ -2,9 +2,10 @@
     {
         "Type": "DataTable",
         "Name": "AccountLevels",
+        "Class": "UScriptClass'DataTable'",
         "Properties": {
             "RowStruct": {
-                "ObjectName": "Class FortLevelUpDataV2",
+                "ObjectName": "Class'FortLevelUpDataV2'",
                 "ObjectPath": "/Script/FortniteGame"
             }
         },

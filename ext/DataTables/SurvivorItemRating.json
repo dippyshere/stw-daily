@@ -2,6 +2,8 @@
     {
         "Type": "CurveTable",
         "Name": "SurvivorItemRating",
+        "Class": "UScriptClass'CurveTable'",
+        "CurveTableMode": "SimpleCurves",
         "Rows": {
             "Default_C_T01": {
                 "InterpMode": "ERichCurveInterpMode::RCIM_Linear",
