@@ -1,0 +1,114 @@
+[
+  {
+    "Type": "FortQuestItemDefinition_Campaign",
+    "Name": "Daily_HuskExtermination_Outlander",
+    "Class": "UScriptClass'FortQuestItemDefinition_Campaign'",
+    "Properties": {
+      "QuestType": "EFortQuestType::DailyQuest",
+      "RewardsTable": {
+        "ObjectName": "DataTable'QuestRewards'",
+        "ObjectPath": "/Game/Quests/QuestRewards.0"
+      },
+      "Objectives": [
+        {
+          "BackendName": "kill_husk_outlander_v2",
+          "ObjectiveFilters": [],
+          "InlineObjectiveStats": [],
+          "ProximityQuestTags": [],
+          "ObjectiveStatHandle": {
+            "DataTable": {
+              "ObjectName": "DataTable'ObjectiveStatTable'",
+              "ObjectPath": "/Game/Quests/ObjectiveStatTable.0"
+            },
+            "RowName": "kill_husk_outlander"
+          },
+          "AlternativeStatHandles": [],
+          "ItemEvent": "EFortQuestObjectiveItemEvent::Max_None",
+          "bHidden": false,
+          "bRequirePrimaryMissionCompletion": true,
+          "bCanProgressInZone": true,
+          "bDisplayDynamicAnnouncementUpdate": false,
+          "DynamicStatusUpdateType": "EObjectiveStatusUpdateType::Always",
+          "LinkVaultTab": "EFortInventoryFilter::Max_None",
+          "LinkToItemManagement": "EFortFrontendInventoryFilter::Max_None",
+          "ItemReference": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          },
+          "ItemTemplateIdOverride": "",
+          "LinkSquadID": "None",
+          "LinkSquadIndex": 0,
+          "Description": {
+            "Namespace": "",
+            "Key": "71EAFAAF455E9FADFB5F7DBE80DB8369",
+            "SourceString": "Eliminate 300 Husks in successful missions as an Outlander",
+            "LocalizedString": "Eliminate 300 Husks in successful missions as an Outlander"
+          },
+          "HudShortDescription": {
+            "Namespace": "",
+            "Key": "083A41FA45C8059A00E13CAF78DB3BBC",
+            "SourceString": "Husks eliminated as an Outlander",
+            "LocalizedString": "Husks eliminated as an Outlander"
+          },
+          "HudIcon": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          },
+          "ObjectiveConversations": [],
+          "ObjectiveDisplayInfo": {
+            "DisplayStage": 0,
+            "DisplayMaxStage": 0
+          },
+          "Count": 300,
+          "Stage": -1,
+          "DynamicStatusUpdatePercentInterval": 25,
+          "DynamicUpdateCompletionDelay": 4.0,
+          "ScriptedAction": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          },
+          "FrontendScriptedAction": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          }
+        }
+      ],
+      "Category": {
+        "DataTable": {
+          "ObjectName": "DataTable'QuestCategoryTable'",
+          "ObjectPath": "/Game/Quests/QuestCategoryTable.0"
+        },
+        "RowName": "DailyQuests"
+      },
+      "CompletionText": {
+        "Namespace": "",
+        "Key": "60E8E6314F26AD910A52AEA90527D5A1",
+        "SourceString": "Daily Quest completed!",
+        "LocalizedString": "Daily Quest completed!"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "F1832B754633AF1656B1E989F8146C7A",
+        "SourceString": "Husk Extermination (Outlander)",
+        "LocalizedString": "Husk Extermination (Outlander)"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "28F553FA482BC8C6228BC796B41A7360",
+        "SourceString": "This is a Daily Quest. You can have up to three Daily Quests at a time. You can swap out one Daily Quest per day using the Replace Quest button.",
+        "LocalizedString": "This is a Daily Quest. You can have up to three Daily Quests at a time. You can swap out one Daily Quest per day using the Replace Quest button."
+      },
+      "GameplayTags": [
+        "Quest.Daily"
+      ],
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Mission/T-Icon-Exterminate-128.T-Icon-Exterminate-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Mission/T-Icon-Exterminate-128.T-Icon-Exterminate-128",
+        "SubPathString": ""
+      }
+    }
+  }
+]

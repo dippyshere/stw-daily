@@ -1,0 +1,114 @@
+[
+  {
+    "Type": "FortQuestItemDefinition_Campaign",
+    "Name": "Daily_DestroyTransformers",
+    "Class": "UScriptClass'FortQuestItemDefinition_Campaign'",
+    "Properties": {
+      "QuestType": "EFortQuestType::DailyQuest",
+      "RewardsTable": {
+        "ObjectName": "DataTable'QuestRewards'",
+        "ObjectPath": "/Game/Quests/QuestRewards.0"
+      },
+      "Objectives": [
+        {
+          "BackendName": "quest_reactive_destroytransform_v3",
+          "ObjectiveFilters": [],
+          "InlineObjectiveStats": [],
+          "ProximityQuestTags": [],
+          "ObjectiveStatHandle": {
+            "DataTable": {
+              "ObjectName": "DataTable'ObjectiveStatTable'",
+              "ObjectPath": "/Game/Quests/ObjectiveStatTable.0"
+            },
+            "RowName": "quest_reactive_destroytransform"
+          },
+          "AlternativeStatHandles": [],
+          "ItemEvent": "EFortQuestObjectiveItemEvent::Max_None",
+          "bHidden": false,
+          "bRequirePrimaryMissionCompletion": true,
+          "bCanProgressInZone": true,
+          "bDisplayDynamicAnnouncementUpdate": false,
+          "DynamicStatusUpdateType": "EObjectiveStatusUpdateType::Always",
+          "LinkVaultTab": "EFortInventoryFilter::Max_None",
+          "LinkToItemManagement": "EFortFrontendInventoryFilter::Max_None",
+          "ItemReference": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          },
+          "ItemTemplateIdOverride": "",
+          "LinkSquadID": "None",
+          "LinkSquadIndex": 0,
+          "Description": {
+            "Namespace": "",
+            "Key": "E7D18DB34CC54FB164F599962992AE2D",
+            "SourceString": "Destroy 2 Industrial Power Transformers in successful missions (often found in Industrial zones)",
+            "LocalizedString": "Destroy 2 Industrial Power Transformers in successful missions (often found in Industrial zones)"
+          },
+          "HudShortDescription": {
+            "Namespace": "",
+            "Key": "5D68B15A4C365BA2FE0A19A96782874E",
+            "SourceString": "Industrial Power Transformers destroyed",
+            "LocalizedString": "Industrial Power Transformers destroyed"
+          },
+          "HudIcon": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          },
+          "ObjectiveConversations": [],
+          "ObjectiveDisplayInfo": {
+            "DisplayStage": 0,
+            "DisplayMaxStage": 0
+          },
+          "Count": 2,
+          "Stage": -1,
+          "DynamicStatusUpdatePercentInterval": 25,
+          "DynamicUpdateCompletionDelay": 0.0,
+          "ScriptedAction": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          },
+          "FrontendScriptedAction": {
+            "AssetPathName": "",
+            "SubPathString": ""
+          }
+        }
+      ],
+      "Category": {
+        "DataTable": {
+          "ObjectName": "DataTable'QuestCategoryTable'",
+          "ObjectPath": "/Game/Quests/QuestCategoryTable.0"
+        },
+        "RowName": "DailyQuests"
+      },
+      "CompletionText": {
+        "Namespace": "",
+        "Key": "AE26874C462315FAF2B288A3C300D126",
+        "SourceString": "Daily Quest completed!",
+        "LocalizedString": "Daily Quest completed!"
+      },
+      "DisplayName": {
+        "Namespace": "",
+        "Key": "081B999246DD754A55644BA33D49ABC2",
+        "SourceString": "Daily Destroy (Transformers)",
+        "LocalizedString": "Daily Destroy (Transformers)"
+      },
+      "Description": {
+        "Namespace": "",
+        "Key": "65941D1E451D68DC327D178478F71EAD",
+        "SourceString": "This is a Daily Quest. You can have up to three Daily Quests at a time. You can swap out one Daily Quest per day using the Replace Quest button.",
+        "LocalizedString": "This is a Daily Quest. You can have up to three Daily Quests at a time. You can swap out one Daily Quest per day using the Replace Quest button."
+      },
+      "GameplayTags": [
+        "Quest.Daily"
+      ],
+      "SmallPreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Quest/T-Icon-Daily-128.T-Icon-Daily-128",
+        "SubPathString": ""
+      },
+      "LargePreviewImage": {
+        "AssetPathName": "/Game/UI/Foundation/Textures/Icons/Quest/T-Icon-Daily-128.T-Icon-Daily-128",
+        "SubPathString": ""
+      }
+    }
+  }
+]

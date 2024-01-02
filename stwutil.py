@@ -44,7 +44,7 @@ from ext.profile.bongodb import get_user_document, replace_user_document
 logger = logging.getLogger(__name__)
 
 
-async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, int, dict, dict, dict, FreeTypeFont]:
+async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, int, dict, dict, dict, FreeTypeFont, dict]:
     """
     Loads the item data from the item data file
 
@@ -78,15 +78,19 @@ async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, in
         stwFounderDailyRewards: dict = orjson.loads(await f.read())
     async with aiofiles.open('res/burbank-big-condensed-black.otf', 'rb') as f:
         burbank: FreeTypeFont = ImageFont.truetype(io.BytesIO(await f.read()), 90)
-    return bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, \
-        BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards, burbank
+    async with aiofiles.open('ext/DataTables/QuestRewards.json') as f:
+        quest_rewards: dict = orjson.loads(await f.read())
+    return (bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap,
+            BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards, burbank,
+            quest_rewards)
 
 
-bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards, burbank = asyncio.get_event_loop().run_until_complete(
+bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap, BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards, burbank, quest_rewards = asyncio.get_event_loop().run_until_complete(
     load_item_data())
 logger.debug("Loaded item data")
 banner_d = Image.open("ext/homebase-textures/banner_texture_div.png").convert("RGB")
 banner_m = Image.open("ext/homebase-textures/banner_shape_standard.png").convert("RGBA")
+daily_quest_files = os.listdir("ext/DataTables/DailyQuests")
 logger.debug("Loaded banner textures")
 
 I18n = I18n()
@@ -3303,6 +3307,14 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
                                          description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
                                                      f"```{acc_name}```\n"
                                                      f"{I18n.get('util.error.posterrors.purchase.cannotafford.description1', desired_lang)}\n"
+                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
+                                         prompt_help=True, prompt_authcode=False, command=command,
+                                         error_level=error_level, desired_lang=desired_lang)
+    elif error_code == "errors.com.epicgames.modules.quests.quest_reroll_error":
+        embed = await create_error_embed(client, ctx,
+                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                     f"```{acc_name}```\n"
+                                                     f"{I18n.get('util.error.posterrors.quests.rerollerror', desired_lang)}\n"
                                                      f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
                                          prompt_help=True, prompt_authcode=False, command=command,
                                          error_level=error_level, desired_lang=desired_lang)

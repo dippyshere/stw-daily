@@ -178,6 +178,7 @@ def main() -> None:
         "help",
         "auth",
         "daily",
+        "dailyquests",
         "info",
         "research",
         "serverext",
