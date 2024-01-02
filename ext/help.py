@@ -123,6 +123,8 @@ class Help(ext.Cog):
         Returns:
             The embed with the command added.
         """
+        if len(embed.fields) > 23:
+            return embed
         try:
             name_string = f"{self.emojis[command.extras['emoji']]}  {stw.I18n.get(command.extras['name_key'], desired_lang)}"
         except:
