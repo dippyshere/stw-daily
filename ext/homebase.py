@@ -135,7 +135,7 @@ class Homebase(ext.Cog):
             try:
                 homebase_colour = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
             except KeyError:
-                homebase_colour = "DefaultColor1"
+                homebase_colour = "defaultcolor1"
         else:
             stw_request = await stw.profile_request(self.client, "query", auth_info[1])
             stw_json_response = orjson.loads(await stw_request.read())
@@ -152,24 +152,24 @@ class Homebase(ext.Cog):
                     try:
                         homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
                     except:
-                        homebase_colour = "DefaultColor1"
+                        homebase_colour = "defaultcolor1"
             except KeyError:
+                # homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
+                # homebase_colour = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_color"]
                 try:
-                    homebase_icon = public_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["banner_icon"]
-                except:
+                    br_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="br")
+                    br_json_response = orjson.loads(await br_request.read())
                     try:
-                        br_request = await stw.profile_request(self.client, "query", auth_info[1], profile_id="br")
-                        br_json_response = orjson.loads(await br_request.read())
-                        try:
-                            homebase_icon = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_icon_template"]
-                        except KeyError:
-                            homebase_icon = "placeholder"
-                        try:
-                            homebase_colour = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
-                        except KeyError:
-                            homebase_colour = "DefaultColor1"
-                    except:
+                        homebase_icon = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_icon_template"]
+                    except KeyError:
                         homebase_icon = "placeholder"
+                    try:
+                        homebase_colour = br_json_response["profileChanges"][0]["profile"]["items"][br_json_response["profileChanges"][0]["profile"]["stats"]["attributes"]["last_applied_loadout"]]["attributes"]["banner_color_template"]
+                    except KeyError:
+                        homebase_colour = "defaultcolor1"
+                except:
+                    homebase_icon = "placeholder"
+                    homebase_colour = "defaultcolor1"
 
         # Empty name should fetch current name
         if name == "":
