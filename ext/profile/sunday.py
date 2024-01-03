@@ -463,6 +463,7 @@ def generate_setting_options(client, options, user_document, selected_setting, d
         The generated options.
     """
     select_options = []
+    print(options)
 
     try:
         current = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][selected_setting]
@@ -476,12 +477,12 @@ def generate_setting_options(client, options, user_document, selected_setting, d
             description = stw.truncate(description) if '.' not in description else None
         except:
             description = None
-        select_options.append(discord.SelectOption(
-            label=stw.truncate(stw.I18n.get(val['name'], desired_lang)),
-            description=stw.truncate(description),
-            value=attr,
-            emoji=client.config["emojis"][val["emoji"]],
-            default=True if current == attr else False))
+
+            # Add this option to our select options
+            select_options.append(discord.SelectOption(label = stw.truncate(stw.I18n.get(val['name'], desired_lang)),
+            value = attr,
+            emoji = client.config["emojis"][val["emoji"]],
+            default = True if current == attr else False))
 
     return select_options if len(select_options) > 0 else [discord.SelectOption(label="placeholder")]
 
@@ -531,47 +532,37 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
 
         self.children[2:8] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[2:8]))
 
-        if math.ceil(len(self.client.default_settings) / settings_per_page) == 1:
-            self.children[2].disabled = True
-            self.children[3].disabled = True
-        else:
-            self.children[2].disabled = False
-            self.children[3].disabled = False
+        # Change which children should be displayed based on the type of the current setting
+        setting_type = get_setting_type(selected_setting, client)
 
-        if isinstance(self.client.default_settings[selected_setting]["default"], bool):
-            self.children.pop(5)
-            self.children.pop(7)
+        if setting_type == "select":
+            # Removes Change Value, True and False buttons.
+            del self.children[5:8]
 
-            if user_document["profiles"][str(self.selected_profile)]["settings"][selected_setting]:
-                self.children[5].disabled = True
-            else:
+            # Sets the select values
+            self.children[5].placeholder = stw.I18n.get(self.client.default_settings[selected_setting]["placeholder"], self.desired_lang)
+            self.children[5].options = generate_setting_options(self.client,
+                                                                self.client.default_settings[selected_setting]["options"],
+                                                                user_document, selected_setting,
+                                                                self.desired_lang)
+
+        elif setting_type == "bool":
+            # Disable the currently selected boolean button
+            current_document = user_document["profiles"][self.selected_profile]
+
+            if current_document["settings"].get(selected_setting, False):
                 self.children[6].disabled = True
-            try:
-                if self.client.default_settings[selected_setting]["disabled"]:
-                    self.children[5].disabled = True
-                    self.children[6].disabled = True
-            except:
-                pass
+            else:
+                self.children[7].disabled = True
 
-        else:
-            try:
-                if self.client.default_settings[selected_setting]["disabled"]:
-                    self.children[5].disabled = True
-                    self.children[6].disabled = True
-            except:
-                pass
-            try:
-                if self.client.default_settings[selected_setting]["options"]:
-                    self.children = self.children[:5] + self.children[8:]
-                    self.children[5].placeholder = stw.I18n.get(self.client.default_settings[selected_setting]["placeholder"], self.desired_lang)
-                    self.children[5].options = generate_setting_options(self.client,
-                                                                        self.client.default_settings[selected_setting]["options"],
-                                                                        user_document, selected_setting,
-                                                                        self.desired_lang)
-                else:
-                    raise Exception
-            except:
-                self.children = self.children[:-3]
+            # Removes the select new setting, and Change value button
+            del self.children[5]
+            del self.children[7]
+
+        elif setting_type == "modal":
+            # Removes the True and False buttons and the select
+            del self.children[6:9]
+        
         self.timed_out = False
 
     async def on_timeout(self):
@@ -824,6 +815,16 @@ class MainPageProfileSettingsView(discord.ui.View):
         """
         await shift_page(self, interaction, 1, self.desired_lang)
 
+def get_setting_type(setting, client):
+    setting_info = client.default_settings[setting]
+    setting_type = str(type(setting_info["default"]).__name__)
+
+    if setting_info.get("options", None) is not None:
+        return "select"
+    elif setting_type == "bool":
+        return "bool"
+    else:
+        return "modal"
 
 async def add_field_to_page_embed(page_embed, setting, client, profile, desired_lang):
     """
@@ -840,7 +841,7 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
         discord.Embed: The embed with the field added.
     """
     setting_info = client.default_settings[setting]
-    setting_type = str(type(setting_info["default"]).__name__)  # unused but cool
+
     if setting == "language":
         try:
             current_value = f"{profile['settings'][setting]} " \
