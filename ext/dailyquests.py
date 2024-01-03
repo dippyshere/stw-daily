@@ -24,7 +24,7 @@ class QuestsView(discord.ui.View):
     The view for the quests command.
     """
 
-    def __init__(self, ctx, client, message, author, quests, quest_options, auth_info, desired_lang):
+    def __init__(self, ctx, client, message, author, quests, quest_options, auth_info, quest_rerolls, desired_lang):
         super().__init__(timeout=360.0)
         self.dailyquests = None
         self.questsview = None
@@ -33,6 +33,7 @@ class QuestsView(discord.ui.View):
         self.message = message
         self.author = author
         self.quests = quests
+        self.quest_rerolls = quest_rerolls
         self.interaction_check_done = {}
         self.children[0].options = quest_options
         self.children[0].placeholder = stw.I18n.get("dailyquests.view.option.placeholder", desired_lang)
@@ -136,7 +137,7 @@ class QuestsView(discord.ui.View):
         embed = await self.quest_reroll_embed(self.ctx, select.values[0])
         if self.questsview is None:
             view = QuestRerollView(self.ctx, self.client, self.message, self.author, self.quests,
-                                   self.children[0].options, select.values[0], self.auth_info, self.desired_lang)
+                                   self.children[0].options, select.values[0], self.auth_info, self.quest_rerolls, self.desired_lang)
             self.questsview = view
         else:
             view = self.questsview
@@ -164,7 +165,7 @@ class QuestRerollView(discord.ui.View):
     The view for the quest reroll purchase command.
     """
 
-    def __init__(self, ctx, client, message, author, quests, quest_options, guid, auth_info, desired_lang):
+    def __init__(self, ctx, client, message, author, quests, quest_options, guid, auth_info, quest_rerolls, desired_lang):
         super().__init__(timeout=360.0)
         self.dailyquests = None
         self.questsview = None
@@ -175,6 +176,7 @@ class QuestRerollView(discord.ui.View):
         self.quests = quests
         self.guid = guid
         self.auth_info = auth_info
+        self.quest_rerolls = quest_rerolls
         self.interaction_check_done = {}
         self.desired_lang = desired_lang
 
@@ -183,6 +185,8 @@ class QuestRerollView(discord.ui.View):
         self.children[0].options = quest_options
         self.children[1].label = stw.I18n.get("dailyquests.confirmation.button.reroll", self.desired_lang)
         self.children[1].emoji = self.client.config["emojis"]["slot_icon_shuffle"]
+        if self.quest_rerolls <= 0:
+            self.children[1].disabled = True
         # self.children[2].label = stw.I18n.get("generic.view.button.cancel", self.desired_lang)
 
     async def on_timeout(self):
@@ -274,6 +278,8 @@ class QuestRerollView(discord.ui.View):
                     daily_quests.append(value)
                     daily_quests[-1]["guid"] = attribute
             daily_quests.sort(key=lambda x: x["attributes"]["creation_time"])
+            self.quest_rerolls = stw_json_response["profileChanges"][0]["profile"]["stats"]["attributes"].get("quest_manager", 0).get("dailyQuestRerolls", 0)
+            self.questsview.quest_rerolls = self.quest_rerolls
             # profile_notifications = stw_json_response.get("notifications", [{}])[0].get("newQuestId")
             self.quests = daily_quests
             self.questsview.quests = daily_quests
@@ -519,6 +525,7 @@ class DailyQuests(ext.Cog):
                 daily_quests.append(value)
                 daily_quests[-1]["guid"] = attribute
         daily_quests.sort(key=lambda x: x["attributes"]["creation_time"])
+        daily_quest_rerolls = stw_json_response["profileChanges"][0]["profile"]["stats"]["attributes"].get("quest_manager", 0).get("dailyQuestRerolls", 0)
 
         embed = await self.dailyquests_embed(ctx, desired_lang, daily_quests, auth_info[1])
 
@@ -526,7 +533,7 @@ class DailyQuests(ext.Cog):
 
         quests_view_options = await self.select_options_quests(daily_quests, desired_lang=desired_lang)
         quests_view = QuestsView(ctx, self.client, auth_info[0], ctx.author, daily_quests, quests_view_options,
-                                 auth_info[1], desired_lang)
+                                 auth_info[1], daily_quest_rerolls, desired_lang)
         quests_view.dailyquests = self
         await stw.slash_edit_original(ctx, auth_info[0], final_embeds, quests_view)
         return
