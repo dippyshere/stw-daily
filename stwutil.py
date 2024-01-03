@@ -3318,6 +3318,14 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
                                                      f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
                                          prompt_help=True, prompt_authcode=False, command=command,
                                          error_level=error_level, desired_lang=desired_lang)
+    elif error_code == "errors.com.epicgames.modules.quests.quest_not_found":
+        embed = await create_error_embed(client, ctx,
+                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                     f"```{acc_name}```\n"
+                                                     f"{I18n.get('util.error.posterrors.quests.questerror', desired_lang)}\n"
+                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
+                                         prompt_help=True, prompt_authcode=False, command=command,
+                                         error_level=error_level, desired_lang=desired_lang)
     elif error_code == "errors.com.epicgames.modules.gamesubcatalog.catalog_out_of_date":
         embed = await create_error_embed(client, ctx,
                                          description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"

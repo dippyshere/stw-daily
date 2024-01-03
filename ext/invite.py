@@ -246,7 +246,7 @@ class Invite(ext.Cog):
                           'sup(ort', 'sup)ort', 'sup_ort', 'sup=ort', 'sup+ort', 'sup{ort', 'sup}ort', 'sup:ort',
                           'supp8rt', 'supp;rt', 'supp*rt', 'supp(rt', 'supp)rt', 'suppo3t', 'suppo#t', 'suppo$t',
                           'suppo%t', 'suppor4', 'suppor$', 'suppor%', 'suppor^', 'ydd', 'dad', 'ad', 'axdd', 'azd',
-                          'dd', 'akdd', 'awdd', 'adrd', 'ddd', 'dadd', 'awd', 'adz', 'aqdd', 'ndd', 'bdd', 'gadd',
+                          'akdd', 'awdd', 'adrd', 'ddd', 'dadd', 'awd', 'adz', 'aqdd', 'ndd', 'bdd', 'gadd',
                           'adjd', 'apd', 'adwd', 'addu', 'uadd', 'addg', 'aldd', 'adpd', 'adgd', 'cdd', 'acd', 'adyd',
                           'xadd', 'adg', 'gdd', 'adp', 'adod', 'adx', 'advd', 'addb', 'aadd', 'apdd', 'addk', 'atd',
                           'aed', 'idd', 'adxd', 'adj', 'jadd', 'xdd', 'radd', 'vadd', 'acdd', 'ady', 'adbd', 'aqd',

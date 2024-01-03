@@ -738,6 +738,7 @@
         "util.error.posterrors.stwscrewedup.description1": "**An error occurred with STW Daily 🙀**",
         "util.error.posterrors.stwscrewedup.description2": "Please let us know in the support server :D",
         "util.error.posterrors.quests.rerollerror": "**You've run out of re-rolls for today.**",
+        "util.error.posterrors.quests.questerror": "**This quest is no longer available.**",
         "util.error.posterrors.purchase.notallowed.description1": "**You are not allowed to purchase this item.**",
         "util.error.posterrors.purchase.notallowed.description2": "You may have exceeded the daily limit on this item.",
         "util.error.posterrors.purchase.cannotafford.description1": "**You cannot afford this item**",
