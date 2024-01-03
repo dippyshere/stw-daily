@@ -17,7 +17,7 @@ from orjson import orjson
 from ext.profile.sunday import settings_command
 
 import stwutil as stw
-from ext.profile.bongodb import active_view, command_counter, generate_profile_select_options, get_all_users_cursor, replace_user_document
+from ext.profile.bongodb import active_view, command_counter, generate_profile_select_options, get_all_users_cursor, replace_user_document, timeout_check_processing
 
 claimed_account_ids = []
 logger = logging.getLogger(__name__)
@@ -134,7 +134,18 @@ class AutoclaimHighlightView(discord.ui.View):
             self.children[2].style = discord.ButtonStyle.red
         else:
             self.children[2].style = discord.ButtonStyle.green
-        
+    
+    async def interaction_check(self, interaction):
+        """
+        This function checks the interaction
+
+        Args:
+            interaction: The interaction
+
+        Returns:
+            bool: True if the interaction is created by the view author, False if notifying the user
+        """
+        return await stw.view_interaction_check(self, interaction, "device") & await timeout_check_processing(self, self.client, interaction)                              
 
     async def on_timeout(self):
         """
