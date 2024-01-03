@@ -152,3 +152,21 @@ def check_number_goal(client, ctx, value) -> tuple[bool | int, bool]:
             return False, False
     except:
         return False, False
+
+@functools.lru_cache(maxsize=16)
+def check_autoresmethod(client, ctx, value) -> tuple[bool | str, bool]:
+    """
+    Returns if the inputted auto research method is a valid one
+
+    Args:
+        client: The bot client.
+        ctx: The context of the command.
+        value: The value to check.
+
+    Returns:
+        tuple[bool | str, bool]
+    """
+    if value.lower() in ['method_fortitude', 'method_disabled', 'method_offense', 'method_resistance',
+                         'method_technology', 'method_distribute']:
+        return value.lower(), True
+    return False, False

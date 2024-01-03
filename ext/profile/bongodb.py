@@ -55,7 +55,7 @@ async def replace_user_document(client, document):
     await client.stw_database.replace_one({"user_snowflake": snowflake}, document)
 
 
-async def get_autoclaim_user_cursor(client):
+async def get_all_users_cursor(client):
     """
     Gets the autoclaim user cursor.
 

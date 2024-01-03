@@ -371,5 +371,47 @@
         "input_type": "short",
         "min_length": 1,
         "max_length": 8
+    },
+
+    "autoresmethod": {
+        "aliases": [
+            "research",
+            "autoresearch",
+            "res"
+        ],
+        "default": "method_disabled",
+        "disabled": false,
+        "emoji": "research_point",
+        "check_function": "check_autoresmethod",
+        "localised_name": "settings.config.autoresmethod.name",
+        "short_description": "settings.config.autoresmethod.description.short",
+        "long_description": "settings.config.autoresmethod.description.long",
+        "options": {
+            "method_disabled": {
+                "name": "settings.config.autoresmethod.method_disabled",
+                "emoji": "library_stop"
+            },
+            "method_fortitude": {
+                "name": "settings.config.autoresmethod.method_fortitude",
+                "emoji": "fortitude"
+            },
+            "method_offense": {
+                "name": "settings.config.autoresmethod.method_offense",
+                "emoji": "offense"
+            },
+            "method_resistance": {
+                "name": "settings.config.autoresmethod.method_resistance",
+                "emoji": "resistance"
+            },
+            "method_technology": {
+                "name": "settings.config.autoresmethod.method_technology",
+                "emoji": "technology"
+            },
+            "method_distribute": {
+                "name": "settings.config.autoresmethod.method_distribute",
+                "emoji": "recycle"
+            }
+        },
+        "placeholder": "settings.config.autoresmethod.placeholder"
     }
 }

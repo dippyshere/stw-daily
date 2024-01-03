@@ -854,7 +854,7 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
                     current_value = stw.I18n.get(f'lang.{setting_info["default"]}', desired_lang)
                 except:
                     current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
-    elif setting == "keycard":
+    elif setting_info.get('options', None) != None:
         try:
             current_value = stw.I18n.get(setting_info['options'][profile['settings'][setting]]['name'], desired_lang)
         except:
@@ -1011,7 +1011,7 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
                             f"({client.config['valid_locales'][selected_profile_data['settings'][setting]][1]})"
         except:
             current_value = selected_profile_data['settings'][setting]
-    elif setting == "keycard":
+    elif setting_info.get('options', None) != None:
         try:
             current_value = stw.I18n.get(setting_info['options'][selected_profile_data['settings'][setting]]['name'],
                                          desired_lang)
