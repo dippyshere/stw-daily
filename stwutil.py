@@ -12,6 +12,7 @@ import random
 import re
 import time
 import math
+import urllib.parse
 from difflib import SequenceMatcher
 import logging
 from typing import Tuple, Union, Any, Optional
@@ -2279,7 +2280,14 @@ def truncate(string: str, length: int = 100, end: str = "...") -> str:
     """
     if len(string) > length:
         logger.debug(f"Truncating string: {string} to {length} characters")
-    return (string[:length - len(end)] + end) if len(string) > length else string
+    escaped_string = urllib.parse.quote(string, safe='')
+    truncated_escaped_string = (
+            escaped_string[:length - len(end)] + end
+    ) if len(escaped_string) > length else escaped_string
+    unescaped_string = urllib.parse.unquote(truncated_escaped_string)
+    if unescaped_string.strip() == "":
+        unescaped_string = "\u200b"
+    return unescaped_string
 
 
 def get_tomorrow_midnight_epoch() -> int:
