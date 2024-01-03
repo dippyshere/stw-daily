@@ -198,6 +198,7 @@ class I18n:
         logger.debug(f"Returning {lang in self.get_langs()} for is_lang({lang})")
         return lang in self.get_langs()
 
+    @functools.lru_cache(maxsize=16)
     def resolve_plural(self, lang: str, key: str, count: int) -> str:
         """
         Resolves a plural string from the i18n json file
@@ -284,6 +285,7 @@ class I18n:
         logger.debug(f"Returning {profile_language or interaction_language or guild_language or 'en'} for get_desired_lang (profile_language: {profile_language}, interaction_language: {interaction_language}, guild_language: {guild_language})")
         return profile_language or interaction_language or guild_language or "en"
 
+    @functools.lru_cache(maxsize=2)
     def construct_slash_dict(self, key: str) -> dict:
         """
         Constructs a dict of all the localised strings for a slash commands property

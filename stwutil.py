@@ -27,6 +27,7 @@ import asyncio
 import io
 import orjson
 # from cache import AsyncLRU
+from async_lru import alru_cache
 import owoify
 from owoify.owoify import Owoness
 
@@ -198,7 +199,7 @@ async def view_interaction_check(view, interaction: discord.Interaction, command
             return False
 
 
-@functools.lru_cache(maxsize=16)
+# @functools.lru_cache(maxsize=16)
 def edit_emoji_button(client: Client, button: discord.ui.Button) -> discord.ui.Button:
     """
     Adds an emoji to a button
@@ -232,6 +233,7 @@ global_quotes = discord.ext.commands.view._all_quotes
 # def process_quotes_in_message(message_content): """Handles quotes in a message's content by replacing them with the appropriate unicode character\n\n\u200b\n\n**Args:**\n\n*message: the message to process*\n\n\n**Returns:**\n\n*The processed message*"""; [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'["＂]', message_content)][1:-1])];     [message_content := message_content[:character_index+(index*2)]+rf'\\{message_content[character_index+(index*2)]}'+message_content[(character_index+1+(index*2)):] for index, character_index in enumerate([character_index.start(0) for character_index in re.finditer(rf'[‘,’,“,”,„,‟,⹂,⹂,「,」,『,』,〝,〞,﹁,﹂,﹃,﹄,｢,｣,«,»,‹,›,《,》,〈,〉]', message_content)])]; return message_content
 
 
+@functools.lru_cache(maxsize=16)
 def process_quotes_in_message(message_content: str) -> str:
     """
     Handles quotes in a message's content by replacing them with the appropriate unicode character
@@ -434,6 +436,7 @@ async def processing_queue_error_check(client: Client, ctx: discord.Message, use
         return True
 
 
+# @alru_cache()
 async def mention_string(client: Client, prompt: str = "") -> str:
     """
     A function to compile a mention string for the bot
@@ -487,7 +490,7 @@ async def add_requested_footer(ctx: Context | discord.ApplicationContext, embed:
     return embed
 
 
-# @AsyncLRU(maxsize=32)
+# @alru_cache(maxsize=16)
 async def add_emoji_title(client: Client, title: str, emoji: str) -> str:
     """
     Adds emojis surrounding the title of an embed
@@ -511,7 +514,7 @@ async def add_emoji_title(client: Client, title: str, emoji: str) -> str:
     return f"{emoji}  {title}  {emoji}"
 
 
-# @AsyncLRU(maxsize=32)
+# @alru_cache(maxsize=16)
 async def split_emoji_title(client: Client, title: str, emoji_1: str, emoji_2: str) -> str:
     """
     Adds two separate emojis surrounding the title of an embed
@@ -564,6 +567,7 @@ async def set_thumbnail(client: discord.Client, embed: discord.Embed, thumb_type
     return embed
 
 
+# @functools.lru_cache(maxsize=16)
 def get_reward(client: discord.Client, day: int | str, vbucks: bool = True, desired_lang: str = "en") -> list[str, ...]:
     """
     gets the reward for the given day, accounting for non founders
@@ -618,6 +622,7 @@ def get_reward(client: discord.Client, day: int | str, vbucks: bool = True, desi
     return [name, emoji_text, description, quantity]
 
 
+# @functools.lru_cache(maxsize=16)
 def get_bb_reward_data(client: Client, response: Optional[dict] = None, error: bool = False, pre_calc_day: int = 0,
                        desired_lang: str = "en") -> list[int | str | Any]:
     """
@@ -684,22 +689,22 @@ def get_game_headers(game: str) -> dict[str, str]:
     Raises:
         Exception: If the game is not found
     """
-    if game == "bb":
-        h = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "basic M2NmNzhjZDNiMDBiNDM5YTg3NTVhODc4YjE2MGM3YWQ6YjM4M2UwZjQtZjBjYy00ZDE0LTk5ZTMtODEzYzMzZmMxZTlk="
-        }
-    elif game == "ios":
-        h = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "basic MzQ0NmNkNzI2OTRjNGE0NDg1ZDgxYjc3YWRiYjIxNDE6OTIwOWQ0YTVlMjVhNDU3ZmI5YjA3NDg5ZDMxM2I0MWE="
-        }
-    else:
-        h = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "basic ZWM2ODRiOGM2ODdmNDc5ZmFkZWEzY2IyYWQ4M2Y1YzY6ZTFmMzFjMjExZjI4NDEzMTg2MjYyZDM3YTEzZmM4NGQ="
-        }
-    return h
+    match game:
+        case "bb":
+            return {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "basic M2NmNzhjZDNiMDBiNDM5YTg3NTVhODc4YjE2MGM3YWQ6YjM4M2UwZjQtZjBjYy00ZDE0LTk5ZTMtODEzYzMzZmMxZTlk="
+            }
+        case "ios":
+            return {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "basic MzQ0NmNkNzI2OTRjNGE0NDg1ZDgxYjc3YWRiYjIxNDE6OTIwOWQ0YTVlMjVhNDU3ZmI5YjA3NDg5ZDMxM2I0MWE="
+            }
+        case _:
+            return {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "basic ZWM2ODRiOGM2ODdmNDc5ZmFkZWEzY2IyYWQ4M2Y1YzY6ZTFmMzFjMjExZjI4NDEzMTg2MjYyZDM3YTEzZmM4NGQ="
+            }
 
 
 async def get_token(client: discord.Client, auth_code: str, game: str = "fn") -> aiohttp.client_reqrep.ClientResponse:
@@ -1223,6 +1228,7 @@ async def shop_request(client: Client, token: str) -> dict:
         return orjson.loads(await resp.read())
 
 
+@alru_cache(maxsize=2)
 async def get_llama_store(shop: dict) -> dict | None:
     """
     Gets the llama store from the shop request
@@ -1243,6 +1249,7 @@ async def get_llama_store(shop: dict) -> dict | None:
     return None
 
 
+@alru_cache(maxsize=2)
 async def free_llama_count(store: dict) -> Tuple[int, list]:
     """
     Gets the amount of free llamas in the store, and any related info if available
@@ -2170,7 +2177,7 @@ async def set_embed_image(embed: discord.Embed, image_url: str) -> discord.Embed
     return embed.set_image(url=image_url)
 
 
-# @AsyncLRU(maxsize=32)
+@alru_cache(maxsize=32)
 async def resolve_vbuck_source(vbuck_source: str, desired_lang: str) -> Tuple[str, str]:
     """
     Resolves the vbuck source to a user friendly name and emoji
@@ -2182,19 +2189,22 @@ async def resolve_vbuck_source(vbuck_source: str, desired_lang: str) -> Tuple[st
     Returns:
         The user friendly name, and emoji
     """
-    if vbuck_source == "Currency:MtxGiveaway":
-        return I18n.get('util.vbucks.sources.bp', desired_lang), "bp_icon2"
-    elif vbuck_source == "Currency:MtxComplimentary":
-        return I18n.get('generic.stw', desired_lang), "library_cal"
-    elif vbuck_source == "Currency:MtxPurchased":
-        return I18n.get('util.vbucks.sources.purchased', desired_lang), "vbuck_icon"
-    elif vbuck_source.lower() == "currency:mtxpurchasebonus":  # idk the casing for this
-        return I18n.get('util.vbucks.sources.purchased.bonus', desired_lang), "vbuck_icon"
-    elif vbuck_source == "Currency:MtxDebt":
-        return I18n.get('util.vbucks.sources.debt', desired_lang), "LMAO"
-    else:
-        logger.warning(f"Unknown vbuck source: {vbuck_source}")
-        return vbuck_source, "placeholder"
+    match vbuck_source:
+        case "Currency:MtxGiveaway":
+            return I18n.get('util.vbucks.sources.bp', desired_lang), "bp_icon2"
+        case "Currency:MtxComplimentary":
+            return I18n.get('generic.stw', desired_lang), "library_cal"
+        case "Currency:MtxPurchased":
+            return I18n.get('util.vbucks.sources.purchased', desired_lang), "vbuck_icon"
+        case "Currency:MtxPurchasebonus":  # idk the casing for this
+            return I18n.get('util.vbucks.sources.purchased.bonus', desired_lang), "vbuck_icon"
+        case "Currency:MtxPurchaseBonus":
+            return I18n.get('util.vbucks.sources.purchased.bonus', desired_lang), "vbuck_icon"
+        case "Currency:MtxDebt":
+            return I18n.get('util.vbucks.sources.debt', desired_lang), "LMAO"
+        case _:
+            logger.warning(f"Unknown vbuck source: {vbuck_source}")
+            return vbuck_source, "placeholder"
 
 
 async def calculate_vbucks(item: dict) -> int:
@@ -2219,7 +2229,7 @@ async def calculate_vbucks(item: dict) -> int:
     return vbucks
 
 
-# @AsyncLRU(maxsize=32)
+@alru_cache(maxsize=32)
 async def get_banner_colour(colour: str, colour_format: str = "hex", colour_type: str = "Primary") -> str | tuple[
     int, ...] | None:
     """
@@ -2250,6 +2260,7 @@ async def get_banner_colour(colour: str, colour_format: str = "hex", colour_type
         return None
 
 
+@functools.lru_cache(maxsize=16)
 def truncate(string: str, length: int = 100, end: str = "...") -> str:
     """
     Truncates a string to a certain length
@@ -2285,7 +2296,7 @@ def get_tomorrow_midnight_epoch() -> int:
     return int(time.time() + 86400 - time.time() % 86400)
 
 
-@functools.lru_cache(maxsize=16)
+# @functools.lru_cache(maxsize=16)
 def get_item_icon_emoji(client: Client, template_id: str) -> str:
     """
     Gets the emoji for the item icon
@@ -2348,6 +2359,7 @@ def llama_contents_render(client: Client, llama_items: dict) -> str:
     return string
 
 
+@functools.lru_cache(maxsize=64)
 def get_rating(data_table: dict = SurvivorItemRating, row: str = "Default_C_T01", time_input: float = 0) -> float:
     """
     Calculates the power level of an item in stw
@@ -2488,6 +2500,7 @@ def parse_survivor_template_id(template_id: str) -> Tuple[str, str, str, str]:
 # }
 
 
+@functools.lru_cache(maxsize=64)
 def get_survivor_rating(survivor: dict) -> Tuple[float, Tuple[str | Any, ...]]:
     """
     Gets the power level of a survivor from a profile's survivor entry dict
@@ -3239,232 +3252,234 @@ async def post_error_possibilities(ctx: Context | discord.Interaction, client: C
         verbiage_action = "generic"
 
     # Epic Games Error Codes
-    if error_code == "errors.com.epicgames.common.missing_action":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get(f'util.error.posterrors.failto.{verbiage_action}', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.nofortnite.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.nofortnite.description2', desired_lang)}",
-                                         prompt_help=True, command=command, auth_push_strong=False,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.account.account_not_active":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"Attempted to {verbiage_action} for account:\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get(f'util.error.posterrors.failto.{verbiage_action}', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.inactive.description1', desired_lang)}",
-                                         prompt_help=True, command=command, auth_push_strong=False,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.fortnite.check_access_failed":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.auth.nostw.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.auth.nostw.description2', desired_lang, f'`{command.capitalize()}`')}\n"
-                                                     f"⦾ {I18n.get('util.error.auth.nostw.description3', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.auth.nostw.description4', desired_lang)}",
-                                         prompt_help=True, command=command, auth_push_strong=False,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.common.authentication.token_verification_failed":
-        reattempt_for_devauth = True
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors1.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get(f'util.error.posterrors.failto.{verbiage_action}.session', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.expiredsession.description2', desired_lang, await mention_string(client, 'auth `code`'))}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.expiredsession.description3', desired_lang, await mention_string(client, 'kill'), await mention_string(client, command))}",
-                                         prompt_help=True, command=command, auth_push_strong=False,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.validation.validation_failed" or error_code == "errors.com.epicgames.common.unsupported_media_type":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors1.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.stwscrewedup.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.stwscrewedup.description1', desired_lang)}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-        logger.critical(f"Error Code: {error_code}. Response: {response}")
-    elif error_code == "errors.com.epicgames.accountportal.date_of_birth_verification_required":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors1.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.auth.cabined.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.auth.cabined.description2', desired_lang, 'https://www.epicgames.com/fortnite')}",
-                                         prompt_help=True, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.modules.gamesubcatalog.purchase_not_allowed":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.purchase.notallowed.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.notallowed.description2', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.modules.gamesubcatalog.cannot_afford_purchase":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.purchase.cannotafford.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.modules.quests.quest_reroll_error":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.quests.rerollerror', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.modules.quests.quest_not_found":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.quests.questerror', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == "errors.com.epicgames.modules.gamesubcatalog.catalog_out_of_date":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.purchase.outdated.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.outdated.description2', desired_lang, await mention_string(client, command))}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-    elif error_code == 'errors.com.epicgames.account.invalid_account_credentials':
-        # invalid grant error
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.auth.devauth.expired.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.auth.devauth.expired.description2', desired_lang, await mention_string(client, 'kill'), await mention_string(client, 'device'))}\n"
-                                                     f"⦾ {I18n.get('util.error.auth.devauth.expired.description3', desired_lang)}",
-                                         prompt_help=True, command=command, desired_lang=desired_lang)
-
-    elif error_code == "errors.com.epicgames.fortnite.town_name_validation":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get('util.error.posterrors1.title.hbrn', desired_lang)}\n\u200b\n"
-                                                     f"{I18n.get('util.error.posterrors.stw.homebase.illegal.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description2.generic', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description4', desired_lang, 'https://github.com/dippyshere/stw-daily/wiki')}",
-                                         prompt_authcode=False, command=command, prompt_help=True,
-                                         error_level=error_level, desired_lang=desired_lang)
-
-    # battle breakers error codes
-    elif error_code == "errors.com.epicgames.world_explorers.login_reward_not_available":
-        reward = get_bb_reward_data(client, response, True, desired_lang=desired_lang)
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get('util.error.posterrors.wex.daily.claimed.description1', desired_lang, reward[0])}\n"
-                                                     f"\u200b\n"
-                                                     f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[2])}\n"
-                                                     f"```{reward[4]} {reward[1]}```\n"
-                                                     f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, f'<t:{get_tomorrow_midnight_epoch()}:R>')}",
-                                         prompt_authcode=False, command=command, error_level=0,
-                                         desired_lang=desired_lang)
-
-    # STW Daily Error Codes
-    elif error_code == "errors.stwdaily.failed_guid_research":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.research.guidfail.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-
-    elif error_code == "errors.stwdaily.failed_get_collected_resource_item":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.research.failitem.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-
-    elif error_code == "errors.stwdaily.failed_get_collected_resource_type":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.research.failresource.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-
-    elif error_code == "errors.stwdaily.failed_total_points":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                     f"```{acc_name}```\n"
-                                                     f"{I18n.get('util.error.posterrors.research.failtotal.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
-                                         prompt_help=True, prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-
-    elif error_code == "errors.stwdaily.not_author_interaction_response":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get('util.error.posterrors.stw.notauthor.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.stw.notauthor.description2', desired_lang, command)}",
-                                         prompt_authcode=False, command=command,
-                                         error_level=0, desired_lang=desired_lang)
-
-    elif error_code == "errors.stwdaily.homebase_long":
-        embed = await create_error_embed(client, ctx,
-                                         description=f"{I18n.get('util.error.posterrors.title.hbrn', desired_lang)}\n"
-                                                     f"```{truncate(acc_name)}```\n"
-                                                     f"{I18n.get('util.error.posterrors.stw.homebase.long.description1', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.stw.homebase.long.description2', desired_lang)}\n"
-                                                     f"⦾ {I18n.get('util.error.posterrors.stw.homebase.long.description3', desired_lang, await mention_string(client, 'help {0}'.format(command)))}",
-                                         prompt_authcode=False, command=command,
-                                         error_level=error_level, desired_lang=desired_lang)
-
-    elif error_code == "errors.stwdaily.homebase_illegal":
-        if hb_badchars is None or len(hb_badchars) == 0:
+    match error_code:
+        case "errors.com.epicgames.common.missing_action":
             embed = await create_error_embed(client, ctx,
-                                             description=f"{I18n.get('util.error.posterrors.title.hbrn', desired_lang)}\n"
-                                                         f"```{truncate(acc_name)}```\n"
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get(f'util.error.posterrors.failto.{verbiage_action}', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.nofortnite.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.nofortnite.description2', desired_lang)}",
+                                             prompt_help=True, command=command, auth_push_strong=False,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.account.account_not_active":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"Attempted to {verbiage_action} for account:\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get(f'util.error.posterrors.failto.{verbiage_action}', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.inactive.description1', desired_lang)}",
+                                             prompt_help=True, command=command, auth_push_strong=False,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.fortnite.check_access_failed":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.auth.nostw.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.auth.nostw.description2', desired_lang, f'`{command.capitalize()}`')}\n"
+                                                         f"⦾ {I18n.get('util.error.auth.nostw.description3', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.auth.nostw.description4', desired_lang)}",
+                                             prompt_help=True, command=command, auth_push_strong=False,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.common.authentication.token_verification_failed":
+            reattempt_for_devauth = True
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors1.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get(f'util.error.posterrors.failto.{verbiage_action}.session', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.expiredsession.description2', desired_lang, await mention_string(client, 'auth `code`'))}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.expiredsession.description3', desired_lang, await mention_string(client, 'kill'), await mention_string(client, command))}",
+                                             prompt_help=True, command=command, auth_push_strong=False,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.validation.validation_failed" | "errors.com.epicgames.common.unsupported_media_type":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors1.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.stwscrewedup.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.stwscrewedup.description1', desired_lang)}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+            logger.critical(f"Error Code: {error_code}. Response: {response}")
+        case "errors.com.epicgames.accountportal.date_of_birth_verification_required":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors1.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.auth.cabined.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.auth.cabined.description2', desired_lang, 'https://www.epicgames.com/fortnite')}",
+                                             prompt_help=True, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.modules.gamesubcatalog.purchase_not_allowed":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.purchase.notallowed.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.purchase.notallowed.description2', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.modules.gamesubcatalog.cannot_afford_purchase":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.purchase.cannotafford.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.modules.quests.quest_reroll_error":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.quests.rerollerror', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.modules.quests.quest_not_found":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.quests.questerror', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.com.epicgames.modules.gamesubcatalog.catalog_out_of_date":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.purchase.outdated.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.purchase.outdated.description2', desired_lang, await mention_string(client, command))}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.purchase.returning', desired_lang, f'<t:{int(time.time()) + 7}:R>')}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+        case 'errors.com.epicgames.account.invalid_account_credentials':
+            # invalid grant error
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.auth.devauth.expired.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.auth.devauth.expired.description2', desired_lang, await mention_string(client, 'kill'), await mention_string(client, 'device'))}\n"
+                                                         f"⦾ {I18n.get('util.error.auth.devauth.expired.description3', desired_lang)}",
+                                             prompt_help=True, command=command, desired_lang=desired_lang)
+
+        case "errors.com.epicgames.fortnite.town_name_validation":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get('util.error.posterrors1.title.hbrn', desired_lang)}\n\u200b\n"
                                                          f"{I18n.get('util.error.posterrors.stw.homebase.illegal.description1', desired_lang)}\n"
                                                          f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description2.generic', desired_lang)}\n"
                                                          f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description4', desired_lang, 'https://github.com/dippyshere/stw-daily/wiki')}",
                                              prompt_authcode=False, command=command, prompt_help=True,
                                              error_level=error_level, desired_lang=desired_lang)
-        else:
-            hb_badchars = f'`{", ".join(hb_badchars)}`'
+
+        # battle breakers error codes
+        case "errors.com.epicgames.world_explorers.login_reward_not_available":
+            reward = get_bb_reward_data(client, response, True, desired_lang=desired_lang)
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get('util.error.posterrors.wex.daily.claimed.description1', desired_lang, reward[0])}\n"
+                                                         f"\u200b\n"
+                                                         f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, reward[2])}\n"
+                                                         f"```{reward[4]} {reward[1]}```\n"
+                                                         f"{I18n.get('daily.embed.alreadyclaimed.description2', desired_lang, f'<t:{get_tomorrow_midnight_epoch()}:R>')}",
+                                             prompt_authcode=False, command=command, error_level=0,
+                                             desired_lang=desired_lang)
+
+        # STW Daily Error Codes
+        case "errors.stwdaily.failed_guid_research":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.research.guidfail.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+
+        case "errors.stwdaily.failed_get_collected_resource_item":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.research.failitem.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+
+        case "errors.stwdaily.failed_get_collected_resource_type":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.research.failresource.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+
+        case "errors.stwdaily.failed_total_points":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                         f"```{acc_name}```\n"
+                                                         f"{I18n.get('util.error.posterrors.research.failtotal.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.research.guidfail.description2', desired_lang)}",
+                                             prompt_help=True, prompt_authcode=False, command=command,
+                                             error_level=error_level, desired_lang=desired_lang)
+
+        case "errors.stwdaily.not_author_interaction_response":
+            embed = await create_error_embed(client, ctx,
+                                             description=f"{I18n.get('util.error.posterrors.stw.notauthor.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.stw.notauthor.description2', desired_lang, command)}",
+                                             prompt_authcode=False, command=command,
+                                             error_level=0, desired_lang=desired_lang)
+
+        case "errors.stwdaily.homebase_long":
             embed = await create_error_embed(client, ctx,
                                              description=f"{I18n.get('util.error.posterrors.title.hbrn', desired_lang)}\n"
                                                          f"```{truncate(acc_name)}```\n"
-                                                         f"{I18n.get('util.error.posterrors.stw.homebase.illegal.description1', desired_lang)}\n"
-                                                         f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description2.specific', desired_lang, hb_badchars)}\n"
-                                                         f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description4', desired_lang, 'https://github.com/dippyshere/stw-daily/wiki')}",
-                                             prompt_authcode=False, command=command, prompt_help=True,
+                                                         f"{I18n.get('util.error.posterrors.stw.homebase.long.description1', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.stw.homebase.long.description2', desired_lang)}\n"
+                                                         f"⦾ {I18n.get('util.error.posterrors.stw.homebase.long.description3', desired_lang, await mention_string(client, 'help {0}'.format(command)))}",
+                                             prompt_authcode=False, command=command,
                                              error_level=error_level, desired_lang=desired_lang)
 
-    else:
-        shrug = u'¯\\\_(ツ)\_/¯'
-        logger.warning(f"Unknown error code: {error_code}. Response: {response}")
-        try:
-            embed = await create_error_embed(client, ctx,
-                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                         f"```{acc_name}```\n"
-                                                         f"{I18n.get('util.error.auth.unknown.description1', desired_lang, shrug)}\n"
-                                                         f"⦾ {I18n.get('util.error.auth.unknown.description2', desired_lang)}\n"
-                                                         f"```{error_code}\n\n{response['errorMessage']}```",
-                                             prompt_help=True, command=command, auth_push_strong=False,
-                                             error_level=error_level, desired_lang=desired_lang)
-        except:
-            embed = await create_error_embed(client, ctx,
-                                             description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
-                                                         f"```{acc_name}```\n"
-                                                         f"{I18n.get('util.error.auth.unknown.description1', desired_lang, shrug)}\n"
-                                                         f"⦾ {I18n.get('util.error.auth.unknown.description2', desired_lang)}\n"
-                                                         f"```{error_code}```",
-                                             prompt_help=True, command=command, auth_push_strong=False,
-                                             error_level=error_level, desired_lang=desired_lang)
+        case "errors.stwdaily.homebase_illegal":
+            if hb_badchars is None or len(hb_badchars) == 0:
+                embed = await create_error_embed(client, ctx,
+                                                 description=f"{I18n.get('util.error.posterrors.title.hbrn', desired_lang)}\n"
+                                                             f"```{truncate(acc_name)}```\n"
+                                                             f"{I18n.get('util.error.posterrors.stw.homebase.illegal.description1', desired_lang)}\n"
+                                                             f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description2.generic', desired_lang)}\n"
+                                                             f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description4', desired_lang, 'https://github.com/dippyshere/stw-daily/wiki')}",
+                                                 prompt_authcode=False, command=command, prompt_help=True,
+                                                 error_level=error_level, desired_lang=desired_lang)
+            else:
+                hb_badchars = f'`{", ".join(hb_badchars)}`'
+                embed = await create_error_embed(client, ctx,
+                                                 description=f"{I18n.get('util.error.posterrors.title.hbrn', desired_lang)}\n"
+                                                             f"```{truncate(acc_name)}```\n"
+                                                             f"{I18n.get('util.error.posterrors.stw.homebase.illegal.description1', desired_lang)}\n"
+                                                             f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description2.specific', desired_lang, hb_badchars)}\n"
+                                                             f"⦾ {I18n.get('util.error.posterrors.stw.homebase.illegal.description4', desired_lang, 'https://github.com/dippyshere/stw-daily/wiki')}",
+                                                 prompt_authcode=False, command=command, prompt_help=True,
+                                                 error_level=error_level, desired_lang=desired_lang)
+
+        case _:
+            shrug = u'¯\\\_(ツ)\_/¯'
+            logger.warning(f"Unknown error code: {error_code}. Response: {response}")
+            try:
+                embed = await create_error_embed(client, ctx,
+                                                 description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                             f"```{acc_name}```\n"
+                                                             f"{I18n.get('util.error.auth.unknown.description1', desired_lang, shrug)}\n"
+                                                             f"⦾ {I18n.get('util.error.auth.unknown.description2', desired_lang)}\n"
+                                                             f"```{error_code}\n\n{response['errorMessage']}```",
+                                                 prompt_help=True, command=command, auth_push_strong=False,
+                                                 error_level=error_level, desired_lang=desired_lang)
+            except:
+                embed = await create_error_embed(client, ctx,
+                                                 description=f"{I18n.get(f'util.error.posterrors.title.{verbiage_action}', desired_lang)}\n"
+                                                             f"```{acc_name}```\n"
+                                                             f"{I18n.get('util.error.auth.unknown.description1', desired_lang, shrug)}\n"
+                                                             f"⦾ {I18n.get('util.error.auth.unknown.description2', desired_lang)}\n"
+                                                             f"```{error_code}```",
+                                                 prompt_help=True, command=command, auth_push_strong=False,
+                                                 error_level=error_level, desired_lang=desired_lang)
     return embed
 
 
+@alru_cache(maxsize=32)
 async def strip_string(string: str) -> str:
     """
     Strips a string of all non-alphanumeric characters
@@ -3550,6 +3565,7 @@ def create_command_dict(client: Client) -> Tuple[dict, dict, list]:
     return command_name_dict, command_dict, list(command_name_dict)
 
 
+@functools.lru_cache(maxsize=32)
 def extract_auth_code(string: str) -> str:
     """
     Extracts the auth code from a string
@@ -3645,7 +3661,7 @@ async def validate_homebase_name(string: str) -> Tuple[bool, list[str]]:
     return True, list_of_invalid_chars_used
 
 
-@functools.lru_cache(maxsize=8)
+# @functools.lru_cache(maxsize=8)
 async def generate_banner(client: discord.Client, embed: discord.Embed, homebase_icon: str,
                           homebase_colour: str, author_id: int | str) -> tuple[
     discord.Embed, discord.File]:
@@ -3685,7 +3701,7 @@ async def generate_banner(client: discord.Client, embed: discord.Embed, homebase
     return embed, file
 
 
-@functools.lru_cache(maxsize=8)
+# @functools.lru_cache(maxsize=8)
 async def generate_power(client: discord.Client, embed: discord.Embed, power_level: int | float,
                          author_id: int | str) -> tuple[discord.Embed, discord.File]:
     """
@@ -3725,7 +3741,7 @@ async def generate_power(client: discord.Client, embed: discord.Embed, power_lev
     return embed, file
 
 
-# @AsyncLRU(maxsize=64)
+@alru_cache(maxsize=32)
 async def research_stat_rating(stat: str, level: int) -> tuple[float, float, float]:
     """
     Calculates the % stat buff given to player + team from a research level
@@ -3770,6 +3786,7 @@ def research_stat_cost(stat: str, level: int) -> float:
     return get_rating(data_table=ResearchSystem, row=f"{stat}_cost", time_input=sorted((0, level + 1, 120))[1])
 
 
+@functools.lru_cache(maxsize=64)
 def convert_iso_to_unix(iso_timestamp: str) -> int:
     """
     Converts an ISO timestamp to a unix timestamp rounded to the nearest second
@@ -3842,6 +3859,7 @@ def get_vbucks(current_day: int, mod: bool = False) -> int:
     return 0
 
 
+@functools.lru_cache(maxsize=512)
 def calculate_vbuck_goals(current_total: int, current_day: int, target: int) -> tuple[int, str]:
     """
     Calculates how many days it will take to reach a target vbuck total from a current total and day.
