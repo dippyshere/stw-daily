@@ -18,7 +18,7 @@ import stwutil as stw
 
 import motor.motor_asyncio
 
-from ext.profile.automatedfunctions import get_auto_claim
+from ext.profile.automatedfunctions import create_autoclaim_embed, get_auto_claim
 from ext.profile.devauth import handle_dev_auth
 from ext.profile.bongodb import *
 from ext.profile.sunday import settings_command
@@ -74,7 +74,6 @@ def setup(client):
     # client.get_collections = get_collections
     # :3
     client.add_cog(Profile(client))
-
 
 async def create_main_embed(ctx, client, current_selected_profile, user_document, desired_lang):
     """
@@ -135,7 +134,7 @@ class ProfileMainView(discord.ui.View):
         self.children[3].label = stw.I18n.get('profile.view.button.deleteprofile', self.desired_lang)
         self.children[4].label = stw.I18n.get('profile.view.button.edit', self.desired_lang)
         self.children[5].label = stw.I18n.get('profile.view.button.auth', self.desired_lang)
-        self.children[6].label = stw.I18n.get('profile.view.button.info', self.desired_lang)
+        self.children[6].label = stw.I18n.get('generic.view.button.autoclaim', self.desired_lang)
 
         # look ok it works dont judge arvo
         if current_selected_profile is None:
@@ -144,6 +143,7 @@ class ProfileMainView(discord.ui.View):
             self.children[3].disabled = True
             self.children[4].disabled = True
             self.children[5].disabled = True
+            self.children[6].disabled = True
             self.children[0].placeholder = stw.I18n.get('profile.view.options.placeholder.noprofile', self.desired_lang)
 
         self.ctx = ctx
@@ -162,6 +162,9 @@ class ProfileMainView(discord.ui.View):
         """
         Called when the view times out.
         """
+        if self.timed_out == True:
+            return
+
         for child in self.children:
             child.disabled = True
 
@@ -370,8 +373,8 @@ class ProfileMainView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=self)
         self.stop()
 
-    @discord.ui.button(label="Information", emoji="experimental", row=2, disabled=True)
-    async def information_button(self, _button, interaction):  # hi
+    @discord.ui.button(label="Autoclaim", emoji="library_clock", row=2)
+    async def autoclaim_button(self, _button, interaction):  # hi
         """
         Called when the information button is pressed.
 
@@ -379,9 +382,19 @@ class ProfileMainView(discord.ui.View):
             _button: The button.
             interaction: The interaction.
         """
+        
+        embed = await create_main_embed(self.ctx, self.client, self.current_selected_profile, self.user_document,
+                                        self.desired_lang)
+        embed.description += f"\n{stw.I18n.get('generic.embed.start.autoclaim', self.desired_lang)}\n\u200b"
 
-        self.client.temp_auth[interaction.user.id]["token"] = "💀"
-        #await interaction.response.send_message(content=stw.truncate(str(self.user_document), 2000))
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(embed=embed, view=self)
+        self.stop()
+        self.timed_out = True
+
+        user_document = await self.client.get_user_document(self.ctx, self.client, self.ctx.author.id, desired_lang=self.desired_lang)
+        await create_autoclaim_embed(self.ctx, self.client, user_document["global"]["selected_profile"], user_document, self.desired_lang)
 
 
 # How do I explain to my gynecologist that I don't want to get rid of my pubic lice? I am infertile and my sweet little crab babies are the closest thing I have to birthing actual children...

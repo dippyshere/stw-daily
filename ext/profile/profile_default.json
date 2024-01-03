@@ -31,6 +31,7 @@
                 "tos_accepted_date": null,
                 "tos_accepted_version": null
             },
+            "auto_claim": null,
             "settings": {
             },
             "authentication": null

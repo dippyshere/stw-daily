@@ -20,6 +20,7 @@ from Crypto.Cipher import AES
 import stwutil as stw
 from ext.profile.bongodb import get_user_document, replace_user_document, generate_profile_select_options, \
     timeout_check_processing, active_view, command_counter
+from ext.profile.automatedfunctions import create_autoclaim_embed
 
 TOS_VERSION = 31
 logger = logging.getLogger(__name__)
@@ -228,14 +229,6 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
     embed_colour = client.colours["profile_lavendar"]
 
     try:
-        if user_document["auto_claim"]["enabled"]:
-            flow_key = 'devauth.embed.existing.description4.disable'
-        else:
-            flow_key = 'devauth.embed.existing.description4.enable'
-    except:
-        flow_key = 'devauth.embed.existing.description4.enable'
-
-    try:
         if current_profile["authentication"]["hasExpired"]:
             expired = True
         else:
@@ -251,7 +244,7 @@ async def existing_dev_auth_embed(client, ctx, current_profile, currently_select
                     f"{stw.I18n.get('devauth.embed.existing.description1', desired_lang)}\n\u200b\n "
                     f"{stw.I18n.get('devauth.embed.existing.description2', desired_lang, client.config['emojis']['library_trashcan'])}\n\u200b\n"
                     f"{stw.I18n.get('devauth.embed.existing.description3', desired_lang, client.config['emojis']['library_floppydisc'])}\n\u200b\n"
-                    f"{stw.I18n.get(flow_key, desired_lang, client.config['emojis']['library_clock'])}\n\u200b\n",
+                    f"{stw.I18n.get('devauth.embed.existing.description4', desired_lang, client.config['emojis']['library_clock'])}\n\u200b\n",
         color=embed_colour)
 
     if expired:
@@ -538,17 +531,8 @@ class StolenAccountView(discord.ui.View):
         self.children[2].label = stw.I18n.get('devauth.view.button.reauthenticate', self.desired_lang)
         self.timed_out = False
         self.children[1:] = list(map(lambda button: stw.edit_emoji_button(self.client, button), self.children[1:]))
-        try:
-            if self.user_document["auto_claim"]["enabled"]:
-                self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
-                self.children[3].style = discord.ButtonStyle.red
-            else:
-                self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
-                self.children[3].style = discord.ButtonStyle.green
-        except:
-            self.children[3].label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
-            self.children[3].style = discord.ButtonStyle.green
-        self.children[3].disabled = True
+        self.children[3].label = stw.I18n.get('generic.view.button.autoclaim', self.desired_lang)
+
         try:
             if self.user_document["profiles"][str(self.currently_selected_profile_id)]["authentication"]["hasExpired"]:
                 self.children[2].disabled = True
@@ -564,6 +548,9 @@ class StolenAccountView(discord.ui.View):
         Returns:
             None
         """
+        if self.timed_out == True:
+            return
+
         timeout_embed = await existing_dev_auth_embed(self.client, self.ctx, self.user_document["profiles"][
             str(self.currently_selected_profile_id)], self.currently_selected_profile_id, self.desired_lang,
                                                       self.user_document)
@@ -706,8 +693,8 @@ class StolenAccountView(discord.ui.View):
         #         child.disabled = False
         #     await interaction.edit_original_response(view=self)
 
-    @discord.ui.button(style=discord.ButtonStyle.green, label="Enable Auto Claim", emoji="library_clock", disabled=True)
-    async def temp_auto_claim_button(self, button, interaction):
+    @discord.ui.button(label="Autoclaim", emoji="library_clock")
+    async def autoclaim_button(self, button, interaction):
         """
         This function handles the temporary auto claim button
 
@@ -715,43 +702,17 @@ class StolenAccountView(discord.ui.View):
             button: The button
             interaction: The interaction
         """
-        try:
-            if self.user_document["auto_claim"]["enabled"]:
-                self.user_document["auto_claim"] = None
-                button.label = stw.I18n.get('devauth.view.button.autoclaim.enable', self.desired_lang)
-                button.style = discord.ButtonStyle.green
-                result = "devauth.embed.existing.processed.success.disable", "devauth.embed.existing.description4.enable"
-            else:
-                self.user_document["auto_claim"] = {
-                    "enabled": True,
-                }
-                button.label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
-                button.style = discord.ButtonStyle.red
-                result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.disable"
-        except:
-            self.user_document["auto_claim"] = {
-                "enabled": True,
-            }
-            button.label = stw.I18n.get('devauth.view.button.autoclaim.disable', self.desired_lang)
-            button.style = discord.ButtonStyle.red
-            result = "devauth.embed.existing.processed.success.enable", "devauth.embed.existing.description4.disable"
-        self.client.processing_queue[self.ctx.author.id] = True
-        await replace_user_document(self.client, self.user_document)
-        del self.client.processing_queue[self.ctx.author.id]
-        self.embed.description = (
-            f"\u200b\n"
-            f"{stw.I18n.get('profile.embed.currentlyselected', self.desired_lang, self.currently_selected_profile_id)}\n"
-            f"```{self.current_profile['friendly_name']}```\u200b\n"
-            f"{stw.I18n.get('devauth.embed.existing.description1', self.desired_lang)}\n\u200b\n "
-            f"{stw.I18n.get('devauth.embed.existing.description2', self.desired_lang, self.client.config['emojis']['library_trashcan'])}\n\u200b\n"
-            f"{stw.I18n.get('devauth.embed.existing.description3', self.desired_lang, self.client.config['emojis']['library_floppydisc'])}\n\u200b\n"
-            f"{stw.I18n.get(result[1], self.desired_lang, self.client.config['emojis']['library_clock'])}\n\u200b\n"
-            f"{stw.I18n.get('devauth.embed.existing.description5', self.desired_lang)}\n"
-            f"```{self.current_profile['authentication']['displayName']}```\u200b\n"
-            f"{stw.I18n.get(result[0], self.desired_lang)}\n\u200b"
-        )
-        await interaction.response.edit_message(view=self, embed=self.embed)
+        embed = await existing_dev_auth_embed(self.client, self.ctx, self.current_profile, self.currently_selected_profile_id, self.desired_lang,
+                                        self.user_document)
+        embed.description += f"\n{stw.I18n.get('generic.embed.start.autoclaim', self.desired_lang)}\n\u200b"
 
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(embed=embed, view=self)
+        self.stop()
+        self.timed_out = True
+
+        await create_autoclaim_embed(self.ctx, self.client, self.currently_selected_profile_id, self.user_document, self.desired_lang)
 
 class EnslaveUserLicenseAgreementButton(discord.ui.View):
     """
@@ -1004,8 +965,7 @@ class ProfileAuth(ext.Cog):
                           'appareil', 'ઉપકરણ', 'na\'urar', 'התקן', 'उपकरण', 'uređaj', 'eszköz', 'perangkat', 'デバイス',
                           '기기', 'prietaisas', 'ierīci', 'डिव्हाइस', 'peranti', 'apparaat', 'enhet', 'ਜੰਤਰ',
                           'urządzenie', 'dispozitiv', 'zariadenie', 'уређај', 'kifaa', 'சாதனம்', 'పరికరం', 'อุปกรณ์',
-                          'cihaz', 'آلہ', 'thiết bị', '设备', '設備', 'autoclaim', 'auto', '/autoclaim', '/auto',
-                          '.auto', 'autodaily', '/autodaily', 'autoclaimdaily', 'thiếtbị', 'devzice', 'devicp',
+                          'cihaz', 'آلہ', 'thiết bị', '设备', '設備', 'thiếtbị', 'devzice', 'devicp',
                           'devicej', 'deuvice', 'devize', 'devyce', 'demice', 'devici', 'odevice', 'devfce', 'divice',
                           'dezvice', 'devnice', 'deviae', 'denice', 'devicev', 'dpvice', 'dewice', 'devisce', 'idevice',
                           'dqvice', 'deivice', 'devicb', 'devimce', 'hdevice', 'dhvice', 'deviace', 'devicne', 'deqice',
@@ -1350,294 +1310,8 @@ class ProfileAuth(ext.Cog):
                           'dautwh', 'dguth', 'hauth', 'dautw', 'rdauth', 'daunth', 'dautgh', 'dauthk', 'dauath',
                           'dauthy', 'drauth', 'dautdh', 'vdauth', 'dauthl', 'dacth', 'doauth', 'daudh', 'dauthw',
                           'dwuth', 'hdauth', 'dautuh', 'daputh', 'daath', 'da6th', 'da7th', 'da8th', 'da^th', 'da&th',
-                          'da*th', 'dau4h', 'dau5h', 'dau6h', 'dau$h', 'dau%h', 'dau^h', 'uatodaily', 'autodialy',
-                          'autodaioy', 'autodail', 'autodaiyl', 'utodaily', 'atodaily', 'autodaly', 'autodiaily',
-                          'automaily', 'autodailyt', 'akutodaily', 'autodadily', 'auotdaily', 'autoqaily', 'autodaiy',
-                          'awutodaily', 'autodaidly', 'autodaliy', 'iautodaily', 'aoutodaily', 'autodily', 'autodnaily',
-                          'autoadily', 'autodaimy', 'autkdaily', 'autodailyb', 'oautodaily', 'autkodaily', 'autodaiwy',
-                          'autjodaily', 'atutodaily', 'autodxily', 'attodaily', 'autodailjy', 'autodailay', 'autodarly',
-                          'antodaily', 'autdaily', 'auqtodaily', 'aufodaily', 'auodaily', 'autodairy', 'autodkaily',
-                          'avutodaily', 'autodazly', 'autodailn', 'autodatily', 'autadaily', 'aitodaily', 'ajutodaily',
-                          'autodafly', 'autdoaily', 'auvtodaily', 'auhodaily', 'autodaiply', 'autoaily', 'autoxaily',
-                          'autodailly', 'autpdaily', 'autodzaily', 'sautodaily', 'autodailyy', 'autodaigy', 'gutodaily',
-                          'autodarily', 'autmodaily', 'autodailya', 'ayutodaily', 'qutodaily', 'autodailny',
-                          'auvodaily', 'autodaity', 'ahutodaily', 'autrodaily', 'autoeaily', 'altodaily', 'autodailh',
-                          'autodeaily', 'atuodaily', 'vutodaily', 'autaodaily', 'aeutodaily', 'autodailr', 'abtodaily',
-                          'tautodaily', 'autobaily', 'autodaipy', 'autodailm', 'autogdaily', 'autodailyg', 'autodaqly',
-                          'aatodaily', 'autodailzy', 'autowaily', 'autopdaily', 'autodaaily', 'auzodaily', 'autodaioly',
-                          'autodailys', 'autoduaily', 'autodaidy', 'autoodaily', 'autiodaily', 'autvdaily',
-                          'autodsaily', 'autodailyv', 'amutodaily', 'auqodaily', 'autodasily', 'autosaily',
-                          'autoidaily', 'autoyaily', 'wautodaily', 'autodpily', 'autotaily', 'autodyaily', 'autodaiky',
-                          'auitodaily', 'autodhaily', 'wutodaily', 'autodailgy', 'auttodaily', 'autodaiyy',
-                          'autodaiqly', 'auntodaily', 'autodcily', 'iutodaily', 'autodaify', 'autordaily', 'autodaizy',
-                          'auktodaily', 'aujtodaily', 'autzdaily', 'lutodaily', 'nautodaily', 'zautodaily', 'aueodaily',
-                          'autodailyr', 'autodailyp', 'eutodaily', 'autodaiqy', 'autodaikly', 'aumtodaily', 'autodaisy',
-                          'austodaily', 'awtodaily', 'authdaily', 'autodaizly', 'autovaily', 'autodailyn', 'aautodaily',
-                          'aunodaily', 'autojaily', 'autodcaily', 'adutodaily', 'autodmily', 'autodyily', 'autidaily',
-                          'autodagily', 'autodailty', 'autodailk', 'autoiaily', 'autpodaily', 'autodaiuy', 'xautodaily',
-                          'autodailoy', 'autodailw', 'autodailym', 'rautodaily', 'aultodaily', 'autodailey',
-                          'autodailky', 'kutodaily', 'autodqily', 'autodzily', 'autodbily', 'autodaili', 'auetodaily',
-                          'auuodaily', 'autodailxy', 'autodaaly', 'auytodaily', 'autodacily', 'autolaily', 'autodailv',
-                          'auftodaily', 'aurodaily', 'auwtodaily', 'autodails', 'autodaila', 'gautodaily', 'autobdaily',
-                          'autodaijly', 'autodavily', 'autodailhy', 'autodailu', 'autodaiuly', 'autodailyh',
-                          'auaodaily', 'autooaily', 'uutodaily', 'pautodaily', 'jutodaily', 'autoadaily', 'vautodaily',
-                          'autfdaily', 'autodlaily', 'autudaily', 'autcodaily', 'autodailry', 'cutodaily', 'autodailyl',
-                          'autodaiily', 'autofaily', 'autodaxily', 'aqtodaily', 'autodailyk', 'eautodaily', 'aotodaily',
-                          'autodajly', 'autodaifly', 'autodailx', 'autodagly', 'abutodaily', 'autodadly', 'nutodaily',
-                          'autwdaily', 'autodbaily', 'autbodaily', 'autodaiyly', 'autodraily', 'autodamily',
-                          'autodahly', 'autokaily', 'autodjily', 'autosdaily', 'autodailqy', 'autodailq', 'autyodaily',
-                          'autodairly', 'autodhily', 'azutodaily', 'autodacly', 'autodaihy', 'amtodaily', 'zutodaily',
-                          'autodwaily', 'autogaily', 'bautodaily', 'aukodaily', 'autodailwy', 'autodailcy', 'autodably',
-                          'autoedaily', 'autxdaily', 'autodailby', 'autodxaily', 'autodaiey', 'aztodaily', 'autuodaily',
-                          'aftodaily', 'autodaxly', 'autodafily', 'autodailfy', 'autoxdaily', 'hautodaily',
-                          'autodailyf', 'axutodaily', 'autodaiby', 'auutodaily', 'autodnily', 'autodaigly', 'autodailc',
-                          'autondaily', 'autodamly', 'auteodaily', 'autohdaily', 'autodailf', 'autodawly', 'augtodaily',
-                          'autodailye', 'autodaile', 'autodazily', 'artodaily', 'autodailyz', 'agtodaily', 'avtodaily',
-                          'autodainy', 'autodailyc', 'autodfaily', 'autodaihly', 'agutodaily', 'autodaiay',
-                          'autofdaily', 'autoduily', 'autodoily', 'aqutodaily', 'acutodaily', 'autcdaily', 'arutodaily',
-                          'auptodaily', 'autrdaily', 'autodaely', 'autfodaily', 'autodwily', 'aujodaily', 'autvodaily',
-                          'ajtodaily', 'autodmaily', 'autodainly', 'autodailb', 'autodaibly', 'autqodaily',
-                          'aubtodaily', 'autodailg', 'autodailiy', 'autodaiely', 'aubodaily', 'butodaily', 'autoddaily',
-                          'auoodaily', 'autodiily', 'autgodaily', 'augodaily', 'autodailz', 'autoraily', 'autodeily',
-                          'autodanily', 'autodaicly', 'autodaply', 'autodaivy', 'autodajily', 'autodtily', 'hutodaily',
-                          'cautodaily', 'futodaily', 'lautodaily', 'autodlily', 'autodaicy', 'autodrily', 'autodaoily',
-                          'autodaiiy', 'autozdaily', 'autovdaily', 'autqdaily', 'dutodaily', 'aucodaily', 'autodaijy',
-                          'autwodaily', 'autodailyd', 'aytodaily', 'autocdaily', 'autoaaily', 'autsodaily',
-                          'autdodaily', 'autodfily', 'autodakily', 'autgdaily', 'auatodaily', 'axtodaily', 'autlodaily',
-                          'autxodaily', 'auyodaily', 'autodailyj', 'autoddily', 'sutodaily', 'yautodaily', 'autodally',
-                          'autocaily', 'autodaild', 'autodaimly', 'outodaily', 'autouaily', 'autodasly', 'autodailyx',
-                          'autodgaily', 'autonaily', 'autedaily', 'autodaill', 'auiodaily', 'autodaitly', 'audodaily',
-                          'putodaily', 'adtodaily', 'kautodaily', 'autodalily', 'autodailp', 'autodaildy', 'autodapily',
-                          'jautodaily', 'autydaily', 'autodailt', 'autodkily', 'autnodaily', 'autodakly', 'autodgily',
-                          'autodailmy', 'autodailj', 'ahtodaily', 'autodaeily', 'autmdaily', 'mautodaily', 'autldaily',
-                          'aumodaily', 'aptodaily', 'autoydaily', 'autopaily', 'autodatly', 'autodabily', 'aiutodaily',
-                          'autjdaily', 'autodoaily', 'autodawily', 'aetodaily', 'autodaoly', 'autohaily', 'auwodaily',
-                          'autoqdaily', 'auhtodaily', 'autbdaily', 'autodailyw', 'autodayily', 'auotodaily',
-                          'autzodaily', 'auxodaily', 'afutodaily', 'autodaixly', 'autodailsy', 'autotdaily',
-                          'anutodaily', 'automdaily', 'autodailuy', 'asutodaily', 'autodanly', 'autozaily', 'autndaily',
-                          'actodaily', 'autodauly', 'autodayly', 'aupodaily', 'ausodaily', 'autodaqily', 'aputodaily',
-                          'autodauily', 'qautodaily', 'audtodaily', 'xutodaily', 'autodaialy', 'autojdaily',
-                          'auxtodaily', 'fautodaily', 'aurtodaily', 'alutodaily', 'mutodaily', 'autodailpy',
-                          'autodpaily', 'autodaixy', 'autodaisly', 'aulodaily', 'auttdaily', 'autodsily', 'autowdaily',
-                          'autodqaily', 'auztodaily', 'autodjaily', 'autodailyq', 'auctodaily', 'uautodaily',
-                          'autodahily', 'autodaiwly', 'autodailyi', 'dautodaily', 'aktodaily', 'autddaily',
-                          'authodaily', 'autodvily', 'autoudaily', 'autodtaily', 'yutodaily', 'autodailvy', 'autsdaily',
-                          'tutodaily', 'autokdaily', 'autodailyo', 'autodailo', 'astodaily', 'autodavly', 'rutodaily',
-                          'autodailyu', 'autodaivly', 'autodvaily', 'autoldaily', 'a6todaily', 'a7todaily', 'a8todaily',
-                          'a^todaily', 'a&todaily', 'a*todaily', 'au4odaily', 'au5odaily', 'au6odaily', 'au$odaily',
-                          'au%odaily', 'au^odaily', 'aut8daily', 'aut9daily', 'aut0daily', 'aut;daily', 'aut*daily',
-                          'aut(daily', 'aut)daily', 'autoda7ly', 'autoda8ly', 'autoda9ly', 'autoda&ly', 'autoda*ly',
-                          'autoda(ly', 'autodai;y', 'autodai/y', 'autodai.y', 'autodai,y', 'autodai?y', 'autodai>y',
-                          'autodai<y', 'autodail5', 'autodail6', 'autodail7', 'autodail%', 'autodail^', 'autodail&',
-                          'autoclaikm', 'autocliam', 'utoclaim', 'dautoclaim', 'autocyaim', 'adtoclaim', 'autoclaimy',
-                          'autoclxim', 'autolcaim', 'autoclaimm', 'autocuaim', 'autocaim', 'autoclami', 'atoclaim',
-                          'autolaim', 'autocalim', 'autcolaim', 'aftoclaim', 'mautoclaim', 'autoclpim', 'autoclalm',
-                          'autclaim', 'autobclaim', 'rutoclaim', 'auttoclaim', 'autoceaim', 'autovlaim', 'uatoclaim',
-                          'autoclfim', 'agutoclaim', 'autoclai', 'autmoclaim', 'autokclaim', 'autocloaim', 'zautoclaim',
-                          'autoalaim', 'xutoclaim', 'autoclagim', 'qautoclaim', 'pautoclaim', 'lutoclaim', 'autoclajm',
-                          'atuoclaim', 'autoflaim', 'autoclaitm', 'autoclayim', 'autocoaim', 'eautoclaim', 'auoclaim',
-                          'autoclaimc', 'autoclavim', 'auotclaim', 'autocllaim', 'autoclaimv', 'auutoclaim',
-                          'autoclakm', 'autoclim', 'autocltaim', 'autoclaijm', 'mutoclaim', 'autoclaib', 'autoclam',
-                          'aufoclaim', 'actoclaim', 'autoclaij', 'autoclaix', 'artoclaim', 'autoclaiy', 'autnoclaim',
-                          'autoclkim', 'autoclaqim', 'autoylaim', 'autoclakim', 'autoclaeim', 'aitoclaim', 'autoclaaim',
-                          'uautoclaim', 'uutoclaim', 'autoclaims', 'antoclaim', 'autocljaim', 'autocklaim',
-                          'autgoclaim', 'autwoclaim', 'autocluim', 'autonlaim', 'autoclaxm', 'autoctlaim', 'autoclafim',
-                          'autochlaim', 'autoclaimx', 'autocleim', 'autoclalim', 'auuoclaim', 'ausoclaim', 'aupoclaim',
-                          'autfoclaim', 'autioclaim', 'autoclbim', 'autoclaihm', 'amutoclaim', 'auftoclaim',
-                          'automlaim', 'jutoclaim', 'autovclaim', 'autoclaiim', 'adutoclaim', 'avutoclaim',
-                          'autocplaim', 'autocladm', 'autocslaim', 'autsclaim', 'axtoclaim', 'auooclaim', 'autoclaia',
-                          'autoslaim', 'autoclcim', 'autoclasm', 'aucoclaim', 'autcclaim', 'auitoclaim', 'autocloim',
-                          'auvtoclaim', 'aktoclaim', 'kutoclaim', 'autoclafm', 'tutoclaim', 'autoclatm', 'autoyclaim',
-                          'autoclaxim', 'autocnaim', 'putoclaim', 'autoclair', 'autoclaiam', 'autoclwim', 'aqutoclaim',
-                          'autoclanim', 'autotclaim', 'autoclnim', 'iutoclaim', 'autyclaim', 'autoaclaim', 'aultoclaim',
-                          'aetoclaim', 'autoclawim', 'autocmaim', 'fautoclaim', 'hautoclaim', 'autnclaim', 'autoclaih',
-                          'autofclaim', 'autoclmaim', 'oautoclaim', 'autoclabim', 'aukoclaim', 'autoclaig',
-                          'autocvlaim', 'autozlaim', 'autocrlaim', 'autocldim', 'autoclatim', 'autoclaimi', 'autoclrim',
-                          'autoclaimh', 'autrclaim', 'autjoclaim', 'autochaim', 'aputoclaim', 'autoclmim', 'autoclaiv',
-                          'autoclapm', 'authclaim', 'autoczlaim', 'autoclaiu', 'autoclaiqm', 'akutoclaim', 'aoutoclaim',
-                          'abutoclaim', 'autoclauim', 'anutoclaim', 'autoczaim', 'arutoclaim', 'autoclanm',
-                          'auhtoclaim', 'auyoclaim', 'autocflaim', 'autoclyaim', 'autozclaim', 'autboclaim',
-                          'autocdlaim', 'autocelaim', 'auloclaim', 'autxoclaim', 'autocjaim', 'autoblaim', 'autoclaiz',
-                          'autdclaim', 'autqoclaim', 'autoclaoim', 'autoclaimw', 'autojlaim', 'ahtoclaim', 'aqtoclaim',
-                          'autocluaim', 'autwclaim', 'autoclzim', 'aytoclaim', 'outoclaim', 'autoclaip', 'autkoclaim',
-                          'autoccaim', 'autoclaimq', 'autvclaim', 'qutoclaim', 'autorlaim', 'autoclahm', 'autoulaim',
-                          'agtoclaim', 'aptoclaim', 'autocylaim', 'altoclaim', 'autoclaism', 'autocnlaim', 'autoclazim',
-                          'autoclaibm', 'autoclvim', 'autoclahim', 'autooclaim', 'atutoclaim', 'autoclaiem',
-                          'autoclazm', 'aiutoclaim', 'autowclaim', 'autoclamm', 'autoplaim', 'alutoclaim', 'autoclabm',
-                          'autotlaim', 'autbclaim', 'autoilaim', 'augoclaim', 'auaoclaim', 'autoclaiq', 'butoclaim',
-                          'autocgaim', 'autocwaim', 'autocclaim', 'autocfaim', 'autocpaim', 'auwoclaim', 'autoclaimr',
-                          'autoiclaim', 'auticlaim', 'augtoclaim', 'autuoclaim', 'tautoclaim', 'autoclain', 'auqoclaim',
-                          'autoglaim', 'autoclawm', 'auteclaim', 'axutoclaim', 'autoolaim', 'attoclaim', 'autxclaim',
-                          'auwtoclaim', 'autdoclaim', 'auytoclaim', 'autoclaik', 'autoclvaim', 'autohlaim', 'autoxlaim',
-                          'autpclaim', 'asutoclaim', 'sautoclaim', 'autzoclaim', 'afutoclaim', 'autfclaim',
-                          'autoclaimz', 'autocljim', 'autocliaim', 'autoclait', 'auxoclaim', 'autoclaimk', 'aautoclaim',
-                          'autuclaim', 'aujtoclaim', 'lautoclaim', 'auttclaim', 'autoculaim', 'futoclaim', 'auteoclaim',
-                          'autoclais', 'autoclaidm', 'autaclaim', 'autoclaam', 'autocltim', 'auktoclaim', 'autocbaim',
-                          'autocwlaim', 'automclaim', 'auqtoclaim', 'autocllim', 'aujoclaim', 'autocsaim', 'autoclaigm',
-                          'autoclcaim', 'astoclaim', 'autodclaim', 'autoclaem', 'autoclhim', 'autoclajim', 'audoclaim',
-                          'autoclgaim', 'autohclaim', 'xautoclaim', 'autoxclaim', 'auctoclaim', 'autpoclaim',
-                          'austoclaim', 'autroclaim', 'bautoclaim', 'audtoclaim', 'aumoclaim', 'ahutoclaim',
-                          'autoclaid', 'jautoclaim', 'autocjlaim', 'auboclaim', 'abtoclaim', 'dutoclaim', 'autoclaimn',
-                          'azutoclaim', 'autlclaim', 'autoclaimb', 'autocqlaim', 'autocraim', 'autoclqaim', 'autocliim',
-                          'autoclacim', 'autkclaim', 'autyoclaim', 'autzclaim', 'autocalaim', 'autollaim', 'autoctaim',
-                          'autqclaim', 'auhoclaim', 'autoclaimp', 'autocblaim', 'awutoclaim', 'autoclairm', 'autoclaum',
-                          'ajtoclaim', 'autoclaimu', 'zutoclaim', 'auxtoclaim', 'autoclaima', 'autocdaim', 'autojclaim',
-                          'autowlaim', 'autoclaiym', 'auioclaim', 'awtoclaim', 'autoqclaim', 'autoclfaim', 'avtoclaim',
-                          'cutoclaim', 'autocglaim', 'autoclpaim', 'autoclavm', 'autoclaipm', 'aeutoclaim', 'autoclagm',
-                          'nutoclaim', 'autoclaif', 'aztoclaim', 'yutoclaim', 'autaoclaim', 'authoclaim', 'rautoclaim',
-                          'autoclkaim', 'acutoclaim', 'auroclaim', 'autoclaie', 'autoclaimg', 'aubtoclaim', 'autoklaim',
-                          'autoclgim', 'autoclapim', 'autoclaiml', 'aotoclaim', 'vutoclaim', 'autcoclaim', 'autocmlaim',
-                          'auvoclaim', 'autopclaim', 'autoclaii', 'autoclaivm', 'aunoclaim', 'autoelaim', 'vautoclaim',
-                          'ajutoclaim', 'autoclaifm', 'autoclasim', 'auetoclaim', 'auntoclaim', 'wutoclaim',
-                          'autoclaicm', 'autoclaimd', 'autoclsaim', 'autoclaiwm', 'autmclaim', 'autocladim',
-                          'autocilaim', 'autoclacm', 'autoclxaim', 'autgclaim', 'autocolaim', 'autoclaizm',
-                          'aumtoclaim', 'autoclaom', 'autocvaim', 'amtoclaim', 'auotoclaim', 'autoclaio', 'autocaaim',
-                          'autosclaim', 'autoclhaim', 'autoclaium', 'autoclaqm', 'yautoclaim', 'autocqaim',
-                          'autoclnaim', 'autoclaimj', 'kautoclaim', 'sutoclaim', 'autoqlaim', 'autoclaimo',
-                          'autoclaimt', 'iautoclaim', 'cautoclaim', 'auztoclaim', 'autoclailm', 'autockaim',
-                          'autoclamim', 'autoclaime', 'autocxaim', 'auatoclaim', 'autocxlaim', 'autoeclaim',
-                          'autoclzaim', 'gutoclaim', 'autjclaim', 'autodlaim', 'autorclaim', 'autvoclaim', 'wautoclaim',
-                          'eutoclaim', 'autoclaiom', 'autoclbaim', 'autoclaiw', 'autoclyim', 'autoclqim', 'autolclaim',
-                          'autocldaim', 'aatoclaim', 'autogclaim', 'autoclarm', 'autoclraim', 'autoclaic', 'gautoclaim',
-                          'autonclaim', 'autloclaim', 'auptoclaim', 'autoclaym', 'aurtoclaim', 'autoclarim',
-                          'auzoclaim', 'aueoclaim', 'autoclainm', 'autoclwaim', 'autociaim', 'autouclaim', 'autoclail',
-                          'nautoclaim', 'hutoclaim', 'autoclsim', 'autoclaixm', 'autsoclaim', 'ayutoclaim',
-                          'autoclaimf', 'autocleaim', 'a6toclaim', 'a7toclaim', 'a8toclaim', 'a^toclaim', 'a&toclaim',
-                          'a*toclaim', 'au4oclaim', 'au5oclaim', 'au6oclaim', 'au$oclaim', 'au%oclaim', 'au^oclaim',
-                          'aut8claim', 'aut9claim', 'aut0claim', 'aut;claim', 'aut*claim', 'aut(claim', 'aut)claim',
-                          'autoc;aim', 'autoc/aim', 'autoc.aim', 'autoc,aim', 'autoc?aim', 'autoc>aim', 'autoc<aim',
-                          'autocla7m', 'autocla8m', 'autocla9m', 'autocla&m', 'autocla*m', 'autocla(m', 'autoclai,',
-                          'autoclai<', 'uato', 'augto', 'auko', 'aquto', 'atuo', 'yuto', 'agto', 'aeto', 'auo', 'auot',
-                          'ato', 'autoq', 'nuto', 'auato', 'autop', 'auuto', 'oauto', 'aurto', 'aputo', 'eauto',
-                          'autoo', 'muto', 'aluto', 'ajto', 'aumo', 'aupto', 'ajuto', 'autgo', 'amto', 'uto', 'jauto',
-                          'autos', 'auhto', 'auqto', 'aulto', 'auho', 'auco', 'auyo', 'ahto', 'aeuto', 'aupo', 'autoa',
-                          'aulo', 'auxo', 'buto', 'autov', 'yauto', 'hauto', 'auvto', 'pauto', 'kuto', 'auno', 'auro',
-                          'adto', 'autob', 'autro', 'aujto', 'axto', 'asuto', 'avuto', 'autd', 'aute', 'autj', 'autio',
-                          'asto', 'auoo', 'auxto', 'wauto', 'auso', 'suto', 'auton', 'autoj', 'auwo', 'auti',
-                          'aruto', 'autb', 'aiuto', 'audto', 'azuto', 'acto', 'aoto', 'autbo', 'quto', 'wuto', 'xuto',
-                          'arto', 'audo', 'autm', 'autw', 'autto', 'qauto', 'autco', 'aubto', 'abuto', 'acuto', 'aqto',
-                          'axuto', 'akuto', 'autwo', 'auwto', 'guto', 'anto', 'autv', 'autfo', 'auzo', 'autoh', 'autc',
-                          'fauto', 'autvo', 'aubo', 'autoy', 'aito', 'autdo', 'luto', 'autoz', 'vauto', 'autho', 'iuto',
-                          'autao', 'huto', 'vuto', 'auito', 'akto', 'auteo', 'autl', 'aouto', 'autod', 'abto', 'tauto',
-                          'iauto', 'autor', 'autko', 'autom', 'autjo', 'autzo', 'autf', 'lauto', 'euto', 'autp',
-                          'sauto', 'auyto', 'autso', 'atto', 'autox', 'azto', 'aufto', 'auuo', 'mauto', 'aduto', 'autz',
-                          'ahuto', 'futo', 'ruto', 'austo', 'autoc', 'autxo', 'anuto', 'autol', 'autok', 'bauto',
-                          'autuo', 'autyo', 'alto', 'ayto', 'rauto', 'aueo', 'autow', 'juto', 'auzto', 'zauto', 'autq',
-                          'autg', 'aato', 'puto', 'uuto', 'aunto', 'autoe', 'cuto', 'autk', 'awto', 'autqo', 'auqo',
-                          'uauto', 'aauto', 'aucto', 'autot', 'nauto', 'autoi', 'auts', 'auvo', 'auty', 'auio', 'aukto',
-                          'auoto', 'autt', 'autou', 'auao', 'autpo', 'autu', 'duto', 'gauto', 'amuto', 'aguto', 'autmo',
-                          'autog', 'ayuto', 'avto', 'afuto', 'autno', 'autr', 'aujo', 'augo', 'autof', 'autlo', 'zuto',
-                          'outo', 'kauto', 'apto', 'aumto', 'xauto', 'afto', 'cauto', 'aueto', 'autx', 'atuto', 'aufo',
-                          'awuto', 'a6to', 'a7to', 'a8to', 'a^to', 'a&to', 'a*to', 'au4o', 'au5o', 'au6o', 'au$o',
-                          'au%o', 'au^o', 'aut8', 'aut9', 'aut0', 'aut;', 'aut*', 'aut(', 'aut)', 'agtoclaimer',
-                          'autocalimer', 'tautoclaimer', 'ausoclaimer', 'autoclaimez', 'autoclaimber', 'autcolaimer',
-                          'autoclaimre', 'autoclamier', 'autoclawmer', 'autoclwimer', 'atoclaimer', 'autokclaimer',
-                          'autodclaimer', 'autoclaiymer', 'auetoclaimer', 'autclaimer', 'autoclaier', 'autoclaiimer',
-                          'autoclaimet', 'uatoclaimer', 'mautoclaimer', 'auotoclaimer', 'autoclaiemr', 'azutoclaimer',
-                          'autocilaimer', 'altoclaimer', 'autoclacmer', 'arutoclaimer', 'autoclaiber', 'autolcaimer',
-                          'afutoclaimer', 'autolclaimer', 'autoclaimeg', 'autoclaimerv', 'autoclaoimer', 'vautoclaimer',
-                          'auitoclaimer', 'autoflaimer', 'autyclaimer', 'autoulaimer', 'autoclaiqmer', 'autwoclaimer',
-                          'autocladmer', 'autoclaimek', 'autoclamer', 'atuoclaimer', 'autoclaiier', 'autsoclaimer',
-                          'autoclimer', 'aujtoclaimer', 'auloclaimer', 'autocllaimer', 'yautoclaimer', 'autoclauimer',
-                          'agutoclaimer', 'autoclaimerm', 'autoclawimer', 'autocliamer', 'autocliimer', 'auotclaimer',
-                          'autoclaimsr', 'auatoclaimer', 'autoclaidmer', 'aetoclaimer', 'autocdaimer', 'autocxaimer',
-                          'autoclaimery', 'autoclasmer', 'autoclaimeur', 'automclaimer', 'auoclaimer', 'autoclatimer',
-                          'autocaimer', 'auboclaimer', 'autoclaimer', 'autoclarimer', 'aumoclaimer', 'autoclaimler',
-                          'kautoclaimer', 'atutoclaimer', 'autoclaimepr', 'autoclanimer', 'akutoclaimer',
-                          'autoclamimer', 'autonlaimer', 'autoclaitmer', 'autoclsaimer', 'autoclaimrr', 'autocflaimer',
-                          'autoclaymer', 'autohlaimer', 'autoclaiker', 'auxoclaimer', 'autocliaimer', 'aufoclaimer',
-                          'autocklaimer', 'autochaimer', 'auzoclaimer', 'autohclaimer', 'autoaclaimer', 'autoclaijmer',
-                          'autolaimer', 'autlclaimer', 'autoclhaimer', 'autochlaimer', 'autoclaiemer', 'autoclgimer',
-                          'autoklaimer', 'autoclaimex', 'xutoclaimer', 'autoclaaimer', 'aumtoclaimer', 'autojclaimer',
-                          'autoclaiper', 'autgoclaimer', 'autoclaimerr', 'anutoclaimer', 'autoclaimier', 'autoclaimecr',
-                          'autocelaimer', 'autoclaiser', 'autoclaimaer', 'autoclaumer', 'autocnlaimer', 'utoclaimer',
-                          'rutoclaimer', 'auttoclaimer', 'autoclaimlr', 'nautoclaimer', 'autoceaimer', 'autoclaimeri',
-                          'acutoclaimer', 'autoclaivmer', 'cautoclaimer', 'autoclaimera', 'autoilaimer', 'putoclaimer',
-                          'autoqlaimer', 'autoclpaimer', 'autoclaimedr', 'autoclaimfer', 'autoclaimder', 'autoclaimejr',
-                          'autoclaimqer', 'adtoclaimer', 'autoclaimep', 'autoclqimer', 'autocmlaimer', 'autoclaimea',
-                          'autoclaimexr', 'auyoclaimer', 'autocmaimer', 'xautoclaimer', 'autoclvaimer', 'autoclaeimer',
-                          'autocblaimer', 'autoclaximer', 'auwoclaimer', 'autoclaiwer', 'autocltaimer', 'authoclaimer',
-                          'autocpaimer', 'aitoclaimer', 'autbclaimer', 'autoclaimver', 'autoclaimeer', 'attoclaimer',
-                          'autoclajmer', 'autoclmimer', 'autocglaimer', 'autoclaimeu', 'autoclgaimer', 'autoclaimir',
-                          'autzclaimer', 'autocltimer', 'autoclabmer', 'autoclaxmer', 'autoclaimere', 'auctoclaimer',
-                          'autoclaixer', 'autoclaibmer', 'autoclacimer', 'aukoclaimer', 'autoclaicmer', 'autoclaiher',
-                          'autocslaimer', 'auqoclaimer', 'autoclaimor', 'autoclaimcer', 'autoclaimser', 'autoclraimer',
-                          'autoclxaimer', 'autaclaimer', 'ahutoclaimer', 'augoclaimer', 'autoctaimer', 'avutoclaimer',
-                          'autoalaimer', 'dutoclaimer', 'autoclaamer', 'autojlaimer', 'autoclahmer', 'autocylaimer',
-                          'autoclaimdr', 'abtoclaimer', 'autollaimer', 'autowlaimer', 'augtoclaimer', 'axtoclaimer',
-                          'aktoclaimer', 'autoiclaimer', 'aotoclaimer', 'autloclaimer', 'aftoclaimer', 'autoclaimjr',
-                          'aubtoclaimer', 'autboclaimer', 'autoclaimmr', 'autoclaimfr', 'autoculaimer', 'qautoclaimer',
-                          'autocjlaimer', 'autoclaimyr', 'autocaaimer', 'autoclkaimer', 'awutoclaimer', 'autoclahimer',
-                          'pautoclaimer', 'autoclaicer', 'autoclaqimer', 'autoclaimbr', 'autoclaimger', 'autoclaimter',
-                          'aytoclaimer', 'autocoaimer', 'outoclaimer', 'autoclaimwer', 'autocsaimer', 'autoclaimemr',
-                          'lautoclaimer', 'autoclaimerd', 'autoclaimcr', 'artoclaimer', 'autoclaimerf', 'autuoclaimer',
-                          'autocfaimer', 'autocljimer', 'aucoclaimer', 'autocladimer', 'oautoclaimer', 'autoclajimer',
-                          'autoclnaimer', 'autvoclaimer', 'auwtoclaimer', 'autoclaimerq', 'autoclaimeqr',
-                          'autoclaimezr', 'autorlaimer', 'autoclsimer', 'autoelaimer', 'autfoclaimer', 'kutoclaimer',
-                          'auttclaimer', 'autoclaimur', 'autosclaimer', 'auptoclaimer', 'autocbaimer', 'autoclcimer',
-                          'autoclakimer', 'autfclaimer', 'autoclaimesr', 'autjoclaimer', 'autoclaimvr', 'autoclaimzer',
-                          'autoclaimey', 'autocqaimer', 'autocwlaimer', 'autoclaimeo', 'autocjaimer', 'yutoclaimer',
-                          'autoclatmer', 'autroclaimer', 'autoclaemer', 'nutoclaimer', 'autoclaimear', 'aatoclaimer',
-                          'autoclaimev', 'hautoclaimer', 'autoclaimebr', 'autdclaimer', 'automlaimer', 'autnclaimer',
-                          'autotclaimer', 'awtoclaimer', 'gutoclaimer', 'autoctlaimer', 'autoclaimers', 'autoclaihmer',
-                          'autoolaimer', 'autodlaimer', 'autoclaiyer', 'autocrlaimer', 'jautoclaimer', 'auutoclaimer',
-                          'autoclaimtr', 'autoclarmer', 'autoclailer', 'autofclaimer', 'autoclyaimer', 'aiutoclaimer',
-                          'autoclaimeru', 'autkclaimer', 'autoclrimer', 'autoxlaimer', 'autoclaimekr', 'wutoclaimer',
-                          'autoclbaimer', 'autvclaimer', 'alutoclaimer', 'autoclaimefr', 'autoclaiumer', 'autoclaimqr',
-                          'autqclaimer', 'autoslaimer', 'autoclaimenr', 'audtoclaimer', 'autocqlaimer', 'eautoclaimer',
-                          'autoclaieer', 'autocvaimer', 'uutoclaimer', 'autocnaimer', 'autocwaimer', 'auioclaimer',
-                          'auticlaimer', 'sutoclaimer', 'autoclaiwmer', 'autoclaioer', 'autovlaimer', 'autpoclaimer',
-                          'autoclzimer', 'autoclmaimer', 'autoczaimer', 'autoclximer', 'autoclabimer', 'autkoclaimer',
-                          'eutoclaimer', 'auroclaimer', 'astoclaimer', 'autoclavimer', 'autnoclaimer', 'autocraimer',
-                          'autonclaimer', 'wautoclaimer', 'auooclaimer', 'auqtoclaimer', 'avtoclaimer', 'hutoclaimer',
-                          'autwclaimer', 'autoclyimer', 'zutoclaimer', 'autmoclaimer', 'aztoclaimer', 'butoclaimer',
-                          'auaoclaimer', 'abutoclaimer', 'autoclaiaer', 'autoclaimjer', 'auztoclaimer', 'tutoclaimer',
-                          'autsclaimer', 'aputoclaimer', 'autooclaimer', 'autoclaimpr', 'autoblaimer', 'ayutoclaimer',
-                          'autoclagimer', 'autcclaimer', 'autoclaimert', 'autoclaimern', 'autocplaimer', 'autxoclaimer',
-                          'autoclzaimer', 'auktoclaimer', 'autoclaimper', 'autoclaimkr', 'authclaimer', 'autoclaimef',
-                          'autoclaimrer', 'aunoclaimer', 'autorclaimer', 'autoclaimerp', 'iautoclaimer', 'autoclaimerz',
-                          'autocluimer', 'autoclaimerg', 'autoclaimel', 'autoclaigmer', 'autmclaimer', 'autoclaimerc',
-                          'autoclagmer', 'autoclaimero', 'dautoclaimer', 'auvtoclaimer', 'aautoclaimer', 'autozlaimer',
-                          'autovclaimer', 'vutoclaimer', 'aujoclaimer', 'autoclcaimer', 'autoclazmer', 'lutoclaimer',
-                          'autoclaimed', 'autoclaimgr', 'autoclafimer', 'autqoclaimer', 'autdoclaimer', 'autocyaimer',
-                          'autoclaimee', 'aoutoclaimer', 'autoclaimelr', 'autocleimer', 'rautoclaimer', 'autoclaimevr',
-                          'fautoclaimer', 'autoclaimen', 'adutoclaimer', 'aeutoclaimer', 'autoclaimeh', 'autoclvimer',
-                          'aurtoclaimer', 'autoclaizer', 'aupoclaimer', 'autoclfimer', 'autoclaimmer', 'autuclaimer',
-                          'autoclaimeir', 'auuoclaimer', 'auntoclaimer', 'autrclaimer', 'autioclaimer', 'autoclaimegr',
-                          'autoclaiter', 'autocalaimer', 'autoclavmer', 'autoclaimxr', 'autocdlaimer', 'autoclaimem',
-                          'autoclaimxer', 'autcoclaimer', 'autotlaimer', 'autpclaimer', 'autoclbimer', 'autoclaifmer',
-                          'autociaimer', 'aultoclaimer', 'autoczlaimer', 'auteoclaimer', 'autocljaimer', 'aptoclaimer',
-                          'autocldimer', 'autoclaimerx', 'ahtoclaimer', 'autocloaimer', 'autoclaixmer', 'autowclaimer',
-                          'autoclaimerb', 'autoclaider', 'autaoclaimer', 'autoclfaimer', 'autoglaimer', 'autoclazimer',
-                          'uautoclaimer', 'autoclainmer', 'autoclnimer', 'autocclaimer', 'autoclaimoer', 'autoclaifer',
-                          'autoclaismer', 'autoclanmer', 'autoclailmer', 'futoclaimer', 'autoclaimher', 'autoclairer',
-                          'autoclaimar', 'autoqclaimer', 'iutoclaimer', 'autoclairmer', 'aueoclaimer', 'autoclaimes',
-                          'autocvlaimer', 'axutoclaimer', 'aqutoclaimer', 'autoclaiamer', 'autoclaijer', 'cutoclaimer',
-                          'auvoclaimer', 'autoclaikmer', 'auftoclaimer', 'autoclaimerl', 'audoclaimer', 'autoclaiver',
-                          'autoclaimehr', 'autocluaimer', 'autocllimer', 'autoclaimew', 'austoclaimer', 'autoclwaimer',
-                          'bautoclaimer', 'autoclaimerh', 'autouclaimer', 'jutoclaimer', 'autoclaizmer', 'autoclhimer',
-                          'auhoclaimer', 'autoclaimker', 'autoclafmer', 'zautoclaimer', 'autoclaimeb', 'autocuaimer',
-                          'autoclaiuer', 'autoclpimer', 'autocxlaimer', 'auytoclaimer', 'ajutoclaimer', 'amutoclaimer',
-                          'autoplaimer', 'autoclaimewr', 'autoeclaimer', 'autoclaimyer', 'autoclasimer', 'aqtoclaimer',
-                          'autoclaiomer', 'sautoclaimer', 'autocgaimer', 'autoylaimer', 'autoclaimzr', 'autxclaimer',
-                          'auhtoclaimer', 'amtoclaimer', 'autoclaimec', 'auxtoclaimer', 'autocleaimer', 'ajtoclaimer',
-                          'actoclaimer', 'autoclaimerj', 'autoclaimeor', 'autoclayimer', 'autocolaimer', 'autoclqaimer',
-                          'qutoclaimer', 'autzoclaimer', 'autoclaimetr', 'autoyclaimer', 'autoclaimeyr', 'autocldaimer',
-                          'autoclkimer', 'autogclaimer', 'autoclakmer', 'autoclaimnr', 'autyoclaimer', 'mutoclaimer',
-                          'autoclaiqer', 'autoclainer', 'autoclaimwr', 'autoclaimerk', 'autockaimer', 'autoclaimerw',
-                          'antoclaimer', 'autoccaimer', 'autoclaimner', 'asutoclaimer', 'autoclaqmer', 'auteclaimer',
-                          'autoclapmer', 'autoclaimei', 'autoxclaimer', 'autgclaimer', 'autjclaimer', 'autopclaimer',
-                          'autoclaimej', 'autoclaimeq', 'autoclalimer', 'autoclaimhr', 'autozclaimer', 'autoclalmer',
-                          'autoclaiger', 'autoclaomer', 'autocloimer', 'autoclammer', 'gautoclaimer', 'autobclaimer',
-                          'autoclaipmer', 'autoclapimer', 'autoclaimuer', 'a6toclaimer', 'a7toclaimer', 'a8toclaimer',
-                          'a^toclaimer', 'a&toclaimer', 'a*toclaimer', 'au4oclaimer', 'au5oclaimer', 'au6oclaimer',
-                          'au$oclaimer', 'au%oclaimer', 'au^oclaimer', 'aut8claimer', 'aut9claimer', 'aut0claimer',
-                          'aut;claimer', 'aut*claimer', 'aut(claimer', 'aut)claimer', 'autoc;aimer', 'autoc/aimer',
-                          'autoc.aimer', 'autoc,aimer', 'autoc?aimer', 'autoc>aimer', 'autoc<aimer', 'autocla7mer',
-                          'autocla8mer', 'autocla9mer', 'autocla&mer', 'autocla*mer', 'autocla(mer', 'autoclai,er',
-                          'autoclai<er', 'autoclaim4r', 'autoclaim3r', 'autoclaim2r', 'autoclaim$r', 'autoclaim#r',
-                          'autoclaim@r', 'autoclaime3', 'autoclaime4', 'autoclaime5', 'autoclaime#', 'autoclaime$',
-                          'autoclaime%', 'liqk', 'lin', 'ilnk', 'lhink', 'likn', 'lint', 'tlink', 'lqnk', 'lilk',
+                          'da*th', 'dau4h', 'dau5h', 'dau6h', 'dau$h', 'dau%h', 'dau^h', 'uatodaily',
+                          'liqk', 'lin', 'ilnk', 'lhink', 'likn', 'lint', 'tlink', 'lqnk', 'lilk',
                           'lnik', 'liek', 'liok', 'lvink', 'linkw', 'lnk', 'linq', 'linbk', 'ink', 'lik', 'lxink',
                           'linck', 'lihk', 'ulink', 'link', 'lvnk', 'linmk', 'lxnk', 'lfnk', 'olink', 'lpink', 'lingk',
                           'lwink', 'linnk', 'oink', 'lqink', 'lpnk', 'line', 'lirnk', 'liknk', 'gink', 'livk', 'ltnk',

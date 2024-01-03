@@ -16,8 +16,9 @@ from discord import Option, OptionChoice
 from discord.commands import (  # Importing the decorator that makes slash commands.
     slash_command,
 )
-# from cache import AsyncLRU
 
+# from cache import AsyncLRU
+from ext.profile.automatedfunctions import create_autoclaim_embed
 import stwutil as stw
 
 logger = logging.getLogger(__name__)
@@ -284,12 +285,15 @@ class ResearchView(discord.ui.View):
             'fortitude': self.client.config["emojis"]["fortitude"],
             'offense': self.client.config["emojis"]['offense'],
             'resistance': self.client.config["emojis"]['resistance'],
-            'technology': self.client.config["emojis"]['technology']
+            'technology': self.client.config["emojis"]['technology'],
+            'library_clock': self.client.config["emojis"]['library_clock']
         }
 
         self.children = list(map(self.map_button_emojis, self.children))
 
-        for i, child in enumerate(self.children):
+        self.children[4].label = stw.I18n.get('generic.view.button.autoclaim', self.desired_lang)
+
+        for i, child in enumerate(self.children[0:4]):
             self.disable_button_when_poor(child, i)
             # hmm github copilot ;o maybe i should use it instead of writing everything :( it DOESNT work on the remote client :p it doesnt work well on the remote clientif it works
 
@@ -349,6 +353,46 @@ class ResearchView(discord.ui.View):
         """
         await self.universal_stat_process(interaction, "technology")
 
+    @discord.ui.button(style=discord.ButtonStyle.success, emoji="library_clock", row=2, label="Autoclaim")
+    async def autoclaim_button(self, _button, interaction):
+        """
+        Process the autoclaim button press
+
+        Args:
+            _button: The button object.
+            interaction: The interaction object.
+        """
+        res_green = self.client.colours["research_green"]
+        crown_yellow = self.client.colours["crown_yellow"]
+        total_points = self.total_points
+        current_levels = self.current_levels
+        proc_max = False
+        try:
+            if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels["technology"] == 480:
+                proc_max = True
+        except:
+            pass
+        max_fort_string = f"{stw.I18n.get('research.embed.maximumstats', self.desired_lang)}\n"
+        total_points_quantity = total_points["quantity"]
+        embed = discord.Embed(
+            title=await stw.add_emoji_title(self.client, stw.I18n.get('research.embed.title', self.desired_lang),
+                                            "crown" if proc_max else "research_point"),
+            description=(f'\u200b\n{max_fort_string if proc_max else ""}'
+                         f'{stw.I18n.get("research.embed.description.singular", self.desired_lang, total_points_quantity) if total_points["quantity"] == 1 else stw.I18n.get("research.embed.description.plural", self.desired_lang, f"{total_points_quantity:,}")}\n\u200b\n\u200b'),
+            colour=crown_yellow if proc_max else res_green
+        )
+
+        embed = await stw.set_thumbnail(self.client, embed, "crown" if proc_max else "research")
+        embed = await stw.add_requested_footer(self.ctx, embed, self.desired_lang)
+        embed = await add_fort_fields(self.client, embed, current_levels, self.desired_lang)
+        embed.add_field(name=f"\u200b", value=f"{stw.I18n.get('generic.embed.start.autoclaim', self.desired_lang)}\n\u200b")
+        for child in self.children:
+            child.disabled = True
+        await interaction.response.edit_message(embed=embed, view=self)
+        self.stop()
+
+        user_document = await self.client.get_user_document(self.ctx, self.client, self.ctx.author.id, desired_lang=self.desired_lang)
+        await create_autoclaim_embed(self.ctx, self.client, user_document["global"]["selected_profile"], user_document, self.desired_lang)
 
 async def research_query(ctx, client, auth_info, final_embeds, json_response, desired_lang):
     """
