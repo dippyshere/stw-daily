@@ -153,7 +153,8 @@ def check_number_goal(client, ctx, value) -> tuple[bool | int, bool]:
     except:
         return False, False
 
-@functools.lru_cache(maxsize=16)
+
+# @functools.lru_cache(maxsize=16)
 def check_autoresmethod(client, ctx, value) -> tuple[bool | str, bool]:
     """
     Returns if the inputted auto research method is a valid one
