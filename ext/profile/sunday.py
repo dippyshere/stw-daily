@@ -477,8 +477,8 @@ def generate_setting_options(client, options, user_document, selected_setting, d
         except:
             description = None
         select_options.append(discord.SelectOption(
-            label=stw.I18n.get(val['name'], desired_lang),
-            description=description,
+            label=stw.truncate(stw.I18n.get(val['name'], desired_lang)),
+            description=stw.truncate(description),
             value=attr,
             emoji=client.config["emojis"][val["emoji"]],
             default=True if current == attr else False))
@@ -902,7 +902,7 @@ def generate_settings_view_options(client, current_slice, desired_lang, selected
         emoji_key = client.default_settings[setting_option]["emoji"]
         logger.debug(f"Current slice: {current_slice}")
         select_options.append(discord.SelectOption(
-            label=stw.I18n.get(client.default_settings[setting_option]["localised_name"], desired_lang),
+            label=stw.truncate(stw.I18n.get(client.default_settings[setting_option]["localised_name"], desired_lang)),
             description=stw.truncate(stw.I18n.get(client.default_settings[setting_option]["short_description"], desired_lang)) if '.' not in stw.I18n.get(client.default_settings[setting_option]["short_description"], desired_lang) else None,
             value=setting_option + str(index),
             emoji=client.config["emojis"][emoji_key],

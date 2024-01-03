@@ -371,9 +371,9 @@ class Llamas(ext.Cog):
             llama_datatable = await stw.get_llama_datatable(self.client,
                                                             entry['displayAssetPath'].split('/Game/Items/CardPacks/')[
                                                                 -1].split('.')[0], desired_lang)
-            options.append(discord.SelectOption(label=llama_datatable[0], value=entry['offerId'],
-                                                description=stw.I18n.get("llamas.embed.description.price", desired_lang,
-                                                                         entry['prices'][0]['finalPrice']),
+            options.append(discord.SelectOption(label=stw.truncate(llama_datatable[0]), value=entry['offerId'],
+                                                description=stw.truncate(stw.I18n.get("llamas.embed.description.price", desired_lang,
+                                                                         entry['prices'][0]['finalPrice'])),
                                                 emoji=llama_datatable[2]))
         return options
 

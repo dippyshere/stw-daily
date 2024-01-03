@@ -363,12 +363,13 @@ class DailyQuests(ext.Cog):
                             case _:
                                 quest_icon_emoji = self.client.config["emojis"]["daily_quest"]
                         options.append(
-                            discord.SelectOption(label=quest_data[0]['Properties']['DisplayName']['SourceString'],
-                                                 value=quest["guid"],
-                                                 description=stw.truncate(
-                                                     quest_data[0]['Properties']['Objectives'][0]['Description'][
-                                                         'SourceString']),
-                                                 emoji=quest_icon_emoji))
+                            discord.SelectOption(
+                                label=stw.truncate(quest_data[0]['Properties']['DisplayName']['SourceString']),
+                                value=quest["guid"],
+                                description=stw.truncate(
+                                    quest_data[0]['Properties']['Objectives'][0]['Description'][
+                                        'SourceString']),
+                                emoji=quest_icon_emoji))
                         if selected_guid is not None and selected_guid == quest["guid"]:
                             options[-1].default = True
                         break

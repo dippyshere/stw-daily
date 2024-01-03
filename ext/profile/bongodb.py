@@ -151,7 +151,7 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
 
     if current_selected_profile is None:
         select_options.append(discord.SelectOption(
-            label=stw.I18n.get('profile.view.options.placeholder.noprofile', desired_lang),
+            label=stw.truncate(stw.I18n.get('profile.view.options.placeholder.noprofile', desired_lang)),
             value="None",
             default=False,
             emoji=client.config["emojis"]["error"]
@@ -170,7 +170,7 @@ def generate_profile_select_options(client, current_selected_profile, user_docum
 
         profile_id = str(profile_id)
         select_options.append(discord.SelectOption(
-            label=profile["friendly_name"],
+            label=stw.truncate(profile["friendly_name"]),
             value=profile_id,
             default=selected,
             emoji=client.config["emojis"][profile_id]

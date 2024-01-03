@@ -322,9 +322,9 @@ class Help(ext.Cog):
             The options for the select menu.
         """
         if add_return:
-            options = [discord.SelectOption(label=stw.I18n.get('help.view.select.all', desired_lang),
+            options = [discord.SelectOption(label=stw.truncate(stw.I18n.get('help.view.select.all', desired_lang)),
                                             value="main_menu",
-                                            description=stw.I18n.get('help.view.select.main_menu.description', desired_lang),
+                                            description=stw.truncate(stw.I18n.get('help.view.select.main_menu.description', desired_lang)),
                                             emoji=self.emojis['left_arrow'])]
         else:
             options = []
@@ -335,20 +335,20 @@ class Help(ext.Cog):
                         try:
                             options.append(
                                 discord.SelectOption(
-                                    label=stw.I18n.get(command.extras['name_key'], desired_lang) if '.' in command.extras['name_key'] else command.name,
+                                    label=stw.truncate(stw.I18n.get(command.extras['name_key'], desired_lang)) if '.' in command.extras['name_key'] else stw.truncate(command.name),
                                     value=command.name,
                                     description=stw.truncate(stw.I18n.get(command.brief,
-                                                                          desired_lang) if '.' in command.brief else command.brief),
+                                                                          desired_lang) if '.' in command.brief else stw.truncate(command.brief)),
                                     emoji=self.emojis[command.extras['emoji']])
                             )
                         except:
                             options.append(
                                 discord.SelectOption(
-                                    label=stw.I18n.get(command.name,
-                                                       desired_lang) if '.' in command.name else command.name,
+                                    label=stw.truncate(stw.I18n.get(command.name,
+                                                                    desired_lang)) if '.' in command.name else stw.truncate(command.name),
                                     value=command.name,
                                     description=stw.truncate(stw.I18n.get(command.brief,
-                                                                          desired_lang) if '.' in command.brief else command.brief),
+                                                                          desired_lang) if '.' in command.brief else stw.truncate(command.brief)),
                                     emoji=self.emojis[command.extras['emoji']])
                             )
                     else:
@@ -356,19 +356,19 @@ class Help(ext.Cog):
                             try:
                                 options.append(
                                     discord.SelectOption(
-                                        label=stw.I18n.get(command.extras['name_key'], desired_lang) if '.' in
+                                        label=stw.truncate(stw.I18n.get(command.extras['name_key'], desired_lang)) if '.' in
                                                                                                         command.extras[
-                                                                                                            'name_key'] else command.name,
+                                                                                                            'name_key'] else stw.truncate(command.name),
                                         value=command.name,
                                         description=stw.truncate(stw.I18n.get(command.brief,
-                                                                              desired_lang) if '.' in command.brief else command.brief),
+                                                                              desired_lang) if '.' in command.brief else stw.truncate(command.brief)),
                                         emoji=self.emojis[command.extras['emoji']])
                                 )
                             except:
                                 options.append(
                                     discord.SelectOption(
-                                        label=stw.I18n.get(command.name,
-                                                           desired_lang) if '.' in command.name else command.name,
+                                        label=stw.truncate(stw.I18n.get(command.name,
+                                                           desired_lang)) if '.' in command.name else stw.truncate(command.name),
                                         value=command.name,
                                         description=stw.truncate(stw.I18n.get(command.brief,
                                                                               desired_lang) if '.' in command.brief else command.brief),
@@ -378,18 +378,18 @@ class Help(ext.Cog):
                     try:
                         options.append(
                             discord.SelectOption(
-                                label=stw.I18n.get(command.extras['name_key'], desired_lang) if '.' in command.extras[
-                                    'name_key'] else command.name,
+                                label=stw.truncate(stw.I18n.get(command.extras['name_key'], desired_lang)) if '.' in command.extras[
+                                    'name_key'] else stw.truncate(command.name),
                                 value=command.name,
                                 description=stw.truncate(stw.I18n.get(command.brief,
-                                                                      desired_lang) if '.' in command.brief else command.brief),
+                                                                      desired_lang) if '.' in command.brief else stw.truncate(command.brief)),
                                 emoji=self.emojis[command.extras['emoji']])
                         )
                     except:
                         options.append(
                             discord.SelectOption(
-                                label=stw.I18n.get(command.name,
-                                                   desired_lang) if '.' in command.name else command.name,
+                                label=stw.truncate(stw.I18n.get(command.name,
+                                                   desired_lang)) if '.' in command.name else stw.truncate(command.name),
                                 value=command.name,
                                 description=stw.truncate(stw.I18n.get(command.brief,
                                                                       desired_lang) if '.' in command.brief else command.brief),
