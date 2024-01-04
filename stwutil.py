@@ -2278,8 +2278,14 @@ def truncate(string: str, length: int = 100, end: str = "...") -> str:
         >>> truncate("Hello World", 8)
         'Hello...'
     """
+    if not isinstance(string, (str, int, float)):
+        return string
     if len(string) > length:
         logger.debug(f"Truncating string: {string} to {length} characters")
+    try:
+        string = str(string)
+    except:
+        return string
     escaped_string = urllib.parse.quote(string, safe='')
     truncated_escaped_string = (
             escaped_string[:length - len(end)] + end
@@ -2367,7 +2373,7 @@ def llama_contents_render(client: Client, llama_items: dict) -> str:
     return string
 
 
-@functools.lru_cache(maxsize=64)
+# @functools.lru_cache(maxsize=64)
 def get_rating(data_table: dict = SurvivorItemRating, row: str = "Default_C_T01", time_input: float = 0) -> float:
     """
     Calculates the power level of an item in stw
@@ -2508,7 +2514,7 @@ def parse_survivor_template_id(template_id: str) -> Tuple[str, str, str, str]:
 # }
 
 
-@functools.lru_cache(maxsize=64)
+# @functools.lru_cache(maxsize=64)
 def get_survivor_rating(survivor: dict) -> Tuple[float, Tuple[str | Any, ...]]:
     """
     Gets the power level of a survivor from a profile's survivor entry dict

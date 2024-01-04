@@ -38,7 +38,7 @@ async def settings_profile_setting_select(view, select, interaction, desired_lan
     view.stop()
 
     embed = await sub_setting_page(select.values[0][:-1], view.client, view.ctx, view.user_document, desired_lang)
-    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.select', desired_lang, select.values[0][:-1])}\n\u200b\n"
+    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.select', desired_lang, select.values[0][:-1].replace('_', ' ').capitalize())}\n\u200b\n"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(select.values[0][:-1], view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   int(select.values[0][-1]), view.message,
@@ -93,7 +93,8 @@ async def shift_page(view, interaction, amount, desired_lang):
 
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
 
-    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.pagination.changepage', desired_lang, view.page)}\n\u200b"
+    embed.fields[
+        0].value += f"\u200b\n{stw.I18n.get('settings.pagination.changepage', desired_lang, view.page)}\n\u200b"
 
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
                                            view.message, desired_lang=desired_lang)
@@ -129,7 +130,8 @@ async def shift_page_on_sub_page(view, interaction, amount, desired_lang):
     view.selected_setting = current_slice[max(0, min(int(view.selected_setting_index), len(current_slice) - 1))]
 
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
-    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.pagination.changepage', desired_lang, view.page)}\n\u200b"
+    embed.fields[
+        0].value += f"\u200b\n{stw.I18n.get('settings.pagination.changepage', desired_lang, view.page)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message,
@@ -159,7 +161,8 @@ async def sub_settings_profile_select_change(view, select, interaction, desired_
     await replace_user_document(view.client, view.user_document)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
-    embed.fields[0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
+    embed.fields[
+        0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message,
@@ -190,7 +193,8 @@ async def settings_profile_select_change(view, select, interaction, desired_lang
     await replace_user_document(view.client, view.user_document)
     del view.client.processing_queue[view.user_document["user_snowflake"]]
     embed = await main_page(view.page, view.client, view.ctx, view.user_document, view.settings, desired_lang)
-    embed.fields[0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
+    embed.fields[
+        0].value += f"\u200b\n{stw.I18n.get('profile.embed.select', desired_lang, new_profile_selected)}\n\u200b"
     new_view = MainPageProfileSettingsView(view.user_document, view.client, view.page, view.ctx, view.settings,
                                            view.message, desired_lang=desired_lang)
     await active_view(view.client, view.ctx.author.id, new_view)
@@ -240,7 +244,8 @@ async def edit_current_setting_select(view, select, interaction, desired_lang):
 
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
 
-    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change', desired_lang, view.selected_setting, current_value)}\n\u200b"
+    embed.fields[
+        0].value += f"\u200b\n{stw.I18n.get('settings.change', desired_lang, view.selected_setting, current_value)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message,
@@ -277,7 +282,8 @@ async def edit_current_setting_bool(view, interaction, set_value, desired_lang):
 
     embed = await sub_setting_page(view.selected_setting, view.client, view.ctx, view.user_document, desired_lang)
 
-    embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change', desired_lang, view.selected_setting, current_value)}\n\u200b"
+    embed.fields[
+        0].value += f"\u200b\n{stw.I18n.get('settings.change', desired_lang, view.selected_setting, current_value)}\n\u200b"
     sub_view = SettingProfileSettingsSettingViewOfSettingSettings(view.selected_setting, view.user_document,
                                                                   view.client, view.page, view.ctx, view.settings,
                                                                   view.selected_setting_index, view.message,
@@ -299,7 +305,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         self.user_document = user_document
         self.ctx = ctx
         try:
-            self.current_setting_value = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
+            self.current_setting_value = \
+                user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][current_setting]
         except:
             self.current_setting_value = ""
         self.default_value = str(setting_information["default"])
@@ -311,7 +318,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
 
         # aliases default description modal_title input_label check_function emoji input_type req_string
 
-        input_style = discord.InputTextStyle.long if setting_information["input_type"] == "long" else discord.InputTextStyle.short
+        input_style = discord.InputTextStyle.long if setting_information[
+                                                         "input_type"] == "long" else discord.InputTextStyle.short
         setting_input = discord.ui.InputText(style=input_style,
                                              label=stw.truncate(stw.I18n.get(setting_information["input_label"],
                                                                              self.desired_lang), 45),
@@ -345,7 +353,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
 
         if check_result[1] is not False:
             selected_profile = self.user_document["global"]["selected_profile"]
-            self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = check_result[0]
+            self.user_document["profiles"][str(selected_profile)]["settings"][self.view.selected_setting] = \
+                check_result[0]
             self.client.processing_queue[self.user_document["user_snowflake"]] = True
             await replace_user_document(view.client, view.user_document)
             del view.client.processing_queue[view.user_document["user_snowflake"]]
@@ -390,7 +399,8 @@ class RetrieveSettingChangeModal(discord.ui.Modal):
         await active_view(view.client, view.ctx.author.id, sub_view)
 
         if check_result[1] is not False:
-            embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change1', self.desired_lang, str(check_result[0]))}\n\u200b"
+            embed.fields[
+                0].value += f"\u200b\n{stw.I18n.get('settings.change1', self.desired_lang, str(check_result[0]))}\n\u200b"
         else:
             embed.fields[0].value += f"\u200b\n{stw.I18n.get('settings.change1.invalid', self.desired_lang)}\n\u200b"
 
@@ -463,10 +473,10 @@ def generate_setting_options(client, options, user_document, selected_setting, d
         The generated options.
     """
     select_options = []
-    print(options)
 
     try:
-        current = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][selected_setting]
+        current = user_document["profiles"][str(user_document["global"]["selected_profile"])]["settings"][
+            selected_setting]
     except:
         current = client.default_settings[selected_setting]["default"]
 
@@ -479,10 +489,11 @@ def generate_setting_options(client, options, user_document, selected_setting, d
             description = None
 
             # Add this option to our select options
-            select_options.append(discord.SelectOption(label = stw.truncate(stw.I18n.get(val['name'], desired_lang)),
-            value = attr,
-            emoji = client.config["emojis"][val["emoji"]],
-            default = True if current == attr else False))
+            select_options.append(discord.SelectOption(label=stw.truncate(stw.I18n.get(val['name'], desired_lang)),
+                                                       value=attr,
+                                                       description=description,
+                                                       emoji=client.config["emojis"][val["emoji"]],
+                                                       default=True if current == attr else False))
 
     return select_options if len(select_options) > 0 else [discord.SelectOption(label="placeholder")]
 
@@ -540,9 +551,11 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
             del self.children[5:8]
 
             # Sets the select values
-            self.children[5].placeholder = stw.I18n.get(self.client.default_settings[selected_setting]["placeholder"], self.desired_lang)
+            self.children[5].placeholder = stw.I18n.get(self.client.default_settings[selected_setting]["placeholder"],
+                                                        self.desired_lang)
             self.children[5].options = generate_setting_options(self.client,
-                                                                self.client.default_settings[selected_setting]["options"],
+                                                                self.client.default_settings[selected_setting][
+                                                                    "options"],
                                                                 user_document, selected_setting,
                                                                 self.desired_lang)
 
@@ -562,7 +575,7 @@ class SettingProfileSettingsSettingViewOfSettingSettings(discord.ui.View):  # wh
         elif setting_type == "modal":
             # Removes the True and False buttons and the select
             del self.children[6:9]
-        
+
         self.timed_out = False
 
     async def on_timeout(self):
@@ -815,6 +828,7 @@ class MainPageProfileSettingsView(discord.ui.View):
         """
         await shift_page(self, interaction, 1, self.desired_lang)
 
+
 def get_setting_type(setting, client):
     setting_info = client.default_settings[setting]
     setting_type = str(type(setting_info["default"]).__name__)
@@ -825,6 +839,7 @@ def get_setting_type(setting, client):
         return "bool"
     else:
         return "modal"
+
 
 async def add_field_to_page_embed(page_embed, setting, client, profile, desired_lang):
     """
@@ -855,12 +870,13 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
                     current_value = stw.I18n.get(f'lang.{setting_info["default"]}', desired_lang)
                 except:
                     current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
-    elif setting_info.get('options', None) != None:
+    elif setting_info.get('options', None) is not None:
         try:
             current_value = stw.I18n.get(setting_info['options'][profile['settings'][setting]]['name'], desired_lang)
         except:
             try:
-                current_value = stw.I18n.get(setting_info['options'][profile['settings'][setting_info['default']]]['name'], desired_lang)
+                current_value = stw.I18n.get(
+                    setting_info['options'][setting_info['default']]['name'], desired_lang)
             except:
                 current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     else:
@@ -880,7 +896,8 @@ async def add_field_to_page_embed(page_embed, setting, client, profile, desired_
         current_value = stw.I18n.fmt_num(int(current_value), desired_lang)
     except:
         pass
-    page_embed.fields[0].value += f"""\n\n# {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n> {current_value}\n{stw.I18n.get(setting_info['short_description'], desired_lang)}"""
+    page_embed.fields[
+        0].value += f"""\n\n# {stw.I18n.get(setting_info['localised_name'], desired_lang)}\n> {current_value}\n{stw.I18n.get(setting_info['short_description'], desired_lang)}"""
     return page_embed
 
 
@@ -904,7 +921,9 @@ def generate_settings_view_options(client, current_slice, desired_lang, selected
         logger.debug(f"Current slice: {current_slice}")
         select_options.append(discord.SelectOption(
             label=stw.truncate(stw.I18n.get(client.default_settings[setting_option]["localised_name"], desired_lang)),
-            description=stw.truncate(stw.I18n.get(client.default_settings[setting_option]["short_description"], desired_lang)) if '.' not in stw.I18n.get(client.default_settings[setting_option]["short_description"], desired_lang) else None,
+            description=stw.truncate(stw.I18n.get(client.default_settings[setting_option]["short_description"],
+                                                  desired_lang)) if '.' not in stw.I18n.get(
+                client.default_settings[setting_option]["short_description"], desired_lang) else None,
             value=setting_option + str(index),
             emoji=client.config["emojis"][emoji_key],
             default=True if selected_setting == setting_option else False))
@@ -1011,13 +1030,23 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
                             f"- {stw.I18n.get('lang.{0}'.format(selected_profile_data['settings'][setting]), 'en')} " \
                             f"({client.config['valid_locales'][selected_profile_data['settings'][setting]][1]})"
         except:
-            current_value = selected_profile_data['settings'][setting]
-    elif setting_info.get('options', None) != None:
+            try:
+                current_value = selected_profile_data['settings'][setting]
+            except:
+                try:
+                    current_value = stw.I18n.get(f'lang.{setting_info["default"]}', desired_lang)
+                except:
+                    current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
+    elif setting_info.get('options', None) is not None:
         try:
             current_value = stw.I18n.get(setting_info['options'][selected_profile_data['settings'][setting]]['name'],
                                          desired_lang)
         except:
-            current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
+            try:
+                current_value = stw.I18n.get(
+                    setting_info['options'][setting_info['default']]['name'], desired_lang)
+            except:
+                current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     else:
         try:
             if selected_profile_data['settings'][setting] is True:
@@ -1027,7 +1056,10 @@ async def sub_setting_page(setting, client, ctx, user_profile, desired_lang):
             else:
                 current_value = selected_profile_data['settings'][setting]
         except:
-            current_value = setting_info['default']
+            try:
+                current_value = setting_info["default"]
+            except:
+                current_value = stw.I18n.get('settings.currentvalue.error', desired_lang)
     try:
         current_value = stw.I18n.fmt_num(int(current_value), desired_lang)
     except:
@@ -1200,11 +1232,13 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                 selected_profile = user_profile["global"]["selected_profile"]
 
                 if isinstance(client.default_settings[setting]['default'], bool):
-                    user_profile["profiles"][str(selected_profile)]["settings"][setting] = boolean_string_representation[
-                        value.lower()]
+                    user_profile["profiles"][str(selected_profile)]["settings"][setting] = \
+                        boolean_string_representation[
+                            value.lower()]
                 else:
                     user_profile["profiles"][str(selected_profile)]["settings"][setting] = check_result[0]
-                    if setting == "language" and stw.I18n.is_lang(user_profile["profiles"][str(selected_profile)]["settings"]["language"]):
+                    if setting == "language" and stw.I18n.is_lang(
+                            user_profile["profiles"][str(selected_profile)]["settings"]["language"]):
                         desired_lang = user_profile["profiles"][str(selected_profile)]["settings"]["language"]
                     if setting == "language" and check_result[0] == "auto":
                         try:
@@ -1278,19 +1312,23 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
                               stw.I18n.get('settings.error.missing.value', desired_lang)]
         base_error_message = f"\u200b\n{stw.I18n.get('settings.error.base', desired_lang)}"
 
+        error_messages = []
         for index, missing_or_error in enumerate(list_of_potential_nones):
-
             if missing_or_error is False:
-                base_error_message += f" {associated_error[index]}"
+                error_messages.append(associated_error[index])
             elif missing_or_error is None:
-                base_error_message += f" {associated_missing[index]}"
-            if not missing_or_error or not missing_or_error:
-                if index < len(list_of_potential_nones) - 1:
-                    base_error_message += ","
+                error_messages.append(associated_missing[index])
+        if len(error_messages) > 0:
+            base_error_message += f" {', '.join(error_messages)}"
+        base_error_message += ".*\n\u200b\n"
 
-        base_error_message += "*\n\u200b\n"
-        base_error_message.replace(":,", ":")
-        base_error_message.replace(",,", ",")  # TODO: fix this, perhaps use .join?
+        if all(x is None for x in list_of_potential_nones) or error_messages == [associated_missing[-1]]:
+            if happy_message == f"\u200b\n*{stw.I18n.get('settings.change2.1', desired_lang, profile)}" or happy_message == "\u200b\n*":
+                base_error_message = f"\u200b\n*{stw.random_waiting_message(client, desired_lang)}*\n\u200b\n"
+            # elif happy_message == f"\u200b\n*{stw.I18n.get('settings.change2', desired_lang, setting.replace('_', ' ').capitalize())}{stw.I18n.get('settings.change2.1', desired_lang, profile)}":
+            #     f"\u200b\n{stw.I18n.get('settings.select', desired_lang, setting.replace('_', ' ').capitalize())}\n\u200b\n"
+            else:
+                base_error_message = f"{happy_message}*\n\u200b\n"
 
         if setting is not None and setting is not False:
             embed = await sub_setting_page(setting, client, ctx, user_profile, desired_lang)
@@ -1310,7 +1348,8 @@ async def settings_command(client, ctx, setting=None, value=None, profile=None):
             sub_view.message = message
             return message
         else:
-            return await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message, desired_lang)
+            return await default_page_profile_settings(client, ctx, user_profile, settings, base_error_message,
+                                                       desired_lang)
 
     await default_page_profile_settings(client, ctx, user_profile, settings,
                                         f"\u200b\n*{stw.random_waiting_message(client, desired_lang)}*\n\u200b\n",
@@ -1345,15 +1384,22 @@ class ProfileSettings(ext.Cog):
                        guild_ids=stw.guild_ids)
     async def slash_settings(self, ctx: discord.ApplicationContext,
                              setting: Option(description="The name of the setting to change",
-                                             description_localizations=stw.I18n.construct_slash_dict('settings.meta.args.setting.description'),
-                                             name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.setting'),
+                                             description_localizations=stw.I18n.construct_slash_dict(
+                                                 'settings.meta.args.setting.description'),
+                                             name_localizations=stw.I18n.construct_slash_dict(
+                                                 'settings.meta.args.setting'),
                                              autocomplete=autocomplete_settings) = None,
                              value: Option(description="The value to change this setting to",
-                                           description_localizations=stw.I18n.construct_slash_dict('settings.meta.args.value.description'),
-                                           name_localizations=stw.I18n.construct_slash_dict('settings.meta.args.value')) = None,  # TODO: autocomplete if possible
+                                           description_localizations=stw.I18n.construct_slash_dict(
+                                               'settings.meta.args.value.description'),
+                                           name_localizations=stw.I18n.construct_slash_dict(
+                                               'settings.meta.args.value')) = None,  # TODO: autocomplete if possible
                              profile: Option(int, "The profile you want to change this setting on",
-                                             description_localizations=stw.I18n.construct_slash_dict('settings.meta.args.profile.description'),
-                                             name_localizations=stw.I18n.construct_slash_dict('profile.meta.args.profile')) = None  # TODO: autocomplete / choice this
+                                             description_localizations=stw.I18n.construct_slash_dict(
+                                                 'settings.meta.args.profile.description'),
+                                             name_localizations=stw.I18n.construct_slash_dict(
+                                                 'profile.meta.args.profile')) = None
+                             # TODO: autocomplete / choice this
                              ):
         """
         This function is the slash command for the settings command.
