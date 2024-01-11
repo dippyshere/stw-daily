@@ -564,7 +564,7 @@
         "autoclaim.toggle.to.enabled": "Enable Claiming",
         "autoclaim.toggle.to.disabled": "Disable Claiming",
         "autoclaim.embed.toggle": "== Auto Claiming Toggle\nEnable or disable auto-claiming completely for this profile\n\nCurrent Value:: {0}",
-        "autoclaim.embed.autores": "== Auto Research Claiming\nAutomatically claims and spends research points using the chosen strategy\n\nCurrent Strategy:: {0}",
+        "autoclaim.embed.autores": "== Auto Research Claiming\nAutomatically claims and spends research points using the chosen strategy.\nWhen this is set to Disabled, Auto Research claiming will not occur.\n\nCurrent Strategy:: {0}",
         "autoclaim.embed.nodevauth": "You have not set up device authentication on this profile. **Auto-Claiming will NOT occur** on the current profile.\n\n",
         "autoclaim.embed.start.autoresearch": "*Started Auto-Research Settings. Please rerun to continue*",
         "autoclaim.embed.toggle.claim": "Toggled Auto-Claiming",
