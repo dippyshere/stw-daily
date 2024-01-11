@@ -36,6 +36,8 @@ class QuestsView(discord.ui.View):
         self.quest_rerolls = quest_rerolls
         self.interaction_check_done = {}
         self.children[0].options = quest_options
+        if quest_options[0].value == "placeholder":
+            self.children[0].disabled = True
         self.children[0].placeholder = stw.I18n.get("dailyquests.view.option.placeholder", desired_lang)
         self.auth_info = auth_info
         self.desired_lang = desired_lang
@@ -56,16 +58,35 @@ class QuestsView(discord.ui.View):
             if guid == "back":
                 self.children[0].options = await self.dailyquests.select_options_quests(self.quests,
                                                                                         desired_lang=self.desired_lang)
-                self.questsview.children[0].options = await self.dailyquests.select_options_quests(self.quests,
-                                                                                                   desired_lang=self.desired_lang)
+                if self.children[0].options[0].value == "placeholder":
+                    self.children[0].disabled = True
+                else:
+                    self.children[0].disabled = False
+                if self.questsview is not None:
+                    self.questsview.children[0].options = await self.dailyquests.select_options_quests(self.quests,
+                                                                                                       desired_lang=self.desired_lang)
+                    if self.questsview.children[0].options[0].value == "placeholder":
+                        self.questsview.children[0].disabled = True
+                    else:
+                        self.questsview.children[0].disabled = False
                 return await self.dailyquests.dailyquests_embed(ctx, self.desired_lang, self.quests, self.auth_info)
             else:
                 self.children[0].options = await self.dailyquests.select_options_quests(self.quests, True,
                                                                                         desired_lang=self.desired_lang,
                                                                                         selected_guid=guid)
-                self.questsview.children[0].options = await self.dailyquests.select_options_quests(self.quests, True,
-                                                                                                   desired_lang=self.desired_lang,
-                                                                                                   selected_guid=guid)
+                if self.children[0].options[0].value == "placeholder":
+                    self.children[0].disabled = True
+                else:
+                    self.children[0].disabled = False
+                if self.questsview is not None:
+                    self.questsview.children[0].options = await self.dailyquests.select_options_quests(self.quests,
+                                                                                                       True,
+                                                                                                       desired_lang=self.desired_lang,
+                                                                                                       selected_guid=guid)
+                    if self.questsview.children[0].options[0].value == "placeholder":
+                        self.questsview.children[0].disabled = True
+                    else:
+                        self.questsview.children[0].disabled = False
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, stw.I18n.get("dailyquests.embed.title", self.desired_lang),
                                             "library_list"),
@@ -148,6 +169,12 @@ class QuestsView(discord.ui.View):
                                                                                     desired_lang=self.desired_lang)
             self.questsview.children[0].options = await self.dailyquests.select_options_quests(self.quests,
                                                                                                desired_lang=self.desired_lang)
+            if self.children[0].options[0].value == "placeholder":
+                self.children[0].disabled = True
+                self.questsview.children[0].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.questsview.children[0].disabled = False
             await interaction.response.edit_message(embed=embed, view=self)
         else:
             self.children[0].options = await self.dailyquests.select_options_quests(self.quests, True,
@@ -157,6 +184,12 @@ class QuestsView(discord.ui.View):
                                                                                                desired_lang=self.desired_lang,
                                                                                                selected_guid=
                                                                                                select.values[0])
+            if self.children[0].options[0].value == "placeholder":
+                self.children[0].disabled = True
+                self.questsview.children[0].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.questsview.children[0].disabled = False
             await interaction.response.edit_message(embed=embed, view=self.questsview)
 
 
@@ -236,6 +269,12 @@ class QuestRerollView(discord.ui.View):
                                                                                     desired_lang=self.desired_lang)
             self.questsview.children[0].options = await self.dailyquests.select_options_quests(self.quests,
                                                                                                desired_lang=self.desired_lang)
+            if self.children[0].options[0].value == "placeholder":
+                self.children[0].disabled = True
+                self.questsview.children[0].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.questsview.children[0].disabled = False
             await interaction.response.edit_message(embed=embed, view=self.questsview)
         else:
             self.children[0].options = await self.dailyquests.select_options_quests(self.quests, True,
@@ -244,6 +283,12 @@ class QuestRerollView(discord.ui.View):
             self.questsview.children[0].options = await self.dailyquests.select_options_quests(self.quests, True,
                                                                                                desired_lang=self.desired_lang,
                                                                                                selected_guid=self.guid)
+            if self.children[0].options[0].value == "placeholder":
+                self.children[0].disabled = True
+                self.questsview.children[0].disabled = True
+            else:
+                self.children[0].disabled = False
+                self.questsview.children[0].disabled = False
             await interaction.response.edit_message(embed=embed, view=self)
 
     @discord.ui.button(label="Re-roll Quest", style=discord.ButtonStyle.primary)
@@ -381,6 +426,8 @@ class DailyQuests(ext.Cog):
                         break
             else:
                 continue
+        if not options:
+            return [SelectOption(label="placeholder", value="placeholder", emoji=self.emojis["left_arrow"])]
         return options
 
     async def dailyquests_entry(self, quest, quest_data, vbucks, desired_lang='en'):
