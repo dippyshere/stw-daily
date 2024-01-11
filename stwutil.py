@@ -1229,7 +1229,7 @@ async def shop_request(client: Client, token: str) -> dict:
         return orjson.loads(await resp.read())
 
 
-@alru_cache(maxsize=2)
+# @alru_cache(maxsize=2)
 async def get_llama_store(shop: dict) -> dict | None:
     """
     Gets the llama store from the shop request
@@ -1250,7 +1250,7 @@ async def get_llama_store(shop: dict) -> dict | None:
     return None
 
 
-@alru_cache(maxsize=2)
+# @alru_cache(maxsize=2)
 async def free_llama_count(store: dict) -> Tuple[int, list]:
     """
     Gets the amount of free llamas in the store, and any related info if available
