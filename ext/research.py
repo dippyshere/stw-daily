@@ -81,6 +81,8 @@ class ResearchView(discord.ui.View):
             The button with the disabled attribute set.
         """
         button_map = ['fortitude', 'offense', 'resistance', 'technology']  # woah ur alive yes
+        if index >= len(button_map):
+            return button
         if self.current_levels[button_map[index]] >= 120:
             button.disabled = True
             button.label = stw.I18n.get('research.button.max', self.desired_lang)
