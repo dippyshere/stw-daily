@@ -137,6 +137,14 @@ class AutoclaimHighlightView(discord.ui.View):
 
         self.children[2].label = autoclaim
 
+        try:
+            devauth = current_selected_profile["authentication"] is not None
+
+            if not devauth:
+                self.children[2].disabled = True
+        except:
+            pass
+
         if autoclaim_state:
             self.children[2].style = discord.ButtonStyle.red
         else:
@@ -300,6 +308,7 @@ async def auto_authenticate(client, auth_entry):
     # TODO: with time, we can optimise / add more features to this function
     snowflake = auth_entry['user_snowflake']
     current_selected_profile = auth_entry["global"]["selected_profile"]
+    logger.info(f"Starting automated functions for: {snowflake}")
 
     for profile in auth_entry["profiles"]:
         current_profile = auth_entry["profiles"][profile]
@@ -308,10 +317,12 @@ async def auto_authenticate(client, auth_entry):
             auth_entry["global"]["selected_profile"] = profile
 
             if current_profile.get("auto_claim", None) is None:
+                logger.info("User does not have auto_claim")
                 continue
 
             try:
                 if auth_entry["profiles"][profile]["authentication"]["hasExpired"]:
+                    print("User authentication hasExpired")
                     continue
             except:
                 pass
@@ -368,12 +379,14 @@ async def auto_authenticate(client, auth_entry):
 async def auto_research_claim(client, auth_entry, profile, temp_entry):
     # Debug info var
     snowflake = auth_entry['user_snowflake']
+    logger.info(f"Starting auto-research claim for: {snowflake}")
 
     # Get current fort stats
     current_research_statistics_request = await stw.profile_request(client, "query", temp_entry)
     json_response = orjson.loads(await current_research_statistics_request.read())
 
     current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
+    logger.info(f"Got current levels: {current_levels}")
 
     # Calculate next action based on current levels
     proc_max = False
@@ -381,15 +394,19 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
         if current_levels["offense"] + current_levels["fortitude"] + current_levels["resistance"] + current_levels[
             "technology"] >= 480:
             proc_max = True
+            logger.info("Max research stats reached by user")
             pass
     except:
         for stat in ["offense", "fortitude", "resistance", "technology"]:
             if stat not in current_levels:
+                logger.info(f"Stat not in current levels {stat}")
                 current_levels[stat] = 0
 
     # Flag that dictates whether or not to update the setting based on current stat levels
     update_profile = True
     method = auth_entry["profiles"][profile]["settings"].get("autoresmethod", "method_disabled")
+
+    logger.info(f"Initial method {method}")
 
     # If we're at max research then disable research
     if proc_max:
@@ -423,6 +440,8 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
     if method == "method_disabled":
         return
 
+    logger.info(f"Final method {method}")
+
     # get the next "stat" to upgrade
     upgrade_stat = "fortitude"
 
@@ -443,7 +462,7 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
         # Find the minimum of all the stats
         upgrade_stat = min(current_levels, key=current_levels.get)
 
-    logger.debug(f"Attempting to upgrade stat {upgrade_stat} due to method {method} for user: {snowflake}")
+    logger.info(f"Attempting to upgrade stat {upgrade_stat} due to method {method} for user: {snowflake}")
 
     # try:
     # Find research guid
@@ -451,6 +470,8 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
     research_guid_temp = await asyncio.gather(
         asyncio.to_thread(research_cog.check_for_research_guid_key, json_response))
     research_guid = research_guid_temp[0]
+
+    logger.info(f"User research guid: {research_guid}, Attempting to claim research points")
 
     # Claim research point resources
     current_research_statistics_request = await stw.profile_request(client, "resources", temp_entry,
@@ -461,6 +482,8 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
     token_points = await asyncio.gather(asyncio.to_thread(research_cog.check_for_research_points_item, json_response))
     total_points, rp_token_guid = token_points[0][0], token_points[0][1]
 
+    logger.info(f"User total points: {total_points}")
+
     # Cannot afford stat so prematurely return
     if current_levels[upgrade_stat] >= 120 or total_points['quantity'] < stw.research_stat_cost(upgrade_stat,
                                                                                                 current_levels[
@@ -468,8 +491,11 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
         logger.warning(f"User: {snowflake} Cannot afford stat {upgrade_stat}, Ignoring")
         return
 
-    await stw.profile_request(client, "purchase_research", temp_entry,
+    logger.info(f"Purchasing stat: {upgrade_stat}")
+    json_response = await stw.profile_request(client, "purchase_research", temp_entry,
                               json={'statId': upgrade_stat})
+    
+    logger.info(f"Response: {json_response}")
 
 
 async def get_auto_claim(client):
