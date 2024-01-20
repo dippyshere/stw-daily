@@ -493,8 +493,8 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
 
     logger.info(f"Purchasing stat: {upgrade_stat}")
     json_response = await stw.profile_request(client, "purchase_research", temp_entry,
-                              json={'statId': upgrade_stat})
-    
+                                              json={'statId': upgrade_stat})
+
     logger.info(f"Response: {json_response}")
 
 
@@ -553,7 +553,7 @@ class AutoFunction(ext.Cog):
 
     def __init__(self, client):
         self.client = client
-        # self.autoclaim_task.start()  # hi
+        self.autoclaim_task.start()  # hi
 
     @tasks.loop(time=datetime.time(0, 0, random.randint(11, 39), tzinfo=datetime.timezone.utc))
     async def autoclaim_task(self):
