@@ -475,7 +475,7 @@ class DailyQuests(ext.Cog):
         rewards_string = f"{self.client.config['emojis']['gold']}x{gold_quantity} {self.client.config['emojis']['xray']}x{mtx_quantity}"
         if vbucks:
             rewards_string += f" {self.client.config['emojis']['vbucks']}x{mtx_quantity}"
-        rewards_string += f" {self.client.config['emojis']['xp_everywhere']}x{stw.I18n.fmt_num(23000, desired_lang)}"
+        rewards_string += f" {self.client.config['emojis']['xp_everywhere']}x{stw.I18n.fmt_num(15000, desired_lang)}"
         entry_string += f"\n{stw.I18n.get('dailyquests.embed.rewards', desired_lang, rewards_string)}\n"
         return entry_string
 
