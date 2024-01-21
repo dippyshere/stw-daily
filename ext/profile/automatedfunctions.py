@@ -322,7 +322,7 @@ async def auto_authenticate(client, auth_entry):
 
             try:
                 if auth_entry["profiles"][profile]["authentication"]["hasExpired"]:
-                    print("User authentication hasExpired")
+                    logger.info("User authentication hasExpired")
                     continue
             except:
                 pass
@@ -334,9 +334,12 @@ async def auto_authenticate(client, auth_entry):
             account_id = dev_auth_info["accountId"]
             claimed_account_ids = []
             if account_id not in claimed_account_ids:
-                logger.info(f"Auto authenticating for: {snowflake}")
-
                 claimed_account_ids.append(account_id)
+                # skip authenticating if auto research is disabled (temp)
+                if auth_entry["profiles"][profile]["settings"].get("autoresmethod",
+                                                                   "method_disabled") != "method_disabled":
+                    continue
+                logger.info(f"Auto authenticating for: {snowflake}")
                 await asyncio.sleep(random.randint(2, 10))
                 logger.info(f"Display name: {current_profile['authentication']['displayName']}")
                 token_req = await stw.get_token_devauth(client, auth_entry, game="ios",
