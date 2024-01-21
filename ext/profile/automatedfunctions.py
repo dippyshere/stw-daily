@@ -337,7 +337,7 @@ async def auto_authenticate(client, auth_entry):
                 claimed_account_ids.append(account_id)
                 # skip authenticating if auto research is disabled (temp)
                 if auth_entry["profiles"][profile]["settings"].get("autoresmethod",
-                                                                   "method_disabled") != "method_disabled":
+                                                                   "method_disabled") == "method_disabled":
                     continue
                 logger.info(f"Auto authenticating for: {snowflake}")
                 await asyncio.sleep(random.randint(2, 10))
