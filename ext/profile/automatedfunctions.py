@@ -378,19 +378,7 @@ async def auto_authenticate(client, auth_entry):
                         pass
                     logger.warning(f"Failed to authenticate for profile {profile}: Epic: {response} | Python: {E}")
 
-
-async def auto_research_claim(client, auth_entry, profile, temp_entry):
-    # Debug info var
-    snowflake = auth_entry['user_snowflake']
-    logger.info(f"Starting auto-research claim for: {snowflake}")
-
-    # Get current fort stats
-    current_research_statistics_request = await stw.profile_request(client, "query", temp_entry)
-    json_response = orjson.loads(await current_research_statistics_request.read())
-
-    current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
-    logger.info(f"Got current levels: {current_levels}")
-
+async def find_upgrade_stat(current_levels, auth_entry, profile, snowflake, client):
     # Calculate next action based on current levels
     proc_max = False
     try:
@@ -466,6 +454,19 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
         upgrade_stat = min(current_levels, key=current_levels.get)
 
     logger.info(f"Attempting to upgrade stat {upgrade_stat} due to method {method} for user: {snowflake}")
+    return upgrade_stat
+
+async def auto_research_claim(client, auth_entry, profile, temp_entry):
+    # Debug info var
+    snowflake = auth_entry['user_snowflake']
+    logger.info(f"Starting auto-research claim for: {snowflake}")
+
+    # Get current fort stats
+    current_research_statistics_request = await stw.profile_request(client, "query", temp_entry)
+    json_response = orjson.loads(await current_research_statistics_request.read())
+
+    current_levels = json_response['profileChanges'][0]['profile']['stats']['attributes']['research_levels']
+    logger.info(f"Got current levels: {current_levels}")
 
     # try:
     # Find research guid
@@ -487,18 +488,29 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
 
     logger.info(f"User total points: {total_points}")
 
-    # Cannot afford stat so prematurely return
-    if current_levels[upgrade_stat] >= 120 or total_points['quantity'] < stw.research_stat_cost(upgrade_stat,
-                                                                                                current_levels[
-                                                                                                    upgrade_stat]):
-        logger.warning(f"User: {snowflake} Cannot afford stat {upgrade_stat}, Ignoring")
-        return
+    # Upgrade 4 times (max)
+    for _ in range(0, 4):
+        upgrade_stat = find_upgrade_stat(current_levels, auth_entry, profile, snowflake, client)
+        stat_research_cost = stw.research_stat_cost(upgrade_stat, current_levels[upgrade_stat])
 
-    logger.info(f"Purchasing stat: {upgrade_stat}")
-    json_response = await stw.profile_request(client, "purchase_research", temp_entry,
-                                              json={'statId': upgrade_stat})
+        # Cannot afford stat so prematurely return
+        if current_levels[upgrade_stat] >= 120 or total_points['quantity'] < stat_research_cost:
+            logger.warning(f"User: {snowflake} Cannot afford stat {upgrade_stat}, Ignoring")
+            return
 
-    logger.info(f"Response: {json_response}")
+        logger.info(f"Purchasing stat: {upgrade_stat}")
+        json_response = await stw.profile_request(client, "purchase_research", temp_entry,
+                                                json={'statId': upgrade_stat})
+
+        logger.info(f"Response: {json_response}")
+
+        if json_response.status != 200:
+            logger.info(f"User: {snowflake} recieved status code of {json_response.status}")
+            # Return when status is less than what we want
+            return
+        
+        current_levels[upgrade_stat] += 1
+        total_points -= stat_research_cost
 
 
 async def get_auto_claim(client):
