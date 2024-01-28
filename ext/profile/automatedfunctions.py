@@ -406,10 +406,10 @@ async def find_upgrade_stat(current_levels, auth_entry, profile, snowflake, clie
         auth_entry["profiles"][profile]["settings"]["autoresmethod"] = "method_disabled"
 
     # If we're at max for anything with  that method, switch back
-    elif method == "method_fortitude" and current_levels["fortitude"] > 120 or \
-            method == "method_offense" and current_levels["offense"] > 120 or \
-            method == "method_resistance" and current_levels["resistance"] > 120 or \
-            method == "method_technology" and current_levels["technology"] > 120:
+    elif method == "method_fortitude" and current_levels["fortitude"] >= 120 or \
+            method == "method_offense" and current_levels["offense"] >= 120 or \
+            method == "method_resistance" and current_levels["resistance"] >= 120 or \
+            method == "method_technology" and current_levels["technology"] >= 120:
 
         logger.warning(
             f"User: {snowflake} Has reached max research points for a stat on profile {profile}, Switching to Method: Distribute.")
@@ -494,7 +494,7 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
         stat_research_cost = stw.research_stat_cost(upgrade_stat, current_levels[upgrade_stat])
 
         # Cannot afford stat so prematurely return
-        if current_levels[upgrade_stat] > 120 or total_points['quantity'] < stat_research_cost:
+        if current_levels[upgrade_stat] >= 120 or total_points['quantity'] < stat_research_cost:
             logger.warning(f"User: {snowflake} Cannot afford stat {upgrade_stat}, Ignoring")
             return
 
