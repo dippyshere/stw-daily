@@ -378,6 +378,7 @@ async def auto_authenticate(client, auth_entry):
                         pass
                     logger.warning(f"Failed to authenticate for profile {profile}: Epic: {response} | Python: {E}")
 
+
 async def find_upgrade_stat(current_levels, auth_entry, profile, snowflake, client):
     # Calculate next action based on current levels
     proc_max = False
@@ -456,6 +457,7 @@ async def find_upgrade_stat(current_levels, auth_entry, profile, snowflake, clie
     logger.info(f"Attempting to upgrade stat {upgrade_stat} due to method {method} for user: {snowflake}")
     return upgrade_stat
 
+
 async def auto_research_claim(client, auth_entry, profile, temp_entry):
     # Debug info var
     snowflake = auth_entry['user_snowflake']
@@ -500,7 +502,7 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
 
         logger.info(f"Purchasing stat: {upgrade_stat}")
         json_response = await stw.profile_request(client, "purchase_research", temp_entry,
-                                                json={'statId': upgrade_stat})
+                                                  json={'statId': upgrade_stat})
 
         logger.info(f"Response: {json_response}")
 
@@ -508,7 +510,7 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
             logger.info(f"User: {snowflake} recieved status code of {json_response.status}")
             # Return when status is less than what we want
             return
-        
+
         current_levels[upgrade_stat] += 1
         total_points -= stat_research_cost
 
