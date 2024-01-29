@@ -492,7 +492,7 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
 
     # Upgrade 4 times (max)
     for _ in range(0, 4):
-        upgrade_stat = find_upgrade_stat(current_levels, auth_entry, profile, snowflake, client)
+        upgrade_stat = await find_upgrade_stat(current_levels, auth_entry, profile, snowflake, client)
         stat_research_cost = stw.research_stat_cost(upgrade_stat, current_levels[upgrade_stat])
 
         # Cannot afford stat so prematurely return
