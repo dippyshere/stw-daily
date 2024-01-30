@@ -512,7 +512,7 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
             return
 
         current_levels[upgrade_stat] += 1
-        total_points -= stat_research_cost
+        total_points["quantity"] -= stat_research_cost
 
 
 async def get_auto_claim(client):
