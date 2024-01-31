@@ -490,10 +490,13 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
 
     logger.info(f"User total points: {total_points}")
 
-    # Upgrade 4 times (max)
-    for _ in range(0, 4):
+    # Upgrade 120 times (max)
+    for _ in range(0, 120):
+        logger.info("Finding upgrade stat")
         upgrade_stat = await find_upgrade_stat(current_levels, auth_entry, profile, snowflake, client)
+        logger.info("Finding stat research cost")
         stat_research_cost = stw.research_stat_cost(upgrade_stat, current_levels[upgrade_stat])
+        logger.info(f"Stat research cost found: {stat_research_cost}")
 
         # Cannot afford stat so prematurely return
         if current_levels[upgrade_stat] >= 120 or total_points['quantity'] < stat_research_cost:
@@ -513,6 +516,9 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
 
         current_levels[upgrade_stat] += 1
         total_points["quantity"] -= stat_research_cost
+
+        logger.info(f"New level: {current_levels['upgrade_stat']}, Total points: {total_points['quantity']} Sleeping")
+        await asyncio.sleep(1.3)
 
 
 async def get_auto_claim(client):
