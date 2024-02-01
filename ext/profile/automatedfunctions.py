@@ -517,7 +517,7 @@ async def auto_research_claim(client, auth_entry, profile, temp_entry):
         current_levels[upgrade_stat] += 1
         total_points["quantity"] -= stat_research_cost
 
-        logger.info(f"New level: {current_levels['upgrade_stat']}, Total points: {total_points['quantity']} Sleeping")
+        logger.info(f"New level: {current_levels[upgrade_stat]}, Total points: {total_points['quantity']} Sleeping")
         await asyncio.sleep(1.3)
 
 
