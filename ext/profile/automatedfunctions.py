@@ -266,9 +266,10 @@ class AutoclaimHighlightView(discord.ui.View):
 
         for child in self.children:
             child.disabled = True
-        self.client.processing_queue[self.user_document["user_snowflake"]] = True
+
         await interaction.response.edit_message(view=self)
 
+        self.client.processing_queue[self.user_document["user_snowflake"]] = True
         # toggle switch
         current_autoclaim = current_selected_profile.get("auto_claim", None)
         if current_autoclaim is None:
