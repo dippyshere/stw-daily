@@ -36,7 +36,7 @@ class EmojiDump(ext.Cog):
                               color=embed_colour)
 
         for emoji in self.emojis:
-            if len(embed.description) + len(self.emojis[emoji]) > 4096:
+            if len(embed.description) + len(self.emojis[emoji]) > 4000:
                 embed.description += f'\n\u200b'
                 embed = await stw.set_thumbnail(self.client, embed, "meme")
                 embed = await stw.add_requested_footer(ctx, embed, "en")
