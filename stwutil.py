@@ -46,7 +46,8 @@ from ext.profile.bongodb import get_user_document, replace_user_document
 logger = logging.getLogger(__name__)
 
 
-async def load_item_data() -> Tuple[dict, dict, dict, dict, dict, dict, dict, int, dict, dict, dict, FreeTypeFont, dict]:
+async def load_item_data() -> Tuple[
+    dict, dict, dict, dict, dict, dict, dict, int, dict, dict, dict, FreeTypeFont, dict]:
     """
     Loads the item data from the item data file
 
@@ -1046,16 +1047,21 @@ async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Inter
 
     if isinstance(msg, discord.Interaction):
         try:
+            logger.debug(f"Editing interaction message {msg.id} using edit_original_response")
             method = msg.edit_original_response
         except:
             if isinstance(msg, discord.InteractionMessage):
+                logger.debug(f"Editing interaction message {msg.id} using edit")
                 method = msg.edit
             else:
+                logger.debug(f"Editing interaction message {msg.id} using edit_message")
                 method = msg.response.edit_message
     else:
         try:
+            logger.debug(f"Editing message {msg.id} using edit")
             method = msg.edit
         except:
+            logger.debug(f"Editing message {msg.id} using edit_message")
             method = ctx.edit
     try:
         if isinstance(ctx, discord.ApplicationContext):
