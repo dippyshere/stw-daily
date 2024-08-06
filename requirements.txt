@@ -1,5 +1,5 @@
 # literally everything this bot does lmao
-aiohttp>=3.9.5
+aiohttp>=3.10.1
 # py-cord>=2.4.1
 # for python 3.11
 git+https://github.com/dippyshere/pycord
@@ -9,7 +9,7 @@ py-cpuinfo>=9.0.0
 # python <3.10 compatibility
 tomli>=2.0.1
 # speedup
-Cython>=3.0.10
+Cython>=3.0.11
 aiodns>=3.2.0
 brotli>=1.1.0
 faust-cchardet>=2.1.19
@@ -20,7 +20,7 @@ PyNaCl>=1.5.0
 # async-cache>=1.1.1
 async-lru>=2.0.4
 # database
-motor>=3.5.0
+motor>=3.5.1
 # for banner rendering
 blendmodes>=2024.1.1
 Pillow>=10.4.0
