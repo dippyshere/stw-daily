@@ -481,7 +481,7 @@ fleming = "https://cdn.discordapp.com/attachments/1042781227767312384/1059446263
 floppy = "https://cdn.discordapp.com/attachments/1042781227767312384/1059456356492525679/T_UI_IconLibrary_FloppyDisc_128.png"
 disconnected = "https://cdn.discordapp.com/attachments/1042781227767312384/1059460908763586620/T_UI_IconLibrary_Disconnected_128.png"
 uefn = "https://cdn.discordapp.com/attachments/1042781227767312384/1089090105081335898/uefn-1.png"
-
+crystal_llama = "https://media.discordapp.net/attachments/767607876348018689/1042412864155177001/unknown.png"
 
 # Different colours for commands
 [colours]

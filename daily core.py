@@ -4,10 +4,9 @@ Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
 import asyncio
-import time
-from pathlib import Path
-from typing import Dict, Any
 import logging
+from typing import Any, Dict
+
 import colorama
 
 colorama.init(autoreset=True)
@@ -84,18 +83,17 @@ logger = logging.getLogger(__name__)
 
 logger.debug("Starting STW Daily")
 
-import orjson
 import os
-import aiohttp
-import discord
-import base64
-import discord.ext.commands as ext
-from discord.ext import tasks
-from Crypto.Cipher import AES
 import re
 
-import stwwatch as watch
+import aiohttp
+import discord
+import discord.ext.commands as ext
+import orjson
+from discord.ext import tasks
+
 import stwutil as stw
+import stwwatch as watch
 
 # Compatability layer for future versions of python 3.11+
 try:
@@ -204,7 +202,8 @@ def main() -> None:
         "daily_xp",
         "battlebreakers.bbdump",
         "embedtester",
-        "emojidump"
+        "emojidump",
+        "playtime"
     ]  # why no ext.bongodb :( doot doot doot doot
 
     for extension in extensions:
@@ -272,7 +271,7 @@ async def on_ready() -> None:
         await eval(bytes.fromhex("636C69656E742E6368616E67655F70726573656E63652861637469766974793D646973636F72642E47616D65286E616D653D6622E29AA0EFB88F5741524E494E473A207B6261736536342E6236346465636F646528636C69656E742E6163636573735B305D292E6465636F646528277574662D3827297D207C2020496E207B6C656E28636C69656E742E6775696C6473297D206775696C6473222929")); update_status.cancel()
     client.command_name_dict, client.command_dict, client.command_name_list = stw.create_command_dict(client)
     logger.debug(f"Logged in as {client.user} (ID: {client.user.id}), ready to serve {len(client.guilds)} guilds")
-    logger.info(f"Started STW Daily")
+    logger.info("Started STW Daily")
 
     try:
         # TODO: remember to disable this on prod

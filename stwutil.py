@@ -5,43 +5,43 @@ https://github.com/dippyshere/stw-daily
 
 This file is the main utility library for stw daily. It contains a lot of functions that are used throughout the bot.
 """
+import asyncio
 import base64
 import datetime
+import functools
+import io
+import logging
+import math
 import os
 import random
 import re
 import time
-import math
 import urllib.parse
 from difflib import SequenceMatcher
-import logging
-from typing import Tuple, Union, Any, Optional
-import functools
+from typing import Any, Optional, Tuple, Union
 
 import aiofiles
 import aiohttp.client_reqrep
 import blendmodes.blend
 import deprecation
-from Crypto.Cipher import AES
-from PIL import Image, ImageDraw, ImageFont
-import asyncio
-import io
+import discord
 import orjson
+import owoify
+
 # from cache import AsyncLRU
 from async_lru import alru_cache
-import owoify
-from owoify.owoify import Owoness
-
-import discord
-from PIL.ImageFont import FreeTypeFont
+from Crypto.Cipher import AES
 from discord import Client
 from discord.ext import commands
 from discord.ext.commands import Command, Context
+from owoify.owoify import Owoness
+from PIL import Image, ImageDraw, ImageFont
+from PIL.ImageFont import FreeTypeFont
 
-import items
 import ext.battlebreakers.BBLootTable  # dinnerbrb its been much too long
-from lang.stwi18n import I18n
+import items
 from ext.profile.bongodb import get_user_document, replace_user_document
+from lang.stwi18n import I18n
 
 logger = logging.getLogger(__name__)
 
@@ -257,7 +257,7 @@ def process_quotes_in_message(message_content: str) -> str:
         GitHub wrote this, not me.
     """
     logging.debug(f"Processing quotes in message content: {message_content}")
-    message_content = re.sub(rf'[‘’“”„‟⹂「」『』〝〞﹁﹂﹃﹄｢｣«»‹›《》〈〉"＂]', lambda match: rf'\\{match.group()}', message_content)
+    message_content = re.sub(r'[‘’“”„‟⹂「」『』〝〞﹁﹂﹃﹄｢｣«»‹›《》〈〉"＂]', lambda match: rf'\\{match.group()}', message_content)
 
     starting, ending = None, None
     try:
@@ -692,6 +692,11 @@ def get_game_headers(game: str) -> dict[str, str]:
         Exception: If the game is not found
     """
     match game:
+        case "egl":
+            return {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "basic MzRhMDJjZjhmNDQxNGUyOWIxNTkyMTg3NmRhMzZmOWE6ZGFhZmJjY2M3Mzc3NDUwMzlkZmZlNTNkOTRmYzc2Y2Y="
+            }
         case "bb":
             return {
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -1145,6 +1150,7 @@ async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Inter
         else:
             logger.error(f"Error editing message: \n{e.with_traceback(e.__traceback__)}")
             return None
+
 
 
 async def device_auth_request(client: Client, account_id: str, token: str) -> aiohttp.client_reqrep.ClientResponse:
@@ -2713,9 +2719,9 @@ def calculate_homebase_rating(profile: dict[Any]) -> Tuple[float, int, dict[str,
         if info[0] == "manager":
             synergy = val["attributes"]["managerSynergy"]
             try:
-                survivors[squad].update({f"Leader": [rating, info, personality, synergy]})
+                survivors[squad].update({"Leader": [rating, info, personality, synergy]})
             except:
-                survivors.update({squad: {f"Leader": [rating, info, personality, synergy]}})
+                survivors.update({squad: {"Leader": [rating, info, personality, synergy]}})
         else:
             try:
                 survivors[squad]["Followers"].update({f"Follower{attr}": [rating, info, personality]})
@@ -2907,7 +2913,7 @@ async def create_error_embed(client: Client, ctx: Context, title: str = None, de
     if add_auth_gif:
         embed = await set_embed_image(embed, client.config["thumbnails"]["auth_tutorial"])
     else:
-        embed.description += f"\n\u200b"
+        embed.description += "\n\u200b"
     embed = await set_thumbnail(client, embed, thumbnail)
     embed = await add_requested_footer(ctx, embed, desired_lang)
     return embed
