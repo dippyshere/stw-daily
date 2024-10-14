@@ -4,6 +4,7 @@ Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
 import asyncio
+import sys
 import time
 from pathlib import Path
 import logging
@@ -12,6 +13,9 @@ from typing import Any, Dict
 import colorama
 
 colorama.init(autoreset=True)
+
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 class ColourFormatter(logging.Formatter):

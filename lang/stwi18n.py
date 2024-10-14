@@ -278,7 +278,7 @@ class I18n:
             profile_language = None
 
         if profile_language is None:
-            if datetime.datetime.utcnow().month == 4 and datetime.datetime.utcnow().day == 1:
+            if datetime.datetime.now(datetime.UTC).month == 4 and datetime.datetime.now(datetime.UTC).day == 1:
                 return "en-TwT"
 
         # return the desired language

@@ -384,8 +384,8 @@ def time_until_end_of_day() -> str:
     Raises:
         Exception: If the time until the end of the day is less than 0
     """
-    tomorrow = datetime.datetime.utcnow() + datetime.timedelta(days=1)
-    a = datetime.datetime.combine(tomorrow, datetime.time.min) - datetime.datetime.utcnow()
+    tomorrow = datetime.datetime.now(datetime.UTC) + datetime.timedelta(days=1)
+    a = datetime.datetime.combine(tomorrow, datetime.time.min).replace(tzinfo=datetime.UTC) - datetime.datetime.now(datetime.UTC)
     hours, remainder = divmod(int(a.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
@@ -687,9 +687,6 @@ def get_game_headers(game: str) -> dict[str, str]:
 
     Returns:
         the headers
-
-    Raises:
-        Exception: If the game is not found
     """
     match game:
         case "egl":
@@ -705,7 +702,7 @@ def get_game_headers(game: str) -> dict[str, str]:
         case "ios":
             return {
                 "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": "basic MzQ0NmNkNzI2OTRjNGE0NDg1ZDgxYjc3YWRiYjIxNDE6OTIwOWQ0YTVlMjVhNDU3ZmI5YjA3NDg5ZDMxM2I0MWE="
+                "Authorization": "basic M2Y2OWU1NmM3NjQ5NDkyYzhjYzI5ZjFhZjA4YThhMTI6YjUxZWU5Y2IxMjIzNGY1MGE2OWVmYTY3ZWY1MzgxMmU="
             }
         case _:
             return {
@@ -1052,21 +1049,21 @@ async def slash_edit_original(ctx: Context, msg: discord.Message | discord.Inter
 
     if isinstance(msg, discord.Interaction):
         try:
-            logger.debug(f"Editing interaction message {msg.id} using edit_original_response")
+            logger.debug(f"Editing interaction message using edit_original_response")
             method = msg.edit_original_response
         except:
             if isinstance(msg, discord.InteractionMessage):
-                logger.debug(f"Editing interaction message {msg.id} using edit")
+                logger.debug(f"Editing interaction message using edit")
                 method = msg.edit
             else:
-                logger.debug(f"Editing interaction message {msg.id} using edit_message")
+                logger.debug(f"Editing interaction message using edit_message")
                 method = msg.response.edit_message
     else:
         try:
-            logger.debug(f"Editing message {msg.id} using edit")
+            logger.debug(f"Editing message using edit")
             method = msg.edit
         except:
-            logger.debug(f"Editing message {msg.id} using edit_message")
+            logger.debug(f"Editing message using edit_message")
             method = ctx.edit
     try:
         if isinstance(ctx, discord.ApplicationContext):
