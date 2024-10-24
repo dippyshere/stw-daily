@@ -1,0 +1,1 @@
+[{"Type":"WExpChunkDefinition","Name":"Chunk_CombatSkill","Class":"UScriptClass'WExpChunkDefinition'","Properties":{"ParentChunkId":8,"ChunkType":"EWExpChunkType::Account","Rules":{"Priority":10,"ChunkId":10},"AssetCollection":{"CollectionName":"Chunk_CombatSkill"}}}]

@@ -1,0 +1,1 @@
+[{"Type":"WExpTileDefinition","Name":"T_Forest1_ThreeHexUp","Class":"UScriptClass'WExpTileDefinition'","Properties":{"TileBlueprintClass":{"ObjectName":"BlueprintGeneratedClass'B_Tile_Shell_ThreeHexUp_C'","ObjectPath":"WorldExplorers/Content/World/Tiles/B_Tile_Shell_ThreeHexUp.5"},"ClusterShape":"EWExpHexTileClusterShape::ThreeHexUp"}}]

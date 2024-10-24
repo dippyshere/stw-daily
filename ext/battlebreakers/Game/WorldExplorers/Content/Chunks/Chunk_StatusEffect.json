@@ -1,0 +1,1 @@
+[{"Type":"WExpChunkDefinition","Name":"Chunk_StatusEffect","Class":"UScriptClass'WExpChunkDefinition'","Properties":{"ParentChunkId":10,"ChunkType":"EWExpChunkType::Account","Rules":{"Priority":10,"ChunkId":11},"AssetCollection":{"CollectionName":"Chunk_StatusEffect"}}}]

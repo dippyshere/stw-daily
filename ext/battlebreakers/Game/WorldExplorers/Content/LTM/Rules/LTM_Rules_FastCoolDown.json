@@ -1,0 +1,1 @@
+[{"Type":"WExpLTMItemDefinition","Name":"LTM_Rules_FastCoolDown","Class":"UScriptClass'WExpLTMItemDefinition'","Properties":{"Type":"EWExpLTMType::Rule","Rule":"EWExpLTMRules::FastCoolDown"}}]

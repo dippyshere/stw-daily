@@ -1,0 +1,1 @@
+[{"Type":"MaterialParameterCollection","Name":"MPC_Crystal_Light","Class":"UScriptClass'MaterialParameterCollection'","Properties":{"StateId":"DB7FD016-472C5E70-9DA7D4B7-C5B58120","VectorParameters":[{"DefaultValue":{"R":-10.077537,"G":-1.481648,"B":23.09451,"A":0.0,"Hex":"0000FF"},"ParameterName":"LightDirection","Id":"1A2584B6-49160699-928D8CBE-F9F82E43"}]}}]

@@ -1,0 +1,1 @@
+[{"Type":"WExpRecipe","Name":"Market_L14","Class":"UScriptClass'WExpRecipe'","Properties":{"ConsumedItems":[{"ItemDefinition":{"ObjectName":"WExpGenericAccountItemDefinition'Gold'","ObjectPath":"WorldExplorers/Content/Loot/Currencies/Gold.0"},"Count":150000}],"MinAccountLevel":115}}]

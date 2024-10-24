@@ -1,0 +1,1 @@
+[{"Type":"WExpLTMItemDefinition","Name":"LTM_Rules_Inhibited_Level1Heroes","Class":"UScriptClass'WExpLTMItemDefinition'","Properties":{"Type":"EWExpLTMType::Rule","Rule":"EWExpLTMRules::Inhibit_Lvl1Heroes"}}]

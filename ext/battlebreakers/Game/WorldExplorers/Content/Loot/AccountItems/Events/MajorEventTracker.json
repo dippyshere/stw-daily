@@ -1,0 +1,1 @@
+[{"Type":"WExpMajorEventTrackerDefinition","Name":"MajorEventTracker","Class":"UScriptClass'WExpMajorEventTrackerDefinition'","Properties":{"bAllowMultipleSpend":false,"StackLimit":1,"bCanUseItem":false,"bTakesUpInventorySpace":false,"bAddToPickupsList":false,"bIsPositiveThing":false,"bIsHiddenItem":true}}]

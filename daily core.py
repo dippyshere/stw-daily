@@ -211,7 +211,8 @@ def main() -> None:
         "battlebreakers.bbdump",
         "embedtester",
         "emojidump",
-        "playtime"
+        "playtime",
+        "battlebreakers.bbtid"
     ]  # why no ext.bongodb :( doot doot doot doot
 
     for extension in extensions:

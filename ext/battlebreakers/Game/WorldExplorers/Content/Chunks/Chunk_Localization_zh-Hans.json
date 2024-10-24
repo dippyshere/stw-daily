@@ -1,0 +1,1 @@
+[{"Type":"WExpChunkDefinition","Name":"Chunk_Localization_zh-Hans","Class":"UScriptClass'WExpChunkDefinition'","Properties":{"ChunkType":"EWExpChunkType::Onboarding","CultureNames":["zh-Hans"],"Rules":{"Priority":10,"ChunkId":3},"ExplicitAssets":[{"AssetPathName":"/Game/L10N/zh-Hans/AssetLabel_zh-Hans.AssetLabel_zh-Hans","SubPathString":""}]}}]

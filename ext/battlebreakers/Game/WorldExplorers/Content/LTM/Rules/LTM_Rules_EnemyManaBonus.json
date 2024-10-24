@@ -1,0 +1,1 @@
+[{"Type":"WExpLTMItemDefinition","Name":"LTM_Rules_EnemyManaBonus","Class":"UScriptClass'WExpLTMItemDefinition'","Properties":{"Type":"EWExpLTMType::Rule","Rule":"EWExpLTMRules::EnemyManaBonus"}}]

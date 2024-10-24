@@ -27,6 +27,7 @@ import deprecation
 import discord
 import orjson
 import owoify
+import rapidfuzz
 
 # from cache import AsyncLRU
 from async_lru import alru_cache
@@ -44,6 +45,12 @@ from ext.profile.bongodb import get_user_document, replace_user_document
 from lang.stwi18n import I18n
 
 logger = logging.getLogger(__name__)
+
+wex_name_data = {}
+wex_files_list = []
+for root, dirs, files in os.walk('ext/battlebreakers/Game/WorldExplorers/Content/'):
+    for file in files:
+        wex_files_list.append(os.path.join(root, file))
 
 
 async def load_item_data() -> Tuple[
@@ -83,6 +90,14 @@ async def load_item_data() -> Tuple[
         burbank: FreeTypeFont = ImageFont.truetype(io.BytesIO(await f.read()), 90)
     async with aiofiles.open('ext/DataTables/QuestRewards.json') as f:
         quest_rewards: dict = orjson.loads(await f.read())
+    # walk through every json file in ext/battlebreakers/Game/WorldExplorers/Content/, try to get name at [0]["Properties"]["DisplayName"]["SourceString"], if it doesnt fail, add it to wex_name_data dict with the name as the key and the file path (from ext and exclusing .json) as the value
+    for file in wex_files_list:
+        try:
+            async with aiofiles.open(file, 'r') as f:
+                data = orjson.loads(await f.read())
+                wex_name_data[data[0]["Properties"]["DisplayName"]["SourceString"]] = file.split("ext/battlebreakers/Game/WorldExplorers/Content/")[1].split(".json")[0]
+        except:
+            pass
     return (bbLoginRewards, SurvivorItemRating, HomebaseRatingMapping, ResearchSystem, AccountLevels, BannerColorMap,
             BannerColors, max_daily_stw_accolade_xp, allowed_chars, stwDailyRewards, stwFounderDailyRewards, burbank,
             quest_rewards)
@@ -1353,201 +1368,6 @@ async def get_llama_datatable(client: Client, path: str, desired_lang: str = 'en
             I18n.get("stw.item.CardPack_Bronze.desc", desired_lang), "<:PinataStandardPack:947728062739542036>", \
             "<:T_CardPack_Upgrade_IconMask:1055049365426819092>", \
             "Rare"
-
-
-async def claim_free_llamas(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]], store: dict,
-                            prerolled_offers: dict[str, ...]) -> None:
-    """
-    Claims the free llamas in the store
-
-    Args:
-        client: The client
-        auth_entry: The auth entry to use
-        store: The llama store from the shop query
-        prerolled_offers: The response to the populate prerolled offers request
-
-    Returns:
-        The response from the request
-
-    Raises:
-        HTTPException: If the request fails
-    """
-    already_opened_free_llamas = 0
-    free_llamas_count, free_llamas_list = await free_llama_count(store)
-    if not free_llamas_count:
-        logger.info("No free llamas to open")
-        return None
-    else:
-        items_from_llamas = []
-        opened_llamas = 0
-        for llama in free_llamas_list:
-            llama_to_claim_offer_id = llama['offerId']
-            try:
-                llama_to_claim_title = llama['title']
-            except:
-                llama_to_claim_title = []
-            llama_to_claim_template_id = llama['itemGrants'][0]['templateId']
-            while True:
-                req_populate_llamas = prerolled_offers  # llamas
-                llama_tier = []
-                for key in req_populate_llamas['profileChanges'][0]['profile']['items']:
-                    if req_populate_llamas['profileChanges'][0]['profile']['items'][key][
-                        'templateId'].lower().startswith("prerolldata") and \
-                            req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes'][
-                                'offerId'] == llama_to_claim_offer_id:
-                        try:
-                            llama_tier = \
-                                req_populate_llamas['profileChanges'][0]['profile']['items'][key]['attributes'][
-                                    'highest_rarity']
-                        except:
-                            llama_tier = 0
-                json = {"offerId": llama_to_claim_offer_id,
-                        "purchaseQuantity": 1,
-                        "currency": "GameItem",
-                        "currencySubType": "AccountResource:currency_xrayllama",
-                        "expectedTotalPrice": 0,
-                        "gameContext": ""}
-                req_buy_free_llama = await profile_request(client, "purchase", auth_entry, json=json,
-                                                           profile_id="common_core")
-                req_buy_free_llama_json = orjson.loads(await req_buy_free_llama.read())
-                if "errorMessage" in req_buy_free_llama_json:
-                    if "limit of" in req_buy_free_llama_json['errorMessage']:
-                        if opened_llamas == 0:
-                            already_opened_free_llamas += 1
-                    if "because fulfillment" in req_buy_free_llama_json['errorMessage']:
-                        logger.warning("account is unable to claim free llama")
-                    break
-                else:
-                    logger.info("opening llama_to_claim_name tier llama_tier")
-                    llama_loot = req_buy_free_llama_json['notifications'][0]['lootResult']['items']
-                    llama_loot_count = 0
-                    opened_llamas += 1
-                    for key in llama_loot:
-                        template_id = key['itemType']
-                        item_guid = key['itemGuid']
-                        item_quantity = key['quantity']
-                        item_name = template_id
-                        try:
-                            item_rarity = 'rarity'
-                            item_type = 'type'
-                        except:
-                            item_rarity = "Unknown rarity"
-                            item_type = "Unknown type"
-                        llama_loot_count += 1
-                        if item_rarity in ("common", "uncommon", "rare", "epic"):
-                            items_from_llamas.append(
-                                {"itemName": item_name, "itemType": item_type, "templateId": template_id,
-                                 "itemGuid": item_guid, "itemRarity": item_rarity, "itemQuantity": item_quantity})
-                        logger.info(f"{llama_loot_count}: {item_rarity} | {item_type}: {item_quantity}x {item_name}")
-        if int(already_opened_free_llamas) == free_llamas_count:
-            logger.info("alreadyclaimed")
-        else:
-            if opened_llamas > 0:
-                logger.info("successfully opened opened_llamas")
-            else:
-                logger.info("opening failed")
-
-
-async def recycle_free_llama_loot(client: Client, auth_entry: dict[str, str | bool | float | None | list[str]],
-                                  items_from_llamas: dict | list, already_opened_free_llamas: int,
-                                  free_llamas_count: int, recycle_config: Optional[dict] = None) -> None:
-    """
-    Recycles the free llama loot
-
-    Args:
-        client: The client
-        auth_entry: The auth entry to use
-        items_from_llamas: The items from the free llama loot
-        already_opened_free_llamas: The amount of free llamas already opened
-        free_llamas_count: The amount of free llamas
-        recycle_config: The config for what to recycle
-
-    Returns:
-        The response from the request
-
-    Raises:
-        HTTPException: If the request fails
-    """
-
-    if recycle_config is None:
-        recycle_config = {'weapon': [''], 'trap': [''], 'survivor': [''], 'defender': [''], 'hero': ['']}
-    rarities = {"off": "",
-                "common": "common",
-                "uncommon": "common, uncommon",
-                "rare": "common, uncommon, rare",
-                "epic": "common, uncommon, rare, epic"
-                }
-    item_rarities = {
-        "weapon": rarities["off".lower()].split(", "),
-        "trap": rarities["off".lower()].split(", "),
-        "survivor": rarities["off".lower()].split(", "),
-        "defender": rarities["off".lower()].split(", "),
-        "hero": rarities["off".lower()].split(", ")
-    }
-    resources_message = ""
-
-    tracked_resources = ["AccountResource:heroxp", "AccountResource:personnelxp", "AccountResource:phoenixxp",
-                         "AccountResource:phoenixxp_reward", "AccountResource:reagent_alteration_ele_fire",
-                         "AccountResource:reagent_alteration_ele_nature",
-                         "AccountResource:reagent_alteration_ele_water",
-                         "AccountResource:reagent_alteration_gameplay_generic",
-                         "AccountResource:reagent_alteration_generic", "AccountResource:reagent_alteration_upgrade_r",
-                         "AccountResource:reagent_alteration_upgrade_sr",
-                         "AccountResource:reagent_alteration_upgrade_uc",
-                         "AccountResource:reagent_alteration_upgrade_vr", "AccountResource:reagent_c_t01",
-                         "AccountResource:reagent_c_t02", "AccountResource:reagent_c_t03",
-                         "AccountResource:reagent_c_t04", "AccountResource:reagent_evolverarity_r",
-                         "AccountResource:reagent_evolverarity_sr", "AccountResource:reagent_evolverarity_vr",
-                         "AccountResource:reagent_people", "AccountResource:reagent_promotion_heroes",
-                         "AccountResource:reagent_promotion_survivors", "AccountResource:reagent_promotion_traps",
-                         "AccountResource:reagent_promotion_weapons", "AccountResource:reagent_traps",
-                         "AccountResource:reagent_weapons", "AccountResource:schematicxp"]
-
-    if int(already_opened_free_llamas) != free_llamas_count:
-        items_to_recycle = []
-        item_guids_to_recycle = []
-        recycle_resources = []
-        recycled_items_count = 0
-        recycle_resources_count = 0
-        for item in items_from_llamas:
-            item_type = item['itemType']
-            item_rarity = item['itemRarity']
-            item_guid = item['itemGuid']
-            try:
-                if item_rarity in item_rarities[item_type]:
-                    item_guids_to_recycle.append(item_guid)
-                    items_to_recycle.append(item)
-            except:
-                pass
-        if len(item_guids_to_recycle) != 0:
-            # free llamas
-            # Recycling and retiring selected items from opened_llamas free llamas...
-            req_get_resources = await profile_request(client, "query", auth_entry)
-            req_get_resources_json = orjson.loads(await req_get_resources.read())
-            for resource in tracked_resources:
-                for item in req_get_resources_json['profileChanges'][0]['profile']['items']:
-                    if req_get_resources_json['profileChanges'][0]['profile']['items'][item]['templateId'] == resource:
-                        recycle_resources.append({"itemGuid": item,
-                                                  "templateId": resource,
-                                                  "quantity":
-                                                      req_get_resources_json['profileChanges'][0]['profile']['items'][
-                                                          item]['quantity']
-                                                  })
-            json = {"targetItemIds": item_guids_to_recycle}
-            recycle_request = await profile_request(client, "batch_recycle", auth_entry, json=json)
-            recycle_request_json = orjson.loads(await recycle_request.read())
-            req_get_resources2 = await profile_request(client, "query", auth_entry)
-            req_get_resources2_json = orjson.loads(await req_get_resources2.read())
-            # resources receive
-            for resource in recycle_resources:
-                resource_quantity = int(
-                    req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']][
-                        'quantity']) - int(resource['quantity'])
-                if resource_quantity > 0:
-                    recycle_resources_count += 1
-                    resources_message += f"{recycle_resources_count}: {resource_quantity}x {resource['itemName']}. " \
-                                         f"Total ammount: {req_get_resources2_json['profileChanges'][0]['profile']['items'][resource['itemGuid']]['quantity']}\n"
-            logger.info(resources_message)
 
 
 async def validate_existing_session(client: Client, token: str) -> bool:
@@ -3999,3 +3819,184 @@ def owoify_text(text: str, level: int = 2) -> str:
         return owoify.owoify(text, Owoness.Uwu)
     if level >= 3:
         return owoify.owoify(text, Owoness.Uvu)
+
+
+async def find_best_match(input_str: str, item_list: list, split_for_path: bool = False) -> str:
+    """
+    Finds the best match for a string in a list
+    :param input_str: The string to find the best match for
+    :param item_list: The list to find the best match in
+    :param split_for_path: Whether to split the string for the path
+    :return: The best match
+    """
+    if split_for_path:
+        return rapidfuzz.process.extractOne(input_str, item_list, processor=lambda x: x.split("\\")[-1].split(".")[0])[
+            0]
+    else:
+        return rapidfuzz.process.extractOne(input_str, item_list)[0]
+
+
+@alru_cache(maxsize=256)
+async def get_path_from_template_id(template_id: str) -> str:
+    """
+    Gets the path from a template id
+    :param template_id: The template id to get the path for
+    :return: The path
+    """
+    best_match = await find_best_match(template_id, wex_files_list, True)
+    return best_match
+
+
+async def search_item(input_string):
+    """
+    Searches for a display name or file name that is similar to the input string.
+
+    Args:
+        input_string (str): The input string to search for.
+
+    Returns:
+        list: A combined and sorted list of display and file name results, 
+              each with a label ('Display Name' or 'File Name') and their similarity score.
+    """
+    results = []
+
+    display_name_results = rapidfuzz.process.extract(
+        input_string,
+        wex_name_data.keys(),
+        scorer=rapidfuzz.fuzz.WRatio,
+        limit=5,
+        processor=rapidfuzz.utils.default_process,
+        score_cutoff=45
+    )
+
+    if display_name_results:
+        results.extend([{'type': 'Display Name', 'name': name, 'score': score}
+                        for name, score, _ in display_name_results])
+
+    file_name_results = rapidfuzz.process.extract(
+        input_string,
+        [os.path.splitext(os.path.basename(file))[0] for file in wex_files_list],
+        scorer=rapidfuzz.fuzz.WRatio,
+        limit=5,
+        processor=rapidfuzz.utils.default_process,
+        score_cutoff=45
+    )
+
+    if file_name_results:
+        results.extend([{'type': 'File Name', 'name': name, 'score': score}
+                        for name, score, _ in file_name_results])
+
+    results = sorted(results, key=lambda x: x['score'], reverse=True)
+
+    return results
+
+async def get_template_id_from_data(data: dict) -> str:
+    """
+    Gets the template id from the data of a response
+    :param data: The data to get the template id from
+    :return: The template id
+    """
+    match data[0].get('Type'):
+        case "WExpGenericAccountItemDefinition":
+            return f"{data[0].get('Properties').get('ItemType').split('::')[-1]}:{data[0].get('Name')}"
+        case "WExpCharacterDefinition":
+            return f"Character:{data[0].get('Name').split('CD_')[-1]}"
+        case "WExpVoucherItemDefinition":
+            return f"Voucher:{data[0].get('Name')}"
+        case "WExpUpgradePotionDefinition":
+            return f"UpgradePotion:{data[0].get('Name')}"
+        case "WExpXpBookDefinition":
+            return "Currency:HeroXp_Basic"  # hardcoded as in newer versions, all xp books are one type
+        case "WExpTreasureMapDefinition":
+            return f"TreasureMap:{data[0].get('Name')}"
+        case "WExpTokenDefinition":
+            return f"Token:{data[0].get('Name')}"
+        case "WExpAccountRewardDefinition":
+            return f"AccountReward:{data[0].get('Name')}"
+        case "WExpCharacterDisplay":
+            return f"CharacterDisplay:{data[0].get('Name')}"
+        case "WExpCharacterEvolutionNode":
+            return f"CharacterEvolutionNode:{data[0].get('Name')}"
+        case "WExpChunkDefinition":
+            return f"Chunk:{data[0].get('Name')}"
+        case "WExpContainerDefinition":
+            return f"Container:{data[0].get('Name')}"
+        case "WExpCharacterHeroGearInfo":
+            return f"CharacterHeroGearInfo:{data[0].get('Name')}"
+        case "WExpEventDefinition":
+            return f"Event:{data[0].get('Name')}"
+        case "WExpGearAffix":
+            return f"GearAffix:{data[0].get('Name')}"
+        case "WExpGearAccountItemDefinition":
+            return f"Gear:{data[0].get('Name')}"
+        case "WExpQuestDefinition":
+            return f"Quest:{data[0].get('Name')}"
+        case "WExpHQMonsterPitDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQWorkshopDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQBlacksmithDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQMineDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQHeroTowerDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQMarketDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQSecretShopDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQSmelterDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpHQWorkerLodgesDefinition":
+            return f"HqBuilding:{data[0].get('Name')}"
+        case "WExpItemDefinition":
+            return f"Item:{data[0].get('Name')}"
+        case "WExpLTMItemDefinition":
+            return f"LTMItem:{data[0].get('Name')}"
+        case "WExpLevelArtDefinition":
+            return f"LevelArt:{data[0].get('Name')}"
+        case "WExpMajorEventTrackerDefinition":
+            return f"MajorEventTracker:{data[0].get('Name')}"
+        case "WExpMappedStyleData":
+            return f"MappedStyle:{data[0].get('Name')}"
+        case "WExpMenuData":
+            return f"Menu:{data[0].get('Name')}"
+        case "WExpOnboardingMenuData":
+            return f"OnboardingMenu:{data[0].get('Name')}"
+        case "WExpOnboardingGlobalData":
+            return f"OnboardingGlobal:{data[0].get('Name')}"
+        case "WExpPromotionTable":
+            return f"PromotionTable:{data[0].get('Name')}"
+        case "WExpProgressionData":
+            return f"Progression:{data[0].get('Name')}"
+        case "WExpPersonalEventDefinition":
+            return f"PersonalEvent:{data[0].get('Name')}"
+        case "WExpRecipe":
+            return f"Recipe:{data[0].get('Name')}"
+        case "WExpStandInDefinition":
+            return f"StandIn:{data[0].get('Name')}"
+        case "WExpStyleData":
+            return f"Style:{data[0].get('Name')}"
+        case "WExpSlateAnimationData":
+            return f"SlateAnimation:{data[0].get('Name')}"
+        case "WExpTileDefinition":
+            return f"Tile:{data[0].get('Name')}"
+        case "WExpTileGenerator":
+            return f"TileGenerator:{data[0].get('Name')}"
+        case "WExpUpgradePotionDefinition":
+            return f"UpgradePotion:{data[0].get('Name')}"
+        case "WExpUnlockableDefinition":
+            return f"Unlockable:{data[0].get('Name')}"
+        case "WExpVoucherItemDefinition":
+            return f"Voucher:{data[0].get('Name')}"
+        case "WExpZoneDefinition":
+            return f"Zone:{data[0].get('Name')}"
+        case "WExpHelpData":
+            return f"Help:{data[0].get('Name')}"
+        case "WExpCampaignDefinition":
+            return f"Campaign:{data[0].get('Name')}"
+        case "WExpBasicStyleData":
+            return f"Style:{data[0].get('Name')}"
+        case "WExpCameraTransitionAsset":
+            return f"CameraTransition:{data[0].get('Name')}"
+    return ""

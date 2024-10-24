@@ -1,0 +1,1 @@
+[{"Type":"WExpChunkDefinition","Name":"Chunk_Localization_es","Class":"UScriptClass'WExpChunkDefinition'","Properties":{"ChunkType":"EWExpChunkType::Onboarding","CultureNames":["es"],"Rules":{"Priority":10,"ChunkId":52},"ExplicitAssets":[{"AssetPathName":"/Game/L10N/es/AssetLabel_es.AssetLabel_es","SubPathString":""}]}}]

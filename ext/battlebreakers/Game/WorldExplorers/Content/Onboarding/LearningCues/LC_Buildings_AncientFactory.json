@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_Buildings_AncientFactory","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.BuildingScreen.Factory.Open"},"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_AncientFactory_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_AncientFactory.0"}}}]

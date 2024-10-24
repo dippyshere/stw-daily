@@ -1,0 +1,1 @@
+[{"Type":"WExpPersonalEventDefinition","Name":"PersonalEventTest","Class":"UScriptClass'WExpPersonalEventDefinition'","Properties":{"Zones":[{"ObjectName":"WExpZoneDefinition'Zone_AbandonedVillage_Map1'","ObjectPath":"WorldExplorers/Content/Campaign/Zones/AbandonedVillage/Zone_AbandonedVillage_Map1.0"}],"DurationHours":3,"MaxRuns":2}}]

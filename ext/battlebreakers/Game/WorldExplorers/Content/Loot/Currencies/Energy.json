@@ -1,0 +1,1 @@
+[{"Type":"WExpGenericAccountItemDefinition","Name":"Energy","Class":"UScriptClass'WExpGenericAccountItemDefinition'","Properties":{"ItemType":"EWExpBasicItemTypes::Currency","bExportToMCP":false,"IconTextureAssetData":{"AssetPathName":"/Game/UMG/Textures/Icons/EnergyIcon.EnergyIcon","SubPathString":""}}}]

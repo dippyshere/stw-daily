@@ -1,0 +1,1 @@
+[{"Type":"WExpRecipe","Name":"Mine_Dig_Depth3","Class":"UScriptClass'WExpRecipe'","Properties":{"ConsumedItems":[{"ItemDefinition":{"ObjectName":"WExpGenericAccountItemDefinition'Gold'","ObjectPath":"WorldExplorers/Content/Loot/Currencies/Gold.0"},"Count":600}],"MinAccountLevel":0}}]

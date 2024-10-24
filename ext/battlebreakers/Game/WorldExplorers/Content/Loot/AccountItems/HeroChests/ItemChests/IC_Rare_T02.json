@@ -1,0 +1,1 @@
+[{"Type":"WExpHeroChestDefinition","Name":"IC_Rare_T02","Class":"UScriptClass'WExpHeroChestDefinition'","Properties":{"SourceName":"Hammers/Magicite/Lockpick","Choices":[{"/Game/Loot/Currencies/Hammer.Hammer":20},{"/Game/Loot/AccountItems/Ore/Ore_Magicite.Ore_Magicite":40},{"/Game/Loot/AccountItems/TreasureMaps/TM_MapResource.TM_MapResource":60}],"isItemChest":true}}]

@@ -1,0 +1,1 @@
+[{"Type":"WExpRecipe","Name":"Armor_Level_49","Class":"UScriptClass'WExpRecipe'","Properties":{"ConsumedItems":[{"ItemDefinition":{"ObjectName":"WExpGenericAccountItemDefinition'Ore_Iron'","ObjectPath":"WorldExplorers/Content/Loot/AccountItems/Ore/Ore_Iron.0"},"Count":35}],"MinAccountLevel":0}}]

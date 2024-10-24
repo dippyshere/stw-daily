@@ -1,0 +1,1 @@
+[{"Type":"MaterialParameterCollection","Name":"MPC_MotionData","Class":"UScriptClass'MaterialParameterCollection'","Properties":{"StateId":"A05C9FF3-4FE378DC-60524598-8EB0A105","ScalarParameters":[{"DefaultValue":0.0,"ParameterName":"X","Id":"49562B38-441A0D58-22422AAD-B88BC2D9"},{"DefaultValue":0.0,"ParameterName":"Y","Id":"1B8574C4-4F4117D4-A48324BE-D012212F"}]}}]

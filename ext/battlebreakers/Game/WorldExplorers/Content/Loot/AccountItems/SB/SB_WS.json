@@ -1,0 +1,1 @@
+[{"Type":"WExpGenericAccountItemDefinition","Name":"SB_WS","Class":"UScriptClass'WExpGenericAccountItemDefinition'","Properties":{"ItemType":"EWExpBasicItemTypes::Currency","bTakesUpInventorySpace":false,"bAddToPickupsList":false,"bIsHiddenItem":true}}]

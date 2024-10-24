@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_UpgradeScreen_SkillsTab","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.UpgradeScreen.SkillsTab.Open"},"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_UpgradeScreen_SkillsTab_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_UpgradeScreen_SkillsTab.0"}}}]

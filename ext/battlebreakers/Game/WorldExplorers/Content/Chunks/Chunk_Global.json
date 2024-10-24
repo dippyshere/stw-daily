@@ -1,0 +1,1 @@
+[{"Type":"WExpChunkDefinition","Name":"Chunk_Global","Class":"UScriptClass'WExpChunkDefinition'","Properties":{"ChunkType":"EWExpChunkType::Onboarding","Rules":{"Priority":20,"ChunkId":3},"AssetCollection":{"CollectionName":"Chunk_Global"}}}]

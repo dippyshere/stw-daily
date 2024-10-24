@@ -1,0 +1,1 @@
+[{"Type":"WExpRecipe","Name":"Armor_Tier_T02","Class":"UScriptClass'WExpRecipe'","Properties":{"ConsumedItems":[{"ItemDefinition":{"ObjectName":"WExpGenericAccountItemDefinition'Ore_Magicite'","ObjectPath":"WorldExplorers/Content/Loot/AccountItems/Ore/Ore_Magicite.0"},"Count":25}],"MinAccountLevel":0}}]

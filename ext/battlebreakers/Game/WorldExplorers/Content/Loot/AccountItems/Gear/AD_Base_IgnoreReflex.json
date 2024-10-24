@@ -1,0 +1,1 @@
+[{"Type":"WExpGearAffix","Name":"AD_Base_IgnoreReflex","Class":"UScriptClass'WExpGearAffix'","Properties":{"StatusEffects":{"AssetPathName":"/Game/Skills/Affix/SE_Master_Affix_Ignore_Reflex.SE_Master_Affix_Ignore_Reflex_C","SubPathString":""},"bModifyStats":true,"bAllowMultipleSpend":false,"bCanUseItem":false,"bTakesUpInventorySpace":false}}]

@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_TeamScreen_Infographic","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.TeamScreen.Open"},"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_TeamScreen_LCVisualizer_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_TeamScreen_LCVisualizer.0"}}}]

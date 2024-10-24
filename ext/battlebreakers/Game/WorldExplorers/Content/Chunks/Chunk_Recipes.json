@@ -1,0 +1,1 @@
+[{"Type":"WExpChunkDefinition","Name":"Chunk_Recipes","Class":"UScriptClass'WExpChunkDefinition'","Properties":{"ParentChunkId":5,"ChunkType":"EWExpChunkType::Account","Rules":{"Priority":10,"ChunkId":15},"AssetCollection":{"CollectionName":"Chunk_Recipes"}}}]

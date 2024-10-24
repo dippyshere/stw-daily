@@ -1,0 +1,1 @@
+[{"Type":"WExpGenericAccountItemDefinition","Name":"SB_Silver","Class":"UScriptClass'WExpGenericAccountItemDefinition'","Properties":{"ItemType":"EWExpBasicItemTypes::Currency","bEnableStreakBreakerExperiment":true,"bTakesUpInventorySpace":false,"bAddToPickupsList":false,"bIsHiddenItem":true}}]

@@ -1,0 +1,1 @@
+[{"Type":"WExpQuestDefinition","Name":"CompleteRooms2","Class":"UScriptClass'WExpQuestDefinition'","Properties":{"RequirementTierGroup":"LTG.Quest.CompleteRooms2","RewardTierGroup":"LTG.QuestRewards.Low","DisplayName":{"Namespace":"","Key":"F9081AF848FD543733BA3197A6FC2CD6","SourceString":"Complete Rooms II","LocalizedString":"Complete Rooms II"}}}]

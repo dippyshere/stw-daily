@@ -1,0 +1,1 @@
+[{"Type":"CurveLinearColor","Name":"PersistenceBarIdleBackArrow_Color","Class":"UScriptClass'CurveLinearColor'","Properties":{"FloatCurves":{"Keys":[{"InterpMode":"RCIM_Linear","TangentMode":"RCTM_Auto","TangentWeightMode":"RCTWM_WeightedNone","Time":0.0,"Value":1.0,"ArriveTangent":0.0,"ArriveTangentWeight":0.0,"LeaveTangent":0.0,"LeaveTangentWeight":0.0}]}}}]

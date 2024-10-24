@@ -1,13 +1,1 @@
-[
-    {
-        "Type": "FortTrackingTokenType",
-        "Name": "STW_Accolade_Tracker",
-        "Class": "UScriptClass'FortTrackingTokenType'",
-        "Properties": {
-            "MaxDailyXP": 385000,
-            "MaxStackSize": {
-                "Value": 32767.0
-            }
-        }
-    }
-]
+[{"Type":"FortTrackingTokenType","Name":"STW_Accolade_Tracker","Class":"UScriptClass'FortTrackingTokenType'","Properties":{"MaxDailyXP":448000,"DataList":[{"MaxStackSize":{"Value":32767.0,"Curve":{"CurveTable":null,"RowName":"None"},"RegistryType":{"Name":"None"}}},{"MinLevel":1,"MaxLevel":1},{"Traits":["Item.Trait.SingleStack"]}]}}]

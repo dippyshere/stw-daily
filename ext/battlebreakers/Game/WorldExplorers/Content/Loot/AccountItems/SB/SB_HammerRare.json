@@ -1,0 +1,1 @@
+[{"Type":"WExpGenericAccountItemDefinition","Name":"SB_HammerRare","Class":"UScriptClass'WExpGenericAccountItemDefinition'","Properties":{"ItemType":"EWExpBasicItemTypes::Currency","bEnableStreakBreakerExperiment":true,"bTakesUpInventorySpace":false,"bAddToPickupsList":false,"bIsHiddenItem":true}}]

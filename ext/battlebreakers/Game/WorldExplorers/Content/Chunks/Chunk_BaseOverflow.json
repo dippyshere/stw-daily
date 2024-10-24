@@ -1,0 +1,1 @@
+[{"Type":"WExpChunkDefinition","Name":"Chunk_BaseOverflow","Class":"UScriptClass'WExpChunkDefinition'","Properties":{"ChunkType":"EWExpChunkType::Onboarding","Rules":{"Priority":22,"ChunkId":1},"AssetCollection":{"CollectionName":"Chunk_BaseOverflow"}}}]

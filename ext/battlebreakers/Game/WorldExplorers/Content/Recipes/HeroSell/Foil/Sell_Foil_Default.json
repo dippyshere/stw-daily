@@ -1,0 +1,1 @@
+[{"Type":"WExpRecipe","Name":"Sell_Foil_Default","Class":"UScriptClass'WExpRecipe'","Properties":{"RequiredItems":[{"ItemDefinition":{"ObjectName":"WExpGenericAccountItemDefinition'Reagent_Foil'","ObjectPath":"WorldExplorers/Content/Loot/AccountItems/Reagents/Reagent_Foil.0"},"Count":3}],"MinAccountLevel":0}}]

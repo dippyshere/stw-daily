@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_SendGiftsScreen","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.SendGiftsScreen.Open"},"MaxShowCount":0,"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_SendGiftsScreen_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_SendGiftsScreen.0"}}}]

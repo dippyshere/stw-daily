@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_Buildings_BuildingScreenHub","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.BuildingScreen.BuildingHub.Open"},"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_BuildingScreenHub_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_BuildingScreenHub.0"}}}]

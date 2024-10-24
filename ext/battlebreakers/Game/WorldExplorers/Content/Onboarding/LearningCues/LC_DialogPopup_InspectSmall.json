@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_DialogPopup_InspectSmall","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.DialogPopup.InspectSmallDialog.Open"},"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_DialogPopup_InspectSmall_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_DialogPopup_InspectSmall.0"}}}]

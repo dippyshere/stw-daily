@@ -1,0 +1,1 @@
+[{"Type":"WExpLTMItemDefinition","Name":"LTM_Rules_Pets_Replace","Class":"UScriptClass'WExpLTMItemDefinition'","Properties":{"Type":"EWExpLTMType::Rule","Rule":"EWExpLTMRules::ReplacePet"}}]

@@ -1,0 +1,1 @@
+[{"Type":"WExpGearAffix","Name":"AD_Base_EnhanceElement_Dark","Class":"UScriptClass'WExpGearAffix'","Properties":{"StatusEffects":{"AssetPathName":"/Game/Skills/Affix/SE_Master_Affix_EnhanceElement_Dark.SE_Master_Affix_EnhanceElement_Dark_C","SubPathString":""},"bModifyStats":true,"bAllowMultipleSpend":false,"bCanUseItem":false,"bTakesUpInventorySpace":false}}]

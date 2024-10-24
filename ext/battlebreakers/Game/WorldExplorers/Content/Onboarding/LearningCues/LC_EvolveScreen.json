@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_EvolveScreen","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.EvolveScreen.Open"},"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_EvolveScreen_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_EvolveScreen.0"}}}]

@@ -1,0 +1,1 @@
+[{"Type":"LearningCue","Name":"LC_SellScreen","Class":"UScriptClass'LearningCue'","Properties":{"TargetEvent":{"TagName":"FrontEnd.SellScreen.Open"},"VisualizerClass":{"ObjectName":"BlueprintGeneratedClass'B_SellScreen_C'","ObjectPath":"WorldExplorers/Content/Onboarding/Visualizers/Tutorials/B_SellScreen.0"}}}]

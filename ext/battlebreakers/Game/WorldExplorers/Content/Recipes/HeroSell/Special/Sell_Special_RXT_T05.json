@@ -1,0 +1,1 @@
+[{"Type":"WExpRecipe","Name":"Sell_Special_RXT_T05","Class":"UScriptClass'WExpRecipe'","Properties":{"RequiredItems":[{"ItemDefinition":{"ObjectName":"WExpGenericAccountItemDefinition'Reagent_RXT_Parts_Small'","ObjectPath":"WorldExplorers/Content/Loot/AccountItems/Reagents/Reagent_RXT_Parts_Small.0"},"Count":100}],"MinAccountLevel":0}}]

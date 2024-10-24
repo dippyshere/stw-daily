@@ -1,0 +1,1 @@
+[{"Type":"MaterialFunction","Name":"MF_ChangeParticleSize","Class":"UScriptClass'MaterialFunction'","Properties":{"Description":"1 will keep the original size, 0 will make the particles disappear completely. Hook the output on wpo.","FunctionExpressions":[null,null,null,null,null,null,null],"bExposeToLibrary":true,"StateId":"C67D510A-47629FD2-DA3003A3-3B08523F"}}]

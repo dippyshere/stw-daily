@@ -1,0 +1,1 @@
+[{"Type":"MaterialParameterCollection","Name":"MPC_Console_SwitchSettings","Class":"UScriptClass'MaterialParameterCollection'","Properties":{"StateId":"ACD37710-4B740B88-EC1C69AB-F192D531","ScalarParameters":[{"DefaultValue":0.0,"ParameterName":"IsSwitchPortrait","Id":"A508B045-40723C64-EB047792-60CC6F29"}]}}]

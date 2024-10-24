@@ -1,0 +1,1 @@
+[{"Type":"WExpTileDefinition","Name":"T_Forest1_SevenHex","Class":"UScriptClass'WExpTileDefinition'","Properties":{"TileBlueprintClass":{"ObjectName":"BlueprintGeneratedClass'B_Tile_Shell_SevenHex_C'","ObjectPath":"WorldExplorers/Content/World/Tiles/B_Tile_Shell_SevenHex.1"},"ClusterShape":"EWExpHexTileClusterShape::SevenHex"}}]

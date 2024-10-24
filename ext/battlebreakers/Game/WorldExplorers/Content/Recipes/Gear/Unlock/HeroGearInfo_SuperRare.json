@@ -1,0 +1,1 @@
+[{"Type":"WExpCharacterHeroGearInfo","Name":"HeroGearInfo_SuperRare","Class":"UScriptClass'WExpCharacterHeroGearInfo'","Properties":{"HeroGearSlotRecipe":{"ObjectName":"WExpRecipe'HeroGearUnlock_SuperRare'","ObjectPath":"WorldExplorers/Content/Recipes/Gear/Unlock/HeroGearUnlock_SuperRare.0"},"HeroGearSlotMinGearLevel":3}}]
