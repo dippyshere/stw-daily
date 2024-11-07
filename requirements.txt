@@ -38,3 +38,5 @@ pytz>=2024.2
 owoify-py>=2.1.0
 # for bbsearch
 rapidfuzz>=3.10.0
+# for uptime
+flask>=3.0.3

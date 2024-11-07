@@ -31,6 +31,8 @@ class Playtime(ext.Cog):
 
         Args:
             ctx: The context of the command.
+            authcode: The authcode of the user.
+            auth_opt_out: Whether to opt out of starting an authentication session.
 
         Returns:
             None
@@ -39,15 +41,8 @@ class Playtime(ext.Cog):
         desired_lang = await stw.I18n.get_desired_lang(self.client, ctx)
         embed_colour = self.client.colours["auth_white"]
 
-        auth_info = await stw.get_or_create_auth_session(
-            self.client,
-            ctx,
-            "playtime",
-            authcode,
-            auth_opt_out,
-            True,
-            desired_lang=desired_lang,
-        )
+        auth_info = await stw.get_or_create_auth_session(self.client, ctx, "playtime", authcode, auth_opt_out,
+                                                         desired_lang=desired_lang)
         if not auth_info[0]:
             return
 
@@ -74,20 +69,22 @@ class Playtime(ext.Cog):
             "Authorization": f"bearer {new_token}"
         }
 
-        playtime_response = await self.client.stw_session.get(f"https://library-service.live.use1a.on.epicgames.com/library/api/public/playtime/account/{exchange_json["account_id"]}/artifact/Fortnite", headers=header)
+        playtime_response = await self.client.stw_session.get(
+            f"https://library-service.live.use1a.on.epicgames.com/library/api/public/playtime/account/{exchange_json['account_id']}/artifact/Fortnite",
+            headers=header)
         playtime_json = orjson.loads(await playtime_response.read())
         time_played = playtime_json['totalTime']
-    
+
         embed = discord.Embed(
             title=await stw.add_emoji_title(self.client, stw.I18n.get('playtime.embed.title', desired_lang),
                                             "library_clock"),
             description=f"\u200b\n{stw.I18n.get('playtime.embed.description', desired_lang)}\u200b\n"
-            f"{stw.I18n.get('playtime.embed.description2', desired_lang)}\n"
-            f"{stw.I18n.get('playtime.embed.description3', desired_lang, stw.I18n.fmt_num(time_played / (60 * 60 * 24),     desired_lang))}\n"
-            f"{stw.I18n.get('playtime.embed.description4', desired_lang, stw.I18n.fmt_num(time_played / (60 * 60),          desired_lang))}\n"
-            f"{stw.I18n.get('playtime.embed.description5', desired_lang, stw.I18n.fmt_num(time_played / 60,                 desired_lang))}\n"
-            f"{stw.I18n.get('playtime.embed.description6', desired_lang, stw.I18n.fmt_num(time_played,                      desired_lang))}\n\n"
-            f"{stw.I18n.get('playtime.embed.description7', desired_lang, stw.I18n.fmt_num((time_played/2250957386) * 100,   desired_lang))}\u200b\n",
+                        f"{stw.I18n.get('playtime.embed.description2', desired_lang)}\n"
+                        f"{stw.I18n.get('playtime.embed.description3', desired_lang, stw.I18n.fmt_num(time_played / (60 * 60 * 24), desired_lang))}\n"
+                        f"{stw.I18n.get('playtime.embed.description4', desired_lang, stw.I18n.fmt_num(time_played / (60 * 60), desired_lang))}\n"
+                        f"{stw.I18n.get('playtime.embed.description5', desired_lang, stw.I18n.fmt_num(time_played / 60, desired_lang))}\n"
+                        f"{stw.I18n.get('playtime.embed.description6', desired_lang, stw.I18n.fmt_num(time_played, desired_lang))}\n\n"
+                        f"{stw.I18n.get('playtime.embed.description7', desired_lang, stw.I18n.fmt_num((time_played / 2250957386) * 100, desired_lang))}\u200b\n",
             colour=embed_colour)
 
         embed = await stw.set_thumbnail(self.client, embed, "crystal_llama")
@@ -114,6 +111,8 @@ class Playtime(ext.Cog):
 
         Args:
             ctx (discord.ext.commands.Context): The context of the command call
+            authcode (str): The authcode of the user
+            optout (bool): Whether to opt out of starting an authentication session
         """
         if optout is not None:
             optout = True
@@ -132,45 +131,47 @@ class Playtime(ext.Cog):
         guild_ids=stw.guild_ids,
     )
     async def slashplaytime(
-        self,
-        ctx: discord.ApplicationContext,
-        token: Option(
-            description="Your Epic Games authcode. Required unless you have an active "
-            "session.",
-            description_localizations=stw.I18n.construct_slash_dict(
-                "generic.slash.token"
-            ),
-            name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
-            min_length=32,
-        ) = "",
-        auth_opt_out: Option(
-            default="False",
-            description="Opt out of starting an authentication session",
-            description_localizations=stw.I18n.construct_slash_dict(
-                "generic.slash.optout"
-            ),
-            name_localizations=stw.I18n.construct_slash_dict(
-                "generic.meta.args.optout"
-            ),
-            choices=[
-                OptionChoice(
-                    "Do not start an authentication session",
-                    "True",
-                    stw.I18n.construct_slash_dict("generic.slash.optout.true"),
+            self,
+            ctx: discord.ApplicationContext,
+            token: Option(
+                description="Your Epic Games authcode. Required unless you have an active "
+                            "session.",
+                description_localizations=stw.I18n.construct_slash_dict(
+                    "generic.slash.token"
                 ),
-                OptionChoice(
-                    "Start an authentication session (Default)",
-                    "False",
-                    stw.I18n.construct_slash_dict("generic.slash.optout.false"),
+                name_localizations=stw.I18n.construct_slash_dict("generic.meta.args.token"),
+                min_length=32,
+            ) = "",
+            auth_opt_out: Option(
+                default="False",
+                description="Opt out of starting an authentication session",
+                description_localizations=stw.I18n.construct_slash_dict(
+                    "generic.slash.optout"
                 ),
-            ],
-        ) = "False",
+                name_localizations=stw.I18n.construct_slash_dict(
+                    "generic.meta.args.optout"
+                ),
+                choices=[
+                    OptionChoice(
+                        "Do not start an authentication session",
+                        "True",
+                        stw.I18n.construct_slash_dict("generic.slash.optout.true"),
+                    ),
+                    OptionChoice(
+                        "Start an authentication session (Default)",
+                        "False",
+                        stw.I18n.construct_slash_dict("generic.slash.optout.false"),
+                    ),
+                ],
+            ) = "False",
     ):
         """
         This function is the entry point for the playtime command when called via slash commands
 
         Args:
             ctx: The context of the slash command
+            token: The authcode of the user
+            auth_opt_out: Whether to opt out of starting an authentication session
         """
         await self.playtime_command(ctx, token, not eval(auth_opt_out))
 
