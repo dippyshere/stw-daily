@@ -65,7 +65,22 @@ async def get_all_users_cursor(client):
     Returns:
         pymongo.cursor.Cursor: The autoclaim user cursor.
     """
-    return client.stw_database.find({"auto_claim": {"$ne": None}}, batch_size=25)
+    return client.stw_database.find({
+        "$expr": {
+            "$gt": [
+                {
+                    "$size": {
+                        "$filter": {
+                            "input": {"$objectToArray": "$profiles"},
+                            "as": "profile",
+                            "cond": {"$eq": ["$$profile.v.auto_claim", True]}
+                        }
+                    }
+                },
+                0
+            ]
+        }
+    }, batch_size=25)
 
 
 async def get_accounts_with_auth_data_cursor(client):

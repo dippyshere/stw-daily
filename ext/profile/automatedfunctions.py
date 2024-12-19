@@ -318,10 +318,6 @@ async def auto_authenticate(client, auth_entry):
         if current_profile["authentication"] is not None:
             auth_entry["global"]["selected_profile"] = profile
 
-            if current_profile.get("auto_claim", None) is None:
-                logger.info("User does not have auto_claim")
-                continue
-
             try:
                 if auth_entry["profiles"][profile]["authentication"]["hasExpired"]:
                     logger.info("User authentication hasExpired")

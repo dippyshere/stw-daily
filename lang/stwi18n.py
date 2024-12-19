@@ -102,11 +102,12 @@ class I18n:
             # if string not found, first try to get the string in english
             try:
                 if 'keycard' not in key and 'generic' not in key:
-                    logger.warning(f"Key {key} not found in language {lang}, trying en")
+                    # logger.warning(f"Key {key} not found in language {lang}, trying en")
+                    pass
                 string = self.i18n_json["en"][key]
             except KeyError:
                 # if string not found in english, return the key
-                logger.warning(f"Key {key} not found in language {lang} or en")
+                # logger.warning(f"Key {key} not found in language {lang} or en")
                 return key
         # try:
         #     args_fmt = [self.fmt_num(arg, lang) if isinstance(arg, int) else arg for arg in args]
