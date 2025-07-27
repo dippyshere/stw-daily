@@ -662,7 +662,7 @@
         "util.battlebreakers.deprecation.embed.description4": "If you're interested, check out the [Battle Breakers Private Server]({0}) project.",
         "util.fortnite.deprecation.embed.description2.daily": "**Sorry... Daily Rewards are no longer available 😢**",
         "util.fortnite.deprecation.embed.description3": "As of {0} with v25.10, Fortnite Daily Rewards were removed from the game.",
-        "util.fortnite.deprecation.embed.description4": "Learn more about this change [Epic's blog post]({0})",
+        "util.fortnite.deprecation.embed.description4": "Learn more about this change in [Epic's blog post]({0})",
         "util.vbucks.sources.bp": "Battle Pass",
         "util.vbucks.sources.purchased": "Purchased",
         "util.vbucks.sources.purchased.bonus": "Purchase Bonus",

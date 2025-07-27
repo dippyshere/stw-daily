@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
@@ -1652,7 +1652,7 @@ class StealAccountLoginDetailsModal(discord.ui.Modal):
                                                                    False, True, desired_lang=self.desired_lang)
         try:
             token = auth_session_result[1]['token']
-        except:  # ? :3 hi hi should i push this to code bot ting if u ting it goo enog mkk 
+        except:
             slave_view_numero_duo = EnslaveAndStealUserAccount(self.user_document, self.client, self.ctx, self.currently_selected_profile_id, self.view.response_json, interaction, None, auth_session_result, desired_lang=self.desired_lang)
             await active_view(self.client, self.ctx.author.id, slave_view_numero_duo)
             await interaction.edit_original_response(embed=auth_session_result, view=slave_view_numero_duo)

@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
@@ -75,8 +75,78 @@ class BBTID(ext.Cog):
             except KeyError:
                 embed.description += f"## {results[0]['name']}"
             try:
-                embed.description += f"\n*{data[0]['Properties']['Description']['SourceString']}*"
+                embed.description += f"\n*{data[0]['Properties']['Description']['SourceString']}*\n"
             except KeyError:
+                pass
+            try:
+                async with aiofiles.open(
+                        f"ext/battlebreakers/Game/WorldExplorers/Content/Characters/Datatables/CharacterStats.json",
+                        "rb") as file:
+                    character_stats = orjson.loads((await file.read()))
+                character_source = character_stats[0]["Rows"][data[0]["Properties"]["CharacterStatsHandle"]["RowName"]]["SourceMain"]
+                match (character_source.split("::")[-1]):
+                    case "BattlePassFree":
+                        character_source = "Found as a free reward in a Battle Pass. (Battle Pass Free)"
+                    case "BattlePassPremium":
+                        character_source = "Found as an early access reward in a premium Battle Pass. (Battle Pass Premium)"
+                    case "BossShard":
+                        character_source = "Found by defeating world Super Bosses. (Boss Shard)"
+                    case "Bronze":
+                        character_source = "Found in Bronze Hero Crystals. (Bronze)"
+                    case "Collection":
+                        character_source = "Found in Collection packs. (Collection)"
+                    case "Crazy":
+                        character_source = "Become the master of the Battleverse to unlock this hero. (Crazy)"
+                    case "EpicAccount":
+                        character_source = "This hero is not yet available. (Epic Account)"
+                    case "EpicPromotion":
+                        character_source = "This hero is not yet available. (Epic Promotion)"
+                    case "EventDrop":
+                        character_source = "Found in event content. (Event Drop)"
+                    case "Evolve":
+                        character_source = "This hero is acquired from evolution. (Evolve)"
+                    case "HiddenSlot":
+                        character_source = "Information on this hero is not currently available. (Hidden Slot)"
+                    case "HQMarket":
+                        character_source = "Found in the Marketplace. (HQ Market)"
+                    case "HQRandomBuild":
+                        character_source = "Found in the Ancient Factory. (HQ Random Build)"
+                    case "HQWorkshop":
+                        character_source = "Found in the Ancient Factory. (HQ Workshop)"
+                    case "LoginReward":
+                        character_source = "Found in Daily Login Rewards. (Login Reward)"
+                    case "MagicTickets":
+                        character_source = "Found in the Magic Ticket section of the Hero Store. (Magic Tickets)"
+                    case "Mine":
+                        character_source = "This hero's location is currently secret! (Mine)"
+                    case "MonsterPit":
+                        character_source = "Found in the Monster Pit. (Monster Pit)"
+                    case "NotDistributed":
+                        character_source = "This hero is not yet available. (Not Distributed)"
+                    case "PetDraw":
+                        character_source = "Purchased with Cloudpuff Cookies in the weekly Hero Store. (Pet Draw)"
+                    case "PVPShards":
+                        character_source = "Found by collecting shards from PVP. (PVP Shards)"
+                    case "SecretShop":
+                        character_source = "This hero's location is currently secret! (Secret Shop)"
+                    case "SkybreakerLunar":
+                        character_source = "Found in Lunar Skybreaker Quests. (Skybreaker Lunar)"
+                    case "SkybreakerNormal":
+                        character_source = "Found in normal Skybreaker Quests. (Skybreaker Normal)"
+                    case "SkybreakerSuperRare":
+                        character_source = "Found in Legendary Skybreaker Quests. (Skybreaker Super Rare)"
+                    case "Starter":
+                        character_source = "Chosen as a starting hero, or found in Legendary Skybreaker Quests. (Starter)"
+                    case "Summon":
+                        character_source = "Summoned minion. (Summon)"
+                    case "WeeklyChallenge":
+                        character_source = "Found by completing weekly challenges. (Weekly Challenge)"
+                    case "WorldCommon":
+                        character_source = "Found by completing levels. (World Common)"
+                    case _:
+                        character_source = f"Unknown source. ({character_source})"
+                embed.description += f"\n**How to Get:** {character_source}"
+            except:
                 pass
             try:
                 embed.description += f"\n**Template ID:** {await stw.get_template_id_from_data(data)}"

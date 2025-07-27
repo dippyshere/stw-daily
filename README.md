@@ -17,7 +17,6 @@ ___
 <a href="https://discord.com/api/oauth2/authorize?client_id=757776996418715651&permissions=2147797056&scope=bot%20applications.commands"><img src="https://img.shields.io/badge/Invite-STW Daily-5865F2.svg?style=for-the-badge&logo=Discord" alt="Invite Bot"></a>
 <a href="https://discord.gg/stw-dailies-757765475823517851"><img src="https://img.shields.io/badge/Join-STW Dailies-5865F2.svg?style=for-the-badge&logo=Discord" alt="Join STW Dailies"></a>
 
-<a href="https://paypal.me/AHanson047"><img src="https://img.shields.io/badge/PayPal-Donate-036ab6.svg?style=flat-square" alt="PayPal Donate"></a>
 <a href="https://ko-fi.com/dippyshere"><img src="https://img.shields.io/badge/Ko--fi-Donate-ff5e5b.svg?style=flat-square" alt="Ko-fi Donate"></a>\
 <img alt="Lines of code" src="https://img.shields.io/badge/Made%20by-Dippyshere,%20jean1398reborn-red?style=flat-square">
 <h4>
@@ -65,7 +64,7 @@ ___
     <a id="auth"></a>
     <summary><b>Auth</b></summary>
     <ul>
-    <p>This command will log you in with Epic Games and start an <a href="https://github.com/dippyshere/stw-daily/wiki">authentication session</a> with STW Daily. This will keep you logged in for ~8 hours</p>
+    <p>This command will log you in with Epic Games and start an authentication session with STW Daily. This will keep you logged in for ~8 hours</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -175,7 +174,7 @@ ___
 <details>
     <summary><b>Homebase</b></summary>
     <ul>
-    <p>This command allows you to view / change the name of your Homebase in STW. You don't need STW to use, but the command is effectively useless without it.</p>
+    <p>This command allows you to view / change the name of your Homebase in STW. Homebase names were removed from STW in March 2023, however the command is still functional.</p>
     <span>There are two ways to use this command:</span>
         <ol>
             <li>Mentioning the bot:</li>
@@ -370,6 +369,45 @@ ___
 </details>
 
 <details>
+    <summary><b>Daily Quests</b></summary>
+    <ul>
+    <p>This command allows you to view and re-roll your daily STW quests.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>dailyquests {token} {opt-out}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/dailyquests token:{token} auth_opt_out:{opt-out}</kbd>
+        </div>
+        <br>
+        </ol>
+        <p>Replace {token} with your auth code. You can find out more about this <a href="#how-to-get-a-code">here.</a> This parameter is optional—if you do not give an auth code the bot will return links needed for getting an auth code.<br><br>Replacing {opt-out} with any text will opt you out of the authentication system. Learn more about authentication sessions by checking out the <a href="#auth">auth command.</a></p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>dq</sup>
+        <br><span> This will display your current daily quests, if you are authenticated. If not, the bot will provide you with links to authenticate.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>dailyquests a51c1f4d35b1457c8e34a1f6026faa35 yes</sup>
+        <br><span> This will display your current daily quests. An authentication session will not be created</span>
+    </ul>
+    <img src="res/dailyquests.png" alt="Daily Quests command example" width="640">
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
     <summary><b>Llamas</b></summary>
     <ul>
     <p>This command allows you to view the current X-Ray Llama store, the items you'll receive, and allows you to purchase Llamas.</p>
@@ -523,6 +561,46 @@ ___
         <br><span> This will display the reward for day 336, and additionally the rewards for day 337-358 (21 days).</span>
     </ul>
     <img src="res/bbreward.png" alt="Batle breakers reward command example" width="640">
+<p><em>Battle Breakers was shut down on 30th December 2022. To continue playing after the shutdown, check out the <a href="https://www.github.com/dippyshere/battle-breakers-private-server">Battle Breakers private server</a> project</em></p>
+<p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
+</details>
+
+<details>
+    <summary><b>Battle Breakers Search</b></summary>
+    <ul>
+    <p>This command finds items in Battle Breakers to help translate between names and Template IDs.</p>
+    <span>There are two ways to use this command:</span>
+        <ol>
+            <li>Mentioning the bot:</li>
+        <div>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+            </picture> <sup>bbsearch {input_string}</sup>
+        <li>
+            Using <a href="https://discord.com/blog/slash-commands-are-here" target="_blank">slash commands</a>:
+        </li>
+        <kbd>/bbsearch input_string:{item}</kbd>
+        </div>
+        <br>
+        </ol> 
+        <p>Replace {item} with the term you would like to search for. This can be either a template ID or the name of an item in Battle Breakers</p> 
+        <p><b>Examples:</b></p>
+        <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>bbsearch razor</sup>
+        <br><span> This will information about the hero "Razor" in Battle Breakers.</span>
+        <br><br><picture>
+              <source media="(prefers-color-scheme: dark)" srcset="res/stwmentiondark.svg" type="svg">
+              <source media="(prefers-color-scheme: light)" srcset="res/stwmentionlight.svg" type="svg">
+              <img alt="@STW Daily" src="res/stwmentiondark.svg" width="96" height="20">
+        </picture> <sup>bbs kassandra</sup>
+        <br><span> This will display information about the hero "Kassandra" in Battle Breakers</span>
+    </ul>
+    <img src="res/bbsearch.png" alt="Batle breakers search command example" width="640">
 <p><em>Battle Breakers was shut down on 30th December 2022. To continue playing after the shutdown, check out the <a href="https://www.github.com/dippyshere/battle-breakers-private-server">Battle Breakers private server</a> project</em></p>
 <p align="right"><a href="#commands2"><img src='res/backtotop.svg' width='48' alt="back to top" /></a></p>
 </details>
@@ -747,19 +825,11 @@ ___
 <details>
     <summary><b>Upcoming commands</b></summary>
     <ul>
-    <span>This is a partial list of potential commands coming to STW Daily in future updates:</span>
+    <span>Unfortunately development of new features on STW Daily has paused. This is a partial list of commands that were in development.</span>
         <ul>
-            <li>Daily Quests</li>
-            <ul>
-                <li>View, get and re-roll your daily quests</li>
-            </ul>
             <li>Survivor Squad Management</li>
             <ul>
                 <li>View your survivors, and create presets to switch between at any time</li>
-            </ul>
-            <li>Item Shop</li>
-            <ul>
-                <li>View the current BR Item shop</li>
             </ul>
             <li>Collection Book</li>
             <ul>
@@ -770,7 +840,7 @@ ___
                 <li>View and manage your expeditions</li>
             </ul>
         </ul>
-        <p>Please note that this information is subject to change without notice at anytime. Some or all of these features may already be present and/or functional on STW Daily, or may be removed at any time. For a more detailed list, check out our <a href="https://trello.com/b/BbfX8IPj/stw-daily" target="_blank">trello board.</a></p>
+        <p>Please note that this information is subject to change without notice at anytime. Some or all of these features may already be present and/or functional on STW Daily, or may be removed at any time.</p>
     </ul>
 </details>
 
@@ -1005,8 +1075,7 @@ can [join the STW Daily discord](https://discord.gg/Mt7SgUu). Feel free to reach
 ### FAQ
 
 You can read some commonly asked questions about the bot on
-the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions), or in the
-[STW Daily Wiki](https://github.com/dippyshere/STW-Daily/wiki/) (under construction).
+the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions).
 
 ## Credits <a id="credit"></a>
 
@@ -1028,8 +1097,7 @@ the [STW Daily website](https://sites.google.com/view/stwdaily/docs/frequently-a
 
 ## Info <a id="inf"></a>
 
-> **Note** Valid auth codes *may* allow an attacker to compromise your
-> account.  [Read more here](https://sites.google.com/view/stwdaily/docs/frequently-asked-questions)
+> **Note** Valid auth codes allow an attacker to compromise your Fortnite account.
 
 ###### <p align=center> Portions of the materials used are trademarks and/or copyrighted works of Epic Games, Inc. </p>
 

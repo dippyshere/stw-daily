@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 

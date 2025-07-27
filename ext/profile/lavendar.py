@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
@@ -13,27 +13,12 @@ from discord import Option, slash_command
 
 import stwutil as stw
 
-# did u install motor no :) :( :c oh lmao sorry racism
-# access monogodb async
-
-import motor.motor_asyncio
+import pymongo
 
 from ext.profile.automatedfunctions import create_autoclaim_embed, get_auto_claim
 from ext.profile.devauth import handle_dev_auth
 from ext.profile.bongodb import *
 from ext.profile.sunday import settings_command
-
-"""
-create dictionary with user snowflake as keys and a list of all documents in that collection asi summon thee
-how should we make mongodb thingy ;w;
-um we should like gram their snowflake = 123456789012345678 post it on the gram? brb sending it to hayk yes ofc
- yes yes :3 then um we make the collection or something and store some cool ggdpr whatever complaint info in it ;o
-idk what do you think we should do
-i was more asking if the function should request certain portions of the data or the entire thing per user
-so like either u grab the entire like document for the user or just like whatever u want but i think grab entire thing?
-the tables probably gonna be pretty small per user so just grab the whole thing
-also i got the localhost mongo running on that port localhost:27017
-"""
 
 
 def setup(client):
@@ -43,21 +28,14 @@ def setup(client):
     Args:
         client (discord.ext.commands.Bot): The bot client.
     """
-    # we can add new variables and stuff to client right through setup
-    # can use that with the ext stuff so we can add new functawn
 
     # Create the client used for communication with the mongodb on setup
     mongodb_url = os.environ[
-        client.config['mango']["uri_env_var"]]  # idk lmao i forgot how toml works in python too used to rust
-    client.database_client = motor.motor_asyncio.AsyncIOMotorClient(mongodb_url)
-    # gotta restart the terminal or something cause it hasnt picked up u added the env var yet kk nya~
-    # how the hell wooooo yeah baby
-    # ill relaunch py
-    # lets see who's faster, me or github copilot
+        client.config['mango']["uri_env_var"]]
+    client.database_client = pymongo.AsyncMongoClient(mongodb_url)
     database = client.config['mango']["database"]
     collection = client.config['mango']["collection"]
     client.stw_database = client.database_client[database][collection]
-    # i win <3 idk if it works tho lmao i keep forgetting u dont need to switch to the daily core.py file to run
     client.get_user_document = get_user_document
     client.processing_queue = {}  # dictionaries are a lot faster than lists :thumbs_up:
 

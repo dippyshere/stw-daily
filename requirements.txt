@@ -1,40 +1,37 @@
 # for python 3.13
-# git+https://github.com/jcrist/msgspec.git@main
-# literally everything this bot does lmao
-aiohttp>=3.10.10
-py-cord>=2.6.1
+git+https://github.com/jcrist/msgspec.git@main
+aiohttp
+py-cord
 # for python 3.11
 # git+https://github.com/Pycord-Development/pycord
 # info command
-psutil>=6.0.0
-py-cpuinfo>=9.0.0
+psutil
+py-cpuinfo
 # python <3.10 compatibility
-tomli>=2.0.2
+tomli
 # speedup
-# Cython>=3.0.11
-aiodns>=3.2.0
-brotli>=1.1.0
-faust-cchardet>=2.1.19
-orjson>=3.10.7
-msgspec>=0.18.6
-aiofiles>=24.1.0
-# PyNaCl>=1.5.0
+aiodns
+brotli
+faust-cchardet
+orjson
+msgspec
+aiofiles
 # async-cache>=1.1.1
-async-lru>=2.0.4
+async-lru
 # database
-motor>=3.6.0
+pymongo>=4.13.0
 # for banner rendering
-blendmodes>=2024.1.1
-Pillow>=10.4.0
+blendmodes
+Pillow
 # development
-watchfiles>=0.24.0
-pycryptodome>=3.21.0
-colorama>=0.4.6
-deprecation>=2.1.0
+watchfiles
+pycryptodome
+colorama
+deprecation
 # localisation
-babel>=2.16.0
-pytz>=2024.2
+babel
+pytz
 # troll
-owoify-py>=2.1.0
+owoify-py
 # for bbsearch
-rapidfuzz>=3.10.0
+rapidfuzz

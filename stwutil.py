@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
@@ -22,14 +22,17 @@ from typing import Any, Optional, Tuple, Union
 
 import aiofiles
 import aiohttp.client_reqrep
-import blendmodes.blend
+
+try:
+    import blendmodes.blend
+except:
+    pass
 import deprecation
 import discord
 import orjson
 import owoify
 import rapidfuzz
 
-# from cache import AsyncLRU
 from async_lru import alru_cache
 from Crypto.Cipher import AES
 from discord import Client
@@ -1471,8 +1474,6 @@ async def manslaughter_session(client: Client, account_id: int, kill_stamp: int 
     except:
         logger.debug(f"Failed to log out {account_id}, no session found")
         return False
-        # 😳 they will know 😳
-        # now they know :D
 
 
 async def entry_profile_req(client: Client, entry: dict[str, str | bool | float | None | list[str]], game: str) -> dict[

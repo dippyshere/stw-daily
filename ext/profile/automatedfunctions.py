@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
@@ -317,6 +317,10 @@ async def auto_authenticate(client, auth_entry):
 
         if current_profile["authentication"] is not None:
             auth_entry["global"]["selected_profile"] = profile
+
+            if current_profile.get("auto_claim", None) is None:
+                logger.info("User does not have auto_claim")
+                continue
 
             try:
                 if auth_entry["profiles"][profile]["authentication"]["hasExpired"]:

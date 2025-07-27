@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
@@ -1922,7 +1922,7 @@ le guide for ze epic function for le check for le non bool type of le setting
 must be synchronous no async around here
 ok so the name of the function must be unique and must be in this file, the parameters passed to the function are
 bot client, context, value
-where bot client is well the same fucking client as everywhere
+where bot client is well the same client as everywhere
 context is either the context from a slash command or a normal command
 value is the inputted value from the user which the function should check if it meets the requirements for this setting
 the return type must be the value that the setting will become, or False if the value inputted is not allowed

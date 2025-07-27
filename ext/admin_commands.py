@@ -1,14 +1,10 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
 This file is the cog for the reload command. It is used to reload and load cogs for development.
 """
-
-#  STW Daily Discord bot Copyright 2023-2024 by the STW Daily team.
-#  Please do not skid our hard work.
-#  https://github.com/dippyshere/stw-daily
 
 import asyncio
 import logging

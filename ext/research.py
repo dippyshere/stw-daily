@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 
@@ -297,7 +297,6 @@ class ResearchView(discord.ui.View):
 
         for i, child in enumerate(self.children[0:4]):
             self.disable_button_when_poor(child, i)
-            # hmm github copilot ;o maybe i should use it instead of writing everything :( it DOESNT work on the remote client :p it doesnt work well on the remote clientif it works
 
     async def interaction_check(self, interaction):
         """

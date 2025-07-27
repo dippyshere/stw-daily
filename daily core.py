@@ -1,5 +1,5 @@
 """
-STW Daily Discord bot Copyright 2023 by the STW Daily team.
+STW Daily Discord bot Copyright 2021-2025 by the STW Daily team.
 Please do not skid our hard work.
 https://github.com/dippyshere/stw-daily
 """
@@ -99,8 +99,6 @@ import aiohttp
 import discord
 import discord.ext.commands as ext
 from discord.ext import tasks
-from flask import Flask
-from threading import Thread
 
 import stwutil as stw
 import stwwatch as watch
@@ -133,7 +131,6 @@ def stw_when_mentioned(bot: discord.ext.commands.Bot | discord.AutoShardedBot, m
 
 
 client = ext.AutoShardedBot(command_prefix=stw_when_mentioned, case_insensitive=True, intents=discord.Intents.default())
-app = Flask(__name__)
 
 
 def load_config(config_path: str) -> Dict[str, Any]:
@@ -246,7 +243,7 @@ async def create_http_session() -> aiohttp.ClientSession:
     Returns:
         aiohttp.ClientSession: The aiohttp session
     """
-    headers = {"User-Agent": "Fortnite/++Fortnite+Release-24.10-CL-24850983 Windows/10.0.22621.1.256.64bit"}  # idk
+    headers = {"User-Agent": "Fortnite/++Fortnite+Release-36.20-CL-44118662 Windows/10.0.26100.1.256.64bit"}
     logger.debug("Creating aiohttp session")
     return aiohttp.ClientSession(json_serialize=lambda x: orjson.dumps(x).decode())
 
@@ -265,13 +262,9 @@ async def on_ready() -> None:
     """
 
     client.stw_session = await create_http_session()
-    version = orjson.loads(await (await client.stw_session.get("https://fortnite-public-service-prod11.ol.epicgames"
-                                                               ".com/fortnite/api/version")).read())
-    client.stw_session._default_headers = client.stw_session._prepare_headers(
-        {
-            "User-Agent": f"Fortnite/++Fortnite+Release-{version['version']}-CL-{version['cln']} Windows/10.0.22621.1"
-                          f".256.64bit"}
-    )
+    version = orjson.loads(await (await client.stw_session.get("https://fngw-mcp-gc-livefn.ol.epicgames.com/fortnite/api/version")).read())
+    client.stw_session._default_headers = client.stw_session._prepare_headers({
+        "User-Agent": f"Fortnite/++Fortnite+Release-{version['version']}-CL-{version['cln']} Windows/10.0.26100.1.256.64bit"})
     for command in client.commands:
         if command.name == "auth":
             client.auth_command = command
@@ -292,11 +285,10 @@ async def on_ready() -> None:
     logger.debug(f"Logged in as {client.user} (ID: {client.user.id}), ready to serve {len(client.guilds)} guilds")
     logger.info("Started STW Daily")
 
-    try:
-        # TODO: remember to disable this on prod
-        await client.watch_module.watch_stw_extensions()
-    except:
-        pass
+    # try:
+    #     await client.watch_module.watch_stw_extensions()
+    # except:
+    #     pass
 
 
 @client.event
@@ -322,50 +314,16 @@ async def on_message(message: discord.Message) -> None:
             message_future = await asyncio.gather(asyncio.to_thread(stw.process_quotes_in_message, message.content))
             message.content = message_future[0]
             # print(time.perf_counter_ns() - now)
-        # pro watch me i am the real github copilot
-        # make epic auth system thing
         logger.debug(f"Message content after processing: {message.content}")
         try:
             if re.match(r'^<@[0-9]{15,21}>.*([0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15})', message.content,
                         re.I) and ' ' not in message.content:
                 await client.auth_command.__call__(message, stw.extract_auth_code(message.content))
-                return  # what song are u listening to rn? youtube.com youtube.com what~? homepage oh nothing~ :3
+                return
         except IndexError:
             pass
 
         await client.process_commands(message)
-
-
-@app.route("/")
-def ping() -> str:
-    """
-    Ping route
-
-    Returns:
-        str: The response
-    """
-    return "OK"
-
-def run() -> None:
-    """
-    Runs the Flask app
-
-    Returns:
-        None
-    """
-    app.run(host="0.0.0.0", port=8080)
-
-
-def keep_alive() -> None:
-    """
-    Keeps the bot alive
-
-    Returns:
-        None
-    """
-    server = Thread(target=run)
-    server.start()
-
 
 # simple task which updates the status every 60 seconds to display time until next day/reset
 @tasks.loop(seconds=60)
@@ -383,5 +341,4 @@ async def update_status() -> None:
 
 
 if __name__ == "__main__":
-    keep_alive()
     main()
