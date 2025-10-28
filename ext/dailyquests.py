@@ -105,7 +105,7 @@ class QuestsView(discord.ui.View):
                                 embed.description += await self.dailyquests.dailyquests_entry(quest, quest_data,
                                                                                               self.auth_info["vbucks"],
                                                                                               self.desired_lang)
-                                embed.description += f"\n*{quest_data[0]['Properties']['Objectives'][0]['Description']['SourceString']}*\n"
+                                embed.description += f"\n*{quest_data[1]['Properties']['Objectives'][0]['Description']['SourceString']}*\n"
                                 break
                     else:
                         continue
@@ -392,7 +392,7 @@ class DailyQuests(ext.Cog):
                 if quest["templateId"].lower().split("quest:")[1] == file_name.split(".")[0].lower():
                     async with aiofiles.open(f"ext/DataTables/DailyQuests/{file_name}", "r", encoding="utf-8") as f:
                         quest_data = orjson.loads(await f.read())
-                        match quest_data[0]["Properties"]["LargePreviewImage"]["AssetPathName"].split(".")[-1]:
+                        match quest_data[1]["Properties"]["DataList"][0]["Icon"]["AssetPathName"].split(".")[-1]:
                             case "T-Icon-Exterminate-128":
                                 quest_icon_emoji = self.client.config["emojis"]["exterminate"]
                             case "T-Icon-Safe-128":
@@ -415,10 +415,10 @@ class DailyQuests(ext.Cog):
                                 quest_icon_emoji = self.client.config["emojis"]["daily_quest"]
                         options.append(
                             discord.SelectOption(
-                                label=stw.truncate(quest_data[0]['Properties']['DisplayName']['SourceString']),
+                                label=stw.truncate(quest_data[1]['Properties']['ItemName']['SourceString']),
                                 value=quest["guid"],
                                 description=stw.truncate(
-                                    quest_data[0]['Properties']['Objectives'][0]['Description'][
+                                    quest_data[1]['Properties']['Objectives'][0]['Description'][
                                         'SourceString']),
                                 emoji=quest_icon_emoji))
                         if selected_guid is not None and selected_guid == quest["guid"]:
@@ -443,7 +443,7 @@ class DailyQuests(ext.Cog):
         Returns:
             The embed entry string.
         """
-        match quest_data[0]["Properties"]["LargePreviewImage"]["AssetPathName"].split(".")[-1]:
+        match quest_data[1]["Properties"]["DataList"][0]["Icon"]["AssetPathName"].split(".")[-1]:
             case "T-Icon-Exterminate-128":
                 quest_icon_emoji = self.client.config["emojis"]["exterminate"]
             case "T-Icon-Safe-128":
@@ -464,14 +464,14 @@ class DailyQuests(ext.Cog):
                 quest_icon_emoji = self.client.config["emojis"]["radar_tower"]
             case _:
                 quest_icon_emoji = self.client.config["emojis"]["daily_quest"]
-        entry_string = f"\u200b\n{quest_icon_emoji}{self.client.config['emojis']['bang'] if not quest['attributes'].get('item_seen', False) else ''} **{quest_data[0]['Properties']['DisplayName']['SourceString']}**"
+        entry_string = f"\u200b\n{quest_icon_emoji}{self.client.config['emojis']['bang'] if not quest['attributes'].get('item_seen', False) else ''} **{quest_data[1]['Properties']['ItemName']['SourceString']}**"
         if quest["attributes"].get(
-                f"completion_{quest_data[0]['Properties']['Objectives'][0]['ObjectiveStatHandle']['RowName']}") is not None:
-            entry_string += f" [{quest['attributes']['completion_{0}'.format(quest_data[0]['Properties']['Objectives'][0]['ObjectiveStatHandle']['RowName'])]}/{quest_data[0]['Properties']['Objectives'][0]['Count']}]"
+                f"completion_{quest_data[1]['Properties']['Objectives'][0]['ObjectiveStatHandle']['RowName']}") is not None:
+            entry_string += f" [{quest['attributes']['completion_{0}'.format(quest_data[1]['Properties']['Objectives'][0]['ObjectiveStatHandle']['RowName'])]}/{quest_data[1]['Properties']['Objectives'][0]['Count']}]"
         else:
-            entry_string += f" [0/{quest_data[0]['Properties']['Objectives'][0]['Count']}]"
-        gold_quantity = stw.quest_rewards[0]["Rows"][f"{quest_data[0]['Name']}_001"]["Quantity"]
-        mtx_quantity = stw.quest_rewards[0]["Rows"][f"{quest_data[0]['Name']}_002"]["Quantity"]
+            entry_string += f" [0/{quest_data[1]['Properties']['Objectives'][0]['Count']}]"
+        gold_quantity = stw.quest_rewards[0]["Rows"][f"{quest_data[1]['Name']}_001"]["Quantity"]
+        mtx_quantity = stw.quest_rewards[0]["Rows"][f"{quest_data[1]['Name']}_002"]["Quantity"]
         rewards_string = f"{self.client.config['emojis']['gold']}x{gold_quantity} {self.client.config['emojis']['xray']}x{mtx_quantity}"
         if vbucks:
             rewards_string += f" {self.client.config['emojis']['vbucks']}x{mtx_quantity}"
